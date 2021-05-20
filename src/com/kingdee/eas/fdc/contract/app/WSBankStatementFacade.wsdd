@@ -1,0 +1,10 @@
+<deployment xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+    <service name="WSWSBankStatementFacade" provider="java:RPC">
+        <parameter name="className" value="com.kingdee.eas.fdc.contract.app.webservice.WSWSBankStatementFacadeSrvProxy"/>
+        <parameter name="allowedMethods" value="*"/>
+        <beanMapping qname="myNS:WSBean" xmlns:myNS="urn:client.wsbankstatementfacade" languageSpecificType="java:com.kingdee.bos.webservice.WSBean"/>
+        <beanMapping qname="myNS:WSInvokeException" xmlns:myNS="urn:client.wsbankstatementfacade" languageSpecificType="java:com.kingdee.bos.webservice.WSInvokeException"/>
+        
+    </service>
+</deployment>
