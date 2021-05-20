@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>SupplierChangeGradeQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>SupplierChangeGrade</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].subObjects.subEntity[SupplierChangeGrade].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGrade" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>grade</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].subObjects.subEntity[grade].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="GradeSetUp" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>applier</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].subObjects.subEntity[applier].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.basedata.person.app" />
+                <key name="name" value="Person" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>supplier</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].subObjects.subEntity[supplier].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierStock" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>purchaseCategory</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].subObjects.subEntity[purchaseCategory].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.custom.purchasebaseinfomation.app" />
+                <key name="name" value="PurchaseCategory" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>46646e04-fbbc-4024-aa83-1ff2349e38cd</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierChangeGrade" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>088cade3-dcb9-4469-8ba3-f9bd0a21ebdb</key>
+                    <parentUnit>
+                        <key name="name" value="number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierChangeGrade" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>state</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[state].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9bc78912-e60e-4643-bec2-21be69b4e519</key>
+                    <parentUnit>
+                        <key name="name" value="state" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierChangeGrade" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="state" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>description</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[description].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9c9d344f-628d-4e57-bf59-847dcc1e46ed</key>
+                    <parentUnit>
+                        <key name="name" value="description" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierChangeGrade" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="description" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>supplier.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[supplier.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>09f821e8-9b3e-4ec0-907d-317e683f84e1</key>
+                    <parentUnit>
+                        <key name="name" value="supplier.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>grade.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[grade.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f898b368-811e-4e8c-bc93-2835004af395</key>
+                    <parentUnit>
+                        <key name="name" value="grade.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="grade" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>purchaseCategory.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[purchaseCategory.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>ccdaccbf-bd61-41e4-88e5-a8c6641f66ec</key>
+                    <parentUnit>
+                        <key name="name" value="purchaseCategory.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="purchaseCategory" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>applier.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[applier.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>1b54bf3f-9b87-4d5b-a0e9-1757c6af9509</key>
+                    <parentUnit>
+                        <key name="name" value="applier.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="applier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </queryField>
+        <propertyUnit>
+            <name>da9687e9-47df-4c0a-bea2-d023a5bb23c9</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[da9687e9-47df-4c0a-bea2-d023a5bb23c9].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>765bdbdd-c18e-4431-a5b5-c977db683b20</key>
+                    <parentUnit>
+                        <key name="name" value="da9687e9-47df-4c0a-bea2-d023a5bb23c9" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierChangeGrade" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="applier" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>f5849022-f74c-4344-b498-d42aa44a2ff0</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[f5849022-f74c-4344-b498-d42aa44a2ff0].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a4f7ac9b-dfd6-4593-931c-ea39cc589567</key>
+                    <parentUnit>
+                        <key name="name" value="f5849022-f74c-4344-b498-d42aa44a2ff0" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="applier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>7ee75ef8-fc29-48a3-a35b-f65d39ac9190</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[7ee75ef8-fc29-48a3-a35b-f65d39ac9190].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>4b9ea8c4-416d-4dbe-a114-e7ecb9bb1201</key>
+                    <parentUnit>
+                        <key name="name" value="7ee75ef8-fc29-48a3-a35b-f65d39ac9190" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierChangeGrade" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="grade" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>e7b7eaa5-cd77-4a83-906d-9947fbce73c9</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[e7b7eaa5-cd77-4a83-906d-9947fbce73c9].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>d143279b-3aa7-43b0-ba14-efbf7f15ce25</key>
+                    <parentUnit>
+                        <key name="name" value="e7b7eaa5-cd77-4a83-906d-9947fbce73c9" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="grade" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>9f0bfa9c-9934-49fd-97e3-b1a2880005f4</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[9f0bfa9c-9934-49fd-97e3-b1a2880005f4].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>b76cff95-dff1-466a-9db2-eeeab12a5ba0</key>
+                    <parentUnit>
+                        <key name="name" value="9f0bfa9c-9934-49fd-97e3-b1a2880005f4" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierChangeGrade" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="supplier" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>35ec92e6-97f8-46c8-b464-8d2160300a09</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[35ec92e6-97f8-46c8-b464-8d2160300a09].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>8601ead7-a9be-4e69-b643-9c571f5d4be6</key>
+                    <parentUnit>
+                        <key name="name" value="35ec92e6-97f8-46c8-b464-8d2160300a09" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>3d63d575-6be5-44eb-9fdb-fda1a4b5e82b</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[3d63d575-6be5-44eb-9fdb-fda1a4b5e82b].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>d20e70cc-fd35-4208-9058-031ba6e171f9</key>
+                    <parentUnit>
+                        <key name="name" value="3d63d575-6be5-44eb-9fdb-fda1a4b5e82b" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierChangeGrade" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="purchaseCategory" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>011cd171-27e6-4e89-bdd3-65839317be58</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[011cd171-27e6-4e89-bdd3-65839317be58].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>1bb1545d-a345-4b5d-887b-b396370c9830</key>
+                    <parentUnit>
+                        <key name="name" value="011cd171-27e6-4e89-bdd3-65839317be58" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="purchaseCategory" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </propertyUnit>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+            <key name="name" value="SupplierChangeGradeQuery" />
+        </query>
+    </defaultFilter>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>b4e403a2-4f60-4dab-b35f-d90f85cf73fb</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="SupplierChangeGrade" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="grade" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>62616849-18cf-4d4e-81ad-a709133f5899</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="7ee75ef8-fc29-48a3-a35b-f65d39ac9190" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="e7b7eaa5-cd77-4a83-906d-9947fbce73c9" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="b4e403a2-4f60-4dab-b35f-d90f85cf73fb" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </join>
+        <join>
+            <name>c6c9054d-d1e3-4484-a11e-449dcb18ebd2</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="SupplierChangeGrade" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="applier" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>a0696f2e-095e-4648-b81a-6a679901966c</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="da9687e9-47df-4c0a-bea2-d023a5bb23c9" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="f5849022-f74c-4344-b498-d42aa44a2ff0" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="c6c9054d-d1e3-4484-a11e-449dcb18ebd2" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </join>
+        <join>
+            <name>03e52e22-e309-4d1b-9e1c-cd259889dc1d</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="SupplierChangeGrade" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="supplier" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>95a9f36c-b43d-4734-aae0-445add21c8de</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="9f0bfa9c-9934-49fd-97e3-b1a2880005f4" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="35ec92e6-97f8-46c8-b464-8d2160300a09" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="03e52e22-e309-4d1b-9e1c-cd259889dc1d" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </join>
+        <join>
+            <name>f10bf2ce-c2e0-4465-81cc-3ba335b81508</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="SupplierChangeGrade" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="purchaseCategory" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>9abe309d-d0c3-49fa-856f-307b19e4a5bc</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="3d63d575-6be5-44eb-9fdb-fda1a4b5e82b" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="011cd171-27e6-4e89-bdd3-65839317be58" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="f10bf2ce-c2e0-4465-81cc-3ba335b81508" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierChangeGradeQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商等级变更申请单查询" />
+            <lang locale="zh_HK" value="供應商等級變更申請單查詢" />
+            <lang locale="zh_TW" value="供應商等級變更申請單查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商等级变更申请单查询" />
+            <lang locale="zh_HK" value="供應商等級變更申請單查詢" />
+            <lang locale="zh_TW" value="供應商等級變更申請單查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].subObjects.subEntity[SupplierChangeGrade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].subObjects.subEntity[applier].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].subObjects.subEntity[grade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].subObjects.subEntity[purchaseCategory].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].subObjects.subEntity[supplier].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[011cd171-27e6-4e89-bdd3-65839317be58].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[35ec92e6-97f8-46c8-b464-8d2160300a09].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[3d63d575-6be5-44eb-9fdb-fda1a4b5e82b].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[7ee75ef8-fc29-48a3-a35b-f65d39ac9190].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[9f0bfa9c-9934-49fd-97e3-b1a2880005f4].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[da9687e9-47df-4c0a-bea2-d023a5bb23c9].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[e7b7eaa5-cd77-4a83-906d-9947fbce73c9].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.propertyUnit[f5849022-f74c-4344-b498-d42aa44a2ff0].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[applier.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="申请人" />
+            <lang locale="zh_HK" value="申請人" />
+            <lang locale="zh_TW" value="申請人" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[description].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="等级调整原因" />
+            <lang locale="zh_HK" value="等級調整原因" />
+            <lang locale="zh_TW" value="等級調整原因" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[grade.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="调整等级" />
+            <lang locale="zh_HK" value="調整等級" />
+            <lang locale="zh_TW" value="調整等級" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据编号" />
+            <lang locale="zh_HK" value="單據編號" />
+            <lang locale="zh_TW" value="單據編號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[purchaseCategory.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="申请小组" />
+            <lang locale="zh_HK" value="申請小組" />
+            <lang locale="zh_TW" value="申請小組" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[state].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="状态" />
+            <lang locale="zh_HK" value="狀態" />
+            <lang locale="zh_TW" value="狀態" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierChangeGradeQuery].units.queryField[supplier.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商" />
+            <lang locale="zh_HK" value="供應商" />
+            <lang locale="zh_TW" value="供應商" />
+        </rs>
+    </resource>
+</joinQuery>
+

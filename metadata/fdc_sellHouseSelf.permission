@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permission xmlns="com.kingdee.bos.metadata">
+    <package />
+    <name>fdc_sellHouseSelf</name>
+    <alias>permission[.fdc_sellHouseSelf].alias</alias>
+    <description>permission[.fdc_sellHouseSelf].description</description>
+    <userDefined>true</userDefined>
+    <permissionItems>
+        <permissionItem>
+            <innerID>b89867cd-fe6a-4457-a3dc-6b97f144a937PERMITEM</innerID>
+            <name>roomAccountReport1View</name>
+            <alias>permission[.fdc_sellHouseSelf].permissionItems.permissionItem[roomAccountReport1View].alias</alias>
+            <description>permission[.fdc_sellHouseSelf].permissionItems.permissionItem[roomAccountReport1View].description</description>
+            <type>OTHER</type>
+            <groupName>EAS系统.199营销服务管理.20售楼管理.90报表管理.10业务报表.6000全项目汇总表</groupName>
+            <group>permission[.fdc_sellHouseSelf].permissionItems.permissionItem[roomAccountReport1View].group</group>
+            <userDefined>true</userDefined>
+            <bizRefs>
+                <bizRef>
+                    <id>2fe7963a-f659-4ea3-b0ac-4022c560eeea</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.report</package>
+                        <name>RoomAccountReport1UI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionOnLoad</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+            </bizRefs>
+        </permissionItem>
+    </permissionItems>
+    <dependences>
+        <dependence>
+            <id>b89867cd-fe6a-4457-a3dc-6b97f144a937PERMITEM</id>
+            <referedItem>
+                <key name="innerID" value="b89867cd-fe6a-4457-a3dc-6b97f144a937PERMITEM" />
+            </referedItem>
+        </dependence>
+    </dependences>
+    <resource>
+        <rs key="permission[.fdc_sellHouseSelf].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="售楼管理权限项Self" />
+            <lang locale="zh_HK" value="售樓管理許可權項Self" />
+            <lang locale="zh_TW" value="售樓管理許可權項Self" />
+        </rs>
+        <rs key="permission[.fdc_sellHouseSelf].dependences.dependenceextendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="permission[.fdc_sellHouseSelf].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="售楼管理权限项Self" />
+            <lang locale="zh_HK" value="售樓管理許可權項Self" />
+            <lang locale="zh_TW" value="售樓管理許可權項Self" />
+        </rs>
+        <rs key="permission[.fdc_sellHouseSelf].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="permission[.fdc_sellHouseSelf].permissionItems.permissionItem[roomAccountReport1View].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="全项目货值值(实时状态数据)+销售进度分析" />
+            <lang locale="zh_HK" value="全項目貨值值(實時狀態數據)+銷售進度分析" />
+            <lang locale="zh_TW" value="全項目貨值值(實時狀態數據)+銷售進度分析" />
+        </rs>
+        <rs key="permission[.fdc_sellHouseSelf].permissionItems.permissionItem[roomAccountReport1View].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="permission[.fdc_sellHouseSelf].permissionItems.permissionItem[roomAccountReport1View].extendedProperty.orgRelation">
+            <lang locale="en_US" value="Sale" />
+            <lang locale="zh_CN" value="Sale" />
+            <lang locale="zh_TW" value="Sale" />
+        </rs>
+        <rs key="permission[.fdc_sellHouseSelf].permissionItems.permissionItem[roomAccountReport1View].extendedProperty.permItemType">
+            <lang locale="en_US" value="20" />
+            <lang locale="zh_CN" value="20" />
+            <lang locale="zh_TW" value="20" />
+        </rs>
+        <rs key="permission[.fdc_sellHouseSelf].permissionItems.permissionItem[roomAccountReport1View].group">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.售楼管理.报表管理.业务报表.全项目汇总表" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.售樓管理.報表管理.業務報表.全項目匯總表" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.售樓管理.報表管理.業務報表.全項目匯總表" />
+        </rs>
+    </resource>
+</permission>
+

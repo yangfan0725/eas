@@ -1,0 +1,1289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>ReturnTenancyBillListQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>ReturnTenancyBill</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[ReturnTenancyBill].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBill" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>lastUpdateUser</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[lastUpdateUser].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.base.permission.app" />
+                <key name="name" value="User" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>creator</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[creator].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.base.permission.app" />
+                <key name="name" value="User" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>room</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[room].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="Room" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>building</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[building].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="Building" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>project</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[project].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="SellProject" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>feb0db1d-4d9d-4abe-968b-15dd9a78f313</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[feb0db1d-4d9d-4abe-968b-15dd9a78f313].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>5b790786-050c-4602-95f8-3a43ef70a9d1</key>
+                    <parentUnit>
+                        <key name="name" value="feb0db1d-4d9d-4abe-968b-15dd9a78f313" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ReturnTenancyBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="lastUpdateUser" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>4106862d-555e-4472-944a-739fc1f91aa5</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[4106862d-555e-4472-944a-739fc1f91aa5].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>3302d3d8-b0d2-4882-b265-3930ff019ff8</key>
+                    <parentUnit>
+                        <key name="name" value="4106862d-555e-4472-944a-739fc1f91aa5" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="lastUpdateUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>504bb4eb-cd1b-4044-9e1f-e1331f3e5b96</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[504bb4eb-cd1b-4044-9e1f-e1331f3e5b96].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>59e1346b-c6a6-4e78-8bca-1e351e9a5b3e</key>
+                    <parentUnit>
+                        <key name="name" value="504bb4eb-cd1b-4044-9e1f-e1331f3e5b96" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ReturnTenancyBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="creator" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>bbd27cdd-5ed0-4e38-ac11-eccc00035476</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[bbd27cdd-5ed0-4e38-ac11-eccc00035476].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>8ab6c6cb-a3d9-462a-b2d5-b4111b994ba4</key>
+                    <parentUnit>
+                        <key name="name" value="bbd27cdd-5ed0-4e38-ac11-eccc00035476" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="creator" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>returnYear</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[returnYear].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>7b20813e-cc70-48ed-9483-0b0f4a245250</key>
+                    <parentUnit>
+                        <key name="name" value="returnYear" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ReturnTenancyBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="returnYear" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>startDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[startDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>09853255-28e6-4edb-9140-c9696bb054e3</key>
+                    <parentUnit>
+                        <key name="name" value="startDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ReturnTenancyBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="startDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>endDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[endDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>483bcf93-c9d4-4e27-8ebd-3c7fd5813e6c</key>
+                    <parentUnit>
+                        <key name="name" value="endDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ReturnTenancyBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="endDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>state</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[state].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>14e606d9-4f01-470f-9c5b-cd18a83de06e</key>
+                    <parentUnit>
+                        <key name="name" value="state" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ReturnTenancyBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="state" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>b1f5e259-7368-4116-9296-e84e81985704</key>
+                    <parentUnit>
+                        <key name="name" value="number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ReturnTenancyBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>08f83a7f-3ce9-4cb0-bc6a-b9fde9b3c7bc</key>
+                    <parentUnit>
+                        <key name="name" value="name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ReturnTenancyBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>lastUpdateUser.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[lastUpdateUser.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>28d0dbe7-a895-4173-9041-7ae7b3de6963</key>
+                    <parentUnit>
+                        <key name="name" value="lastUpdateUser.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="lastUpdateUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>creator.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[creator.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9dc136bc-e50a-4705-8736-5f9cb0fa8570</key>
+                    <parentUnit>
+                        <key name="name" value="creator.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="creator" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>room.number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[room.number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>7756db54-e13b-4341-8596-db62cf45140f</key>
+                    <parentUnit>
+                        <key name="name" value="room.number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>room.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[room.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>242e1050-064a-4c71-b58f-b9edc87863c5</key>
+                    <parentUnit>
+                        <key name="name" value="room.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>building.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[building.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>455218de-4d85-4011-bd65-723730436b5c</key>
+                    <parentUnit>
+                        <key name="name" value="building.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="building" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>8741a26c-44ea-4969-b264-5c0442bb35cd</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ReturnTenancyBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <propertyUnit>
+            <name>c075ef3f-c1d4-4a0d-89eb-7366760ef52b</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[c075ef3f-c1d4-4a0d-89eb-7366760ef52b].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>d1eadde1-949c-48bb-b57f-8f757a1a93da</key>
+                    <parentUnit>
+                        <key name="name" value="c075ef3f-c1d4-4a0d-89eb-7366760ef52b" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="building" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>563b1adb-6fad-4493-908a-8a4c529587c5</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[563b1adb-6fad-4493-908a-8a4c529587c5].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f48b405a-ddd2-4aa6-861b-8800375efbeb</key>
+                    <parentUnit>
+                        <key name="name" value="563b1adb-6fad-4493-908a-8a4c529587c5" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="building" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>e0ec2ce8-1db2-4b45-a158-2fdd795c44f7</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[e0ec2ce8-1db2-4b45-a158-2fdd795c44f7].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>36f971d5-d1a8-4ba8-9f86-621d8ff8fd45</key>
+                    <parentUnit>
+                        <key name="name" value="e0ec2ce8-1db2-4b45-a158-2fdd795c44f7" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ReturnTenancyBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="room" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>2e41f1cb-7be6-4e50-9a31-a0ea283a2e2c</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[2e41f1cb-7be6-4e50-9a31-a0ea283a2e2c].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f1f0634b-1101-4cf0-b2c1-5bc0ccd138de</key>
+                    <parentUnit>
+                        <key name="name" value="2e41f1cb-7be6-4e50-9a31-a0ea283a2e2c" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>926e4e13-dfba-4efb-9f93-b1624656d2de</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[926e4e13-dfba-4efb-9f93-b1624656d2de].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>48ca0e64-8505-4814-ab7b-7d601fecc098</key>
+                    <parentUnit>
+                        <key name="name" value="926e4e13-dfba-4efb-9f93-b1624656d2de" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ReturnTenancyBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="project" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>360d71ee-0d11-40e8-beec-7142888e8d84</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[360d71ee-0d11-40e8-beec-7142888e8d84].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a5523685-83c7-44d5-860e-755766d7ee72</key>
+                    <parentUnit>
+                        <key name="name" value="360d71ee-0d11-40e8-beec-7142888e8d84" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="project" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>project.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[project.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>8d46ec67-e7da-4781-969d-47cfef171ce6</key>
+                    <parentUnit>
+                        <key name="name" value="project.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="project" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>project.number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[project.number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>d425d50c-d46e-47ee-8efc-3fc31efc2800</key>
+                    <parentUnit>
+                        <key name="name" value="project.number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="project" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>project.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[project.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>cedf2dc2-66d2-49c4-a76f-f988a92cf3de</key>
+                    <parentUnit>
+                        <key name="name" value="project.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="project" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>room.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[room.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>967ff8ef-9bf2-46ff-80ef-5693e67d3767</key>
+                    <parentUnit>
+                        <key name="name" value="room.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+            <key name="name" value="ReturnTenancyBillListQuery" />
+        </query>
+    </defaultFilter>
+    <queryPK>
+        <name>QueryPK</name>
+        <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].queryPK[QueryPK].alias</alias>
+        <description>joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].queryPK[QueryPK].description</description>
+        <keyProperties>
+            <queryField>
+                <key name="name" value="id" />
+            </queryField>
+        </keyProperties>
+    </queryPK>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>422f2839-0e5c-4420-bcb7-4a8af6715f7b</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="ReturnTenancyBill" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="lastUpdateUser" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>23b296cf-9e2f-4513-b967-97feda514cda</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="feb0db1d-4d9d-4abe-968b-15dd9a78f313" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="4106862d-555e-4472-944a-739fc1f91aa5" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="422f2839-0e5c-4420-bcb7-4a8af6715f7b" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </join>
+        <join>
+            <name>4b505be0-103a-484c-8a3f-74cdab788b62</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="ReturnTenancyBill" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="creator" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>b2f7e75d-996f-4eff-9613-1f3e63dc77ed</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="504bb4eb-cd1b-4044-9e1f-e1331f3e5b96" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="bbd27cdd-5ed0-4e38-ac11-eccc00035476" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="4b505be0-103a-484c-8a3f-74cdab788b62" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </join>
+        <join>
+            <name>07904041-6868-47d3-8965-98f32b993617</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="ReturnTenancyBill" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="room" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>9563825f-9c8b-4ec7-a3ed-81be98dc0287</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="e0ec2ce8-1db2-4b45-a158-2fdd795c44f7" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="2e41f1cb-7be6-4e50-9a31-a0ea283a2e2c" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="07904041-6868-47d3-8965-98f32b993617" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </join>
+        <join>
+            <name>9df13319-a704-4a70-9c33-5f15d232d961</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="room" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="building" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>2f391a35-0daa-45cc-bf67-b59a7565cf36</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="c075ef3f-c1d4-4a0d-89eb-7366760ef52b" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="563b1adb-6fad-4493-908a-8a4c529587c5" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="9df13319-a704-4a70-9c33-5f15d232d961" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </join>
+        <join>
+            <name>54f31aa8-4f33-4045-bafc-34c23c4a2a3a</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="ReturnTenancyBill" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="project" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>38c18d84-1780-4fe5-b789-ad991426db7c</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="926e4e13-dfba-4efb-9f93-b1624656d2de" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="360d71ee-0d11-40e8-beec-7142888e8d84" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="54f31aa8-4f33-4045-bafc-34c23c4a2a3a" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="ReturnTenancyBillListQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租单查询" />
+            <lang locale="zh_HK" value="返租單查詢" />
+            <lang locale="zh_TW" value="返租單查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].queryPK[QueryPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].queryPK[QueryPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[ReturnTenancyBill].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[building].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[creator].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[lastUpdateUser].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[project].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].subObjects.subEntity[room].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[2e41f1cb-7be6-4e50-9a31-a0ea283a2e2c].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[360d71ee-0d11-40e8-beec-7142888e8d84].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[4106862d-555e-4472-944a-739fc1f91aa5].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[504bb4eb-cd1b-4044-9e1f-e1331f3e5b96].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[563b1adb-6fad-4493-908a-8a4c529587c5].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[926e4e13-dfba-4efb-9f93-b1624656d2de].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[bbd27cdd-5ed0-4e38-ac11-eccc00035476].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[c075ef3f-c1d4-4a0d-89eb-7366760ef52b].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[e0ec2ce8-1db2-4b45-a158-2fdd795c44f7].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.propertyUnit[feb0db1d-4d9d-4abe-968b-15dd9a78f313].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[building.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="楼栋名称" />
+            <lang locale="zh_HK" value="樓棟名稱" />
+            <lang locale="zh_TW" value="樓棟名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[creator.name].displayName">
+            <lang locale="en_US" value="用户别名" />
+            <lang locale="zh_CN" value="创建人" />
+            <lang locale="zh_HK" value="創建人" />
+            <lang locale="zh_TW" value="創建人" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[endDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="结束日期" />
+            <lang locale="zh_HK" value="結束日期" />
+            <lang locale="zh_TW" value="結束日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[lastUpdateUser.name].displayName">
+            <lang locale="en_US" value="用户别名" />
+            <lang locale="zh_CN" value="最后修改人" />
+            <lang locale="zh_HK" value="最後修改人" />
+            <lang locale="zh_TW" value="最後修改人" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据编号" />
+            <lang locale="zh_HK" value="單據編號" />
+            <lang locale="zh_TW" value="單據編號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[project.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="项目ID" />
+            <lang locale="zh_HK" value="項目ID" />
+            <lang locale="zh_TW" value="項目ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[project.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[project.number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="编码" />
+            <lang locale="zh_HK" value="編碼" />
+            <lang locale="zh_TW" value="編碼" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[returnYear].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租年限" />
+            <lang locale="zh_HK" value="返租年限" />
+            <lang locale="zh_TW" value="返租年限" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[room.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间ID" />
+            <lang locale="zh_HK" value="房間ID" />
+            <lang locale="zh_TW" value="房間ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[room.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间名称" />
+            <lang locale="zh_HK" value="房間名稱" />
+            <lang locale="zh_TW" value="房間名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[room.number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间编码" />
+            <lang locale="zh_HK" value="房間編碼" />
+            <lang locale="zh_TW" value="房間編碼" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[startDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="开始日期" />
+            <lang locale="zh_HK" value="開始日期" />
+            <lang locale="zh_TW" value="開始日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyBillListQuery].units.queryField[state].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="状态" />
+            <lang locale="zh_HK" value="狀態" />
+            <lang locale="zh_TW" value="狀態" />
+        </rs>
+    </resource>
+</joinQuery>
+

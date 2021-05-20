@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+    <name>DelayPayBillFunction</name>
+    <alias>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].alias</alias>
+    <description>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].description</description>
+    <userDefined>true</userDefined>
+    <isBindSingleBizObject>false</isBindSingleBizObject>
+    <operations>
+        <operation>
+            <name>submit</name>
+            <alias>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[submit].alias</alias>
+            <description>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[submit].description</description>
+            <reverseOperation />
+            <eventMethod>dfd2c083-00fa-1000-e000-001fc0a813e6</eventMethod>
+            <event>submitEvent</event>
+            <userDefined>true</userDefined>
+            <uiActionRef>
+                <id>db191ed2-24d8-4b30-82e5-feb7bd0d2eabuiaf</id>
+                <uiStatus>EDIT</uiStatus>
+                <webUIStatus />
+                <userDefined>true</userDefined>
+                <uiObjectRef>
+                    <key name="package" value="com.kingdee.eas.fdc.sellhouse.client" />
+                    <key name="name" value="DelayPayBillEditUI1" />
+                </uiObjectRef>
+                <actionRefName>ActionSubmit</actionRefName>
+                <webActionRefName />
+                <parameters>
+                    <parameter>
+                        <name>billId</name>
+                        <alias>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[submit].uiActionRef.parameters.parameter[billId].alias</alias>
+                        <description>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[submit].uiActionRef.parameters.parameter[billId].description</description>
+                        <direction>in</direction>
+                        <dataType>BOSUuid</dataType>
+                        <metadataRef />
+                        <userDefined>true</userDefined>
+                    </parameter>
+                </parameters>
+            </uiActionRef>
+            <entityObjectRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBill" />
+            </entityObjectRef>
+        </operation>
+        <operation>
+            <name>setAudittingStatus</name>
+            <alias>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[setAudittingStatus].alias</alias>
+            <description>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[setAudittingStatus].description</description>
+            <reverseOperation />
+            <eventMethod>c9a70a36-00a5-46ad-b5ac-3e2c20b79ff3</eventMethod>
+            <event>setAudittingStatusEvent</event>
+            <userDefined>true</userDefined>
+            <entityObjectRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBill" />
+            </entityObjectRef>
+        </operation>
+        <operation>
+            <name>setSubmitStaus</name>
+            <alias>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[setSubmitStaus].alias</alias>
+            <description>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[setSubmitStaus].description</description>
+            <reverseOperation />
+            <eventMethod>43e6052b-9a5a-427d-bf5a-6e7d04fd6e80</eventMethod>
+            <event>setSubmitStatusEvent</event>
+            <userDefined>true</userDefined>
+            <entityObjectRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBill" />
+            </entityObjectRef>
+        </operation>
+        <operation>
+            <name>audit</name>
+            <alias>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[audit].alias</alias>
+            <description>functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[audit].description</description>
+            <reverseOperation />
+            <eventMethod>2ccab32a-7ef0-4d6d-a8cb-75b027914b95</eventMethod>
+            <event>auditEvent</event>
+            <userDefined>true</userDefined>
+            <entityObjectRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBill" />
+            </entityObjectRef>
+        </operation>
+    </operations>
+    <resource>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="延期付款申请业务功能" />
+            <lang locale="zh_HK" value="延期付款申請業務功能" />
+            <lang locale="zh_TW" value="延期付款申請業務功能" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="延期付款申请业务功能" />
+            <lang locale="zh_HK" value="延期付款申請業務功能" />
+            <lang locale="zh_TW" value="延期付款申請業務功能" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[audit].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="审批" />
+            <lang locale="zh_HK" value="審批" />
+            <lang locale="zh_TW" value="審批" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[audit].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="审批" />
+            <lang locale="zh_HK" value="審批" />
+            <lang locale="zh_TW" value="審批" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[setAudittingStatus].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="设置审批中状态" />
+            <lang locale="zh_HK" value="設置審批中狀態" />
+            <lang locale="zh_TW" value="設置審批中狀態" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[setAudittingStatus].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="设置审批中状态" />
+            <lang locale="zh_HK" value="設置審批中狀態" />
+            <lang locale="zh_TW" value="設置審批中狀態" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[setSubmitStaus].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="设置提交状态" />
+            <lang locale="zh_HK" value="設置提交狀態" />
+            <lang locale="zh_TW" value="設置提交狀態" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[setSubmitStaus].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="设置提交状态" />
+            <lang locale="zh_HK" value="設置提交狀態" />
+            <lang locale="zh_TW" value="設置提交狀態" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[submit].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="提交" />
+            <lang locale="zh_HK" value="提交" />
+            <lang locale="zh_TW" value="提交" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[submit].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="提交" />
+            <lang locale="zh_HK" value="提交" />
+            <lang locale="zh_TW" value="提交" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[submit].uiActionRef.parameters.parameter[billId].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="functionObject[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillFunction].operations.operation[submit].uiActionRef.parameters.parameter[billId].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+    </resource>
+</functionObject>
+

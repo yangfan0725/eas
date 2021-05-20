@@ -1,0 +1,1204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.app</package>
+    <name>WebUserListQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>WebUser</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].subObjects.subEntity[WebUser].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="WebUser" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>auditor</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].subObjects.subEntity[auditor].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.base.permission.app" />
+                <key name="name" value="User" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>creator</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].subObjects.subEntity[creator].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.base.permission.app" />
+                <key name="name" value="User" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>lastUpdateUser</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].subObjects.subEntity[lastUpdateUser].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.base.permission.app" />
+                <key name="name" value="User" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>2ce4961e-5873-4352-b595-ebb151f7d058</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[2ce4961e-5873-4352-b595-ebb151f7d058].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>9587cf33-7799-48ca-80ba-2e68ebc01d39</key>
+                    <parentUnit>
+                        <key name="name" value="2ce4961e-5873-4352-b595-ebb151f7d058" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="auditor" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>8c986db6-7651-4992-9598-f97f26db55b4</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[8c986db6-7651-4992-9598-f97f26db55b4].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>fb49e8c6-71d3-477b-a20b-0c8dd95bfd3e</key>
+                    <parentUnit>
+                        <key name="name" value="8c986db6-7651-4992-9598-f97f26db55b4" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="auditor" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>04ddeb59-d30b-49bf-93c2-aac83ae4b562</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[04ddeb59-d30b-49bf-93c2-aac83ae4b562].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>c22d6d12-d4d7-4629-aaa1-394eede4a4e5</key>
+                    <parentUnit>
+                        <key name="name" value="04ddeb59-d30b-49bf-93c2-aac83ae4b562" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="creator" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>9c7f16d7-0fc9-4020-9446-17fd8cff2fa4</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[9c7f16d7-0fc9-4020-9446-17fd8cff2fa4].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>a1a6020d-95ac-412b-895c-ac6d468a4fed</key>
+                    <parentUnit>
+                        <key name="name" value="9c7f16d7-0fc9-4020-9446-17fd8cff2fa4" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="creator" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>61635d0e-4ff4-4d89-94ba-04c6909751e0</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[61635d0e-4ff4-4d89-94ba-04c6909751e0].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>5319f2ee-5ab9-425b-a343-df9676d10b17</key>
+                    <parentUnit>
+                        <key name="name" value="61635d0e-4ff4-4d89-94ba-04c6909751e0" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="lastUpdateUser" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>d89eea31-8de6-4c34-bf2d-d9bac5135d55</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[d89eea31-8de6-4c34-bf2d-d9bac5135d55].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>cf99c060-b125-4096-9296-0b28c254b98f</key>
+                    <parentUnit>
+                        <key name="name" value="d89eea31-8de6-4c34-bf2d-d9bac5135d55" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="lastUpdateUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>mobileNumber</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[mobileNumber].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>ac5f32dc-84a1-4a21-a583-bce3a48066ad</key>
+                    <parentUnit>
+                        <key name="name" value="mobileNumber" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="mobileNumber" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>password</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[password].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f809f66b-e353-492d-871f-8907c99fe1e4</key>
+                    <parentUnit>
+                        <key name="name" value="password" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="password" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>companyName</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[companyName].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a068a0c9-8c0f-4761-b69b-dd843efa1700</key>
+                    <parentUnit>
+                        <key name="name" value="companyName" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="companyName" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>telephone</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[telephone].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>c48ed497-1ecd-4d87-a0b3-35415fe08668</key>
+                    <parentUnit>
+                        <key name="name" value="telephone" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="telephone" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>email</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[email].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>2dc1b795-318e-4e4f-ac6c-83bbcc48195e</key>
+                    <parentUnit>
+                        <key name="name" value="email" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="email" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>position</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[position].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>066826ba-6f1c-4a46-a494-7f6b8e7f50b7</key>
+                    <parentUnit>
+                        <key name="name" value="position" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="position" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>registerState</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[registerState].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>c847a86a-ce88-4027-9ac0-66820e4e3eb6</key>
+                    <parentUnit>
+                        <key name="name" value="registerState" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="registerState" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>webUserID</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[webUserID].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>b5adae48-4392-4349-bac5-190f39553710</key>
+                    <parentUnit>
+                        <key name="name" value="webUserID" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="webUserID" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>ace9ad0b-f469-4d84-b153-cff19ae77ee0</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>createTime</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[createTime].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Timestamp</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f19065d0-a6dd-47be-96c0-1dfb3f369886</key>
+                    <parentUnit>
+                        <key name="name" value="createTime" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="createTime" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>lastUpdateTime</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[lastUpdateTime].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Timestamp</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a85cd562-f23b-4ca3-b224-2a7e1dcb3a37</key>
+                    <parentUnit>
+                        <key name="name" value="lastUpdateTime" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="lastUpdateTime" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>auditor.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[auditor.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>26926e3b-0bbc-473a-8266-638a7fd2c658</key>
+                    <parentUnit>
+                        <key name="name" value="auditor.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="auditor" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>lastUpdateUser.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[lastUpdateUser.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>7bcb91c9-9cb4-484f-b7b4-69536d0f29cf</key>
+                    <parentUnit>
+                        <key name="name" value="lastUpdateUser.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="lastUpdateUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>creator.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[creator.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9f8f9eb7-ebaf-414f-b6bc-f79974dc86fe</key>
+                    <parentUnit>
+                        <key name="name" value="creator.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="creator" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9e3e2d4a-f3fd-446b-9903-33f02537b9de</key>
+                    <parentUnit>
+                        <key name="name" value="name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>auditTime</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[auditTime].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>6605c704-a9e6-470c-b0b5-ca68165f7b8b</key>
+                    <parentUnit>
+                        <key name="name" value="auditTime" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="auditTime" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>specialty</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[specialty].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>27a0bd75-de36-4d82-b95b-879324a585ee</key>
+                    <parentUnit>
+                        <key name="name" value="specialty" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="specialty" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>description</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[description].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>56922e77-08c3-490c-95d2-0a92022cd04e</key>
+                    <parentUnit>
+                        <key name="name" value="description" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="description" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>relateSupplier</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[relateSupplier].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a45ed274-ba4b-441a-80c2-75d8697dc0eb</key>
+                    <parentUnit>
+                        <key name="name" value="relateSupplier" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="WebUser" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="relateSupplier" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+            <key name="name" value="WebUserListQuery" />
+        </query>
+    </defaultFilter>
+    <queryPK>
+        <name>QueryPK</name>
+        <alias>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].queryPK[QueryPK].alias</alias>
+        <description>joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].queryPK[QueryPK].description</description>
+        <keyProperties>
+            <queryField>
+                <key name="name" value="id" />
+            </queryField>
+        </keyProperties>
+    </queryPK>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>dd457381-59fd-43f4-bb18-7a0f15694050</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="WebUser" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="auditor" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>99499272-0f41-4265-82aa-3b4d285037a1</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="2ce4961e-5873-4352-b595-ebb151f7d058" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="8c986db6-7651-4992-9598-f97f26db55b4" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="dd457381-59fd-43f4-bb18-7a0f15694050" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </join>
+        <join>
+            <name>02980399-ca21-43f4-a8b3-79f69f480cfb</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="WebUser" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="creator" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>0ee07181-7df3-4975-a967-761b0fea9381</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="04ddeb59-d30b-49bf-93c2-aac83ae4b562" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="9c7f16d7-0fc9-4020-9446-17fd8cff2fa4" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="02980399-ca21-43f4-a8b3-79f69f480cfb" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </join>
+        <join>
+            <name>f909f5ab-8dac-47f8-9e3f-b4fa1eb928e2</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="WebUser" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="lastUpdateUser" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>1030bfee-60af-43a0-8318-0b4fd4a54f49</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="61635d0e-4ff4-4d89-94ba-04c6909751e0" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="d89eea31-8de6-4c34-bf2d-d9bac5135d55" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="f909f5ab-8dac-47f8-9e3f-b4fa1eb928e2" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="WebUserListQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="外部用户注册查询" />
+            <lang locale="zh_HK" value="外部用戶註冊查詢" />
+            <lang locale="zh_TW" value="外部用戶註冊查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="外部用户注册查询" />
+            <lang locale="zh_HK" value="外部用戶註冊查詢" />
+            <lang locale="zh_TW" value="外部用戶註冊查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].queryPK[QueryPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].queryPK[QueryPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].subObjects.subEntity[WebUser].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].subObjects.subEntity[auditor].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].subObjects.subEntity[creator].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].subObjects.subEntity[lastUpdateUser].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[04ddeb59-d30b-49bf-93c2-aac83ae4b562].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[2ce4961e-5873-4352-b595-ebb151f7d058].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[61635d0e-4ff4-4d89-94ba-04c6909751e0].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[8c986db6-7651-4992-9598-f97f26db55b4].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[9c7f16d7-0fc9-4020-9446-17fd8cff2fa4].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.propertyUnit[d89eea31-8de6-4c34-bf2d-d9bac5135d55].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[auditTime].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="审批时间" />
+            <lang locale="zh_HK" value="審批時間" />
+            <lang locale="zh_TW" value="審批時間" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[auditor.name].displayName">
+            <lang locale="en_US" value="用户别名" />
+            <lang locale="zh_CN" value="用户实名" />
+            <lang locale="zh_HK" value="用戶實名" />
+            <lang locale="zh_TW" value="用戶實名" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[companyName].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="公司名称" />
+            <lang locale="zh_HK" value="公司名稱" />
+            <lang locale="zh_TW" value="公司名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[companyName].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[companyName].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[createTime].displayName">
+            <lang locale="en_US" value="createTime" />
+            <lang locale="zh_CN" value="创建时间" />
+            <lang locale="zh_HK" value="創建時間" />
+            <lang locale="zh_TW" value="創建時間" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[creator.name].displayName">
+            <lang locale="en_US" value="用户别名" />
+            <lang locale="zh_CN" value="用户实名" />
+            <lang locale="zh_HK" value="用戶實名" />
+            <lang locale="zh_TW" value="用戶實名" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[description].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="参考信息" />
+            <lang locale="zh_HK" value="參考信息" />
+            <lang locale="zh_TW" value="參考信息" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[email].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="邮件" />
+            <lang locale="zh_HK" value="郵件" />
+            <lang locale="zh_TW" value="郵件" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[lastUpdateTime].displayName">
+            <lang locale="en_US" value="lastUpdateTime" />
+            <lang locale="zh_CN" value="最后修改时间" />
+            <lang locale="zh_HK" value="最後修改時間" />
+            <lang locale="zh_TW" value="最後修改時間" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[lastUpdateUser.name].displayName">
+            <lang locale="en_US" value="用户别名" />
+            <lang locale="zh_CN" value="用户实名" />
+            <lang locale="zh_HK" value="用戶實名" />
+            <lang locale="zh_TW" value="用戶實名" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[mobileNumber].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="手机" />
+            <lang locale="zh_HK" value="手機" />
+            <lang locale="zh_TW" value="手機" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[mobileNumber].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[mobileNumber].extendedProperty.isDynCommonQuery">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="姓名" />
+            <lang locale="zh_HK" value="姓名" />
+            <lang locale="zh_TW" value="姓名" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[name].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[name].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[password].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="密码" />
+            <lang locale="zh_HK" value="密碼" />
+            <lang locale="zh_TW" value="密碼" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[position].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="职位" />
+            <lang locale="zh_HK" value="職位" />
+            <lang locale="zh_TW" value="職位" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[registerState].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="注册状态" />
+            <lang locale="zh_HK" value="註冊狀態" />
+            <lang locale="zh_TW" value="註冊狀態" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[registerState].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[registerState].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[relateSupplier].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="关联供应商信息" />
+            <lang locale="zh_HK" value="關聯供應商信息" />
+            <lang locale="zh_TW" value="關聯供應商信息" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[specialty].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="专业" />
+            <lang locale="zh_HK" value="專業" />
+            <lang locale="zh_TW" value="專業" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[telephone].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="电话" />
+            <lang locale="zh_HK" value="電話" />
+            <lang locale="zh_TW" value="電話" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[telephone].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[telephone].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.WebUserListQuery].units.queryField[webUserID].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="外网注册用户生成的ID" />
+            <lang locale="zh_HK" value="外網註冊用戶生成的ID" />
+            <lang locale="zh_TW" value="外網註冊用戶生成的ID" />
+        </rs>
+    </resource>
+</joinQuery>
+

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationship xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+    <name>R_AgencyCommissionEntry_CommissionSettlementBill_entry</name>
+    <alias>relationship[com.kingdee.eas.fdc.sellhouse.app.R_AgencyCommissionEntry_CommissionSettlementBill_entry].alias</alias>
+    <description>relationship[com.kingdee.eas.fdc.sellhouse.app.R_AgencyCommissionEntry_CommissionSettlementBill_entry].description</description>
+    <userDefined>true</userDefined>
+    <type>Composition</type>
+    <clientCardinality>1</clientCardinality>
+    <supplierCardinality>0..*</supplierCardinality>
+    <xmlNodeRelationship />
+    <clientObject>
+        <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+        <key name="name" value="CommissionSettlementBill" />
+    </clientObject>
+    <supplierObject>
+        <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+        <key name="name" value="AgencyCommissionEntry" />
+    </supplierObject>
+    <resource>
+        <rs key="relationship[com.kingdee.eas.fdc.sellhouse.app.R_AgencyCommissionEntry_CommissionSettlementBill_entry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="渠道佣金分录" />
+            <lang locale="zh_HK" value="渠道傭金分錄" />
+            <lang locale="zh_TW" value="渠道傭金分錄" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.sellhouse.app.R_AgencyCommissionEntry_CommissionSettlementBill_entry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="渠道佣金分录" />
+            <lang locale="zh_HK" value="渠道傭金分錄" />
+            <lang locale="zh_TW" value="渠道傭金分錄" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.sellhouse.app.R_AgencyCommissionEntry_CommissionSettlementBill_entry].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</relationship>
+

@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+    <name>AgencyCommissionEntry</name>
+    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].alias</alias>
+    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].description</description>
+    <userDefined>true</userDefined>
+    <bosType>42D36787</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.sellhouse.AgencyCommissionEntry</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntryController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <isAbstract>false</isAbstract>
+    <bizUnitPK />
+    <baseEntity>
+        <key name="package" value="com.kingdee.eas.framework.app" />
+        <key name="name" value="CoreBillEntryBase" />
+    </baseEntity>
+    <table>
+        <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+        <key name="name" value="T_SHE_AgencyCommissionEntry" />
+    </table>
+    <properties>
+        <ownProperty>
+            <name>contractAmt</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmt].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmt].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>10</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmt].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FContractAmt" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>contractAmtTarget</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmtTarget].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmtTarget].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>10</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmtTarget].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FContractAmtTarget" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>backAmt</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmt].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmt].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>10</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmt].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FBackAmt" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>backAmtTarget</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmtTarget].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmtTarget].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>10</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmtTarget].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FBackAmtTarget" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>contractCompleteRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractCompleteRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractCompleteRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>2</precision>
+            <decimalDigits>2</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractCompleteRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FContractCompleteRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>backCompleteRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backCompleteRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backCompleteRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>2</precision>
+            <decimalDigits>2</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backCompleteRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FBackCompleteRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>productType</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[productType].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[productType].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>100</length>
+            <precision>2</precision>
+            <decimalDigits>2</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[productType].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FProductType" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>position</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[position].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[position].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>255</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[position].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FPosition" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>calcBonusAmt</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusAmt].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusAmt].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>10</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusAmt].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FCalcBonusAmt" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>calcBonusRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>2</precision>
+            <decimalDigits>2</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FCalcBonusRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>bonus</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[bonus].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[bonus].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>10</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[bonus].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FBonus" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>keepAmt</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[keepAmt].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[keepAmt].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>10</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[keepAmt].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FKeepAmt" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>adjustAmt</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[adjustAmt].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[adjustAmt].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>10</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[adjustAmt].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FAdjustAmt" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>realBonusAmt</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[realBonusAmt].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[realBonusAmt].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>10</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[realBonusAmt].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FRealBonusAmt" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>description</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[description].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[description].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>255</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[description].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FDescription" />
+            </mappingField>
+        </ownProperty>
+        <linkProperty>
+            <name>parent</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.linkProperty[parent].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.linkProperty[parent].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FParentID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="R_AgencyCommissionEntry_CommissionSettlementBill_entry" />
+            </relationship>
+        </linkProperty>
+        <ownProperty>
+            <name>person</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[person].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[person].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>100</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[person].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FPerson" />
+            </mappingField>
+        </ownProperty>
+    </properties>
+    <logicalKey>
+        <name>id</name>
+        <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].logicalKey[id].alias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].logicalKey[id].description</description>
+        <keyClass>com.kingdee.bos.dao.IObjectPK</keyClass>
+        <userDefined>true</userDefined>
+        <keyProperties>
+            <baseProperty>
+                <key name="name" value="id" />
+            </baseProperty>
+        </keyProperties>
+    </logicalKey>
+    <resource>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="分录" />
+            <lang locale="zh_HK" value="分錄" />
+            <lang locale="zh_TW" value="分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="分录" />
+            <lang locale="zh_HK" value="分錄" />
+            <lang locale="zh_TW" value="分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].logicalKey[id].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].logicalKey[id].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.linkProperty[parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="佣金结算单" />
+            <lang locale="zh_HK" value="傭金結算單" />
+            <lang locale="zh_TW" value="傭金結算單" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.linkProperty[parent].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="佣金结算单" />
+            <lang locale="zh_HK" value="傭金結算單" />
+            <lang locale="zh_TW" value="傭金結算單" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[adjustAmt].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="调整金额" />
+            <lang locale="zh_HK" value="調整金額" />
+            <lang locale="zh_TW" value="調整金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[adjustAmt].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[adjustAmt].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="调整金额" />
+            <lang locale="zh_HK" value="調整金額" />
+            <lang locale="zh_TW" value="調整金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmtTarget].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="回款目标金额" />
+            <lang locale="zh_HK" value="回款目標金額" />
+            <lang locale="zh_TW" value="回款目標金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmtTarget].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmtTarget].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="回款目标金额" />
+            <lang locale="zh_HK" value="回款目標金額" />
+            <lang locale="zh_TW" value="回款目標金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmt].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="回款金额" />
+            <lang locale="zh_HK" value="回款金額" />
+            <lang locale="zh_TW" value="回款金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmt].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backAmt].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="回款金额" />
+            <lang locale="zh_HK" value="回款金額" />
+            <lang locale="zh_TW" value="回款金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backCompleteRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="回款完成比率" />
+            <lang locale="zh_HK" value="回款完成比率" />
+            <lang locale="zh_TW" value="回款完成比率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backCompleteRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[backCompleteRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="回款完成比率" />
+            <lang locale="zh_HK" value="回款完成比率" />
+            <lang locale="zh_TW" value="回款完成比率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[bonus].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应发奖金" />
+            <lang locale="zh_HK" value="應發獎金" />
+            <lang locale="zh_TW" value="應發獎金" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[bonus].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[bonus].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应发奖金" />
+            <lang locale="zh_HK" value="應發獎金" />
+            <lang locale="zh_TW" value="應發獎金" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusAmt].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="奖金计算基数" />
+            <lang locale="zh_HK" value="獎金計算基數" />
+            <lang locale="zh_TW" value="獎金計算基數" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusAmt].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusAmt].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="奖金计算基数" />
+            <lang locale="zh_HK" value="獎金計算基數" />
+            <lang locale="zh_TW" value="獎金計算基數" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="奖金计提比例" />
+            <lang locale="zh_HK" value="獎金計提比例" />
+            <lang locale="zh_TW" value="獎金計提比例" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[calcBonusRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="奖金计提比例" />
+            <lang locale="zh_HK" value="獎金計提比例" />
+            <lang locale="zh_TW" value="獎金計提比例" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmtTarget].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同目标金额" />
+            <lang locale="zh_HK" value="合同目標金額" />
+            <lang locale="zh_TW" value="合同目標金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmtTarget].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmtTarget].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同目标金额" />
+            <lang locale="zh_HK" value="合同目標金額" />
+            <lang locale="zh_TW" value="合同目標金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmt].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同金额" />
+            <lang locale="zh_HK" value="合同金額" />
+            <lang locale="zh_TW" value="合同金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmt].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractAmt].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同金额" />
+            <lang locale="zh_HK" value="合同金額" />
+            <lang locale="zh_TW" value="合同金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractCompleteRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同完成比率" />
+            <lang locale="zh_HK" value="合同完成比率" />
+            <lang locale="zh_TW" value="合同完成比率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractCompleteRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[contractCompleteRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[description].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[description].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[description].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[keepAmt].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="预留金额" />
+            <lang locale="zh_HK" value="預留金額" />
+            <lang locale="zh_TW" value="預留金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[keepAmt].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[keepAmt].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="预留金额" />
+            <lang locale="zh_HK" value="預留金額" />
+            <lang locale="zh_TW" value="預留金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[person].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="代理名称" />
+            <lang locale="zh_HK" value="代理名稱" />
+            <lang locale="zh_TW" value="代理名稱" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[person].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[person].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="代理名称" />
+            <lang locale="zh_HK" value="代理名稱" />
+            <lang locale="zh_TW" value="代理名稱" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[position].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="职位" />
+            <lang locale="zh_HK" value="職位" />
+            <lang locale="zh_TW" value="職位" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[position].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[position].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="职位" />
+            <lang locale="zh_HK" value="職位" />
+            <lang locale="zh_TW" value="職位" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[productType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="产品类型" />
+            <lang locale="zh_HK" value="產品類型" />
+            <lang locale="zh_TW" value="產品類型" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[productType].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[productType].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="产品类型" />
+            <lang locale="zh_HK" value="產品類型" />
+            <lang locale="zh_TW" value="產品類型" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[realBonusAmt].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="实发金额" />
+            <lang locale="zh_HK" value="實發金額" />
+            <lang locale="zh_TW" value="實發金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[realBonusAmt].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.AgencyCommissionEntry].properties.ownProperty[realBonusAmt].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="实发金额" />
+            <lang locale="zh_HK" value="實發金額" />
+            <lang locale="zh_TW" value="實發金額" />
+        </rs>
+    </resource>
+</entityObject>
+

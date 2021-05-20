@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationship xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>R_TenancyPriceEntry_TenPriceEntry_tenPrice</name>
+    <alias>relationship[com.kingdee.eas.fdc.tenancy.app.R_TenancyPriceEntry_TenPriceEntry_tenPrice].alias</alias>
+    <description>relationship[com.kingdee.eas.fdc.tenancy.app.R_TenancyPriceEntry_TenPriceEntry_tenPrice].description</description>
+    <userDefined>true</userDefined>
+    <type>Association</type>
+    <clientCardinality>0..1</clientCardinality>
+    <supplierCardinality>1</supplierCardinality>
+    <xmlNodeRelationship />
+    <clientObject>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="TenancyPriceEntry" />
+    </clientObject>
+    <supplierObject>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="TenPriceEntry" />
+    </supplierObject>
+    <resource>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_TenancyPriceEntry_TenPriceEntry_tenPrice].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="关联基准租金分录" />
+            <lang locale="zh_HK" value="關聯基準租金分錄" />
+            <lang locale="zh_TW" value="關聯基準租金分錄" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_TenancyPriceEntry_TenPriceEntry_tenPrice].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_TenancyPriceEntry_TenPriceEntry_tenPrice].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</relationship>
+

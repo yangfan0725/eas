@@ -1,0 +1,1674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+    <name>MonthCommissionEntry</name>
+    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].alias</alias>
+    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].description</description>
+    <userDefined>true</userDefined>
+    <bosType>356CA702</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.sellhouse.MonthCommissionEntry</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntryController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].description</description>
+            <innerID>651c7725-a230-4eeb-888b-88f303f7006c</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].description</description>
+            <innerID>630e6cbe-7e38-4590-a376-6f7328e46d91</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].description</description>
+            <innerID>23caecab-fafa-4e9d-92dd-daca216d5f2a</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].description</description>
+            <innerID>1c4c0c80-185f-4815-9239-bed99778694f</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].description</description>
+            <innerID>9fa96a17-4c2a-4706-8576-8f0b677e4ab7</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>selector</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[selector].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[selector].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SelectorItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].description</description>
+            <innerID>6c708b64-fcdd-46c2-9fe7-f7a3f3e9eb0f</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>addnew</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].description</description>
+            <innerID>97fe38d7-c8c7-43f0-aee6-572f2553055f</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>addnew</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].description</description>
+            <innerID>8496e4e2-9c8a-4b7d-a271-2ccd2616709e</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>update</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].description</description>
+            <innerID>d5fffcf7-98c7-4d90-8d2b-9332e452d36a</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>updatePartial</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].description</description>
+            <innerID>b14063be-0638-49d1-95d2-3e562ef59b0f</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>selector</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].parameters.parameter[selector].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].parameters.parameter[selector].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SelectorItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>updateBigObject</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].description</description>
+            <innerID>2a035bdf-39d4-4472-b75c-4926769b4c35</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].description</description>
+            <innerID>ffa1e681-5470-4c25-a8d9-2bb1632a6c23</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].description</description>
+            <innerID>e1f7dc09-30f2-4268-a0e0-5f38a6a1bac9</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].description</description>
+            <innerID>738d34ba-279c-413d-9cb3-171a28d10f61</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].description</description>
+            <innerID>4a7d22e0-f6f6-43bd-93a5-9dd377b2e426</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>sorter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[sorter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[sorter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SorterItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].description</description>
+            <innerID>abbee2f6-fbf3-4fee-9f99-ea36413f36ee</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].description</description>
+            <innerID>35887967-0835-42e2-b2be-ffd8f4b03c49</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>view</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].parameters.parameter[view].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].parameters.parameter[view].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.EntityViewInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].description</description>
+            <innerID>4b8b164d-3812-485d-bf69-3ed9497b63fb</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].description</description>
+            <innerID>4b0e7989-a42b-45a0-a951-767d96dab84e</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].description</description>
+            <innerID>692e17bb-e182-4753-b0a9-85a9a92f8db3</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].description</description>
+            <innerID>369b7f0b-11f2-49b5-b3ba-88a55fcd6665</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>arrayPK</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[arrayPK].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[arrayPK].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK[]</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <isAbstract>false</isAbstract>
+    <bizUnitPK />
+    <baseEntity>
+        <key name="package" value="com.kingdee.eas.framework.app" />
+        <key name="name" value="CoreBillEntryBase" />
+    </baseEntity>
+    <table>
+        <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+        <key name="name" value="T_SHE_MonthCommissionEntry" />
+    </table>
+    <properties>
+        <linkProperty>
+            <name>parent</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[parent].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[parent].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FParentId" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="R_MonthCommission_MonthCommissionEntry_entry" />
+            </relationship>
+        </linkProperty>
+        <linkProperty>
+            <name>ptEntry</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[ptEntry].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[ptEntry].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="R_MonthCommissionEntry_MonthCommissionPTEntry_ptEntry" />
+            </relationship>
+        </linkProperty>
+        <linkProperty>
+            <name>person</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[person].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[person].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FPersonId" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="R_MonthCommissionEntry_Person_person" />
+            </relationship>
+        </linkProperty>
+        <ownProperty>
+            <name>position</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[position].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[position].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>200</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[position].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FPosition" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>purTarget</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purTarget].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purTarget].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purTarget].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FPurTarget" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>signTarget</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signTarget].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signTarget].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signTarget].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSignTarget" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>backTarget</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backTarget].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backTarget].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backTarget].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FBackTarget" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>pur</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[pur].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[pur].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[pur].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FPur" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>sign</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sign].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sign].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sign].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSign" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>back</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[back].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[back].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[back].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FBack" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>purRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FPurRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>signRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSignRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>backRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FBackRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>rate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[rate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[rate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[rate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>sumTotal</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sumTotal].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sumTotal].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sumTotal].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSumTotal" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>amountTotal</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[amountTotal].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[amountTotal].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[amountTotal].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FAmountTotal" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>total</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[total].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[total].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[total].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FTotal" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>remark</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[remark].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[remark].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>200</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[remark].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FRemark" />
+            </mappingField>
+        </ownProperty>
+    </properties>
+    <logicalKey>
+        <name>id</name>
+        <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].logicalKey[id].alias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].logicalKey[id].description</description>
+        <keyClass>com.kingdee.bos.dao.IObjectPK</keyClass>
+        <userDefined>true</userDefined>
+        <keyProperties>
+            <baseProperty>
+                <key name="name" value="id" />
+            </baseProperty>
+        </keyProperties>
+    </logicalKey>
+    <resource>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度营销提成测算明细表分录" />
+            <lang locale="zh_HK" value="月度營銷提成測算明細表分錄" />
+            <lang locale="zh_TW" value="月度營銷提成測算明細表分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度营销提成测算明细表分录" />
+            <lang locale="zh_HK" value="月度營銷提成測算明細表分錄" />
+            <lang locale="zh_TW" value="月度營銷提成測算明細表分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].logicalKey[id].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].logicalKey[id].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[addnew].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[arrayPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[arrayPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[delete].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[exists].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].parameters.parameter[view].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getCollection].parameters.parameter[view].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[sorter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getPKList].parameters.parameter[sorter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[selector].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[getValue].parameters.parameter[selector].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updateBigObject].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].parameters.parameter[selector].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[updatePartial].parameters.parameter[selector].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].methods.method[update].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="父亲" />
+            <lang locale="zh_HK" value="父親" />
+            <lang locale="zh_TW" value="父親" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[parent].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="父亲" />
+            <lang locale="zh_HK" value="父親" />
+            <lang locale="zh_TW" value="父親" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[person].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="姓名" />
+            <lang locale="zh_HK" value="姓名" />
+            <lang locale="zh_TW" value="姓名" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[person].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="姓名" />
+            <lang locale="zh_HK" value="姓名" />
+            <lang locale="zh_TW" value="姓名" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[ptEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="产品类型分录" />
+            <lang locale="zh_HK" value="產品類型分錄" />
+            <lang locale="zh_TW" value="產品類型分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.linkProperty[ptEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="产品类型分录" />
+            <lang locale="zh_HK" value="產品類型分錄" />
+            <lang locale="zh_TW" value="產品類型分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[amountTotal].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="个人提成合计（按数量）" />
+            <lang locale="zh_HK" value="個人提成合計（按數量）" />
+            <lang locale="zh_TW" value="個人提成合計（按數量）" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[amountTotal].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[amountTotal].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="个人提成合计（按数量） " />
+            <lang locale="zh_HK" value="個人提成合計（按數量） " />
+            <lang locale="zh_TW" value="個人提成合計（按數量） " />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="回款指标完成率" />
+            <lang locale="zh_HK" value="回款指標完成率" />
+            <lang locale="zh_TW" value="回款指標完成率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="回款指标完成率" />
+            <lang locale="zh_HK" value="回款指標完成率" />
+            <lang locale="zh_TW" value="回款指標完成率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backTarget].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度回款指标" />
+            <lang locale="zh_HK" value="月度回款指標" />
+            <lang locale="zh_TW" value="月度回款指標" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backTarget].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[backTarget].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度回款指标" />
+            <lang locale="zh_HK" value="月度回款指標" />
+            <lang locale="zh_TW" value="月度回款指標" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[back].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="完成回款额" />
+            <lang locale="zh_HK" value="完成回款額" />
+            <lang locale="zh_TW" value="完成回款額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[back].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[back].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="完成回款额" />
+            <lang locale="zh_HK" value="完成回款額" />
+            <lang locale="zh_TW" value="完成回款額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[position].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="岗位" />
+            <lang locale="zh_HK" value="崗位" />
+            <lang locale="zh_TW" value="崗位" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[position].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[position].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="岗位" />
+            <lang locale="zh_HK" value="崗位" />
+            <lang locale="zh_TW" value="崗位" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="认购指标完成率" />
+            <lang locale="zh_HK" value="認購指標完成率" />
+            <lang locale="zh_TW" value="認購指標完成率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="认购指标完成率" />
+            <lang locale="zh_HK" value="認購指標完成率" />
+            <lang locale="zh_TW" value="認購指標完成率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purTarget].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度认购指标" />
+            <lang locale="zh_HK" value="月度認購指標" />
+            <lang locale="zh_TW" value="月度認購指標" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purTarget].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[purTarget].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度认购指标" />
+            <lang locale="zh_HK" value="月度認購指標" />
+            <lang locale="zh_TW" value="月度認購指標" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[pur].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="完成认购额" />
+            <lang locale="zh_HK" value="完成認購額" />
+            <lang locale="zh_TW" value="完成認購額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[pur].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[pur].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="完成认购额" />
+            <lang locale="zh_HK" value="完成認購額" />
+            <lang locale="zh_TW" value="完成認購額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[rate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="指标综合完成率" />
+            <lang locale="zh_HK" value="指標綜合完成率" />
+            <lang locale="zh_TW" value="指標綜合完成率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[rate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[rate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="指标综合完成率" />
+            <lang locale="zh_HK" value="指標綜合完成率" />
+            <lang locale="zh_TW" value="指標綜合完成率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[remark].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[remark].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[remark].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同指标完成率" />
+            <lang locale="zh_HK" value="合同指標完成率" />
+            <lang locale="zh_TW" value="合同指標完成率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同指标完成率" />
+            <lang locale="zh_HK" value="合同指標完成率" />
+            <lang locale="zh_TW" value="合同指標完成率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signTarget].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度合同指标" />
+            <lang locale="zh_HK" value="月度合同指標" />
+            <lang locale="zh_TW" value="月度合同指標" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signTarget].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[signTarget].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度合同指标" />
+            <lang locale="zh_HK" value="月度合同指標" />
+            <lang locale="zh_TW" value="月度合同指標" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sign].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="完成合同额" />
+            <lang locale="zh_HK" value="完成合同額" />
+            <lang locale="zh_TW" value="完成合同額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sign].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sign].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="完成合同额" />
+            <lang locale="zh_HK" value="完成合同額" />
+            <lang locale="zh_TW" value="完成合同額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sumTotal].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="个人提成合计（按金额）" />
+            <lang locale="zh_HK" value="個人提成合計（按金額）" />
+            <lang locale="zh_TW" value="個人提成合計（按金額）" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sumTotal].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[sumTotal].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="个人提成合计（按金额） " />
+            <lang locale="zh_HK" value="個人提成合計（按金額） " />
+            <lang locale="zh_TW" value="個人提成合計（按金額） " />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[total].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合计佣金" />
+            <lang locale="zh_HK" value="合計傭金" />
+            <lang locale="zh_TW" value="合計傭金" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[total].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.MonthCommissionEntry].properties.ownProperty[total].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合计佣金" />
+            <lang locale="zh_HK" value="合計傭金" />
+            <lang locale="zh_TW" value="合計傭金" />
+        </rs>
+    </resource>
+</entityObject>
+

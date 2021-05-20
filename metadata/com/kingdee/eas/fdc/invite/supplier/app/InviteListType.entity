@@ -1,0 +1,1253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>InviteListType</name>
+    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].alias</alias>
+    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].description</description>
+    <userDefined>true</userDefined>
+    <bosType>07A88759</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.invite.supplier.InviteListType</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.invite.supplier.app.InviteListTypeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].description</description>
+            <innerID>41dff7cb-7486-4089-9132-fb997365502e</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].description</description>
+            <innerID>f04e7a62-c68e-4add-bd42-d0e90ef6faa1</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].description</description>
+            <innerID>05ba9d16-002e-4bdc-8a5c-1c712f21be7d</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].description</description>
+            <innerID>298843d4-8b52-4883-adf9-7d927141788e</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.invite.supplier.app.InviteListType</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].description</description>
+            <innerID>29bef34f-c4a1-45a2-95ad-288de691e9a2</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.invite.supplier.app.InviteListType</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+                <parameter>
+                    <name>selector</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[selector].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[selector].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SelectorItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].description</description>
+            <innerID>b13cb0ea-0bcc-4aaf-80fe-86899e4c28ae</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.invite.supplier.app.InviteListType</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>addnew</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].description</description>
+            <innerID>095c2f7f-2177-45d8-8f28-0e91b32033b3</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.invite.supplier.app.InviteListType</metadataRef>
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>addnew</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].description</description>
+            <innerID>d113ffac-79be-40a3-8ecd-8d23c54ccd03</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.invite.supplier.app.InviteListType</metadataRef>
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>update</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].description</description>
+            <innerID>4413f224-726e-46fe-9a89-33edb8a0c8c0</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.invite.supplier.app.InviteListType</metadataRef>
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>updatePartial</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].description</description>
+            <innerID>d06c4fb0-e2eb-4d1b-a5d9-9986f6b242ad</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.invite.supplier.app.InviteListType</metadataRef>
+                    <userDefined>false</userDefined>
+                </parameter>
+                <parameter>
+                    <name>selector</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].parameters.parameter[selector].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].parameters.parameter[selector].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SelectorItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>updateBigObject</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].description</description>
+            <innerID>0f982a90-ef92-4e0e-a4a7-ccd279f6ff7e</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.invite.supplier.app.InviteListType</metadataRef>
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].description</description>
+            <innerID>7dc9c45b-e9aa-457e-a618-a644e8ead9a0</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].description</description>
+            <innerID>a7628db5-38db-45f4-a415-aa8bde6f439d</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].description</description>
+            <innerID>582a8b90-1347-49aa-a9ed-0c0409a3c583</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].description</description>
+            <innerID>19296cb9-6a24-4802-b581-43d84f1bf4fe</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+                <parameter>
+                    <name>sorter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[sorter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[sorter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SorterItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].description</description>
+            <innerID>82434d65-2fc5-4beb-b932-5fa4a827cc86</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.invite.supplier.app.InviteListType</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].description</description>
+            <innerID>3ebe91d6-5e31-45c9-87ff-25aa5240f262</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.invite.supplier.app.InviteListType</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>view</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].parameters.parameter[view].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].parameters.parameter[view].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.EntityViewInfo</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].description</description>
+            <innerID>54d8b98a-11ec-4c51-a3fe-daa92a556fbc</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.invite.supplier.app.InviteListType</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].description</description>
+            <innerID>1ef39acd-e2d2-43a3-99e1-9a89129f082e</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].description</description>
+            <innerID>6cbab59c-fe96-4f87-b5fc-744d800ac3cf</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].description</description>
+            <innerID>ed296fbf-6bf7-4d7c-946a-2eeeef513b2b</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>arrayPK</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[arrayPK].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[arrayPK].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK[]</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>disEnabled</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[disEnabled].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[disEnabled].description</description>
+            <innerID>eab6b34b-1b8c-4915-ba6a-3ee2b73d03c1</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>ctPK</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[disEnabled].parameters.parameter[ctPK].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[disEnabled].parameters.parameter[ctPK].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>enabled</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[enabled].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[enabled].description</description>
+            <innerID>c0036877-e89e-4e11-955b-38047c0b4021</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>false</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>ctPK</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[enabled].parameters.parameter[ctPK].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[enabled].parameters.parameter[ctPK].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>false</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <isAbstract>false</isAbstract>
+    <bizUnitPK>com.kingdee.eas.fdc.basedata.ContractType</bizUnitPK>
+    <baseEntity>
+        <key name="package" value="com.kingdee.eas.framework.app" />
+        <key name="name" value="TreeBase" />
+    </baseEntity>
+    <table>
+        <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+        <key name="name" value="T_GYS_InviteListType" />
+    </table>
+    <properties>
+        <ownProperty>
+            <name>isEnabled</name>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].properties.ownProperty[isEnabled].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].properties.ownProperty[isEnabled].description</description>
+            <userDefined>false</userDefined>
+            <configured>false</configured>
+            <dataType>Boolean</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].properties.ownProperty[isEnabled].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FIsEnabled" />
+            </mappingField>
+        </ownProperty>
+        <linkProperty>
+            <name>parent</name>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].properties.linkProperty[parent].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].properties.linkProperty[parent].description</description>
+            <userDefined>false</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FParentID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="R_InviteListType_InviteListType_parent" />
+            </relationship>
+        </linkProperty>
+    </properties>
+    <logicalKey>
+        <name>id</name>
+        <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].logicalKey[id].alias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].logicalKey[id].description</description>
+        <keyClass>com.kingdee.bos.dao.IObjectPK</keyClass>
+        <userDefined>false</userDefined>
+        <keyProperties>
+            <baseProperty>
+                <key name="name" value="id" />
+            </baseProperty>
+        </keyProperties>
+    </logicalKey>
+    <defaultView>
+        <name />
+        <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].defaultViewalias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].defaultViewdescription</description>
+        <filter>
+            <maskString />
+        </filter>
+    </defaultView>
+    <resource>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="采购类别明细" />
+            <lang locale="zh_HK" value="採購類別明細" />
+            <lang locale="zh_TW" value="採購類別明細" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].defaultView.filterextendedProperty.OrgType">
+            <lang locale="en_US" value="CostCenter" />
+            <lang locale="zh_CN" value="CostCenter" />
+            <lang locale="zh_TW" value="CostCenter" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].defaultView.filterextendedProperty.controlType">
+            <lang locale="en_US" value="S1" />
+            <lang locale="zh_CN" value="S1" />
+            <lang locale="zh_TW" value="S1" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].defaultViewalias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].defaultViewdescription">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].defaultViewextendedProperty.OrgType">
+            <lang locale="en_US" value="CostCenter" />
+            <lang locale="zh_CN" value="CostCenter" />
+            <lang locale="zh_TW" value="CostCenter" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].defaultViewextendedProperty.controlType">
+            <lang locale="en_US" value="S1" />
+            <lang locale="zh_CN" value="S1" />
+            <lang locale="zh_TW" value="S1" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="采购类别明细" />
+            <lang locale="zh_HK" value="採購類別明細" />
+            <lang locale="zh_TW" value="採購類別明細" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].extendedProperty.OrgType">
+            <lang locale="en_US" value="CostCenter" />
+            <lang locale="zh_CN" value="CostCenter" />
+            <lang locale="zh_TW" value="CostCenter" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].extendedProperty.controlType">
+            <lang locale="en_US" value="S1" />
+            <lang locale="zh_CN" value="S1" />
+            <lang locale="zh_TW" value="S1" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].logicalKey[id].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].logicalKey[id].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].alias">
+            <lang locale="en_US" value="addnew" />
+            <lang locale="zh_CN" value="新增" />
+            <lang locale="zh_HK" value="新增" />
+            <lang locale="zh_TW" value="新增" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].parameters.parameter[model].alias">
+            <lang locale="en_US" value="addnew" />
+            <lang locale="zh_CN" value="新增" />
+            <lang locale="zh_HK" value="新增" />
+            <lang locale="zh_TW" value="新增" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="addnew" />
+            <lang locale="zh_CN" value="新增" />
+            <lang locale="zh_HK" value="新增" />
+            <lang locale="zh_TW" value="新增" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[addnew].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].alias">
+            <lang locale="en_US" value="delete" />
+            <lang locale="zh_CN" value="删除" />
+            <lang locale="zh_HK" value="刪除" />
+            <lang locale="zh_TW" value="刪除" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[arrayPK].alias">
+            <lang locale="en_US" value="delete" />
+            <lang locale="zh_CN" value="删除" />
+            <lang locale="zh_HK" value="刪除" />
+            <lang locale="zh_TW" value="刪除" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[arrayPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="delete" />
+            <lang locale="zh_CN" value="删除" />
+            <lang locale="zh_HK" value="刪除" />
+            <lang locale="zh_TW" value="刪除" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="delete" />
+            <lang locale="zh_CN" value="删除" />
+            <lang locale="zh_HK" value="刪除" />
+            <lang locale="zh_TW" value="刪除" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="delete" />
+            <lang locale="zh_CN" value="删除" />
+            <lang locale="zh_HK" value="刪除" />
+            <lang locale="zh_TW" value="刪除" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[delete].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[disEnabled].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="禁用合同类型" />
+            <lang locale="zh_HK" value="禁用合同類型" />
+            <lang locale="zh_TW" value="禁用合同類型" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[disEnabled].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="禁用合同类型" />
+            <lang locale="zh_HK" value="禁用合同類型" />
+            <lang locale="zh_TW" value="禁用合同類型" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[disEnabled].parameters.parameter[ctPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ctPK" />
+            <lang locale="zh_HK" value="ctPK" />
+            <lang locale="zh_TW" value="ctPK" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[disEnabled].parameters.parameter[ctPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[enabled].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="启用合同类型" />
+            <lang locale="zh_HK" value="啟用合同類型" />
+            <lang locale="zh_TW" value="啟用合同類型" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[enabled].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="启用合同类型" />
+            <lang locale="zh_HK" value="啟用合同類型" />
+            <lang locale="zh_TW" value="啟用合同類型" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[enabled].parameters.parameter[ctPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ctPK" />
+            <lang locale="zh_HK" value="ctPK" />
+            <lang locale="zh_TW" value="ctPK" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[enabled].parameters.parameter[ctPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].alias">
+            <lang locale="en_US" value="exists" />
+            <lang locale="zh_CN" value="存在" />
+            <lang locale="zh_HK" value="存在" />
+            <lang locale="zh_TW" value="存在" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="exists" />
+            <lang locale="zh_CN" value="存在" />
+            <lang locale="zh_HK" value="存在" />
+            <lang locale="zh_TW" value="存在" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="exists" />
+            <lang locale="zh_CN" value="存在" />
+            <lang locale="zh_HK" value="存在" />
+            <lang locale="zh_TW" value="存在" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="exists" />
+            <lang locale="zh_CN" value="存在" />
+            <lang locale="zh_HK" value="存在" />
+            <lang locale="zh_TW" value="存在" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[exists].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].alias">
+            <lang locale="en_US" value="getCollection" />
+            <lang locale="zh_CN" value="取集合" />
+            <lang locale="zh_HK" value="取集合" />
+            <lang locale="zh_TW" value="取集合" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="getCollection" />
+            <lang locale="zh_CN" value="取集合" />
+            <lang locale="zh_HK" value="取集合" />
+            <lang locale="zh_TW" value="取集合" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].parameters.parameter[view].alias">
+            <lang locale="en_US" value="getCollection" />
+            <lang locale="zh_CN" value="取集合" />
+            <lang locale="zh_HK" value="取集合" />
+            <lang locale="zh_TW" value="取集合" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getCollection].parameters.parameter[view].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].alias">
+            <lang locale="en_US" value="getPKList" />
+            <lang locale="zh_CN" value="取主键" />
+            <lang locale="zh_HK" value="取主鍵" />
+            <lang locale="zh_TW" value="取主鍵" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="getPKList" />
+            <lang locale="zh_CN" value="取主键" />
+            <lang locale="zh_HK" value="取主鍵" />
+            <lang locale="zh_TW" value="取主鍵" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="getPKList" />
+            <lang locale="zh_CN" value="取主键" />
+            <lang locale="zh_HK" value="取主鍵" />
+            <lang locale="zh_TW" value="取主鍵" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[sorter].alias">
+            <lang locale="en_US" value="getPKList" />
+            <lang locale="zh_CN" value="取主键" />
+            <lang locale="zh_HK" value="取主鍵" />
+            <lang locale="zh_TW" value="取主鍵" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getPKList].parameters.parameter[sorter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].alias">
+            <lang locale="en_US" value="getValue" />
+            <lang locale="zh_CN" value="取值" />
+            <lang locale="zh_HK" value="取值" />
+            <lang locale="zh_TW" value="取值" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="getValue" />
+            <lang locale="zh_CN" value="取值" />
+            <lang locale="zh_HK" value="取值" />
+            <lang locale="zh_TW" value="取值" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="getValue" />
+            <lang locale="zh_CN" value="取值" />
+            <lang locale="zh_HK" value="取值" />
+            <lang locale="zh_TW" value="取值" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[selector].alias">
+            <lang locale="en_US" value="getValue" />
+            <lang locale="zh_CN" value="取值" />
+            <lang locale="zh_HK" value="取值" />
+            <lang locale="zh_TW" value="取值" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[getValue].parameters.parameter[selector].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].alias">
+            <lang locale="en_US" value="updateBigObject" />
+            <lang locale="zh_CN" value="更新大对象" />
+            <lang locale="zh_HK" value="更新大對象" />
+            <lang locale="zh_TW" value="更新大對象" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].parameters.parameter[model].alias">
+            <lang locale="en_US" value="updateBigObject" />
+            <lang locale="zh_CN" value="更新大对象" />
+            <lang locale="zh_HK" value="更新大對象" />
+            <lang locale="zh_TW" value="更新大對象" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="updateBigObject" />
+            <lang locale="zh_CN" value="更新大对象" />
+            <lang locale="zh_HK" value="更新大對象" />
+            <lang locale="zh_TW" value="更新大對象" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updateBigObject].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].alias">
+            <lang locale="en_US" value="updatePartial" />
+            <lang locale="zh_CN" value="局部更新" />
+            <lang locale="zh_HK" value="局部更新" />
+            <lang locale="zh_TW" value="局部更新" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].parameters.parameter[model].alias">
+            <lang locale="en_US" value="updatePartial" />
+            <lang locale="zh_CN" value="局部更新" />
+            <lang locale="zh_HK" value="局部更新" />
+            <lang locale="zh_TW" value="局部更新" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].parameters.parameter[selector].alias">
+            <lang locale="en_US" value="updatePartial" />
+            <lang locale="zh_CN" value="局部更新" />
+            <lang locale="zh_HK" value="局部更新" />
+            <lang locale="zh_TW" value="局部更新" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[updatePartial].parameters.parameter[selector].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].alias">
+            <lang locale="en_US" value="update" />
+            <lang locale="zh_CN" value="修改" />
+            <lang locale="zh_HK" value="修改" />
+            <lang locale="zh_TW" value="修改" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].parameters.parameter[model].alias">
+            <lang locale="en_US" value="update" />
+            <lang locale="zh_CN" value="更新" />
+            <lang locale="zh_HK" value="更新" />
+            <lang locale="zh_TW" value="更新" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="update" />
+            <lang locale="zh_CN" value="更新" />
+            <lang locale="zh_HK" value="更新" />
+            <lang locale="zh_TW" value="更新" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].methods.method[update].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].properties.linkProperty[parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="父节点" />
+            <lang locale="zh_HK" value="父節點" />
+            <lang locale="zh_TW" value="父節點" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].properties.linkProperty[parent].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="父节点" />
+            <lang locale="zh_HK" value="父節點" />
+            <lang locale="zh_TW" value="父節點" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].properties.ownProperty[isEnabled].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="启用或禁用状态" />
+            <lang locale="zh_HK" value="啟用或禁用狀態" />
+            <lang locale="zh_TW" value="啟用或禁用狀態" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].properties.ownProperty[isEnabled].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.InviteListType].properties.ownProperty[isEnabled].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="启用或禁用状态" />
+            <lang locale="zh_HK" value="啟用或禁用狀態" />
+            <lang locale="zh_TW" value="啟用或禁用狀態" />
+        </rs>
+    </resource>
+</entityObject>
+

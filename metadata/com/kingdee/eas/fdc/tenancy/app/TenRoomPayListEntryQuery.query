@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>TenRoomPayListEntryQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>TenancyRoomPayListEntry</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].subObjects.subEntity[TenancyRoomPayListEntry].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenancyRoomPayListEntry" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>moneyDefine</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].subObjects.subEntity[moneyDefine].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="MoneyDefine" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>4c650fb6-c623-499c-8b31-b39c254b0b91</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.propertyUnit[4c650fb6-c623-499c-8b31-b39c254b0b91].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>99de0383-ab90-484c-a97f-ea3248ce02fd</key>
+                    <parentUnit>
+                        <key name="name" value="4c650fb6-c623-499c-8b31-b39c254b0b91" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenancyRoomPayListEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="moneyDefine" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>e9792b52-c21e-4c66-9465-0c108bed53db</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.propertyUnit[e9792b52-c21e-4c66-9465-0c108bed53db].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>3a8fa57b-4eda-46bb-bc1c-d1aa638e7229</key>
+                    <parentUnit>
+                        <key name="name" value="e9792b52-c21e-4c66-9465-0c108bed53db" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>cd3ec383-4c52-497a-bed2-3521414b834e</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenancyRoomPayListEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>leaseSeq</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[leaseSeq].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>dcfbead0-fe01-412a-93d0-a6946cf32250</key>
+                    <parentUnit>
+                        <key name="name" value="leaseSeq" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenancyRoomPayListEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="leaseSeq" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>moneyDefine.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[moneyDefine.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>6f57128e-e23a-4f26-93a7-2f59a3f58aad</key>
+                    <parentUnit>
+                        <key name="name" value="moneyDefine.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>appDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[appDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>21882b3c-b1b9-4629-bcf7-f1d191fb8420</key>
+                    <parentUnit>
+                        <key name="name" value="appDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenancyRoomPayListEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="appDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>appAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[appAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>d2dda51d-3826-44b0-8dd3-1266183edfd4</key>
+                    <parentUnit>
+                        <key name="name" value="appAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenancyRoomPayListEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="appAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>actRevAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[actRevAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>509dc57f-1d69-4554-aa91-5da7c620bca1</key>
+                    <parentUnit>
+                        <key name="name" value="actRevAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenancyRoomPayListEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="actRevAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>moneyDefine.rate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[moneyDefine.rate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>5a5e230b-d775-4977-9fd1-e577fe980a5a</key>
+                    <parentUnit>
+                        <key name="name" value="moneyDefine.rate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="rate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>startDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[startDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>e1a735a4-70fc-4786-99e0-0184a0a61503</key>
+                    <parentUnit>
+                        <key name="name" value="startDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenancyRoomPayListEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="startDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>endDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[endDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>1cf5e03b-159f-4b57-8d18-33b0e23104f0</key>
+                    <parentUnit>
+                        <key name="name" value="endDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenancyRoomPayListEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="endDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+            <key name="name" value="TenRoomPayListEntryQuery" />
+        </query>
+    </defaultFilter>
+    <queryPK>
+        <name>QueryPK</name>
+        <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].queryPK[QueryPK].alias</alias>
+        <description>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].queryPK[QueryPK].description</description>
+        <keyProperties>
+            <queryField>
+                <key name="name" value="id" />
+            </queryField>
+        </keyProperties>
+    </queryPK>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>b4ff8b90-8702-428b-a280-5a9dcdb0f650</name>
+            <formulaString>#0</formulaString>
+            <type>INNER JOIN</type>
+            <leftObject>
+                <key name="name" value="TenancyRoomPayListEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="moneyDefine" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>eb2d078a-abb6-4319-afb1-bffd71502e7d</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="4c650fb6-c623-499c-8b31-b39c254b0b91" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="e9792b52-c21e-4c66-9465-0c108bed53db" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="b4ff8b90-8702-428b-a280-5a9dcdb0f650" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].queryPK[QueryPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].queryPK[QueryPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].subObjects.subEntity[TenancyRoomPayListEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].subObjects.subEntity[moneyDefine].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.propertyUnit[4c650fb6-c623-499c-8b31-b39c254b0b91].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.propertyUnit[e9792b52-c21e-4c66-9465-0c108bed53db].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[actRevAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="实收金额" />
+            <lang locale="zh_HK" value="實收金額" />
+            <lang locale="zh_TW" value="實收金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[appAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收金额" />
+            <lang locale="zh_HK" value="應收金額" />
+            <lang locale="zh_TW" value="應收金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[appDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收日期" />
+            <lang locale="zh_HK" value="應收日期" />
+            <lang locale="zh_TW" value="應收日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[endDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="结束日期" />
+            <lang locale="zh_HK" value="結束日期" />
+            <lang locale="zh_TW" value="結束日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[leaseSeq].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租期序号" />
+            <lang locale="zh_HK" value="租期序號" />
+            <lang locale="zh_TW" value="租期序號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[moneyDefine.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[moneyDefine.rate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="税率" />
+            <lang locale="zh_HK" value="稅率" />
+            <lang locale="zh_TW" value="稅率" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenRoomPayListEntryQuery].units.queryField[startDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="开始日期" />
+            <lang locale="zh_HK" value="開始日期" />
+            <lang locale="zh_TW" value="開始日期" />
+        </rs>
+    </resource>
+</joinQuery>
+

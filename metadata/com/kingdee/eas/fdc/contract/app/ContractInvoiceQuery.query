@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.contract.app</package>
+    <name>ContractInvoiceQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>ContractInvoice</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].subObjects.subEntity[ContractInvoice].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractInvoiceQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractInvoice" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>da25be9a-2988-404d-8ab6-44cf5f30f498</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractInvoiceQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>invoiceType</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[invoiceType].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>39e319b1-8b6b-4bab-9add-70c4deb62a70</key>
+                    <parentUnit>
+                        <key name="name" value="invoiceType" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="invoiceType" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractInvoiceQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>invoiceNumber</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[invoiceNumber].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>521b4d58-1bad-473e-9284-81adf4d62f2d</key>
+                    <parentUnit>
+                        <key name="name" value="invoiceNumber" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="invoiceNumber" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractInvoiceQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>totalAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[totalAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9637118f-a5ff-4222-918a-2ecefeccde72</key>
+                    <parentUnit>
+                        <key name="name" value="totalAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="totalAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractInvoiceQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>totalRateAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[totalRateAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a99e460c-ae99-4e09-8a49-7977dab4247a</key>
+                    <parentUnit>
+                        <key name="name" value="totalRateAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="totalRateAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractInvoiceQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+            <key name="name" value="ContractInvoiceQuery" />
+        </query>
+    </defaultFilter>
+    <queryPK>
+        <name>QueryPK</name>
+        <alias>joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].queryPK[QueryPK].alias</alias>
+        <description>joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].queryPK[QueryPK].description</description>
+        <keyProperties>
+            <queryField>
+                <key name="name" value="id" />
+            </queryField>
+        </keyProperties>
+    </queryPK>
+    <isDistinct>false</isDistinct>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="进项税发票查询" />
+            <lang locale="zh_HK" value="進項稅發票查詢" />
+            <lang locale="zh_TW" value="進項稅發票查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="进项税发票查询" />
+            <lang locale="zh_HK" value="進項稅發票查詢" />
+            <lang locale="zh_TW" value="進項稅發票查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].queryPK[QueryPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].queryPK[QueryPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].subObjects.subEntity[ContractInvoice].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[id].extendedProperty.isVisibleForKDTable">
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_TW" value="false" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[invoiceNumber].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票号" />
+            <lang locale="zh_HK" value="發票號" />
+            <lang locale="zh_TW" value="發票號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[invoiceNumber].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[invoiceNumber].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[invoiceType].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票类型" />
+            <lang locale="zh_HK" value="發票類型" />
+            <lang locale="zh_TW" value="發票類型" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[invoiceType].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[invoiceType].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[totalAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="价税合计" />
+            <lang locale="zh_HK" value="價稅合計" />
+            <lang locale="zh_TW" value="價稅合計" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[totalAmount].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[totalAmount].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[totalRateAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="税额合计" />
+            <lang locale="zh_HK" value="稅額合計" />
+            <lang locale="zh_TW" value="稅額合計" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[totalRateAmount].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery].units.queryField[totalRateAmount].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</joinQuery>
+

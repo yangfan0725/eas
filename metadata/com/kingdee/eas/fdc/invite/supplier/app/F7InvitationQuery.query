@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>F7InvitationQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>InvitationInfo</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].subObjects.subEntity[InvitationInfo].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="InvitationInfo" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>inviteProject</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].subObjects.subEntity[inviteProject].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="InviteProject" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>338dcc6b-200c-4d96-a273-165938a54ffd</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.propertyUnit[338dcc6b-200c-4d96-a273-165938a54ffd].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>21cf3f5e-0941-4f23-85a5-aaabcd5a29eb</key>
+                    <parentUnit>
+                        <key name="name" value="338dcc6b-200c-4d96-a273-165938a54ffd" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="inviteProject" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>2fdd4c06-73c3-4679-ade0-56c3a4824a4e</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.propertyUnit[2fdd4c06-73c3-4679-ade0-56c3a4824a4e].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>e14e43c3-7097-4b03-8c4f-afb9cc1a8f5e</key>
+                    <parentUnit>
+                        <key name="name" value="2fdd4c06-73c3-4679-ade0-56c3a4824a4e" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="inviteProject" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>inviteProjectName</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[inviteProjectName].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>b6e5d989-b1bb-469a-b769-34a5c1b12f8c</key>
+                    <parentUnit>
+                        <key name="name" value="inviteProjectName" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="inviteProjectName" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>ownerDept</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[ownerDept].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>abb16dce-6e99-463b-9567-ccacda440d40</key>
+                    <parentUnit>
+                        <key name="name" value="ownerDept" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="ownerDept" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>project</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[project].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>ef420dd0-30f3-468d-87cb-dd324ee24b98</key>
+                    <parentUnit>
+                        <key name="name" value="project" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="project" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>inviteDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[inviteDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>7f1b81bb-be3d-40a8-9f15-847bfe484c87</key>
+                    <parentUnit>
+                        <key name="name" value="inviteDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="inviteDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>linkman</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[linkman].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>37c58ad2-0707-4789-9437-9a84b15c5812</key>
+                    <parentUnit>
+                        <key name="name" value="linkman" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="linkman" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>linkphone</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[linkphone].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>0cd53117-bfcf-418e-84b2-7554f043ee31</key>
+                    <parentUnit>
+                        <key name="name" value="linkphone" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="linkphone" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>linkfax</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[linkfax].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>14daa036-8124-402c-bf5e-4dc457ed739e</key>
+                    <parentUnit>
+                        <key name="name" value="linkfax" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="linkfax" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>email</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[email].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>32a31b8d-3168-4498-99c2-dc45713dae0c</key>
+                    <parentUnit>
+                        <key name="name" value="email" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="email" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>state</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[state].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>bbe228dc-43a8-4ee5-964a-b464acfa0eb3</key>
+                    <parentUnit>
+                        <key name="name" value="state" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="state" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>0038ee68-e7e5-41a3-994a-7c018dd90d90</key>
+                    <parentUnit>
+                        <key name="name" value="number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>inviteProject.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[inviteProject.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>e70d3a36-e965-4956-ad55-c07b73f4b211</key>
+                    <parentUnit>
+                        <key name="name" value="inviteProject.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="inviteProject" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>4911ac46-db47-4dc0-8975-aa1aae8394ff</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="InvitationInfo" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <filterItems>
+            <queryFilterItem>
+                <propertyName>state</propertyName>
+                <compareType>=</compareType>
+                <compareValue>4AUDITTED</compareValue>
+                <userDefined>true</userDefined>
+                <filter>
+                    <key name="name" value="defaultFilter" />
+                </filter>
+                <configured>false</configured>
+            </queryFilterItem>
+        </filterItems>
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+            <key name="name" value="F7InvitationQuery" />
+        </query>
+    </defaultFilter>
+    <queryPK>
+        <name>QueryPK</name>
+        <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].queryPK[QueryPK].alias</alias>
+        <description>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].queryPK[QueryPK].description</description>
+        <keyProperties>
+            <queryField>
+                <key name="name" value="id" />
+            </queryField>
+        </keyProperties>
+    </queryPK>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>54aff16e-4c44-4719-9e60-40615e1f443d</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="InvitationInfo" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="inviteProject" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>92c3e660-e832-4665-b9ae-81469d7a8cdf</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="338dcc6b-200c-4d96-a273-165938a54ffd" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="2fdd4c06-73c3-4679-ade0-56c3a4824a4e" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="54aff16e-4c44-4719-9e60-40615e1f443d" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="F7InvitationQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="招标信息发布查询" />
+            <lang locale="zh_HK" value="招標信息發佈查詢" />
+            <lang locale="zh_TW" value="招標信息發佈查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="招标信息发布查询" />
+            <lang locale="zh_HK" value="招標信息發佈查詢" />
+            <lang locale="zh_TW" value="招標信息發佈查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].queryPK[QueryPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].queryPK[QueryPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].subObjects.subEntity[InvitationInfo].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].subObjects.subEntity[inviteProject].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.propertyUnit[2fdd4c06-73c3-4679-ade0-56c3a4824a4e].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.propertyUnit[338dcc6b-200c-4d96-a273-165938a54ffd].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[email].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="邮件" />
+            <lang locale="zh_HK" value="郵件" />
+            <lang locale="zh_TW" value="郵件" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[id].extendedProperty.isVisibleForKDTable">
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_TW" value="false" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[inviteDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发标时间" />
+            <lang locale="zh_HK" value="發標時間" />
+            <lang locale="zh_TW" value="發標時間" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[inviteProject.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[inviteProject.id].extendedProperty.isVisibleForKDTable">
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_TW" value="false" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[inviteProjectName].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="招标项目名称" />
+            <lang locale="zh_HK" value="招標項目名稱" />
+            <lang locale="zh_TW" value="招標項目名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[linkfax].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="传真" />
+            <lang locale="zh_HK" value="傳真" />
+            <lang locale="zh_TW" value="傳真" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[linkman].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="联系人" />
+            <lang locale="zh_HK" value="聯繫人" />
+            <lang locale="zh_TW" value="聯繫人" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[linkphone].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="联系电话" />
+            <lang locale="zh_HK" value="聯繫電話" />
+            <lang locale="zh_TW" value="聯繫電話" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据编号" />
+            <lang locale="zh_HK" value="單據編號" />
+            <lang locale="zh_TW" value="單據編號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[ownerDept].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="招标单位" />
+            <lang locale="zh_HK" value="招標單位" />
+            <lang locale="zh_TW" value="招標單位" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[project].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="所属项目" />
+            <lang locale="zh_HK" value="所屬項目" />
+            <lang locale="zh_TW" value="所屬項目" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.F7InvitationQuery].units.queryField[state].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="状态" />
+            <lang locale="zh_HK" value="狀態" />
+            <lang locale="zh_TW" value="狀態" />
+        </rs>
+    </resource>
+</joinQuery>
+

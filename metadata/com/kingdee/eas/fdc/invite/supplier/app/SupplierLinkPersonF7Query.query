@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>SupplierLinkPersonF7Query</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>SupplierLinkPersonF7</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].subObjects.subEntity[SupplierLinkPersonF7].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>CU</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].subObjects.subEntity[CU].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.basedata.org.app" />
+                <key name="name" value="CtrlUnit" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>supplierFileType</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].subObjects.subEntity[supplierFileType].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierFileType" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>257c8dc7-61d7-4f23-bca7-827bdde52f07</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.propertyUnit[257c8dc7-61d7-4f23-bca7-827bdde52f07].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>734f8303-0de6-46a7-a3a3-3a992a8d819b</key>
+                    <parentUnit>
+                        <key name="name" value="257c8dc7-61d7-4f23-bca7-827bdde52f07" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="CU" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>b4caf8a4-1feb-4b57-a88c-df2719940aa1</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.propertyUnit[b4caf8a4-1feb-4b57-a88c-df2719940aa1].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>02e21ee6-3cc5-4726-a6b1-5d0948b14007</key>
+                    <parentUnit>
+                        <key name="name" value="b4caf8a4-1feb-4b57-a88c-df2719940aa1" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="CU" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>1dfbcd93-7a31-42dc-b355-03dd48d76c6c</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.propertyUnit[1dfbcd93-7a31-42dc-b355-03dd48d76c6c].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>bc8d5328-5d07-448f-bd10-d25a86520ed4</key>
+                    <parentUnit>
+                        <key name="name" value="1dfbcd93-7a31-42dc-b355-03dd48d76c6c" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="supplierFileType" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>420de6d2-7a55-4ce8-abb9-ca0178f8c280</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.propertyUnit[420de6d2-7a55-4ce8-abb9-ca0178f8c280].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>8c20b817-cc41-4837-9a6d-4e36d47e8455</key>
+                    <parentUnit>
+                        <key name="name" value="420de6d2-7a55-4ce8-abb9-ca0178f8c280" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplierFileType" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>40a892d6-4cfc-41a3-997b-3e78265462d6</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>CU.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[CU.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>c9047bb8-bb88-45ba-97fa-4ad68a3a030e</key>
+                    <parentUnit>
+                        <key name="name" value="CU.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="CU" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>supplierFileType.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[supplierFileType.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>63347b23-bcef-4f42-9c16-dd11bb6f63d2</key>
+                    <parentUnit>
+                        <key name="name" value="supplierFileType.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplierFileType" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>type</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[type].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>0564009b-217f-4ea1-8e27-06086441154a</key>
+                    <parentUnit>
+                        <key name="name" value="type" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="type" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>isEnabled</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[isEnabled].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Boolean</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9d7aaf15-51cd-4958-9dd6-9d4cb8c4851b</key>
+                    <parentUnit>
+                        <key name="name" value="isEnabled" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="isEnabled" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>personName</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[personName].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>0ce3d3b7-65b6-497d-b03e-eb63ee4a0c44</key>
+                    <parentUnit>
+                        <key name="name" value="personName" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="personName" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>position</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[position].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f82da555-cd47-44c7-8905-b139284709e4</key>
+                    <parentUnit>
+                        <key name="name" value="position" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="position" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>phone</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[phone].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>2d7dbcba-5cbd-4b4b-b0af-978b913a482e</key>
+                    <parentUnit>
+                        <key name="name" value="phone" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="phone" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>workPhone</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[workPhone].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f43f3d6a-1488-4617-8828-a993d2ece05d</key>
+                    <parentUnit>
+                        <key name="name" value="workPhone" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="workPhone" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>personFax</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[personFax].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>8e191494-51e6-4c8a-96d1-524fa34ea149</key>
+                    <parentUnit>
+                        <key name="name" value="personFax" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="personFax" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>isDefault</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[isDefault].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Boolean</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>1384e172-3c5f-48ba-9c8b-274940b9aeb8</key>
+                    <parentUnit>
+                        <key name="name" value="isDefault" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="isDefault" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>email</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[email].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>fd2decca-3b18-446e-b6f9-2ef54c5d7f42</key>
+                    <parentUnit>
+                        <key name="name" value="email" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="email" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>contact</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[contact].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>aa980c9a-7943-4e6e-a090-105ad453f477</key>
+                    <parentUnit>
+                        <key name="name" value="contact" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="SupplierLinkPersonF7" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="contact" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+            <key name="name" value="SupplierLinkPersonF7Query" />
+        </query>
+    </defaultFilter>
+    <queryPK>
+        <name>QueryPK</name>
+        <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].queryPK[QueryPK].alias</alias>
+        <description>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].queryPK[QueryPK].description</description>
+        <keyProperties>
+            <queryField>
+                <key name="name" value="id" />
+            </queryField>
+        </keyProperties>
+    </queryPK>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>6a387cf6-2b93-4299-80f6-2b2f386630ac</name>
+            <formulaString>#0</formulaString>
+            <type>INNER JOIN</type>
+            <leftObject>
+                <key name="name" value="SupplierLinkPersonF7" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="CU" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>5412d36d-dc7c-4a7b-a76b-46539ca0967a</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="257c8dc7-61d7-4f23-bca7-827bdde52f07" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="b4caf8a4-1feb-4b57-a88c-df2719940aa1" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="6a387cf6-2b93-4299-80f6-2b2f386630ac" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </join>
+        <join>
+            <name>b481c12a-0149-467c-9350-9f83bf40c76b</name>
+            <formulaString>#0</formulaString>
+            <type>INNER JOIN</type>
+            <leftObject>
+                <key name="name" value="SupplierLinkPersonF7" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="supplierFileType" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>6d48bab6-1f67-4257-bfaa-7e7a5b0429b1</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="1dfbcd93-7a31-42dc-b355-03dd48d76c6c" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="420de6d2-7a55-4ce8-abb9-ca0178f8c280" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="b481c12a-0149-467c-9350-9f83bf40c76b" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierLinkPersonF7Query" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="联系人查询" />
+            <lang locale="zh_HK" value="聯繫人查詢" />
+            <lang locale="zh_TW" value="聯繫人查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="联系人查询" />
+            <lang locale="zh_HK" value="聯繫人查詢" />
+            <lang locale="zh_TW" value="聯繫人查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].queryPK[QueryPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].queryPK[QueryPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].subObjects.subEntity[CU].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].subObjects.subEntity[SupplierLinkPersonF7].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].subObjects.subEntity[supplierFileType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.propertyUnit[1dfbcd93-7a31-42dc-b355-03dd48d76c6c].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.propertyUnit[257c8dc7-61d7-4f23-bca7-827bdde52f07].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.propertyUnit[420de6d2-7a55-4ce8-abb9-ca0178f8c280].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.propertyUnit[b4caf8a4-1feb-4b57-a88c-df2719940aa1].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[CU.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[CU.id].extendedProperty.isVisibleForKDTable">
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_TW" value="false" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[contact].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="联系方式" />
+            <lang locale="zh_HK" value="聯繫方式" />
+            <lang locale="zh_TW" value="聯繫方式" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[contact].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[contact].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[email].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="邮箱" />
+            <lang locale="zh_HK" value="郵箱" />
+            <lang locale="zh_TW" value="郵箱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[email].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[email].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[id].extendedProperty.isVisibleForKDTable">
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_TW" value="false" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[isDefault].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="是否为授权联系人" />
+            <lang locale="zh_HK" value="是否為授權聯繫人" />
+            <lang locale="zh_TW" value="是否為授權聯繫人" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[isDefault].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[isDefault].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[isEnabled].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="启用" />
+            <lang locale="zh_HK" value="啟用" />
+            <lang locale="zh_TW" value="啟用" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[isEnabled].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[isEnabled].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[personFax].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="传真" />
+            <lang locale="zh_HK" value="傳真" />
+            <lang locale="zh_TW" value="傳真" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[personFax].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[personFax].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[personName].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="姓名" />
+            <lang locale="zh_HK" value="姓名" />
+            <lang locale="zh_TW" value="姓名" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[personName].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[personName].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[phone].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="手机" />
+            <lang locale="zh_HK" value="手機" />
+            <lang locale="zh_TW" value="手機" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[phone].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[phone].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[position].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="职务" />
+            <lang locale="zh_HK" value="職務" />
+            <lang locale="zh_TW" value="職務" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[position].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[position].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[supplierFileType.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="档案分类" />
+            <lang locale="zh_HK" value="檔案分類" />
+            <lang locale="zh_TW" value="檔案分類" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[supplierFileType.name].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[supplierFileType.name].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[type].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="联系人类型" />
+            <lang locale="zh_HK" value="聯繫人類型" />
+            <lang locale="zh_TW" value="聯繫人類型" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[workPhone].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="办公电话" />
+            <lang locale="zh_HK" value="辦公電話" />
+            <lang locale="zh_TW" value="辦公電話" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[workPhone].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.SupplierLinkPersonF7Query].units.queryField[workPhone].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</joinQuery>
+

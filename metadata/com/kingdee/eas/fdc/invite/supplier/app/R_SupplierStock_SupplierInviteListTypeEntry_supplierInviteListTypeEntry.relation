@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationship xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>R_SupplierStock_SupplierInviteListTypeEntry_supplierInviteListTypeEntry</name>
+    <alias>relationship[com.kingdee.eas.fdc.invite.supplier.app.R_SupplierStock_SupplierInviteListTypeEntry_supplierInviteListTypeEntry].alias</alias>
+    <description>relationship[com.kingdee.eas.fdc.invite.supplier.app.R_SupplierStock_SupplierInviteListTypeEntry_supplierInviteListTypeEntry].description</description>
+    <userDefined>true</userDefined>
+    <type>Composition</type>
+    <clientCardinality>0..1</clientCardinality>
+    <supplierCardinality>0..*</supplierCardinality>
+    <xmlNodeRelationship />
+    <clientObject>
+        <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+        <key name="name" value="SupplierStock" />
+    </clientObject>
+    <supplierObject>
+        <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+        <key name="name" value="SupplierInviteListTypeEntry" />
+    </supplierObject>
+    <resource>
+        <rs key="relationship[com.kingdee.eas.fdc.invite.supplier.app.R_SupplierStock_SupplierInviteListTypeEntry_supplierInviteListTypeEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商-采购类别明细分录" />
+            <lang locale="zh_HK" value="供應商-採購類別明細分錄" />
+            <lang locale="zh_TW" value="供應商-採購類別明細分錄" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.invite.supplier.app.R_SupplierStock_SupplierInviteListTypeEntry_supplierInviteListTypeEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商-采购类别明细分录" />
+            <lang locale="zh_HK" value="供應商-採購類別明細分錄" />
+            <lang locale="zh_TW" value="供應商-採購類別明細分錄" />
+        </rs>
+    </resource>
+</relationship>
+

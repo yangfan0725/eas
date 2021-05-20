@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>UserSupplierAssoQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>UserSupplierAsso</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].subObjects.subEntity[UserSupplierAsso].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAsso" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>supplier</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].subObjects.subEntity[supplier].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierStock" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>inviteType</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].subObjects.subEntity[inviteType].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="InviteType" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>parent</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].subObjects.subEntity[parent].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="WebUser" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>ef90930d-a055-4362-9a82-ff15627b6f1f</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[ef90930d-a055-4362-9a82-ff15627b6f1f].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>aecce4b9-2152-47bb-8abd-d4059dda1a62</key>
+                    <parentUnit>
+                        <key name="name" value="ef90930d-a055-4362-9a82-ff15627b6f1f" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="UserSupplierAsso" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="supplier" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>92e49357-8443-4b64-a78d-c798c1c3cfe9</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[92e49357-8443-4b64-a78d-c798c1c3cfe9].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>1e77d322-e48c-4a1a-a744-98f1cd555a6a</key>
+                    <parentUnit>
+                        <key name="name" value="92e49357-8443-4b64-a78d-c798c1c3cfe9" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>0b0fcb8b-b4ef-4ea6-8a70-4ec6ab5c1c7f</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[0b0fcb8b-b4ef-4ea6-8a70-4ec6ab5c1c7f].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>083bf7b9-a7fb-4021-b256-036beb9be9d0</key>
+                    <parentUnit>
+                        <key name="name" value="0b0fcb8b-b4ef-4ea6-8a70-4ec6ab5c1c7f" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="inviteType" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>0a6a1d25-2967-4285-a0d5-2d0056418632</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[0a6a1d25-2967-4285-a0d5-2d0056418632].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>d38574e9-9dd7-4aeb-9768-1440f5ab02d0</key>
+                    <parentUnit>
+                        <key name="name" value="0a6a1d25-2967-4285-a0d5-2d0056418632" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="inviteType" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>6ad0e940-9b22-463d-b7d8-636178f9460a</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[6ad0e940-9b22-463d-b7d8-636178f9460a].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>abc2105e-a448-4487-b426-be5ec3de612d</key>
+                    <parentUnit>
+                        <key name="name" value="6ad0e940-9b22-463d-b7d8-636178f9460a" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="UserSupplierAsso" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="parent" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>0812c24a-e37c-4c9c-9db5-e40a416d5dba</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[0812c24a-e37c-4c9c-9db5-e40a416d5dba].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>3f1f6ca3-1209-471e-aea9-3117f9e0dc2b</key>
+                    <parentUnit>
+                        <key name="name" value="0812c24a-e37c-4c9c-9db5-e40a416d5dba" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="parent" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>supplier.number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[supplier.number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a4b59b6f-51ec-4e17-8683-2f8550dbb538</key>
+                    <parentUnit>
+                        <key name="name" value="supplier.number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>supplier.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[supplier.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>49ef22d2-d08d-47e3-bd0d-948f8dfdaa65</key>
+                    <parentUnit>
+                        <key name="name" value="supplier.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>inviteType.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[inviteType.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>45611a1e-7e11-4fe3-9019-ed6478d5a07f</key>
+                    <parentUnit>
+                        <key name="name" value="inviteType.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="inviteType" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f12ef373-61d1-40fe-a1bc-59376ba5c848</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="UserSupplierAsso" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>parent.mobileNumber</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[parent.mobileNumber].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>2a40a78a-68b2-47e0-aaa1-168a0e8709f8</key>
+                    <parentUnit>
+                        <key name="name" value="parent.mobileNumber" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="parent" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="mobileNumber" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>parent.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[parent.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>10757a7b-6abc-48af-bd72-5a0777320863</key>
+                    <parentUnit>
+                        <key name="name" value="parent.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="parent" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>parent.number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[parent.number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>true</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>5186a792-806e-4a92-9e1d-aef31580e1c0</key>
+                    <parentUnit>
+                        <key name="name" value="parent.number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="parent" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>parent.companyName</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[parent.companyName].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>874a7f3a-a9f0-44f9-9204-a3381e3d2623</key>
+                    <parentUnit>
+                        <key name="name" value="parent.companyName" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="parent" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="companyName" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>supplier.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[supplier.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>c058aeb4-b492-4cc1-a909-0c3b37543884</key>
+                    <parentUnit>
+                        <key name="name" value="supplier.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <filterItems>
+            <queryFilterItem>
+                <propertyName>supplier.id</propertyName>
+                <compareType>is not</compareType>
+                <compareValue>null</compareValue>
+                <userDefined>true</userDefined>
+                <filter>
+                    <key name="name" value="defaultFilter" />
+                </filter>
+                <configured>false</configured>
+            </queryFilterItem>
+        </filterItems>
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+            <key name="name" value="UserSupplierAssoQuery" />
+        </query>
+    </defaultFilter>
+    <defaultSorters>
+        <querySorterItem>
+            <propertyName>parent.number</propertyName>
+            <sortType>ASC</sortType>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+            <configured>false</configured>
+        </querySorterItem>
+    </defaultSorters>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>8594896e-b8e7-448d-9b3c-ec0018d89498</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="UserSupplierAsso" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="supplier" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>8533f0a0-78e1-4d77-b046-ec04e681dca6</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="ef90930d-a055-4362-9a82-ff15627b6f1f" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="92e49357-8443-4b64-a78d-c798c1c3cfe9" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="8594896e-b8e7-448d-9b3c-ec0018d89498" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </join>
+        <join>
+            <name>4c14a6b3-71ca-49b7-9c3c-df03fc636023</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="supplier" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="inviteType" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>1fc9483b-1768-42e1-bf46-3158bc6ccaa6</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="0b0fcb8b-b4ef-4ea6-8a70-4ec6ab5c1c7f" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="0a6a1d25-2967-4285-a0d5-2d0056418632" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="4c14a6b3-71ca-49b7-9c3c-df03fc636023" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </join>
+        <join>
+            <name>68bd192a-62ef-4c37-b64d-c38694ecf664</name>
+            <formulaString>#0</formulaString>
+            <type>RIGHT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="UserSupplierAsso" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="parent" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>1f7309e1-d017-4103-a7f3-cbb82f03a4c0</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="6ad0e940-9b22-463d-b7d8-636178f9460a" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="0812c24a-e37c-4c9c-9db5-e40a416d5dba" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="68bd192a-62ef-4c37-b64d-c38694ecf664" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="UserSupplierAssoQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="外部用户与供应商关联查询" />
+            <lang locale="zh_HK" value="外部用戶與供應商關聯查詢" />
+            <lang locale="zh_TW" value="外部用戶與供應商關聯查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="外部用户与供应商关联查询" />
+            <lang locale="zh_HK" value="外部用戶與供應商關聯查詢" />
+            <lang locale="zh_TW" value="外部用戶與供應商關聯查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].subObjects.subEntity[UserSupplierAsso].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].subObjects.subEntity[inviteType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].subObjects.subEntity[parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].subObjects.subEntity[supplier].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[0812c24a-e37c-4c9c-9db5-e40a416d5dba].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[0a6a1d25-2967-4285-a0d5-2d0056418632].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[0b0fcb8b-b4ef-4ea6-8a70-4ec6ab5c1c7f].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[6ad0e940-9b22-463d-b7d8-636178f9460a].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[92e49357-8443-4b64-a78d-c798c1c3cfe9].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.propertyUnit[ef90930d-a055-4362-9a82-ff15627b6f1f].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[inviteType.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[parent.companyName].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="公司名称" />
+            <lang locale="zh_HK" value="公司名稱" />
+            <lang locale="zh_TW" value="公司名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[parent.mobileNumber].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="手机号码" />
+            <lang locale="zh_HK" value="手機號碼" />
+            <lang locale="zh_TW" value="手機號碼" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[parent.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[parent.number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据编号" />
+            <lang locale="zh_HK" value="單據編號" />
+            <lang locale="zh_TW" value="單據編號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[supplier.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[supplier.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoQuery].units.queryField[supplier.number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="编码" />
+            <lang locale="zh_HK" value="編碼" />
+            <lang locale="zh_TW" value="編碼" />
+        </rs>
+    </resource>
+</joinQuery>
+

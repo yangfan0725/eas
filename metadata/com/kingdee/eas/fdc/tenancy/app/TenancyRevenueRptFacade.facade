@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facade xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>TenancyRevenueRptFacade</name>
+    <alias>facade[com.kingdee.eas.fdc.tenancy.app.TenancyRevenueRptFacade].alias</alias>
+    <description>facade[com.kingdee.eas.fdc.tenancy.app.TenancyRevenueRptFacade].description</description>
+    <userDefined>true</userDefined>
+    <bosType>13D930CB</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.tenancy.TenancyRevenueRptFacade</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.tenancy.app.TenancyRevenueRptFacadeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <baseFacade>
+        <key name="package" value="com.kingdee.eas.framework.report.app" />
+        <key name="name" value="CommRptBase" />
+    </baseFacade>
+    <resource>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.TenancyRevenueRptFacade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租赁收入统计表" />
+            <lang locale="zh_HK" value="租賃收入統計表" />
+            <lang locale="zh_TW" value="租賃收入統計表" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.TenancyRevenueRptFacade].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租赁收入统计表" />
+            <lang locale="zh_HK" value="租賃收入統計表" />
+            <lang locale="zh_TW" value="租賃收入統計表" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.TenancyRevenueRptFacade].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</facade>
+

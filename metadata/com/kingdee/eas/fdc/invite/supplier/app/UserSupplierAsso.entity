@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>UserSupplierAsso</name>
+    <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].alias</alias>
+    <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].description</description>
+    <userDefined>true</userDefined>
+    <bosType>2EBA0F9D</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.invite.supplier.UserSupplierAsso</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAssoController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <isAbstract>false</isAbstract>
+    <bizUnitPK />
+    <baseEntity>
+        <key name="package" value="com.kingdee.eas.framework.app" />
+        <key name="name" value="CoreBillEntryBase" />
+    </baseEntity>
+    <table>
+        <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+        <key name="name" value="T_GYS_UserSupplierAsso" />
+    </table>
+    <properties>
+        <linkProperty>
+            <name>parent</name>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].properties.linkProperty[parent].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].properties.linkProperty[parent].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FParentID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="R_WebUser_UserSupplierAsso_entry" />
+            </relationship>
+        </linkProperty>
+        <linkProperty>
+            <name>supplier</name>
+            <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].properties.linkProperty[supplier].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].properties.linkProperty[supplier].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FSupplierID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="R_UserSupplierAsso_SupplierStock_supplier" />
+            </relationship>
+        </linkProperty>
+    </properties>
+    <logicalKey>
+        <name>id</name>
+        <alias>entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].logicalKey[id].alias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].logicalKey[id].description</description>
+        <keyClass>com.kingdee.bos.dao.IObjectPK</keyClass>
+        <userDefined>true</userDefined>
+        <keyProperties>
+            <baseProperty>
+                <key name="name" value="id" />
+            </baseProperty>
+        </keyProperties>
+    </logicalKey>
+    <resource>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="用户供应商关联" />
+            <lang locale="zh_HK" value="用戶供應商關聯" />
+            <lang locale="zh_TW" value="用戶供應商關聯" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="用户供应商关联" />
+            <lang locale="zh_HK" value="用戶供應商關聯" />
+            <lang locale="zh_TW" value="用戶供應商關聯" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].logicalKey[id].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].logicalKey[id].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].properties.linkProperty[parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="所属外网用户" />
+            <lang locale="zh_HK" value="所屬外網用戶" />
+            <lang locale="zh_TW" value="所屬外網用戶" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].properties.linkProperty[parent].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="所属外网用户" />
+            <lang locale="zh_HK" value="所屬外網用戶" />
+            <lang locale="zh_TW" value="所屬外網用戶" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].properties.linkProperty[supplier].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商" />
+            <lang locale="zh_HK" value="供應商" />
+            <lang locale="zh_TW" value="供應商" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.invite.supplier.app.UserSupplierAsso].properties.linkProperty[supplier].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商" />
+            <lang locale="zh_HK" value="供應商" />
+            <lang locale="zh_TW" value="供應商" />
+        </rs>
+    </resource>
+</entityObject>
+

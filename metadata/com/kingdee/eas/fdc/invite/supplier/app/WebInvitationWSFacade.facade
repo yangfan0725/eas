@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facade xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>WebInvitationWSFacade</name>
+    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].alias</alias>
+    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].description</description>
+    <userDefined>true</userDefined>
+    <bosType>FBF4B46B</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.invite.supplier.WebInvitationWSFacade</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacadeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>syncEASBasedata</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[syncEASBasedata].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[syncEASBasedata].description</description>
+            <innerID>c6640de6-e9b2-4d96-b658-32459c2a3dbb</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>lastUpdateDate</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[syncEASBasedata].parameters.parameter[lastUpdateDate].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[syncEASBasedata].parameters.parameter[lastUpdateDate].description</description>
+                    <direction>in</direction>
+                    <dataType>Date</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>registerUser</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[registerUser].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[registerUser].description</description>
+            <innerID>7162f5df-e2a1-44d3-928f-4388d3dcb637</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>userParam</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[registerUser].parameters.parameter[userParam].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[registerUser].parameters.parameter[userParam].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>apply</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[apply].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[apply].description</description>
+            <innerID>af927474-afab-46c6-bda5-9865aabeaeeb</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>applyParam</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[apply].parameters.parameter[applyParam].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[apply].parameters.parameter[applyParam].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>download</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[download].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[download].description</description>
+            <innerID>eca46560-953f-46c0-bc74-b9793334daff</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ByteArray</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>downloadParam</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[download].parameters.parameter[downloadParam].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[download].parameters.parameter[downloadParam].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>saveSupplier</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[saveSupplier].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[saveSupplier].description</description>
+            <innerID>6894f853-59e0-4927-a534-8c4408a39743</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>supplier</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[saveSupplier].parameters.parameter[supplier].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[saveSupplier].parameters.parameter[supplier].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>changePassword</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[changePassword].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[changePassword].description</description>
+            <innerID>5d102011-c066-4cd1-a945-9f9793f7f7dc</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>param</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[changePassword].parameters.parameter[param].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[changePassword].parameters.parameter[param].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <resource>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="外网招标服务接口" />
+            <lang locale="zh_HK" value="外網招標服務介面" />
+            <lang locale="zh_TW" value="外網招標服務介面" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="外网招标服务接口" />
+            <lang locale="zh_HK" value="外網招標服務介面" />
+            <lang locale="zh_TW" value="外網招標服務介面" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[apply].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="招标报名" />
+            <lang locale="zh_HK" value="招標報名" />
+            <lang locale="zh_TW" value="招標報名" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[apply].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="招标报名" />
+            <lang locale="zh_HK" value="招標報名" />
+            <lang locale="zh_TW" value="招標報名" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[apply].parameters.parameter[applyParam].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="招标报名信息" />
+            <lang locale="zh_HK" value="招標報名信息" />
+            <lang locale="zh_TW" value="招標報名信息" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[apply].parameters.parameter[applyParam].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[changePassword].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="更改密码" />
+            <lang locale="zh_HK" value="更改密碼" />
+            <lang locale="zh_TW" value="更改密碼" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[changePassword].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="更改密码" />
+            <lang locale="zh_HK" value="更改密碼" />
+            <lang locale="zh_TW" value="更改密碼" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[changePassword].parameters.parameter[param].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="用户信息" />
+            <lang locale="zh_HK" value="用戶信息" />
+            <lang locale="zh_TW" value="用戶信息" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[changePassword].parameters.parameter[param].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[download].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="下载招标文件" />
+            <lang locale="zh_HK" value="下載招標文件" />
+            <lang locale="zh_TW" value="下載招標文件" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[download].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="下载招标文件" />
+            <lang locale="zh_HK" value="下載招標文件" />
+            <lang locale="zh_TW" value="下載招標文件" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[download].parameters.parameter[downloadParam].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="需要下载的文件ID及招标信息ID" />
+            <lang locale="zh_HK" value="需要下載的文件ID及招標信息ID" />
+            <lang locale="zh_TW" value="需要下載的文件ID及招標信息ID" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[download].parameters.parameter[downloadParam].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[registerUser].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="注册供应商" />
+            <lang locale="zh_HK" value="註冊供應商" />
+            <lang locale="zh_TW" value="註冊供應商" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[registerUser].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="注册供应商" />
+            <lang locale="zh_HK" value="註冊供應商" />
+            <lang locale="zh_TW" value="註冊供應商" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[registerUser].parameters.parameter[userParam].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="用户信息" />
+            <lang locale="zh_HK" value="用戶信息" />
+            <lang locale="zh_TW" value="用戶信息" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[registerUser].parameters.parameter[userParam].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[saveSupplier].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="修改供应商" />
+            <lang locale="zh_HK" value="修改供應商" />
+            <lang locale="zh_TW" value="修改供應商" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[saveSupplier].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="修改供应商" />
+            <lang locale="zh_HK" value="修改供應商" />
+            <lang locale="zh_TW" value="修改供應商" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[saveSupplier].parameters.parameter[supplier].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商信息" />
+            <lang locale="zh_HK" value="供應商信息" />
+            <lang locale="zh_TW" value="供應商信息" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[saveSupplier].parameters.parameter[supplier].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="提供给外网用户修改供应商信息" />
+            <lang locale="zh_HK" value="提供給外網用戶修改供應商信息" />
+            <lang locale="zh_TW" value="提供給外網用戶修改供應商信息" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[syncEASBasedata].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="同步EAS基础信息" />
+            <lang locale="zh_HK" value="同步EAS基礎信息" />
+            <lang locale="zh_TW" value="同步EAS基礎信息" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[syncEASBasedata].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="同步EAS基础信息" />
+            <lang locale="zh_HK" value="同步EAS基礎信息" />
+            <lang locale="zh_TW" value="同步EAS基礎信息" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[syncEASBasedata].parameters.parameter[lastUpdateDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="更新时间" />
+            <lang locale="zh_HK" value="更新時間" />
+            <lang locale="zh_TW" value="更新時間" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.WebInvitationWSFacade].methods.method[syncEASBasedata].parameters.parameter[lastUpdateDate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+    </resource>
+</facade>
+

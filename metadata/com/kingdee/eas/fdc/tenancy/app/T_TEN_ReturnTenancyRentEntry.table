@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataTable xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>T_TEN_ReturnTenancyRentEntry</name>
+    <alias>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].alias</alias>
+    <description>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].description</description>
+    <userDefined>true</userDefined>
+    <bizUnitPK />
+    <columns>
+        <column>
+            <name>FYear</name>
+            <alias>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FYear].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FYear].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>NUMERIC</sqlType>
+            <length>4</length>
+            <scale>2</scale>
+            <precision>28</precision>
+        </column>
+        <column>
+            <name>FAmtOfRent</name>
+            <alias>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FAmtOfRent].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FAmtOfRent].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>NUMERIC</sqlType>
+            <length>28</length>
+            <scale>2</scale>
+            <precision>2</precision>
+        </column>
+        <column>
+            <name>FContractID</name>
+            <alias>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FContractID].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FContractID].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>VARCHAR</sqlType>
+            <length>44</length>
+            <scale>0</scale>
+            <precision>44</precision>
+        </column>
+        <column>
+            <name>FSeq</name>
+            <alias>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FSeq].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FSeq].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>INT</sqlType>
+            <length>4</length>
+            <scale>0</scale>
+            <precision>4</precision>
+        </column>
+        <column>
+            <name>FID</name>
+            <alias>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FID].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FID].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>false</isNullable>
+            <defaultValue>''</defaultValue>
+            <sqlType>VARCHAR</sqlType>
+            <length>44</length>
+            <scale>0</scale>
+            <precision>44</precision>
+        </column>
+    </columns>
+    <primaryKey>
+        <name>PK_ReturnTenancyRe</name>
+        <userDefined>true</userDefined>
+        <primaryKeyColumns>
+            <primaryKeyColumn>
+                <indexID>0</indexID>
+                <sortType>ASC</sortType>
+                <column>
+                    <key name="name" value="FID" />
+                </column>
+            </primaryKeyColumn>
+        </primaryKeyColumns>
+    </primaryKey>
+    <foreignKeys>
+        <foreignKey>
+            <name>CFK_TEN_RtrnTREOnt</name>
+            <userDefined>true</userDefined>
+            <refTable>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="T_TEN_ReturnTenancyContract" />
+            </refTable>
+            <fkColumnPairs>
+                <fkColumnPair>
+                    <sequence>0</sequence>
+                    <refColumn>
+                        <key name="name" value="FID" />
+                    </refColumn>
+                    <fkColumn>
+                        <key name="name" value="FContractID" />
+                    </fkColumn>
+                </fkColumnPair>
+            </fkColumnPairs>
+        </foreignKey>
+    </foreignKeys>
+    <resource>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租单租金分录" />
+            <lang locale="zh_HK" value="返租單租金分錄" />
+            <lang locale="zh_TW" value="返租單租金分錄" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FAmtOfRent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租金" />
+            <lang locale="zh_HK" value="租金" />
+            <lang locale="zh_TW" value="租金" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FAmtOfRent].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租金" />
+            <lang locale="zh_HK" value="租金" />
+            <lang locale="zh_TW" value="租金" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FContractID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FContractID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租赁合同" />
+            <lang locale="zh_HK" value="租賃合同" />
+            <lang locale="zh_TW" value="租賃合同" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FSeq].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据分录序列号" />
+            <lang locale="zh_HK" value="單據分錄序列號" />
+            <lang locale="zh_TW" value="單據分錄序列號" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FSeq].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据分录序列号（定义为序列属性即使用{seq}）" />
+            <lang locale="zh_HK" value="單據分錄序列號（定義為序列屬性即使用{seq}）" />
+            <lang locale="zh_TW" value="單據分錄序列號（定義為序列屬性即使用{seq}）" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FYear].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="年份" />
+            <lang locale="zh_HK" value="年份" />
+            <lang locale="zh_TW" value="年份" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].columns.column[FYear].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="年份" />
+            <lang locale="zh_HK" value="年份" />
+            <lang locale="zh_TW" value="年份" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.tenancy.app.T_TEN_ReturnTenancyRentEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租单租金分录" />
+            <lang locale="zh_HK" value="返租單租金分錄" />
+            <lang locale="zh_TW" value="返租單租金分錄" />
+        </rs>
+    </resource>
+</dataTable>
+

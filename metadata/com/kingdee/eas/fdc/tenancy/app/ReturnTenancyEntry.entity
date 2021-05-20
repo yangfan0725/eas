@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>ReturnTenancyEntry</name>
+    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].alias</alias>
+    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].description</description>
+    <userDefined>true</userDefined>
+    <bosType>A471100B</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.tenancy.ReturnTenancyEntry</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntryController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <isAbstract>false</isAbstract>
+    <bizUnitPK />
+    <baseEntity>
+        <key name="package" value="com.kingdee.eas.framework.app" />
+        <key name="name" value="CoreBillEntryBase" />
+    </baseEntity>
+    <table>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="T_TEN_ReturnTenancyEntry" />
+    </table>
+    <properties>
+        <ownProperty>
+            <name>year</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[year].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[year].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Integer</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>4</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[year].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FYear" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>rateOfReturn</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[rateOfReturn].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[rateOfReturn].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>5</length>
+            <precision>2</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[rateOfReturn].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FRateOfReturn" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>amtOfReturn</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[amtOfReturn].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[amtOfReturn].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>2</precision>
+            <decimalDigits>2</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[amtOfReturn].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FAmtOfReturn" />
+            </mappingField>
+        </ownProperty>
+        <linkProperty>
+            <name>parent</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.linkProperty[parent].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.linkProperty[parent].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FParentID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_RenturnTenancyBill_ReturnTenancyEntry_returnEntry" />
+            </relationship>
+        </linkProperty>
+    </properties>
+    <logicalKey>
+        <name>id</name>
+        <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].logicalKey[id].alias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].logicalKey[id].description</description>
+        <keyClass>com.kingdee.bos.dao.IObjectPK</keyClass>
+        <userDefined>true</userDefined>
+        <keyProperties>
+            <baseProperty>
+                <key name="name" value="id" />
+            </baseProperty>
+        </keyProperties>
+    </logicalKey>
+    <defaultView>
+        <name />
+        <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].defaultViewalias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].defaultViewdescription</description>
+        <filter>
+            <maskString />
+        </filter>
+    </defaultView>
+    <resource>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租单分录" />
+            <lang locale="zh_HK" value="返租單分錄" />
+            <lang locale="zh_TW" value="返租單分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].defaultViewalias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].defaultViewdescription">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租单分录" />
+            <lang locale="zh_HK" value="返租單分錄" />
+            <lang locale="zh_TW" value="返租單分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].logicalKey[id].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].logicalKey[id].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.linkProperty[parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租单" />
+            <lang locale="zh_HK" value="返租單" />
+            <lang locale="zh_TW" value="返租單" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.linkProperty[parent].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[amtOfReturn].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租年租金" />
+            <lang locale="zh_HK" value="返租年租金" />
+            <lang locale="zh_TW" value="返租年租金" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[amtOfReturn].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[amtOfReturn].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租年租金" />
+            <lang locale="zh_HK" value="返租年租金" />
+            <lang locale="zh_TW" value="返租年租金" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[rateOfReturn].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="约定回报率" />
+            <lang locale="zh_HK" value="約定回報率" />
+            <lang locale="zh_TW" value="約定回報率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[rateOfReturn].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[rateOfReturn].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="约定回报率" />
+            <lang locale="zh_HK" value="約定回報率" />
+            <lang locale="zh_TW" value="約定回報率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[year].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租年份" />
+            <lang locale="zh_HK" value="返租年份" />
+            <lang locale="zh_TW" value="返租年份" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[year].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyEntry].properties.ownProperty[year].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租年份" />
+            <lang locale="zh_HK" value="返租年份" />
+            <lang locale="zh_TW" value="返租年份" />
+        </rs>
+    </resource>
+</entityObject>
+

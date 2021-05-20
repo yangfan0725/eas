@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.app</package>
+    <name>DirectAccepterResultPrintQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>DirectAccepterResult</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].subObjects.subEntity[DirectAccepterResult].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResult" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>inviteProject</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].subObjects.subEntity[inviteProject].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="InviteProject" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>creator</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].subObjects.subEntity[creator].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.base.permission.app" />
+                <key name="name" value="User" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>01073d9a-af46-4d2a-9560-a5f95acc8ef9</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.propertyUnit[01073d9a-af46-4d2a-9560-a5f95acc8ef9].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>1d97119e-c38d-4344-8022-7232261c88a5</key>
+                    <parentUnit>
+                        <key name="name" value="01073d9a-af46-4d2a-9560-a5f95acc8ef9" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="inviteProject" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>e0a1ea58-c422-47bf-aea7-9e4180682dc9</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.propertyUnit[e0a1ea58-c422-47bf-aea7-9e4180682dc9].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>850b1d89-2f3a-464e-9266-4a2274b9117a</key>
+                    <parentUnit>
+                        <key name="name" value="e0a1ea58-c422-47bf-aea7-9e4180682dc9" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="inviteProject" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>f116516f-79ea-463f-8083-9dec2b667e6c</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.propertyUnit[f116516f-79ea-463f-8083-9dec2b667e6c].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>691b01a9-1f4e-4fcd-a52d-ec2682ce325d</key>
+                    <parentUnit>
+                        <key name="name" value="f116516f-79ea-463f-8083-9dec2b667e6c" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="creator" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>4dcf9772-99ed-4ebb-a46c-cd522564fce5</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.propertyUnit[4dcf9772-99ed-4ebb-a46c-cd522564fce5].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>6ef68a6d-bacc-411c-aefd-96e8bcf2709c</key>
+                    <parentUnit>
+                        <key name="name" value="4dcf9772-99ed-4ebb-a46c-cd522564fce5" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="creator" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>market</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[market].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>0afc163a-538b-4e7f-bb6f-c519973d5dce</key>
+                    <parentUnit>
+                        <key name="name" value="market" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="market" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>basePrice</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[basePrice].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>3bb03cfa-42b0-4819-b797-55d7c2a32715</key>
+                    <parentUnit>
+                        <key name="name" value="basePrice" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="basePrice" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>costData</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[costData].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>c1e4baba-3fa1-4675-ad94-c6f10fb8cb5b</key>
+                    <parentUnit>
+                        <key name="name" value="costData" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="costData" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>contractPrice</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[contractPrice].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>7af9de31-beb3-46e7-856d-11d6f3033214</key>
+                    <parentUnit>
+                        <key name="name" value="contractPrice" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="contractPrice" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>difference</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[difference].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>0e2b83d7-51ee-4339-be4f-5872851c284e</key>
+                    <parentUnit>
+                        <key name="name" value="difference" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="difference" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>specialNote</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[specialNote].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>7470035a-5737-451d-8778-231e701c8f11</key>
+                    <parentUnit>
+                        <key name="name" value="specialNote" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="specialNote" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>aimCost</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[aimCost].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>52b12b5b-7e89-4111-8849-1700c50a74fe</key>
+                    <parentUnit>
+                        <key name="name" value="aimCost" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="aimCost" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>refPrice</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[refPrice].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>56367587-698b-4a62-be8e-ea472b1f4b99</key>
+                    <parentUnit>
+                        <key name="name" value="refPrice" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="refPrice" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>conPrice</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[conPrice].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a3285736-e5d3-4dbf-9092-2322ab178276</key>
+                    <parentUnit>
+                        <key name="name" value="conPrice" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="conPrice" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>scope</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[scope].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>fd9dd1b6-889d-4f62-b7a1-3f373a5e0bb8</key>
+                    <parentUnit>
+                        <key name="name" value="scope" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="scope" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>compareAim</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[compareAim].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>be261fa0-ea37-49fa-a736-e2e3f41b6f17</key>
+                    <parentUnit>
+                        <key name="name" value="compareAim" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="compareAim" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>state</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[state].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>45492fe5-bc33-464e-986e-9c1d6a05d602</key>
+                    <parentUnit>
+                        <key name="name" value="state" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="state" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>b8dc68f2-7a88-43de-8f3b-4b90fe249edd</key>
+                    <parentUnit>
+                        <key name="name" value="name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>originalAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[originalAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>96882fd4-c310-4f66-91ea-4cb8866254af</key>
+                    <parentUnit>
+                        <key name="name" value="originalAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="originalAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>amount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[amount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>524a822f-5108-4bba-adf5-bdf804f2056d</key>
+                    <parentUnit>
+                        <key name="name" value="amount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="amount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9b1b2249-b49b-41b3-9489-cf4f3c915a85</key>
+                    <parentUnit>
+                        <key name="name" value="number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>description</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[description].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>fb8374e2-2964-4fe7-aaad-ffa795812fb5</key>
+                    <parentUnit>
+                        <key name="name" value="description" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="description" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>d4d05e89-14a6-4f9c-87d7-1e2bdc9f5eae</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DirectAccepterResult" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>inviteProject.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[inviteProject.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>8a8259cd-03e0-4f53-bfcd-83636db69a88</key>
+                    <parentUnit>
+                        <key name="name" value="inviteProject.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="inviteProject" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>inviteProject.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[inviteProject.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>b25259e3-37ca-4a52-aada-e058c9bce445</key>
+                    <parentUnit>
+                        <key name="name" value="inviteProject.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="inviteProject" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>inviteProject.bizDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[inviteProject.bizDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>68005ac7-d61b-456e-a9fe-8b30d7413dec</key>
+                    <parentUnit>
+                        <key name="name" value="inviteProject.bizDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="inviteProject" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="bizDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+            <key name="name" value="DirectAccepterResultPrintQuery" />
+        </query>
+    </defaultFilter>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>ff1af69b-eac3-41b0-a68f-876192a64814</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="DirectAccepterResult" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="inviteProject" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>28790214-ea30-45b7-9421-ab3a7c4c31d9</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="01073d9a-af46-4d2a-9560-a5f95acc8ef9" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="e0a1ea58-c422-47bf-aea7-9e4180682dc9" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="ff1af69b-eac3-41b0-a68f-876192a64814" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </join>
+        <join>
+            <name>a166253c-44be-416c-89af-75e55c882462</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="DirectAccepterResult" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="creator" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>b53a76a4-8f97-4ee4-b26e-75a8b4141aa2</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="f116516f-79ea-463f-8083-9dec2b667e6c" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="4dcf9772-99ed-4ebb-a46c-cd522564fce5" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="a166253c-44be-416c-89af-75e55c882462" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="DirectAccepterResultPrintQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="直接委托单打印(MAINBILL)" />
+            <lang locale="zh_HK" value="直接委託單列印(MAINBILL)" />
+            <lang locale="zh_TW" value="直接委託單列印(MAINBILL)" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="直接委托单打印(MAINBILL)" />
+            <lang locale="zh_HK" value="直接委託單列印(MAINBILL)" />
+            <lang locale="zh_TW" value="直接委託單列印(MAINBILL)" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].subObjects.subEntity[DirectAccepterResult].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].subObjects.subEntity[creator].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].subObjects.subEntity[inviteProject].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.propertyUnit[01073d9a-af46-4d2a-9560-a5f95acc8ef9].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.propertyUnit[4dcf9772-99ed-4ebb-a46c-cd522564fce5].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.propertyUnit[e0a1ea58-c422-47bf-aea7-9e4180682dc9].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.propertyUnit[f116516f-79ea-463f-8083-9dec2b667e6c].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[aimCost].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="目标成本" />
+            <lang locale="zh_HK" value="目標成本" />
+            <lang locale="zh_TW" value="目標成本" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[amount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="本位币金额" />
+            <lang locale="zh_HK" value="本位幣金額" />
+            <lang locale="zh_TW" value="本位幣金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[basePrice].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="标底" />
+            <lang locale="zh_HK" value="標底" />
+            <lang locale="zh_TW" value="標底" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[compareAim].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="与目标成本比较" />
+            <lang locale="zh_HK" value="與目標成本比較" />
+            <lang locale="zh_TW" value="與目標成本比較" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[conPrice].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="预估合同金额" />
+            <lang locale="zh_HK" value="預估合同金額" />
+            <lang locale="zh_TW" value="預估合同金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[contractPrice].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="预估合同金额(无用)" />
+            <lang locale="zh_HK" value="預估合同金額(無用)" />
+            <lang locale="zh_TW" value="預估合同金額(無用)" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[costData].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="成本数据库" />
+            <lang locale="zh_HK" value="成本資料庫" />
+            <lang locale="zh_TW" value="成本資料庫" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[description].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="参考信息" />
+            <lang locale="zh_HK" value="參考信息" />
+            <lang locale="zh_TW" value="參考信息" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[difference].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="差异" />
+            <lang locale="zh_HK" value="差異" />
+            <lang locale="zh_TW" value="差異" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[inviteProject.bizDate].displayName">
+            <lang locale="en_US" value="" />
+            <lang locale="zh_CN" value="业务日期" />
+            <lang locale="zh_HK" value="業務日期" />
+            <lang locale="zh_TW" value="業務日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[inviteProject.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[inviteProject.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[market].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="市场行情" />
+            <lang locale="zh_HK" value="市場行情" />
+            <lang locale="zh_TW" value="市場行情" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据编号" />
+            <lang locale="zh_HK" value="單據編號" />
+            <lang locale="zh_TW" value="單據編號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[originalAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="原币金额" />
+            <lang locale="zh_HK" value="原幣金額" />
+            <lang locale="zh_TW" value="原幣金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[refPrice].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="参考价" />
+            <lang locale="zh_HK" value="參考價" />
+            <lang locale="zh_TW" value="參考價" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[scope].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="承包范围" />
+            <lang locale="zh_HK" value="承包範圍" />
+            <lang locale="zh_TW" value="承包範圍" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[specialNote].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="特别说明" />
+            <lang locale="zh_HK" value="特別說明" />
+            <lang locale="zh_TW" value="特別說明" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.DirectAccepterResultPrintQuery].units.queryField[state].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="状态" />
+            <lang locale="zh_HK" value="狀態" />
+            <lang locale="zh_TW" value="狀態" />
+        </rs>
+    </resource>
+</joinQuery>
+

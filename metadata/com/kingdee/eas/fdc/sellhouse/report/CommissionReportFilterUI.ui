@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uiObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.sellhouse.report</package>
+    <name>CommissionReportFilterUI</name>
+    <alias>uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].alias</alias>
+    <description>uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].description</description>
+    <userDefined>true</userDefined>
+    <releasePackage>com.kingdee.eas.fdc.sellhouse.report</releasePackage>
+    <releaseClass>CommissionReportFilterUI</releaseClass>
+    <title>uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].title</title>
+    <uitype />
+    <defaultbutton />
+    <bizUnitPK />
+    <parent>
+        <key name="package" value="com.kingdee.eas.framework.report.client" />
+        <key name="name" value="CommRptBaseConditionUI" />
+    </parent>
+    <components>
+        <component>
+            <name>CustomerQueryPanel</name>
+            <alias>uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[CustomerQueryPanel].alias</alias>
+            <userDefined>false</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDPanel</classType>
+            <isContainer>true</isContainer>
+            <constraints>10,10,600,120</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+        </component>
+        <component>
+            <name>contYear</name>
+            <alias>uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[contYear].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>139,47,270,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[contYear].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[contYear].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[contYear].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>spYear</name>
+            <alias>uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[spYear].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDSpinner</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <parent>
+                <key name="name" value="contYear" />
+            </parent>
+        </component>
+    </components>
+    <resource>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="年度个人提成发放情况汇总表过滤" />
+            <lang locale="zh_HK" value="年度個人提成發放情況匯總表過濾" />
+            <lang locale="zh_TW" value="年度個人提成發放情況匯總表過濾" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[CustomerQueryPanel].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[contYear].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[contYear].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[contYear].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="年度" />
+            <lang locale="zh_HK" value="年度" />
+            <lang locale="zh_TW" value="年度" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[contYear].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].components.component[spYear].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="日报周报月报年报过滤" />
+            <lang locale="zh_HK" value="日報週報月報年報過濾" />
+            <lang locale="zh_TW" value="日報週報月報年報過濾" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.report.CommissionReportFilterUI].title">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="年度个人提成发放情况汇总表过滤" />
+            <lang locale="zh_HK" value="年度個人提成發放情況匯總表過濾" />
+            <lang locale="zh_TW" value="年度個人提成發放情況匯總表過濾" />
+        </rs>
+    </resource>
+</uiObject>
+

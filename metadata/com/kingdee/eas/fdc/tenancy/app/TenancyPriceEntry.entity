@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>TenancyPriceEntry</name>
+    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].alias</alias>
+    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].description</description>
+    <userDefined>true</userDefined>
+    <bosType>7C50C940</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.tenancy.TenancyPriceEntry</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntryController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <isAbstract>false</isAbstract>
+    <bizUnitPK />
+    <baseEntity>
+        <key name="package" value="com.kingdee.eas.framework.app" />
+        <key name="name" value="CoreBillEntryBase" />
+    </baseEntity>
+    <table>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="T_TEN_TenancyPriceEntry" />
+    </table>
+    <properties>
+        <linkProperty>
+            <name>tenPrice</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].properties.linkProperty[tenPrice].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].properties.linkProperty[tenPrice].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FTenPriceID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_TenancyPriceEntry_TenPriceEntry_tenPrice" />
+            </relationship>
+        </linkProperty>
+        <linkProperty>
+            <name>parent</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].properties.linkProperty[parent].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].properties.linkProperty[parent].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FParentID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_TenancyBill_TenancyPriceEntry_priceEntry" />
+            </relationship>
+        </linkProperty>
+    </properties>
+    <logicalKey>
+        <name>id</name>
+        <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].logicalKey[id].alias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].logicalKey[id].description</description>
+        <keyClass>com.kingdee.bos.dao.IObjectPK</keyClass>
+        <userDefined>true</userDefined>
+        <keyProperties>
+            <baseProperty>
+                <key name="name" value="id" />
+            </baseProperty>
+        </keyProperties>
+    </logicalKey>
+    <resource>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="基准租金审批分录" />
+            <lang locale="zh_HK" value="基準租金審批分錄" />
+            <lang locale="zh_TW" value="基準租金審批分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="基准租金审批分录" />
+            <lang locale="zh_HK" value="基準租金審批分錄" />
+            <lang locale="zh_TW" value="基準租金審批分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].logicalKey[id].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].logicalKey[id].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].properties.linkProperty[parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="关联租赁合同" />
+            <lang locale="zh_HK" value="關聯租賃合同" />
+            <lang locale="zh_TW" value="關聯租賃合同" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].properties.linkProperty[parent].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="关联租赁合同" />
+            <lang locale="zh_HK" value="關聯租賃合同" />
+            <lang locale="zh_TW" value="關聯租賃合同" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].properties.linkProperty[tenPrice].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="基准租金分录" />
+            <lang locale="zh_HK" value="基準租金分錄" />
+            <lang locale="zh_TW" value="基準租金分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.TenancyPriceEntry].properties.linkProperty[tenPrice].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="基准租金分录" />
+            <lang locale="zh_HK" value="基準租金分錄" />
+            <lang locale="zh_TW" value="基準租金分錄" />
+        </rs>
+    </resource>
+</entityObject>
+

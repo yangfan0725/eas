@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+    <name>CustomerBrand</name>
+    <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].alias</alias>
+    <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].description</description>
+    <userDefined>true</userDefined>
+    <bosType>4FB4EB4E</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.sellhouse.CustomerBrand</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.sellhouse.app.CustomerBrandController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <isAbstract>false</isAbstract>
+    <bizUnitPK />
+    <baseEntity>
+        <key name="package" value="com.kingdee.eas.framework.app" />
+        <key name="name" value="CoreBillEntryBase" />
+    </baseEntity>
+    <table>
+        <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+        <key name="name" value="T_SHE_CustomerBrand" />
+    </table>
+    <properties>
+        <linkProperty>
+            <name>parent</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.linkProperty[parent].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.linkProperty[parent].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FParentID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="R_FDCCustomer_CustomerBrand_brandInfo" />
+            </relationship>
+        </linkProperty>
+        <linkProperty>
+            <name>brand</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.linkProperty[brand].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.linkProperty[brand].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FBrandID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="R_CustomerBrand_Brand_brand" />
+            </relationship>
+        </linkProperty>
+        <ownProperty>
+            <name>description</name>
+            <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.ownProperty[description].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.ownProperty[description].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>255</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.ownProperty[description].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FDescription" />
+            </mappingField>
+        </ownProperty>
+    </properties>
+    <logicalKey>
+        <name>id</name>
+        <alias>entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].logicalKey[id].alias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].logicalKey[id].description</description>
+        <keyClass>com.kingdee.bos.dao.IObjectPK</keyClass>
+        <userDefined>true</userDefined>
+        <keyProperties>
+            <baseProperty>
+                <key name="name" value="id" />
+            </baseProperty>
+        </keyProperties>
+    </logicalKey>
+    <resource>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户品牌信息" />
+            <lang locale="zh_HK" value="客戶品牌信息" />
+            <lang locale="zh_TW" value="客戶品牌信息" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户品牌信息" />
+            <lang locale="zh_HK" value="客戶品牌信息" />
+            <lang locale="zh_TW" value="客戶品牌信息" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].logicalKey[id].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="id" />
+            <lang locale="zh_HK" value="id" />
+            <lang locale="zh_TW" value="id" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].logicalKey[id].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.linkProperty[brand].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="品牌" />
+            <lang locale="zh_HK" value="品牌" />
+            <lang locale="zh_TW" value="品牌" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.linkProperty[brand].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="品牌" />
+            <lang locale="zh_HK" value="品牌" />
+            <lang locale="zh_TW" value="品牌" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.linkProperty[parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户" />
+            <lang locale="zh_HK" value="客戶" />
+            <lang locale="zh_TW" value="客戶" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.linkProperty[parent].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户" />
+            <lang locale="zh_HK" value="客戶" />
+            <lang locale="zh_TW" value="客戶" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.ownProperty[description].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.ownProperty[description].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.sellhouse.app.CustomerBrand].properties.ownProperty[description].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+    </resource>
+</entityObject>
+

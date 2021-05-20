@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facade xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.contract.app</package>
+    <name>WSPaymentBillForOAFacade</name>
+    <alias>facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].alias</alias>
+    <description>facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].description</description>
+    <userDefined>true</userDefined>
+    <bosType>B78A3E7F</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.contract.WSPaymentBillForOAFacade</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacadeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>synPaymentBill</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synPaymentBill].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synPaymentBill].description</description>
+            <innerID>731d312a-1908-4674-8aec-1371ed566c50</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>str</name>
+                    <alias>facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synPaymentBill].parameters.parameter[str].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synPaymentBill].parameters.parameter[str].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>synJKPaymentBill</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synJKPaymentBill].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synJKPaymentBill].description</description>
+            <innerID>1ae4739b-5804-409d-b827-5d22df07976e</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>str</name>
+                    <alias>facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synJKPaymentBill].parameters.parameter[str].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synJKPaymentBill].parameters.parameter[str].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <resource>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="付款单接口" />
+            <lang locale="zh_HK" value="付款單介面" />
+            <lang locale="zh_TW" value="付款單介面" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="付款单接口" />
+            <lang locale="zh_HK" value="付款單介面" />
+            <lang locale="zh_TW" value="付款單介面" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synJKPaymentBill].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="同步付款单" />
+            <lang locale="zh_HK" value="同步付款單" />
+            <lang locale="zh_TW" value="同步付款單" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synJKPaymentBill].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="同步付款单" />
+            <lang locale="zh_HK" value="同步付款單" />
+            <lang locale="zh_TW" value="同步付款單" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synJKPaymentBill].parameters.parameter[str].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="str" />
+            <lang locale="zh_HK" value="str" />
+            <lang locale="zh_TW" value="str" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synJKPaymentBill].parameters.parameter[str].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synPaymentBill].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="同步付款单" />
+            <lang locale="zh_HK" value="同步付款單" />
+            <lang locale="zh_TW" value="同步付款單" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synPaymentBill].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="同步付款单" />
+            <lang locale="zh_HK" value="同步付款單" />
+            <lang locale="zh_TW" value="同步付款單" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synPaymentBill].parameters.parameter[str].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="str" />
+            <lang locale="zh_HK" value="str" />
+            <lang locale="zh_TW" value="str" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSPaymentBillForOAFacade].methods.method[synPaymentBill].parameters.parameter[str].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+    </resource>
+</facade>
+

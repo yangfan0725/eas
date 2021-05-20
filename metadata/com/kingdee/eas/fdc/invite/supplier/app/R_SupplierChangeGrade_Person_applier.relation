@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationship xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>R_SupplierChangeGrade_Person_applier</name>
+    <alias>relationship[com.kingdee.eas.fdc.invite.supplier.app.R_SupplierChangeGrade_Person_applier].alias</alias>
+    <description>relationship[com.kingdee.eas.fdc.invite.supplier.app.R_SupplierChangeGrade_Person_applier].description</description>
+    <userDefined>true</userDefined>
+    <type>Association</type>
+    <clientCardinality>0..*</clientCardinality>
+    <supplierCardinality>0..1</supplierCardinality>
+    <xmlNodeRelationship />
+    <clientObject>
+        <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+        <key name="name" value="SupplierChangeGrade" />
+    </clientObject>
+    <supplierObject>
+        <key name="package" value="com.kingdee.eas.basedata.person.app" />
+        <key name="name" value="Person" />
+    </supplierObject>
+    <resource>
+        <rs key="relationship[com.kingdee.eas.fdc.invite.supplier.app.R_SupplierChangeGrade_Person_applier].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商等级变更申请单-申请人" />
+            <lang locale="zh_HK" value="供應商等級變更申請單-申請人" />
+            <lang locale="zh_TW" value="供應商等級變更申請單-申請人" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.invite.supplier.app.R_SupplierChangeGrade_Person_applier].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商等级变更申请单-申请人" />
+            <lang locale="zh_HK" value="供應商等級變更申請單-申請人" />
+            <lang locale="zh_TW" value="供應商等級變更申請單-申請人" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.invite.supplier.app.R_SupplierChangeGrade_Person_applier].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</relationship>
+

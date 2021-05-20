@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationship xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>R_WinSupplierEntry_Supplier_winSupplier</name>
+    <alias>relationship[com.kingdee.eas.fdc.invite.supplier.app.R_WinSupplierEntry_Supplier_winSupplier].alias</alias>
+    <description>relationship[com.kingdee.eas.fdc.invite.supplier.app.R_WinSupplierEntry_Supplier_winSupplier].description</description>
+    <userDefined>true</userDefined>
+    <type>Association</type>
+    <clientCardinality>0..*</clientCardinality>
+    <supplierCardinality>1</supplierCardinality>
+    <xmlNodeRelationship />
+    <clientObject>
+        <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+        <key name="name" value="WinSupplierEntry" />
+    </clientObject>
+    <supplierObject>
+        <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+        <key name="name" value="SupplierStock" />
+    </supplierObject>
+    <resource>
+        <rs key="relationship[com.kingdee.eas.fdc.invite.supplier.app.R_WinSupplierEntry_Supplier_winSupplier].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="中标供应商" />
+            <lang locale="zh_HK" value="中標供應商" />
+            <lang locale="zh_TW" value="中標供應商" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.invite.supplier.app.R_WinSupplierEntry_Supplier_winSupplier].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.invite.supplier.app.R_WinSupplierEntry_Supplier_winSupplier].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</relationship>
+

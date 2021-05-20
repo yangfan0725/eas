@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>InvoiceBatchImportEntry</name>
+    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].alias</alias>
+    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].description</description>
+    <userDefined>true</userDefined>
+    <bosType>F34A19B7</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.tenancy.InvoiceBatchImportEntry</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntryController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <isAbstract>false</isAbstract>
+    <bizUnitPK />
+    <baseEntity>
+        <key name="package" value="com.kingdee.eas.framework.app" />
+        <key name="name" value="CoreBillEntryBase" />
+    </baseEntity>
+    <table>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="T_TEN_InvoiceBatchImportEntry" />
+    </table>
+    <properties>
+        <ownProperty>
+            <name>revId</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revId].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revId].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>44</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revId].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FRevId" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>revType</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revType].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revType].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Enum</dataType>
+            <metadataRef>com.kingdee.eas.fdc.basecrm.RevListTypeEnum</metadataRef>
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revType].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FRevType" />
+            </mappingField>
+        </ownProperty>
+        <linkProperty>
+            <name>tenancybill</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[tenancybill].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[tenancybill].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FTenancybillID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_InvoiceBatchImportEntry_TenancyBill_tenancybill" />
+            </relationship>
+        </linkProperty>
+        <ownProperty>
+            <name>moneyDefineName</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[moneyDefineName].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[moneyDefineName].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>50</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[moneyDefineName].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FMoneyDefineName" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>roomName</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[roomName].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[roomName].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>255</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[roomName].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FRoomName" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>appDate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appDate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appDate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Date</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appDate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FAppDate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>startDate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[startDate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[startDate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Date</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[startDate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FStartDate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>endDate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[endDate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[endDate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Date</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[endDate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FEndDate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>appAmountWithoutTax</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appAmountWithoutTax].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appAmountWithoutTax].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>2</precision>
+            <decimalDigits>2</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appAmountWithoutTax].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FAppAmountWithoutTax" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>alreadyInvoiceAmt</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[alreadyInvoiceAmt].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[alreadyInvoiceAmt].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>2</precision>
+            <decimalDigits>2</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[alreadyInvoiceAmt].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FAlreadyInvoiceAmt" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>invoiceAmt</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceAmt].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceAmt].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>28</length>
+            <precision>2</precision>
+            <decimalDigits>2</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceAmt].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FInvoiceAmt" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>taxRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>5</length>
+            <precision>2</precision>
+            <decimalDigits>2</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FTaxRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>invoiceType</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceType].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceType].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Enum</dataType>
+            <metadataRef>com.kingdee.eas.fdc.sellhouse.ChequeTypeEnum</metadataRef>
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceType].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FInvoiceType" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>invoiceName</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceName].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceName].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>200</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceName].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FInvoiceName" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>taxIdentified</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxIdentified].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxIdentified].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>200</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxIdentified].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FTaxIdentified" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>addAndPhone</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[addAndPhone].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[addAndPhone].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>500</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[addAndPhone].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FAddAndPhone" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>bankAndAccount</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[bankAndAccount].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[bankAndAccount].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>255</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[bankAndAccount].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FBankAndAccount" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>taxCode</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxCode].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxCode].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>50</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxCode].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FTaxCode" />
+            </mappingField>
+        </ownProperty>
+        <linkProperty>
+            <name>parent</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[parent].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[parent].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FParentID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_InvoiceBatchImport_InvoiceBatchImportEntry_entry" />
+            </relationship>
+        </linkProperty>
+        <linkProperty>
+            <name>customer</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[customer].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[customer].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FCustomerID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_InvoiceBatchImportEntry_FdcCustomer_customer" />
+            </relationship>
+        </linkProperty>
+        <ownProperty>
+            <name>saleNumber</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[saleNumber].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[saleNumber].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>100</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[saleNumber].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSaleNumber" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>description</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[description].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[description].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>500</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[description].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FDescription" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>amount</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[amount].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[amount].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[amount].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FAmount" />
+            </mappingField>
+        </ownProperty>
+    </properties>
+    <logicalKey>
+        <name>id</name>
+        <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].logicalKey[id].alias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].logicalKey[id].description</description>
+        <keyClass>com.kingdee.bos.dao.IObjectPK</keyClass>
+        <userDefined>true</userDefined>
+        <keyProperties>
+            <baseProperty>
+                <key name="name" value="id" />
+            </baseProperty>
+        </keyProperties>
+    </logicalKey>
+    <resource>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="批量开票分录信息" />
+            <lang locale="zh_HK" value="批量開票分錄信息" />
+            <lang locale="zh_TW" value="批量開票分錄信息" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="批量开票分录信息" />
+            <lang locale="zh_HK" value="批量開票分錄信息" />
+            <lang locale="zh_TW" value="批量開票分錄信息" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].logicalKey[id].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].logicalKey[id].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[customer].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户" />
+            <lang locale="zh_HK" value="客戶" />
+            <lang locale="zh_TW" value="客戶" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[customer].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户 目前只考虑单客户情况" />
+            <lang locale="zh_HK" value="客戶 目前只考慮單客戶情況" />
+            <lang locale="zh_TW" value="客戶 目前只考慮單客戶情況" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="批量开票单" />
+            <lang locale="zh_HK" value="批量開票單" />
+            <lang locale="zh_TW" value="批量開票單" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[parent].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="批量开票单" />
+            <lang locale="zh_HK" value="批量開票單" />
+            <lang locale="zh_TW" value="批量開票單" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[tenancybill].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租赁合同" />
+            <lang locale="zh_HK" value="租賃合同" />
+            <lang locale="zh_TW" value="租賃合同" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.linkProperty[tenancybill].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租赁合同" />
+            <lang locale="zh_HK" value="租賃合同" />
+            <lang locale="zh_TW" value="租賃合同" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[addAndPhone].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="地址电话" />
+            <lang locale="zh_HK" value="地址電話" />
+            <lang locale="zh_TW" value="地址電話" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[addAndPhone].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[addAndPhone].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="地址电话" />
+            <lang locale="zh_HK" value="地址電話" />
+            <lang locale="zh_TW" value="地址電話" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[alreadyInvoiceAmt].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="已开票金额" />
+            <lang locale="zh_HK" value="已開票金額" />
+            <lang locale="zh_TW" value="已開票金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[alreadyInvoiceAmt].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[alreadyInvoiceAmt].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="已开票金额" />
+            <lang locale="zh_HK" value="已開票金額" />
+            <lang locale="zh_TW" value="已開票金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[amount].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="数量" />
+            <lang locale="zh_HK" value="數量" />
+            <lang locale="zh_TW" value="數量" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[amount].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[amount].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="数量" />
+            <lang locale="zh_HK" value="數量" />
+            <lang locale="zh_TW" value="數量" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appAmountWithoutTax].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收金额不含税" />
+            <lang locale="zh_HK" value="應收金額不含稅" />
+            <lang locale="zh_TW" value="應收金額不含稅" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appAmountWithoutTax].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appAmountWithoutTax].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收金额不含税" />
+            <lang locale="zh_HK" value="應收金額不含稅" />
+            <lang locale="zh_TW" value="應收金額不含稅" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收日期" />
+            <lang locale="zh_HK" value="應收日期" />
+            <lang locale="zh_TW" value="應收日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appDate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[appDate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收日期" />
+            <lang locale="zh_HK" value="應收日期" />
+            <lang locale="zh_TW" value="應收日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[bankAndAccount].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="开户行及帐号" />
+            <lang locale="zh_HK" value="開戶行及帳號" />
+            <lang locale="zh_TW" value="開戶行及帳號" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[bankAndAccount].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[bankAndAccount].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="开户行及帐号" />
+            <lang locale="zh_HK" value="開戶行及帳號" />
+            <lang locale="zh_TW" value="開戶行及帳號" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[description].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[description].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[description].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[endDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="结束日期" />
+            <lang locale="zh_HK" value="結束日期" />
+            <lang locale="zh_TW" value="結束日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[endDate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[endDate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="结束日期" />
+            <lang locale="zh_HK" value="結束日期" />
+            <lang locale="zh_TW" value="結束日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceAmt].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="本次开票金额" />
+            <lang locale="zh_HK" value="本次開票金額" />
+            <lang locale="zh_TW" value="本次開票金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceAmt].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceAmt].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="本次开票金额" />
+            <lang locale="zh_HK" value="本次開票金額" />
+            <lang locale="zh_TW" value="本次開票金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceName].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票名称" />
+            <lang locale="zh_HK" value="發票名稱" />
+            <lang locale="zh_TW" value="發票名稱" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceName].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceName].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票名称" />
+            <lang locale="zh_HK" value="發票名稱" />
+            <lang locale="zh_TW" value="發票名稱" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票类型" />
+            <lang locale="zh_HK" value="發票類型" />
+            <lang locale="zh_TW" value="發票類型" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceType].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[invoiceType].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票类型" />
+            <lang locale="zh_HK" value="發票類型" />
+            <lang locale="zh_TW" value="發票類型" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[moneyDefineName].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="款项名称" />
+            <lang locale="zh_HK" value="款項名稱" />
+            <lang locale="zh_TW" value="款項名稱" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[moneyDefineName].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[moneyDefineName].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="款项名称" />
+            <lang locale="zh_HK" value="款項名稱" />
+            <lang locale="zh_TW" value="款項名稱" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revId].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="关联收款项目ID" />
+            <lang locale="zh_HK" value="關聯收款項目ID" />
+            <lang locale="zh_TW" value="關聯收款項目ID" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revId].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revId].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="关联收款项目ID" />
+            <lang locale="zh_HK" value="關聯收款項目ID" />
+            <lang locale="zh_TW" value="關聯收款項目ID" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="收款类型" />
+            <lang locale="zh_HK" value="收款類型" />
+            <lang locale="zh_TW" value="收款類型" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revType].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[revType].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="收款类型 1、房间收款分录 2、其他收款分录 " />
+            <lang locale="zh_HK" value="收款類型 1、房間收款分錄 2、其他收款分錄 " />
+            <lang locale="zh_TW" value="收款類型 1、房間收款分錄 2、其他收款分錄 " />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[roomName].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间名称" />
+            <lang locale="zh_HK" value="房間名稱" />
+            <lang locale="zh_TW" value="房間名稱" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[roomName].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[roomName].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间名称" />
+            <lang locale="zh_HK" value="房間名稱" />
+            <lang locale="zh_TW" value="房間名稱" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[saleNumber].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="销售编号" />
+            <lang locale="zh_HK" value="銷售編號" />
+            <lang locale="zh_TW" value="銷售編號" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[saleNumber].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[saleNumber].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="销售编号" />
+            <lang locale="zh_HK" value="銷售編號" />
+            <lang locale="zh_TW" value="銷售編號" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[startDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="开始日期" />
+            <lang locale="zh_HK" value="開始日期" />
+            <lang locale="zh_TW" value="開始日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[startDate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[startDate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="开始日期" />
+            <lang locale="zh_HK" value="開始日期" />
+            <lang locale="zh_TW" value="開始日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxCode].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="税收分类编码" />
+            <lang locale="zh_HK" value="稅收分類編碼" />
+            <lang locale="zh_TW" value="稅收分類編碼" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxCode].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxCode].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="税收分类编码" />
+            <lang locale="zh_HK" value="稅收分類編碼" />
+            <lang locale="zh_TW" value="稅收分類編碼" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxIdentified].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="纳税人识别号" />
+            <lang locale="zh_HK" value="納稅人識別號" />
+            <lang locale="zh_TW" value="納稅人識別號" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxIdentified].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxIdentified].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="纳税人识别号" />
+            <lang locale="zh_HK" value="納稅人識別號" />
+            <lang locale="zh_TW" value="納稅人識別號" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="税率" />
+            <lang locale="zh_HK" value="稅率" />
+            <lang locale="zh_TW" value="稅率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.InvoiceBatchImportEntry].properties.ownProperty[taxRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="税率" />
+            <lang locale="zh_HK" value="稅率" />
+            <lang locale="zh_TW" value="稅率" />
+        </rs>
+    </resource>
+</entityObject>
+

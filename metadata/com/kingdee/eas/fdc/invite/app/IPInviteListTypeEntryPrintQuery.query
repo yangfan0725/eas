@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.app</package>
+    <name>IPInviteListTypeEntryPrintQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>IPInviteListTypeEntry</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].subObjects.subEntity[IPInviteListTypeEntry].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntry" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>head</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].subObjects.subEntity[head].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="InviteProject" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>inviteListType</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].subObjects.subEntity[inviteListType].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="InviteListType" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>0425c68c-9bdd-4bc6-a1a5-a7858ba583df</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.propertyUnit[0425c68c-9bdd-4bc6-a1a5-a7858ba583df].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>65ebc73f-cdb1-460c-9f2d-4b5be1d07f43</key>
+                    <parentUnit>
+                        <key name="name" value="0425c68c-9bdd-4bc6-a1a5-a7858ba583df" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="IPInviteListTypeEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="head" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>cca68081-7dbf-4dfb-b91c-d2692f7a6cad</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.propertyUnit[cca68081-7dbf-4dfb-b91c-d2692f7a6cad].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>58e5efd2-9a66-49cc-a1da-55ab76551533</key>
+                    <parentUnit>
+                        <key name="name" value="cca68081-7dbf-4dfb-b91c-d2692f7a6cad" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="head" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>ef7a0de2-46a5-406b-97eb-c63cfcc40866</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.propertyUnit[ef7a0de2-46a5-406b-97eb-c63cfcc40866].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>e35a30fa-f669-4de2-95e9-042f4cc0897e</key>
+                    <parentUnit>
+                        <key name="name" value="ef7a0de2-46a5-406b-97eb-c63cfcc40866" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="IPInviteListTypeEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="inviteListType" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>7df646c4-3bc6-49a5-a835-f94973dfc036</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.propertyUnit[7df646c4-3bc6-49a5-a835-f94973dfc036].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>fd773fc0-219a-4cc7-91fd-47fdc9d2896a</key>
+                    <parentUnit>
+                        <key name="name" value="7df646c4-3bc6-49a5-a835-f94973dfc036" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="inviteListType" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>amount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[amount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>bd352bf4-a8a4-4c49-8d8e-8c10673d4702</key>
+                    <parentUnit>
+                        <key name="name" value="amount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="IPInviteListTypeEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="amount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>seq</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[seq].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>c35a0d9e-776f-41ef-94c9-fcb024da5d1b</key>
+                    <parentUnit>
+                        <key name="name" value="seq" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="IPInviteListTypeEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="seq" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>head.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[head.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>ab1e6df7-941b-4be9-8597-7b0b0749897a</key>
+                    <parentUnit>
+                        <key name="name" value="head.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="head" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>inviteListType.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[inviteListType.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>3397b724-81e5-4803-b660-71fd77b9eb18</key>
+                    <parentUnit>
+                        <key name="name" value="inviteListType.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="inviteListType" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>inviteListType.number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[inviteListType.number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>eda02f0e-67b9-4f1d-8b96-35b11e94aa89</key>
+                    <parentUnit>
+                        <key name="name" value="inviteListType.number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="inviteListType" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>remark</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[remark].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>90142a62-6c38-4792-83d9-10790ab9723b</key>
+                    <parentUnit>
+                        <key name="name" value="remark" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="IPInviteListTypeEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="remark" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+            <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+        </query>
+    </defaultFilter>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>3975cf80-80af-4d78-bbc6-e66277471f47</name>
+            <formulaString>#0</formulaString>
+            <type>INNER JOIN</type>
+            <leftObject>
+                <key name="name" value="IPInviteListTypeEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="head" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>70fd8458-7007-472a-9bcb-f5714e2f9e40</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="0425c68c-9bdd-4bc6-a1a5-a7858ba583df" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="cca68081-7dbf-4dfb-b91c-d2692f7a6cad" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="3975cf80-80af-4d78-bbc6-e66277471f47" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </join>
+        <join>
+            <name>f0ba473d-b9ed-4e5c-9f60-4016bcf8abb0</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="IPInviteListTypeEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="inviteListType" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>75d5fd98-0ef5-4e35-be9c-7d63349fb53b</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="ef7a0de2-46a5-406b-97eb-c63cfcc40866" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="7df646c4-3bc6-49a5-a835-f94973dfc036" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="f0ba473d-b9ed-4e5c-9f60-4016bcf8abb0" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="IPInviteListTypeEntryPrintQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="采购明细类别分录" />
+            <lang locale="zh_HK" value="採購明細類別分錄" />
+            <lang locale="zh_TW" value="採購明細類別分錄" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="采购明细类别分录" />
+            <lang locale="zh_HK" value="採購明細類別分錄" />
+            <lang locale="zh_TW" value="採購明細類別分錄" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].subObjects.subEntity[IPInviteListTypeEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].subObjects.subEntity[head].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].subObjects.subEntity[inviteListType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.propertyUnit[0425c68c-9bdd-4bc6-a1a5-a7858ba583df].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.propertyUnit[7df646c4-3bc6-49a5-a835-f94973dfc036].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.propertyUnit[cca68081-7dbf-4dfb-b91c-d2692f7a6cad].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.propertyUnit[ef7a0de2-46a5-406b-97eb-c63cfcc40866].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[amount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="预计采购金额" />
+            <lang locale="zh_HK" value="預計採購金額" />
+            <lang locale="zh_TW" value="預計採購金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[head.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[inviteListType.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[inviteListType.number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="编码" />
+            <lang locale="zh_HK" value="編碼" />
+            <lang locale="zh_TW" value="編碼" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[remark].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.IPInviteListTypeEntryPrintQuery].units.queryField[seq].displayName">
+            <lang locale="en_US" value="sequence" />
+            <lang locale="zh_CN" value="单据分录序列号" />
+            <lang locale="zh_HK" value="單據分錄序列號" />
+            <lang locale="zh_TW" value="單據分錄序列號" />
+        </rs>
+    </resource>
+</joinQuery>
+

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facade xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.supply.app</package>
+    <name>OAOAFacade</name>
+    <alias>facade[com.kingdee.eas.fdc.supply.app.OAOAFacade].alias</alias>
+    <description>facade[com.kingdee.eas.fdc.supply.app.OAOAFacade].description</description>
+    <userDefined>true</userDefined>
+    <bosType>1DCD603C</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.supply.OAOAFacade</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.supply.app.OAOAFacadeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>pushMessageTOOA</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.supply.app.OAOAFacade].methods.method[pushMessageTOOA].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.supply.app.OAOAFacade].methods.method[pushMessageTOOA].description</description>
+            <innerID>daf15e28-a6c0-4842-85b4-035e211d60c9</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <configured>false</configured>
+        </method>
+    </methods>
+    <resource>
+        <rs key="facade[com.kingdee.eas.fdc.supply.app.OAOAFacade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.supply.app.OAOAFacade].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="sendFIDANDSOURCEID" />
+            <lang locale="zh_HK" value="sendFIDANDSOURCEID" />
+            <lang locale="zh_TW" value="sendFIDANDSOURCEID" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.supply.app.OAOAFacade].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.supply.app.OAOAFacade].methods.method[pushMessageTOOA].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取任务id跟流程id" />
+            <lang locale="zh_HK" value="獲取任務id跟流程id" />
+            <lang locale="zh_TW" value="獲取任務id跟流程id" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.supply.app.OAOAFacade].methods.method[pushMessageTOOA].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="给OA推数据" />
+            <lang locale="zh_HK" value="給OA推數據" />
+            <lang locale="zh_TW" value="給OA推數據" />
+        </rs>
+    </resource>
+</facade>
+

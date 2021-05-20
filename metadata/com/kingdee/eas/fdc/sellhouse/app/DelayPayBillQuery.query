@@ -1,0 +1,1525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+    <name>DelayPayBillQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK>com.kingdee.eas.fdc.sellhouse.DelayPayBill</bizUnitPK>
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>DelayPayBill</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[DelayPayBill].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBill" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>room</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[room].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="Room" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>creator</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[creator].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.base.permission.app" />
+                <key name="name" value="User" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>payType</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[payType].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="SHEPayType" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>auditor</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[auditor].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.base.permission.app" />
+                <key name="name" value="User" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>buildUnit</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[buildUnit].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="BuildingUnit" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>building</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[building].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="Building" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>5fd410e1-73e3-4807-a81a-5df09e7739d8</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[5fd410e1-73e3-4807-a81a-5df09e7739d8].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>96bd5780-e17e-452a-88cd-ddfb8b4f7b16</key>
+                    <parentUnit>
+                        <key name="name" value="5fd410e1-73e3-4807-a81a-5df09e7739d8" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="room" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>54b4646b-22c0-4245-ab55-727068e221fa</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[54b4646b-22c0-4245-ab55-727068e221fa].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>874509e0-7efc-4194-bacd-19c9bea51cf2</key>
+                    <parentUnit>
+                        <key name="name" value="54b4646b-22c0-4245-ab55-727068e221fa" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>8f3c4be8-b3b4-4c13-a305-7127024ade16</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[8f3c4be8-b3b4-4c13-a305-7127024ade16].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>df35a2dd-ca4d-420b-88db-b16ebd59d0fc</key>
+                    <parentUnit>
+                        <key name="name" value="8f3c4be8-b3b4-4c13-a305-7127024ade16" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="creator" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>e6cfdf22-46fd-4a4e-bf2a-127fb1583b4d</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[e6cfdf22-46fd-4a4e-bf2a-127fb1583b4d].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>f42a709e-0e9d-45f5-825c-2895f96efbce</key>
+                    <parentUnit>
+                        <key name="name" value="e6cfdf22-46fd-4a4e-bf2a-127fb1583b4d" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="creator" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>9e883817-7010-43a2-b76a-9258fcdff92a</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[9e883817-7010-43a2-b76a-9258fcdff92a].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>2c594ab3-9d87-4db4-bd93-410878e5f073</key>
+                    <parentUnit>
+                        <key name="name" value="9e883817-7010-43a2-b76a-9258fcdff92a" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="payType" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>b1d5d912-af05-4267-9bcb-a20457e033e4</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[b1d5d912-af05-4267-9bcb-a20457e033e4].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>4ff798bc-0b75-477a-8800-f85edfc6a911</key>
+                    <parentUnit>
+                        <key name="name" value="b1d5d912-af05-4267-9bcb-a20457e033e4" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="payType" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>e89724fc-ee48-49bc-830c-da0e2551a7b0</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[e89724fc-ee48-49bc-830c-da0e2551a7b0].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>4464f4ce-2ff9-4b10-af40-144c0b6db7ea</key>
+                    <parentUnit>
+                        <key name="name" value="e89724fc-ee48-49bc-830c-da0e2551a7b0" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="auditor" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>a5e14c46-3e4e-4208-b8c7-72797c38f546</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[a5e14c46-3e4e-4208-b8c7-72797c38f546].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>3476d435-ec0d-469d-9cfc-dbc76b4d4686</key>
+                    <parentUnit>
+                        <key name="name" value="a5e14c46-3e4e-4208-b8c7-72797c38f546" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="auditor" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>cc4e9fd0-7dd3-4b68-8c37-4dd12b3b9c55</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>359494b2-8b17-43ec-b98f-91e41f4dbdda</key>
+                    <parentUnit>
+                        <key name="name" value="number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>state</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[state].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>35ca1de4-089e-4425-9c71-4d8b099b74d3</key>
+                    <parentUnit>
+                        <key name="name" value="state" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="state" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>type</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[type].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>6def837f-029f-4f7c-aea3-f4875ebad719</key>
+                    <parentUnit>
+                        <key name="name" value="type" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="type" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>bizDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[bizDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>15982d8d-b959-4788-8ce2-c828b0143a74</key>
+                    <parentUnit>
+                        <key name="name" value="bizDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="bizDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>purDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[purDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9b6ab114-b22e-4cf7-b49b-0997e85339dd</key>
+                    <parentUnit>
+                        <key name="name" value="purDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="purDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>signDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[signDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>6a7eb624-9da8-4fcf-af96-c6890d410e1e</key>
+                    <parentUnit>
+                        <key name="name" value="signDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="signDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>planSignDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[planSignDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>6448879b-55ff-4aaf-aab7-4cb5338696b0</key>
+                    <parentUnit>
+                        <key name="name" value="planSignDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="planSignDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>room.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[room.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>51982563-028a-493c-8f22-83e0e4abe5f9</key>
+                    <parentUnit>
+                        <key name="name" value="room.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>customerNames</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[customerNames].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>c307107e-3496-4ccc-8ea6-892970e88aa3</key>
+                    <parentUnit>
+                        <key name="name" value="customerNames" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="customerNames" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>payType.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[payType.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>adaccc21-9ceb-4911-8f1d-c4acd56d599e</key>
+                    <parentUnit>
+                        <key name="name" value="payType.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="payType" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>creator.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[creator.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>18d50c07-5012-4173-aa69-1789a814142b</key>
+                    <parentUnit>
+                        <key name="name" value="creator.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="creator" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>createTime</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[createTime].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>e7082880-e1dd-4f17-a4d2-1bc202b37c1f</key>
+                    <parentUnit>
+                        <key name="name" value="createTime" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="createTime" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>auditor.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[auditor.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>2a1b4b6a-6778-4055-a3b4-1cfbb065e948</key>
+                    <parentUnit>
+                        <key name="name" value="auditor.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="auditor" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>auditTime</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[auditTime].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>b128052a-15e1-43e7-8b47-cccb768e8a5a</key>
+                    <parentUnit>
+                        <key name="name" value="auditTime" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DelayPayBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="auditTime" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </queryField>
+        <propertyUnit>
+            <name>6427d113-f460-45ac-96ce-19813ba8ac21</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[6427d113-f460-45ac-96ce-19813ba8ac21].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>432d39d1-d4e3-473d-a58b-1ea182b21644</key>
+                    <parentUnit>
+                        <key name="name" value="6427d113-f460-45ac-96ce-19813ba8ac21" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="buildUnit" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>6331e349-f040-4fad-a309-9792934edfab</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[6331e349-f040-4fad-a309-9792934edfab].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>6642259b-1ca4-4661-9848-dd9d65e39c69</key>
+                    <parentUnit>
+                        <key name="name" value="6331e349-f040-4fad-a309-9792934edfab" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="buildUnit" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>bb5ecf4c-e1ce-4059-ae96-e64c9541e042</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[bb5ecf4c-e1ce-4059-ae96-e64c9541e042].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>c16655bb-6253-46d5-a980-092834d5957d</key>
+                    <parentUnit>
+                        <key name="name" value="bb5ecf4c-e1ce-4059-ae96-e64c9541e042" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="building" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>2e77b9b6-ee71-4fc2-a4df-ee8d9e13f22d</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[2e77b9b6-ee71-4fc2-a4df-ee8d9e13f22d].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>e029d50b-ad27-4f97-9459-e91377f3f2b9</key>
+                    <parentUnit>
+                        <key name="name" value="2e77b9b6-ee71-4fc2-a4df-ee8d9e13f22d" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="building" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </propertyUnit>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+            <key name="name" value="DelayPayBillQuery" />
+        </query>
+    </defaultFilter>
+    <queryPK>
+        <name>QueryPK</name>
+        <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].queryPK[QueryPK].alias</alias>
+        <description>joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].queryPK[QueryPK].description</description>
+        <keyProperties>
+            <queryField>
+                <key name="name" value="id" />
+            </queryField>
+        </keyProperties>
+    </queryPK>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>d98422cb-7e9a-45d2-9a23-f31640218560</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="DelayPayBill" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="room" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>4d045696-19a3-4e08-928d-3f7aee51e742</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="5fd410e1-73e3-4807-a81a-5df09e7739d8" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="54b4646b-22c0-4245-ab55-727068e221fa" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="d98422cb-7e9a-45d2-9a23-f31640218560" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </join>
+        <join>
+            <name>55a46340-a06e-4114-adc8-6deb980ce347</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="DelayPayBill" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="creator" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>94da7577-9ddc-43af-b420-42953589b0ee</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="8f3c4be8-b3b4-4c13-a305-7127024ade16" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="e6cfdf22-46fd-4a4e-bf2a-127fb1583b4d" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="55a46340-a06e-4114-adc8-6deb980ce347" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </join>
+        <join>
+            <name>226f528f-2d39-4bd1-915a-4d15c4f316d3</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="DelayPayBill" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="payType" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>fe284a03-ffdd-4423-b39d-6954afb3af72</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="9e883817-7010-43a2-b76a-9258fcdff92a" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="b1d5d912-af05-4267-9bcb-a20457e033e4" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="226f528f-2d39-4bd1-915a-4d15c4f316d3" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </join>
+        <join>
+            <name>cb8bfebf-ac63-482e-8fe4-be14599cc2f1</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="DelayPayBill" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="auditor" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>423ccfb4-9a3f-45a2-926b-b462674cdf0a</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="e89724fc-ee48-49bc-830c-da0e2551a7b0" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="a5e14c46-3e4e-4208-b8c7-72797c38f546" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="cb8bfebf-ac63-482e-8fe4-be14599cc2f1" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </join>
+        <join>
+            <name>2c0e9c54-2f8c-4587-beee-2bfd053501e6</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="room" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="buildUnit" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>0632a890-cc52-429c-8f65-27aba50868c2</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="6427d113-f460-45ac-96ce-19813ba8ac21" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="6331e349-f040-4fad-a309-9792934edfab" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="2c0e9c54-2f8c-4587-beee-2bfd053501e6" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </join>
+        <join>
+            <name>6b865f61-4c39-4e17-b4ad-48260f0de273</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="room" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="building" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>9115f6dd-b3b6-493f-b5d6-bf5bdf2eafef</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="bb5ecf4c-e1ce-4059-ae96-e64c9541e042" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="2e77b9b6-ee71-4fc2-a4df-ee8d9e13f22d" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="6b865f61-4c39-4e17-b4ad-48260f0de273" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="DelayPayBillQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="延期付款申请" />
+            <lang locale="zh_HK" value="延期付款申請" />
+            <lang locale="zh_TW" value="延期付款申請" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="延期付款申请查询" />
+            <lang locale="zh_HK" value="延期付款申請查詢" />
+            <lang locale="zh_TW" value="延期付款申請查詢" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].extendedProperty.F7WindowTitle">
+            <lang locale="en_US" value="com.kingdee.eas.fdc.sellhouse.client.SellhouseResource.DelayPayBillQueryF7WindowTitle" />
+            <lang locale="zh_CN" value="com.kingdee.eas.fdc.sellhouse.client.SellhouseResource.DelayPayBillQueryF7WindowTitle" />
+            <lang locale="zh_TW" value="com.kingdee.eas.fdc.sellhouse.client.SellhouseResource.DelayPayBillQueryF7WindowTitle" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].extendedProperty.f7WindowTitle">
+            <lang locale="en_US" value="延期付款申请" />
+            <lang locale="zh_CN" value="延期付款申请" />
+            <lang locale="zh_TW" value="延期付款申请" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].queryPK[QueryPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].queryPK[QueryPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[DelayPayBill].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[auditor].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[buildUnit].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[building].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[creator].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[payType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].subObjects.subEntity[room].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[2e77b9b6-ee71-4fc2-a4df-ee8d9e13f22d].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[54b4646b-22c0-4245-ab55-727068e221fa].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[5fd410e1-73e3-4807-a81a-5df09e7739d8].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[6331e349-f040-4fad-a309-9792934edfab].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[6427d113-f460-45ac-96ce-19813ba8ac21].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[8f3c4be8-b3b4-4c13-a305-7127024ade16].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[9e883817-7010-43a2-b76a-9258fcdff92a].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[a5e14c46-3e4e-4208-b8c7-72797c38f546].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[b1d5d912-af05-4267-9bcb-a20457e033e4].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[bb5ecf4c-e1ce-4059-ae96-e64c9541e042].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[e6cfdf22-46fd-4a4e-bf2a-127fb1583b4d].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.propertyUnit[e89724fc-ee48-49bc-830c-da0e2551a7b0].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[auditTime].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="审批日期" />
+            <lang locale="zh_HK" value="審批日期" />
+            <lang locale="zh_TW" value="審批日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[auditTime].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[auditTime].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[auditor.name].displayName">
+            <lang locale="en_US" value="用户别名" />
+            <lang locale="zh_CN" value="审批人" />
+            <lang locale="zh_HK" value="審批人" />
+            <lang locale="zh_TW" value="審批人" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[auditor.name].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[auditor.name].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[bizDate].displayName">
+            <lang locale="en_US" value="" />
+            <lang locale="zh_CN" value="业务日期" />
+            <lang locale="zh_HK" value="業務日期" />
+            <lang locale="zh_TW" value="業務日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[bizDate].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[bizDate].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[createTime].displayName">
+            <lang locale="en_US" value="createTime" />
+            <lang locale="zh_CN" value="创建日期" />
+            <lang locale="zh_HK" value="創建日期" />
+            <lang locale="zh_TW" value="創建日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[createTime].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[createTime].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[creator.name].displayName">
+            <lang locale="en_US" value="用户别名" />
+            <lang locale="zh_CN" value="创建者" />
+            <lang locale="zh_HK" value="創建者" />
+            <lang locale="zh_TW" value="創建者" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[creator.name].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[creator.name].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[customerNames].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户" />
+            <lang locale="zh_HK" value="客戶" />
+            <lang locale="zh_TW" value="客戶" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[customerNames].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[customerNames].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据编号" />
+            <lang locale="zh_HK" value="單據編號" />
+            <lang locale="zh_TW" value="單據編號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[number].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[number].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[payType.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="付款方案" />
+            <lang locale="zh_HK" value="付款方案" />
+            <lang locale="zh_TW" value="付款方案" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[payType.name].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[payType.name].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[planSignDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="约定签约日期" />
+            <lang locale="zh_HK" value="約定簽約日期" />
+            <lang locale="zh_TW" value="約定簽約日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[planSignDate].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[planSignDate].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[purDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="认购日期" />
+            <lang locale="zh_HK" value="認購日期" />
+            <lang locale="zh_TW" value="認購日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[purDate].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[purDate].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[room.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间" />
+            <lang locale="zh_HK" value="房間" />
+            <lang locale="zh_TW" value="房間" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[room.name].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[room.name].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[signDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="签约日期" />
+            <lang locale="zh_HK" value="簽約日期" />
+            <lang locale="zh_TW" value="簽約日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[signDate].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[signDate].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[state].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="状态" />
+            <lang locale="zh_HK" value="狀態" />
+            <lang locale="zh_TW" value="狀態" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[state].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[state].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[type].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="延期类型" />
+            <lang locale="zh_HK" value="延期類型" />
+            <lang locale="zh_TW" value="延期類型" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[type].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.DelayPayBillQuery].units.queryField[type].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</joinQuery>
+

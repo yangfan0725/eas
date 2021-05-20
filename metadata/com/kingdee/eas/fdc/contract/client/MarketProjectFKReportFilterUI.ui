@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uiObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.contract.client</package>
+    <name>MarketProjectFKReportFilterUI</name>
+    <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].alias</alias>
+    <description>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].description</description>
+    <userDefined>true</userDefined>
+    <releasePackage>com.kingdee.eas.fdc.contract.client</releasePackage>
+    <releaseClass>MarketProjectFKReportFilterUI</releaseClass>
+    <title>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].title</title>
+    <uitype />
+    <defaultbutton />
+    <bizUnitPK />
+    <parent>
+        <key name="package" value="com.kingdee.eas.framework.report.client" />
+        <key name="name" value="CommRptBaseConditionUI" />
+    </parent>
+    <components>
+        <component>
+            <name>CustomerQueryPanel</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[CustomerQueryPanel].alias</alias>
+            <userDefined>false</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDPanel</classType>
+            <isContainer>true</isContainer>
+            <constraints>10,10,600,160</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+        </component>
+        <component>
+            <name>contFromYear</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromYear].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>15,64,140,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromYear].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromYear].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromYear].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>contFromMonth</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromMonth].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>158,63,118,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromMonth].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromMonth].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromMonth].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>contToYear</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToYear].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>322,63,140,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToYear].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToYear].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToYear].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>contToMonth</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToMonth].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>465,63,118,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToMonth].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToMonth].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToMonth].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>kDLabel1</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[kDLabel1].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabel</classType>
+            <isContainer>false</isContainer>
+            <constraints>290,65,28,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[kDLabel1].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>spFromYear</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[spFromYear].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDSpinner</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <parent>
+                <key name="name" value="contFromYear" />
+            </parent>
+        </component>
+        <component>
+            <name>spFromMonth</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[spFromMonth].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDSpinner</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <parent>
+                <key name="name" value="contFromMonth" />
+            </parent>
+        </component>
+        <component>
+            <name>spToYear</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[spToYear].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDSpinner</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <parent>
+                <key name="name" value="contToYear" />
+            </parent>
+        </component>
+        <component>
+            <name>spToMonth</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[spToMonth].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDSpinner</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <parent>
+                <key name="name" value="contToMonth" />
+            </parent>
+        </component>
+    </components>
+    <resource>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="营销费用动态统计表过滤" />
+            <lang locale="zh_HK" value="營銷費用動態統計表過濾" />
+            <lang locale="zh_TW" value="營銷費用動態統計表過濾" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[CustomerQueryPanel].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromMonth].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromMonth].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="50" />
+            <lang locale="zh_CN" value="50" />
+            <lang locale="zh_HK" value="50" />
+            <lang locale="zh_TW" value="50" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromMonth].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月" />
+            <lang locale="zh_HK" value="月" />
+            <lang locale="zh_TW" value="月" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromMonth].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromYear].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromYear].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="50" />
+            <lang locale="zh_CN" value="50" />
+            <lang locale="zh_HK" value="50" />
+            <lang locale="zh_TW" value="50" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromYear].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="年" />
+            <lang locale="zh_HK" value="年" />
+            <lang locale="zh_TW" value="年" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contFromYear].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToMonth].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToMonth].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="50" />
+            <lang locale="zh_CN" value="50" />
+            <lang locale="zh_HK" value="50" />
+            <lang locale="zh_TW" value="50" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToMonth].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月" />
+            <lang locale="zh_HK" value="月" />
+            <lang locale="zh_TW" value="月" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToMonth].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToYear].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToYear].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="50" />
+            <lang locale="zh_CN" value="50" />
+            <lang locale="zh_HK" value="50" />
+            <lang locale="zh_TW" value="50" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToYear].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="年" />
+            <lang locale="zh_HK" value="年" />
+            <lang locale="zh_TW" value="年" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[contToYear].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[kDLabel1].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[kDLabel1].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="至" />
+            <lang locale="zh_HK" value="至" />
+            <lang locale="zh_TW" value="至" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[spFromMonth].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[spFromYear].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[spToMonth].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].components.component[spToYear].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="日报周报月报年报过滤" />
+            <lang locale="zh_HK" value="日報週報月報年報過濾" />
+            <lang locale="zh_TW" value="日報週報月報年報過濾" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectFKReportFilterUI].title">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="营销费用动态统计表过滤" />
+            <lang locale="zh_HK" value="營銷費用動態統計表過濾" />
+            <lang locale="zh_TW" value="營銷費用動態統計表過濾" />
+        </rs>
+    </resource>
+</uiObject>
+

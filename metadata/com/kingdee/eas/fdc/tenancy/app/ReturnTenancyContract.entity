@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>ReturnTenancyContract</name>
+    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].alias</alias>
+    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].description</description>
+    <userDefined>true</userDefined>
+    <bosType>9C3B36D9</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.tenancy.ReturnTenancyContract</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContractController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <isAbstract>false</isAbstract>
+    <bizUnitPK />
+    <baseEntity>
+        <key name="package" value="com.kingdee.eas.framework.app" />
+        <key name="name" value="CoreBillEntryBase" />
+    </baseEntity>
+    <table>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="T_TEN_ReturnTenancyContract" />
+    </table>
+    <properties>
+        <ownProperty>
+            <name>signCustomer</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signCustomer].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signCustomer].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>500</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signCustomer].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSignCustomer" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>signStartDate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signStartDate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signStartDate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Date</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signStartDate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSignStartDate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>signYears</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signYears].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signYears].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>12</length>
+            <precision>2</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signYears].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSignYears" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>signEndDate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signEndDate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signEndDate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Date</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signEndDate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSignEndDate" />
+            </mappingField>
+        </ownProperty>
+        <linkProperty>
+            <name>rentEntry</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.linkProperty[rentEntry].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.linkProperty[rentEntry].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_ReturnTenancyContract_ReturnTenancyRent_rentEntry" />
+            </relationship>
+        </linkProperty>
+        <linkProperty>
+            <name>returnBill</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.linkProperty[returnBill].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.linkProperty[returnBill].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FReturnBillID" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_ReturnTenancyBill_ReturnTeancyContract_contract" />
+            </relationship>
+        </linkProperty>
+    </properties>
+    <logicalKey>
+        <name>id</name>
+        <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].logicalKey[id].alias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].logicalKey[id].description</description>
+        <keyClass>com.kingdee.bos.dao.IObjectPK</keyClass>
+        <userDefined>true</userDefined>
+        <keyProperties>
+            <baseProperty>
+                <key name="name" value="id" />
+            </baseProperty>
+        </keyProperties>
+    </logicalKey>
+    <resource>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租单租赁合同" />
+            <lang locale="zh_HK" value="返租單租賃合同" />
+            <lang locale="zh_TW" value="返租單租賃合同" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租单租赁合同" />
+            <lang locale="zh_HK" value="返租單租賃合同" />
+            <lang locale="zh_TW" value="返租單租賃合同" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].logicalKey[id].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].logicalKey[id].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.linkProperty[rentEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租金分录" />
+            <lang locale="zh_HK" value="租金分錄" />
+            <lang locale="zh_TW" value="租金分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.linkProperty[rentEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租金分录" />
+            <lang locale="zh_HK" value="租金分錄" />
+            <lang locale="zh_TW" value="租金分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.linkProperty[returnBill].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租单" />
+            <lang locale="zh_HK" value="返租單" />
+            <lang locale="zh_TW" value="返租單" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.linkProperty[returnBill].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signCustomer].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="签约商户" />
+            <lang locale="zh_HK" value="簽約商戶" />
+            <lang locale="zh_TW" value="簽約商戶" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signCustomer].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signCustomer].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="签约商户" />
+            <lang locale="zh_HK" value="簽約商戶" />
+            <lang locale="zh_TW" value="簽約商戶" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signEndDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="签约结束日期" />
+            <lang locale="zh_HK" value="簽約結束日期" />
+            <lang locale="zh_TW" value="簽約結束日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signEndDate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signEndDate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="签约结束日期" />
+            <lang locale="zh_HK" value="簽約結束日期" />
+            <lang locale="zh_TW" value="簽約結束日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signStartDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="签约开始日期" />
+            <lang locale="zh_HK" value="簽約開始日期" />
+            <lang locale="zh_TW" value="簽約開始日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signStartDate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signStartDate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signYears].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signYears].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.ReturnTenancyContract].properties.ownProperty[signYears].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+    </resource>
+</entityObject>
+

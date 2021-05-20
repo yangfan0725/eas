@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facade xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.sellhouse.report</package>
+    <name>RoomAccountReport1Facade</name>
+    <alias>facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].alias</alias>
+    <description>facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].description</description>
+    <userDefined>true</userDefined>
+    <bosType>3A205311</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1FacadeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>createTempTable</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].methods.method[createTempTable].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].methods.method[createTempTable].description</description>
+            <innerID>5e399799-f3d4-4718-9b2a-c58caa76f7c2</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.eas.framework.report.util.RptParams</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>params</name>
+                    <alias>facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].methods.method[createTempTable].parameters.parameter[params].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].methods.method[createTempTable].parameters.parameter[params].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.eas.framework.report.util.RptParams</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <baseFacade>
+        <key name="package" value="com.kingdee.eas.framework.report.app" />
+        <key name="name" value="CommRptBase" />
+    </baseFacade>
+    <resource>
+        <rs key="facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房源清单汇总表查询扩展" />
+            <lang locale="zh_HK" value="房源清單匯總表查詢擴展" />
+            <lang locale="zh_TW" value="房源清單匯總表查詢擴展" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房源清单汇总表查询扩展" />
+            <lang locale="zh_HK" value="房源清單匯總表查詢擴展" />
+            <lang locale="zh_TW" value="房源清單匯總表查詢擴展" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].methods.method[createTempTable].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="创建临时表" />
+            <lang locale="zh_HK" value="創建臨時表" />
+            <lang locale="zh_TW" value="創建臨時表" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].methods.method[createTempTable].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].methods.method[createTempTable].parameters.parameter[params].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.sellhouse.report.RoomAccountReport1Facade].methods.method[createTempTable].parameters.parameter[params].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+    </resource>
+</facade>
+

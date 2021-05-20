@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationship xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>R_Brand_BrandCatagory_category</name>
+    <alias>relationship[com.kingdee.eas.fdc.tenancy.app.R_Brand_BrandCatagory_category].alias</alias>
+    <description>relationship[com.kingdee.eas.fdc.tenancy.app.R_Brand_BrandCatagory_category].description</description>
+    <userDefined>true</userDefined>
+    <type>Association</type>
+    <clientCardinality>0..*</clientCardinality>
+    <supplierCardinality>1</supplierCardinality>
+    <xmlNodeRelationship />
+    <clientObject>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="Brand" />
+    </clientObject>
+    <supplierObject>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="BrandCategory" />
+    </supplierObject>
+    <resource>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_Brand_BrandCatagory_category].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="品牌分类" />
+            <lang locale="zh_HK" value="品牌分類" />
+            <lang locale="zh_TW" value="品牌分類" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_Brand_BrandCatagory_category].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="品牌分类" />
+            <lang locale="zh_HK" value="品牌分類" />
+            <lang locale="zh_TW" value="品牌分類" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_Brand_BrandCatagory_category].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</relationship>
+

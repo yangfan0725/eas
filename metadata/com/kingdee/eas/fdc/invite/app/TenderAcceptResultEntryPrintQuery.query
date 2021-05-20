@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.app</package>
+    <name>TenderAcceptResultEntryPrintQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>TenderAccepterResultEntry</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].subObjects.subEntity[TenderAccepterResultEntry].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAccepterResultEntry" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>supplier</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].subObjects.subEntity[supplier].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+                <key name="name" value="SupplierStock" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>parent</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].subObjects.subEntity[parent].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAccepterResult" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>08f95e0d-8457-45e4-b7fa-89a9b26734b5</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.propertyUnit[08f95e0d-8457-45e4-b7fa-89a9b26734b5].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>b37020e5-27cb-49f3-bf09-d8742e4a21b6</key>
+                    <parentUnit>
+                        <key name="name" value="08f95e0d-8457-45e4-b7fa-89a9b26734b5" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="supplier" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>9a9488f9-db80-449e-b6ed-661338c16625</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.propertyUnit[9a9488f9-db80-449e-b6ed-661338c16625].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>dfa83e65-ff07-4d48-96d4-5fcf2b664445</key>
+                    <parentUnit>
+                        <key name="name" value="9a9488f9-db80-449e-b6ed-661338c16625" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>hit</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[hit].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Boolean</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>cb80ee61-099d-46a7-ab61-9c7368863658</key>
+                    <parentUnit>
+                        <key name="name" value="hit" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="hit" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>bidAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[bidAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>8e8ba963-174c-4789-adcd-86d8320a4e1a</key>
+                    <parentUnit>
+                        <key name="name" value="bidAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="bidAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>totalSeq</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[totalSeq].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>4d350724-13d6-44fc-9282-dd925d423b9d</key>
+                    <parentUnit>
+                        <key name="name" value="totalSeq" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="totalSeq" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>votes</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[votes].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>581532f0-49fa-4d3e-8a7c-ced2c780d829</key>
+                    <parentUnit>
+                        <key name="name" value="votes" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="votes" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>afterFixAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[afterFixAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9be61d82-c366-4cba-ad9b-dacbc50071ba</key>
+                    <parentUnit>
+                        <key name="name" value="afterFixAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="afterFixAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>lastAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[lastAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9dfb931e-f315-46f6-9173-8c8ff09a5049</key>
+                    <parentUnit>
+                        <key name="name" value="lastAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="lastAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>isLowest</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[isLowest].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Boolean</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>97035ad9-98d1-4119-a6a9-eb4f547bf187</key>
+                    <parentUnit>
+                        <key name="name" value="isLowest" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="isLowest" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>costOfContruction</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[costOfContruction].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>8c53fd35-4b2f-4622-9bb6-5fdb2cf14fcc</key>
+                    <parentUnit>
+                        <key name="name" value="costOfContruction" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="costOfContruction" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>recordSeq</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[recordSeq].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>2f29d921-f884-4030-9aa2-5213cd26b7c1</key>
+                    <parentUnit>
+                        <key name="name" value="recordSeq" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="recordSeq" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>seq</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[seq].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>af25cdb3-77ca-4cf4-900b-ea79907fff9b</key>
+                    <parentUnit>
+                        <key name="name" value="seq" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="seq" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>972cf78f-7b1b-4bf9-bfa8-054723b0f843</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>supplier.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[supplier.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f5e734a7-e9f9-4a5f-bee2-9d4ed6c208f4</key>
+                    <parentUnit>
+                        <key name="name" value="supplier.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>supplier.number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[supplier.number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>358001e7-9d59-4544-8d54-abab2a7da357</key>
+                    <parentUnit>
+                        <key name="name" value="supplier.number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>supplier.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[supplier.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f20464e8-4971-419f-ab55-8eb9db0de54b</key>
+                    <parentUnit>
+                        <key name="name" value="supplier.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="supplier" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>parent.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[parent.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>ff3466f7-3e75-48c9-8225-a58a90f8f76b</key>
+                    <parentUnit>
+                        <key name="name" value="parent.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="parent" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </queryField>
+        <propertyUnit>
+            <name>de5e9662-2d9c-4015-b93a-3695c62b5eb5</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.propertyUnit[de5e9662-2d9c-4015-b93a-3695c62b5eb5].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>c3a19d8d-85d2-4cb6-93ad-3ee63e13e8b5</key>
+                    <parentUnit>
+                        <key name="name" value="de5e9662-2d9c-4015-b93a-3695c62b5eb5" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenderAccepterResultEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="parent" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>dc09e511-123e-4518-8270-ea2504a07353</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.propertyUnit[dc09e511-123e-4518-8270-ea2504a07353].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>1328dce7-b3f4-4cad-8236-087291d4a191</key>
+                    <parentUnit>
+                        <key name="name" value="dc09e511-123e-4518-8270-ea2504a07353" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="parent" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+            <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+        </query>
+    </defaultFilter>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>61eb5924-d906-4aad-afe3-d3e5e0a2d919</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="TenderAccepterResultEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="supplier" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>fa3de922-f6ba-4fad-bba3-d265a1182182</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="08f95e0d-8457-45e4-b7fa-89a9b26734b5" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="9a9488f9-db80-449e-b6ed-661338c16625" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="61eb5924-d906-4aad-afe3-d3e5e0a2d919" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </join>
+        <join>
+            <name>ffcd317a-f74c-4fd6-8044-35b61ef4878a</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="TenderAccepterResultEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="parent" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>c8caeb14-c998-41a2-9125-c221cd396440</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="de5e9662-2d9c-4015-b93a-3695c62b5eb5" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="dc09e511-123e-4518-8270-ea2504a07353" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="ffcd317a-f74c-4fd6-8044-35b61ef4878a" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.invite.app" />
+                <key name="name" value="TenderAcceptResultEntryPrintQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="中标审批单分录信息BIDENTRY" />
+            <lang locale="zh_HK" value="中標審批單分錄信息BIDENTRY" />
+            <lang locale="zh_TW" value="中標審批單分錄信息BIDENTRY" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="中标审批单分录信息BIDENTRY" />
+            <lang locale="zh_HK" value="中標審批單分錄信息BIDENTRY" />
+            <lang locale="zh_TW" value="中標審批單分錄信息BIDENTRY" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].subObjects.subEntity[TenderAccepterResultEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].subObjects.subEntity[parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].subObjects.subEntity[supplier].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.propertyUnit[08f95e0d-8457-45e4-b7fa-89a9b26734b5].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.propertyUnit[9a9488f9-db80-449e-b6ed-661338c16625].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.propertyUnit[dc09e511-123e-4518-8270-ea2504a07353].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.propertyUnit[de5e9662-2d9c-4015-b93a-3695c62b5eb5].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[afterFixAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="修正后报价" />
+            <lang locale="zh_HK" value="修正後報價" />
+            <lang locale="zh_TW" value="修正後報價" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[bidAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="中标价" />
+            <lang locale="zh_HK" value="中標價" />
+            <lang locale="zh_TW" value="中標價" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[costOfContruction].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="已完成采购的单方造价" />
+            <lang locale="zh_HK" value="已完成採購的單方造價" />
+            <lang locale="zh_TW" value="已完成採購的單方造價" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[hit].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="中标" />
+            <lang locale="zh_HK" value="中標" />
+            <lang locale="zh_TW" value="中標" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[isLowest].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="是否最低价中标" />
+            <lang locale="zh_HK" value="是否最低價中標" />
+            <lang locale="zh_TW" value="是否最低價中標" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[lastAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="最终报价" />
+            <lang locale="zh_HK" value="最終報價" />
+            <lang locale="zh_TW" value="最終報價" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[parent.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[recordSeq].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="标段" />
+            <lang locale="zh_HK" value="標段" />
+            <lang locale="zh_TW" value="標段" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[seq].displayName">
+            <lang locale="en_US" value="sequence" />
+            <lang locale="zh_CN" value="单据分录序列号" />
+            <lang locale="zh_HK" value="單據分錄序列號" />
+            <lang locale="zh_TW" value="單據分錄序列號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[supplier.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[supplier.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[supplier.number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="编码" />
+            <lang locale="zh_HK" value="編碼" />
+            <lang locale="zh_TW" value="編碼" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[totalSeq].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="总价排名" />
+            <lang locale="zh_HK" value="總價排名" />
+            <lang locale="zh_TW" value="總價排名" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.invite.app.TenderAcceptResultEntryPrintQuery].units.queryField[votes].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="票数" />
+            <lang locale="zh_HK" value="票數" />
+            <lang locale="zh_TW" value="票數" />
+        </rs>
+    </resource>
+</joinQuery>
+

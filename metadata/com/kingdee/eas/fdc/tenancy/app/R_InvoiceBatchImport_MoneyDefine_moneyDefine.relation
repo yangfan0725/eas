@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationship xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>R_InvoiceBatchImport_MoneyDefine_moneyDefine</name>
+    <alias>relationship[com.kingdee.eas.fdc.tenancy.app.R_InvoiceBatchImport_MoneyDefine_moneyDefine].alias</alias>
+    <description>relationship[com.kingdee.eas.fdc.tenancy.app.R_InvoiceBatchImport_MoneyDefine_moneyDefine].description</description>
+    <userDefined>true</userDefined>
+    <type>Association</type>
+    <clientCardinality>0..*</clientCardinality>
+    <supplierCardinality>1</supplierCardinality>
+    <xmlNodeRelationship />
+    <clientObject>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="InvoiceBatchImport" />
+    </clientObject>
+    <supplierObject>
+        <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+        <key name="name" value="MoneyDefine" />
+    </supplierObject>
+    <resource>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_InvoiceBatchImport_MoneyDefine_moneyDefine].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="款项类型" />
+            <lang locale="zh_HK" value="款項類型" />
+            <lang locale="zh_TW" value="款項類型" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_InvoiceBatchImport_MoneyDefine_moneyDefine].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="款项类型" />
+            <lang locale="zh_HK" value="款項類型" />
+            <lang locale="zh_TW" value="款項類型" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_InvoiceBatchImport_MoneyDefine_moneyDefine].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</relationship>
+

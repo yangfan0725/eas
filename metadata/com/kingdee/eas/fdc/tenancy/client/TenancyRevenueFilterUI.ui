@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uiObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.client</package>
+    <name>TenancyRevenueFilterUI</name>
+    <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].alias</alias>
+    <description>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].description</description>
+    <userDefined>true</userDefined>
+    <releasePackage>com.kingdee.eas.fdc.tenancy.client</releasePackage>
+    <releaseClass>TenancyRevenueFilterUI</releaseClass>
+    <title>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].title</title>
+    <uitype />
+    <defaultbutton />
+    <bizUnitPK />
+    <parent>
+        <key name="package" value="com.kingdee.eas.framework.report.client" />
+        <key name="name" value="CommRptBaseConditionUI" />
+    </parent>
+    <components>
+        <component>
+            <name>CustomerQueryPanel</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[CustomerQueryPanel].alias</alias>
+            <userDefined>false</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDPanel</classType>
+            <isContainer>true</isContainer>
+            <constraints>10,10,600,160</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+        </component>
+        <component>
+            <name>contTenancybill</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancybill].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>24,13,535,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancybill].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancybill].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancybill].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>contTenancyState</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancyState].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>24,63,81,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancyState].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>chkAll</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkAll].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>136,66,78,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkAll].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+            <eventBindings>
+                <eventBinding>
+                    <name>stateChanged</name>
+                    <eventType>javax.swing.event.ChangeEvent</eventType>
+                    <scene />
+                    <listenerType>javax.swing.event.ChangeListener</listenerType>
+                    <listenerAdapter>javax.swing.event.ChangeListener</listenerAdapter>
+                    <methodName>chkAll_stateChanged</methodName>
+                    <code />
+                    <isBindWorkFlow>false</isBindWorkFlow>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </eventBinding>
+            </eventBindings>
+        </component>
+        <component>
+            <name>chkExecuting</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkExecuting].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>245,66,78,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkExecuting].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+            <eventBindings>
+                <eventBinding>
+                    <name>stateChanged</name>
+                    <eventType>javax.swing.event.ChangeEvent</eventType>
+                    <scene />
+                    <listenerType>javax.swing.event.ChangeListener</listenerType>
+                    <listenerAdapter>javax.swing.event.ChangeListener</listenerAdapter>
+                    <methodName>chkExecuting_stateChanged</methodName>
+                    <code />
+                    <isBindWorkFlow>false</isBindWorkFlow>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </eventBinding>
+            </eventBindings>
+        </component>
+        <component>
+            <name>chkQuitTenancy</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkQuitTenancy].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>354,66,78,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkQuitTenancy].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+            <eventBindings>
+                <eventBinding>
+                    <name>stateChanged</name>
+                    <eventType>javax.swing.event.ChangeEvent</eventType>
+                    <scene />
+                    <listenerType>javax.swing.event.ChangeListener</listenerType>
+                    <listenerAdapter>javax.swing.event.ChangeListener</listenerAdapter>
+                    <methodName>chkQuitTenancy_stateChanged</methodName>
+                    <code />
+                    <isBindWorkFlow>false</isBindWorkFlow>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </eventBinding>
+            </eventBindings>
+        </component>
+        <component>
+            <name>chkExpiration</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkExpiration].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>463,66,78,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkExpiration].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+            <eventBindings>
+                <eventBinding>
+                    <name>stateChanged</name>
+                    <eventType>javax.swing.event.ChangeEvent</eventType>
+                    <scene />
+                    <listenerType>javax.swing.event.ChangeListener</listenerType>
+                    <listenerAdapter>javax.swing.event.ChangeListener</listenerAdapter>
+                    <methodName>chkExpiration_stateChanged</methodName>
+                    <code />
+                    <isBindWorkFlow>false</isBindWorkFlow>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </eventBinding>
+            </eventBindings>
+        </component>
+        <component>
+            <name>prmtTenancybill</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[prmtTenancybill].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>queryInfo</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[prmtTenancybill].properties.property[queryInfo].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>displayFormat</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[prmtTenancybill].properties.property[displayFormat].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>editFormat</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[prmtTenancybill].properties.property[editFormat].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="contTenancybill" />
+            </parent>
+        </component>
+    </components>
+    <resource>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="收入统计过滤界面" />
+            <lang locale="zh_HK" value="收入統計過濾介面" />
+            <lang locale="zh_TW" value="收入統計過濾介面" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[CustomerQueryPanel].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkAll].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkAll].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="全部" />
+            <lang locale="zh_HK" value="全部" />
+            <lang locale="zh_TW" value="全部" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkExecuting].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkExecuting].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="执行中 " />
+            <lang locale="zh_HK" value="執行中 " />
+            <lang locale="zh_TW" value="執行中 " />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkExpiration].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkExpiration].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="已中止" />
+            <lang locale="zh_HK" value="已中止" />
+            <lang locale="zh_TW" value="已中止" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkQuitTenancy].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[chkQuitTenancy].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="退租中" />
+            <lang locale="zh_HK" value="退租中" />
+            <lang locale="zh_TW" value="退租中" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancyState].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancyState].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同状态" />
+            <lang locale="zh_HK" value="合同狀態" />
+            <lang locale="zh_TW" value="合同狀態" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancybill].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancybill].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancybill].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租赁合同" />
+            <lang locale="zh_HK" value="租賃合同" />
+            <lang locale="zh_TW" value="租賃合同" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[contTenancybill].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[prmtTenancybill].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[prmtTenancybill].properties.property[displayFormat].value">
+            <lang locale="en_US" value="$name$" />
+            <lang locale="zh_CN" value="$name$" />
+            <lang locale="zh_HK" value="$name$" />
+            <lang locale="zh_TW" value="$name$" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[prmtTenancybill].properties.property[editFormat].value">
+            <lang locale="en_US" value="$name$" />
+            <lang locale="zh_CN" value="$name$" />
+            <lang locale="zh_HK" value="$name$" />
+            <lang locale="zh_TW" value="$name$" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].components.component[prmtTenancybill].properties.property[queryInfo].value">
+            <lang locale="en_US" value="com.kingdee.eas.fdc.tenancy.app.TenancyBillQuery" />
+            <lang locale="zh_CN" value="com.kingdee.eas.fdc.tenancy.app.TenancyBillQuery" />
+            <lang locale="zh_HK" value="com.kingdee.eas.fdc.tenancy.app.TenancyBillQuery" />
+            <lang locale="zh_TW" value="com.kingdee.eas.fdc.tenancy.app.TenancyBillQuery" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="收入统计过滤界面" />
+            <lang locale="zh_HK" value="收入統計過濾介面" />
+            <lang locale="zh_TW" value="收入統計過濾介面" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyRevenueFilterUI].title">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="收入统计过滤界面" />
+            <lang locale="zh_HK" value="收入統計過濾介面" />
+            <lang locale="zh_TW" value="收入統計過濾介面" />
+        </rs>
+    </resource>
+</uiObject>
+

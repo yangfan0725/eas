@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facade xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>SupplierBpmAuditFacade</name>
+    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].alias</alias>
+    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].description</description>
+    <userDefined>true</userDefined>
+    <bosType>15F3921A</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.invite.supplier.SupplierBpmAuditFacade</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacadeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>getBillInfo</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].description</description>
+            <innerID>9e310350-919c-4137-a7e1-c9a0b0724735</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>strBSID</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].parameters.parameter[strBSID].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].parameters.parameter[strBSID].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>strBOID</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].parameters.parameter[strBOID].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].parameters.parameter[strBOID].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>createResult</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].description</description>
+            <innerID>9c57e1e8-14f2-4f94-8873-1b2a22cfbdd7</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>strBSID</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strBSID].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strBSID].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>strBOID</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strBOID].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strBOID].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>bSuccess</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[bSuccess].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[bSuccess].description</description>
+                    <direction>in</direction>
+                    <dataType>Boolean</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>iProcInstID</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[iProcInstID].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[iProcInstID].description</description>
+                    <direction>in</direction>
+                    <dataType>Integer</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>strMessage</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strMessage].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strMessage].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>rework</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].description</description>
+            <innerID>59e142e5-580c-4683-a166-b1cfc48fd2da</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>strBSID</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strBSID].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strBSID].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>strBOID</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strBOID].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strBOID].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>iProcInstID</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[iProcInstID].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[iProcInstID].description</description>
+                    <direction>in</direction>
+                    <dataType>Integer</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>strStepName</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strStepName].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strStepName].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>strApproverId</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strApproverId].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strApproverId].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>ieAction</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[ieAction].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[ieAction].description</description>
+                    <direction>in</direction>
+                    <dataType>Integer</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>strComment</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strComment].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strComment].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>dtTime</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[dtTime].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[dtTime].description</description>
+                    <direction>in</direction>
+                    <dataType>TimeStamp</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>approveClose</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].description</description>
+            <innerID>bdba2180-40c2-4a4e-b43c-4d7a6d67b9b7</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>strBSID</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strBSID].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strBSID].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>strBOID</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strBOID].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strBOID].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>iProcInstID</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[iProcInstID].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[iProcInstID].description</description>
+                    <direction>in</direction>
+                    <dataType>Integer</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>strStepName</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strStepName].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strStepName].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>eProcessInstanceResult</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[eProcessInstanceResult].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[eProcessInstanceResult].description</description>
+                    <direction>in</direction>
+                    <dataType>Integer</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>strApproverId</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strApproverId].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strApproverId].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>strComment</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strComment].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strComment].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>dtTime</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[dtTime].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[dtTime].description</description>
+                    <direction>in</direction>
+                    <dataType>TimeStamp</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <resource>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商提交" />
+            <lang locale="zh_HK" value="供應商提交" />
+            <lang locale="zh_TW" value="供應商提交" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].extendedProperty.genBusinessImplCode">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="流程审批结束" />
+            <lang locale="zh_HK" value="流程審批結束" />
+            <lang locale="zh_TW" value="流程審批結束" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[dtTime].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[dtTime].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[eProcessInstanceResult].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[eProcessInstanceResult].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[iProcInstID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[iProcInstID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strApproverId].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strApproverId].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strBOID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strBOID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strBSID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strBSID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strComment].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strComment].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strStepName].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[approveClose].parameters.parameter[strStepName].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="数据传递返回值" />
+            <lang locale="zh_HK" value="數據傳遞返回值" />
+            <lang locale="zh_TW" value="數據傳遞返回值" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[bSuccess].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[bSuccess].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[iProcInstID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[iProcInstID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strBOID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strBOID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strBSID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strBSID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strMessage].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[createResult].parameters.parameter[strMessage].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取表单数据" />
+            <lang locale="zh_HK" value="獲取表單數據" />
+            <lang locale="zh_TW" value="獲取表單數據" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].parameters.parameter[strBOID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].parameters.parameter[strBOID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].parameters.parameter[strBSID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[getBillInfo].parameters.parameter[strBSID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返回结果" />
+            <lang locale="zh_HK" value="返回結果" />
+            <lang locale="zh_TW" value="返回結果" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[dtTime].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[dtTime].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[iProcInstID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[iProcInstID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[ieAction].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[ieAction].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strApproverId].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strApproverId].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strBOID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strBOID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strBSID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strBSID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strComment].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strComment].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strStepName].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierBpmAuditFacade].methods.method[rework].parameters.parameter[strStepName].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+    </resource>
+</facade>
+

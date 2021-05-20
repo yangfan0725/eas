@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>TenBillOtherPayEntryQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>TenBillOtherPay</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].subObjects.subEntity[TenBillOtherPay].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPay" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>moneyDefine</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].subObjects.subEntity[moneyDefine].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="MoneyDefine" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>43fc23b3-7696-4f02-a39d-d1e89f68e1d6</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.propertyUnit[43fc23b3-7696-4f02-a39d-d1e89f68e1d6].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>4c65d43a-b995-4e60-8d5f-5582098c36b1</key>
+                    <parentUnit>
+                        <key name="name" value="43fc23b3-7696-4f02-a39d-d1e89f68e1d6" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenBillOtherPay" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="moneyDefine" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>9ad0ed29-c2be-444f-930c-fa7caea728ea</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.propertyUnit[9ad0ed29-c2be-444f-930c-fa7caea728ea].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>8578ed23-e678-4858-b99f-2aabea84d6fa</key>
+                    <parentUnit>
+                        <key name="name" value="9ad0ed29-c2be-444f-930c-fa7caea728ea" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>ce65b0bb-46de-4c4d-b396-65f53782bd1a</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenBillOtherPay" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>leaseSeq</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[leaseSeq].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>96fdcaad-7dd8-4ba4-bb8b-8ec2e918bc34</key>
+                    <parentUnit>
+                        <key name="name" value="leaseSeq" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenBillOtherPay" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="leaseSeq" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>moneyDefine.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[moneyDefine.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f91c5b15-e30a-441e-9e95-762734a71ab6</key>
+                    <parentUnit>
+                        <key name="name" value="moneyDefine.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>appDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[appDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>26c79f06-d78b-434a-9062-93ddfd191a34</key>
+                    <parentUnit>
+                        <key name="name" value="appDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenBillOtherPay" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="appDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>appAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[appAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>6f62fc86-698e-4625-9ad2-f1d29534c280</key>
+                    <parentUnit>
+                        <key name="name" value="appAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenBillOtherPay" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="appAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>actRevAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[actRevAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>280acb12-4f34-4bf8-ad5f-b6b79a57049e</key>
+                    <parentUnit>
+                        <key name="name" value="actRevAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenBillOtherPay" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="actRevAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>moneyDefine.rate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[moneyDefine.rate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>00821ab1-8053-4079-b826-a26f71e10d13</key>
+                    <parentUnit>
+                        <key name="name" value="moneyDefine.rate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="rate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>startDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[startDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>e86f556d-f9fb-4adb-bfad-ae29d2cca9d7</key>
+                    <parentUnit>
+                        <key name="name" value="startDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenBillOtherPay" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="startDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>endDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[endDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a32bb1c6-4b54-483b-b7ca-57cf96655cd3</key>
+                    <parentUnit>
+                        <key name="name" value="endDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenBillOtherPay" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="endDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+            <key name="name" value="TenBillOtherPayEntryQuery" />
+        </query>
+    </defaultFilter>
+    <queryPK>
+        <name>QueryPK</name>
+        <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].queryPK[QueryPK].alias</alias>
+        <description>joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].queryPK[QueryPK].description</description>
+        <keyProperties>
+            <queryField>
+                <key name="name" value="id" />
+            </queryField>
+        </keyProperties>
+    </queryPK>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>a552a6c1-ba2d-44a7-8cc2-f9c55998ac04</name>
+            <formulaString>#0</formulaString>
+            <type>INNER JOIN</type>
+            <leftObject>
+                <key name="name" value="TenBillOtherPay" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="moneyDefine" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>a5b4ea24-0c60-4f22-8591-1c2bca8fba4c</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="43fc23b3-7696-4f02-a39d-d1e89f68e1d6" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="9ad0ed29-c2be-444f-930c-fa7caea728ea" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="a552a6c1-ba2d-44a7-8cc2-f9c55998ac04" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].queryPK[QueryPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].queryPK[QueryPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].subObjects.subEntity[TenBillOtherPay].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].subObjects.subEntity[moneyDefine].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.propertyUnit[43fc23b3-7696-4f02-a39d-d1e89f68e1d6].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.propertyUnit[9ad0ed29-c2be-444f-930c-fa7caea728ea].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[actRevAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="实收金额" />
+            <lang locale="zh_HK" value="實收金額" />
+            <lang locale="zh_TW" value="實收金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[appAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收金额" />
+            <lang locale="zh_HK" value="應收金額" />
+            <lang locale="zh_TW" value="應收金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[appDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收日期" />
+            <lang locale="zh_HK" value="應收日期" />
+            <lang locale="zh_TW" value="應收日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[endDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="结束日期" />
+            <lang locale="zh_HK" value="結束日期" />
+            <lang locale="zh_TW" value="結束日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[leaseSeq].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租期序号" />
+            <lang locale="zh_HK" value="租期序號" />
+            <lang locale="zh_TW" value="租期序號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[moneyDefine.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[moneyDefine.rate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="税率" />
+            <lang locale="zh_HK" value="稅率" />
+            <lang locale="zh_TW" value="稅率" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.TenBillOtherPayEntryQuery].units.queryField[startDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="开始日期" />
+            <lang locale="zh_HK" value="開始日期" />
+            <lang locale="zh_TW" value="開始日期" />
+        </rs>
+    </resource>
+</joinQuery>
+

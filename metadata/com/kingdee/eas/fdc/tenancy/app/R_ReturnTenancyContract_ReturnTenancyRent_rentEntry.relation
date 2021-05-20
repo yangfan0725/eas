@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationship xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>R_ReturnTenancyContract_ReturnTenancyRent_rentEntry</name>
+    <alias>relationship[com.kingdee.eas.fdc.tenancy.app.R_ReturnTenancyContract_ReturnTenancyRent_rentEntry].alias</alias>
+    <description>relationship[com.kingdee.eas.fdc.tenancy.app.R_ReturnTenancyContract_ReturnTenancyRent_rentEntry].description</description>
+    <userDefined>true</userDefined>
+    <type>Composition</type>
+    <clientCardinality>0..1</clientCardinality>
+    <supplierCardinality>0..*</supplierCardinality>
+    <xmlNodeRelationship />
+    <clientObject>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="ReturnTenancyContract" />
+    </clientObject>
+    <supplierObject>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="ReturnTenancyRentEntry" />
+    </supplierObject>
+    <resource>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_ReturnTenancyContract_ReturnTenancyRent_rentEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="返租合同关联租金分录" />
+            <lang locale="zh_HK" value="返租合同關聯租金分錄" />
+            <lang locale="zh_TW" value="返租合同關聯租金分錄" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_ReturnTenancyContract_ReturnTenancyRent_rentEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_ReturnTenancyContract_ReturnTenancyRent_rentEntry].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</relationship>
+

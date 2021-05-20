@@ -1,0 +1,1561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+    <name>ContractInvoicePrintQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>ContractInvoice</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[ContractInvoice].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoice" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>room</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[room].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="Room" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>building</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[building].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="Building" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>sellProject</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[sellProject].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="SellProject" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>entry</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[entry].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoiceEntry" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>moneyDefine</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[moneyDefine].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="MoneyDefine" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>CU</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[CU].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.basedata.org.app" />
+                <key name="name" value="CtrlUnit" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>0d5f38ae-ff99-4069-bf6f-6031828781f6</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[0d5f38ae-ff99-4069-bf6f-6031828781f6].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>563af30e-5e19-4a4d-948b-4ba760c8d5a6</key>
+                    <parentUnit>
+                        <key name="name" value="0d5f38ae-ff99-4069-bf6f-6031828781f6" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="room" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>b581e428-4d9e-4e71-8ab2-39bd348c80a0</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[b581e428-4d9e-4e71-8ab2-39bd348c80a0].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>c54acb36-cc42-4f0c-93c8-f1a3ca16e6bb</key>
+                    <parentUnit>
+                        <key name="name" value="b581e428-4d9e-4e71-8ab2-39bd348c80a0" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>sellProject.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[sellProject.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>36c31c86-b9dc-490a-9b61-2760647e4295</key>
+                    <parentUnit>
+                        <key name="name" value="sellProject.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="sellProject" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>invoiceNumber</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[invoiceNumber].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>dc5d64e9-f41c-4fff-8229-841bb3e98bcb</key>
+                    <parentUnit>
+                        <key name="name" value="invoiceNumber" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="invoiceNumber" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>invoiceType</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[invoiceType].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>69624977-005a-4e2a-812e-e63774365e36</key>
+                    <parentUnit>
+                        <key name="name" value="invoiceType" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="invoiceType" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>totalAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[totalAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>77fed01c-768e-49a3-a244-617867507ce5</key>
+                    <parentUnit>
+                        <key name="name" value="totalAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="totalAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>totalAmountNoTax</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[totalAmountNoTax].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>e1bc3ba9-a5fe-4bce-acdb-190fab18ea60</key>
+                    <parentUnit>
+                        <key name="name" value="totalAmountNoTax" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="totalAmountNoTax" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>amount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[amount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>dca918a1-5712-4104-9f28-aafbb29bc36a</key>
+                    <parentUnit>
+                        <key name="name" value="amount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="amount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>bizDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[bizDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>0cb490ea-2d42-47ed-85f1-7b60c0ab228d</key>
+                    <parentUnit>
+                        <key name="name" value="bizDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="bizDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <propertyUnit>
+            <name>38f17628-d55d-4a5a-8c6a-0b5a73bea0d2</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[38f17628-d55d-4a5a-8c6a-0b5a73bea0d2].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>07cdf546-fcfb-43b9-ab55-43dfb1940fe6</key>
+                    <parentUnit>
+                        <key name="name" value="38f17628-d55d-4a5a-8c6a-0b5a73bea0d2" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="building" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>0b8f7633-e9f5-4b82-a080-adc9de6d13c0</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[0b8f7633-e9f5-4b82-a080-adc9de6d13c0].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>9490b5e1-a3be-4711-88e8-493433cb1039</key>
+                    <parentUnit>
+                        <key name="name" value="0b8f7633-e9f5-4b82-a080-adc9de6d13c0" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="building" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>1be355a1-8489-40c4-8905-255619d2691a</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[1be355a1-8489-40c4-8905-255619d2691a].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>48079a33-ac35-4b94-9fb7-fac05069be9a</key>
+                    <parentUnit>
+                        <key name="name" value="1be355a1-8489-40c4-8905-255619d2691a" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="building" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="sellProject" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>d2d4541b-c78d-472a-9763-aba6bb47ce36</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[d2d4541b-c78d-472a-9763-aba6bb47ce36].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>02c1dc9d-1ef8-4a02-a979-b1e2721e9564</key>
+                    <parentUnit>
+                        <key name="name" value="d2d4541b-c78d-472a-9763-aba6bb47ce36" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="sellProject" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>4d619160-b2d4-49b4-8621-50eaee5a351e</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[4d619160-b2d4-49b4-8621-50eaee5a351e].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>1b052cfb-fa36-47ab-84a7-a4de2568ad63</key>
+                    <parentUnit>
+                        <key name="name" value="4d619160-b2d4-49b4-8621-50eaee5a351e" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>1967f6ee-f052-478a-8af4-b0a863655785</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[1967f6ee-f052-478a-8af4-b0a863655785].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>a1c923df-e77b-407b-9978-51e0d4ce9be0</key>
+                    <parentUnit>
+                        <key name="name" value="1967f6ee-f052-478a-8af4-b0a863655785" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="entry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="parent" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>room.saleRate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[room.saleRate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>1e0e35a8-8400-445f-a731-a134b283bae0</key>
+                    <parentUnit>
+                        <key name="name" value="room.saleRate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="saleRate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>entry.seq</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.seq].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>00e448a7-5c46-472c-9a4c-bc97adc81587</key>
+                    <parentUnit>
+                        <key name="name" value="entry.seq" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="entry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="seq" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>moneyDefine.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[moneyDefine.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>5f2cc70e-5ed3-4f30-b6dd-1467315559e3</key>
+                    <parentUnit>
+                        <key name="name" value="moneyDefine.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>entry.totalAmountNoTax</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.totalAmountNoTax].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>4abcb0c5-fc2e-4895-9a17-8422e984af94</key>
+                    <parentUnit>
+                        <key name="name" value="entry.totalAmountNoTax" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="entry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="totalAmountNoTax" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>entry.rate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.rate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>0cbfef3a-3535-45e0-8bca-fc673f5b353d</key>
+                    <parentUnit>
+                        <key name="name" value="entry.rate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="entry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="rate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>entry.rateAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.rateAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>27f4b7d4-67b3-43c0-a76f-269fc320bc3c</key>
+                    <parentUnit>
+                        <key name="name" value="entry.rateAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="entry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="rateAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>entry.totalAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.totalAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>e6fd4eaf-216b-49d2-b98a-364fa36a3df4</key>
+                    <parentUnit>
+                        <key name="name" value="entry.totalAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="entry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="totalAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>entry.remark</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.remark].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>cbb9c8ed-e3db-45a9-8a1e-af20604ee38b</key>
+                    <parentUnit>
+                        <key name="name" value="entry.remark" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="entry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="remark" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>495ef1b0-c824-4e01-98e9-b2b04123b8d8</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <propertyUnit>
+            <name>9ad44bdb-d75c-4e10-80e5-4b2002f22c1f</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[9ad44bdb-d75c-4e10-80e5-4b2002f22c1f].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>b0793e21-fe3b-4e46-bc10-72bca6a05aaf</key>
+                    <parentUnit>
+                        <key name="name" value="9ad44bdb-d75c-4e10-80e5-4b2002f22c1f" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="entry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="moneyDefine" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>145b08e3-58da-4ad7-8058-e8c1b66ff2db</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[145b08e3-58da-4ad7-8058-e8c1b66ff2db].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>4085e984-7b6e-4a61-9e2c-db73842e3d04</key>
+                    <parentUnit>
+                        <key name="name" value="145b08e3-58da-4ad7-8058-e8c1b66ff2db" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>capital</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[capital].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>1a78482f-f759-4c65-a5de-5da671419b0b</key>
+                    <parentUnit>
+                        <key name="name" value="capital" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="capital" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>paymentMethod</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[paymentMethod].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>8d92cae9-0519-458a-b2d2-77465bf08de4</key>
+                    <parentUnit>
+                        <key name="name" value="paymentMethod" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="paymentMethod" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>customer</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[customer].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <propertyUnit>
+            <name>be5fae67-9037-4c64-bf18-40030bfd0624</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[be5fae67-9037-4c64-bf18-40030bfd0624].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>c0b02dd7-dfa2-45c7-922b-dd8d3caf28b7</key>
+                    <parentUnit>
+                        <key name="name" value="be5fae67-9037-4c64-bf18-40030bfd0624" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractInvoice" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="CU" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>96e82144-5759-404d-92c8-07d7d6bb351d</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[96e82144-5759-404d-92c8-07d7d6bb351d].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>7a4c9a49-c9a4-4736-90c9-98b7f3c0cf1d</key>
+                    <parentUnit>
+                        <key name="name" value="96e82144-5759-404d-92c8-07d7d6bb351d" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="CU" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>CU.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[CU.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>bafd017d-3668-4ab7-84a8-45a6eda99e77</key>
+                    <parentUnit>
+                        <key name="name" value="CU.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="CU" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>CU.number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[CU.number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f0ea0c4e-68cc-4380-bdd1-55e50f5a636c</key>
+                    <parentUnit>
+                        <key name="name" value="CU.number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="CU" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+            <key name="name" value="ContractInvoicePrintQuery" />
+        </query>
+    </defaultFilter>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>9ee84e6a-f384-41e2-8ffe-3c071d7ef4c8</name>
+            <formulaString>#0</formulaString>
+            <type>INNER JOIN</type>
+            <leftObject>
+                <key name="name" value="ContractInvoice" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="room" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>866b400f-b177-444b-b077-fe3d96f30a21</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="0d5f38ae-ff99-4069-bf6f-6031828781f6" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="b581e428-4d9e-4e71-8ab2-39bd348c80a0" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="9ee84e6a-f384-41e2-8ffe-3c071d7ef4c8" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </join>
+        <join>
+            <name>8191eb5d-b297-4527-a636-0bdb3bef75ea</name>
+            <formulaString>#0</formulaString>
+            <type>INNER JOIN</type>
+            <leftObject>
+                <key name="name" value="room" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="building" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>22ac1ffd-632c-431d-a628-43f59020c82e</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="38f17628-d55d-4a5a-8c6a-0b5a73bea0d2" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="0b8f7633-e9f5-4b82-a080-adc9de6d13c0" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="8191eb5d-b297-4527-a636-0bdb3bef75ea" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </join>
+        <join>
+            <name>94a611ec-df4e-4bf5-8dc9-11a18b9b83d2</name>
+            <formulaString>#0</formulaString>
+            <type>INNER JOIN</type>
+            <leftObject>
+                <key name="name" value="building" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="sellProject" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>2b336df6-8aa1-421e-b229-dd2028082944</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="1be355a1-8489-40c4-8905-255619d2691a" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="d2d4541b-c78d-472a-9763-aba6bb47ce36" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="94a611ec-df4e-4bf5-8dc9-11a18b9b83d2" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </join>
+        <join>
+            <name>b1396621-6933-4153-b2b3-aced667d4531</name>
+            <formulaString>#0</formulaString>
+            <type>INNER JOIN</type>
+            <leftObject>
+                <key name="name" value="ContractInvoice" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="entry" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>37b3190a-b48e-450e-a03c-988569581011</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="4d619160-b2d4-49b4-8621-50eaee5a351e" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="1967f6ee-f052-478a-8af4-b0a863655785" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="b1396621-6933-4153-b2b3-aced667d4531" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </join>
+        <join>
+            <name>b5d1adcd-c117-4228-85e9-4127d4a14382</name>
+            <formulaString>#0</formulaString>
+            <type>INNER JOIN</type>
+            <leftObject>
+                <key name="name" value="entry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="moneyDefine" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>821da11c-3e98-4386-8a27-4d10d7922dab</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="9ad44bdb-d75c-4e10-80e5-4b2002f22c1f" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="145b08e3-58da-4ad7-8058-e8c1b66ff2db" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="b5d1adcd-c117-4228-85e9-4127d4a14382" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </join>
+        <join>
+            <name>1d04f741-2b6d-49cd-ae49-9698a3e7fb2b</name>
+            <formulaString>#0</formulaString>
+            <type>INNER JOIN</type>
+            <leftObject>
+                <key name="name" value="ContractInvoice" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="CU" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>824a114c-37be-4488-850b-ee4cf619675e</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="be5fae67-9037-4c64-bf18-40030bfd0624" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="96e82144-5759-404d-92c8-07d7d6bb351d" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="1d04f741-2b6d-49cd-ae49-9698a3e7fb2b" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="ContractInvoicePrintQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票打印" />
+            <lang locale="zh_HK" value="發票列印" />
+            <lang locale="zh_TW" value="發票列印" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票打印" />
+            <lang locale="zh_HK" value="發票列印" />
+            <lang locale="zh_TW" value="發票列印" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[CU].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[ContractInvoice].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[building].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[entry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[moneyDefine].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[room].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].subObjects.subEntity[sellProject].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[0b8f7633-e9f5-4b82-a080-adc9de6d13c0].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[0d5f38ae-ff99-4069-bf6f-6031828781f6].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[145b08e3-58da-4ad7-8058-e8c1b66ff2db].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[1967f6ee-f052-478a-8af4-b0a863655785].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[1be355a1-8489-40c4-8905-255619d2691a].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[38f17628-d55d-4a5a-8c6a-0b5a73bea0d2].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[4d619160-b2d4-49b4-8621-50eaee5a351e].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[96e82144-5759-404d-92c8-07d7d6bb351d].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[9ad44bdb-d75c-4e10-80e5-4b2002f22c1f].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[b581e428-4d9e-4e71-8ab2-39bd348c80a0].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[be5fae67-9037-4c64-bf18-40030bfd0624].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.propertyUnit[d2d4541b-c78d-472a-9763-aba6bb47ce36].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[CU.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="控制单元名称" />
+            <lang locale="zh_HK" value="控制單元名稱" />
+            <lang locale="zh_TW" value="控制單元名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[CU.number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="控制单元编码" />
+            <lang locale="zh_HK" value="控制單元編碼" />
+            <lang locale="zh_TW" value="控制單元編碼" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[amount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="税额" />
+            <lang locale="zh_HK" value="稅額" />
+            <lang locale="zh_TW" value="稅額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[bizDate].displayName">
+            <lang locale="en_US" value="" />
+            <lang locale="zh_CN" value="开票日期" />
+            <lang locale="zh_HK" value="開票日期" />
+            <lang locale="zh_TW" value="開票日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[capital].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="大写金额" />
+            <lang locale="zh_HK" value="大寫金額" />
+            <lang locale="zh_TW" value="大寫金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[customer].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户" />
+            <lang locale="zh_HK" value="客戶" />
+            <lang locale="zh_TW" value="客戶" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.rateAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="分录税额" />
+            <lang locale="zh_HK" value="分錄稅額" />
+            <lang locale="zh_TW" value="分錄稅額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.rate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="分录税率" />
+            <lang locale="zh_HK" value="分錄稅率" />
+            <lang locale="zh_TW" value="分錄稅率" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.remark].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="分录备注" />
+            <lang locale="zh_HK" value="分錄備註" />
+            <lang locale="zh_TW" value="分錄備註" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.seq].displayName">
+            <lang locale="en_US" value="sequence" />
+            <lang locale="zh_CN" value="单据分录序列号" />
+            <lang locale="zh_HK" value="單據分錄序列號" />
+            <lang locale="zh_TW" value="單據分錄序列號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.totalAmountNoTax].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="分录金额（不含税）" />
+            <lang locale="zh_HK" value="分錄金額（不含稅）" />
+            <lang locale="zh_TW" value="分錄金額（不含稅）" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[entry.totalAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="分录金额（含税）" />
+            <lang locale="zh_HK" value="分錄金額（含稅）" />
+            <lang locale="zh_TW" value="分錄金額（含稅）" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[invoiceNumber].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票号" />
+            <lang locale="zh_HK" value="發票號" />
+            <lang locale="zh_TW" value="發票號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[invoiceType].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票类型" />
+            <lang locale="zh_HK" value="發票類型" />
+            <lang locale="zh_TW" value="發票類型" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[moneyDefine.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="款项" />
+            <lang locale="zh_HK" value="款項" />
+            <lang locale="zh_TW" value="款項" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[paymentMethod].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="收款方式" />
+            <lang locale="zh_HK" value="收款方式" />
+            <lang locale="zh_TW" value="收款方式" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[room.saleRate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="销项税率" />
+            <lang locale="zh_HK" value="銷項稅率" />
+            <lang locale="zh_TW" value="銷項稅率" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[sellProject.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="项目" />
+            <lang locale="zh_HK" value="項目" />
+            <lang locale="zh_TW" value="項目" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[totalAmountNoTax].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="金额（不含税）" />
+            <lang locale="zh_HK" value="金額（不含稅）" />
+            <lang locale="zh_TW" value="金額（不含稅）" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.ContractInvoicePrintQuery].units.queryField[totalAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="金额（含税）" />
+            <lang locale="zh_HK" value="金額（含稅）" />
+            <lang locale="zh_TW" value="金額（含稅）" />
+        </rs>
+    </resource>
+</joinQuery>
+

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facade xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.contract.app</package>
+    <name>WSContractChangeFacade</name>
+    <alias>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].alias</alias>
+    <description>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].description</description>
+    <userDefined>true</userDefined>
+    <bosType>6FB76773</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.contract.WSContractChangeFacade</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.contract.app.WSContractChangeFacadeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>synContractChange</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractChange].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractChange].description</description>
+            <innerID>091a28c5-cc1a-48ec-ac58-253a58b589b4</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>str</name>
+                    <alias>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractChange].parameters.parameter[str].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractChange].parameters.parameter[str].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>synChangeSettlement</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synChangeSettlement].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synChangeSettlement].description</description>
+            <innerID>4f3a1acb-5e50-4691-ad9e-5202f925b0f0</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>str</name>
+                    <alias>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synChangeSettlement].parameters.parameter[str].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synChangeSettlement].parameters.parameter[str].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>synContractSettlementSubmission</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractSettlementSubmission].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractSettlementSubmission].description</description>
+            <innerID>d2df4ee5-cf86-4ef8-8a19-7c0942bbb713</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>str</name>
+                    <alias>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractSettlementSubmission].parameters.parameter[str].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractSettlementSubmission].parameters.parameter[str].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>synCSSubmissionState</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionState].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionState].description</description>
+            <innerID>080ebc0a-e1dd-4116-b4a6-f7f20d24cac3</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>str</name>
+                    <alias>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionState].parameters.parameter[str].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionState].parameters.parameter[str].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>synCSSubmissionAttach</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionAttach].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionAttach].description</description>
+            <innerID>10f36543-9e35-49fa-a83e-1566e07143d4</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>str</name>
+                    <alias>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionAttach].parameters.parameter[str].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionAttach].parameters.parameter[str].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <resource>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同变更接口" />
+            <lang locale="zh_HK" value="合同變更介面" />
+            <lang locale="zh_TW" value="合同變更介面" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同变更接口" />
+            <lang locale="zh_HK" value="合同變更介面" />
+            <lang locale="zh_TW" value="合同變更介面" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].extendedProperty.genBusinessImplCode">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionAttach].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同结算送审单附件追加" />
+            <lang locale="zh_HK" value="合同結算送審單附件追加" />
+            <lang locale="zh_TW" value="合同結算送審單附件追加" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionAttach].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同结算送审单附件追加" />
+            <lang locale="zh_HK" value="合同結算送審單附件追加" />
+            <lang locale="zh_TW" value="合同結算送審單附件追加" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionAttach].parameters.parameter[str].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="str" />
+            <lang locale="zh_HK" value="str" />
+            <lang locale="zh_TW" value="str" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionAttach].parameters.parameter[str].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionState].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同结算送审单状态更新" />
+            <lang locale="zh_HK" value="合同結算送審單狀態更新" />
+            <lang locale="zh_TW" value="合同結算送審單狀態更新" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionState].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同结算送审单状态更新" />
+            <lang locale="zh_HK" value="合同結算送審單狀態更新" />
+            <lang locale="zh_TW" value="合同結算送審單狀態更新" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionState].parameters.parameter[str].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="str" />
+            <lang locale="zh_HK" value="str" />
+            <lang locale="zh_TW" value="str" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synCSSubmissionState].parameters.parameter[str].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synChangeSettlement].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="同步变更确认" />
+            <lang locale="zh_HK" value="同步變更確認" />
+            <lang locale="zh_TW" value="同步變更確認" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synChangeSettlement].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="同步变更确认" />
+            <lang locale="zh_HK" value="同步變更確認" />
+            <lang locale="zh_TW" value="同步變更確認" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synChangeSettlement].parameters.parameter[str].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="str" />
+            <lang locale="zh_HK" value="str" />
+            <lang locale="zh_TW" value="str" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synChangeSettlement].parameters.parameter[str].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractChange].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="同步合同变更" />
+            <lang locale="zh_HK" value="同步合同變更" />
+            <lang locale="zh_TW" value="同步合同變更" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractChange].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="同步合同变更" />
+            <lang locale="zh_HK" value="同步合同變更" />
+            <lang locale="zh_TW" value="同步合同變更" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractChange].parameters.parameter[str].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="str" />
+            <lang locale="zh_HK" value="str" />
+            <lang locale="zh_TW" value="str" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractChange].parameters.parameter[str].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractSettlementSubmission].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同结算送审单" />
+            <lang locale="zh_HK" value="合同結算送審單" />
+            <lang locale="zh_TW" value="合同結算送審單" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractSettlementSubmission].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同结算送审单" />
+            <lang locale="zh_HK" value="合同結算送審單" />
+            <lang locale="zh_TW" value="合同結算送審單" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractSettlementSubmission].parameters.parameter[str].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="str" />
+            <lang locale="zh_HK" value="str" />
+            <lang locale="zh_TW" value="str" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.WSContractChangeFacade].methods.method[synContractSettlementSubmission].parameters.parameter[str].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+    </resource>
+</facade>
+

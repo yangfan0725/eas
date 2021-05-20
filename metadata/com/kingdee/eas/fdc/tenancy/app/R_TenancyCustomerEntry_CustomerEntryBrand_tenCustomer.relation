@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationship xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>R_TenancyCustomerEntry_CustomerEntryBrand_tenCustomer</name>
+    <alias>relationship[com.kingdee.eas.fdc.tenancy.app.R_TenancyCustomerEntry_CustomerEntryBrand_tenCustomer].alias</alias>
+    <description>relationship[com.kingdee.eas.fdc.tenancy.app.R_TenancyCustomerEntry_CustomerEntryBrand_tenCustomer].description</description>
+    <userDefined>true</userDefined>
+    <type>Composition</type>
+    <clientCardinality>1</clientCardinality>
+    <supplierCardinality>0..*</supplierCardinality>
+    <xmlNodeRelationship />
+    <clientObject>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="TenancyCustomerEntry" />
+    </clientObject>
+    <supplierObject>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="CustomerEntryBrand" />
+    </supplierObject>
+    <resource>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_TenancyCustomerEntry_CustomerEntryBrand_tenCustomer].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同客户品牌分录" />
+            <lang locale="zh_HK" value="合同客戶品牌分錄" />
+            <lang locale="zh_TW" value="合同客戶品牌分錄" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_TenancyCustomerEntry_CustomerEntryBrand_tenCustomer].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同客户品牌分录" />
+            <lang locale="zh_HK" value="合同客戶品牌分錄" />
+            <lang locale="zh_TW" value="合同客戶品牌分錄" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.tenancy.app.R_TenancyCustomerEntry_CustomerEntryBrand_tenCustomer].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</relationship>
+

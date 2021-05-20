@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unionQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>InvoiceBillEntryQuery</name>
+    <alias>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].alias</alias>
+    <description>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subQuery>
+            <name>TenRoomPayListEntryQuery</name>
+            <alias>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].subObjects.subQuery[TenRoomPayListEntryQuery].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="InvoiceBillEntryQuery" />
+            </query>
+            <unionType>main</unionType>
+            <queryRef>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </queryRef>
+        </subQuery>
+        <subQuery>
+            <name>TenBillOtherPayEntryQuery</name>
+            <alias>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].subObjects.subQuery[TenBillOtherPayEntryQuery].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="InvoiceBillEntryQuery" />
+            </query>
+            <unionType />
+            <queryRef>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenBillOtherPayEntryQuery" />
+            </queryRef>
+        </subQuery>
+    </subObjects>
+    <units>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a40ddac4-d995-4b3a-a79d-5120ebe8dac0</key>
+                    <subQuery>
+                        <key name="name" value="TenRoomPayListEntryQuery" />
+                    </subQuery>
+                    <refUnit>
+                        <key name="name" value="id" />
+                    </refUnit>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>moneyDefine.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[moneyDefine.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>9b4b1b20-4eb1-4879-a4c4-25441e1cb3bd</key>
+                    <subQuery>
+                        <key name="name" value="TenRoomPayListEntryQuery" />
+                    </subQuery>
+                    <refUnit>
+                        <key name="name" value="moneyDefine.name" />
+                    </refUnit>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>appDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[appDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f936be9c-0d57-4efe-98d5-7911c7dbc108</key>
+                    <subQuery>
+                        <key name="name" value="TenRoomPayListEntryQuery" />
+                    </subQuery>
+                    <refUnit>
+                        <key name="name" value="appDate" />
+                    </refUnit>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>appAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[appAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>3c5cf4fb-1f47-4107-9d17-a7a1476393a6</key>
+                    <subQuery>
+                        <key name="name" value="TenRoomPayListEntryQuery" />
+                    </subQuery>
+                    <refUnit>
+                        <key name="name" value="appAmount" />
+                    </refUnit>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>actRevAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[actRevAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>fb5e32f0-c68a-4968-a42b-2cfa712470c5</key>
+                    <subQuery>
+                        <key name="name" value="TenRoomPayListEntryQuery" />
+                    </subQuery>
+                    <refUnit>
+                        <key name="name" value="actRevAmount" />
+                    </refUnit>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>leaseSeq</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[leaseSeq].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>dcfbead0-fe01-412a-93d0-a6946cf32250</key>
+                    <parentUnit>
+                        <key name="name" value="leaseSeq" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenancyRoomPayListEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="leaseSeq" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>moneyDefine.rate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[moneyDefine.rate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>5a5e230b-d775-4977-9fd1-e577fe980a5a</key>
+                    <parentUnit>
+                        <key name="name" value="moneyDefine.rate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="rate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>startDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[startDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>e1a735a4-70fc-4786-99e0-0184a0a61503</key>
+                    <parentUnit>
+                        <key name="name" value="startDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenancyRoomPayListEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="startDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>endDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[endDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>1cf5e03b-159f-4b57-8d18-33b0e23104f0</key>
+                    <parentUnit>
+                        <key name="name" value="endDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="TenancyRoomPayListEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="endDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenRoomPayListEntryQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+            <key name="name" value="InvoiceBillEntryQuery" />
+        </query>
+    </defaultFilter>
+    <formulaString>#0 union #1</formulaString>
+    <resource>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].subObjects.subQuery[TenBillOtherPayEntryQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].subObjects.subQuery[TenRoomPayListEntryQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[actRevAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="实收金额" />
+            <lang locale="zh_HK" value="實收金額" />
+            <lang locale="zh_TW" value="實收金額" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[appAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收金额" />
+            <lang locale="zh_HK" value="應收金額" />
+            <lang locale="zh_TW" value="應收金額" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[appDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收日期" />
+            <lang locale="zh_HK" value="應收日期" />
+            <lang locale="zh_TW" value="應收日期" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[endDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="结束日期" />
+            <lang locale="zh_HK" value="結束日期" />
+            <lang locale="zh_TW" value="結束日期" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[leaseSeq].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租期序号" />
+            <lang locale="zh_HK" value="租期序號" />
+            <lang locale="zh_TW" value="租期序號" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[moneyDefine.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[moneyDefine.rate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="税率" />
+            <lang locale="zh_HK" value="稅率" />
+            <lang locale="zh_TW" value="稅率" />
+        </rs>
+        <rs key="unionQuery[com.kingdee.eas.fdc.tenancy.app.InvoiceBillEntryQuery].units.queryField[startDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="开始日期" />
+            <lang locale="zh_HK" value="開始日期" />
+            <lang locale="zh_TW" value="開始日期" />
+        </rs>
+    </resource>
+</unionQuery>
+

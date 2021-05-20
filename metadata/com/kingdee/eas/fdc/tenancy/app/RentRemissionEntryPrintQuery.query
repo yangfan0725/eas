@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>RentRemissionEntryPrintQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>RentRemissionEntry</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].subObjects.subEntity[RentRemissionEntry].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntry" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>rentRemissionRoom</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].subObjects.subEntity[rentRemissionRoom].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenancyRoomPayListEntry" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>moneyDefine</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].subObjects.subEntity[moneyDefine].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="MoneyDefine" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>head</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].subObjects.subEntity[head].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemission" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>31e42ad8-780a-4e71-b582-f88b0f2697ec</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[31e42ad8-780a-4e71-b582-f88b0f2697ec].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>a841ffed-885f-439a-9c68-0507da25f4aa</key>
+                    <parentUnit>
+                        <key name="name" value="31e42ad8-780a-4e71-b582-f88b0f2697ec" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="rentRemissionRoom" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>adccadbb-c547-4e2d-9c05-745c68c40fe5</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[adccadbb-c547-4e2d-9c05-745c68c40fe5].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>3c00b43d-be54-49e9-9eaa-fdc0435aa4d0</key>
+                    <parentUnit>
+                        <key name="name" value="adccadbb-c547-4e2d-9c05-745c68c40fe5" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="rentRemissionRoom" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>50f91ac2-00a0-4a86-8140-84345365f572</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[50f91ac2-00a0-4a86-8140-84345365f572].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>fbd21240-e363-43a9-a18c-8265bc2f8a7d</key>
+                    <parentUnit>
+                        <key name="name" value="50f91ac2-00a0-4a86-8140-84345365f572" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="moneyDefine" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>0037ce14-b0f5-43bb-bb55-160d2dc01d02</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[0037ce14-b0f5-43bb-bb55-160d2dc01d02].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>01cd9944-c4b5-4eb3-908c-5ddb37f162e9</key>
+                    <parentUnit>
+                        <key name="name" value="0037ce14-b0f5-43bb-bb55-160d2dc01d02" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>leaseSeq</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[leaseSeq].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a887c6c7-bf00-4e06-aaef-b8ec014de928</key>
+                    <parentUnit>
+                        <key name="name" value="leaseSeq" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="leaseSeq" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>startDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[startDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>4bd51119-f661-4ad5-856c-7401d7797c1c</key>
+                    <parentUnit>
+                        <key name="name" value="startDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="startDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>endDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[endDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>5e532d7f-9450-4997-ac19-d129ea4c9270</key>
+                    <parentUnit>
+                        <key name="name" value="endDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="endDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>appAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[appAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>7b9937c3-3ab1-4cf1-8685-de2ada8de8e9</key>
+                    <parentUnit>
+                        <key name="name" value="appAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="appAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>remisionAmount</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[remisionAmount].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>ad05038b-24a6-44bf-ab09-5cd3cea44b3d</key>
+                    <parentUnit>
+                        <key name="name" value="remisionAmount" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="remisionAmount" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>appDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[appDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>355efd32-8f54-4f08-8fe8-a4375603e9c8</key>
+                    <parentUnit>
+                        <key name="name" value="appDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="appDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>seq</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[seq].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>7eafadcb-9d91-4c5e-8778-a5eb337c5953</key>
+                    <parentUnit>
+                        <key name="name" value="seq" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="seq" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>isOther</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[isOther].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Boolean</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>69843820-318d-40b9-9753-f74b52889ada</key>
+                    <parentUnit>
+                        <key name="name" value="isOther" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="isOther" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>otherPayListID</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[otherPayListID].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>a3d5dd83-c8e4-46e1-b6dc-9765230af181</key>
+                    <parentUnit>
+                        <key name="name" value="otherPayListID" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="otherPayListID" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>5089a855-cc32-48cb-9b86-b0bfb7e6017d</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>moneyDefine.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[moneyDefine.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>bf1cbc1f-bb67-470e-9b0e-5ce484982e17</key>
+                    <parentUnit>
+                        <key name="name" value="moneyDefine.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+        <propertyUnit>
+            <name>257be402-19e6-4e8e-9405-0f443f6e214c</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[257be402-19e6-4e8e-9405-0f443f6e214c].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>b91ae751-12bd-4f7f-abd8-390a661e0495</key>
+                    <parentUnit>
+                        <key name="name" value="257be402-19e6-4e8e-9405-0f443f6e214c" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RentRemissionEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="head" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>6fec64e9-865c-4a16-95bc-c896c26eb2f5</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[6fec64e9-865c-4a16-95bc-c896c26eb2f5].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>b90acab2-95cd-4a0a-ad2f-473078e86203</key>
+                    <parentUnit>
+                        <key name="name" value="6fec64e9-865c-4a16-95bc-c896c26eb2f5" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="head" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>head.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[head.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>ce11f196-44be-405e-ac65-28b3c831af48</key>
+                    <parentUnit>
+                        <key name="name" value="head.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="head" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+            <key name="name" value="RentRemissionEntryPrintQuery" />
+        </query>
+    </defaultFilter>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>2ee1d0ea-212f-4ad3-af46-5125fd42b54f</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="RentRemissionEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="rentRemissionRoom" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>ddcffd97-6b05-4a0d-bbac-399558b9469c</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="31e42ad8-780a-4e71-b582-f88b0f2697ec" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="adccadbb-c547-4e2d-9c05-745c68c40fe5" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="2ee1d0ea-212f-4ad3-af46-5125fd42b54f" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </join>
+        <join>
+            <name>901d2c8a-1b4b-435a-92b4-cc458f9ed296</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="RentRemissionEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="moneyDefine" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>27565d8d-7cc3-41ad-ae34-09540e89f7a7</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="50f91ac2-00a0-4a86-8140-84345365f572" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="0037ce14-b0f5-43bb-bb55-160d2dc01d02" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="901d2c8a-1b4b-435a-92b4-cc458f9ed296" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </join>
+        <join>
+            <name>61e2ca0a-e353-4c10-8509-cfb6406b92fd</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="RentRemissionEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="head" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>786fba89-abf5-4f66-8808-fb097348b043</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="257be402-19e6-4e8e-9405-0f443f6e214c" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="6fec64e9-865c-4a16-95bc-c896c26eb2f5" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="61e2ca0a-e353-4c10-8509-cfb6406b92fd" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="RentRemissionEntryPrintQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租金减免单分录(RENTREMISSIONENTRY)" />
+            <lang locale="zh_HK" value="租金減免單分錄(RENTREMISSIONENTRY)" />
+            <lang locale="zh_TW" value="租金減免單分錄(RENTREMISSIONENTRY)" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].subObjects.subEntity[RentRemissionEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].subObjects.subEntity[head].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].subObjects.subEntity[moneyDefine].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].subObjects.subEntity[rentRemissionRoom].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[0037ce14-b0f5-43bb-bb55-160d2dc01d02].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[257be402-19e6-4e8e-9405-0f443f6e214c].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[31e42ad8-780a-4e71-b582-f88b0f2697ec].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[50f91ac2-00a0-4a86-8140-84345365f572].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[6fec64e9-865c-4a16-95bc-c896c26eb2f5].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.propertyUnit[adccadbb-c547-4e2d-9c05-745c68c40fe5].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[appAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="原应付金额" />
+            <lang locale="zh_HK" value="原應付金額" />
+            <lang locale="zh_TW" value="原應付金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[appDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收日期" />
+            <lang locale="zh_HK" value="應收日期" />
+            <lang locale="zh_TW" value="應收日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[endDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="结束日期" />
+            <lang locale="zh_HK" value="結束日期" />
+            <lang locale="zh_TW" value="結束日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[head.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[isOther].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="是否其他费用 " />
+            <lang locale="zh_HK" value="是否其他費用 " />
+            <lang locale="zh_TW" value="是否其他費用 " />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[leaseSeq].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租期序号" />
+            <lang locale="zh_HK" value="租期序號" />
+            <lang locale="zh_TW" value="租期序號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[moneyDefine.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
+            <lang locale="zh_HK" value="名稱" />
+            <lang locale="zh_TW" value="名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[otherPayListID].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="其他应收付款ID" />
+            <lang locale="zh_HK" value="其他應收付款ID" />
+            <lang locale="zh_TW" value="其他應收付款ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[remisionAmount].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="减免金额" />
+            <lang locale="zh_HK" value="減免金額" />
+            <lang locale="zh_TW" value="減免金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[seq].displayName">
+            <lang locale="en_US" value="sequence" />
+            <lang locale="zh_CN" value="单据分录序列号" />
+            <lang locale="zh_HK" value="單據分錄序列號" />
+            <lang locale="zh_TW" value="單據分錄序列號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.RentRemissionEntryPrintQuery].units.queryField[startDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="开始日期" />
+            <lang locale="zh_HK" value="開始日期" />
+            <lang locale="zh_TW" value="開始日期" />
+        </rs>
+    </resource>
+</joinQuery>
+

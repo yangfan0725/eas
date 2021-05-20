@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facade xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>SupplierAnnualSummaryFacade</name>
+    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].alias</alias>
+    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].description</description>
+    <userDefined>true</userDefined>
+    <bosType>5EC1359D</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.invite.supplier.SupplierAnnualSummaryFacade</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacadeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>getSupplierSummaryInfo</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierSummaryInfo].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierSummaryInfo].description</description>
+            <innerID>59edb31f-f012-482c-b8e5-b62fe4e5994f</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>java.util.Map</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>param</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierSummaryInfo].parameters.parameter[param].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierSummaryInfo].parameters.parameter[param].description</description>
+                    <direction>in</direction>
+                    <dataType>java.util.Map</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getSupplierBidInfo</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierBidInfo].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierBidInfo].description</description>
+            <innerID>0d3261c8-d931-47f6-a744-c711c5b55bd4</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>java.util.Map</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>param</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierBidInfo].parameters.parameter[param].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierBidInfo].parameters.parameter[param].description</description>
+                    <direction>in</direction>
+                    <dataType>java.util.Map</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getSupplierWinInfo</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierWinInfo].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierWinInfo].description</description>
+            <innerID>51c505f9-0b4f-428e-ba42-4475521d7111</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>java.util.Map</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>param</name>
+                    <alias>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierWinInfo].parameters.parameter[param].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierWinInfo].parameters.parameter[param].description</description>
+                    <direction>in</direction>
+                    <dataType>java.util.Map</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <resource>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商年度汇总表" />
+            <lang locale="zh_HK" value="供應商年度匯總表" />
+            <lang locale="zh_TW" value="供應商年度匯總表" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商年度汇总表" />
+            <lang locale="zh_HK" value="供應商年度匯總表" />
+            <lang locale="zh_TW" value="供應商年度匯總表" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierBidInfo].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取招标信息" />
+            <lang locale="zh_HK" value="獲取招標信息" />
+            <lang locale="zh_TW" value="獲取招標信息" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierBidInfo].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierBidInfo].parameters.parameter[param].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="param" />
+            <lang locale="zh_HK" value="param" />
+            <lang locale="zh_TW" value="param" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierBidInfo].parameters.parameter[param].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierSummaryInfo].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取供应商年度汇总信息" />
+            <lang locale="zh_HK" value="獲取供應商年度匯總信息" />
+            <lang locale="zh_TW" value="獲取供應商年度匯總信息" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierSummaryInfo].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取供应商年度汇总信息" />
+            <lang locale="zh_HK" value="獲取供應商年度匯總信息" />
+            <lang locale="zh_TW" value="獲取供應商年度匯總信息" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierSummaryInfo].parameters.parameter[param].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="查询参数" />
+            <lang locale="zh_HK" value="查詢參數" />
+            <lang locale="zh_TW" value="查詢參數" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierSummaryInfo].parameters.parameter[param].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierWinInfo].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="getSupplierWinInfo" />
+            <lang locale="zh_HK" value="getSupplierWinInfo" />
+            <lang locale="zh_TW" value="getSupplierWinInfo" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierWinInfo].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierWinInfo].parameters.parameter[param].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="param" />
+            <lang locale="zh_HK" value="param" />
+            <lang locale="zh_TW" value="param" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.invite.supplier.app.SupplierAnnualSummaryFacade].methods.method[getSupplierWinInfo].parameters.parameter[param].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+    </resource>
+</facade>
+

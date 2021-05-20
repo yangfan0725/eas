@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.finance.app</package>
+    <name>DeductBillFLQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>DeductBillEntry</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].subObjects.subEntity[DeductBillEntry].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillEntry" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>deductType</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].subObjects.subEntity[deductType].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.basedata.app" />
+                <key name="name" value="DeductType" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>deductUnit</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].subObjects.subEntity[deductUnit].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.basedata.master.cssp.app" />
+                <key name="name" value="Supplier" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>contractBill</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].subObjects.subEntity[contractBill].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBill" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>Parent</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].subObjects.subEntity[Parent].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBill" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>3db33efb-7f35-464a-88d5-42be53c293af</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[3db33efb-7f35-464a-88d5-42be53c293af].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>7da4e073-7cf2-4aba-a350-133d5b6b7fb4</key>
+                    <parentUnit>
+                        <key name="name" value="3db33efb-7f35-464a-88d5-42be53c293af" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DeductBillEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="deductType" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>9ea8b390-9d13-430c-8c77-b9013dfb24c5</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[9ea8b390-9d13-430c-8c77-b9013dfb24c5].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>c20b08f4-76f4-4d10-956d-d2fa752b7388</key>
+                    <parentUnit>
+                        <key name="name" value="9ea8b390-9d13-430c-8c77-b9013dfb24c5" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="deductType" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>26e40f83-dcfa-48b2-80c7-7a8490ede4f8</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[26e40f83-dcfa-48b2-80c7-7a8490ede4f8].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>39eb2866-8868-4b0b-9dbb-34ac80995ca2</key>
+                    <parentUnit>
+                        <key name="name" value="26e40f83-dcfa-48b2-80c7-7a8490ede4f8" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DeductBillEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="deductUnit" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>002dff27-a063-4def-b89f-e3654ec46579</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[002dff27-a063-4def-b89f-e3654ec46579].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>63aae521-c1d8-412a-88f7-2649ec35c9b0</key>
+                    <parentUnit>
+                        <key name="name" value="002dff27-a063-4def-b89f-e3654ec46579" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="deductUnit" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>f615573c-3ab9-4e4c-b395-21843adea2bc</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[f615573c-3ab9-4e4c-b395-21843adea2bc].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>6c705c26-dabb-4c85-afb9-bb2b22f42e29</key>
+                    <parentUnit>
+                        <key name="name" value="f615573c-3ab9-4e4c-b395-21843adea2bc" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DeductBillEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="contractId" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>382e81ac-823e-47f6-b83c-9d8ca9f16c8f</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[382e81ac-823e-47f6-b83c-9d8ca9f16c8f].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>4a4e8bba-2eb8-4361-9135-67b1ba099350</key>
+                    <parentUnit>
+                        <key name="name" value="382e81ac-823e-47f6-b83c-9d8ca9f16c8f" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="contractBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>deductItem</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[deductItem].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>1058cdcc-3797-4c58-a336-bce2a3970207</key>
+                    <parentUnit>
+                        <key name="name" value="deductItem" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DeductBillEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="deductItem" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>deductAmt</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[deductAmt].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>d63438de-ef4c-470a-90c1-743b727120a0</key>
+                    <parentUnit>
+                        <key name="name" value="deductAmt" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DeductBillEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="deductAmt" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>deductType.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[deductType.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>f87d7b7e-5b9a-454d-a39f-7387d7ecab75</key>
+                    <parentUnit>
+                        <key name="name" value="deductType.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="deductType" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>deductUnit.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[deductUnit.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>d7f366d2-7136-4fb3-a94a-e97cd74f2caf</key>
+                    <parentUnit>
+                        <key name="name" value="deductUnit.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="deductUnit" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>contractBill.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[contractBill.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>409e5cd4-5751-4991-969d-78558c8bd79a</key>
+                    <parentUnit>
+                        <key name="name" value="contractBill.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="contractBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>contractBill.number</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[contractBill.number].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>74fe38c4-df00-49b5-b87d-d76d00323d84</key>
+                    <parentUnit>
+                        <key name="name" value="contractBill.number" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="contractBill" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="number" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>remark</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[remark].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>1084687d-e264-4ebb-86d8-d93b28b5a370</key>
+                    <parentUnit>
+                        <key name="name" value="remark" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DeductBillEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="remark" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>exRate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[exRate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Number</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>dca0d19f-276c-4f71-ae48-21da009caa73</key>
+                    <parentUnit>
+                        <key name="name" value="exRate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DeductBillEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="exRate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>deductDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[deductDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>92d61b17-999e-4afe-9132-f04aea0a0466</key>
+                    <parentUnit>
+                        <key name="name" value="deductDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DeductBillEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="deductDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>seq</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[seq].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Int</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>772e5c71-9574-4f4b-bfbb-ddefc2013e45</key>
+                    <parentUnit>
+                        <key name="name" value="seq" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DeductBillEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="seq" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>0e7e8ded-63c1-4e2f-84a3-f7144169450e</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DeductBillEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+        <propertyUnit>
+            <name>276089b0-22f6-49fa-9ef3-b9774ee37f52</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[276089b0-22f6-49fa-9ef3-b9774ee37f52].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>c3a7948b-8c2c-4ffa-9fbe-db4262d96705</key>
+                    <parentUnit>
+                        <key name="name" value="276089b0-22f6-49fa-9ef3-b9774ee37f52" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="DeductBillEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="Parent" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>a7f65fe5-b1d2-4dc0-a98b-b46aadbc1872</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[a7f65fe5-b1d2-4dc0-a98b-b46aadbc1872].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>00c43a57-97d3-4aad-849f-4549852fb434</key>
+                    <parentUnit>
+                        <key name="name" value="a7f65fe5-b1d2-4dc0-a98b-b46aadbc1872" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="Parent" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>Parent.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[Parent.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>b8169b6a-fcb1-47ca-bd4b-a5fbdafde98c</key>
+                    <parentUnit>
+                        <key name="name" value="Parent.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="Parent" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+            <key name="name" value="DeductBillFLQuery" />
+        </query>
+    </defaultFilter>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>097aaac2-8dd7-4049-a75e-d4a6df0a83fc</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="DeductBillEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="deductType" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>3cbc4e38-0c65-4112-ac63-f97f282a6f05</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="3db33efb-7f35-464a-88d5-42be53c293af" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="9ea8b390-9d13-430c-8c77-b9013dfb24c5" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="097aaac2-8dd7-4049-a75e-d4a6df0a83fc" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </join>
+        <join>
+            <name>e0112411-0468-4ddd-8453-2edb50f50d81</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="DeductBillEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="deductUnit" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>86164e04-fc00-4f00-89ff-ca538b3bc202</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="26e40f83-dcfa-48b2-80c7-7a8490ede4f8" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="002dff27-a063-4def-b89f-e3654ec46579" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="e0112411-0468-4ddd-8453-2edb50f50d81" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </join>
+        <join>
+            <name>cda934bd-6206-4307-80cd-d5642102fc53</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="DeductBillEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="contractBill" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>2174e64c-93a2-40c8-9664-64c06fa78b9b</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="f615573c-3ab9-4e4c-b395-21843adea2bc" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="382e81ac-823e-47f6-b83c-9d8ca9f16c8f" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="cda934bd-6206-4307-80cd-d5642102fc53" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </join>
+        <join>
+            <name>ee0f49ac-ed66-4012-813c-3b68234892cc</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="DeductBillEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="Parent" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>32427e4f-6382-4286-a53c-aed5359b7f32</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="276089b0-22f6-49fa-9ef3-b9774ee37f52" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="a7f65fe5-b1d2-4dc0-a98b-b46aadbc1872" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="ee0f49ac-ed66-4012-813c-3b68234892cc" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.finance.app" />
+                <key name="name" value="DeductBillFLQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="扣款单分录" />
+            <lang locale="zh_HK" value="扣款單分錄" />
+            <lang locale="zh_TW" value="扣款單分錄" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="扣款单分录" />
+            <lang locale="zh_HK" value="扣款單分錄" />
+            <lang locale="zh_TW" value="扣款單分錄" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].subObjects.subEntity[DeductBillEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].subObjects.subEntity[Parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].subObjects.subEntity[contractBill].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].subObjects.subEntity[deductType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].subObjects.subEntity[deductUnit].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[002dff27-a063-4def-b89f-e3654ec46579].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[26e40f83-dcfa-48b2-80c7-7a8490ede4f8].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[276089b0-22f6-49fa-9ef3-b9774ee37f52].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[382e81ac-823e-47f6-b83c-9d8ca9f16c8f].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[3db33efb-7f35-464a-88d5-42be53c293af].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[9ea8b390-9d13-430c-8c77-b9013dfb24c5].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[a7f65fe5-b1d2-4dc0-a98b-b46aadbc1872].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.propertyUnit[f615573c-3ab9-4e4c-b395-21843adea2bc].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[Parent.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[contractBill.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同名称" />
+            <lang locale="zh_HK" value="合同名稱" />
+            <lang locale="zh_TW" value="合同名稱" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[contractBill.number].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同编号" />
+            <lang locale="zh_HK" value="合同編號" />
+            <lang locale="zh_TW" value="合同編號" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[deductAmt].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="扣款金额" />
+            <lang locale="zh_HK" value="扣款金額" />
+            <lang locale="zh_TW" value="扣款金額" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[deductDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="扣款日期" />
+            <lang locale="zh_HK" value="扣款日期" />
+            <lang locale="zh_TW" value="扣款日期" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[deductItem].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="扣款事项" />
+            <lang locale="zh_HK" value="扣款事項" />
+            <lang locale="zh_TW" value="扣款事項" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[deductType.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="扣款类型" />
+            <lang locale="zh_HK" value="扣款類型" />
+            <lang locale="zh_TW" value="扣款類型" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[deductUnit.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="扣款单位" />
+            <lang locale="zh_HK" value="扣款單位" />
+            <lang locale="zh_TW" value="扣款單位" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[exRate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="汇率" />
+            <lang locale="zh_HK" value="匯率" />
+            <lang locale="zh_TW" value="匯率" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[remark].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.finance.app.DeductBillFLQuery].units.queryField[seq].displayName">
+            <lang locale="en_US" value="sequence" />
+            <lang locale="zh_CN" value="单据分录序列号" />
+            <lang locale="zh_HK" value="單據分錄序列號" />
+            <lang locale="zh_TW" value="單據分錄序列號" />
+        </rs>
+    </resource>
+</joinQuery>
+

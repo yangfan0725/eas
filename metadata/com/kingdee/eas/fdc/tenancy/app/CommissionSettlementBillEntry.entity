@@ -1,0 +1,1893 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>CommissionSettlementBillEntry</name>
+    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].alias</alias>
+    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].description</description>
+    <userDefined>true</userDefined>
+    <bosType>DD14058E</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.tenancy.CommissionSettlementBillEntry</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntryController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].description</description>
+            <innerID>adadec4d-fef9-440e-b54c-78502eb02f6e</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].description</description>
+            <innerID>6899f4c3-974c-4b26-b2b0-0e09774e2ca2</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].description</description>
+            <innerID>cd2c7322-56ab-4e8a-a9a1-619231cdbdfb</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].description</description>
+            <innerID>7d1d3bf9-1de9-42b9-a314-be12d93a07be</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].description</description>
+            <innerID>0964319e-b483-42e9-8847-e9ebf67a2636</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>selector</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[selector].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[selector].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SelectorItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].description</description>
+            <innerID>8742067b-f95d-44e6-ae36-f7949d4bb3e9</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>addnew</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].description</description>
+            <innerID>44382691-02eb-43e6-a971-14be11d66ddd</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>addnew</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].description</description>
+            <innerID>151783fd-0e6b-4b5f-a070-20b6c89a03ee</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>update</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].description</description>
+            <innerID>3002fffe-e36f-4715-915e-074b27bdc12e</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>updatePartial</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].description</description>
+            <innerID>0e69ed0c-5b83-4a2c-a4d2-dbd1baba5cc2</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>selector</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].parameters.parameter[selector].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].parameters.parameter[selector].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SelectorItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>updateBigObject</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].description</description>
+            <innerID>22c5ebbf-9d47-45d2-9d1d-55326f217c5e</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].description</description>
+            <innerID>01adcfb1-ecf3-47bf-b101-b5ee2e58e06f</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].description</description>
+            <innerID>6a28080a-0d2a-4436-9829-2dfc907d1c3e</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].description</description>
+            <innerID>0c7efec8-fbcf-46cc-bddb-baa83436db71</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].description</description>
+            <innerID>47eea00a-94de-46de-a462-1cd6d9715b59</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>sorter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[sorter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[sorter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SorterItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].description</description>
+            <innerID>86453a5f-d9f7-4f77-a090-e996470c4ee1</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].description</description>
+            <innerID>96199d7a-6667-452e-8e66-a549a0660e62</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>view</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].parameters.parameter[view].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].parameters.parameter[view].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.EntityViewInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].description</description>
+            <innerID>cba66dd3-0cb0-4397-9721-ef80f4d6b543</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].description</description>
+            <innerID>1cbd41fc-dbeb-40c2-8627-c793e0ceea17</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].description</description>
+            <innerID>731163d2-488d-440a-8ed6-703f54399193</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].description</description>
+            <innerID>92e73fc0-beea-493a-8f7a-0fbf52437951</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>arrayPK</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[arrayPK].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[arrayPK].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK[]</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <isAbstract>false</isAbstract>
+    <bizUnitPK />
+    <baseEntity>
+        <key name="package" value="com.kingdee.eas.framework.app" />
+        <key name="name" value="CoreBillEntryBase" />
+    </baseEntity>
+    <table>
+        <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+        <key name="name" value="T_TEN_CommissionSBEntry" />
+    </table>
+    <properties>
+        <ownProperty>
+            <name>monthArea</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[monthArea].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[monthArea].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[monthArea].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FMonthArea" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>contractArea</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[contractArea].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[contractArea].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[contractArea].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FContractArea" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>rate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[rate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[rate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[rate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>zcBaseAmount</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcBaseAmount].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcBaseAmount].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcBaseAmount].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FZcBaseAmount" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>zcRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FZcRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>zcCommissionRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcCommissionRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcCommissionRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcCommissionRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FZcCommissionRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>zcAmount</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcAmount].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcAmount].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcAmount].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FZcAmount" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>zjBaseAmount</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjBaseAmount].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjBaseAmount].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjBaseAmount].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FZjBaseAmount" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>zjRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FZjRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>zjCommissionRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjCommissionRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjCommissionRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjCommissionRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FZjCommissionRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>zjAmount</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjAmount].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjAmount].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjAmount].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FZjAmount" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>quitAmount</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[quitAmount].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[quitAmount].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[quitAmount].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FQuitAmount" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>tc</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[tc].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[tc].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[tc].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FTc" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>xz</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[xz].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[xz].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[xz].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FXz" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>ylRate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[ylRate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[ylRate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[ylRate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FYlRate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>yl</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yl].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yl].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yl].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FYl" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>jl</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[jl].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[jl].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[jl].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FJl" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>yj</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yj].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yj].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yj].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FYj" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>remark</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[remark].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[remark].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>200</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[remark].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FRemark" />
+            </mappingField>
+        </ownProperty>
+        <linkProperty>
+            <name>orgUnit</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[orgUnit].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[orgUnit].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FOrgUnitId" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_CommissionSettlementBillEntry_OrgUnit_orgUnit" />
+            </relationship>
+        </linkProperty>
+        <linkProperty>
+            <name>person</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[person].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[person].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FPersonId" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_CommissionSettlementBillEntry_Person_person" />
+            </relationship>
+        </linkProperty>
+        <ownProperty>
+            <name>position</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[position].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[position].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>100</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[position].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FPosition" />
+            </mappingField>
+        </ownProperty>
+        <linkProperty>
+            <name>head</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[head].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[head].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FHeadId" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_CommissionSettlementBill_CommissionSettlementBillEntry_entry" />
+            </relationship>
+        </linkProperty>
+        <linkProperty>
+            <name>sellProject</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[sellProject].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[sellProject].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FSellProjectId" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_CommissionSettlementBillEntry_SellProject_sellProject" />
+            </relationship>
+        </linkProperty>
+    </properties>
+    <logicalKey>
+        <name>id</name>
+        <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].logicalKey[id].alias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].logicalKey[id].description</description>
+        <keyClass>com.kingdee.bos.dao.IObjectPK</keyClass>
+        <userDefined>true</userDefined>
+        <keyProperties>
+            <baseProperty>
+                <key name="name" value="id" />
+            </baseProperty>
+        </keyProperties>
+    </logicalKey>
+    <resource>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="佣金结算审批单分录" />
+            <lang locale="zh_HK" value="傭金結算審批單分錄" />
+            <lang locale="zh_TW" value="傭金結算審批單分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="佣金结算审批单分录" />
+            <lang locale="zh_HK" value="傭金結算審批單分錄" />
+            <lang locale="zh_TW" value="傭金結算審批單分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].logicalKey[id].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].logicalKey[id].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[addnew].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[arrayPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[arrayPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[delete].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[exists].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].parameters.parameter[view].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getCollection].parameters.parameter[view].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[sorter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getPKList].parameters.parameter[sorter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[selector].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[getValue].parameters.parameter[selector].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updateBigObject].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].parameters.parameter[selector].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[updatePartial].parameters.parameter[selector].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].methods.method[update].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[head].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="头" />
+            <lang locale="zh_HK" value="頭" />
+            <lang locale="zh_TW" value="頭" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[head].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="头" />
+            <lang locale="zh_HK" value="頭" />
+            <lang locale="zh_TW" value="頭" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[orgUnit].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="组织" />
+            <lang locale="zh_HK" value="組織" />
+            <lang locale="zh_TW" value="組織" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[orgUnit].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="组织" />
+            <lang locale="zh_HK" value="組織" />
+            <lang locale="zh_TW" value="組織" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[person].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="人员" />
+            <lang locale="zh_HK" value="人員" />
+            <lang locale="zh_TW" value="人員" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[person].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="人员" />
+            <lang locale="zh_HK" value="人員" />
+            <lang locale="zh_TW" value="人員" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[sellProject].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="项目" />
+            <lang locale="zh_HK" value="項目" />
+            <lang locale="zh_TW" value="項目" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.linkProperty[sellProject].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="项目" />
+            <lang locale="zh_HK" value="項目" />
+            <lang locale="zh_TW" value="項目" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[contractArea].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="完成招商租赁合同面积" />
+            <lang locale="zh_HK" value="完成招商租賃合同面積" />
+            <lang locale="zh_TW" value="完成招商租賃合同面積" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[contractArea].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[contractArea].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="完成招商租赁合同面积" />
+            <lang locale="zh_HK" value="完成招商租賃合同面積" />
+            <lang locale="zh_TW" value="完成招商租賃合同面積" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[jl].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="正负激励" />
+            <lang locale="zh_HK" value="正負激勵" />
+            <lang locale="zh_TW" value="正負激勵" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[jl].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[jl].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="正负激励" />
+            <lang locale="zh_HK" value="正負激勵" />
+            <lang locale="zh_TW" value="正負激勵" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[monthArea].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度招商合同面积指标" />
+            <lang locale="zh_HK" value="月度招商合同面積指標" />
+            <lang locale="zh_TW" value="月度招商合同面積指標" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[monthArea].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[monthArea].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度招商合同面积指标" />
+            <lang locale="zh_HK" value="月度招商合同面積指標" />
+            <lang locale="zh_TW" value="月度招商合同面積指標" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[position].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="岗位" />
+            <lang locale="zh_HK" value="崗位" />
+            <lang locale="zh_TW" value="崗位" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[position].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[position].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="岗位" />
+            <lang locale="zh_HK" value="崗位" />
+            <lang locale="zh_TW" value="崗位" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[quitAmount].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="一年以内退租扣减佣金" />
+            <lang locale="zh_HK" value="一年以內退租扣減傭金" />
+            <lang locale="zh_TW" value="一年以內退租扣減傭金" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[quitAmount].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[quitAmount].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="一年以内退租扣减佣金" />
+            <lang locale="zh_HK" value="一年以內退租扣減傭金" />
+            <lang locale="zh_TW" value="一年以內退租扣減傭金" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[rate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度招商租赁指标完成率" />
+            <lang locale="zh_HK" value="月度招商租賃指標完成率" />
+            <lang locale="zh_TW" value="月度招商租賃指標完成率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[rate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[rate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="月度招商租赁指标完成率" />
+            <lang locale="zh_HK" value="月度招商租賃指標完成率" />
+            <lang locale="zh_TW" value="月度招商租賃指標完成率" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[remark].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[remark].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[remark].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[tc].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="个人提成" />
+            <lang locale="zh_HK" value="個人提成" />
+            <lang locale="zh_TW" value="個人提成" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[tc].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[tc].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="个人提成" />
+            <lang locale="zh_HK" value="個人提成" />
+            <lang locale="zh_TW" value="個人提成" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[xz].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="个人提成修正" />
+            <lang locale="zh_HK" value="個人提成修正" />
+            <lang locale="zh_TW" value="個人提成修正" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[xz].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[xz].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="个人提成修正" />
+            <lang locale="zh_HK" value="個人提成修正" />
+            <lang locale="zh_TW" value="個人提成修正" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yj].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="实发佣金" />
+            <lang locale="zh_HK" value="實發傭金" />
+            <lang locale="zh_TW" value="實發傭金" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yj].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yj].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="实发佣金" />
+            <lang locale="zh_HK" value="實發傭金" />
+            <lang locale="zh_TW" value="實發傭金" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[ylRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="年度预留" />
+            <lang locale="zh_HK" value="年度預留" />
+            <lang locale="zh_TW" value="年度預留" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[ylRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[ylRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="年度预留" />
+            <lang locale="zh_HK" value="年度預留" />
+            <lang locale="zh_TW" value="年度預留" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yl].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="年度预留" />
+            <lang locale="zh_HK" value="年度預留" />
+            <lang locale="zh_TW" value="年度預留" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yl].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[yl].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="年度预留" />
+            <lang locale="zh_HK" value="年度預留" />
+            <lang locale="zh_TW" value="年度預留" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcAmount].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="提成金额" />
+            <lang locale="zh_HK" value="提成金額" />
+            <lang locale="zh_TW" value="提成金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcAmount].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcAmount].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="提成金额" />
+            <lang locale="zh_HK" value="提成金額" />
+            <lang locale="zh_TW" value="提成金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcBaseAmount].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="提成基数" />
+            <lang locale="zh_HK" value="提成基數" />
+            <lang locale="zh_TW" value="提成基數" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcBaseAmount].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcBaseAmount].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="提成基数" />
+            <lang locale="zh_HK" value="提成基數" />
+            <lang locale="zh_TW" value="提成基數" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcCommissionRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="招商租赁佣金系数" />
+            <lang locale="zh_HK" value="招商租賃傭金係數" />
+            <lang locale="zh_TW" value="招商租賃傭金係數" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcCommissionRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcCommissionRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="招商租赁佣金系数 " />
+            <lang locale="zh_HK" value="招商租賃傭金係數 " />
+            <lang locale="zh_TW" value="招商租賃傭金係數 " />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="招商租赁个佣比例" />
+            <lang locale="zh_HK" value="招商租賃個傭比例" />
+            <lang locale="zh_TW" value="招商租賃個傭比例" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zcRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="招商租赁个佣比例" />
+            <lang locale="zh_HK" value="招商租賃個傭比例" />
+            <lang locale="zh_TW" value="招商租賃個傭比例" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjAmount].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="提成金额" />
+            <lang locale="zh_HK" value="提成金額" />
+            <lang locale="zh_TW" value="提成金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjAmount].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjAmount].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="提成金额 " />
+            <lang locale="zh_HK" value="提成金額 " />
+            <lang locale="zh_TW" value="提成金額 " />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjBaseAmount].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="实收金额提成基数" />
+            <lang locale="zh_HK" value="實收金額提成基數" />
+            <lang locale="zh_TW" value="實收金額提成基數" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjBaseAmount].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjBaseAmount].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="实收金额提成基数 " />
+            <lang locale="zh_HK" value="實收金額提成基數 " />
+            <lang locale="zh_TW" value="實收金額提成基數 " />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjCommissionRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租金收缴佣金系数" />
+            <lang locale="zh_HK" value="租金收繳傭金係數" />
+            <lang locale="zh_TW" value="租金收繳傭金係數" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjCommissionRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjCommissionRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租金收缴佣金系数 " />
+            <lang locale="zh_HK" value="租金收繳傭金係數 " />
+            <lang locale="zh_TW" value="租金收繳傭金係數 " />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjRate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租金收缴个佣比例" />
+            <lang locale="zh_HK" value="租金收繳個傭比例" />
+            <lang locale="zh_TW" value="租金收繳個傭比例" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjRate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.CommissionSettlementBillEntry].properties.ownProperty[zjRate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租金收缴个佣比例" />
+            <lang locale="zh_HK" value="租金收繳個傭比例" />
+            <lang locale="zh_TW" value="租金收繳個傭比例" />
+        </rs>
+    </resource>
+</entityObject>
+

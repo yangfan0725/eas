@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationship xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>R_WinInfo_WinSupplierEntry_winSupplierEntry</name>
+    <alias>relationship[com.kingdee.eas.fdc.invite.supplier.app.R_WinInfo_WinSupplierEntry_winSupplierEntry].alias</alias>
+    <description>relationship[com.kingdee.eas.fdc.invite.supplier.app.R_WinInfo_WinSupplierEntry_winSupplierEntry].description</description>
+    <userDefined>true</userDefined>
+    <type>Composition</type>
+    <clientCardinality>1</clientCardinality>
+    <supplierCardinality>0..*</supplierCardinality>
+    <xmlNodeRelationship />
+    <clientObject>
+        <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+        <key name="name" value="WinInfo" />
+    </clientObject>
+    <supplierObject>
+        <key name="package" value="com.kingdee.eas.fdc.invite.supplier.app" />
+        <key name="name" value="WinSupplierEntry" />
+    </supplierObject>
+    <resource>
+        <rs key="relationship[com.kingdee.eas.fdc.invite.supplier.app.R_WinInfo_WinSupplierEntry_winSupplierEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="中标供应商分录" />
+            <lang locale="zh_HK" value="中標供應商分錄" />
+            <lang locale="zh_TW" value="中標供應商分錄" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.invite.supplier.app.R_WinInfo_WinSupplierEntry_winSupplierEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="中标供应商分录" />
+            <lang locale="zh_HK" value="中標供應商分錄" />
+            <lang locale="zh_TW" value="中標供應商分錄" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.invite.supplier.app.R_WinInfo_WinSupplierEntry_winSupplierEntry].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</relationship>
+

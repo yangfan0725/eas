@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataTable xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.invite.supplier.app</package>
+    <name>T_GYS_UserSupplierAsso</name>
+    <alias>dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].alias</alias>
+    <description>dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].description</description>
+    <userDefined>true</userDefined>
+    <bizUnitPK />
+    <columns>
+        <column>
+            <name>FParentID</name>
+            <alias>dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FParentID].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FParentID].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>VARCHAR</sqlType>
+            <length>44</length>
+            <scale>0</scale>
+            <precision>0</precision>
+        </column>
+        <column>
+            <name>FSupplierID</name>
+            <alias>dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FSupplierID].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FSupplierID].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>VARCHAR</sqlType>
+            <length>44</length>
+            <scale>0</scale>
+            <precision>0</precision>
+        </column>
+        <column>
+            <name>FSeq</name>
+            <alias>dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FSeq].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FSeq].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>INT</sqlType>
+            <length>4</length>
+            <scale>0</scale>
+            <precision>4</precision>
+        </column>
+        <column>
+            <name>FID</name>
+            <alias>dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FID].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FID].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>false</isNullable>
+            <defaultValue>''</defaultValue>
+            <sqlType>VARCHAR</sqlType>
+            <length>44</length>
+            <scale>0</scale>
+            <precision>44</precision>
+        </column>
+    </columns>
+    <primaryKey>
+        <name>PK_UserSupplierAss</name>
+        <userDefined>true</userDefined>
+        <primaryKeyColumns>
+            <primaryKeyColumn>
+                <indexID>0</indexID>
+                <sortType>ASC</sortType>
+                <column>
+                    <key name="name" value="FID" />
+                </column>
+            </primaryKeyColumn>
+        </primaryKeyColumns>
+    </primaryKey>
+    <resource>
+        <rs key="dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="用户供应商关联" />
+            <lang locale="zh_HK" value="用戶供應商關聯" />
+            <lang locale="zh_TW" value="用戶供應商關聯" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FParentID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FParentID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="所属外网用户" />
+            <lang locale="zh_HK" value="所屬外網用戶" />
+            <lang locale="zh_TW" value="所屬外網用戶" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FSeq].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据分录序列号" />
+            <lang locale="zh_HK" value="單據分錄序列號" />
+            <lang locale="zh_TW" value="單據分錄序列號" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FSeq].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据分录序列号（定义为序列属性即使用{seq}）" />
+            <lang locale="zh_HK" value="單據分錄序列號（定義為序列屬性即使用{seq}）" />
+            <lang locale="zh_TW" value="單據分錄序列號（定義為序列屬性即使用{seq}）" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FSupplierID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].columns.column[FSupplierID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="供应商" />
+            <lang locale="zh_HK" value="供應商" />
+            <lang locale="zh_TW" value="供應商" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.invite.supplier.app.T_GYS_UserSupplierAsso].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="用户供应商关联" />
+            <lang locale="zh_HK" value="用戶供應商關聯" />
+            <lang locale="zh_TW" value="用戶供應商關聯" />
+        </rs>
+    </resource>
+</dataTable>
+

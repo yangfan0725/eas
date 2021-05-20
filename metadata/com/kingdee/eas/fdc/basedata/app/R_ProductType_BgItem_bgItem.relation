@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationship xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.basedata.app</package>
+    <name>R_ProductType_BgItem_bgItem</name>
+    <alias>relationship[com.kingdee.eas.fdc.basedata.app.R_ProductType_BgItem_bgItem].alias</alias>
+    <description>relationship[com.kingdee.eas.fdc.basedata.app.R_ProductType_BgItem_bgItem].description</description>
+    <userDefined>true</userDefined>
+    <type>Association</type>
+    <clientCardinality>0..*</clientCardinality>
+    <supplierCardinality>1</supplierCardinality>
+    <xmlNodeRelationship />
+    <clientObject>
+        <key name="package" value="com.kingdee.eas.fdc.basedata.app" />
+        <key name="name" value="ProductType" />
+    </clientObject>
+    <supplierObject>
+        <key name="package" value="com.kingdee.eas.ma.budget.app" />
+        <key name="name" value="BgItem" />
+    </supplierObject>
+    <resource>
+        <rs key="relationship[com.kingdee.eas.fdc.basedata.app.R_ProductType_BgItem_bgItem].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="对应预算科目" />
+            <lang locale="zh_HK" value="對應預算科目" />
+            <lang locale="zh_TW" value="對應預算科目" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.basedata.app.R_ProductType_BgItem_bgItem].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="对应预算科目" />
+            <lang locale="zh_HK" value="對應預算科目" />
+            <lang locale="zh_TW" value="對應預算科目" />
+        </rs>
+        <rs key="relationship[com.kingdee.eas.fdc.basedata.app.R_ProductType_BgItem_bgItem].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</relationship>
+
