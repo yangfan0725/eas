@@ -75,8 +75,12 @@ public class SaleScheduleReportFacadeControllerBean extends AbstractSaleSchedule
     	Date fromDate = (Date)params.getObject("fromDate");
     	Date toDate =   (Date)params.getObject("toDate");
     	String orgUnit=params.getString("orgUnit");
+    	
+    	RptRowSet roomRS = executeQuery(getRoom(orgUnit), null, ctx);
+		params.setObject("roomRS", roomRS);
+		
 		RptRowSet signRS = executeQuery(getBaseTransaction(orgUnit,fromDate,toDate), null, ctx);
-		params.setObject("signRs", signRS);
+		params.setObject("signRS", signRS);
 		
 		RptRowSet onLoadRS = executeQuery(getOnLoadBaseTransaction(orgUnit,fromDate,toDate), null, ctx);
 		params.setObject("onLoadRS", onLoadRS);
@@ -88,10 +92,22 @@ public class SaleScheduleReportFacadeControllerBean extends AbstractSaleSchedule
 		params.setObject("revRS", revRS);
 		return params;
     }
+    private String getRoom(String orgUnit){
+    	StringBuffer sb=new StringBuffer();
+    	sb.append(" select org.fid orgId,org.fname_l2 company,org.fnumber number ");
+    	sb.append(" from t_she_room r left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid");
+    	sb.append(" left join t_org_baseUnit org on s.forgUnitid=org.fid where r.fisforten=0");
+    	if(orgUnit!=null){
+			sb.append(" and org.fid in("+orgUnit+")");
+		}
+    	sb.append("  group by org.fid,org.fname_l2,org.fnumber order by org.fnumber");
+    	System.err.println(sb.toString());
+    	return sb.toString();
+    }
     private String getBaseTransaction(String orgUnit,Date fromDate,Date toDate){
     	StringBuffer sb=new StringBuffer();
     	sb.append(" select t.orgId,t.number,t.company,max(case t.name when 'month' then round(t.amount,2) else 0 end)/10000 monthAmount,max(case t.name when 'year' then round(t.amount,2) else 0 end)/10000 yearAmount");
-    	sb.append(" from (select 'month' name,org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(sign.fcontractTotalAmount+isnull(sign.FAreaCompensate,0)+isnull(sign.FPlanningCompensate,0)+isnull(sign.FCashSalesCompensate,0)) amount from t_she_signManage sign left join t_org_baseUnit org on org.fid=sign.forgUnitId where sign.fbizState in('ChangeNameAuditing','QuitRoomAuditing','ChangeRoomAuditing','SignApple','SignAudit')");
+    	sb.append(" from (select 'month' name,org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(sign.fsellAmount) amount from t_she_signManage sign left join t_she_room r on sign.froomid=r.fid left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid left join t_org_baseUnit org on org.fid=s.forgUnitId where sign.fbizState in('ChangeNameAuditing','QuitRoomAuditing','ChangeRoomAuditing','SignApple','SignAudit')");
     	sb.append(" and NOT EXISTS (select tt.fnewId from t_she_changeManage tt where tt.fstate in('2SUBMITTED','3AUDITTING') and sign.fid=tt.fnewId )");
     	if(fromDate!=null){
 			sb.append(" and sign.fbusAdscriptionDate>={ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(fromDate))+ "'}");
@@ -106,7 +122,7 @@ public class SaleScheduleReportFacadeControllerBean extends AbstractSaleSchedule
     	
     	sb.append(" union all");
     	
-    	sb.append(" select 'year' name,org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(sign.fcontractTotalAmount+isnull(sign.FAreaCompensate,0)+isnull(sign.FPlanningCompensate,0)+isnull(sign.FCashSalesCompensate,0)) amount from t_she_signManage sign left join t_org_baseUnit org on org.fid=sign.forgUnitId where sign.fbizState in('ChangeNameAuditing','QuitRoomAuditing','ChangeRoomAuditing','SignApple','SignAudit')");
+    	sb.append(" select 'year' name,org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(sign.fsellAmount) amount from t_she_signManage sign left join t_she_room r on sign.froomid=r.fid left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid left join t_org_baseUnit org on org.fid=s.forgUnitId where sign.fbizState in('ChangeNameAuditing','QuitRoomAuditing','ChangeRoomAuditing','SignApple','SignAudit')");
     	sb.append(" and NOT EXISTS (select tt.fnewId from t_she_changeManage tt where tt.fstate in('2SUBMITTED','3AUDITTING') and sign.fid=tt.fnewId )");
     	if(toDate!=null){
 			sb.append(" and sign.fbusAdscriptionDate>={ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(FDCDateHelper.getFirstYearDate(toDate)))+ "'}");
@@ -121,7 +137,7 @@ public class SaleScheduleReportFacadeControllerBean extends AbstractSaleSchedule
     }
     private String getOnLoadBaseTransaction(String orgUnit,Date fromDate,Date toDate){
     	StringBuffer sb=new StringBuffer();
-    	sb.append(" select org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(sign.fcontractTotalAmount+isnull(sign.FAreaCompensate,0)+isnull(sign.FPlanningCompensate,0)+isnull(sign.FCashSalesCompensate,0)-isnull(revBill.amount,0))/10000 amount from t_she_signManage sign left join t_org_baseUnit org on org.fid=sign.forgUnitId");
+    	sb.append(" select org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(sign.fcontractTotalAmount+isnull(sign.FAreaCompensate,0)+isnull(sign.FPlanningCompensate,0)+isnull(sign.FCashSalesCompensate,0)-isnull(revBill.amount,0))/10000 amount from t_she_signManage sign left join t_she_room r on sign.froomid=r.fid left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid left join t_org_baseUnit org on org.fid=s.forgUnitId");
     	sb.append(" left join (select sum(isnull(entry.famount,0)+isnull(entry.frevAmount,0)) amount,revBill.frelateTransId billId from T_BDC_SHERevBill revBill left join T_BDC_SHERevBillEntry entry on entry.fparentid=revBill.fid left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId");
     	sb.append(" where 1=1");
 //    	if(fromDate!=null){
@@ -149,7 +165,7 @@ public class SaleScheduleReportFacadeControllerBean extends AbstractSaleSchedule
     }
     private String getOnLoadBaseTransactionUnLoan(String orgUnit,Date fromDate,Date toDate){
     	StringBuffer sb=new StringBuffer();
-    	sb.append(" select org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(sign.fcontractTotalAmount+isnull(sign.FAreaCompensate,0)+isnull(sign.FPlanningCompensate,0)+isnull(sign.FCashSalesCompensate,0)-isnull(revBill.amount,0))/10000 amount from t_she_signManage sign left join t_org_baseUnit org on org.fid=sign.forgUnitId");
+    	sb.append(" select org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(sign.fcontractTotalAmount+isnull(sign.FAreaCompensate,0)+isnull(sign.FPlanningCompensate,0)+isnull(sign.FCashSalesCompensate,0)-isnull(revBill.amount,0))/10000 amount from t_she_signManage sign left join t_she_room r on sign.froomid=r.fid left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid left join t_org_baseUnit org on org.fid=s.forgUnitId");
     	sb.append(" left join (select sum(isnull(entry.famount,0)+isnull(entry.frevAmount,0)) amount,revBill.frelateTransId billId from T_BDC_SHERevBill revBill left join T_BDC_SHERevBillEntry entry on entry.fparentid=revBill.fid left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId");
     	sb.append(" where 1=1");
 //    	if(fromDate!=null){
@@ -177,9 +193,9 @@ public class SaleScheduleReportFacadeControllerBean extends AbstractSaleSchedule
     }
     private String getSheRevBill(String orgUnit,Date fromDate,Date toDate){
     	StringBuffer sb=new StringBuffer();
-    	sb.append(" select t.orgId,t.number,t.company,max(case t.name when 'month' then round(t.amount,2) else 0 end)/10000 monthAmount,max(case t.name when 'year' then round(t.amount,2) else 0 end)/10000 yearAmount");
+    	sb.append(" select t.orgId,t.number,t.company,sum(case t.name when 'month' then round(t.amount,2) else 0 end)/10000 monthAmount,sum(case t.name when 'year' then round(t.amount,2) else 0 end)/10000 yearAmount");
     	sb.append(" from (select 'month' name,org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(isnull(entry.fAmount,0)+isnull(entry.frevAmount,0)) amount from T_BDC_SHERevBillEntry entry left join T_BDC_SHERevBill revBill on revBill.fid=entry.fparentid");
-    	sb.append(" left join t_org_baseUnit org on org.fid=revBill.fsaleOrgUnitId left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId ");
+    	sb.append(" left join t_she_room r on revBill.froomid=r.fid left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid left join t_org_baseUnit org on org.fid=s.forgUnitId left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId ");
     	sb.append(" where revBill.fstate in('2SUBMITTED','4AUDITTED') and md.fmoneyType in('FisrtAmount','HouseAmount','LoanAmount','AccFundAmount')");
 		if(fromDate!=null){
 			sb.append(" and revBill.fbizDate>={ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(fromDate))+ "'}");
@@ -195,7 +211,7 @@ public class SaleScheduleReportFacadeControllerBean extends AbstractSaleSchedule
     	sb.append(" union all");
     	
     	sb.append(" select 'year' name,org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(isnull(entry.fAmount,0)+isnull(entry.frevAmount,0)) amount from T_BDC_SHERevBillEntry entry left join T_BDC_SHERevBill revBill on revBill.fid=entry.fparentid");
-    	sb.append(" left join t_org_baseUnit org on org.fid=revBill.fsaleOrgUnitId left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId ");
+    	sb.append(" left join t_she_room r on revBill.froomid=r.fid left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid left join t_org_baseUnit org on org.fid=s.forgUnitId left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId ");
     	sb.append(" where revBill.fstate in('2SUBMITTED','4AUDITTED') and md.fmoneyType in('FisrtAmount','HouseAmount','LoanAmount','AccFundAmount')");
 		if(toDate!=null){
 			sb.append(" and revBill.fbizDate>={ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(FDCDateHelper.getFirstYearDate(toDate)))+ "'}");

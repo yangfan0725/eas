@@ -55,6 +55,7 @@ import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
 import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
+import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
 import com.kingdee.eas.fdc.sellhouse.client.AccountReportUI;
 import com.kingdee.eas.fdc.sellhouse.client.FDCTreeHelper;
@@ -139,11 +140,13 @@ public class SaleScheduleReportUI extends AbstractSaleScheduleReportUI
                      RptTableHeader header = (RptTableHeader)rpt.getObject("header");
                      KDTableUtil.setHeader(header, tblMain);
                      
-                     RptRowSet signRs = (RptRowSet)((RptParams)result).getObject("signRs");
+                     RptRowSet roomRS = (RptRowSet)((RptParams)result).getObject("roomRS");
+                     RptRowSet signRS = (RptRowSet)((RptParams)result).getObject("signRS");
                      RptRowSet onLoadRS = (RptRowSet)((RptParams)result).getObject("onLoadRS");
                      RptRowSet onLoadRSUnLoan = (RptRowSet)((RptParams)result).getObject("onLoadRSUnLoan");
                      RptRowSet revRS = (RptRowSet)((RptParams)result).getObject("revRS");
                      
+                     Map signMap=new HashMap();
                      Map revMap=new HashMap();
                      Map onLoadMap=new HashMap();
                      Map onLoadUnLoanMap=new HashMap();
@@ -152,6 +155,7 @@ public class SaleScheduleReportUI extends AbstractSaleScheduleReportUI
                      IRow totoalRevRow=null;
                      IRow totoalOnLoadRow=null;
                      IRow totoalOnLoadRowUnLoan=null;
+                     
                      BigDecimal totalSignMonthAmount=FDCHelper.ZERO;
                      BigDecimal totalSignYearAmount=FDCHelper.ZERO;
                      
@@ -200,63 +204,72 @@ public class SaleScheduleReportUI extends AbstractSaleScheduleReportUI
              				totoalOnLoadRowUnLoan.getCell("yearAct").getStyleAttributes().setFontColor(Color.BLUE);
              			}
              		 }
-                     while(signRs.next()){
-                    	 IRow row=tblMain.addRow();
-                    	 row.getCell("orgId").setValue(signRs.getString("orgId"));
-                    	 row.getCell("company").setValue(signRs.getString("company"));
-                    	 row.getCell("type").setValue("销售收入");
-                    	 row.getCell("act").setValue(signRs.getBigDecimal("monthAmount"));
-                    	 row.getCell("act").getStyleAttributes().setFontColor(Color.BLUE);
-                    	 row.getCell("yearAct").setValue(signRs.getBigDecimal("yearAmount"));
-                    	 row.getCell("yearAct").getStyleAttributes().setFontColor(Color.BLUE);
-                    	 
-                    	 totalSignMonthAmount=FDCHelper.add(totalSignMonthAmount, signRs.getBigDecimal("monthAmount"));
-                    	 totalSignYearAmount=FDCHelper.add(totalSignYearAmount, signRs.getBigDecimal("yearAmount"));
-                    	 
-                    	 row=tblMain.addRow();
-                    	 row.getCell("orgId").setValue(signRs.getString("orgId"));
-                    	 row.getCell("company").setValue(signRs.getString("company"));
-                    	 row.getCell("type").setValue("回笼资金");
-                    	 row.getCell("act").setValue(FDCHelper.ZERO);
-                    	 row.getCell("act").getStyleAttributes().setFontColor(Color.BLUE);
-                    	 row.getCell("yearAct").setValue(FDCHelper.ZERO);
-                    	 row.getCell("yearAct").getStyleAttributes().setFontColor(Color.BLUE);
-                    	 
-                    	 revMap.put(signRs.getString("company"), row);
-                    	 
-                    	 row=tblMain.addRow();
-                    	 row.getCell("company").setValue(signRs.getString("company"));
-                    	 row.getCell("type").setValue("营销费用（发生额）");
-                    	 
-                    	 row=tblMain.addRow();
-                    	 row.getCell("company").setValue(signRs.getString("company"));
-                    	 row.getCell("type").setValue("费效比");
-                    	 
-                    	 row=tblMain.addRow();
-                    	 row.getCell("orgId").setValue(signRs.getString("orgId"));
-                    	 row.getCell("company").setValue(signRs.getString("company"));
-                    	 row.getCell("type").setValue("在途资金（按揭类）");
-                    	 row.getCell("act").setValue(FDCHelper.ZERO);
-                    	 row.getCell("yearAct").setValue(FDCHelper.ZERO);
-                    	 row.getCell("act").getStyleAttributes().setFontColor(Color.BLUE);
-                    	 row.getCell("yearAct").getStyleAttributes().setFontColor(Color.BLUE);
-                    	 
-                    	 onLoadMap.put(signRs.getString("company"), row);
-                    	 
-                    	 row=tblMain.addRow();
-                    	 row.getCell("orgId").setValue(signRs.getString("orgId"));
-                    	 row.getCell("company").setValue(signRs.getString("company"));
-                    	 row.getCell("type").setValue("在途资金（非按揭类）");
-                    	 row.getCell("act").setValue(FDCHelper.ZERO);
-                    	 row.getCell("yearAct").setValue(FDCHelper.ZERO);
-                    	 row.getCell("act").getStyleAttributes().setFontColor(Color.BLUE);
-                    	 row.getCell("yearAct").getStyleAttributes().setFontColor(Color.BLUE);
-                    	 
-                    	 onLoadUnLoanMap.put(signRs.getString("company"), row);
+             		 while(roomRS.next()){
+	                   	 IRow row=tblMain.addRow();
+	                   	 row.getCell("orgId").setValue(roomRS.getString("orgId"));
+	                   	 row.getCell("company").setValue(roomRS.getString("company"));
+	                   	 row.getCell("type").setValue("销售收入");
+	                   	 row.getCell("act").setValue(FDCHelper.ZERO);
+	                   	 row.getCell("yearAct").setValue(FDCHelper.ZERO);
+	                   	 row.getCell("act").getStyleAttributes().setFontColor(Color.BLUE);
+	                   	 row.getCell("yearAct").getStyleAttributes().setFontColor(Color.BLUE);
+	                   	 
+	                   	 signMap.put(roomRS.getString("orgId"), row);
+	                   	 
+	                   	 row=tblMain.addRow();
+	                   	 row.getCell("orgId").setValue(roomRS.getString("orgId"));
+	                   	 row.getCell("company").setValue(roomRS.getString("company"));
+	                   	 row.getCell("type").setValue("回笼资金");
+	                   	 row.getCell("act").setValue(FDCHelper.ZERO);
+	                   	 row.getCell("yearAct").setValue(FDCHelper.ZERO);
+	                   	 row.getCell("act").getStyleAttributes().setFontColor(Color.BLUE);
+	                   	 row.getCell("yearAct").getStyleAttributes().setFontColor(Color.BLUE);
+	                   	 
+	                   	 revMap.put(roomRS.getString("orgId"), row);
+	                   	 
+	                   	 row=tblMain.addRow();
+	                   	 row.getCell("company").setValue(roomRS.getString("company"));
+	                   	 row.getCell("type").setValue("营销费用（发生额）");
+	                   	 
+	                   	 row=tblMain.addRow();
+	                   	 row.getCell("company").setValue(roomRS.getString("company"));
+	                   	 row.getCell("type").setValue("费效比");
+	                   	 
+	                   	 row=tblMain.addRow();
+	                   	 row.getCell("orgId").setValue(roomRS.getString("orgId"));
+	                   	 row.getCell("company").setValue(roomRS.getString("company"));
+	                   	 row.getCell("type").setValue("在途资金（按揭类）");
+	                   	 row.getCell("act").setValue(FDCHelper.ZERO);
+	                   	 row.getCell("yearAct").setValue(FDCHelper.ZERO);
+	                   	 row.getCell("act").getStyleAttributes().setFontColor(Color.BLUE);
+	                   	 row.getCell("yearAct").getStyleAttributes().setFontColor(Color.BLUE);
+	                   	 
+	                   	 onLoadMap.put(roomRS.getString("orgId"), row);
+	                   	 
+	                   	 row=tblMain.addRow();
+	                   	 row.getCell("orgId").setValue(roomRS.getString("orgId"));
+	                   	 row.getCell("company").setValue(roomRS.getString("company"));
+	                   	 row.getCell("type").setValue("在途资金（非按揭类）");
+	                   	 row.getCell("act").setValue(FDCHelper.ZERO);
+	                   	 row.getCell("yearAct").setValue(FDCHelper.ZERO);
+	                   	 row.getCell("act").getStyleAttributes().setFontColor(Color.BLUE);
+	                   	 row.getCell("yearAct").getStyleAttributes().setFontColor(Color.BLUE);
+	                   	 
+	                   	 onLoadUnLoanMap.put(roomRS.getString("orgId"), row);
+	               	 }
+                     while(signRS.next()){
+                    	 if(signMap.containsKey(signRS.getString("orgId"))){
+                			 IRow row=(IRow) signMap.get(signRS.getString("orgId"));
+                        	 row.getCell("act").setValue(signRS.getBigDecimal("monthAmount"));
+                        	 row.getCell("yearAct").setValue(signRS.getBigDecimal("yearAmount"));
+                        	 
+                             totalSignMonthAmount=FDCHelper.add(totalSignMonthAmount, signRS.getBigDecimal("monthAmount"));
+                             totalSignYearAmount=FDCHelper.add(totalSignYearAmount, signRS.getBigDecimal("yearAmount"));
+                		 }
                 	 }
                      while(revRS.next()){
-                		 if(revMap.containsKey(revRS.getString("company"))){
-                			 IRow row=(IRow) revMap.get(revRS.getString("company"));
+                		 if(revMap.containsKey(revRS.getString("orgId"))){
+                			 IRow row=(IRow) revMap.get(revRS.getString("orgId"));
                         	 row.getCell("act").setValue(revRS.getBigDecimal("monthAmount"));
                         	 row.getCell("yearAct").setValue(revRS.getBigDecimal("yearAmount"));
                         	 
@@ -265,8 +278,8 @@ public class SaleScheduleReportUI extends AbstractSaleScheduleReportUI
                 		 }
                 	 }
                      while(onLoadRS.next()){
-                    	 if(onLoadMap.containsKey(onLoadRS.getString("company"))){
-                			 IRow row=(IRow) onLoadMap.get(onLoadRS.getString("company"));
+                    	 if(onLoadMap.containsKey(onLoadRS.getString("orgId"))){
+                			 IRow row=(IRow) onLoadMap.get(onLoadRS.getString("orgId"));
                         	 row.getCell("act").setValue(onLoadRS.getBigDecimal("amount"));
                         	 row.getCell("yearAct").setValue(onLoadRS.getBigDecimal("amount"));
                         	 
@@ -275,8 +288,8 @@ public class SaleScheduleReportUI extends AbstractSaleScheduleReportUI
                 		 }
                 	 }
                      while(onLoadRSUnLoan.next()){
-                    	 if(onLoadUnLoanMap.containsKey(onLoadRSUnLoan.getString("company"))){
-                			 IRow row=(IRow) onLoadUnLoanMap.get(onLoadRSUnLoan.getString("company"));
+                    	 if(onLoadUnLoanMap.containsKey(onLoadRSUnLoan.getString("orgId"))){
+                			 IRow row=(IRow) onLoadUnLoanMap.get(onLoadRSUnLoan.getString("orgId"));
                         	 row.getCell("act").setValue(onLoadRSUnLoan.getBigDecimal("amount"));
                         	 row.getCell("yearAct").setValue(onLoadRSUnLoan.getBigDecimal("amount"));
                         	 
@@ -302,7 +315,7 @@ public class SaleScheduleReportUI extends AbstractSaleScheduleReportUI
                     	 totoalOnLoadRowUnLoan.getCell("yearAct").setValue(totalOnLoadYearAmountUnLoan);
                      }
          	         tblMain.setRefresh(true);
-         	         if(signRs.getRowCount() > 0){
+         	         if(roomRS.getRowCount() > 0){
          	        	tblMain.reLayoutAndPaint();
          	         }else{
          	        	tblMain.repaint();
@@ -362,9 +375,7 @@ public class SaleScheduleReportUI extends AbstractSaleScheduleReportUI
 	protected void tblMain_tableClicked(KDTMouseEvent e) throws Exception {
 		if (e.getType() == KDTStyleConstants.BODY_ROW && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2) {
 			Object value=this.tblMain.getRow(e.getRowIndex()).getCell(e.getColIndex()).getValue();
-			if(value==null
-					||(value!=null&&value instanceof BigDecimal
-							&&((BigDecimal)value).compareTo(FDCHelper.ZERO)<=0)){
+			if(value==null){
 				return;
 			}
 			String orgId=(String)this.tblMain.getRow(e.getRowIndex()).getCell("orgId").getValue();
@@ -436,7 +447,7 @@ public class SaleScheduleReportUI extends AbstractSaleScheduleReportUI
 		StringBuilder sb = new StringBuilder();
 		
     	sb.append(" select entry.fid id from T_BDC_SHERevBillEntry entry left join T_BDC_SHERevBill revBill on revBill.fid=entry.fparentid");
-    	sb.append(" left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId ");
+    	sb.append(" left join t_she_room r on revBill.froomid=r.fid left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid left join t_org_baseUnit org on org.fid=s.forgUnitId left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId ");
     	sb.append(" where revBill.fstate in('2SUBMITTED','4AUDITTED') and md.fmoneyType in('FisrtAmount','HouseAmount','LoanAmount','AccFundAmount')");
     	if(type==0){
     		if(fromDate!=null){
@@ -452,7 +463,9 @@ public class SaleScheduleReportUI extends AbstractSaleScheduleReportUI
     		}
     	}
     	if(orgId!=null){
-			sb.append(" and revBill.fsaleOrgUnitId = '"+orgId+"'");
+			sb.append(" and org.fid = '"+orgId+"'");
+		}else{
+			sb.append(" and org.fid in("+params.getString("orgUnit")+")");
 		}
 		FDCSQLBuilder _builder = new FDCSQLBuilder();
 		_builder.appendSql(sb.toString());

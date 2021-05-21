@@ -433,6 +433,10 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         for(int i =0;i<size;i++){
         	r = table.getRow(i);
         	mcEntry = (MarketingCommissionEntryInfo) r.getUserObject();
+        	if(mcEntry==null){
+        		FDCMsgBox.showWarning("请先提取数据！");
+	    		abort();
+        	}
         	mcEntry.setParent(editData);
         	mcEntry.setBonusType(type);
         	if(table.equals(tblQdM)){
