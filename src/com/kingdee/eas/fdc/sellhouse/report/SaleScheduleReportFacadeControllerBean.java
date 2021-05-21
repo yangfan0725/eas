@@ -96,7 +96,7 @@ public class SaleScheduleReportFacadeControllerBean extends AbstractSaleSchedule
     	StringBuffer sb=new StringBuffer();
     	sb.append(" select org.fid orgId,org.fname_l2 company,org.fnumber number ");
     	sb.append(" from t_she_room r left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid");
-    	sb.append(" left join t_org_baseUnit org on s.forgUnitid=org.fid where r.fisforten=0");
+    	sb.append(" left join t_org_baseUnit org on s.forgUnitid=org.fid where 1=1");
     	if(orgUnit!=null){
 			sb.append(" and org.fid in("+orgUnit+")");
 		}

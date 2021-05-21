@@ -86,7 +86,7 @@ public class SaleBackReportFacadeControllerBean extends AbstractSaleBackReportFa
     	StringBuffer sb=new StringBuffer();
     	sb.append(" select s.fid id,s.fnumber number,s.fname_l2 name,count(r.fid) amount");
     	sb.append(" from t_she_room r left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid");
-    	sb.append(" where r.fisforten=0 group by s.fid,s.fnumber,s.fname_l2 order by s.fnumber");
+    	sb.append(" where 1=1 group by s.fid,s.fnumber,s.fname_l2 order by s.fnumber");
     	return sb.toString();
     }
     
