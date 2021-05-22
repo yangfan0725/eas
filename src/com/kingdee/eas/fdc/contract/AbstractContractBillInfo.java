@@ -1200,6 +1200,17 @@ public class AbstractContractBillInfo extends com.kingdee.eas.fdc.basedata.FDCBi
     {
         setString("oaPosition", item);
     }
+    /**
+     * Object:合同单据's 审批意见property 
+     */
+    public String getOaOpinion()
+    {
+        return getString("oaOpinion");
+    }
+    public void setOaOpinion(String item)
+    {
+        setString("oaOpinion", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("0D6DD1F4");

@@ -378,6 +378,9 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
     	sic.add("CU.*");
     	sic.add("state");
     	sic.add("source");
+    	sic.add("sourceFunction");
+    	sic.add("oaPosition");
+    	sic.add("oaOpinion");
     	return sic;
     }
 	
@@ -389,30 +392,41 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 		this.storeFields();
 		this.verifyInputForSubmint();
 		UserInfo u=SysContext.getSysContext().getCurrentUserInfo();
-		if(this.editData.getSourceFunction()==null&&u.getPerson()!=null&&!isBillInWorkflow(this.editData.getId().toString())){
-			this.editData.setOaPosition(null);
-			Map map=ContractBillFactory.getRemoteInstance().getOAPosition(u.getNumber());
-			if(map.size()>1){
-				UIContext uiContext = new UIContext(this);
-				uiContext.put("map", map);
-				uiContext.put("editData", this.editData);
-		        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
-		        IUIWindow uiWindow = uiFactory.create(OaPositionUI.class.getName(), uiContext,null,OprtState.VIEW);
-		        uiWindow.show();
-		        if(this.editData.getOaPosition()==null){
-		        	return;
-		        }
-			}else if(map.size()==1){
-				Iterator<Entry<String, String>> entries = map.entrySet().iterator();
-				while(entries.hasNext()){
-					Entry<String, String> entry = entries.next();
-				    String key = entry.getKey();
-				    String value = entry.getValue();
-				    this.editData.setOaPosition(key+":"+value);
+		if(u.getPerson()!=null&&!isBillInWorkflow(this.editData.getId().toString())){
+			if(this.editData.getSourceFunction()==null){
+				this.editData.setOaPosition(null);
+				Map map=ContractBillFactory.getRemoteInstance().getOAPosition(u.getNumber());
+				if(map.size()>1){
+					UIContext uiContext = new UIContext(this);
+					uiContext.put("map", map);
+					uiContext.put("editData", this.editData);
+			        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
+			        IUIWindow uiWindow = uiFactory.create(OaPositionUI.class.getName(), uiContext,null,OprtState.VIEW);
+			        uiWindow.show();
+			        if(this.editData.getOaPosition()==null){
+			        	return;
+			        }
+				}else if(map.size()==1){
+					Iterator<Entry<String, String>> entries = map.entrySet().iterator();
+					while(entries.hasNext()){
+						Entry<String, String> entry = entries.next();
+					    String key = entry.getKey();
+					    String value = entry.getValue();
+					    this.editData.setOaPosition(key+":"+value);
+					}
+				}else{
+					FDCMsgBox.showWarning(this,"获取OA身份失败！");
+		    		return;
 				}
 			}else{
-				FDCMsgBox.showWarning(this,"获取OA身份失败！");
-	    		return;
+				UIContext uiContext = new UIContext(this);
+				uiContext.put("editData", this.editData);
+		        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
+		        IUIWindow uiWindow = uiFactory.create(OaOpinionUI.class.getName(), uiContext,null,OprtState.VIEW);
+		        uiWindow.show();
+		        if(this.editData.getOaOpinion()==null){
+		        	return;
+		        }
 			}
 		}
 		super.actionSubmit_actionPerformed(e);

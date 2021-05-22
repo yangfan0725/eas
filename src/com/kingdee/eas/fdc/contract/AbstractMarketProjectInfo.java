@@ -133,6 +133,17 @@ public class AbstractMarketProjectInfo extends com.kingdee.eas.fdc.basedata.FDCB
     {
         setString("oaPosition", item);
     }
+    /**
+     * Object:营销立项's 审批意见property 
+     */
+    public String getOaOpinion()
+    {
+        return getString("oaOpinion");
+    }
+    public void setOaOpinion(String item)
+    {
+        setString("oaOpinion", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("82E888E2");

@@ -255,6 +255,7 @@ public class ChangeAuditBillControllerBean extends AbstractChangeAuditBillContro
 				if(info.getSourceFunction()!=null){
 					call.setOperationName("updatetestEkpReview");
 					json.put("id", info.getSourceFunction());
+					json.put("flowParam", info.getOaOpinion());
 				}else{
 					call.setOperationName("addtestEkpReview");
 					json.put("id", info.getId().toString());

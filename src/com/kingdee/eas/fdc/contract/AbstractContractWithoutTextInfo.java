@@ -608,6 +608,17 @@ public class AbstractContractWithoutTextInfo extends com.kingdee.eas.fdc.basedat
         setString("orgType", item.getValue());
 		}
     }
+    /**
+     * Object:无文本合同's 审批意见property 
+     */
+    public String getOaOpinion()
+    {
+        return getString("oaOpinion");
+    }
+    public void setOaOpinion(String item)
+    {
+        setString("oaOpinion", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("3D9A5388");

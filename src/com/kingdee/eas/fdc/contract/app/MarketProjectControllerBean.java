@@ -125,6 +125,7 @@ public class MarketProjectControllerBean extends AbstractMarketProjectController
 				if(info.getSourceFunction()!=null){
 					call.setOperationName("updatetestEkpReview");
 					json.put("id", info.getSourceFunction());
+					json.put("flowParam", info.getOaOpinion());
 				}else{
 					call.setOperationName("addtestEkpReview");
 					json.put("id", info.getId().toString());

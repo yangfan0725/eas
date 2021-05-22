@@ -515,6 +515,17 @@ public class AbstractChangeAuditBillInfo extends com.kingdee.eas.fdc.basedata.FD
     {
         setString("oaPosition", item);
     }
+    /**
+     * Object:变更审批单's 审批意见property 
+     */
+    public String getOaOpinion()
+    {
+        return getString("oaOpinion");
+    }
+    public void setOaOpinion(String item)
+    {
+        setString("oaOpinion", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("70116117");

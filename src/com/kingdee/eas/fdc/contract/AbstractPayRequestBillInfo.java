@@ -1110,6 +1110,17 @@ public class AbstractPayRequestBillInfo extends com.kingdee.eas.fdc.basedata.FDC
     {
         setBoolean("isCreatePay", item);
     }
+    /**
+     * Object:付款申请单's 审批意见property 
+     */
+    public String getOaOpinion()
+    {
+        return getString("oaOpinion");
+    }
+    public void setOaOpinion(String item)
+    {
+        setString("oaOpinion", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("C9A5A869");

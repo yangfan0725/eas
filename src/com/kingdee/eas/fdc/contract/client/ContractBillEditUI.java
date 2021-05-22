@@ -3597,6 +3597,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		sic.add(new SelectorItemInfo("taEntry.parent.*"));
 		sic.add(new SelectorItemInfo("sourceFunction"));
 		sic.add(new SelectorItemInfo("oaPosition"));
+		sic.add(new SelectorItemInfo("oaOpinion"));
 		return sic;
 	}
 
@@ -6096,30 +6097,41 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		this.verifyInputForSubmint();
 		UserInfo u=SysContext.getSysContext().getCurrentUserInfo();
 		CurProjectInfo project=CurProjectFactory.getRemoteInstance().getCurProjectInfo(new ObjectUuidPK(this.editData.getCurProject().getId()));
-		if(project.isIsOA()&&this.editData.getSourceFunction()==null&&u.getPerson()!=null&&!isBillInWorkflow(this.editData.getId().toString())){
-			this.editData.setOaPosition(null);
-			Map map=ContractBillFactory.getRemoteInstance().getOAPosition(u.getNumber());
-			if(map.size()>1){
-				UIContext uiContext = new UIContext(this);
-				uiContext.put("map", map);
-				uiContext.put("editData", this.editData);
-		        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
-		        IUIWindow uiWindow = uiFactory.create(OaPositionUI.class.getName(), uiContext,null,OprtState.VIEW);
-		        uiWindow.show();
-		        if(this.editData.getOaPosition()==null){
-		        	return;
-		        }
-			}else if(map.size()==1){
-				Iterator<Entry<String, String>> entries = map.entrySet().iterator();
-				while(entries.hasNext()){
-					Entry<String, String> entry = entries.next();
-				    String key = entry.getKey();
-				    String value = entry.getValue();
-				    this.editData.setOaPosition(key+":"+value);
+		if(project.isIsOA()&&u.getPerson()!=null&&!isBillInWorkflow(this.editData.getId().toString())){
+			if(this.editData.getSourceFunction()==null){
+				this.editData.setOaPosition(null);
+				Map map=ContractBillFactory.getRemoteInstance().getOAPosition(u.getNumber());
+				if(map.size()>1){
+					UIContext uiContext = new UIContext(this);
+					uiContext.put("map", map);
+					uiContext.put("editData", this.editData);
+			        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
+			        IUIWindow uiWindow = uiFactory.create(OaPositionUI.class.getName(), uiContext,null,OprtState.VIEW);
+			        uiWindow.show();
+			        if(this.editData.getOaPosition()==null){
+			        	return;
+			        }
+				}else if(map.size()==1){
+					Iterator<Entry<String, String>> entries = map.entrySet().iterator();
+					while(entries.hasNext()){
+						Entry<String, String> entry = entries.next();
+					    String key = entry.getKey();
+					    String value = entry.getValue();
+					    this.editData.setOaPosition(key+":"+value);
+					}
+				}else{
+					FDCMsgBox.showWarning(this,"获取OA身份失败！");
+		    		return;
 				}
 			}else{
-				FDCMsgBox.showWarning(this,"获取OA身份失败！");
-	    		return;
+				UIContext uiContext = new UIContext(this);
+				uiContext.put("editData", this.editData);
+		        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
+		        IUIWindow uiWindow = uiFactory.create(OaOpinionUI.class.getName(), uiContext,null,OprtState.VIEW);
+		        uiWindow.show();
+		        if(this.editData.getOaOpinion()==null){
+		        	return;
+		        }
 			}
 		}
 		// 保存前反写所关联的框架合约“是否引用”字段
