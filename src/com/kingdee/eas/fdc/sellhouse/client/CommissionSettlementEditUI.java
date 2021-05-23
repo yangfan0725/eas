@@ -391,6 +391,15 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
     /**
      * output storeFields method
      */
+	private void checkTable(KDTable table){
+		for(int i=0;i<table.getRowCount();i++){
+			MarketingCommissionEntryInfo mcEntry = (MarketingCommissionEntryInfo) table.getRow(i).getUserObject();
+			if(mcEntry==null){
+        		FDCMsgBox.showWarning("请先提取数据！");
+	    		abort();
+        	}
+		}
+	}
     public void storeFields()
     {
         super.storeFields();
@@ -433,10 +442,6 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         for(int i =0;i<size;i++){
         	r = table.getRow(i);
         	mcEntry = (MarketingCommissionEntryInfo) r.getUserObject();
-        	if(mcEntry==null){
-        		FDCMsgBox.showWarning("请先提取数据！");
-	    		abort();
-        	}
         	mcEntry.setParent(editData);
         	mcEntry.setBonusType(type);
         	if(table.equals(tblQdM)){
@@ -634,6 +639,22 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 	protected IObjectValue createNewDetailData(KDTable table) {
 		// TODO Auto-generated method stub
 		return new MarketingCommissionEntryInfo();
+	}
+	public void actionSubmit_actionPerformed(ActionEvent e) throws Exception {
+		checkTable(tblMgrBonus);
+		checkTable(tblSalesmanBonus);
+		checkTable(tblQdM);
+		checkTable(tblQd);
+		checkTable(tblRec);
+		super.actionSubmit_actionPerformed(e);
+	}
+	public void actionSave_actionPerformed(ActionEvent e) throws Exception {
+		checkTable(tblMgrBonus);
+		checkTable(tblSalesmanBonus);
+		checkTable(tblQdM);
+		checkTable(tblQd);
+		checkTable(tblRec);
+		super.actionSave_actionPerformed(e);
 	}
 
 	public void actionAddMgrBonus_actionPerformed(ActionEvent e)
@@ -1482,8 +1503,15 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 			throws Exception {
 		IRow r = this.tblSalesmanBonus.getRow(e.getRowIndex());
 		int colIndex = e.getColIndex();
-		PersonInfo person=(PersonInfo) tblSalesmanBonus.getRow(e.getRowIndex()).getCell("person").getValue();
 		
+		if(colIndex == this.tblSalesmanBonus.getColumnIndex("person")&&(tblSalesmanBonus.getRow(e.getRowIndex()).getCell("person").getValue()==null||
+				!(tblSalesmanBonus.getRow(e.getRowIndex()).getCell("person").getValue() instanceof PersonInfo))){
+			FDCMsgBox.showWarning(this,"请先选择人员！");
+			tblSalesmanBonus.getRow(e.getRowIndex()).getCell("person").setValue(null);
+			return;
+		}
+		
+		PersonInfo person=(PersonInfo) tblSalesmanBonus.getRow(e.getRowIndex()).getCell("person").getValue();
 		if(colIndex == this.tblSalesmanBonus.getColumnIndex("purTarget")){
         	BigDecimal purTarget = r.getCell("purTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purTarget").getValue());
         	BigDecimal purAmt = r.getCell("purAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purAmt").getValue());
@@ -1876,6 +1904,12 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 	protected void tblQdM_editStopped(KDTEditEvent e) throws Exception {
 		IRow r = this.tblQdM.getRow(e.getRowIndex());
 		int colIndex = e.getColIndex();
+		if(colIndex == this.tblQdM.getColumnIndex("person")&&(tblQdM.getRow(e.getRowIndex()).getCell("person").getValue()==null||
+				!(tblQdM.getRow(e.getRowIndex()).getCell("person").getValue() instanceof PersonInfo))){
+			FDCMsgBox.showWarning(this,"请先选择人员！");
+			tblQdM.getRow(e.getRowIndex()).getCell("person").setValue(null);
+			return;
+		}
 		PersonInfo person=(PersonInfo) tblQdM.getRow(e.getRowIndex()).getCell("person").getValue();
 		if(colIndex != this.tblQdM.getColumnIndex("person")&&person==null){
 			FDCMsgBox.showWarning(this,"请先选择人员！");
@@ -2371,6 +2405,12 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 	protected void tblMgrBonus_editStopped(KDTEditEvent e) throws Exception {
 	    IRow r = this.tblMgrBonus.getRow(e.getRowIndex());
 		int colIndex = e.getColIndex();
+		if(colIndex == this.tblMgrBonus.getColumnIndex("person")&&(tblMgrBonus.getRow(e.getRowIndex()).getCell("person").getValue()==null||
+				!(tblMgrBonus.getRow(e.getRowIndex()).getCell("person").getValue() instanceof PersonInfo))){
+			FDCMsgBox.showWarning(this,"请先选择人员！");
+			tblMgrBonus.getRow(e.getRowIndex()).getCell("person").setValue(null);
+			return;
+		}
 		PersonInfo person=(PersonInfo) tblMgrBonus.getRow(e.getRowIndex()).getCell("person").getValue();
 		if(colIndex != this.tblMgrBonus.getColumnIndex("person")&&person==null){
 			FDCMsgBox.showWarning(this,"请先选择人员！");
@@ -2404,51 +2444,53 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         			break;
         		}
         	}
-        	MonthCommissionEntryInfo entry=getMonthCommissionEntry(person.getName());
-			BigDecimal purTarget=entry.getPurTarget();
-			tblMgrBonus.getRow(e.getRowIndex()).getCell("purTarget").setValue(purTarget);
-			BigDecimal purAmt = r.getCell("purAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purAmt").getValue());
-			if(purTarget!=null&&purTarget.compareTo(FDCHelper.ZERO)!=0){
-				r.getCell("purComplateRate").setValue(divide(purAmt,purTarget).multiply(FDCHelper.ONE_HUNDRED));
-	        	for(int i=e.getRowIndex()+1;i<tblMgrBonus.getRowCount();i++){
-	        		PersonInfo p=(PersonInfo) tblMgrBonus.getRow(i).getCell("person").getValue();
-	        		if(person.getId().equals(p.getId())){
-	        			tblMgrBonus.getRow(i).getCell("purTarget").setValue(purTarget);
-	        			tblMgrBonus.getRow(i).getCell("purComplateRate").setValue(divide(purAmt,purTarget).multiply(FDCHelper.ONE_HUNDRED));
-	        		}else{
-	        			break;
-	        		}
-	        	}
-        	}
-			
-			BigDecimal contractAmtTarget =entry.getSignTarget();
-			tblMgrBonus.getRow(e.getRowIndex()).getCell("contractAmtTarget").setValue(contractAmtTarget);
-        	BigDecimal contractAmt = r.getCell("contractAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmt").getValue());
-        	if(contractAmtTarget!=null&&contractAmtTarget.compareTo(FDCHelper.ZERO)!=0){
-        		r.getCell("contractCompleteRate").setValue(divide(contractAmt,contractAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
-            	for(int i=e.getRowIndex()+1;i<tblMgrBonus.getRowCount();i++){
-            		PersonInfo p=(PersonInfo) tblMgrBonus.getRow(i).getCell("person").getValue();
-            		if(person.getId().equals(p.getId())){
-            			tblMgrBonus.getRow(i).getCell("contractAmtTarget").setValue(contractAmtTarget);
-            			tblMgrBonus.getRow(i).getCell("contractCompleteRate").setValue(divide(contractAmt,contractAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
-            		}else{
-            			break;
-            		}
+        	if(person!=null){
+        		MonthCommissionEntryInfo entry=getMonthCommissionEntry(person.getName());
+    			BigDecimal purTarget=entry.getPurTarget();
+    			tblMgrBonus.getRow(e.getRowIndex()).getCell("purTarget").setValue(purTarget);
+    			BigDecimal purAmt = r.getCell("purAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purAmt").getValue());
+    			if(purTarget!=null&&purTarget.compareTo(FDCHelper.ZERO)!=0){
+    				r.getCell("purComplateRate").setValue(divide(purAmt,purTarget).multiply(FDCHelper.ONE_HUNDRED));
+    	        	for(int i=e.getRowIndex()+1;i<tblMgrBonus.getRowCount();i++){
+    	        		PersonInfo p=(PersonInfo) tblMgrBonus.getRow(i).getCell("person").getValue();
+    	        		if(person.getId().equals(p.getId())){
+    	        			tblMgrBonus.getRow(i).getCell("purTarget").setValue(purTarget);
+    	        			tblMgrBonus.getRow(i).getCell("purComplateRate").setValue(divide(purAmt,purTarget).multiply(FDCHelper.ONE_HUNDRED));
+    	        		}else{
+    	        			break;
+    	        		}
+    	        	}
             	}
-        	}
-        	BigDecimal backAmtTarget = entry.getBackTarget();
-        	tblMgrBonus.getRow(e.getRowIndex()).getCell("backAmtTarget").setValue(backAmtTarget);
-        	BigDecimal backAmt = r.getCell("backAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmt").getValue());
-        	if(backAmtTarget!=null&&backAmtTarget.compareTo(FDCHelper.ZERO)!=0){
-        		r.getCell("backCompleteRate").setValue(divide(backAmt,backAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
-            	for(int i=e.getRowIndex()+1;i<tblMgrBonus.getRowCount();i++){
-            		PersonInfo p=(PersonInfo) tblMgrBonus.getRow(i).getCell("person").getValue();
-            		if(person.getId().equals(p.getId())){
-            			tblMgrBonus.getRow(i).getCell("backAmtTarget").setValue(backAmtTarget);
-            			tblMgrBonus.getRow(i).getCell("backCompleteRate").setValue(divide(backAmt,backAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
-            		}else{
-            			break;
-            		}
+    			
+    			BigDecimal contractAmtTarget =entry.getSignTarget();
+    			tblMgrBonus.getRow(e.getRowIndex()).getCell("contractAmtTarget").setValue(contractAmtTarget);
+            	BigDecimal contractAmt = r.getCell("contractAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmt").getValue());
+            	if(contractAmtTarget!=null&&contractAmtTarget.compareTo(FDCHelper.ZERO)!=0){
+            		r.getCell("contractCompleteRate").setValue(divide(contractAmt,contractAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
+                	for(int i=e.getRowIndex()+1;i<tblMgrBonus.getRowCount();i++){
+                		PersonInfo p=(PersonInfo) tblMgrBonus.getRow(i).getCell("person").getValue();
+                		if(person.getId().equals(p.getId())){
+                			tblMgrBonus.getRow(i).getCell("contractAmtTarget").setValue(contractAmtTarget);
+                			tblMgrBonus.getRow(i).getCell("contractCompleteRate").setValue(divide(contractAmt,contractAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
+                		}else{
+                			break;
+                		}
+                	}
+            	}
+            	BigDecimal backAmtTarget = entry.getBackTarget();
+            	tblMgrBonus.getRow(e.getRowIndex()).getCell("backAmtTarget").setValue(backAmtTarget);
+            	BigDecimal backAmt = r.getCell("backAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmt").getValue());
+            	if(backAmtTarget!=null&&backAmtTarget.compareTo(FDCHelper.ZERO)!=0){
+            		r.getCell("backCompleteRate").setValue(divide(backAmt,backAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
+                	for(int i=e.getRowIndex()+1;i<tblMgrBonus.getRowCount();i++){
+                		PersonInfo p=(PersonInfo) tblMgrBonus.getRow(i).getCell("person").getValue();
+                		if(person.getId().equals(p.getId())){
+                			tblMgrBonus.getRow(i).getCell("backAmtTarget").setValue(backAmtTarget);
+                			tblMgrBonus.getRow(i).getCell("backCompleteRate").setValue(divide(backAmt,backAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
+                		}else{
+                			break;
+                		}
+                	}
             	}
         	}
         }
