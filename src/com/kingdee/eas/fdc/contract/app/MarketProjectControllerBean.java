@@ -81,6 +81,15 @@ public class MarketProjectControllerBean extends AbstractMarketProjectController
     	
     	
     }
+	protected void _delete(Context ctx, IObjectPK pk) throws BOSException,
+			EASBizException {
+		MarketProjectInfo info=this.getMarketProjectInfo(ctx, pk);
+		if(info.getSourceFunction()!=null){
+    		throw new EASBizException(new NumericExceptionSubItem("100","已存在OA流程，禁止删除！"));
+    	}
+		super._delete(ctx, pk);
+	}
+
 	protected void _submit(Context ctx, IObjectPK pk, IObjectValue model)
 			throws BOSException, EASBizException {
 		MarketProjectInfo info = (MarketProjectInfo)model;
