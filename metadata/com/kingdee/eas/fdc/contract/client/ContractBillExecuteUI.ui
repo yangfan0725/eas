@@ -44,6 +44,29 @@
             </properties>
         </component>
         <component>
+            <name>treeView</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[treeView].alias</alias>
+            <userDefined>false</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDTreeView</classType>
+            <isContainer>true</isContainer>
+            <constraints>-176,-14,180,580,0</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <properties>
+                <property>
+                    <name>visible</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[treeView].properties.property[visible].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CoreUI" />
+            </parent>
+        </component>
+        <component>
             <name>tblMain</name>
             <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[tblMain].alias</alias>
             <userDefined>false</userDefined>
@@ -93,17 +116,120 @@
             </eventBindings>
         </component>
         <component>
-            <name>treeView</name>
-            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[treeView].alias</alias>
-            <userDefined>false</userDefined>
-            <classType>com.kingdee.bos.ctrl.swing.KDTreeView</classType>
+            <name>kDSplitPane1</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDSplitPane1].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDSplitPane</classType>
             <isContainer>true</isContainer>
             <constraints>left</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>SplitLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>dividerLocation</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDSplitPane1].properties.property[dividerLocation].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>orientation</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDSplitPane1].properties.property[orientation].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>oneTouchExpandable</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDSplitPane1].properties.property[oneTouchExpandable].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
             <parent>
                 <key name="name" value="pnlMain" />
+            </parent>
+        </component>
+        <component>
+            <name>kDContainer1</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDContainer1].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>top</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name>borderLayout1</name>
+                <type>BorderLayout</type>
+                <value>0,0</value>
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>title</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDContainer1].properties.property[title].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="kDSplitPane1" />
+            </parent>
+        </component>
+        <component>
+            <name>kDContainer2</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDContainer2].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>bottom</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name>borderLayout2</name>
+                <type>BorderLayout</type>
+                <value>0,0</value>
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>title</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDContainer2].properties.property[title].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="kDSplitPane1" />
+            </parent>
+        </component>
+        <component>
+            <name>kDScrollPane1</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDScrollPane1].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDScrollPane</classType>
+            <isContainer>true</isContainer>
+            <constraints>Center</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>SameGridLayout</type>
+                <value>1,1,0,0,0,0</value>
+            </layoutInfo>
+            <parent>
+                <key name="name" value="kDContainer1" />
             </parent>
         </component>
         <component>
@@ -112,13 +238,65 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDTree</classType>
             <isContainer>false</isContainer>
-            <constraints>2</constraints>
+            <constraints>0,0,1,1</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
             <parent>
-                <key name="name" value="treeView" />
+                <key name="name" value="kDScrollPane1" />
             </parent>
+        </component>
+        <component>
+            <name>kDScrollPane2</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDScrollPane2].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDScrollPane</classType>
+            <isContainer>true</isContainer>
+            <constraints>Center</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>SameGridLayout</type>
+                <value>1,1,0,0,0,0</value>
+            </layoutInfo>
+            <parent>
+                <key name="name" value="kDContainer2" />
+            </parent>
+        </component>
+        <component>
+            <name>treeContractType</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[treeContractType].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDTree</classType>
+            <isContainer>false</isContainer>
+            <constraints>0,0,1,1</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <parent>
+                <key name="name" value="kDScrollPane2" />
+            </parent>
+            <eventBindings>
+                <eventBinding>
+                    <name>valueChanged</name>
+                    <eventType>javax.swing.event.TreeSelectionEvent</eventType>
+                    <scene />
+                    <listenerType>javax.swing.event.TreeSelectionListener</listenerType>
+                    <listenerAdapter>javax.swing.event.TreeSelectionListener</listenerAdapter>
+                    <methodName>treeContractType_valueChanged</methodName>
+                    <code />
+                    <isBindWorkFlow>false</isBindWorkFlow>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </eventBinding>
+            </eventBindings>
         </component>
         <component>
             <name>btnAddNew</name>
@@ -2353,6 +2531,42 @@
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDContainer1].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDContainer1].properties.property[title].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="工程项目" />
+            <lang locale="zh_HK" value="工程項目" />
+            <lang locale="zh_TW" value="工程項目" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDContainer2].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDContainer2].properties.property[title].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同类型" />
+            <lang locale="zh_HK" value="合同類型" />
+            <lang locale="zh_TW" value="合同類型" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDScrollPane1].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDScrollPane2].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDSeparator1].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -2364,6 +2578,30 @@
             <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDSplitPane1].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDSplitPane1].properties.property[dividerLocation].value">
+            <lang locale="en_US" value="300" />
+            <lang locale="zh_CN" value="300" />
+            <lang locale="zh_HK" value="300" />
+            <lang locale="zh_TW" value="300" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDSplitPane1].properties.property[oneTouchExpandable].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[kDSplitPane1].properties.property[orientation].value">
+            <lang locale="en_US" value="0" />
+            <lang locale="zh_CN" value="0" />
+            <lang locale="zh_HK" value="0" />
+            <lang locale="zh_TW" value="0" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[menuBiz].alias">
             <lang locale="en_US" value="null" />
@@ -2989,6 +3227,12 @@
             <lang locale="zh_HK" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;DocRoot xmlns:c=&quot;http://www.kingdee.com/Common&quot; xmlns:f=&quot;http://www.kingdee.com/Form&quot; xmlns:t=&quot;http://www.kingdee.com/Table&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.kingdee.com/KDF KDFSchema.xsd&quot; version=&quot;0.0&quot;&gt;&lt;Styles&gt;&lt;c:Style id=&quot;sCol25&quot;&gt;&lt;c:Protection hidden=&quot;true&quot; /&gt;&lt;/c:Style&gt;&lt;c:Style id=&quot;sCol26&quot;&gt;&lt;c:Protection hidden=&quot;true&quot; /&gt;&lt;/c:Style&gt;&lt;/Styles&gt;&lt;Table id=&quot;KDTable&quot;&gt;&lt;t:Sheet name=&quot;sheet1&quot;&gt;&lt;t:Table t:selectMode=&quot;15&quot; t:mergeMode=&quot;0&quot; t:dataRequestMode=&quot;0&quot; t:pageRowCount=&quot;100&quot;&gt;&lt;t:ColumnGroup&gt;&lt;t:Column t:key=&quot;project.name&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;0&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.contractType&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;1&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.number&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;2&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.name&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;3&quot; /&gt;&lt;t:Column t:key=&quot;partB&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;4&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.bookedDate&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;5&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.auditTime&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;6&quot; /&gt;&lt;t:Column t:key=&quot;currency.name&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;7&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.hasSettled&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;8&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.oriAmt&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;9&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.amt&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;10&quot; /&gt;&lt;t:Column t:key=&quot;contractLastSrcAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;12&quot; /&gt;&lt;t:Column t:key=&quot;contractBillLastAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;13&quot; /&gt;&lt;t:Column t:key=&quot;reAmount&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;13&quot; /&gt;&lt;t:Column t:key=&quot;reBookedDate&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;14&quot; /&gt;&lt;t:Column t:key=&quot;reOriAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;15&quot; /&gt;&lt;t:Column t:key=&quot;reAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;16&quot; /&gt;&lt;t:Column t:key=&quot;deductAmt&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;17&quot; /&gt;&lt;t:Column t:key=&quot;payRealDate&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;18&quot; /&gt;&lt;t:Column t:key=&quot;payRealSrcAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;19&quot; /&gt;&lt;t:Column t:key=&quot;payRealAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;20&quot; /&gt;&lt;t:Column t:key=&quot;payRate&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;21&quot; /&gt;&lt;t:Column t:key=&quot;notSrcPayed&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;22&quot; /&gt;&lt;t:Column t:key=&quot;notPayed&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;23&quot; /&gt;&lt;t:Column t:key=&quot;creator&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;24&quot; /&gt;&lt;t:Column t:key=&quot;contract.id&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;25&quot; t:styleID=&quot;sCol25&quot; /&gt;&lt;t:Column t:key=&quot;paymentBill.id&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;26&quot; t:styleID=&quot;sCol26&quot; /&gt;&lt;/t:ColumnGroup&gt;&lt;t:Head&gt;&lt;t:Row t:name=&quot;header1&quot; t:height=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot;&gt;&lt;t:Cell&gt;工程名稱&lt;/t:Cell&gt;&lt;t:Cell&gt;合同類型&lt;/t:Cell&gt;&lt;t:Cell&gt;合同編號&lt;/t:Cell&gt;&lt;t:Cell&gt;合同名稱&lt;/t:Cell&gt;&lt;t:Cell&gt;對方單位&lt;/t:Cell&gt;&lt;t:Cell&gt;業務日期&lt;/t:Cell&gt;&lt;t:Cell&gt;審批日期&lt;/t:Cell&gt;&lt;t:Cell&gt;幣別&lt;/t:Cell&gt;&lt;t:Cell&gt;結算狀態&lt;/t:Cell&gt;&lt;t:Cell&gt;合同信息&lt;/t:Cell&gt;&lt;t:Cell&gt;合同信息&lt;/t:Cell&gt;&lt;t:Cell&gt;合同信息&lt;/t:Cell&gt;&lt;t:Cell&gt;合同信息&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請信息&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請信息&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請信息&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請信息&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請信息&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;未付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;未付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;制單人&lt;/t:Cell&gt;&lt;t:Cell&gt;contract.id&lt;/t:Cell&gt;&lt;t:Cell&gt;paymentBill.id&lt;/t:Cell&gt;&lt;/t:Row&gt;&lt;t:Row t:name=&quot;header2&quot; t:height=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot;&gt;&lt;t:Cell&gt;工程名稱&lt;/t:Cell&gt;&lt;t:Cell&gt;合同類型&lt;/t:Cell&gt;&lt;t:Cell&gt;合同編號&lt;/t:Cell&gt;&lt;t:Cell&gt;合同名稱&lt;/t:Cell&gt;&lt;t:Cell&gt;對方單位&lt;/t:Cell&gt;&lt;t:Cell&gt;業務日期&lt;/t:Cell&gt;&lt;t:Cell&gt;審批日期&lt;/t:Cell&gt;&lt;t:Cell&gt;幣別&lt;/t:Cell&gt;&lt;t:Cell&gt;結算狀態&lt;/t:Cell&gt;&lt;t:Cell&gt;合同金額(原幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;合同金額(本位幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;合同最新造價(原幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;合同最新造價(本位幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請次數&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請日期&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請金額(原幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請金額(本位幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;扣款單金額&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款日期&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款金額(原幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款金額(本位幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;已付款比例&lt;/t:Cell&gt;&lt;t:Cell&gt;未付款金額(原幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;未付款金額(本位幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;制單人&lt;/t:Cell&gt;&lt;t:Cell&gt;contract.id&lt;/t:Cell&gt;&lt;t:Cell&gt;paymentBill.id&lt;/t:Cell&gt;&lt;/t:Row&gt;&lt;/t:Head&gt;&lt;/t:Table&gt;&lt;t:SheetOptions&gt;&lt;t:MergeBlocks&gt;&lt;t:Head&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;0&quot; t:bottom=&quot;1&quot; t:right=&quot;0&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;1&quot; t:bottom=&quot;1&quot; t:right=&quot;1&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;2&quot; t:bottom=&quot;1&quot; t:right=&quot;2&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;3&quot; t:bottom=&quot;1&quot; t:right=&quot;3&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;4&quot; t:bottom=&quot;1&quot; t:right=&quot;4&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;5&quot; t:bottom=&quot;1&quot; t:right=&quot;5&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;6&quot; t:bottom=&quot;1&quot; t:right=&quot;6&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;7&quot; t:bottom=&quot;1&quot; t:right=&quot;7&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;8&quot; t:bottom=&quot;1&quot; t:right=&quot;8&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;9&quot; t:bottom=&quot;0&quot; t:right=&quot;12&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;13&quot; t:bottom=&quot;0&quot; t:right=&quot;17&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;18&quot; t:bottom=&quot;0&quot; t:right=&quot;21&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;22&quot; t:bottom=&quot;0&quot; t:right=&quot;23&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;24&quot; t:bottom=&quot;1&quot; t:right=&quot;24&quot; /&gt;&lt;/t:Head&gt;&lt;/t:MergeBlocks&gt;&lt;/t:SheetOptions&gt;&lt;/t:Sheet&gt;&lt;/Table&gt;&lt;/DocRoot&gt;" />
             <lang locale="zh_TW" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;DocRoot xmlns:c=&quot;http://www.kingdee.com/Common&quot; xmlns:f=&quot;http://www.kingdee.com/Form&quot; xmlns:t=&quot;http://www.kingdee.com/Table&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.kingdee.com/KDF KDFSchema.xsd&quot; version=&quot;0.0&quot;&gt;&lt;Styles&gt;&lt;c:Style id=&quot;sCol25&quot;&gt;&lt;c:Protection hidden=&quot;true&quot; /&gt;&lt;/c:Style&gt;&lt;c:Style id=&quot;sCol26&quot;&gt;&lt;c:Protection hidden=&quot;true&quot; /&gt;&lt;/c:Style&gt;&lt;/Styles&gt;&lt;Table id=&quot;KDTable&quot;&gt;&lt;t:Sheet name=&quot;sheet1&quot;&gt;&lt;t:Table t:selectMode=&quot;15&quot; t:mergeMode=&quot;0&quot; t:dataRequestMode=&quot;0&quot; t:pageRowCount=&quot;100&quot;&gt;&lt;t:ColumnGroup&gt;&lt;t:Column t:key=&quot;project.name&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;0&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.contractType&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;1&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.number&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;2&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.name&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;3&quot; /&gt;&lt;t:Column t:key=&quot;partB&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;4&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.bookedDate&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;5&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.auditTime&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;6&quot; /&gt;&lt;t:Column t:key=&quot;currency.name&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;7&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.hasSettled&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;8&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.oriAmt&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;9&quot; /&gt;&lt;t:Column t:key=&quot;contractBill.amt&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;10&quot; /&gt;&lt;t:Column t:key=&quot;contractLastSrcAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;12&quot; /&gt;&lt;t:Column t:key=&quot;contractBillLastAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;13&quot; /&gt;&lt;t:Column t:key=&quot;reAmount&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;13&quot; /&gt;&lt;t:Column t:key=&quot;reBookedDate&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;14&quot; /&gt;&lt;t:Column t:key=&quot;reOriAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;15&quot; /&gt;&lt;t:Column t:key=&quot;reAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;16&quot; /&gt;&lt;t:Column t:key=&quot;deductAmt&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;17&quot; /&gt;&lt;t:Column t:key=&quot;payRealDate&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;18&quot; /&gt;&lt;t:Column t:key=&quot;payRealSrcAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;19&quot; /&gt;&lt;t:Column t:key=&quot;payRealAmt&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;20&quot; /&gt;&lt;t:Column t:key=&quot;payRate&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;21&quot; /&gt;&lt;t:Column t:key=&quot;notSrcPayed&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;22&quot; /&gt;&lt;t:Column t:key=&quot;notPayed&quot; t:width=&quot;136&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;23&quot; /&gt;&lt;t:Column t:key=&quot;creator&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;24&quot; /&gt;&lt;t:Column t:key=&quot;contract.id&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;25&quot; t:styleID=&quot;sCol25&quot; /&gt;&lt;t:Column t:key=&quot;paymentBill.id&quot; t:width=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot; t:moveable=&quot;true&quot; t:group=&quot;false&quot; t:required=&quot;false&quot; t:index=&quot;26&quot; t:styleID=&quot;sCol26&quot; /&gt;&lt;/t:ColumnGroup&gt;&lt;t:Head&gt;&lt;t:Row t:name=&quot;header1&quot; t:height=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot;&gt;&lt;t:Cell&gt;工程名稱&lt;/t:Cell&gt;&lt;t:Cell&gt;合同類型&lt;/t:Cell&gt;&lt;t:Cell&gt;合同編號&lt;/t:Cell&gt;&lt;t:Cell&gt;合同名稱&lt;/t:Cell&gt;&lt;t:Cell&gt;對方單位&lt;/t:Cell&gt;&lt;t:Cell&gt;業務日期&lt;/t:Cell&gt;&lt;t:Cell&gt;審批日期&lt;/t:Cell&gt;&lt;t:Cell&gt;幣別&lt;/t:Cell&gt;&lt;t:Cell&gt;結算狀態&lt;/t:Cell&gt;&lt;t:Cell&gt;合同信息&lt;/t:Cell&gt;&lt;t:Cell&gt;合同信息&lt;/t:Cell&gt;&lt;t:Cell&gt;合同信息&lt;/t:Cell&gt;&lt;t:Cell&gt;合同信息&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請信息&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請信息&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請信息&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請信息&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請信息&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;未付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;未付款信息&lt;/t:Cell&gt;&lt;t:Cell&gt;制單人&lt;/t:Cell&gt;&lt;t:Cell&gt;contract.id&lt;/t:Cell&gt;&lt;t:Cell&gt;paymentBill.id&lt;/t:Cell&gt;&lt;/t:Row&gt;&lt;t:Row t:name=&quot;header2&quot; t:height=&quot;-1&quot; t:mergeable=&quot;true&quot; t:resizeable=&quot;true&quot;&gt;&lt;t:Cell&gt;工程名稱&lt;/t:Cell&gt;&lt;t:Cell&gt;合同類型&lt;/t:Cell&gt;&lt;t:Cell&gt;合同編號&lt;/t:Cell&gt;&lt;t:Cell&gt;合同名稱&lt;/t:Cell&gt;&lt;t:Cell&gt;對方單位&lt;/t:Cell&gt;&lt;t:Cell&gt;業務日期&lt;/t:Cell&gt;&lt;t:Cell&gt;審批日期&lt;/t:Cell&gt;&lt;t:Cell&gt;幣別&lt;/t:Cell&gt;&lt;t:Cell&gt;結算狀態&lt;/t:Cell&gt;&lt;t:Cell&gt;合同金額(原幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;合同金額(本位幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;合同最新造價(原幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;合同最新造價(本位幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請次數&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請日期&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請金額(原幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;付款申請金額(本位幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;扣款單金額&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款日期&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款金額(原幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;實際付款金額(本位幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;已付款比例&lt;/t:Cell&gt;&lt;t:Cell&gt;未付款金額(原幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;未付款金額(本位幣)&lt;/t:Cell&gt;&lt;t:Cell&gt;制單人&lt;/t:Cell&gt;&lt;t:Cell&gt;contract.id&lt;/t:Cell&gt;&lt;t:Cell&gt;paymentBill.id&lt;/t:Cell&gt;&lt;/t:Row&gt;&lt;/t:Head&gt;&lt;/t:Table&gt;&lt;t:SheetOptions&gt;&lt;t:MergeBlocks&gt;&lt;t:Head&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;0&quot; t:bottom=&quot;1&quot; t:right=&quot;0&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;1&quot; t:bottom=&quot;1&quot; t:right=&quot;1&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;2&quot; t:bottom=&quot;1&quot; t:right=&quot;2&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;3&quot; t:bottom=&quot;1&quot; t:right=&quot;3&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;4&quot; t:bottom=&quot;1&quot; t:right=&quot;4&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;5&quot; t:bottom=&quot;1&quot; t:right=&quot;5&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;6&quot; t:bottom=&quot;1&quot; t:right=&quot;6&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;7&quot; t:bottom=&quot;1&quot; t:right=&quot;7&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;8&quot; t:bottom=&quot;1&quot; t:right=&quot;8&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;9&quot; t:bottom=&quot;0&quot; t:right=&quot;12&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;13&quot; t:bottom=&quot;0&quot; t:right=&quot;17&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;18&quot; t:bottom=&quot;0&quot; t:right=&quot;21&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;22&quot; t:bottom=&quot;0&quot; t:right=&quot;23&quot; /&gt;&lt;t:Block t:top=&quot;0&quot; t:left=&quot;24&quot; t:bottom=&quot;1&quot; t:right=&quot;24&quot; /&gt;&lt;/t:Head&gt;&lt;/t:MergeBlocks&gt;&lt;/t:SheetOptions&gt;&lt;/t:Sheet&gt;&lt;/Table&gt;&lt;/DocRoot&gt;" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[treeContractType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[treeMain].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -3000,6 +3244,12 @@
             <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].components.component[treeView].properties.property[visible].value">
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_HK" value="false" />
+            <lang locale="zh_TW" value="false" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecuteUI].description">
             <lang locale="en_US" value="null" />

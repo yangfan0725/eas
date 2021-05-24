@@ -13,6 +13,9 @@ import java.util.Set;
 
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultTreeModel;
 
 import org.apache.log4j.Logger;
 
@@ -25,9 +28,12 @@ import com.kingdee.bos.ctrl.kdf.table.KDTDataRequestManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.kdf.util.render.ObjectValueRender;
 import com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment;
+import com.kingdee.bos.ctrl.swing.KDTree;
+import com.kingdee.bos.ctrl.swing.tree.DefaultKingdeeTreeNode;
 import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;
+import com.kingdee.bos.metadata.entity.FilterItemInfo;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.ui.face.IUIWindow;
 import com.kingdee.bos.ui.face.UIFactory;
@@ -42,9 +48,11 @@ import com.kingdee.eas.common.client.OprtState;
 import com.kingdee.eas.common.client.UIContext;
 import com.kingdee.eas.common.client.UIFactoryName;
 import com.kingdee.eas.fdc.basecrm.client.CRMClientHelper;
+import com.kingdee.eas.fdc.basedata.ContractTypeFactory;
 import com.kingdee.eas.fdc.basedata.FDCConstants;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCClientHelper;
+import com.kingdee.eas.fdc.basedata.client.FDCClientUtils;
 import com.kingdee.eas.fdc.basedata.client.FDCTableHelper;
 import com.kingdee.eas.fdc.contract.ContractBillExecuteDataHander;
 import com.kingdee.eas.fdc.contract.ContractBillFactory;
@@ -55,7 +63,15 @@ import com.kingdee.eas.fdc.contract.FDCUtils;
 import com.kingdee.eas.fdc.contract.IContractBill;
 import com.kingdee.eas.fdc.finance.client.ContractPayPlanEditUI;
 import com.kingdee.eas.fdc.finance.client.PaymentBillEditUI;
+import com.kingdee.eas.fdc.sellhouse.client.FDCTreeHelper;
+import com.kingdee.eas.framework.ITreeBase;
+import com.kingdee.eas.framework.TreeBaseInfo;
 import com.kingdee.eas.framework.client.FrameWorkClientUtils;
+import com.kingdee.eas.framework.client.tree.DefaultLNTreeNodeCtrl;
+import com.kingdee.eas.framework.client.tree.ILNTreeNodeCtrl;
+import com.kingdee.eas.framework.client.tree.ITreeBuilder;
+import com.kingdee.eas.framework.client.tree.KDTreeNode;
+import com.kingdee.eas.framework.client.tree.TreeBuilderFactory;
 import com.kingdee.eas.util.SysUtil;
 import com.kingdee.eas.util.client.EASResource;
 import com.kingdee.eas.util.client.MsgBox;
@@ -101,6 +117,87 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 		this.actionViewContract.setVisible(false);
 		this.actionViewPayment.setVisible(false);
 		
+		this.buildContractTypeTree();
+		
+	}
+	@Override
+	protected void treeContractType_valueChanged(TreeSelectionEvent e)
+			throws Exception {
+		 String selectObjId = getSelectObjId();
+		 if(selectObjId == null)
+		 {
+			 return;
+		 } else
+		 {
+			 fillTable();
+			 return;
+		 }
+	}
+
+	private KDTree getContractTypeTree() {
+		return this.treeContractType;
+	}
+	private TreeSelectionListener treeSelectionListener;
+
+	private ITreeBuilder treeBuilder;
+	protected int getCTTreeInitialLevel() {
+		return TreeBuilderFactory.DEFAULT_INITIAL_LEVEL;
+	}
+
+	protected int getCTTreeExpandLevel() {
+		return TreeBuilderFactory.DEFAULT_EXPAND_LEVEL;
+	}
+	protected FilterInfo getCTDefaultFilterForTree() {
+		FilterInfo filter = new FilterInfo();
+		filter.getFilterItems().add(
+				new FilterItemInfo("isEnabled", Boolean.TRUE));
+		return filter;
+	}
+	protected ILNTreeNodeCtrl getCTLNTreeNodeCtrl() throws Exception {
+		return new DefaultLNTreeNodeCtrl(getCTTreeInterface());
+	}
+	protected String getCTRootName() {
+		return ContractClientUtils.getRes("allContractType");
+	}
+	private ITreeBase getCTTreeInterface() {
+
+		ITreeBase treeBase = null;
+		try {
+			treeBase = ContractTypeFactory.getRemoteInstance();
+		} catch (BOSException e) {
+			abort(e);
+		}
+
+		return treeBase;
+	}
+	protected Object getCTRootObject() {
+		return getCTRootName();
+	}
+	protected void buildContractTypeTree() throws Exception {
+		KDTree treeMain = getContractTypeTree();
+		TreeSelectionListener[] listeners = treeMain
+				.getTreeSelectionListeners();
+		if (listeners.length > 0) {
+			treeSelectionListener = listeners[0];
+			treeMain.removeTreeSelectionListener(treeSelectionListener);
+		}
+
+		treeBuilder = TreeBuilderFactory.createTreeBuilder(getCTLNTreeNodeCtrl(),
+				getCTTreeInitialLevel(), getCTTreeExpandLevel(), this
+						.getCTDefaultFilterForTree());
+
+		if (getCTRootName() != null) {
+			KDTreeNode rootNode = new KDTreeNode(getCTRootObject());
+			((DefaultTreeModel) treeMain.getModel()).setRoot(rootNode);
+			
+		} else {
+			((DefaultTreeModel) treeMain.getModel()).setRoot(null);
+		}
+		
+		treeBuilder.buildTree(treeMain);
+		treeMain.addTreeSelectionListener(treeSelectionListener);
+		treeMain.setShowPopMenuDefaultItem(false);
+
 	}
 	 protected void initUserConfig()
 	    {
@@ -194,13 +291,27 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 		actionDisplayContract.putValue(Action.SMALL_ICON,EASResource.getIcon("imgTbtn_assistantlistaccount"));
 		actionDisplayConNoText.putValue(Action.SMALL_ICON,EASResource.getIcon("imgTbtn_assistantlistaccount"));
 	}
-	
+	private String getContractTypeStr() throws Exception{
+		DefaultKingdeeTreeNode cttreeNode = (DefaultKingdeeTreeNode)this.treeContractType.getLastSelectedPathComponent();
+    	if (cttreeNode != null&& cttreeNode.getUserObject() instanceof TreeBaseInfo) {
+    		TreeBaseInfo typeTreeNodeInfo = (TreeBaseInfo)cttreeNode.getUserObject();
+			BOSUuid id = typeTreeNodeInfo.getId();
+			 Set idSet = FDCClientUtils.genContractTypeIdSet(id);
+			 return FDCTreeHelper.getStringFromSet(idSet);
+		}else{
+			return null;
+		}
+	}
 	protected void fillTable() throws Exception {
 		tblMain.removeRows(false);
 		tblMain.setUserObject(null);
 		tblMain.getTreeColumn().setDepth(2);
 		final Set projectIds = getSelectObjLeafIds(true);
+		
+	
 		if (projectIds != null && !projectIds.isEmpty()) {
+			final String allSpIdStr=getContractTypeStr();
+			
 			final EntityViewInfo view = (EntityViewInfo) mainQuery.clone();
 	
 			LongTimeDialog dialog = UITools.getDialog(this);
@@ -208,7 +319,7 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 				return;
 			dialog.setLongTimeTask(new ILongTimeTask() {
 				public Object exec() throws Exception {
-					return getExecuteDatas(projectIds, view);
+					return getExecuteDatas(projectIds,allSpIdStr, view);
 				}
 
 				public void afterExec(Object result) throws Exception {
@@ -218,12 +329,13 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 			dialog.show();
 		}
 	}
-	private List getExecuteDatas(Set projectIds, EntityViewInfo oldView) throws Exception {
+	private List getExecuteDatas(Set projectIds,String allSpIdStr, EntityViewInfo oldView) throws Exception {
 		Map params = new HashMap();
 		params.put("isDisplayPlan", Boolean.valueOf(isDisplayPlan));
 		params.put("isMoreSett", Boolean.valueOf(isMoreSett));
 		params.put("allNotPaidParam", Boolean.valueOf(allNotPaidParam));
 		params.put("EntityViewInfo", oldView);
+		params.put("contractType", allSpIdStr);
 		return ContractBillExecuteDataHander.getContractExeData(projectIds, params, isDisplayContract, isDisplayConNoText);
 	}
 

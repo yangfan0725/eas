@@ -23,9 +23,13 @@ import javax.swing.tree.DefaultTreeModel;
 import org.apache.log4j.Logger;
 
 import com.kingdee.bos.BOSException;
+import com.kingdee.bos.metadata.entity.FilterInfo;
+import com.kingdee.bos.metadata.entity.FilterItemInfo;
+import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.ui.face.IUIWindow;
 import com.kingdee.bos.ui.face.UIFactory;
+import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.bos.ctrl.extendcontrols.IDataFormat;
 import com.kingdee.bos.ctrl.kdf.table.ICell;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
@@ -44,15 +48,19 @@ import com.kingdee.eas.base.permission.client.longtime.ILongTimeTask;
 import com.kingdee.eas.common.client.OprtState;
 import com.kingdee.eas.common.client.UIContext;
 import com.kingdee.eas.common.client.UIFactoryName;
-import com.kingdee.eas.fdc.basecrm.client.CRMClientHelper;
+import com.kingdee.eas.fdc.basedata.ContractTypeFactory;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCClientHelper;
+import com.kingdee.eas.fdc.basedata.client.FDCClientUtils;
 import com.kingdee.eas.fdc.basedata.client.ProjectTreeBuilder;
 import com.kingdee.eas.fdc.contract.ContractBillPayReportFacadeFactory;
-import com.kingdee.eas.fdc.contract.ContractBillReportFacadeFactory;
+import com.kingdee.eas.fdc.contract.ContractBillPayReportSDFacadeFactory;
 import com.kingdee.eas.fdc.contract.ContractPropertyEnum;
 import com.kingdee.eas.fdc.sellhouse.client.FDCTreeHelper;
 import com.kingdee.eas.framework.*;
+import com.kingdee.eas.framework.client.tree.DefaultLNTreeNodeCtrl;
+import com.kingdee.eas.framework.client.tree.ILNTreeNodeCtrl;
+import com.kingdee.eas.framework.client.tree.ITreeBuilder;
 import com.kingdee.eas.framework.client.tree.KDTreeNode;
 import com.kingdee.eas.framework.client.tree.TreeBuilderFactory;
 import com.kingdee.eas.framework.report.ICommRptBase;
@@ -66,12 +74,12 @@ import com.kingdee.eas.util.client.EASResource;
 /**
  * output class name
  */
-public class ContractBillPayReportUI extends AbstractContractBillPayReportUI
+public class ContractBillPayReportSDUI extends AbstractContractBillPayReportSDUI
 {
-    private static final Logger logger = CoreUIObject.getLogger(ContractBillPayReportUI.class);
+    private static final Logger logger = CoreUIObject.getLogger(ContractBillPayReportSDUI.class);
     private boolean isQuery=false;
     private boolean isOnLoad=false;
-    public ContractBillPayReportUI() throws Exception
+    public ContractBillPayReportSDUI() throws Exception
     {
         super();
         tblMain.checkParsed();
@@ -88,7 +96,7 @@ public class ContractBillPayReportUI extends AbstractContractBillPayReportUI
 	}
 
 	protected ICommRptBase getRemoteInstance() throws BOSException {
-		return ContractBillPayReportFacadeFactory.getRemoteInstance();
+		return ContractBillPayReportSDFacadeFactory.getRemoteInstance();
 	}
 
 	protected KDTable getTableForPrintSetting() {
@@ -318,6 +326,71 @@ public class ContractBillPayReportUI extends AbstractContractBillPayReportUI
     	}
     	isQuery=false;
 	}
+	private KDTree getContractTypeTree() {
+		return this.treeContractType;
+	}
+	private TreeSelectionListener treeSelectionListener;
+
+	private ITreeBuilder treeBuilder;
+	protected int getTreeInitialLevel() {
+		return TreeBuilderFactory.DEFAULT_INITIAL_LEVEL;
+	}
+
+	protected int getTreeExpandLevel() {
+		return TreeBuilderFactory.DEFAULT_EXPAND_LEVEL;
+	}
+	protected FilterInfo getDefaultFilterForTree() {
+		FilterInfo filter = new FilterInfo();
+		filter.getFilterItems().add(
+				new FilterItemInfo("isEnabled", Boolean.TRUE));
+		return filter;
+	}
+	protected ILNTreeNodeCtrl getLNTreeNodeCtrl() throws Exception {
+		return new DefaultLNTreeNodeCtrl(getTreeInterface());
+	}
+	protected String getRootName() {
+		return ContractClientUtils.getRes("allContractType");
+	}
+	private ITreeBase getTreeInterface() {
+
+		ITreeBase treeBase = null;
+		try {
+			treeBase = ContractTypeFactory.getRemoteInstance();
+		} catch (BOSException e) {
+			abort(e);
+		}
+
+		return treeBase;
+	}
+	protected Object getRootObject() {
+		return getRootName();
+	}
+	protected void buildContractTypeTree() throws Exception {
+		KDTree treeMain = getContractTypeTree();
+		TreeSelectionListener[] listeners = treeMain
+				.getTreeSelectionListeners();
+		if (listeners.length > 0) {
+			treeSelectionListener = listeners[0];
+			treeMain.removeTreeSelectionListener(treeSelectionListener);
+		}
+
+		treeBuilder = TreeBuilderFactory.createTreeBuilder(getLNTreeNodeCtrl(),
+				getTreeInitialLevel(), getTreeExpandLevel(), this
+						.getDefaultFilterForTree());
+
+		if (getRootName() != null) {
+			KDTreeNode rootNode = new KDTreeNode(getRootObject());
+			((DefaultTreeModel) treeMain.getModel()).setRoot(rootNode);
+			
+		} else {
+			((DefaultTreeModel) treeMain.getModel()).setRoot(null);
+		}
+		
+		treeBuilder.buildTree(treeMain);
+		treeMain.addTreeSelectionListener(treeSelectionListener);
+		treeMain.setShowPopMenuDefaultItem(false);
+
+	}
 	protected void buildOrgTree() throws Exception{
 		ProjectTreeBuilder projectTreeBuilder = new ProjectTreeBuilder();
 		projectTreeBuilder.build(this, this.treeMain, actionOnLoad);
@@ -337,10 +410,24 @@ public class ContractBillPayReportUI extends AbstractContractBillPayReportUI
 			Set leafPrjIds = FDCClientHelper.getProjectLeafsOfNode(treeNode);
 			String allSpIdStr = FDCTreeHelper.getStringFromSet(leafPrjIds);
 			params.setObject("curProject", allSpIdStr);
-			query();
 		}
+    	DefaultKingdeeTreeNode cttreeNode = (DefaultKingdeeTreeNode)this.treeContractType.getLastSelectedPathComponent();
+    	if (cttreeNode != null&& cttreeNode.getUserObject() instanceof TreeBaseInfo) {
+    		TreeBaseInfo typeTreeNodeInfo = (TreeBaseInfo)cttreeNode.getUserObject();
+			BOSUuid id = typeTreeNodeInfo.getId();
+			Set idSet = FDCClientUtils.genContractTypeIdSet(id);
+			String allSpIdStr = FDCTreeHelper.getStringFromSet(idSet);
+			params.setObject("contractType", allSpIdStr);
+		}
+    	if(treeNode!=null||cttreeNode!=null){
+    		query();
+    	}
 	}
 	protected void treeMain_valueChanged(TreeSelectionEvent e) throws Exception {
+		this.refresh();
+	}
+	protected void treeContractType_valueChanged(TreeSelectionEvent e)
+			throws Exception {
 		this.refresh();
 	}
 	public void onLoad() throws Exception {
@@ -349,6 +436,7 @@ public class ContractBillPayReportUI extends AbstractContractBillPayReportUI
 		tblMain.getStyleAttributes().setLocked(true);
 		super.onLoad();
 		buildOrgTree();
+		this.buildContractTypeTree();
 		tblMain.getSelectManager().setSelectMode(KDTSelectManager.MULTIPLE_CELL_SELECT);
 		this.actionPrint.setVisible(false);
 		this.actionPrintPreview.setVisible(false);

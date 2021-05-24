@@ -8,6 +8,7 @@ import java.awt.Dialog;
 import java.awt.Frame;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.lang.reflect.Constructor;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.sql.SQLException;
@@ -39,23 +40,42 @@ import com.kingdee.bos.dao.IObjectPK;
 import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
 import com.kingdee.bos.dao.query.IQueryExecutor;
 import com.kingdee.bos.metadata.IMetaDataPK;
+import com.kingdee.bos.metadata.bot.BOTMappingCollection;
+import com.kingdee.bos.metadata.bot.BOTMappingFactory;
+import com.kingdee.bos.metadata.bot.BOTMappingInfo;
+import com.kingdee.bos.metadata.bot.BOTRelationCollection;
+import com.kingdee.bos.metadata.bot.BOTRelationFactory;
+import com.kingdee.bos.metadata.bot.IBOTRelation;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.bos.metadata.entity.SorterItemInfo;
 import com.kingdee.bos.metadata.query.util.CompareType;
+import com.kingdee.bos.spi.SPInfo;
+import com.kingdee.bos.spi.SPManager;
 import com.kingdee.bos.ui.face.IUIFactory;
 import com.kingdee.bos.ui.face.IUIWindow;
 import com.kingdee.bos.ui.face.UIException;
 import com.kingdee.bos.ui.face.UIFactory;
 import com.kingdee.bos.util.BOSUuid;
+import com.kingdee.eas.base.botp.client.BOTMappingSelectUI;
+import com.kingdee.eas.base.commonquery.QuerySolutionInfo;
 import com.kingdee.eas.base.commonquery.client.CommonFilterPanel;
 import com.kingdee.eas.base.commonquery.client.CommonQueryDialog;
 import com.kingdee.eas.base.commonquery.client.CustomerQueryPanel;
+import com.kingdee.eas.base.dap.DAPTransImpl;
+import com.kingdee.eas.base.dap.DAPTransformerFactory;
+import com.kingdee.eas.base.dap.DAPVoucherTypeEnum;
+import com.kingdee.eas.base.dap.IDAPTransformer;
 import com.kingdee.eas.base.multiapprove.MultiApproveInfo;
 import com.kingdee.eas.base.permission.client.longtime.ILongTimeTask;
 import com.kingdee.eas.base.uiframe.client.UIFactoryHelper;
+import com.kingdee.eas.basedata.org.CompanyOrgUnitFactory;
+import com.kingdee.eas.basedata.org.CompanyOrgUnitInfo;
+import com.kingdee.eas.basedata.org.OrgType;
+import com.kingdee.eas.basedata.org.OrgUnitFactory;
+import com.kingdee.eas.basedata.org.OrgUnitInfo;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.common.client.OprtState;
 import com.kingdee.eas.common.client.SysContext;
@@ -80,20 +100,32 @@ import com.kingdee.eas.fdc.contract.PayRequestBillEntryInfo;
 import com.kingdee.eas.fdc.contract.PayRequestBillFactory;
 import com.kingdee.eas.fdc.contract.PayRequestBillInfo;
 import com.kingdee.eas.fdc.contract.app.OaUtil;
+import com.kingdee.eas.fdc.finance.PaymentNoCostSplitInfo;
 import com.kingdee.eas.fdc.finance.client.ContractPayPlanEditUI;
 import com.kingdee.eas.fdc.finance.client.PaymentFullListUI;
 import com.kingdee.eas.fdc.tenancy.OtherBillInfo;
 import com.kingdee.eas.fdc.tenancy.client.OtherBillEditUI;
 import com.kingdee.eas.fdc.tenancy.client.TenancyImport;
+import com.kingdee.eas.fi.cas.PaymentBillFactory;
+import com.kingdee.eas.fi.cas.PaymentBillInfo;
 import com.kingdee.eas.fi.gl.VoucherCollection;
 import com.kingdee.eas.fi.gl.VoucherFactory;
 import com.kingdee.eas.fi.gl.client.VoucherEditUI;
 import com.kingdee.eas.framework.CoreBaseCollection;
 import com.kingdee.eas.framework.CoreBillBaseCollection;
 import com.kingdee.eas.framework.CoreBillBaseInfo;
+import com.kingdee.eas.framework.IBatchOrgListBiz;
 import com.kingdee.eas.framework.ICoreBase;
 import com.kingdee.eas.framework.ICoreBillBase;
+import com.kingdee.eas.framework.MultiOrgBatchExceptionInfo;
+import com.kingdee.eas.framework.client.CoreBillListUI;
 import com.kingdee.eas.framework.client.FrameWorkClientUtils;
+import com.kingdee.eas.framework.client.IDAPBillTrans;
+import com.kingdee.eas.framework.client.IDAPMultiOrgBillTrans;
+import com.kingdee.eas.framework.client.IDAPTrans;
+import com.kingdee.eas.framework.client.IMultiOrgBizInfo;
+import com.kingdee.eas.framework.client.context.IDelegationSupport;
+import com.kingdee.eas.framework.query.resource.QuickFilterResources;
 import com.kingdee.eas.framework.report.util.RptParams;
 import com.kingdee.eas.ma.budget.client.LongTimeDialog;
 import com.kingdee.eas.tools.datatask.DatataskMode;
@@ -103,12 +135,13 @@ import com.kingdee.eas.util.SysUtil;
 import com.kingdee.eas.util.client.EASResource;
 import com.kingdee.eas.util.client.MsgBox;
 import com.kingdee.jdbc.rowset.IRowSet;
+import com.kingdee.util.StringUtils;
 import com.kingdee.util.UuidException;
 
 /**
  * output class name
  */
-public class PayRequestFullListUI extends AbstractPayRequestFullListUI
+public class PayRequestFullListUI extends AbstractPayRequestFullListUI implements IBatchOrgListBiz
 {
 	public static final String resourcePath = "com.kingdee.eas.fdc.contract.client.ContractFullResource";
 
@@ -148,15 +181,16 @@ public class PayRequestFullListUI extends AbstractPayRequestFullListUI
 	{
 		checkSelected();
 		String id=this.getSelectedKeyValue();
-		if(PayReqUtils.isContractBill(id)){
+		PayRequestBillInfo info=PayRequestBillFactory.getRemoteInstance().getPayRequestBillInfo(new ObjectUuidPK(id));
+		if(PayReqUtils.isContractBill(info.getContractId())){
 			UIContext uiContext = new UIContext(this);
-			uiContext.put("ID", id);
+			uiContext.put("ID", info.getContractId());
 	        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
 	        IUIWindow uiWindow = uiFactory.create(ContractBillEditUI.class.getName(), uiContext,null,OprtState.VIEW);
 	        uiWindow.show();
 		}else{
 			UIContext uiContext = new UIContext(this);
-			uiContext.put("ID", id);
+			uiContext.put("ID", info.getContractId());
 	        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
 	        IUIWindow uiWindow = uiFactory.create(ContractWithoutTextEditUI.class.getName(), uiContext,null,OprtState.VIEW);
 	        uiWindow.show();
@@ -572,6 +606,19 @@ public class PayRequestFullListUI extends AbstractPayRequestFullListUI
 		this.actionRemove.setVisible(false);
 		
 		this.btnViewVoucher.setIcon(this.btnTraceDown.getIcon());
+		
+		if(SPManager.isSPInstalled("DAPTransImpl"))
+        {
+/* <-MISALIGNED-> */ /* 558*/                SPInfo spInfo = SPManager.getInstance().getSeviceProvider("DAPTransImpl");
+/* <-MISALIGNED-> */ /* 559*/                Constructor constructor = spInfo.getProviderClass().getConstructor(new Class[] {
+/* <-MISALIGNED-> */ /* 559*/                    CoreBillListUI.class
+            });
+/* <-MISALIGNED-> */ /* 560*/                Object dapObject = constructor.newInstance(new Object[] {
+/* <-MISALIGNED-> */ /* 560*/                    this
+            });
+/* <-MISALIGNED-> */ /* 561*/                dapTrans = (IDAPTrans)dapObject;
+/* <-MISALIGNED-> */ /* 562*/                dapTrans.init();
+        }
 	}
 	public void btnMultiSubmit_actionPerformed(ActionEvent e) {
 		checkSelected();
@@ -1182,5 +1229,64 @@ public class PayRequestFullListUI extends AbstractPayRequestFullListUI
 	}
 	public void actionViewVoucher_actionPerformed(ActionEvent e)throws Exception {
 		super.actionTraceDown_actionPerformed(e);
+	}
+	private IDAPTrans dapTrans = null;
+	private boolean isDAPTrans;
+	private boolean canVoucher;
+	private void setCanVoucher(boolean canVoucher)
+    {
+/* <-MISALIGNED-> */ /* 164*/        this.canVoucher = canVoucher;
+    }
+	public void actionVoucher_actionPerformed(ActionEvent e) throws Exception {
+		checkSelected();
+		List idList = new ArrayList();
+		int selectRows[] = getTableSelectRows(tblMain);
+		if(selectRows.length > 0)idList = getSelectedIdValues();
+		CoreBillBaseCollection sourceBillCollection = getNewBillList();
+		for(int i=0;i<sourceBillCollection.size();i++){
+			PayRequestBillInfo payInfo=PayRequestBillFactory.getRemoteInstance().getPayRequestBillInfo(new ObjectUuidPK(sourceBillCollection.get(i).getId()));
+			if(payInfo.isFivouchered()){
+				FDCMsgBox.showInfo("该单据已经生成凭证！");
+				SysUtil.abort();
+			}
+		}
+		IDAPTransformer iDAPTransformer = DAPTransformerFactory.getRemoteInstance();
+		BOTMappingCollection col=BOTMappingFactory.getRemoteInstance().getBOTMappingCollection("select *,extRule.* from where srcEntityName='C9A5A869' and destEntityName='2652E01E' and extRule.isEffected=1");
+		if(col.size()>1){
+			UIContext uiContext = new UIContext(this);
+			uiContext.put("BOTMappings", col);
+	        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
+	        IUIWindow uiWindow = uiFactory.create(BOTMappingSelectUI.class.getName(), uiContext,null,OprtState.VIEW);
+	        uiWindow.show();
+	        BOTMappingInfo mpInfo=((BOTMappingSelectUI)uiWindow.getUIObject()).getSelectBotMappingInfo();
+	        if(mpInfo!=null){
+	        	iDAPTransformer.generateVoucher(sourceBillCollection,DAPVoucherTypeEnum.FIVoucher, new ObjectUuidPK(mpInfo.getId()));
+	        	IBOTRelation iBOTRelation = BOTRelationFactory.getRemoteInstance();
+	        	EntityViewInfo view=new EntityViewInfo();
+	        	FilterInfo filter=new FilterInfo();
+	        	filter.getFilterItems().add(new FilterItemInfo("srcObjectID",idList.get(0)));
+	        	filter.getFilterItems().add(new FilterItemInfo("destEntityID","2652E01E"));
+	        	view.setFilter(filter);
+	        	BOTRelationCollection rotCol=iBOTRelation.getCollection(view);
+	        	if(rotCol.size()>0){
+	        		uiContext = new UIContext(this);
+	    			uiContext.put("ID", rotCol.get(0).getDestObjectID());
+	    	        uiFactory = UIFactory.createUIFactory(UIFactoryName.NEWTAB);
+	    	        uiWindow = uiFactory.create(VoucherEditUI.class.getName(), uiContext,null,OprtState.VIEW);
+	    	        uiWindow.show();
+	        	}
+	        	this.refreshList();
+	        }
+		}else{
+			IDAPBillTrans dapTransform = (IDAPBillTrans)dapTrans;
+			dapTransform.init();
+			actionVoucherByID(dapTransform, e);
+		}
+	}
+	public String getMainBizOrgColumnName() {
+		return "fullOrgUnit.id";
+	}
+	public String getMainBizOrgPropertyName() {
+		return "fullOrgUnit.name";
 	}
 }

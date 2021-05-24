@@ -46,6 +46,12 @@ import com.kingdee.bos.appframework.uip.UINavigator;
 public abstract class AbstractContractBillExecuteUI extends com.kingdee.eas.fdc.basedata.client.FDCRptBaseUI
 {
     private static final Logger logger = CoreUIObject.getLogger(AbstractContractBillExecuteUI.class);
+    protected com.kingdee.bos.ctrl.swing.KDSplitPane kDSplitPane1;
+    protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer1;
+    protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer2;
+    protected com.kingdee.bos.ctrl.swing.KDScrollPane kDScrollPane1;
+    protected com.kingdee.bos.ctrl.swing.KDScrollPane kDScrollPane2;
+    protected com.kingdee.bos.ctrl.swing.KDTree treeContractType;
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnViewContract;
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnViewPayment;
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnPayPlan;
@@ -133,6 +139,12 @@ public abstract class AbstractContractBillExecuteUI extends com.kingdee.eas.fdc.
         this.actionDisplayContract = new ActionDisplayContract(this);
         getActionManager().registerAction("actionDisplayContract", actionDisplayContract);
          this.actionDisplayContract.addService(new com.kingdee.eas.framework.client.service.PermissionService());
+        this.kDSplitPane1 = new com.kingdee.bos.ctrl.swing.KDSplitPane();
+        this.kDContainer1 = new com.kingdee.bos.ctrl.swing.KDContainer();
+        this.kDContainer2 = new com.kingdee.bos.ctrl.swing.KDContainer();
+        this.kDScrollPane1 = new com.kingdee.bos.ctrl.swing.KDScrollPane();
+        this.kDScrollPane2 = new com.kingdee.bos.ctrl.swing.KDScrollPane();
+        this.treeContractType = new com.kingdee.bos.ctrl.swing.KDTree();
         this.btnViewContract = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.btnViewPayment = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.btnPayPlan = new com.kingdee.bos.ctrl.swing.KDWorkButton();
@@ -160,6 +172,12 @@ public abstract class AbstractContractBillExecuteUI extends com.kingdee.eas.fdc.
         this.menuItemViewPayPlan = new com.kingdee.bos.ctrl.swing.KDMenuItem();
         this.menuItemExpand = new com.kingdee.bos.ctrl.swing.KDMenuItem();
         this.menuItemShorten = new com.kingdee.bos.ctrl.swing.KDMenuItem();
+        this.kDSplitPane1.setName("kDSplitPane1");
+        this.kDContainer1.setName("kDContainer1");
+        this.kDContainer2.setName("kDContainer2");
+        this.kDScrollPane1.setName("kDScrollPane1");
+        this.kDScrollPane2.setName("kDScrollPane2");
+        this.treeContractType.setName("treeContractType");
         this.btnViewContract.setName("btnViewContract");
         this.btnViewPayment.setName("btnViewPayment");
         this.btnPayPlan.setName("btnPayPlan");
@@ -220,7 +238,29 @@ public abstract class AbstractContractBillExecuteUI extends com.kingdee.eas.fdc.
         this.menuItemCancel.setEnabled(false);		
         this.menuItemCancel.setVisible(false);		
         this.pnlMain.setDividerLocation(180);		
-        this.pnlMain.setOneTouchExpandable(true);
+        this.pnlMain.setOneTouchExpandable(true);		
+        this.treeView.setVisible(false);
+        // kDSplitPane1		
+        this.kDSplitPane1.setDividerLocation(300);		
+        this.kDSplitPane1.setOrientation(0);		
+        this.kDSplitPane1.setOneTouchExpandable(true);
+        // kDContainer1		
+        this.kDContainer1.setTitle(resHelper.getString("kDContainer1.title"));
+        // kDContainer2		
+        this.kDContainer2.setTitle(resHelper.getString("kDContainer2.title"));
+        // kDScrollPane1
+        // kDScrollPane2
+        // treeContractType
+        this.treeContractType.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
+                try {
+                    treeContractType_valueChanged(e);
+                } catch (Exception exc) {
+                    handUIException(exc);
+                } finally {
+                }
+            }
+        });
         // btnViewContract
         this.btnViewContract.setAction((IItemAction)ActionProxyFactory.getProxy(actionViewContract, new Class[] { IItemAction.class }, getServiceContext()));		
         this.btnViewContract.setText(resHelper.getString("btnViewContract.text"));
@@ -342,11 +382,22 @@ public abstract class AbstractContractBillExecuteUI extends com.kingdee.eas.fdc.
         this.putClientProperty("OriginalBounds", new Rectangle(10, 10, 1016, 600));
         pnlMain.setBounds(new Rectangle(10, 10, 996, 580));
         this.add(pnlMain, new KDLayout.Constraints(10, 10, 996, 580, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_BOTTOM | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
+        treeView.setBounds(new Rectangle(-176, -14, 180, 580));
+        this.add(treeView, new KDLayout.Constraints(-176, -14, 180, 580, 0));
         //pnlMain
         pnlMain.add(tblMain, "right");
-        pnlMain.add(treeView, "left");
-        //treeView
-        treeView.setTree(treeMain);
+        pnlMain.add(kDSplitPane1, "left");
+        //kDSplitPane1
+        kDSplitPane1.add(kDContainer1, "top");
+        kDSplitPane1.add(kDContainer2, "bottom");
+        //kDContainer1
+kDContainer1.getContentPane().setLayout(new BorderLayout(0, 0));        kDContainer1.getContentPane().add(kDScrollPane1, BorderLayout.CENTER);
+        //kDScrollPane1
+        kDScrollPane1.getViewport().add(treeMain, null);
+        //kDContainer2
+kDContainer2.getContentPane().setLayout(new BorderLayout(0, 0));        kDContainer2.getContentPane().add(kDScrollPane2, BorderLayout.CENTER);
+        //kDScrollPane2
+        kDScrollPane2.getViewport().add(treeContractType, null);
 
     }
 
@@ -566,6 +617,13 @@ public abstract class AbstractContractBillExecuteUI extends com.kingdee.eas.fdc.
     protected void tblMain_editStopped(com.kingdee.bos.ctrl.kdf.table.event.KDTEditEvent e) throws Exception
     {
         //write your code here
+    }
+
+    /**
+     * output treeContractType_valueChanged method
+     */
+    protected void treeContractType_valueChanged(javax.swing.event.TreeSelectionEvent e) throws Exception
+    {
     }
 
     /**

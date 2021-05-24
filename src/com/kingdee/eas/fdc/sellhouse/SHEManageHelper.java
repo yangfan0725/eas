@@ -3666,10 +3666,10 @@ public class SHEManageHelper {
 		filter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.TOPUR_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.TOSIGN_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.CHANGEPIRCEAUDITING_VALUE));
-//		filter.getFilterItems().add(new FilterItemInfo("transactionID","select fid from T_SHE_Transaction where fisValid=0 and froomId='"+room.getId().toString()+"'",CompareType.INNER));
+		filter.getFilterItems().add(new FilterItemInfo("transactionID","select fid from T_SHE_Transaction where fisValid=0 and froomId='"+room.getId().toString()+"'",CompareType.INNER));
 		
-//		filter.setMaskString("#0 and (#1 or #2 or #3 or #4 or #5) and #6)");
-		filter.setMaskString("#0 and (#1 or #2 or #3 or #4 or #5))");
+		filter.setMaskString("#0 and (#1 or #2 or #3 or #4 or #5) and #6)");
+//		filter.setMaskString("#0 and (#1 or #2 or #3 or #4 or #5))");
 		view.setFilter(filter);
 		view.getSelector().add("bizDate");
 		PrePurchaseManageCollection prePurchaseManages =null;
@@ -3693,10 +3693,10 @@ public class SHEManageHelper {
 		filter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.PURAUDIT_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.TOSIGN_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.CHANGEPIRCEAUDITING_VALUE));
-//		filter.getFilterItems().add(new FilterItemInfo("transactionID","select fid from T_SHE_Transaction where fisValid=0 and froomId='"+room.getId().toString()+"'",CompareType.INNER));
+		filter.getFilterItems().add(new FilterItemInfo("transactionID","select fid from T_SHE_Transaction where fisValid=0 and froomId='"+room.getId().toString()+"'",CompareType.INNER));
 		
-//		filter.setMaskString("#0 and (#1 or #2 or #3 or #4) and #5");
-		filter.setMaskString("#0 and (#1 or #2 or #3 or #4)");
+		filter.setMaskString("#0 and (#1 or #2 or #3 or #4) and #5");
+//		filter.setMaskString("#0 and (#1 or #2 or #3 or #4)");
 		view.setFilter(filter);
 		view.getSelector().add("bizDate");
 		PurchaseManageCollection purchaseManages = null;
@@ -3718,10 +3718,10 @@ public class SHEManageHelper {
 		filter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.SIGNAPPLE_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.SIGNAUDIT_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.CHANGEPIRCEAUDITING_VALUE));
-//		filter.getFilterItems().add(new FilterItemInfo("transactionID","select fid from T_SHE_Transaction where fisValid=0 and froomId='"+room.getId().toString()+"'",CompareType.INNER));
+		filter.getFilterItems().add(new FilterItemInfo("transactionID","select fid from T_SHE_Transaction where fisValid=0 and froomId='"+room.getId().toString()+"'",CompareType.INNER));
 		
-//		filter.setMaskString("#0 and (#1 or #2 or #3 ) and #4)");
-		filter.setMaskString("#0 and (#1 or #2 or #3 ))");
+		filter.setMaskString("#0 and (#1 or #2 or #3 ) and #4)");
+//		filter.setMaskString("#0 and (#1 or #2 or #3 ))");
 		view.setFilter(filter);
 		view.getSelector().add("bizDate");
 		SignManageCollection signManages =null;

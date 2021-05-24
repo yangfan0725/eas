@@ -68,9 +68,9 @@ public class ContractBillExecuteDataHander {
 					if (hasNotText) {
 						FilterInfo oldFilter = oldView.getFilter();
 						if (ret == null) {
-							ret = handleNoTextContract(ctx, projectIds, oldFilter);
+							ret = handleNoTextContract(ctx, projectIds, oldFilter, params);
 						} else {
-							ret.addAll(handleNoTextContract(ctx, projectIds, oldFilter));
+							ret.addAll(handleNoTextContract(ctx, projectIds, oldFilter, params));
 						}
 					}
 					System.out.println("handleNoTextContract2...:" + (System.currentTimeMillis() - start));
@@ -255,7 +255,7 @@ public class ContractBillExecuteDataHander {
 	private static List handleContract(Context ctx, Set projectIds, EntityViewInfo oldView, Map params) throws Exception {
 		List ret = new ArrayList();
 		Map contractId2ExeData = new HashMap();
-		ContractBillCollection contracts = listContractBill(ctx, projectIds, oldView); 
+		ContractBillCollection contracts = listContractBill(ctx, projectIds, oldView,params); 
 		if (contracts != null && !contracts.isEmpty()) {
 			for (int i = 0; i < contracts.size(); i++) {
 				ContractExecuteData data = new ContractExecuteData();
@@ -481,10 +481,14 @@ public class ContractBillExecuteDataHander {
 	 * @return
 	 * @throws BOSException
 	 */
-	private static ContractBillCollection listContractBill(Context ctx, Set projectIds, EntityViewInfo oldView) throws BOSException {
+	private static ContractBillCollection listContractBill(Context ctx, Set projectIds, EntityViewInfo oldView,Map map) throws BOSException {
 		FilterInfo filter = new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("curProject.id", projectIds, CompareType.INCLUDE));
 		filter.getFilterItems().add(new FilterItemInfo("isAmtWithoutCost", Boolean.FALSE));
+		String contractType=(String)map.get("contractType");
+		if(contractType!=null){
+			filter.getFilterItems().add(new FilterItemInfo("contractType.id", contractType,CompareType.INNER));
+		}
 		SorterItemInfo sorter = new SorterItemInfo("number");
 		sorter.setSortType(SortType.DESCEND);
 		EntityViewInfo view = (EntityViewInfo) oldView.clone();
@@ -520,9 +524,9 @@ public class ContractBillExecuteDataHander {
 		return ContractBillFactory.getLocalInstance(ctx).getContractBillCollection(view);
 	}
 
-	private static List handleNoTextContract(Context ctx, Set projectIds, FilterInfo oldFilter) throws Exception {
+	private static List handleNoTextContract(Context ctx, Set projectIds, FilterInfo oldFilter,Map map) throws Exception {
 		List ret = new ArrayList();
-		ContractWithoutTextCollection contracts = listContractWithoutText(ctx, projectIds, oldFilter);
+		ContractWithoutTextCollection contracts = listContractWithoutText(ctx, projectIds, oldFilter,map);
 		if (contracts != null && !contracts.isEmpty()) {
 			Map contractId2ExeData = new HashMap();
 			for (int i = 0; i < contracts.size(); ++i) {
@@ -646,7 +650,7 @@ public class ContractBillExecuteDataHander {
 	 * @return
 	 * @throws BOSException
 	 */
-	private static ContractWithoutTextCollection listContractWithoutText(Context ctx, Set projectIds, FilterInfo oldFilter)
+	private static ContractWithoutTextCollection listContractWithoutText(Context ctx, Set projectIds, FilterInfo oldFilter,Map map)
 			throws BOSException {
 		// 无文本合同
 		EntityViewInfo viewInfo = new EntityViewInfo();
@@ -658,6 +662,10 @@ public class ContractBillExecuteDataHander {
 		viewInfo.getSelector().add("creator.name");
 		FilterInfo filterInfo = new FilterInfo();
 		filterInfo.getFilterItems().add(new FilterItemInfo("curProject.id", projectIds, CompareType.INCLUDE));
+		String contractType=(String)map.get("contractType");
+		if(contractType!=null){
+			filterInfo.getFilterItems().add(new FilterItemInfo("contractType.id", contractType,CompareType.INNER));
+		}
 		if (oldFilter != null) {
 			FilterInfo oldFilter2 = (FilterInfo) oldFilter.clone();
 			// 删除掉signDate
