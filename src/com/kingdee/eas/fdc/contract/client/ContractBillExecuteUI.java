@@ -385,7 +385,7 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 //		row.getCell("payPlanAmt").setValue(data.getPlanPayAmount());
 //		row.getCell("payPlanSrcAmt").setValue(data.getPlanPaySrcAmount());
 		row.getCell("payRealAmt").setValue(data.getRealPayAmount());
-		row.getCell("notPayed").setValue(data.getNotPay());
+		row.getCell("notPayed").setValue(FDCHelper.subtract(data.getContractLastAmount(), data.getRealPayAmount()));
 		row.getCell("contract.id").setValue(contract.getId().toString());
 		if (contract.getPartB() != null) {
 			row.getCell("partB").setValue(contract.getPartB().getName());
@@ -475,6 +475,8 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 		row.getCell("reOriAmt").setValue(child.getPlanPaySrcAmount());
 		row.getCell("paymentBill.id").setValue(child.getPlanPayId());
 		row.getCell("deductAmt").setValue(child.getDeductAmt());
+		
+		row.getCell("notPayed").setValue(FDCHelper.subtract(child.getPlanPayAmount(), child.getRealPayAmount()));
 	}
 	private void fillTable(List datas) {
 		if (datas != null && !datas.isEmpty()) {
