@@ -50,6 +50,17 @@ public class AbstractContractWFTypeInfo extends com.kingdee.eas.framework.TreeBa
     {
         setString("oaTId", item);
     }
+    /**
+     * Object:合同流程类型's oa流程模板id（补充合同）property 
+     */
+    public String getOaSTId()
+    {
+        return getString("oaSTId");
+    }
+    public void setOaSTId(String item)
+    {
+        setString("oaSTId", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("8B1F0936");

@@ -187,7 +187,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDLabel</classType>
             <isContainer>false</isContainer>
-            <constraints>10,113,100,19</constraints>
+            <constraints>10,128,100,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -215,7 +215,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangArea</classType>
             <isContainer>false</isContainer>
-            <constraints>10,139,270,89</constraints>
+            <constraints>10,154,270,89</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -256,7 +256,7 @@
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
             <isContainer>true</isContainer>
-            <constraints>10,79,270,19</constraints>
+            <constraints>10,70,270,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -284,6 +284,48 @@
                     <name>boundLabelUnderline</name>
                     <type>boolean</type>
                     <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaTId].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CoreUI" />
+            </parent>
+        </component>
+        <component>
+            <name>contOaSTId</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaSTId].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>10,99,270,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaSTId].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaSTId].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaSTId].properties.property[boundLabelUnderline].value</value>
                     <isMultiLan>false</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
@@ -412,6 +454,38 @@
                     <propertyType>java.lang.String</propertyType>
                     <bindingObject>editData</bindingObject>
                     <bindingField>oaTId</bindingField>
+                    <fieldType>String</fieldType>
+                    <accessType />
+                    <autoMode>false</autoMode>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </propertyBinding>
+            </propertyBindings>
+        </component>
+        <component>
+            <name>txtOaSTId</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[txtOaSTId].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDTextField</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <parent>
+                <key name="name" value="contOaSTId" />
+            </parent>
+            <propertyBindings>
+                <propertyBinding>
+                    <propertyName>text</propertyName>
+                    <propertyType>java.lang.String</propertyType>
+                    <bindingObject>editData</bindingObject>
+                    <bindingField>oaSTId</bindingField>
                     <fieldType>String</fieldType>
                     <accessType />
                     <autoMode>false</autoMode>
@@ -994,10 +1068,10 @@
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contLongNumber].properties.property[boundLabelLength].value">
-            <lang locale="en_US" value="100" />
-            <lang locale="zh_CN" value="100" />
-            <lang locale="zh_HK" value="100" />
-            <lang locale="zh_TW" value="100" />
+            <lang locale="en_US" value="120" />
+            <lang locale="zh_CN" value="120" />
+            <lang locale="zh_HK" value="120" />
+            <lang locale="zh_TW" value="120" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contLongNumber].properties.property[boundLabelText].value">
             <lang locale="en_US" value="null" />
@@ -1018,10 +1092,10 @@
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contName].properties.property[boundLabelLength].value">
-            <lang locale="en_US" value="100" />
-            <lang locale="zh_CN" value="100" />
-            <lang locale="zh_HK" value="100" />
-            <lang locale="zh_TW" value="100" />
+            <lang locale="en_US" value="120" />
+            <lang locale="zh_CN" value="120" />
+            <lang locale="zh_HK" value="120" />
+            <lang locale="zh_TW" value="120" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contName].properties.property[boundLabelText].value">
             <lang locale="en_US" value="null" />
@@ -1035,6 +1109,30 @@
             <lang locale="zh_HK" value="true" />
             <lang locale="zh_TW" value="true" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaSTId].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaSTId].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="120" />
+            <lang locale="zh_CN" value="120" />
+            <lang locale="zh_HK" value="120" />
+            <lang locale="zh_TW" value="120" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaSTId].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="oa模板ID（补充合同）" />
+            <lang locale="zh_HK" value="oa範本ID（補充合同）" />
+            <lang locale="zh_TW" value="oa範本ID（補充合同）" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaSTId].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaTId].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -1042,10 +1140,10 @@
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaTId].properties.property[boundLabelLength].value">
-            <lang locale="en_US" value="100" />
-            <lang locale="zh_CN" value="100" />
-            <lang locale="zh_HK" value="100" />
-            <lang locale="zh_TW" value="100" />
+            <lang locale="en_US" value="120" />
+            <lang locale="zh_CN" value="120" />
+            <lang locale="zh_HK" value="120" />
+            <lang locale="zh_TW" value="120" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[contOaTId].properties.property[boundLabelText].value">
             <lang locale="en_US" value="null" />
@@ -1172,6 +1270,12 @@
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_HK" value="true" />
             <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[txtOaSTId].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractWFTypeEditUI].components.component[txtOaTId].alias">
             <lang locale="en_US" value="null" />

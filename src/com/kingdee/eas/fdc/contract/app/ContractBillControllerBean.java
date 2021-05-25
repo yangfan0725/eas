@@ -343,11 +343,20 @@ public class ContractBillControllerBean extends
 //				json.put("tmplateId", tmplateId);
 				
 				ContractWFTypeInfo wf=ContractWFTypeFactory.getLocalInstance(ctx).getContractWFTypeInfo(new ObjectUuidPK(info.getContractWFType().getId()));
-				if(wf.getOaTId()==null){
-					throw new EASBizException(new NumericExceptionSubItem("100","合同流程类型未维护对应OA模板ID！"));
+				if(info.getContractPropert().equals(ContractPropertyEnum.SUPPLY)){
+					if(wf.getOaSTId()==null){
+						throw new EASBizException(new NumericExceptionSubItem("100","合同流程类型未维护对应OA模板ID（补充合同）！"));
+					}else{
+						json.put("tmplateId", wf.getOaSTId());
+					}
 				}else{
-					json.put("tmplateId", wf.getOaTId());
+					if(wf.getOaTId()==null){
+						throw new EASBizException(new NumericExceptionSubItem("100","合同流程类型未维护对应OA模板ID！"));
+					}else{
+						json.put("tmplateId", wf.getOaTId());
+					}
 				}
+				
 				json.put("fdType", "01");
 				json.put("docSubject", info.getName());
 

@@ -197,6 +197,8 @@ public class PurchaseManageEditUI extends AbstractPurchaseManageEditUI
 		
 		this.txtDealTotalAmount.setEnabled(false);
 		this.pkPlanSignDate.setEnabled(false);
+		
+		this.contPlanSignDate.setVisible(false);
 	}
     public void setOprtState(String oprtType) {
 		super.setOprtState(oprtType);

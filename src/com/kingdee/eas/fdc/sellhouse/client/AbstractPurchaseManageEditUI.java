@@ -679,8 +679,8 @@ panelBizReview.setLayout(new BorderLayout(0, 0));        panelBizReview.add(tblB
         panelBiz.add(contNumber, new KDLayout.Constraints(9, 6, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contContractNumber.setBounds(new Rectangle(353, 6, 270, 19));
         panelBiz.add(contContractNumber, new KDLayout.Constraints(353, 6, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
-        contBizDate.setBounds(new Rectangle(698, 6, 270, 19));
-        panelBiz.add(contBizDate, new KDLayout.Constraints(698, 6, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contBizDate.setBounds(new Rectangle(698, 28, 270, 19));
+        panelBiz.add(contBizDate, new KDLayout.Constraints(698, 28, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         contPayType.setBounds(new Rectangle(9, 28, 270, 19));
         panelBiz.add(contPayType, new KDLayout.Constraints(9, 28, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contAgioScheme.setBounds(new Rectangle(661, 245, 270, 19));
@@ -707,8 +707,8 @@ panelBizReview.setLayout(new BorderLayout(0, 0));        panelBizReview.add(tblB
         panelBiz.add(btnChooseAgio, new KDLayout.Constraints(906, 259, 97, 19, KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         contDes.setBounds(new Rectangle(9, 71, 962, 19));
         panelBiz.add(contDes, new KDLayout.Constraints(9, 71, 962, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
-        contPlanSignDate.setBounds(new Rectangle(698, 28, 270, 19));
-        panelBiz.add(contPlanSignDate, new KDLayout.Constraints(698, 28, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contPlanSignDate.setBounds(new Rectangle(698, 6, 270, 19));
+        panelBiz.add(contPlanSignDate, new KDLayout.Constraints(698, 6, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         contActualArea.setBounds(new Rectangle(704, 270, 270, 19));
         panelBiz.add(contActualArea, new KDLayout.Constraints(704, 270, 270, 19, KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         contPreArea.setBounds(new Rectangle(359, 270, 270, 19));

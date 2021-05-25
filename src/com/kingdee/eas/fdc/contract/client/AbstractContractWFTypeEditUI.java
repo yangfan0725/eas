@@ -52,9 +52,11 @@ public abstract class AbstractContractWFTypeEditUI extends com.kingdee.eas.frame
     protected com.kingdee.bos.ctrl.swing.KDLabel kDLabel1;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangArea bizDescription;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contOaTId;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contOaSTId;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangBox bizName;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtLongNumber;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtOaTId;
+    protected com.kingdee.bos.ctrl.swing.KDTextField txtOaSTId;
     protected com.kingdee.eas.fdc.contract.ContractWFTypeInfo editData = null;
     /**
      * output class constructor
@@ -96,18 +98,22 @@ public abstract class AbstractContractWFTypeEditUI extends com.kingdee.eas.frame
         this.kDLabel1 = new com.kingdee.bos.ctrl.swing.KDLabel();
         this.bizDescription = new com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangArea();
         this.contOaTId = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contOaSTId = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.bizName = new com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangBox();
         this.txtLongNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtOaTId = new com.kingdee.bos.ctrl.swing.KDTextField();
+        this.txtOaSTId = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.contName.setName("contName");
         this.contLongNumber.setName("contLongNumber");
         this.chkIsEnabled.setName("chkIsEnabled");
         this.kDLabel1.setName("kDLabel1");
         this.bizDescription.setName("bizDescription");
         this.contOaTId.setName("contOaTId");
+        this.contOaSTId.setName("contOaSTId");
         this.bizName.setName("bizName");
         this.txtLongNumber.setName("txtLongNumber");
         this.txtOaTId.setName("txtOaTId");
+        this.txtOaSTId.setName("txtOaSTId");
         // CoreUI		
         this.btnSave.setVisible(false);		
         this.btnCopy.setVisible(false);		
@@ -127,11 +133,11 @@ public abstract class AbstractContractWFTypeEditUI extends com.kingdee.eas.frame
         this.separatorFW3.setVisible(false);
         // contName		
         this.contName.setBoundLabelText(resHelper.getString("contName.boundLabelText"));		
-        this.contName.setBoundLabelLength(100);		
+        this.contName.setBoundLabelLength(120);		
         this.contName.setBoundLabelUnderline(true);
         // contLongNumber		
         this.contLongNumber.setBoundLabelText(resHelper.getString("contLongNumber.boundLabelText"));		
-        this.contLongNumber.setBoundLabelLength(100);		
+        this.contLongNumber.setBoundLabelLength(120);		
         this.contLongNumber.setBoundLabelUnderline(true);
         // chkIsEnabled		
         this.chkIsEnabled.setText(resHelper.getString("chkIsEnabled.text"));		
@@ -142,8 +148,12 @@ public abstract class AbstractContractWFTypeEditUI extends com.kingdee.eas.frame
         this.bizDescription.setMaxLength(200);
         // contOaTId		
         this.contOaTId.setBoundLabelText(resHelper.getString("contOaTId.boundLabelText"));		
-        this.contOaTId.setBoundLabelLength(100);		
+        this.contOaTId.setBoundLabelLength(120);		
         this.contOaTId.setBoundLabelUnderline(true);
+        // contOaSTId		
+        this.contOaSTId.setBoundLabelText(resHelper.getString("contOaSTId.boundLabelText"));		
+        this.contOaSTId.setBoundLabelLength(120);		
+        this.contOaSTId.setBoundLabelUnderline(true);
         // bizName		
         this.bizName.setRequired(true);		
         this.bizName.setMaxLength(80);
@@ -151,6 +161,7 @@ public abstract class AbstractContractWFTypeEditUI extends com.kingdee.eas.frame
         this.txtLongNumber.setRequired(true);		
         this.txtLongNumber.setMaxLength(80);
         // txtOaTId
+        // txtOaSTId
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -183,18 +194,22 @@ public abstract class AbstractContractWFTypeEditUI extends com.kingdee.eas.frame
         this.add(contLongNumber, null);
         chkIsEnabled.setBounds(new Rectangle(152, 241, 140, 19));
         this.add(chkIsEnabled, null);
-        kDLabel1.setBounds(new Rectangle(10, 113, 100, 19));
+        kDLabel1.setBounds(new Rectangle(10, 128, 100, 19));
         this.add(kDLabel1, null);
-        bizDescription.setBounds(new Rectangle(10, 139, 270, 89));
+        bizDescription.setBounds(new Rectangle(10, 154, 270, 89));
         this.add(bizDescription, null);
-        contOaTId.setBounds(new Rectangle(10, 79, 270, 19));
+        contOaTId.setBounds(new Rectangle(10, 70, 270, 19));
         this.add(contOaTId, null);
+        contOaSTId.setBounds(new Rectangle(10, 99, 270, 19));
+        this.add(contOaSTId, null);
         //contName
         contName.setBoundEditor(bizName);
         //contLongNumber
         contLongNumber.setBoundEditor(txtLongNumber);
         //contOaTId
         contOaTId.setBoundEditor(txtOaTId);
+        //contOaSTId
+        contOaSTId.setBoundEditor(txtOaSTId);
 
     }
 
@@ -309,7 +324,8 @@ public abstract class AbstractContractWFTypeEditUI extends com.kingdee.eas.frame
 		dataBinder.registerBinding("description", String.class, this.bizDescription, "_multiLangItem");
 		dataBinder.registerBinding("name", String.class, this.bizName, "_multiLangItem");
 		dataBinder.registerBinding("longNumber", String.class, this.txtLongNumber, "text");
-		dataBinder.registerBinding("oaTId", String.class, this.txtOaTId, "text");		
+		dataBinder.registerBinding("oaTId", String.class, this.txtOaTId, "text");
+		dataBinder.registerBinding("oaSTId", String.class, this.txtOaSTId, "text");		
 	}
 	//Regiester UI State
 	private void registerUIState(){		
@@ -373,7 +389,8 @@ public abstract class AbstractContractWFTypeEditUI extends com.kingdee.eas.frame
 		getValidateHelper().registerBindProperty("description", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("name", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("longNumber", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("oaTId", ValidateHelper.ON_SAVE);    		
+		getValidateHelper().registerBindProperty("oaTId", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("oaSTId", ValidateHelper.ON_SAVE);    		
 	}
 
 
@@ -405,6 +422,7 @@ public abstract class AbstractContractWFTypeEditUI extends com.kingdee.eas.frame
         sic.add(new SelectorItemInfo("name"));
         sic.add(new SelectorItemInfo("longNumber"));
         sic.add(new SelectorItemInfo("oaTId"));
+        sic.add(new SelectorItemInfo("oaSTId"));
         return sic;
     }        
     	
