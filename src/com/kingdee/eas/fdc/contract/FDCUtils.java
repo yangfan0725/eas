@@ -1284,7 +1284,23 @@ public class FDCUtils {
 			builder.releasTempTables();
 		}
 	}
-
+	public static Map getCompletePrjAmt(Context ctx,String[] contractIdList) throws Exception {
+		if(contractIdList==null || contractIdList.length==0){
+			return new HashMap();
+		}
+		FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
+			builder.appendSql("select fcontractid,sum(fCompletePrjAmt) amount from t_con_payrequestBill where 1=1 and ");
+			builder.appendParam("fcontractid", contractIdList, "varchar(44)");
+			builder.appendSql(" group by fcontractid");
+			IRowSet rs = builder.executeQuery();
+			Map map = new HashMap();
+			if (rs != null && rs.size() > 0) {
+				while (rs.next()) {
+					map.put(rs.getString("fcontractid"), rs.getBigDecimal("amount"));
+				}
+			}
+			return map;
+	}
 	/**
 	 * 批量-取合同最新原币造价（如果已结算，则取结算价；否则取合同金额+变更金额+奖励-索赔-扣款(已被申请单关联的)）
 	 * <p>

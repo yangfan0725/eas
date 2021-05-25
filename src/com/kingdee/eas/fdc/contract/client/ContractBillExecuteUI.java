@@ -3,6 +3,9 @@
  */
 package com.kingdee.eas.fdc.contract.client;
 
+import java.awt.Dialog;
+import java.awt.Frame;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
@@ -117,23 +120,30 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 		this.actionViewContract.setVisible(false);
 		this.actionViewPayment.setVisible(false);
 		
-		this.buildContractTypeTree();
+		this.actionPrint.setVisible(false);
+		this.actionPrintPreview.setVisible(false);
 		
+		this.buildContractTypeTree();
+		kDSplitPane1.setVisible(false);
 	}
 	@Override
 	protected void treeContractType_valueChanged(TreeSelectionEvent e)
 			throws Exception {
-		 String selectObjId = getSelectObjId();
-		 if(selectObjId == null)
-		 {
-			 return;
-		 } else
-		 {
-			 fillTable();
-			 return;
-		 }
+//		 String selectObjId = getSelectObjId();
+//		 if(selectObjId == null)
+//		 {
+//			 return;
+//		 } else
+//		 {
+//			 fillTable();
+//			 return;
+//		 }
 	}
-
+	 protected void treeMain_valueChanged(TreeSelectionEvent e)
+     throws Exception
+ {
+		 
+ }
 	private KDTree getContractTypeTree() {
 		return this.treeContractType;
 	}
@@ -302,6 +312,16 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 			return null;
 		}
 	}
+	protected boolean initDefaultFilter()
+    {
+/* <-MISALIGNED-> */ /*3753*/        return true;
+    }
+	
+	@Override
+	public void actionRefresh_actionPerformed(ActionEvent e) throws Exception {
+		fillTable();
+	}
+
 	protected void fillTable() throws Exception {
 		tblMain.removeRows(false);
 		tblMain.setUserObject(null);
@@ -309,17 +329,24 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 		final Set projectIds = getSelectObjLeafIds(true);
 		
 	
-		if (projectIds != null && !projectIds.isEmpty()) {
-			final String allSpIdStr=getContractTypeStr();
+//		if (projectIds != null && !projectIds.isEmpty()) {
+//			final String allSpIdStr=getContractTypeStr();
 			
 			final EntityViewInfo view = (EntityViewInfo) mainQuery.clone();
 	
-			LongTimeDialog dialog = UITools.getDialog(this);
-			if (dialog == null)
-				return;
-			dialog.setLongTimeTask(new ILongTimeTask() {
+			Window win = SwingUtilities.getWindowAncestor(this);
+            LongTimeDialog dialog = null;
+            if(win instanceof Frame){
+            	dialog = new LongTimeDialog((Frame)win);
+            }else if(win instanceof Dialog){
+            	dialog = new LongTimeDialog((Dialog)win);
+            }
+            if(dialog==null){
+            	dialog = new LongTimeDialog(new Frame());
+            }
+            dialog.setLongTimeTask(new ILongTimeTask() {
 				public Object exec() throws Exception {
-					return getExecuteDatas(projectIds,allSpIdStr, view);
+					return getExecuteDatas(view);
 				}
 
 				public void afterExec(Object result) throws Exception {
@@ -327,16 +354,16 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 				}
 			});
 			dialog.show();
-		}
+//		}
 	}
-	private List getExecuteDatas(Set projectIds,String allSpIdStr, EntityViewInfo oldView) throws Exception {
+	private List getExecuteDatas(EntityViewInfo oldView) throws Exception {
 		Map params = new HashMap();
 		params.put("isDisplayPlan", Boolean.valueOf(isDisplayPlan));
 		params.put("isMoreSett", Boolean.valueOf(isMoreSett));
 		params.put("allNotPaidParam", Boolean.valueOf(allNotPaidParam));
 		params.put("EntityViewInfo", oldView);
-		params.put("contractType", allSpIdStr);
-		return ContractBillExecuteDataHander.getContractExeData(projectIds, params, isDisplayContract, isDisplayConNoText);
+//		params.put("contractType", allSpIdStr);
+		return ContractBillExecuteDataHander.getContractExeData(null, params, isDisplayContract, isDisplayConNoText);
 	}
 
 	private void fillRowByContractExeData(IRow row, ContractExecuteData data) {

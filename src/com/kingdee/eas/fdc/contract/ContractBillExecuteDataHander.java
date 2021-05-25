@@ -374,7 +374,7 @@ public class ContractBillExecuteDataHander {
 		// 合同最新本位币造价
 		Map lastAmtMap = FDCUtils.getLastAmt_Batch(ctx, contractIds);
 		// 合同最新原币造价
-		Map lastSrcAmpMap = FDCUtils.getLastOriginalAmt_Batch(ctx, contractIds);
+		Map lastSrcAmpMap = FDCUtils.getCompletePrjAmt(ctx, contractIds);
 		// 累计已完工工程量
 		Collection entryCol = contractId2ExeData.values();
 		Map orgId2ContractIdSet = new HashMap();
@@ -483,7 +483,8 @@ public class ContractBillExecuteDataHander {
 	 */
 	private static ContractBillCollection listContractBill(Context ctx, Set projectIds, EntityViewInfo oldView,Map map) throws BOSException {
 		FilterInfo filter = new FilterInfo();
-		filter.getFilterItems().add(new FilterItemInfo("curProject.id", projectIds, CompareType.INCLUDE));
+		if(projectIds!=null)
+			filter.getFilterItems().add(new FilterItemInfo("curProject.id", projectIds, CompareType.INCLUDE));
 		filter.getFilterItems().add(new FilterItemInfo("isAmtWithoutCost", Boolean.FALSE));
 		String contractType=(String)map.get("contractType");
 		if(contractType!=null){
@@ -661,7 +662,8 @@ public class ContractBillExecuteDataHander {
 		viewInfo.getSelector().add("contractType.name");
 		viewInfo.getSelector().add("creator.name");
 		FilterInfo filterInfo = new FilterInfo();
-		filterInfo.getFilterItems().add(new FilterItemInfo("curProject.id", projectIds, CompareType.INCLUDE));
+		if(projectIds!=null)
+			filterInfo.getFilterItems().add(new FilterItemInfo("curProject.id", projectIds, CompareType.INCLUDE));
 		String contractType=(String)map.get("contractType");
 		if(contractType!=null){
 			filterInfo.getFilterItems().add(new FilterItemInfo("contractType.id", contractType,CompareType.INNER));
