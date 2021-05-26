@@ -87,9 +87,10 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
         Date now=SysUtil.getAppServerTime(ctx);
         for(int size = coll.size(); i < size; i++){
             info = coll.get(i);
-//            if(info.getSourceFunction()!=null){
-//    			throw new EASBizException(new NumericExceptionSubItem("100","已同步资金系统，禁止付款！"));
-//            }
+            PaymentBillCollection payCol=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillCollection("select * from where sourceBillId='"+info.getId()+"'");
+            if(payCol.size()>0){
+            	throw new EASBizException(new NumericExceptionSubItem("100","请付款代理公司付款单！"));
+            }
             if(info.getSourceType().equals(SourceTypeEnum.FDC)){
             	if(info.getFdcPayReqID() != null){
             		PayRequestBillInfo payRequest=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(info.getFdcPayReqID()),getSelectors());
@@ -106,7 +107,6 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		}
                 }
             	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
-            	builder = new FDCSQLBuilder(ctx);
                 builder.appendSql("update T_CAS_PaymentBill set fbizDate=? where fid=? ");
                 builder.addParam(now);
                 builder.addParam(info.getId().toString());
@@ -180,6 +180,14 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
                         }
             		}
             	}
+            }
+            if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
+            	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
+                builder.appendSql("update T_CAS_PaymentBill set fbillstatus=?,fbizDate=? where fid=? ");
+                builder.addParam(15);
+                builder.addParam(now);
+                builder.addParam(info.getSourceBillId());
+                builder.executeUpdate();
             }
         }
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
@@ -312,7 +320,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 		super._delete(ctx, pk);
 		if(payRequstBillid!=null){
 			FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
-			builder.appendSql("select count(*) payTime from t_cas_paymentbill where fFdcPayReqID=?");
+			builder.appendSql("select count(*) payTime from t_cas_paymentbill where fFdcPayReqID=? and fsourceBillId is null");
 	        builder.addParam(payRequstBillid);
 	        IRowSet rs=builder.executeQuery();
 	        int  payTime=0;
@@ -345,6 +353,10 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 		Map reMap=super._cancelPaySilent(ctx, idSet);
 		for(int size = coll.size(); i < size; i++){
 			info = coll.get(i);
+			PaymentBillCollection payCol=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillCollection("select * from where sourceBillId='"+info.getId()+"'");
+            if(payCol.size()>0){
+            	throw new EASBizException(new NumericExceptionSubItem("100","请取消付款代理公司付款单！"));
+            }
             if(info.getSourceType().equals(SourceTypeEnum.FDC)){
             	if(info.getFdcPayReqID() != null){
             		PayRequestBillInfo payRequest=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(info.getFdcPayReqID()),getSelectors());
@@ -395,6 +407,13 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
                     }
                 }
     		}
+            if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
+            	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
+                builder.appendSql("update T_CAS_PaymentBill set fbillstatus=? where fid=? ");
+                builder.addParam(12);
+                builder.addParam(info.getSourceBillId());
+                builder.executeUpdate();
+            }
         }
 		return reMap;
 	}
@@ -406,6 +425,10 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 		super._cancelPay(ctx, idSet);
         for(int size = coll.size(); i < size; i++){
             info = coll.get(i);
+            PaymentBillCollection payCol=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillCollection("select * from where sourceBillId='"+info.getId()+"'");
+            if(payCol.size()>0){
+            	throw new EASBizException(new NumericExceptionSubItem("100","请取消付款代理公司付款单！"));
+            }
             if(info.getSourceType().equals(SourceTypeEnum.FDC)){
             	if(info.getFdcPayReqID() != null){
             		if(info.isIsCommittoBe()){
@@ -459,6 +482,13 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
                     }
                 }
     		}
+            if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
+            	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
+                builder.appendSql("update T_CAS_PaymentBill set fbillstatus=? where fid=? ");
+                builder.addParam(12);
+                builder.addParam(info.getSourceBillId());
+                builder.executeUpdate();
+            }
         }
 	}
 	private SelectorItemCollection getSelectors() {
@@ -746,7 +776,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 	    		}
 			}
 	        builder = new FDCSQLBuilder(ctx);
-			builder.appendSql("select count(*) payTime from t_cas_paymentbill where fFdcPayReqID=?");
+			builder.appendSql("select count(*) payTime from t_cas_paymentbill where fFdcPayReqID=? and fsourceBillId is null");
 	        builder.addParam(payRequstBillid);
 	        IRowSet rs=builder.executeQuery();
 	        int  payTime=0;
@@ -870,7 +900,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 	    			PaymentBillFactory.getLocalInstance(ctx).update(new ObjectUuidPK(info.getId()),info);
 	    			if(isUpdateAmount){
 	    				builder = new FDCSQLBuilder(ctx);
-	                    builder.appendSql("update T_CAS_PaymentBillentry set famount=?,fLocalAmount=? where fpaymentBillid=? ");
+	                    builder.appendSql("update T_CAS_PaymentBillentry set famount=?,fLocalAmount=? where fpaymentBillid=? and fsourceBillId is null");
 	                    builder.addParam(updateAmount);
 	                    builder.addParam(updateAmount);
 	                    builder.addParam(info.getId().toString());
