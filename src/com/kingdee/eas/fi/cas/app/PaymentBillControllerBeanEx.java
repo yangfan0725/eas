@@ -120,9 +120,9 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 		info = null;
         i = 0;
         
-		SelectorItemCollection sic = new SelectorItemCollection();
-		sic.add("bgEntry.actPayAmount");
-		sic.add("payDate");
+//		SelectorItemCollection sic = new SelectorItemCollection();
+//		sic.add("bgEntry.actPayAmount");
+//		sic.add("payDate");
 		for(int size = coll.size(); i < size; i++){
             info = coll.get(i);
             if(info.getSourceType().equals(SourceTypeEnum.FDC)||info.getSourceBillId()!=null){
@@ -135,31 +135,31 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             	}
             	if(payRequestBillId != null){
             		PayRequestBillInfo payRequest=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(payRequestBillId),getSelectors());
-            		if(payRequest.isIsBgControl()){
-            			payRequest.setPayDate(now);
-            			if(payRequest.getCurrency().getId().toString().equals(info.getCurrency().getId().toString())
-            					&&payRequest.getOriginalAmount().compareTo(info.getAmount())!=0){
-            				BigDecimal rate=info.getAmount().divide(FDCHelper.toBigDecimal(payRequest.getOriginalAmount()),6,BigDecimal.ROUND_HALF_UP);	
-            				BigDecimal total=FDCHelper.ZERO;
-            				for(int k=0;k<payRequest.getBgEntry().size();k++){
-            					BigDecimal amount=FDCHelper.ZERO;
-            					if(k==payRequest.getBgEntry().size()-1){
-            						amount=info.getAmount().subtract(total);
-            					}else{
-            						amount=payRequest.getBgEntry().get(k).getRequestAmount().multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP);
-            						total=total.add(amount);
-            					}
-            					if(payRequest.getBgEntry().get(k).getActPayAmount()!=null){
-            						payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getActPayAmount().add(amount));
-            					}else{
-            						payRequest.getBgEntry().get(k).setActPayAmount(amount);
-            					}
-            				}
-            			}else{
-            				for(int k=0;k<payRequest.getBgEntry().size();k++){
-            					payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getRequestAmount());
-            				}
-            			}
+//            		if(payRequest.isIsBgControl()){
+//            			payRequest.setPayDate(now);
+//            			if(payRequest.getCurrency().getId().toString().equals(info.getCurrency().getId().toString())
+//            					&&payRequest.getOriginalAmount().compareTo(info.getAmount())!=0){
+//            				BigDecimal rate=info.getAmount().divide(FDCHelper.toBigDecimal(payRequest.getOriginalAmount()),6,BigDecimal.ROUND_HALF_UP);	
+//            				BigDecimal total=FDCHelper.ZERO;
+//            				for(int k=0;k<payRequest.getBgEntry().size();k++){
+//            					BigDecimal amount=FDCHelper.ZERO;
+//            					if(k==payRequest.getBgEntry().size()-1){
+//            						amount=info.getAmount().subtract(total);
+//            					}else{
+//            						amount=payRequest.getBgEntry().get(k).getRequestAmount().multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP);
+//            						total=total.add(amount);
+//            					}
+//            					if(payRequest.getBgEntry().get(k).getActPayAmount()!=null){
+//            						payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getActPayAmount().add(amount));
+//            					}else{
+//            						payRequest.getBgEntry().get(k).setActPayAmount(amount);
+//            					}
+//            				}
+//            			}else{
+//            				for(int k=0;k<payRequest.getBgEntry().size();k++){
+//            					payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getRequestAmount());
+//            				}
+//            			}
             			if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
                         	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
                             builder.appendSql("update T_CAS_PaymentBill set fbillstatus=?,fbizDate=? where fid=? ");
@@ -170,7 +170,6 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
                         }
                         BgControlFacadeFactory.getLocalInstance(ctx).bgAudit(info.getId().toString(), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
                         FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
-                        
                         builder.appendSql("select sum(factualPayAmount) payAmount from t_cas_paymentbill where fbillstatus=15 and fFdcPayReqID=? and fsourceBillId is null");
                         builder.addParam(payRequest.getId().toString());
                         IRowSet rs=builder.executeQuery();
@@ -196,7 +195,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
                             builder.addParam(payRequest.getContractId());
                             builder.executeUpdate();
                         }
-            		}
+//            		}
             	}
             }
         }
@@ -379,23 +378,26 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		payRequestBillId=info.getFdcPayReqID();
             	}
             	if(payRequestBillId != null){
+            		if(info.isIsCommittoBe()){
+            			throw new EASBizException(new NumericExceptionSubItem("100","已传递资金系统，禁止取消付款！"));
+            		}
             		PayRequestBillInfo payRequest=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(payRequestBillId),getSelectors());
             		if(payRequest.isHasClosed()){
             			throw new EASBizException(new NumericExceptionSubItem("100","付款申请单已经关闭，禁止取消付款！"));
             		}
-            		if(payRequest.isIsBgControl()){
+//            		if(payRequest.isIsBgControl()){
             			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
-            			for(int k=0;k<payRequest.getBgEntry().size();k++){
-            				for(int j=0;j<info.getEntries().size();j++){
-	    						if(info.getEntries().get(j).getSourceBillEntryId().equals(payRequest.getBgEntry().get(k).getId().toString())){
-	    							payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getActPayAmount().subtract(info.getEntries().get(j).getAmount()));
-	    						}
-	    					}
-        				}
-            			SelectorItemCollection sic = new SelectorItemCollection();
-            			sic.add("bgEntry.actPayAmount");
-        	            PayRequestBillFactory.getLocalInstance(ctx).updatePartial(payRequest, sic);
-        			}
+//            			for(int k=0;k<payRequest.getBgEntry().size();k++){
+//            				for(int j=0;j<info.getEntries().size();j++){
+//	    						if(info.getEntries().get(j).getSourceBillEntryId().equals(payRequest.getBgEntry().get(k).getId().toString())){
+//	    							payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getActPayAmount().subtract(info.getEntries().get(j).getAmount()));
+//	    						}
+//	    					}
+//        				}
+//            			SelectorItemCollection sic = new SelectorItemCollection();
+//            			sic.add("bgEntry.actPayAmount");
+//        	            PayRequestBillFactory.getLocalInstance(ctx).updatePartial(payRequest, sic);
+//        			}
             		if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
                      	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
                         builder.appendSql("update T_CAS_PaymentBill set fbillstatus=? where fid=? ");
@@ -465,19 +467,19 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		if(payRequest.isHasClosed()){
             			throw new EASBizException(new NumericExceptionSubItem("100","付款申请单已经关闭，禁止取消付款！"));
             		}
-            		if(payRequest.isIsBgControl()){
+//            		if(payRequest.isIsBgControl()){
             			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
-            			for(int k=0;k<payRequest.getBgEntry().size();k++){
-            				for(int j=0;j<info.getEntries().size();j++){
-	    						if(info.getEntries().get(j).getSourceBillEntryId().equals(payRequest.getBgEntry().get(k).getId().toString())){
-	    							payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getActPayAmount().subtract(info.getEntries().get(j).getAmount()));
-	    						}
-	    					}
-        				}
-            			SelectorItemCollection sic = new SelectorItemCollection();
-            			sic.add("bgEntry.actPayAmount");
-        	            PayRequestBillFactory.getLocalInstance(ctx).updatePartial(payRequest, sic);
-        			}
+//            			for(int k=0;k<payRequest.getBgEntry().size();k++){
+//            				for(int j=0;j<info.getEntries().size();j++){
+//	    						if(info.getEntries().get(j).getSourceBillEntryId().equals(payRequest.getBgEntry().get(k).getId().toString())){
+//	    							payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getActPayAmount().subtract(info.getEntries().get(j).getAmount()));
+//	    						}
+//	    					}
+//        				}
+//            			SelectorItemCollection sic = new SelectorItemCollection();
+//            			sic.add("bgEntry.actPayAmount");
+//        	            PayRequestBillFactory.getLocalInstance(ctx).updatePartial(payRequest, sic);
+//        			}
             		if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
                     	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
                         builder.appendSql("update T_CAS_PaymentBill set fbillstatus=? where fid=? ");
