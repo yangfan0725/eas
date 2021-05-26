@@ -573,10 +573,10 @@ public class PayRequestBillListUI extends AbstractPayRequestBillListUI {
 						MsgBox.showWarning(this, PayReqUtils.getRes("canntCreatTo"));
 						SysUtil.abort();
 					}
-					if(info.getActPaiedLocAmount().compareTo(info.getAmount())>=0){
+//					if(info.getActPaiedLocAmount().compareTo(info.getAmount())>=0){
 //						MsgBox.showWarning(this, "已生成付款单金额不能大于申请金额！");
 //						SysUtil.abort();
-					}
+//					}
 				}
 			}
 		}
