@@ -610,7 +610,7 @@ public class ContractBillExecFilterUI extends AbstractContractBillExecFilterUI
         }
             public void clear()
             {
-            	this.cbIsPc.setSelected(true);
+            	this.radioAllPC.setSelected(true);
 /* <-MISALIGNED-> */ /* 112*/        contractTypeSelectDlg = null;
 /* <-MISALIGNED-> */ /* 113*/        txtContractType.setText(null);
 /* <-MISALIGNED-> */ /* 114*/        txtContractType.setUserObject(null);
@@ -631,11 +631,6 @@ public class ContractBillExecFilterUI extends AbstractContractBillExecFilterUI
 /* <-MISALIGNED-> */ /* 133*/            filter.getFilterItems().add(new FilterItemInfo("contractType.id", FDCHelper.getSetByArray(para.getStringArray("contractTypeIds")), CompareType.INCLUDE));
 /* <-MISALIGNED-> */ /* 136*/        else
 /* <-MISALIGNED-> */ /* 136*/            filter.getFilterItems().add(new FilterItemInfo("contractType.isEnabled", Boolean.TRUE));
-									 if(para.getBoolean("isPC")){
-										 filter.getFilterItems().add(new FilterItemInfo("programmingContract.id", null,CompareType.NOTEQUALS)); 
-									 }else{
-										 filter.getFilterItems().add(new FilterItemInfo("programmingContract.id", null,CompareType.EQUALS)); 
-									 }
 									if(para.getStringArray("projectIds") != null)
 	/* 202*/            				filter.getFilterItems().add(new FilterItemInfo("curProject.id", FDCHelper.getSetByArray(para.getStringArray("projectIds")), CompareType.INCLUDE));
 
@@ -652,6 +647,16 @@ public class ContractBillExecFilterUI extends AbstractContractBillExecFilterUI
 /* <-MISALIGNED-> */ /* 148*/            if(settle != null)
 /* <-MISALIGNED-> */ /* 149*/                filter.getFilterItems().add(new FilterItemInfo("hasSettled", settle));
                 }
+if(para.isNotNull("pcState"))
+{
+/* <-MISALIGNED-> */ /* 142*/            Boolean settle = null;
+/* <-MISALIGNED-> */ /* 143*/            if(para.getInt("pcState") == 0)
+/* <-MISALIGNED-> */ /* 144*/                filter.getFilterItems().add(new FilterItemInfo("programmingContract.id", null,CompareType.NOTEQUALS));
+/* <-MISALIGNED-> */ /* 145*/            else
+/* <-MISALIGNED-> */ /* 145*/            if(para.getInt("pcState") == 1)
+/* <-MISALIGNED-> */ /* 146*/                filter.getFilterItems().add(new FilterItemInfo("programmingContract.id", null,CompareType.EQUALS));
+/* <-MISALIGNED-> */ /* 149*/                
+}
 /* <-MISALIGNED-> */ /* 152*/        if(para.isNotNull("isShowAll") && !para.getBoolean("isShowAll") && para.isNotNull("dateType"))
                 {
 /* <-MISALIGNED-> */ /* 154*/            if(getBeginQueryDate(para) != null)
@@ -783,7 +788,16 @@ public class ContractBillExecFilterUI extends AbstractContractBillExecFilterUI
 /* <-MISALIGNED-> */ /* 263*/        if(radioSettleAll.isSelected())
 /* <-MISALIGNED-> */ /* 264*/            param.add("settleState", 2);
 /* <-MISALIGNED-> */ /* 266*/        param.add("isShowAll", chkAllContract.isSelected());
-param.add("isPC", this.cbIsPc.isSelected());
+
+/* <-MISALIGNED-> */ /* 259*/        if(radioHasPC.isSelected())
+	/* <-MISALIGNED-> */ /* 260*/            param.add("pcState", 0);
+	/* <-MISALIGNED-> */ /* 261*/        else
+	/* <-MISALIGNED-> */ /* 261*/        if(radioNotPC.isSelected())
+	/* <-MISALIGNED-> */ /* 262*/            param.add("pcState", 1);
+	/* <-MISALIGNED-> */ /* 263*/        else
+	/* <-MISALIGNED-> */ /* 263*/        if(radioAllPC.isSelected())
+	/* <-MISALIGNED-> */ /* 264*/            param.add("pcState", 2);
+
 /* <-MISALIGNED-> */ /* 268*/        if(prmtCurrency.getValue() != null)
                 {
 /* <-MISALIGNED-> */ /* 269*/            CurrencyInfo currency = (CurrencyInfo)prmtCurrency.getValue();
@@ -1013,7 +1027,15 @@ param.add("isPC", this.cbIsPc.isSelected());
 /* <-MISALIGNED-> */ /* 471*/        if(para.getInt("settleState") == 2)
 /* <-MISALIGNED-> */ /* 472*/            radioSettleAll.setSelected(true);
 /* <-MISALIGNED-> */ /* 474*/        chkAllContract.setSelected(para.getBoolean("isShowAll"));
-this.cbIsPc.						 setSelected(para.getBoolean("isPC"));
+
+/* <-MISALIGNED-> */ /* 467*/        if(para.getInt("pcState") == 0)
+	/* <-MISALIGNED-> */ /* 468*/            radioHasPC.setSelected(true);
+	/* <-MISALIGNED-> */ /* 469*/        else
+	/* <-MISALIGNED-> */ /* 469*/        if(para.getInt("pcState") == 1)
+	/* <-MISALIGNED-> */ /* 470*/            radioNotPC.setSelected(true);
+	/* <-MISALIGNED-> */ /* 471*/        else
+	/* <-MISALIGNED-> */ /* 471*/        if(para.getInt("pcState") == 2)
+	/* <-MISALIGNED-> */ /* 472*/            radioAllPC.setSelected(true);
 /* <-MISALIGNED-> */ /* 475*/        initControlByDateType();
 /* <-MISALIGNED-> */ /* 477*/        if(para.getInt("dateType") == 0)
                 {

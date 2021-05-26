@@ -128,8 +128,8 @@ public class PayRequestFullFilterUI extends AbstractPayRequestFullFilterUI
 /* 128*/        pkDateTo.setValue(null);
 /* 129*/        radioAudited.setSelected(true);
 chkIncludeClose.setSelected(true);
-this.cbFivouchered.setSelected(false);
-this.cbIsCreatePay.setSelected(false);
+this.radioAllPay.setSelected(true);
+this.radioAllVoucher.setSelected(true);
 /* 130*/        f7Contract.setDisplayFormat("$name$");
 /* 131*/        f7Contract.setEditFormat("$number$");
 /* 132*/        f7Contract.setQueryInfo("com.kingdee.eas.fdc.contract.app.ContractAndWithoutUnionQuery");
@@ -241,11 +241,24 @@ this.cbIsCreatePay.setSelected(false);
 /* 244*/        if(para.isNotNull("chkIncludeClose") && !para.getBoolean("chkIncludeClose"))
 /* 245*/            filter.getFilterItems().add(new FilterItemInfo("hasClosed", Boolean.FALSE));
 
+/* <-MISALIGNED-> */ /* 142*/            Boolean voucherState = null;
+/* <-MISALIGNED-> */ /* 143*/            if(para.getInt("voucherState") == 0)
+/* <-MISALIGNED-> */ /* 144*/                voucherState = Boolean.TRUE;
+/* <-MISALIGNED-> */ /* 145*/            else
+/* <-MISALIGNED-> */ /* 145*/            if(para.getInt("voucherState") == 1)
+/* <-MISALIGNED-> */ /* 146*/                voucherState = Boolean.FALSE;
+/* <-MISALIGNED-> */ /* 148*/            if(voucherState != null)
+/* <-MISALIGNED-> */ /* 149*/                filter.getFilterItems().add(new FilterItemInfo("fivouchered", voucherState));
 
 
-				filter.getFilterItems().add(new FilterItemInfo("fivouchered", para.getBoolean("fivouchered")));
-				
-				filter.getFilterItems().add(new FilterItemInfo("isCreatePay", para.getBoolean("isCreatePay")));
+/* <-MISALIGNED-> */ /* 142*/            Boolean createPayState = null;
+/* <-MISALIGNED-> */ /* 143*/            if(para.getInt("createPayState") == 0)
+/* <-MISALIGNED-> */ /* 144*/                createPayState = Boolean.TRUE;
+/* <-MISALIGNED-> */ /* 145*/            else
+/* <-MISALIGNED-> */ /* 145*/            if(para.getInt("createPayState") == 1)
+/* <-MISALIGNED-> */ /* 146*/                createPayState = Boolean.FALSE;
+/* <-MISALIGNED-> */ /* 148*/            if(createPayState != null)
+/* <-MISALIGNED-> */ /* 149*/                filter.getFilterItems().add(new FilterItemInfo("isCreatePay", createPayState));
 
 /* 252*/        FilterInfo withouttext = new FilterInfo();
 /* 253*/        withouttext.getFilterItems().add(new FilterItemInfo("source", "0D6DD1F4"));
@@ -474,8 +487,25 @@ this.cbIsCreatePay.setSelected(false);
 /* <-MISALIGNED-> */ /* 468*/        if(para.isNotNull("chkIncludeClose"))
 /* <-MISALIGNED-> */ /* 469*/            chkIncludeClose.setSelected(para.getBoolean("chkIncludeClose"));
 
-this.cbFivouchered.setSelected(para.getBoolean("fivouchered"));
-this.cbIsCreatePay.setSelected(para.getBoolean("isCreatePay"));
+/* <-MISALIGNED-> */ /* 455*/        if(para.isNotNull("voucherState"))
+	/* <-MISALIGNED-> */ /* 456*/            if(para.getInt("voucherState") == 0)
+	/* <-MISALIGNED-> */ /* 457*/                radioHasVoucher.setSelected(true);
+	/* <-MISALIGNED-> */ /* 458*/            else
+	/* <-MISALIGNED-> */ /* 458*/            if(para.getInt("voucherState") == 1)
+	/* <-MISALIGNED-> */ /* 459*/                radioNotVoucher.setSelected(true);
+	/* <-MISALIGNED-> */ /* 460*/            else
+	/* <-MISALIGNED-> */ /* 460*/            if(para.getInt("voucherState") == 2)
+	/* <-MISALIGNED-> */ /* 461*/                radioAllVoucher.setSelected(true);
+
+/* <-MISALIGNED-> */ /* 455*/        if(para.isNotNull("createPayState"))
+	/* <-MISALIGNED-> */ /* 456*/            if(para.getInt("createPayState") == 0)
+	/* <-MISALIGNED-> */ /* 457*/                radioHasPay.setSelected(true);
+	/* <-MISALIGNED-> */ /* 458*/            else
+	/* <-MISALIGNED-> */ /* 458*/            if(para.getInt("createPayState") == 1)
+	/* <-MISALIGNED-> */ /* 459*/                radioNotPay.setSelected(true);
+	/* <-MISALIGNED-> */ /* 460*/            else
+	/* <-MISALIGNED-> */ /* 460*/            if(para.getInt("createPayState") == 2)
+	/* <-MISALIGNED-> */ /* 461*/                radioAllPay.setSelected(true);
 
 /* <-MISALIGNED-> */ /* 471*/        super.setCustomerParams(cp);
             }
@@ -595,8 +625,24 @@ this.cbIsCreatePay.setSelected(para.getBoolean("isCreatePay"));
 
 /* 594*/        param.add("chkIncludeClose", chkIncludeClose.isSelected());
 
-param.add("fivouchered", this.cbFivouchered.isSelected());
-param.add("isCreatePay", this.cbIsCreatePay.isSelected());
+/* <-MISALIGNED-> */ /* 259*/        if(radioHasVoucher.isSelected())
+	/* <-MISALIGNED-> */ /* 260*/            param.add("voucherState", 0);
+	/* <-MISALIGNED-> */ /* 261*/        else
+	/* <-MISALIGNED-> */ /* 261*/        if(radioNotVoucher.isSelected())
+	/* <-MISALIGNED-> */ /* 262*/            param.add("voucherState", 1);
+	/* <-MISALIGNED-> */ /* 263*/        else
+	/* <-MISALIGNED-> */ /* 263*/        if(radioAllVoucher.isSelected())
+	/* <-MISALIGNED-> */ /* 264*/            param.add("voucherState", 2);
+
+
+/* <-MISALIGNED-> */ /* 259*/        if(radioHasPay.isSelected())
+	/* <-MISALIGNED-> */ /* 260*/            param.add("createPayState", 0);
+	/* <-MISALIGNED-> */ /* 261*/        else
+	/* <-MISALIGNED-> */ /* 261*/        if(radioNotPay.isSelected())
+	/* <-MISALIGNED-> */ /* 262*/            param.add("createPayState", 1);
+	/* <-MISALIGNED-> */ /* 263*/        else
+	/* <-MISALIGNED-> */ /* 263*/        if(radioAllPay.isSelected())
+	/* <-MISALIGNED-> */ /* 264*/            param.add("createPayState", 2);
 
 /* 596*/        return param.getCustomerParams();
             }

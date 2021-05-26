@@ -627,6 +627,7 @@ public class ContractBillExecuteDataHander {
 				child.setPayBizDate(pbc.get(i).getBizDate());	//增加付款单的业务日期
 				child.setRealPayAmount(pbc.get(i).getActPayLocAmt());
 				child.setRealPaySrcAmount(pbc.get(i).getActPayAmt());
+				child.setPlanPayAmount(pbc.get(i).getActPayLocAmt());
 				// 不显示无文本合同的合同内工程款
 				// BigDecimal projectPriceInContract = (BigDecimal) pbc.get(i).getProjectPriceInContract();
 				// if (pbc.get(i).getLastExhangeRate() != null) {

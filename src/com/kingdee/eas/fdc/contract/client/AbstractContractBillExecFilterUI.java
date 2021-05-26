@@ -69,7 +69,7 @@ public abstract class AbstractContractBillExecFilterUI extends com.kingdee.eas.b
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contCurrency;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer kDLabelContainer3;
     protected com.kingdee.bos.ctrl.swing.KDButton btnProjectSelect;
-    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsPc;
+    protected com.kingdee.bos.ctrl.swing.KDPanel kDPanel1;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtContractType;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox f7Provider;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkDateFrom;
@@ -89,6 +89,10 @@ public abstract class AbstractContractBillExecFilterUI extends com.kingdee.eas.b
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox kDBizPromptBox2;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtCurrency;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtProject;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioHasPC;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioNotPC;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioAllPC;
+    protected com.kingdee.bos.ctrl.swing.KDButtonGroup kDButtonGroup2;
     /**
      * output class constructor
      */
@@ -130,7 +134,7 @@ public abstract class AbstractContractBillExecFilterUI extends com.kingdee.eas.b
         this.contCurrency = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.kDLabelContainer3 = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.btnProjectSelect = new com.kingdee.bos.ctrl.swing.KDButton();
-        this.cbIsPc = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.kDPanel1 = new com.kingdee.bos.ctrl.swing.KDPanel();
         this.txtContractType = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.f7Provider = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.pkDateFrom = new com.kingdee.bos.ctrl.swing.KDDatePicker();
@@ -150,6 +154,10 @@ public abstract class AbstractContractBillExecFilterUI extends com.kingdee.eas.b
         this.kDBizPromptBox2 = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.prmtCurrency = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.txtProject = new com.kingdee.bos.ctrl.swing.KDTextField();
+        this.radioHasPC = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.radioNotPC = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.radioAllPC = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.kDButtonGroup2 = new com.kingdee.bos.ctrl.swing.KDButtonGroup();
         this.contContractType.setName("contContractType");
         this.contProvider.setName("contProvider");
         this.contDateFrom.setName("contDateFrom");
@@ -173,7 +181,7 @@ public abstract class AbstractContractBillExecFilterUI extends com.kingdee.eas.b
         this.contCurrency.setName("contCurrency");
         this.kDLabelContainer3.setName("kDLabelContainer3");
         this.btnProjectSelect.setName("btnProjectSelect");
-        this.cbIsPc.setName("cbIsPc");
+        this.kDPanel1.setName("kDPanel1");
         this.txtContractType.setName("txtContractType");
         this.f7Provider.setName("f7Provider");
         this.pkDateFrom.setName("pkDateFrom");
@@ -191,6 +199,9 @@ public abstract class AbstractContractBillExecFilterUI extends com.kingdee.eas.b
         this.kDBizPromptBox2.setName("kDBizPromptBox2");
         this.prmtCurrency.setName("prmtCurrency");
         this.txtProject.setName("txtProject");
+        this.radioHasPC.setName("radioHasPC");
+        this.radioNotPC.setName("radioNotPC");
+        this.radioAllPC.setName("radioAllPC");
         // CustomerQueryPanel
         // contContractType		
         this.contContractType.setBoundLabelText(resHelper.getString("contContractType.boundLabelText"));		
@@ -292,8 +303,8 @@ public abstract class AbstractContractBillExecFilterUI extends com.kingdee.eas.b
                 }
             }
         });
-        // cbIsPc		
-        this.cbIsPc.setText(resHelper.getString("cbIsPc.text"));
+        // kDPanel1		
+        this.kDPanel1.setBorder(new TitledBorder(BorderFactory.createEtchedBorder(new Color(255,255,255),new Color(148,145,140)), resHelper.getString("kDPanel1.border.title")));
         // txtContractType		
         this.txtContractType.setEnabled(false);
         // f7Provider		
@@ -393,6 +404,16 @@ public abstract class AbstractContractBillExecFilterUI extends com.kingdee.eas.b
         this.prmtCurrency.setQueryInfo("com.kingdee.eas.basedata.assistant.app.CurrencyQuery");
         // txtProject		
         this.txtProject.setEnabled(false);
+        // radioHasPC		
+        this.radioHasPC.setText(resHelper.getString("radioHasPC.text"));
+        // radioNotPC		
+        this.radioNotPC.setText(resHelper.getString("radioNotPC.text"));
+        // radioAllPC		
+        this.radioAllPC.setText(resHelper.getString("radioAllPC.text"));
+        // kDButtonGroup2
+        this.kDButtonGroup2.add(this.radioHasPC);
+        this.kDButtonGroup2.add(this.radioNotPC);
+        this.kDButtonGroup2.add(this.radioAllPC);
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -465,8 +486,8 @@ public abstract class AbstractContractBillExecFilterUI extends com.kingdee.eas.b
         this.add(kDLabelContainer3, null);
         btnProjectSelect.setBounds(new Rectangle(293, 7, 69, 19));
         this.add(btnProjectSelect, null);
-        cbIsPc.setBounds(new Rectangle(244, 157, 140, 19));
-        this.add(cbIsPc, null);
+        kDPanel1.setBounds(new Rectangle(231, 151, 123, 174));
+        this.add(kDPanel1, null);
         //contContractType
         contContractType.setBoundEditor(txtContractType);
         //contProvider
@@ -503,6 +524,13 @@ public abstract class AbstractContractBillExecFilterUI extends com.kingdee.eas.b
         contCurrency.setBoundEditor(prmtCurrency);
         //kDLabelContainer3
         kDLabelContainer3.setBoundEditor(txtProject);
+        //kDPanel1
+        kDPanel1.setLayout(null);        radioHasPC.setBounds(new Rectangle(19, 21, 140, 19));
+        kDPanel1.add(radioHasPC, null);
+        radioNotPC.setBounds(new Rectangle(19, 54, 140, 19));
+        kDPanel1.add(radioNotPC, null);
+        radioAllPC.setBounds(new Rectangle(19, 85, 140, 19));
+        kDPanel1.add(radioAllPC, null);
 
     }
 

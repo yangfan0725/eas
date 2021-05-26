@@ -836,12 +836,12 @@
             </eventBindings>
         </component>
         <component>
-            <name>cbIsPc</name>
-            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[cbIsPc].alias</alias>
+            <name>kDPanel1</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[kDPanel1].alias</alias>
             <userDefined>true</userDefined>
-            <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
-            <isContainer>false</isContainer>
-            <constraints>244,157,140,19</constraints>
+            <classType>com.kingdee.bos.ctrl.swing.KDPanel</classType>
+            <isContainer>true</isContainer>
+            <constraints>231,151,123,174</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -852,9 +852,9 @@
             </layoutInfo>
             <properties>
                 <property>
-                    <name>text</name>
-                    <type>java.lang.String</type>
-                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[cbIsPc].properties.property[text].value</value>
+                    <name>border</name>
+                    <type>javax.swing.border.Border</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[kDPanel1].properties.property[border].value</value>
                     <isMultiLan>true</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
@@ -1530,6 +1530,130 @@
                 <key name="name" value="kDLabelContainer3" />
             </parent>
         </component>
+        <component>
+            <name>radioHasPC</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioHasPC].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDRadioButton</classType>
+            <isContainer>false</isContainer>
+            <constraints>19,21,140,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioHasPC].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>buttonGroup</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioHasPC].properties.property[buttonGroup].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="kDPanel1" />
+            </parent>
+        </component>
+        <component>
+            <name>radioNotPC</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioNotPC].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDRadioButton</classType>
+            <isContainer>false</isContainer>
+            <constraints>19,54,140,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioNotPC].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>buttonGroup</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioNotPC].properties.property[buttonGroup].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="kDPanel1" />
+            </parent>
+        </component>
+        <component>
+            <name>radioAllPC</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioAllPC].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDRadioButton</classType>
+            <isContainer>false</isContainer>
+            <constraints>19,85,140,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioAllPC].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>buttonGroup</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioAllPC].properties.property[buttonGroup].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="kDPanel1" />
+            </parent>
+        </component>
+        <component>
+            <name>kDButtonGroup2</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[kDButtonGroup2].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDButtonGroup</classType>
+            <isContainer>false</isContainer>
+            <constraints>313,130,170,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <parent>
+                <key name="name" value="kDPanel1" />
+            </parent>
+        </component>
     </components>
     <resource>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].alias">
@@ -1567,18 +1691,6 @@
             <lang locale="zh_CN" value="选择" />
             <lang locale="zh_HK" value="選擇" />
             <lang locale="zh_TW" value="選擇" />
-        </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[cbIsPc].alias">
-            <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="null" />
-            <lang locale="zh_HK" value="null" />
-            <lang locale="zh_TW" value="null" />
-        </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[cbIsPc].properties.property[text].value">
-            <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="是否关联合约规划" />
-            <lang locale="zh_HK" value="是否關聯合約規劃" />
-            <lang locale="zh_TW" value="是否關聯合約規劃" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[chkAllContract].alias">
             <lang locale="en_US" value="null" />
@@ -1856,6 +1968,12 @@
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[kDButtonGroup2].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[kDButtonGroup3].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -1933,6 +2051,18 @@
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_HK" value="true" />
             <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[kDPanel1].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[kDPanel1].properties.property[border].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;Border&gt;&lt;Type&gt;6&lt;/Type&gt;&lt;Name&gt;Custom&lt;/Name&gt;&lt;CustomType&gt;62&lt;/CustomType&gt;&lt;Title&gt;是否关联合约规划&lt;/Title&gt;&lt;Options&gt;&lt;Width&gt;0&lt;/Width&gt;&lt;HighlightOuter R=&quot;255&quot; G=&quot;255&quot; B=&quot;255&quot; /&gt;&lt;ShadowOuter R=&quot;148&quot; G=&quot;145&quot; B=&quot;140&quot; /&gt;&lt;/Options&gt;&lt;/Border&gt; " />
+            <lang locale="zh_HK" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;Border&gt;&lt;Type&gt;6&lt;/Type&gt;&lt;Name&gt;Custom&lt;/Name&gt;&lt;CustomType&gt;62&lt;/CustomType&gt;&lt;Title&gt;是否關聯合約規劃&lt;/Title&gt;&lt;Options&gt;&lt;Width&gt;0&lt;/Width&gt;&lt;HighlightOuter R=&quot;255&quot; G=&quot;255&quot; B=&quot;255&quot; /&gt;&lt;ShadowOuter R=&quot;148&quot; G=&quot;145&quot; B=&quot;140&quot; /&gt;&lt;/Options&gt;&lt;/Border&gt; " />
+            <lang locale="zh_TW" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;Border&gt;&lt;Type&gt;6&lt;/Type&gt;&lt;Name&gt;Custom&lt;/Name&gt;&lt;CustomType&gt;62&lt;/CustomType&gt;&lt;Title&gt;是否關聯合約規劃&lt;/Title&gt;&lt;Options&gt;&lt;Width&gt;0&lt;/Width&gt;&lt;HighlightOuter R=&quot;255&quot; G=&quot;255&quot; B=&quot;255&quot; /&gt;&lt;ShadowOuter R=&quot;148&quot; G=&quot;145&quot; B=&quot;140&quot; /&gt;&lt;/Options&gt;&lt;/Border&gt; " />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[lblMonthFrom].alias">
             <lang locale="en_US" value="null" />
@@ -2072,6 +2202,24 @@
             <lang locale="zh_HK" value="com.kingdee.eas.basedata.assistant.app.CurrencyQuery" />
             <lang locale="zh_TW" value="com.kingdee.eas.basedata.assistant.app.CurrencyQuery" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioAllPC].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioAllPC].properties.property[buttonGroup].value">
+            <lang locale="en_US" value="kDButtonGroup2" />
+            <lang locale="zh_CN" value="kDButtonGroup2" />
+            <lang locale="zh_HK" value="kDButtonGroup2" />
+            <lang locale="zh_TW" value="kDButtonGroup2" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioAllPC].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="全部" />
+            <lang locale="zh_HK" value="全部" />
+            <lang locale="zh_TW" value="全部" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioByDay].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -2144,6 +2292,24 @@
             <lang locale="zh_HK" value="按年" />
             <lang locale="zh_TW" value="按年" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioHasPC].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioHasPC].properties.property[buttonGroup].value">
+            <lang locale="en_US" value="kDButtonGroup2" />
+            <lang locale="zh_CN" value="kDButtonGroup2" />
+            <lang locale="zh_HK" value="kDButtonGroup2" />
+            <lang locale="zh_TW" value="kDButtonGroup2" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioHasPC].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="已关联" />
+            <lang locale="zh_HK" value="已關聯" />
+            <lang locale="zh_TW" value="已關聯" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioHasSettled].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -2179,6 +2345,24 @@
             <lang locale="zh_CN" value="未结算" />
             <lang locale="zh_HK" value="未結算" />
             <lang locale="zh_TW" value="未結算" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioNotPC].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioNotPC].properties.property[buttonGroup].value">
+            <lang locale="en_US" value="kDButtonGroup2" />
+            <lang locale="zh_CN" value="kDButtonGroup2" />
+            <lang locale="zh_HK" value="kDButtonGroup2" />
+            <lang locale="zh_TW" value="kDButtonGroup2" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioNotPC].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="未关联" />
+            <lang locale="zh_HK" value="未關聯" />
+            <lang locale="zh_TW" value="未關聯" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillExecFilterUI].components.component[radioSettleAll].alias">
             <lang locale="en_US" value="null" />

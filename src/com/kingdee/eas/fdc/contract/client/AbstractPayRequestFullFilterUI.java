@@ -56,8 +56,8 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
     protected com.kingdee.bos.ctrl.swing.KDButton btnCompanySelect;
     protected com.kingdee.bos.ctrl.swing.KDButton btnProjectSelect;
     protected com.kingdee.bos.ctrl.swing.KDCheckBox chkIncludeClose;
-    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbFivouchered;
-    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsCreatePay;
+    protected com.kingdee.bos.ctrl.swing.KDPanel kDPanel1;
+    protected com.kingdee.bos.ctrl.swing.KDPanel kDPanel2;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtCompany;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtProject;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox f7Contract;
@@ -70,6 +70,14 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
     protected com.kingdee.bos.ctrl.swing.KDRadioButton radioAudited;
     protected com.kingdee.bos.ctrl.swing.KDRadioButton radioStateAll;
     protected com.kingdee.bos.ctrl.swing.KDButtonGroup kDButtonGroup2;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioHasVoucher;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioNotVoucher;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioAllVoucher;
+    protected com.kingdee.bos.ctrl.swing.KDButtonGroup kDButtonGroup1;
+    protected com.kingdee.bos.ctrl.swing.KDButtonGroup kDButtonGroup3;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioHasPay;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioNotPay;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioAllPay;
     /**
      * output class constructor
      */
@@ -98,8 +106,8 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.btnCompanySelect = new com.kingdee.bos.ctrl.swing.KDButton();
         this.btnProjectSelect = new com.kingdee.bos.ctrl.swing.KDButton();
         this.chkIncludeClose = new com.kingdee.bos.ctrl.swing.KDCheckBox();
-        this.cbFivouchered = new com.kingdee.bos.ctrl.swing.KDCheckBox();
-        this.cbIsCreatePay = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.kDPanel1 = new com.kingdee.bos.ctrl.swing.KDPanel();
+        this.kDPanel2 = new com.kingdee.bos.ctrl.swing.KDPanel();
         this.txtCompany = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtProject = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.f7Contract = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
@@ -112,6 +120,14 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.radioAudited = new com.kingdee.bos.ctrl.swing.KDRadioButton();
         this.radioStateAll = new com.kingdee.bos.ctrl.swing.KDRadioButton();
         this.kDButtonGroup2 = new com.kingdee.bos.ctrl.swing.KDButtonGroup();
+        this.radioHasVoucher = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.radioNotVoucher = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.radioAllVoucher = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.kDButtonGroup1 = new com.kingdee.bos.ctrl.swing.KDButtonGroup();
+        this.kDButtonGroup3 = new com.kingdee.bos.ctrl.swing.KDButtonGroup();
+        this.radioHasPay = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.radioNotPay = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.radioAllPay = new com.kingdee.bos.ctrl.swing.KDRadioButton();
         this.contCompany.setName("contCompany");
         this.contPrjoect.setName("contPrjoect");
         this.contContract.setName("contContract");
@@ -122,8 +138,8 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.btnCompanySelect.setName("btnCompanySelect");
         this.btnProjectSelect.setName("btnProjectSelect");
         this.chkIncludeClose.setName("chkIncludeClose");
-        this.cbFivouchered.setName("cbFivouchered");
-        this.cbIsCreatePay.setName("cbIsCreatePay");
+        this.kDPanel1.setName("kDPanel1");
+        this.kDPanel2.setName("kDPanel2");
         this.txtCompany.setName("txtCompany");
         this.txtProject.setName("txtProject");
         this.f7Contract.setName("f7Contract");
@@ -135,6 +151,12 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.radioAuditing.setName("radioAuditing");
         this.radioAudited.setName("radioAudited");
         this.radioStateAll.setName("radioStateAll");
+        this.radioHasVoucher.setName("radioHasVoucher");
+        this.radioNotVoucher.setName("radioNotVoucher");
+        this.radioAllVoucher.setName("radioAllVoucher");
+        this.radioHasPay.setName("radioHasPay");
+        this.radioNotPay.setName("radioNotPay");
+        this.radioAllPay.setName("radioAllPay");
         // CustomerQueryPanel
         // contCompany		
         this.contCompany.setBoundLabelText(resHelper.getString("contCompany.boundLabelText"));		
@@ -195,10 +217,10 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         // chkIncludeClose		
         this.chkIncludeClose.setText(resHelper.getString("chkIncludeClose.text"));		
         this.chkIncludeClose.setVisible(false);
-        // cbFivouchered		
-        this.cbFivouchered.setText(resHelper.getString("cbFivouchered.text"));
-        // cbIsCreatePay		
-        this.cbIsCreatePay.setText(resHelper.getString("cbIsCreatePay.text"));
+        // kDPanel1		
+        this.kDPanel1.setBorder(new TitledBorder(BorderFactory.createEtchedBorder(new Color(255,255,255),new Color(148,145,140)), resHelper.getString("kDPanel1.border.title")));
+        // kDPanel2		
+        this.kDPanel2.setBorder(new TitledBorder(BorderFactory.createEtchedBorder(new Color(255,255,255),new Color(148,145,140)), resHelper.getString("kDPanel2.border.title")));
         // txtCompany		
         this.txtCompany.setEnabled(false);
         // txtProject		
@@ -232,6 +254,26 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.kDButtonGroup2.add(this.radioAuditing);
         this.kDButtonGroup2.add(this.radioAudited);
         this.kDButtonGroup2.add(this.radioStateAll);
+        // radioHasVoucher		
+        this.radioHasVoucher.setText(resHelper.getString("radioHasVoucher.text"));
+        // radioNotVoucher		
+        this.radioNotVoucher.setText(resHelper.getString("radioNotVoucher.text"));
+        // radioAllVoucher		
+        this.radioAllVoucher.setText(resHelper.getString("radioAllVoucher.text"));
+        // kDButtonGroup1
+        this.kDButtonGroup1.add(this.radioHasVoucher);
+        this.kDButtonGroup1.add(this.radioNotVoucher);
+        this.kDButtonGroup1.add(this.radioAllVoucher);
+        // kDButtonGroup3
+        this.kDButtonGroup3.add(this.radioHasPay);
+        this.kDButtonGroup3.add(this.radioNotPay);
+        this.kDButtonGroup3.add(this.radioAllPay);
+        // radioHasPay		
+        this.radioHasPay.setText(resHelper.getString("radioHasPay.text"));
+        // radioNotPay		
+        this.radioNotPay.setText(resHelper.getString("radioNotPay.text"));
+        // radioAllPay		
+        this.radioAllPay.setText(resHelper.getString("radioAllPay.text"));
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -278,10 +320,10 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.add(btnProjectSelect, null);
         chkIncludeClose.setBounds(new Rectangle(19, 297, 208, 15));
         this.add(chkIncludeClose, null);
-        cbFivouchered.setBounds(new Rectangle(149, 162, 140, 19));
-        this.add(cbFivouchered, null);
-        cbIsCreatePay.setBounds(new Rectangle(149, 197, 140, 19));
-        this.add(cbIsCreatePay, null);
+        kDPanel1.setBounds(new Rectangle(121, 148, 116, 146));
+        this.add(kDPanel1, null);
+        kDPanel2.setBounds(new Rectangle(246, 148, 116, 146));
+        this.add(kDPanel2, null);
         //contCompany
         contCompany.setBoundEditor(txtCompany);
         //contPrjoect
@@ -305,6 +347,20 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         plChangeState.add(radioAudited, null);
         radioStateAll.setBounds(new Rectangle(24, 115, 64, 19));
         plChangeState.add(radioStateAll, null);
+        //kDPanel1
+        kDPanel1.setLayout(null);        radioHasVoucher.setBounds(new Rectangle(18, 24, 70, 19));
+        kDPanel1.add(radioHasVoucher, null);
+        radioNotVoucher.setBounds(new Rectangle(18, 54, 68, 19));
+        kDPanel1.add(radioNotVoucher, null);
+        radioAllVoucher.setBounds(new Rectangle(18, 84, 70, 19));
+        kDPanel1.add(radioAllVoucher, null);
+        //kDPanel2
+        kDPanel2.setLayout(null);        radioHasPay.setBounds(new Rectangle(26, 23, 68, 19));
+        kDPanel2.add(radioHasPay, null);
+        radioNotPay.setBounds(new Rectangle(26, 54, 62, 19));
+        kDPanel2.add(radioNotPay, null);
+        radioAllPay.setBounds(new Rectangle(26, 85, 61, 19));
+        kDPanel2.add(radioAllPay, null);
 
     }
 
