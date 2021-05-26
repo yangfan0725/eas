@@ -56,6 +56,7 @@ import com.kingdee.eas.fdc.contract.BankNumCollection;
 import com.kingdee.eas.fdc.contract.BankNumFactory;
 import com.kingdee.eas.fdc.contract.ContractBillInfo;
 import com.kingdee.eas.fdc.contract.ContractWithoutTextInfo;
+import com.kingdee.eas.fdc.contract.PayRequestBillBgEntryFactory;
 import com.kingdee.eas.fdc.contract.PayRequestBillBgEntryInfo;
 import com.kingdee.eas.fdc.contract.PayRequestBillFactory;
 import com.kingdee.eas.fdc.contract.PayRequestBillInfo;
@@ -120,9 +121,6 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 		info = null;
         i = 0;
         
-//		SelectorItemCollection sic = new SelectorItemCollection();
-//		sic.add("bgEntry.actPayAmount");
-//		sic.add("payDate");
 		for(int size = coll.size(); i < size; i++){
             info = coll.get(i);
             if(info.getSourceType().equals(SourceTypeEnum.FDC)||info.getSourceBillId()!=null){
@@ -135,67 +133,48 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             	}
             	if(payRequestBillId != null){
             		PayRequestBillInfo payRequest=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(payRequestBillId),getSelectors());
-//            		if(payRequest.isIsBgControl()){
-//            			payRequest.setPayDate(now);
-//            			if(payRequest.getCurrency().getId().toString().equals(info.getCurrency().getId().toString())
-//            					&&payRequest.getOriginalAmount().compareTo(info.getAmount())!=0){
-//            				BigDecimal rate=info.getAmount().divide(FDCHelper.toBigDecimal(payRequest.getOriginalAmount()),6,BigDecimal.ROUND_HALF_UP);	
-//            				BigDecimal total=FDCHelper.ZERO;
-//            				for(int k=0;k<payRequest.getBgEntry().size();k++){
-//            					BigDecimal amount=FDCHelper.ZERO;
-//            					if(k==payRequest.getBgEntry().size()-1){
-//            						amount=info.getAmount().subtract(total);
-//            					}else{
-//            						amount=payRequest.getBgEntry().get(k).getRequestAmount().multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP);
-//            						total=total.add(amount);
-//            					}
-//            					if(payRequest.getBgEntry().get(k).getActPayAmount()!=null){
-//            						payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getActPayAmount().add(amount));
-//            					}else{
-//            						payRequest.getBgEntry().get(k).setActPayAmount(amount);
-//            					}
-//            				}
-//            			}else{
-//            				for(int k=0;k<payRequest.getBgEntry().size();k++){
-//            					payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getRequestAmount());
-//            				}
-//            			}
-            			if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
-                        	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
-                            builder.appendSql("update T_CAS_PaymentBill set fbillstatus=?,fbizDate=? where fid=? ");
-                            builder.addParam(15);
-                            builder.addParam(now);
-                            builder.addParam(info.getSourceBillId());
-                            builder.executeUpdate();
-                        }
-                        BgControlFacadeFactory.getLocalInstance(ctx).bgAudit(info.getId().toString(), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
-                        FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
-                        builder.appendSql("select sum(factualPayAmount) payAmount from t_cas_paymentbill where fbillstatus=15 and fFdcPayReqID=? and fsourceBillId is null");
-                        builder.addParam(payRequest.getId().toString());
-                        IRowSet rs=builder.executeQuery();
-                        BigDecimal payAmount=FDCHelper.ZERO;
-                    	try {
-                    		while(rs.next()){
-                    			payAmount=rs.getBigDecimal("payAmount");
-                    		}
-                    	} catch (SQLException e) {
-							e.printStackTrace();
-						}
-                    	builder.clear();
-                        builder.appendSql("update T_CON_PayRequestBill set fpaydate=?,fpayAmount=? where fid=? ");
+            		if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
+                    	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
+                        builder.appendSql("update T_CAS_PaymentBill set fbillstatus=?,fbizDate=? where fid=? ");
+                        builder.addParam(15);
                         builder.addParam(now);
-                        builder.addParam(payAmount);
-                        builder.addParam(payRequest.getId().toString());
+                        builder.addParam(info.getSourceBillId());
                         builder.executeUpdate();
-                        
-                        if(BOSUuid.read(payRequest.getContractId()).getType().equals((new ContractWithoutTextInfo()).getBOSType())){
-                        	builder = new FDCSQLBuilder(ctx);
-                            builder.appendSql("update T_CON_ContractWithoutText set FSignDate=? where fid=? ");
-                            builder.addParam(now);
-                            builder.addParam(payRequest.getContractId());
-                            builder.executeUpdate();
-                        }
-//            		}
+                    }
+                    BgControlFacadeFactory.getLocalInstance(ctx).bgAudit(info.getId().toString(), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
+                    for(int k=0;k<info.getEntries().size();k++){
+        				PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));
+        				bgEntry.setActPayAmount(FDCHelper.add(bgEntry.getActPayAmount(), info.getEntries().get(k).getAmount()));
+        				SelectorItemCollection sic = new SelectorItemCollection();
+            			sic.add("actPayAmount");
+            			PayRequestBillBgEntryFactory.getLocalInstance(ctx).updatePartial(bgEntry, sic);
+        			}
+                    FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
+                    builder.appendSql("select sum(factualPayAmount) payAmount from t_cas_paymentbill where fbillstatus=15 and fFdcPayReqID=? and fsourceBillId is null");
+                    builder.addParam(payRequest.getId().toString());
+                    IRowSet rs=builder.executeQuery();
+                    BigDecimal payAmount=FDCHelper.ZERO;
+                	try {
+                		while(rs.next()){
+                			payAmount=rs.getBigDecimal("payAmount");
+                		}
+                	} catch (SQLException e) {
+						e.printStackTrace();
+					}
+                	builder.clear();
+                    builder.appendSql("update T_CON_PayRequestBill set fpaydate=?,fpayAmount=? where fid=? ");
+                    builder.addParam(now);
+                    builder.addParam(payAmount);
+                    builder.addParam(payRequest.getId().toString());
+                    builder.executeUpdate();
+                    
+                    if(BOSUuid.read(payRequest.getContractId()).getType().equals((new ContractWithoutTextInfo()).getBOSType())){
+                    	builder = new FDCSQLBuilder(ctx);
+                        builder.appendSql("update T_CON_ContractWithoutText set FSignDate=? where fid=? ");
+                        builder.addParam(now);
+                        builder.addParam(payRequest.getContractId());
+                        builder.executeUpdate();
+                    }
             	}
             }
         }
@@ -263,8 +242,6 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 			}
 			
 			cjo.put("formData",formData);
-			
-//			arr.add(cjo);
 			
 			HashMap header=new HashMap();
 			header.put("tokenId", tokenId);
@@ -385,19 +362,14 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		if(payRequest.isHasClosed()){
             			throw new EASBizException(new NumericExceptionSubItem("100","付款申请单已经关闭，禁止取消付款！"));
             		}
-//            		if(payRequest.isIsBgControl()){
-            			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
-//            			for(int k=0;k<payRequest.getBgEntry().size();k++){
-//            				for(int j=0;j<info.getEntries().size();j++){
-//	    						if(info.getEntries().get(j).getSourceBillEntryId().equals(payRequest.getBgEntry().get(k).getId().toString())){
-//	    							payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getActPayAmount().subtract(info.getEntries().get(j).getAmount()));
-//	    						}
-//	    					}
-//        				}
-//            			SelectorItemCollection sic = new SelectorItemCollection();
-//            			sic.add("bgEntry.actPayAmount");
-//        	            PayRequestBillFactory.getLocalInstance(ctx).updatePartial(payRequest, sic);
-//        			}
+        			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
+        			for(int k=0;k<info.getEntries().size();k++){
+        				PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));
+        				bgEntry.setActPayAmount(FDCHelper.subtract(bgEntry.getActPayAmount(), info.getEntries().get(k).getAmount()));
+        				SelectorItemCollection sic = new SelectorItemCollection();
+            			sic.add("actPayAmount");
+            			PayRequestBillBgEntryFactory.getLocalInstance(ctx).updatePartial(bgEntry, sic);
+        			}
             		if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
                      	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
                         builder.appendSql("update T_CAS_PaymentBill set fbillstatus=? where fid=? ");
@@ -427,11 +399,11 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
                     builder.addParam(payRequestBillId);
                     builder.executeUpdate();
                     
-                    if(BOSUuid.read(info.getContractBillId()).getType().equals((new ContractWithoutTextInfo()).getBOSType())){
+                    if(BOSUuid.read(payRequest.getContractId()).getType().equals((new ContractWithoutTextInfo()).getBOSType())){
                     	builder = new FDCSQLBuilder(ctx);
                         builder.appendSql("update T_CON_ContractWithoutText set FSignDate=? where fid=? ");
                         builder.addParam(payDate);
-                        builder.addParam(info.getContractBillId());
+                        builder.addParam(payRequest.getContractId());
                         builder.executeUpdate();
                     }
                 }
@@ -467,20 +439,15 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		if(payRequest.isHasClosed()){
             			throw new EASBizException(new NumericExceptionSubItem("100","付款申请单已经关闭，禁止取消付款！"));
             		}
-//            		if(payRequest.isIsBgControl()){
-            			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
-//            			for(int k=0;k<payRequest.getBgEntry().size();k++){
-//            				for(int j=0;j<info.getEntries().size();j++){
-//	    						if(info.getEntries().get(j).getSourceBillEntryId().equals(payRequest.getBgEntry().get(k).getId().toString())){
-//	    							payRequest.getBgEntry().get(k).setActPayAmount(payRequest.getBgEntry().get(k).getActPayAmount().subtract(info.getEntries().get(j).getAmount()));
-//	    						}
-//	    					}
-//        				}
-//            			SelectorItemCollection sic = new SelectorItemCollection();
-//            			sic.add("bgEntry.actPayAmount");
-//        	            PayRequestBillFactory.getLocalInstance(ctx).updatePartial(payRequest, sic);
-//        			}
-            		if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
+        			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
+        			for(int k=0;k<info.getEntries().size();k++){
+        				PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));
+        				bgEntry.setActPayAmount(FDCHelper.subtract(bgEntry.getActPayAmount(), info.getEntries().get(k).getAmount()));
+        				SelectorItemCollection sic = new SelectorItemCollection();
+            			sic.add("actPayAmount");
+            			PayRequestBillBgEntryFactory.getLocalInstance(ctx).updatePartial(bgEntry, sic);
+        			}
+        			if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
                     	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
                         builder.appendSql("update T_CAS_PaymentBill set fbillstatus=? where fid=? ");
                         builder.addParam(12);
@@ -509,11 +476,11 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
                     builder.addParam(payRequestBillId);
                     builder.executeUpdate();
                     
-                    if(BOSUuid.read(info.getContractBillId()).getType().equals((new ContractWithoutTextInfo()).getBOSType())){
+                    if(BOSUuid.read(payRequest.getContractId()).getType().equals((new ContractWithoutTextInfo()).getBOSType())){
                     	builder = new FDCSQLBuilder(ctx);
                         builder.appendSql("update T_CON_ContractWithoutText set FSignDate=? where fid=? ");
                         builder.addParam(payDate);
-                        builder.addParam(info.getContractBillId());
+                        builder.addParam(payRequest.getContractId());
                         builder.executeUpdate();
                     }
                 }
@@ -715,101 +682,101 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 	        builder.addParam(payRequestBillId);
 	        builder.executeUpdate();
 
-	        if(info.getCurrency()!=null&&info.getAmount()!=null){
-	        	SelectorItemCollection sic = new SelectorItemCollection();
-				sic.add("bgEntry.*");
-				sic.add("bgEntry.expenseType.*");
-				sic.add("bgEntry.accountView.*");
-				sic.add("isBgControl");
-				sic.add("currency.*");
-				sic.add("costedDept.*");
-				sic.add("originalAmount");
-				sic.add("amount");
-				sic.add("exchangeRate");
-				sic.add("person.*");
-				sic.add("completePrjAmt");
-				PayRequestBillInfo payReqBill = PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(payRequestBillId),sic);
-				boolean isUpdateAmount=false;
-				BigDecimal updateAmount=FDCHelper.ZERO;
-				if(payReqBill.isIsBgControl()){
-					info.getEntries().clear();
-					BigDecimal subAmount=FDCHelper.ZERO;
-//					PaymentBillCollection isPay=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillCollection("select * from where fdcPayReqID='"+payReqBill.getId()+"' and id!='"+info.getId()+"' and billstatus=15");
-//    				if(isPay.size()==0
-//    						&&payReqBill.getCompletePrjAmt()!=null&&payReqBill.getCompletePrjAmt().compareTo(FDCHelper.ZERO)!=0&&payReqBill.getCompletePrjAmt().compareTo(payReqBill.getOriginalAmount())!=0){
-//    					subAmount=payReqBill.getCompletePrjAmt().subtract(payReqBill.getOriginalAmount());
-//    					isUpdateAmount=true;
-//    				}
-	    			if(payReqBill.getCurrency().getId().toString().equals(info.getCurrency().getId().toString())
-	    					&&payReqBill.getOriginalAmount().compareTo(info.getAmount())!=0){
-	    				BigDecimal total=FDCHelper.ZERO;
-	    				BigDecimal rate=info.getAmount().divide(FDCHelper.toBigDecimal(payReqBill.getOriginalAmount()),6,BigDecimal.ROUND_HALF_UP);	
-	    				for(int i=0;i<payReqBill.getBgEntry().size();i++){
-	    					BigDecimal amount=FDCHelper.ZERO;
-	    					BigDecimal actAmount=FDCHelper.ZERO;
-	    					if(i==payReqBill.getBgEntry().size()-1){
-	    						amount=info.getAmount().add(subAmount).subtract(total);
-	    						actAmount=info.getAmount().subtract(total);
-	    						updateAmount=amount;
-	    					}else{
-	    						amount=payReqBill.getBgEntry().get(i).getRequestAmount().multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP);
-	    						actAmount=payReqBill.getBgEntry().get(i).getRequestAmount().multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP);
-	    						total=total.add(amount);
-	    					}
-	    					PaymentBillEntryInfo entry=new PaymentBillEntryInfo();
-	    					entry.setAmount(amount);
-	    					entry.setLocalAmt(amount);
-	    		            entry.setActualAmt(actAmount);
-	    		            entry.setActualLocAmt(actAmount);
-	    		            entry.setCurrency(payReqBill.getCurrency());
-	    		            entry.setExpenseType(payReqBill.getBgEntry().get(i).getExpenseType());
-	    		            entry.setSourceBillEntryId(payReqBill.getBgEntry().get(i).getId().toString());
-	    		            entry.setCostCenter(payReqBill.getCostedDept());
-	    		            if(payReqBill.getPerson()==null){
-	    		            	entry.setOppAccount(payReqBill.getBgEntry().get(i).getAccountView());
-	    		            }
-	    		            info.getEntries().add(entry);
-	    				}
-	    			}else{
-	    				BigDecimal total=FDCHelper.ZERO;
-	    				for(int i=0;i<payReqBill.getBgEntry().size();i++){
-	    					BigDecimal amount=FDCHelper.ZERO;
-	    					BigDecimal actAmount=FDCHelper.ZERO;
-	    					if(i==payReqBill.getBgEntry().size()-1){
-	    						amount=info.getAmount().add(subAmount).subtract(total);
-	    						actAmount=info.getLocalAmt().subtract(total);
-	    						updateAmount=amount;
-	    					}else{
-	    						amount=payReqBill.getBgEntry().get(i).getRequestAmount();
-	    						actAmount=payReqBill.getBgEntry().get(i).getRequestAmount();
-	    						total=total.add(amount);
-	    					}
-	    					PaymentBillEntryInfo entry=new PaymentBillEntryInfo();
-	    					entry.setAmount(amount);
-	    					entry.setLocalAmt(amount);
-	    		            entry.setActualAmt(actAmount);
-	    		            entry.setActualLocAmt(actAmount);
-	    		            entry.setCurrency(payReqBill.getCurrency());
-	    		            entry.setExpenseType(payReqBill.getBgEntry().get(i).getExpenseType());
-	    		            entry.setSourceBillEntryId(payReqBill.getBgEntry().get(i).getId().toString());
-	    		            entry.setCostCenter(payReqBill.getCostedDept());
-	    		            if(payReqBill.getPerson()==null){
-	    		            	entry.setOppAccount(payReqBill.getBgEntry().get(i).getAccountView());
-	    		            }
-	    		            info.getEntries().add(entry);
-	    				}
-	    			}
-	    			PaymentBillFactory.getLocalInstance(ctx).update(new ObjectUuidPK(info.getId()), info);
-	    			if(isUpdateAmount){
-	    				builder = new FDCSQLBuilder(ctx);
-	                    builder.appendSql("update T_CAS_PaymentBillentry set famount=?,fLocalAmount=? where fpaymentBillid=? ");
-	                    builder.addParam(updateAmount);
-	                    builder.addParam(updateAmount);
-	                    builder.addParam(info.getId().toString());
-	                    builder.executeUpdate();
-	    			}
-	    		}
-			}
+//	        if(info.getCurrency()!=null&&info.getActPayAmt()!=null){
+//	        	SelectorItemCollection sic = new SelectorItemCollection();
+//				sic.add("bgEntry.*");
+//				sic.add("bgEntry.expenseType.*");
+//				sic.add("bgEntry.accountView.*");
+//				sic.add("isBgControl");
+//				sic.add("currency.*");
+//				sic.add("costedDept.*");
+//				sic.add("originalAmount");
+//				sic.add("amount");
+//				sic.add("exchangeRate");
+//				sic.add("person.*");
+//				sic.add("completePrjAmt");
+//				PayRequestBillInfo payReqBill = PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(payRequestBillId),sic);
+//				boolean isUpdateAmount=false;
+//				BigDecimal updateAmount=FDCHelper.ZERO;
+//				if(payReqBill.isIsBgControl()){
+//					info.getEntries().clear();
+//					BigDecimal subAmount=FDCHelper.ZERO;
+////					PaymentBillCollection isPay=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillCollection("select * from where fdcPayReqID='"+payReqBill.getId()+"' and id!='"+info.getId()+"' and billstatus=15");
+////    				if(isPay.size()==0
+////    						&&payReqBill.getCompletePrjAmt()!=null&&payReqBill.getCompletePrjAmt().compareTo(FDCHelper.ZERO)!=0&&payReqBill.getCompletePrjAmt().compareTo(payReqBill.getOriginalAmount())!=0){
+////    					subAmount=payReqBill.getCompletePrjAmt().subtract(payReqBill.getOriginalAmount());
+////    					isUpdateAmount=true;
+////    				}
+//	    			if(payReqBill.getCurrency().getId().toString().equals(info.getCurrency().getId().toString())
+//	    					&&payReqBill.getOriginalAmount().compareTo(info.getActPayAmt())!=0){
+//	    				BigDecimal total=FDCHelper.ZERO;
+//	    				BigDecimal rate=info.getActPayAmt().divide(FDCHelper.toBigDecimal(payReqBill.getOriginalAmount()),6,BigDecimal.ROUND_HALF_UP);	
+//	    				for(int i=0;i<payReqBill.getBgEntry().size();i++){
+//	    					BigDecimal amount=FDCHelper.ZERO;
+//	    					BigDecimal actAmount=FDCHelper.ZERO;
+//	    					if(i==payReqBill.getBgEntry().size()-1){
+//	    						amount=info.getActPayAmt().add(subAmount).subtract(total);
+//	    						actAmount=info.getActPayAmt().subtract(total);
+//	    						updateAmount=amount;
+//	    					}else{
+//	    						amount=payReqBill.getBgEntry().get(i).getRequestAmount().multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP);
+//	    						actAmount=payReqBill.getBgEntry().get(i).getRequestAmount().multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP);
+//	    						total=total.add(amount);
+//	    					}
+//	    					PaymentBillEntryInfo entry=new PaymentBillEntryInfo();
+//	    					entry.setAmount(amount);
+//	    					entry.setLocalAmt(amount);
+//	    		            entry.setActualAmt(actAmount);
+//	    		            entry.setActualLocAmt(actAmount);
+//	    		            entry.setCurrency(payReqBill.getCurrency());
+//	    		            entry.setExpenseType(payReqBill.getBgEntry().get(i).getExpenseType());
+//	    		            entry.setSourceBillEntryId(payReqBill.getBgEntry().get(i).getId().toString());
+//	    		            entry.setCostCenter(payReqBill.getCostedDept());
+//	    		            if(payReqBill.getPerson()==null){
+//	    		            	entry.setOppAccount(payReqBill.getBgEntry().get(i).getAccountView());
+//	    		            }
+//	    		            info.getEntries().add(entry);
+//	    				}
+//	    			}else{
+//	    				BigDecimal total=FDCHelper.ZERO;
+//	    				for(int i=0;i<payReqBill.getBgEntry().size();i++){
+//	    					BigDecimal amount=FDCHelper.ZERO;
+//	    					BigDecimal actAmount=FDCHelper.ZERO;
+//	    					if(i==payReqBill.getBgEntry().size()-1){
+//	    						amount=info.getActPayAmt().add(subAmount).subtract(total);
+//	    						actAmount=info.getLocalAmt().subtract(total);
+//	    						updateAmount=amount;
+//	    					}else{
+//	    						amount=payReqBill.getBgEntry().get(i).getRequestAmount();
+//	    						actAmount=payReqBill.getBgEntry().get(i).getRequestAmount();
+//	    						total=total.add(amount);
+//	    					}
+//	    					PaymentBillEntryInfo entry=new PaymentBillEntryInfo();
+//	    					entry.setAmount(amount);
+//	    					entry.setLocalAmt(amount);
+//	    		            entry.setActualAmt(actAmount);
+//	    		            entry.setActualLocAmt(actAmount);
+//	    		            entry.setCurrency(payReqBill.getCurrency());
+//	    		            entry.setExpenseType(payReqBill.getBgEntry().get(i).getExpenseType());
+//	    		            entry.setSourceBillEntryId(payReqBill.getBgEntry().get(i).getId().toString());
+//	    		            entry.setCostCenter(payReqBill.getCostedDept());
+//	    		            if(payReqBill.getPerson()==null){
+//	    		            	entry.setOppAccount(payReqBill.getBgEntry().get(i).getAccountView());
+//	    		            }
+//	    		            info.getEntries().add(entry);
+//	    				}
+//	    			}
+//	    			PaymentBillFactory.getLocalInstance(ctx).update(new ObjectUuidPK(info.getId()), info);
+//	    			if(isUpdateAmount){
+//	    				builder = new FDCSQLBuilder(ctx);
+//	                    builder.appendSql("update T_CAS_PaymentBillentry set famount=?,fLocalAmount=? where fpaymentBillid=? ");
+//	                    builder.addParam(updateAmount);
+//	                    builder.addParam(updateAmount);
+//	                    builder.addParam(info.getId().toString());
+//	                    builder.executeUpdate();
+//	    			}
+//	    		}
+//			}
 	        builder = new FDCSQLBuilder(ctx);
 			builder.appendSql("select count(*) payTime from t_cas_paymentbill where fFdcPayReqID=? and fsourceBillId is null");
 	        builder.addParam(payRequestBillId);
@@ -854,143 +821,143 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 	        builder.addParam(payRequestBillId);
 	        builder.executeUpdate();
 	        
-	        if(info.getCurrency()!=null&&info.getAmount()!=null){
-	        	SelectorItemCollection sic = new SelectorItemCollection();
-				sic.add("bgEntry.*");
-				sic.add("bgEntry.expenseType.*");
-				sic.add("bgEntry.accountView.*");
-				sic.add("isBgControl");
-				sic.add("currency.*");
-				sic.add("costedDept.*");
-				sic.add("originalAmount");
-				sic.add("amount");
-				sic.add("exchangeRate");
-				sic.add("person.*");
-				sic.add("completePrjAmt");
-				PayRequestBillInfo payReqBill = PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(payRequestBillId),sic);
-				boolean isUpdateAmount=false;
-				BigDecimal updateAmount=FDCHelper.ZERO;
-				if(payReqBill.isIsBgControl()){
-					info.getEntries().clear();
-					BigDecimal subAmount=FDCHelper.ZERO;
-//					PaymentBillCollection isPay=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillCollection("select * from where fdcPayReqID='"+payReqBill.getId()+"' and id!='"+info.getId()+"' and billstatus=15");
-//    				if(isPay.size()==0
-//    						&&payReqBill.getCompletePrjAmt()!=null&&payReqBill.getCompletePrjAmt().compareTo(FDCHelper.ZERO)!=0&&payReqBill.getCompletePrjAmt().compareTo(payReqBill.getOriginalAmount())!=0){
-//    					subAmount=payReqBill.getCompletePrjAmt().subtract(payReqBill.getOriginalAmount());
-//    					isUpdateAmount=true;
-//    				}
-	    			if(payReqBill.getCurrency().getId().toString().equals(info.getCurrency().getId().toString())
-	    					&&payReqBill.getOriginalAmount().compareTo(info.getAmount())!=0){
-	    				BigDecimal total=FDCHelper.ZERO;
-	    				BigDecimal rate=info.getAmount().divide(FDCHelper.toBigDecimal(payReqBill.getOriginalAmount()),6,BigDecimal.ROUND_HALF_UP);	
-	    				for(int i=0;i<payReqBill.getBgEntry().size();i++){
-	    					BigDecimal amount=FDCHelper.ZERO;
-	    					BigDecimal actAmount=FDCHelper.ZERO;
-	    					if(i==payReqBill.getBgEntry().size()-1){
-	    						amount=info.getAmount().add(subAmount).subtract(total);
-	    						actAmount=info.getAmount().subtract(total);
-	    						updateAmount=amount;
-	    					}else{
-	    						amount=payReqBill.getBgEntry().get(i).getRequestAmount().multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP);
-	    						actAmount=payReqBill.getBgEntry().get(i).getRequestAmount().multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP);
-	    						total=total.add(amount);
-	    					}
-	    					PaymentBillEntryInfo entry=new PaymentBillEntryInfo();
-	    					entry.setAmount(amount);
-	    					entry.setLocalAmt(amount);
-	    		            entry.setActualAmt(actAmount);
-	    		            entry.setActualLocAmt(actAmount);
-	    		            entry.setCurrency(payReqBill.getCurrency());
-	    		            entry.setExpenseType(payReqBill.getBgEntry().get(i).getExpenseType());
-	    		            entry.setSourceBillEntryId(payReqBill.getBgEntry().get(i).getId().toString());
-	    		            entry.setCostCenter(payReqBill.getCostedDept());
-	    		            if(payReqBill.getPerson()==null){
-	    		            	entry.setOppAccount(payReqBill.getBgEntry().get(i).getAccountView());
-	    		            }
-	    		            info.getEntries().add(entry);
-	    				}
-	    			}else{
-	    				BigDecimal total=FDCHelper.ZERO;
-	    				for(int i=0;i<payReqBill.getBgEntry().size();i++){
-	    					BigDecimal amount=FDCHelper.ZERO;
-	    					BigDecimal actAmount=FDCHelper.ZERO;
-	    					if(i==payReqBill.getBgEntry().size()-1){
-	    						amount=info.getAmount().add(subAmount).subtract(total);
-	    						actAmount=info.getLocalAmt().subtract(total);
-	    						updateAmount=amount;
-	    					}else{
-	    						amount=payReqBill.getBgEntry().get(i).getRequestAmount();
-	    						actAmount=payReqBill.getBgEntry().get(i).getRequestAmount();
-	    						total=total.add(amount);
-	    					}
-	    					PaymentBillEntryInfo entry=new PaymentBillEntryInfo();
-	    					entry.setAmount(amount);
-	    					entry.setLocalAmt(amount);
-	    		            entry.setActualAmt(actAmount);
-	    		            entry.setActualLocAmt(actAmount);
-	    		            entry.setCurrency(payReqBill.getCurrency());
-	    		            entry.setExpenseType(payReqBill.getBgEntry().get(i).getExpenseType());
-	    		            entry.setSourceBillEntryId(payReqBill.getBgEntry().get(i).getId().toString());
-	    		            entry.setCostCenter(payReqBill.getCostedDept());
-	    		            if(payReqBill.getPerson()==null){
-	    		            	entry.setOppAccount(payReqBill.getBgEntry().get(i).getAccountView());
-	    		            }
-	    		            info.getEntries().add(entry);
-	    				}
-	    			}
-	    			PaymentBillFactory.getLocalInstance(ctx).update(new ObjectUuidPK(info.getId()),info);
-	    			if(isUpdateAmount){
-	    				builder = new FDCSQLBuilder(ctx);
-	                    builder.appendSql("update T_CAS_PaymentBillentry set famount=?,fLocalAmount=? where fpaymentBillid=? and fsourceBillId is null");
-	                    builder.addParam(updateAmount);
-	                    builder.addParam(updateAmount);
-	                    builder.addParam(info.getId().toString());
-	                    builder.executeUpdate();
-	    			}
-	    			
-	    			builder = new FDCSQLBuilder(ctx);
-	    			builder.appendSql("select count(*) payTime from t_cas_paymentbill where fFdcPayReqID=?");
-	    	        builder.addParam(payRequestBillId);
-	    	        IRowSet rs=builder.executeQuery();
-	    	        int  payTime=0;
-	    	        Date payDate=null;
-	    	    	try {
-	    	    		while(rs.next()){
-	    	    			payTime=rs.getInt("payTime");
-	    	    		}
-	    	    	} catch (SQLException e) {
-	    				e.printStackTrace();
-	    			}
-	    	    	builder.clear();
-	    	    	
-	    	        builder.appendSql("update T_CON_PayRequestBill set fpayTime=?,fiscreatePay=?  where fid=? ");
-	    	        builder.addParam(payTime);
-	    	        if(payTime>0){
-	    	        	builder.addParam(1);
-	    	        }else{
-	    	        	builder.addParam(0);
-	    	        }
-	    	        builder.addParam(payRequestBillId);
-	    	        builder.executeUpdate();
-	    	        
-	    			SelectorItemCollection sel=new SelectorItemCollection();
-	    			sel.add("company.*");
-	    			sel.add("costCenter.*");
-	    			sel.add("currency.*");
-	    			sel.add("entries.*");
-	    			sel.add("entries.currency.*");
-	    			sel.add("entries.expenseType.*");
-	    			sel.add("entries.costCenter.*");
-	    			info=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillInfo(new ObjectUuidPK(info.getId()),sel);
-	    			Date now=SysUtil.getAppServerTime(ctx);
-            		info.setPayDate(now);
-	    			IBgControlFacade iBgControlFacade = BgControlFacadeFactory.getLocalInstance(ctx);
-	    			Map bgmap=iBgControlFacade.checkBudget(info);
-        			if(!((Boolean)bgmap.get("isPass")).booleanValue()){
-        				throw new EASBizException(new NumericExceptionSubItem("100",bgmap.get("message").toString()));
-        			}
-	    		}
-			}
+//	        if(info.getCurrency()!=null&&info.getActPayAmt()!=null){
+//	        	SelectorItemCollection sic = new SelectorItemCollection();
+//				sic.add("bgEntry.*");
+//				sic.add("bgEntry.expenseType.*");
+//				sic.add("bgEntry.accountView.*");
+//				sic.add("isBgControl");
+//				sic.add("currency.*");
+//				sic.add("costedDept.*");
+//				sic.add("originalAmount");
+//				sic.add("amount");
+//				sic.add("exchangeRate");
+//				sic.add("person.*");
+//				sic.add("completePrjAmt");
+//				PayRequestBillInfo payReqBill = PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(payRequestBillId),sic);
+//				boolean isUpdateAmount=false;
+//				BigDecimal updateAmount=FDCHelper.ZERO;
+//				if(payReqBill.isIsBgControl()){
+//					info.getEntries().clear();
+//					BigDecimal subAmount=FDCHelper.ZERO;
+////					PaymentBillCollection isPay=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillCollection("select * from where fdcPayReqID='"+payReqBill.getId()+"' and id!='"+info.getId()+"' and billstatus=15");
+////    				if(isPay.size()==0
+////    						&&payReqBill.getCompletePrjAmt()!=null&&payReqBill.getCompletePrjAmt().compareTo(FDCHelper.ZERO)!=0&&payReqBill.getCompletePrjAmt().compareTo(payReqBill.getOriginalAmount())!=0){
+////    					subAmount=payReqBill.getCompletePrjAmt().subtract(payReqBill.getOriginalAmount());
+////    					isUpdateAmount=true;
+////    				}
+//	    			if(payReqBill.getCurrency().getId().toString().equals(info.getCurrency().getId().toString())
+//	    					&&payReqBill.getOriginalAmount().compareTo(info.getActPayAmt())!=0){
+//	    				BigDecimal total=FDCHelper.ZERO;
+//	    				BigDecimal rate=info.getActPayAmt().divide(FDCHelper.toBigDecimal(payReqBill.getOriginalAmount()),6,BigDecimal.ROUND_HALF_UP);	
+//	    				for(int i=0;i<payReqBill.getBgEntry().size();i++){
+//	    					BigDecimal amount=FDCHelper.ZERO;
+//	    					BigDecimal actAmount=FDCHelper.ZERO;
+//	    					if(i==payReqBill.getBgEntry().size()-1){
+//	    						amount=info.getActPayAmt().add(subAmount).subtract(total);
+//	    						actAmount=info.getActPayAmt().subtract(total);
+//	    						updateAmount=amount;
+//	    					}else{
+//	    						amount=payReqBill.getBgEntry().get(i).getRequestAmount().multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP);
+//	    						actAmount=payReqBill.getBgEntry().get(i).getRequestAmount().multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP);
+//	    						total=total.add(amount);
+//	    					}
+//	    					PaymentBillEntryInfo entry=new PaymentBillEntryInfo();
+//	    					entry.setAmount(amount);
+//	    					entry.setLocalAmt(amount);
+//	    		            entry.setActualAmt(actAmount);
+//	    		            entry.setActualLocAmt(actAmount);
+//	    		            entry.setCurrency(payReqBill.getCurrency());
+//	    		            entry.setExpenseType(payReqBill.getBgEntry().get(i).getExpenseType());
+//	    		            entry.setSourceBillEntryId(payReqBill.getBgEntry().get(i).getId().toString());
+//	    		            entry.setCostCenter(payReqBill.getCostedDept());
+//	    		            if(payReqBill.getPerson()==null){
+//	    		            	entry.setOppAccount(payReqBill.getBgEntry().get(i).getAccountView());
+//	    		            }
+//	    		            info.getEntries().add(entry);
+//	    				}
+//	    			}else{
+//	    				BigDecimal total=FDCHelper.ZERO;
+//	    				for(int i=0;i<payReqBill.getBgEntry().size();i++){
+//	    					BigDecimal amount=FDCHelper.ZERO;
+//	    					BigDecimal actAmount=FDCHelper.ZERO;
+//	    					if(i==payReqBill.getBgEntry().size()-1){
+//	    						amount=info.getActPayAmt().add(subAmount).subtract(total);
+//	    						actAmount=info.getLocalAmt().subtract(total);
+//	    						updateAmount=amount;
+//	    					}else{
+//	    						amount=payReqBill.getBgEntry().get(i).getRequestAmount();
+//	    						actAmount=payReqBill.getBgEntry().get(i).getRequestAmount();
+//	    						total=total.add(amount);
+//	    					}
+//	    					PaymentBillEntryInfo entry=new PaymentBillEntryInfo();
+//	    					entry.setAmount(amount);
+//	    					entry.setLocalAmt(amount);
+//	    		            entry.setActualAmt(actAmount);
+//	    		            entry.setActualLocAmt(actAmount);
+//	    		            entry.setCurrency(payReqBill.getCurrency());
+//	    		            entry.setExpenseType(payReqBill.getBgEntry().get(i).getExpenseType());
+//	    		            entry.setSourceBillEntryId(payReqBill.getBgEntry().get(i).getId().toString());
+//	    		            entry.setCostCenter(payReqBill.getCostedDept());
+//	    		            if(payReqBill.getPerson()==null){
+//	    		            	entry.setOppAccount(payReqBill.getBgEntry().get(i).getAccountView());
+//	    		            }
+//	    		            info.getEntries().add(entry);
+//	    				}
+//	    			}
+//	    			PaymentBillFactory.getLocalInstance(ctx).update(new ObjectUuidPK(info.getId()),info);
+//	    			if(isUpdateAmount){
+//	    				builder = new FDCSQLBuilder(ctx);
+//	                    builder.appendSql("update T_CAS_PaymentBillentry set famount=?,fLocalAmount=? where fpaymentBillid=? and fsourceBillId is null");
+//	                    builder.addParam(updateAmount);
+//	                    builder.addParam(updateAmount);
+//	                    builder.addParam(info.getId().toString());
+//	                    builder.executeUpdate();
+//	    			}
+//	    			
+//	    			builder = new FDCSQLBuilder(ctx);
+//	    			builder.appendSql("select count(*) payTime from t_cas_paymentbill where fFdcPayReqID=?");
+//	    	        builder.addParam(payRequestBillId);
+//	    	        IRowSet rs=builder.executeQuery();
+//	    	        int  payTime=0;
+//	    	        Date payDate=null;
+//	    	    	try {
+//	    	    		while(rs.next()){
+//	    	    			payTime=rs.getInt("payTime");
+//	    	    		}
+//	    	    	} catch (SQLException e) {
+//	    				e.printStackTrace();
+//	    			}
+//	    	    	builder.clear();
+//	    	    	
+//	    	        builder.appendSql("update T_CON_PayRequestBill set fpayTime=?,fiscreatePay=?  where fid=? ");
+//	    	        builder.addParam(payTime);
+//	    	        if(payTime>0){
+//	    	        	builder.addParam(1);
+//	    	        }else{
+//	    	        	builder.addParam(0);
+//	    	        }
+//	    	        builder.addParam(payRequestBillId);
+//	    	        builder.executeUpdate();
+//	    	        
+//	    			SelectorItemCollection sel=new SelectorItemCollection();
+//	    			sel.add("company.*");
+//	    			sel.add("costCenter.*");
+//	    			sel.add("currency.*");
+//	    			sel.add("entries.*");
+//	    			sel.add("entries.currency.*");
+//	    			sel.add("entries.expenseType.*");
+//	    			sel.add("entries.costCenter.*");
+//	    			info=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillInfo(new ObjectUuidPK(info.getId()),sel);
+//	    			Date now=SysUtil.getAppServerTime(ctx);
+//            		info.setPayDate(now);
+//	    			IBgControlFacade iBgControlFacade = BgControlFacadeFactory.getLocalInstance(ctx);
+//	    			Map bgmap=iBgControlFacade.checkBudget(info);
+//        			if(!((Boolean)bgmap.get("isPass")).booleanValue()){
+//        				throw new EASBizException(new NumericExceptionSubItem("100",bgmap.get("message").toString()));
+//        			}
+//	    		}
+//			}
 		}
 		return pk;
 	}

@@ -430,6 +430,8 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 		row.getCell("currency.name").setValue(contract.getCurrency().getName());
 		row.getCell("contractBill.oriAmt").setValue(contract.getOriginalAmount());
 		row.getCell("contractBill.amt").setValue(contract.getAmount());
+		row.getCell("contractBillLastAmt").setValue(contract.getAmount());
+		row.getCell("notPayed").setValue(FDCHelper.subtract(contract.getAmount(), data.getRealPayAmount()));
 		row.getCell("payRealAmt").setValue(data.getRealPayAmount());
 		row.getCell("contract.id").setValue(contract.getId().toString());
 		row.getCell("partB").setValue(data.getPartB());
