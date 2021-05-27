@@ -530,7 +530,8 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 							
 							noPayAmt = FDCHelper.add(noPayAmt, childRow.getCell("notPayed").getValue());
 							totalNotPayed=FDCHelper.add(totalNotPayed, childRow.getCell("notPayed").getValue());
-							totalPayReq=FDCHelper.add(totalPayReq, childRow.getCell("reAmt").getValue());
+							if(childRow.getCell("notPayed").getValue()!=null)
+								totalPayReq=FDCHelper.add(totalPayReq, childRow.getCell("reAmt").getValue());
 							
 						}
 						row.getCell("reAmount").setValue(data.getChildren().size());
