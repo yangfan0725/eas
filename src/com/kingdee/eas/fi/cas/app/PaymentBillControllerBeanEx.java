@@ -88,7 +88,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
         Date now=SysUtil.getAppServerTime(ctx);
         for(int size = coll.size(); i < size; i++){
             info = coll.get(i);
-            if(info.getSourceType().equals(SourceTypeEnum.FDC)||info.getSourceBillId()!=null){
+            if(info.getSourceType().equals(SourceTypeEnum.FDC)||(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType()))){
             	String payRequestBillId=null;
             	if(info.getSourceBillId()!=null){
             		PaymentBillInfo payInfo=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillInfo(new ObjectUuidPK(info.getSourceBillId()));
@@ -123,7 +123,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
         
 		for(int size = coll.size(); i < size; i++){
             info = coll.get(i);
-            if(info.getSourceType().equals(SourceTypeEnum.FDC)||info.getSourceBillId()!=null){
+            if(info.getSourceType().equals(SourceTypeEnum.FDC)||(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType()))){
             	String payRequestBillId=null;
             	if(info.getSourceBillId()!=null){
             		PaymentBillInfo payInfo=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillInfo(new ObjectUuidPK(info.getSourceBillId()));
@@ -292,7 +292,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 	protected void _delete(Context ctx, IObjectPK pk) throws BOSException, EASBizException {
 		PaymentBillInfo info = getPaymentBillInfo(ctx, pk);
 		String payRequestBillId=null;
-    	if(info.getSourceBillId()!=null){
+    	if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
     		PaymentBillInfo payInfo=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillInfo(new ObjectUuidPK(info.getSourceBillId()));
     		payRequestBillId=payInfo.getFdcPayReqID();
     	}else{
@@ -346,7 +346,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             if(payCol.size()>0){
             	throw new EASBizException(new NumericExceptionSubItem("100","请取消付款代理公司付款单！"));
             }
-            if(info.getSourceType().equals(SourceTypeEnum.FDC)||info.getSourceBillId()!=null){
+            if(info.getSourceType().equals(SourceTypeEnum.FDC)||(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType()))){
             	String payRequestBillId=null;
             	if(info.getSourceBillId()!=null){
             		PaymentBillInfo payInfo=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillInfo(new ObjectUuidPK(info.getSourceBillId()));
@@ -423,7 +423,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             if(payCol.size()>0){
             	throw new EASBizException(new NumericExceptionSubItem("100","请取消付款代理公司付款单！"));
             }
-            if(info.getSourceType().equals(SourceTypeEnum.FDC)||info.getSourceBillId()!=null){
+            if(info.getSourceType().equals(SourceTypeEnum.FDC)||(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType()))){
             	String payRequestBillId=null;
             	if(info.getSourceBillId()!=null){
             		PaymentBillInfo payInfo=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillInfo(new ObjectUuidPK(info.getSourceBillId()));
@@ -669,7 +669,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 		IObjectPK pk=super._save(ctx, model);
 		PaymentBillInfo info=(PaymentBillInfo) model;
 		String payRequestBillId=null;
-    	if(info.getSourceBillId()!=null){
+    	if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
     		PaymentBillInfo payInfo=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillInfo(new ObjectUuidPK(info.getSourceBillId()));
     		payRequestBillId=payInfo.getFdcPayReqID();
     	}else{
@@ -808,7 +808,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 		IObjectPK pk=super._submit(ctx, model);
 		PaymentBillInfo info=(PaymentBillInfo) model;
 		String payRequestBillId=null;
-    	if(info.getSourceBillId()!=null){
+    	if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
     		PaymentBillInfo payInfo=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillInfo(new ObjectUuidPK(info.getSourceBillId()));
     		payRequestBillId=payInfo.getFdcPayReqID();
     	}else{
