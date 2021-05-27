@@ -9,6 +9,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,7 @@ import com.kingdee.eas.common.client.UIFactoryName;
 import com.kingdee.eas.fdc.basecrm.client.CRMClientHelper;
 import com.kingdee.eas.fdc.basedata.ContractTypeFactory;
 import com.kingdee.eas.fdc.basedata.FDCConstants;
+import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCClientHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCClientUtils;
@@ -521,6 +523,8 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 					
 					BigDecimal totalNotPayed = FDCConstants.ZERO;
 					BigDecimal totalPayReq=FDCConstants.ZERO;
+					Date reBookedDate=null;
+					Date payRealDate=null;
 					if(data.getChildren() != null && !data.getChildren().isEmpty()){
 						for(int j = 0; j < data.getChildren().size(); ++j){
 							ContractExecuteData child = (ContractExecuteData) data.getChildren().get(j);
@@ -530,13 +534,31 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 							
 							noPayAmt = FDCHelper.add(noPayAmt, childRow.getCell("notPayed").getValue());
 							totalNotPayed=FDCHelper.add(totalNotPayed, childRow.getCell("notPayed").getValue());
-							if(childRow.getCell("notPayed").getValue()!=null)
+							if(childRow.getCell("notPayed").getValue()!=null){
 								totalPayReq=FDCHelper.add(totalPayReq, childRow.getCell("reAmt").getValue());
-							
+								if(reBookedDate==null){
+									reBookedDate=(Date) childRow.getCell("reBookedDate").getValue();
+								}else{
+									if(childRow.getCell("reBookedDate").getValue()!=null&&FDCDateHelper.dateDiff(reBookedDate, (Date)childRow.getCell("reBookedDate").getValue())>0){
+										reBookedDate=(Date) childRow.getCell("reBookedDate").getValue();
+									}
+								}
+								if(payRealDate==null){
+									payRealDate=(Date) childRow.getCell("payRealDate").getValue();
+								}else{
+									if(childRow.getCell("payRealDate").getValue()!=null&&FDCDateHelper.dateDiff(reBookedDate, (Date)childRow.getCell("payRealDate").getValue())>0){
+										payRealDate=(Date) childRow.getCell("payRealDate").getValue();
+									}
+								}
+							}
+								
 						}
 						row.getCell("reAmount").setValue(data.getChildren().size());
+						row.getCell("notPayed").setValue(totalNotPayed);
+						row.getCell("reBookedDate").setValue(reBookedDate);
+						row.getCell("payRealDate").setValue(payRealDate);
 					}
-					row.getCell("notPayed").setValue(totalNotPayed);
+					
 					if(totalPayReq.compareTo(FDCConstants.ZERO)==0){
 						row.getCell("rate").setValue(FDCConstants.ZERO);
 					}else{
