@@ -222,7 +222,7 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 		table.setRefresh(false);
 		table.getDataRequestManager().setDataRequestMode(KDTDataRequestManager.REAL_MODE);
 		
-		ClientHelper.changeTableNumberFormat(this.tblMain,new String[]{"contractBill.amt","contractBill.oriAmt","contractLastSrcAmt","contractBillLastAmt","reOriAmt","reAmt","payRealSrcAmt","payRealAmt","payRate","notSrcPayed","notPayed","deductAmt"});
+		ClientHelper.changeTableNumberFormat(this.tblMain,new String[]{"contractBill.amt","contractBill.oriAmt","contractLastSrcAmt","contractBillLastAmt","reOriAmt","reAmt","payRealSrcAmt","payRealAmt","payRate","notSrcPayed","notPayed","deductAmt","rate"});
 		
 		table.setColumnMoveable(false);
 //		FDCTableHelper.setColumnMoveable(table, true);
@@ -254,6 +254,7 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 			}
 		});
 		this.tblMain.getColumn("payRate").setRenderer(render_scale);
+     	this.tblMain.getColumn("rate").setRenderer(render_scale);
 	}
 	
 	protected void initWorkButton() {
@@ -385,7 +386,7 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 //		row.getCell("payPlanAmt").setValue(data.getPlanPayAmount());
 //		row.getCell("payPlanSrcAmt").setValue(data.getPlanPaySrcAmount());
 		row.getCell("payRealAmt").setValue(data.getRealPayAmount());
-		row.getCell("notPayed").setValue(FDCHelper.subtract(data.getContractLastAmount(), data.getRealPayAmount()));
+//		row.getCell("notPayed").setValue(FDCHelper.subtract(data.getContractLastAmount(), data.getRealPayAmount()));
 		row.getCell("contract.id").setValue(contract.getId().toString());
 		if (contract.getPartB() != null) {
 			row.getCell("partB").setValue(contract.getPartB().getName());
@@ -431,7 +432,7 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 		row.getCell("contractBill.oriAmt").setValue(contract.getOriginalAmount());
 		row.getCell("contractBill.amt").setValue(contract.getAmount());
 		row.getCell("contractBillLastAmt").setValue(contract.getAmount());
-		row.getCell("notPayed").setValue(FDCHelper.subtract(contract.getAmount(), data.getRealPayAmount()));
+//		row.getCell("notPayed").setValue(FDCHelper.subtract(contract.getAmount(), data.getRealPayAmount()));
 		row.getCell("payRealAmt").setValue(data.getRealPayAmount());
 		row.getCell("contract.id").setValue(contract.getId().toString());
 		row.getCell("partB").setValue(data.getPartB());
@@ -478,7 +479,11 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 		row.getCell("paymentBill.id").setValue(child.getPlanPayId());
 		row.getCell("deductAmt").setValue(child.getDeductAmt());
 		
-		row.getCell("notPayed").setValue(FDCHelper.subtract(child.getPlanPayAmount(), child.getRealPayAmount()));
+		if(child.getPartB()==null){
+			BigDecimal notPayed=FDCHelper.subtract(child.getPlanPayAmount(), child.getRealPayAmount());
+			row.getCell("notPayed").setValue(notPayed);
+			row.getCell("rate").setValue(FDCHelper.divide(FDCHelper.multiply(notPayed, new BigDecimal(100)), child.getPlanPayAmount(), 2, BigDecimal.ROUND_HALF_UP));
+		}
 	}
 	private void fillTable(List datas) {
 		if (datas != null && !datas.isEmpty()) {
@@ -512,16 +517,30 @@ public class ContractBillExecuteUI extends AbstractContractBillExecuteUI {
 //					totalSettPrice = FDCHelper.add(totalSettPrice, row.getCell("totalSettPrice").getValue());
 //					projectPriceInContract = FDCHelper.add(projectPriceInContract, row.getCell("projectPriceInContract").getValue());
 //					allNotPaid = FDCHelper.add(allNotPaid, row.getCell("allNotPaid").getValue());
-					noPayAmt = FDCHelper.add(noPayAmt, row.getCell("notPayed").getValue());
-				}
-				if(data.getChildren() != null && !data.getChildren().isEmpty()){
-					for(int j = 0; j < data.getChildren().size(); ++j){
-						ContractExecuteData child = (ContractExecuteData) data.getChildren().get(j);
-						IRow childRow = tblMain.addRow();
-						childRow.setTreeLevel(1);
-						fillPayDatas(childRow, child);
+//					noPayAmt = FDCHelper.add(noPayAmt, row.getCell("notPayed").getValue());
+					
+					BigDecimal totalNotPayed = FDCConstants.ZERO;
+					BigDecimal totalPayReq=FDCConstants.ZERO;
+					if(data.getChildren() != null && !data.getChildren().isEmpty()){
+						for(int j = 0; j < data.getChildren().size(); ++j){
+							ContractExecuteData child = (ContractExecuteData) data.getChildren().get(j);
+							IRow childRow = tblMain.addRow();
+							childRow.setTreeLevel(1);
+							fillPayDatas(childRow, child);
+							
+							noPayAmt = FDCHelper.add(noPayAmt, childRow.getCell("notPayed").getValue());
+							totalNotPayed=FDCHelper.add(totalNotPayed, childRow.getCell("notPayed").getValue());
+							totalPayReq=FDCHelper.add(totalPayReq, childRow.getCell("reAmt").getValue());
+							
+						}
+						row.getCell("reAmount").setValue(data.getChildren().size());
 					}
-					row.getCell("reAmount").setValue(data.getChildren().size());
+					row.getCell("notPayed").setValue(totalNotPayed);
+					if(totalPayReq.compareTo(FDCConstants.ZERO)==0){
+						row.getCell("rate").setValue(FDCConstants.ZERO);
+					}else{
+						row.getCell("rate").setValue(FDCHelper.divide(totalNotPayed.multiply(new BigDecimal(100)), totalPayReq, 2, BigDecimal.ROUND_HALF_UP));
+					}
 				}
 			}
 			IRow row = this.tblMain.addRow();

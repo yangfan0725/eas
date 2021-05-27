@@ -151,7 +151,7 @@ public class ContractBillExecuteDataHander {
 		evi = new EntityViewInfo();
 		filter = new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("contractId", idSet, CompareType.INCLUDE));
-		filter.getFilterItems().add(new FilterItemInfo("state", FDCBillStateEnum.SAVED_VALUE,CompareType.NOTEQUALS));
+//		filter.getFilterItems().add(new FilterItemInfo("state", FDCBillStateEnum.SAVED_VALUE,CompareType.NOTEQUALS));
 		
 		evi.setFilter(filter);
 		evi.getSelector().add(new SelectorItemInfo("id"));
@@ -160,6 +160,7 @@ public class ContractBillExecuteDataHander {
 		evi.getSelector().add(new SelectorItemInfo("amount"));
 		evi.getSelector().add(new SelectorItemInfo("bookedDate"));
 		evi.getSelector().add(new SelectorItemInfo("contractId"));
+		evi.getSelector().add(new SelectorItemInfo("state"));
 		
 		sorter = new SorterItemInfo("bookedDate");
 		sorter.setSortType(SortType.ASCEND);
@@ -179,6 +180,7 @@ public class ContractBillExecuteDataHander {
 				map.put("reAmt", irc.get(i).getAmount());
 				map.put("reId", irc.get(i).getId().toString());
 				map.put("deductAmt", deductAmt);
+				map.put("state", irc.get(i).getState());
 
 				reId.add(irc.get(i).getId().toString());
 				
@@ -334,6 +336,9 @@ public class ContractBillExecuteDataHander {
 					leafData.setPlanPayId(realInfo.get("reId"));
 					leafData.setPlanPayDate(realInfo.get("reBookedDate"));
 					leafData.setPlanPayAmount((BigDecimal) realInfo.get("reAmt"));
+					if(!((FDCBillStateEnum)realInfo.get("state")).equals(FDCBillStateEnum.AUDITTED)){
+						leafData.setPartB("unAuditted");
+					}
 					leafData.setPlanPaySrcAmount((BigDecimal) realInfo.get("reOriAmt"));
 					leafData.setDeductAmt((BigDecimal) realInfo.get("deductAmt"));
 					
