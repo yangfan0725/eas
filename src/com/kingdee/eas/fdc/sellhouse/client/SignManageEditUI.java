@@ -546,11 +546,12 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 			}
 			sign.getSignCustomerEntry().add(info);
 		}
-		
-		recommendeds=quc.getRecommended();
-		qdPersons=quc.getQdPersontxt();
-		oneQd=quc.getOneQd();
-		twoQd=quc.getTwoQd();
+		if(quc!=null){
+			recommendeds=quc.getRecommended();
+			qdPersons=quc.getQdPersontxt();
+			oneQd=quc.getOneQd();
+			twoQd=quc.getTwoQd();
+		}
 		
 		sign.setCustomerNames(customerNames);
 		sign.setCustomerPhone(customerPhone);

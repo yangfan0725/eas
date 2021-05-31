@@ -143,11 +143,13 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
                     }
                     BgControlFacadeFactory.getLocalInstance(ctx).bgAudit(info.getId().toString(), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
                     for(int k=0;k<info.getEntries().size();k++){
-        				PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));
-        				bgEntry.setActPayAmount(FDCHelper.add(bgEntry.getActPayAmount(), info.getEntries().get(k).getAmount()));
-        				SelectorItemCollection sic = new SelectorItemCollection();
-            			sic.add("actPayAmount");
-            			PayRequestBillBgEntryFactory.getLocalInstance(ctx).updatePartial(bgEntry, sic);
+                    	if(info.getEntries().get(k).getSourceBillEntryId()!=null){
+                    		PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));
+            				bgEntry.setActPayAmount(FDCHelper.add(bgEntry.getActPayAmount(), info.getEntries().get(k).getAmount()));
+            				SelectorItemCollection sic = new SelectorItemCollection();
+                			sic.add("actPayAmount");
+                			PayRequestBillBgEntryFactory.getLocalInstance(ctx).updatePartial(bgEntry, sic);
+                    	}
         			}
                     FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
                     builder.appendSql("select sum(factualPayAmount) payAmount from t_cas_paymentbill where fbillstatus=15 and fFdcPayReqID=? and fsourceBillId is null");
@@ -364,11 +366,13 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		}
         			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
         			for(int k=0;k<info.getEntries().size();k++){
-        				PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));
-        				bgEntry.setActPayAmount(FDCHelper.subtract(bgEntry.getActPayAmount(), info.getEntries().get(k).getAmount()));
-        				SelectorItemCollection sic = new SelectorItemCollection();
-            			sic.add("actPayAmount");
-            			PayRequestBillBgEntryFactory.getLocalInstance(ctx).updatePartial(bgEntry, sic);
+        				if(info.getEntries().get(k).getSourceBillEntryId()!=null){
+        					PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));
+            				bgEntry.setActPayAmount(FDCHelper.subtract(bgEntry.getActPayAmount(), info.getEntries().get(k).getAmount()));
+            				SelectorItemCollection sic = new SelectorItemCollection();
+                			sic.add("actPayAmount");
+                			PayRequestBillBgEntryFactory.getLocalInstance(ctx).updatePartial(bgEntry, sic);
+        				}
         			}
             		if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
                      	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
@@ -441,11 +445,13 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		}
         			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
         			for(int k=0;k<info.getEntries().size();k++){
-        				PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));
-        				bgEntry.setActPayAmount(FDCHelper.subtract(bgEntry.getActPayAmount(), info.getEntries().get(k).getAmount()));
-        				SelectorItemCollection sic = new SelectorItemCollection();
-            			sic.add("actPayAmount");
-            			PayRequestBillBgEntryFactory.getLocalInstance(ctx).updatePartial(bgEntry, sic);
+        				if(info.getEntries().get(k).getSourceBillEntryId()!=null){
+        					PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));
+            				bgEntry.setActPayAmount(FDCHelper.subtract(bgEntry.getActPayAmount(), info.getEntries().get(k).getAmount()));
+            				SelectorItemCollection sic = new SelectorItemCollection();
+                			sic.add("actPayAmount");
+                			PayRequestBillBgEntryFactory.getLocalInstance(ctx).updatePartial(bgEntry, sic);
+        				}
         			}
         			if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
                     	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);

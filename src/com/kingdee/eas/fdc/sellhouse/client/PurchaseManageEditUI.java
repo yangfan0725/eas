@@ -761,10 +761,12 @@ public class PurchaseManageEditUI extends AbstractPurchaseManageEditUI
 			}
 			purchase.getPurCustomerEntry().add(info);
 		}
-		recommendeds=quc.getRecommended();
-		qdPersons=quc.getQdPersontxt();
-		oneQd=quc.getOneQd();
-		twoQd=quc.getTwoQd();
+		if(quc!=null){
+			recommendeds=quc.getRecommended();
+			qdPersons=quc.getQdPersontxt();
+			oneQd=quc.getOneQd();
+			twoQd=quc.getTwoQd();
+		}
 		
 		purchase.setCustomerNames(customerNames);
 		purchase.setCustomerPhone(customerPhone);
