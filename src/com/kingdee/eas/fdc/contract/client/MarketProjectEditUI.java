@@ -800,7 +800,30 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
     		super.actionWorkFlowG_actionPerformed(e);
     	}
 	}
-	
+	public void actionAuditResult_actionPerformed(ActionEvent e)
+	throws Exception {
+		String id = this.editData.getId().toString();
+    	MarketProjectInfo info=MarketProjectFactory.getRemoteInstance().getMarketProjectInfo(new ObjectUuidPK(id));
+    	if(info.getSourceFunction()!=null){
+    		FDCSQLBuilder builder=new FDCSQLBuilder();
+			builder.appendSql("select fviewurl from t_oa");
+			IRowSet rs=builder.executeQuery();
+			String url=null;
+			while(rs.next()){
+				url=rs.getString("fviewurl");
+			}
+			if(url!=null){
+				String mtLoginNum = OaUtil.encrypt(SysContext.getSysContext().getCurrentUserInfo().getNumber());
+				String s2 = "&MtFdLoinName=";
+				StringBuffer stringBuffer = new StringBuffer();
+	            String oaid = URLEncoder.encode(info.getSourceFunction());
+	            String link = String.valueOf(stringBuffer.append(url).append(oaid).append(s2).append(mtLoginNum));
+				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+link);  
+			}
+    	}else{
+    		super.actionAuditResult_actionPerformed(e);
+    	}
+	}
 	protected void verifyInputForSave() throws Exception {
 		super.verifyInputForSave();
 		if(this.cbIsSub.isSelected()){
