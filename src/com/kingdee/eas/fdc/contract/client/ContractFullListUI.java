@@ -332,7 +332,7 @@ public class ContractFullListUI extends AbstractContractFullListUI
 /* <-MISALIGNED-> */ /* 149*/        super.execQuery();
 /* <-MISALIGNED-> */ /* 150*/        auditMap.clear();
 /* <-MISALIGNED-> */ /* 151*/        FDCClientUtils.fmtFootNumber(tblMain, new String[] {
-/* <-MISALIGNED-> */ /* 151*/            "amount", "originalAmount"
+/* <-MISALIGNED-> */ /* 151*/            "amount", "originalAmount","srcAmount"
                 });
             }
             protected ICoreBase getBizInterface()
@@ -454,7 +454,7 @@ public class ContractFullListUI extends AbstractContractFullListUI
 /* <-MISALIGNED-> */ /* 397*/        tblMain.checkParsed();
 /* <-MISALIGNED-> */ /* 398*/        FDCClientHelper.initTableListener(tblMain, this);
 /* <-MISALIGNED-> */ /* 400*/        FDCHelper.formatTableNumber(tblMain, new String[] {
-/* <-MISALIGNED-> */ /* 400*/            "amount", "originalAmount", "exRate", "conPaid"
+/* <-MISALIGNED-> */ /* 400*/            "amount", "originalAmount","srcAmount", "exRate", "conPaid"
                 });
 /* <-MISALIGNED-> */ /* 401*/        FDCHelper.formatTableDateTime(tblMain, "wfAuditTime");
 /* <-MISALIGNED-> */ /* 402*/        FDCClientHelper.addSqlMenu(this, menuEdit);
@@ -915,6 +915,7 @@ public class ContractFullListUI extends AbstractContractFullListUI
             {
 /* <-MISALIGNED-> */ /* 890*/        FDCHelper.formatTableNumber(getMainTable(), "amount");
 /* <-MISALIGNED-> */ /* 891*/        FDCHelper.formatTableNumber(getMainTable(), "originalAmount");
+										FDCHelper.formatTableNumber(getMainTable(), "srcAmount");
 /* <-MISALIGNED-> */ /* 892*/        FDCHelper.formatTableDate(getMainTable(), "wfAuditTime");
             }
             public boolean isPrepareInit()
@@ -1249,7 +1250,8 @@ public class ContractFullListUI extends AbstractContractFullListUI
 /*1245*/        if(null != row.getCell("originalAmount") && null != info.getOriginalAmount())
 /*1246*/            row.getCell("originalAmount").setValue(info.getOriginalAmount());
 
-
+			if(null != row.getCell("srcAmount") && null != info.getSrcAmount())
+	/*1246*/            row.getCell("srcAmount").setValue(info.getSrcAmount());
 
 /*1250*/        if(null != row.getCell("exRate") && null != info.getExRate())
 /*1251*/            row.getCell("exRate").setValue(info.getExRate());
