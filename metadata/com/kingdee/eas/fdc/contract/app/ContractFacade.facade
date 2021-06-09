@@ -51,6 +51,7 @@
                     <key name="name" value="EASBizException" />
                 </bizException>
             </exceptions>
+            <configured>false</configured>
         </method>
         <method>
             <name>getContractNumberAndNameMap</name>
@@ -82,6 +83,7 @@
                     <key name="name" value="EASBizException" />
                 </bizException>
             </exceptions>
+            <configured>false</configured>
         </method>
         <method>
             <name>getProjectAmount</name>
@@ -122,6 +124,7 @@
                     <key name="name" value="EASBizException" />
                 </bizException>
             </exceptions>
+            <configured>false</configured>
         </method>
         <method>
             <name>getTotalSettlePrice</name>
@@ -153,6 +156,7 @@
                     <key name="name" value="EASBizException" />
                 </bizException>
             </exceptions>
+            <configured>false</configured>
         </method>
         <method>
             <name>getExRatePre</name>
@@ -193,6 +197,7 @@
                     <key name="name" value="EASBizException" />
                 </bizException>
             </exceptions>
+            <configured>false</configured>
         </method>
         <method>
             <name>getLastPrice</name>
@@ -224,6 +229,7 @@
                     <key name="name" value="EASBizException" />
                 </bizException>
             </exceptions>
+            <configured>false</configured>
         </method>
         <method>
             <name>getChangeAmt</name>
@@ -255,6 +261,7 @@
                     <key name="name" value="EASBizException" />
                 </bizException>
             </exceptions>
+            <configured>false</configured>
         </method>
         <method>
             <name>getLastAmt</name>
@@ -286,6 +293,7 @@
                     <key name="name" value="EASBizException" />
                 </bizException>
             </exceptions>
+            <configured>false</configured>
         </method>
         <method>
             <name>getTotalSettlePrice</name>
@@ -317,27 +325,53 @@
                     <key name="name" value="EASBizException" />
                 </bizException>
             </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>updateAmount</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[updateAmount].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[updateAmount].description</description>
+            <innerID>9d5c0e7a-03ca-4155-956e-c7cc8750f92d</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
         </method>
     </methods>
     <resource>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="合同功能" />
+            <lang locale="zh_HK" value="合同功能" />
             <lang locale="zh_TW" value="合同功能" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].description">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="合同功能" />
+            <lang locale="zh_HK" value="合同功能" />
             <lang locale="zh_TW" value="合同功能" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getChangeAmt].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="获得合同变更金额" />
+            <lang locale="zh_HK" value="獲得合同變更金額" />
             <lang locale="zh_TW" value="獲得合同變更金額" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getChangeAmt].description">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="获得合同变更金额" />
+            <lang locale="zh_HK" value="獲得合同變更金額" />
             <lang locale="zh_TW" value="獲得合同變更金額" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getChangeAmt].parameters.parameter[contractIds].alias">
@@ -348,16 +382,19 @@
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getChangeAmt].parameters.parameter[contractIds].description">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="合同ids" />
+            <lang locale="zh_HK" value="合同ids" />
             <lang locale="zh_TW" value="合同ids" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getContractNumberAndNameMap].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="获取合同编码名称" />
+            <lang locale="zh_HK" value="獲取合同編碼名稱" />
             <lang locale="zh_TW" value="獲取合同編碼名稱" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getContractNumberAndNameMap].description">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getContractNumberAndNameMap].parameters.parameter[contractMap].alias">
@@ -373,6 +410,7 @@
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getContractNumberAndName].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="获取合同编码名称" />
+            <lang locale="zh_HK" value="獲取合同編碼名稱" />
             <lang locale="zh_TW" value="獲取合同編碼名稱" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getContractNumberAndName].description">
@@ -403,6 +441,7 @@
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getExRatePre].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="获取汇率精度" />
+            <lang locale="zh_HK" value="獲取匯率精度" />
             <lang locale="zh_TW" value="獲取匯率精度" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getExRatePre].description">
@@ -433,11 +472,13 @@
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getLastAmt].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="批量取合同最新造价" />
+            <lang locale="zh_HK" value="批量取合同最新造價" />
             <lang locale="zh_TW" value="批量取合同最新造價" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getLastAmt].description">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="批量取合同最新造价" />
+            <lang locale="zh_HK" value="批量取合同最新造價" />
             <lang locale="zh_TW" value="批量取合同最新造價" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getLastAmt].parameters.parameter[contractIds].alias">
@@ -448,11 +489,13 @@
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getLastAmt].parameters.parameter[contractIds].description">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="合同ids" />
+            <lang locale="zh_HK" value="合同ids" />
             <lang locale="zh_TW" value="合同ids" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getLastPrice].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="获取合同最新造价" />
+            <lang locale="zh_HK" value="獲取合同最新造價" />
             <lang locale="zh_TW" value="獲取合同最新造價" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getLastPrice].description">
@@ -473,11 +516,13 @@
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getProjectAmount].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="合同签约总金额" />
+            <lang locale="zh_HK" value="合同簽約總金額" />
             <lang locale="zh_TW" value="合同簽約總金額" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getProjectAmount].description">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getProjectAmount].parameters.parameter[id].alias">
@@ -503,11 +548,13 @@
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getTotalSettlePrice].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="获取累计结算原币" />
+            <lang locale="zh_HK" value="獲取累計結算原幣" />
             <lang locale="zh_TW" value="獲取累計結算原幣" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getTotalSettlePrice].description">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="获取累计结算原币" />
+            <lang locale="zh_HK" value="獲取累計結算原幣" />
             <lang locale="zh_TW" value="獲取累計結算原幣" />
         </rs>
         <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[getTotalSettlePrice].parameters.parameter[contractIds].alias">
@@ -529,6 +576,18 @@
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="" />
             <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[updateAmount].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="更新金额" />
+            <lang locale="zh_HK" value="更新金額" />
+            <lang locale="zh_TW" value="更新金額" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.contract.app.ContractFacade].methods.method[updateAmount].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="更新金额 " />
+            <lang locale="zh_HK" value="更新金額 " />
+            <lang locale="zh_TW" value="更新金額 " />
         </rs>
     </resource>
 </facade>

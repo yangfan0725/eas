@@ -217,7 +217,7 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 		RoomInfo room=(RoomInfo) this.f7Room.getValue();
 		if(room!=null){
 			try {
-				DelayPayBillCollection col = DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+room.getId().toString()+"' and state='4AUDITTED'");
+				DelayPayBillCollection col = DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+room.getId().toString()+"' and state='4AUDITTED' and sourceFunction not like '%QUIT%'");
 				if(col.size()>0){
 					this.tblPayList.getColumn("appAmount").getStyleAttributes().setLocked(true);
 					this.f7PayType.setEnabled(false);
@@ -1286,11 +1286,11 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 		if (veriftExistsSameRoomBill(room)) {
 			setRoomNull("房间已经存在签约单据！");
 		}
-		DelayPayBillCollection col = DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+room.getId().toString()+"'");
+		DelayPayBillCollection col = DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+room.getId().toString()+"' and sourceFunction not like '%QUIT%'");
 		if(col.size()>0){
 			boolean isAudit=true;
 			for(int i=0;i<col.size();i++){
-				if(!col.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
+				if(!col.get(i).getState().equals(FDCBillStateEnum.AUDITTED)){
 					isAudit=false;
 				}
 			}
@@ -1995,7 +1995,7 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 	protected void btnSetEntry_actionPerformed(ActionEvent e) throws Exception {
 		RoomInfo room=(RoomInfo) this.f7Room.getValue();
 		if(room!=null){
-			DelayPayBillCollection col=DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+room.getId().toString()+"' and state='4AUDITTED' order by auditTime desc");
+			DelayPayBillCollection col=DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+room.getId().toString()+"' and state='4AUDITTED' and sourceFunction not like '%QUIT%' order by auditTime desc");
 			if(col.size()>0){
 				DelayPayBillInfo info=col.get(0);
 				this.tblPayList.removeRows();

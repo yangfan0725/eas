@@ -129,6 +129,7 @@ public abstract class AbstractTenancyBillEditUI extends com.kingdee.eas.fdc.tena
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contConRentType;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contTenPrice;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contContractType;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contTenancyBillType;
     protected com.kingdee.bos.ctrl.kdf.table.KDTable tblRoom;
     protected com.kingdee.bos.ctrl.swing.KDComboBox comboTenancyType;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox f7OldContract;
@@ -170,6 +171,7 @@ public abstract class AbstractTenancyBillEditUI extends com.kingdee.eas.fdc.tena
     protected com.kingdee.bos.ctrl.swing.KDComboBox cbConRentType;
     protected com.kingdee.bos.ctrl.swing.KDFormattedTextField txtTenPrice;
     protected com.kingdee.bos.ctrl.swing.KDComboBox cbContractType;
+    protected com.kingdee.bos.ctrl.swing.KDComboBox cbTenancyBillType;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contSpecialClause;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer conttenRevBank;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contStandardTotalRent;
@@ -518,6 +520,7 @@ public abstract class AbstractTenancyBillEditUI extends com.kingdee.eas.fdc.tena
         this.contConRentType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contTenPrice = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contContractType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contTenancyBillType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.tblRoom = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.comboTenancyType = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.f7OldContract = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
@@ -559,6 +562,7 @@ public abstract class AbstractTenancyBillEditUI extends com.kingdee.eas.fdc.tena
         this.cbConRentType = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.txtTenPrice = new com.kingdee.bos.ctrl.swing.KDFormattedTextField();
         this.cbContractType = new com.kingdee.bos.ctrl.swing.KDComboBox();
+        this.cbTenancyBillType = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.contSpecialClause = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.conttenRevBank = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contStandardTotalRent = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
@@ -784,6 +788,7 @@ public abstract class AbstractTenancyBillEditUI extends com.kingdee.eas.fdc.tena
         this.contConRentType.setName("contConRentType");
         this.contTenPrice.setName("contTenPrice");
         this.contContractType.setName("contContractType");
+        this.contTenancyBillType.setName("contTenancyBillType");
         this.tblRoom.setName("tblRoom");
         this.comboTenancyType.setName("comboTenancyType");
         this.f7OldContract.setName("f7OldContract");
@@ -825,6 +830,7 @@ public abstract class AbstractTenancyBillEditUI extends com.kingdee.eas.fdc.tena
         this.cbConRentType.setName("cbConRentType");
         this.txtTenPrice.setName("txtTenPrice");
         this.cbContractType.setName("cbContractType");
+        this.cbTenancyBillType.setName("cbTenancyBillType");
         this.contSpecialClause.setName("contSpecialClause");
         this.conttenRevBank.setName("conttenRevBank");
         this.contStandardTotalRent.setName("contStandardTotalRent");
@@ -1440,6 +1446,10 @@ public abstract class AbstractTenancyBillEditUI extends com.kingdee.eas.fdc.tena
         this.contContractType.setBoundLabelText(resHelper.getString("contContractType.boundLabelText"));		
         this.contContractType.setBoundLabelLength(100);		
         this.contContractType.setBoundLabelUnderline(true);
+        // contTenancyBillType		
+        this.contTenancyBillType.setBoundLabelText(resHelper.getString("contTenancyBillType.boundLabelText"));		
+        this.contTenancyBillType.setBoundLabelLength(100);		
+        this.contTenancyBillType.setBoundLabelUnderline(true);
         // tblRoom
 		String tblRoomStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol3\"><c:NumberFormat>#,##0.000</c:NumberFormat></c:Style><c:Style id=\"sCol7\"><c:Alignment horizontal=\"right\" /></c:Style><c:Style id=\"sCol11\"><c:Protection hidden=\"true\" /></c:Style><c:Style id=\"sCol13\"><c:Protection hidden=\"true\" /></c:Style><c:Style id=\"sCol14\"><c:Protection hidden=\"true\" /></c:Style><c:Style id=\"sCol15\"><c:Protection hidden=\"true\" /></c:Style><c:Style id=\"sCol16\"><c:Protection hidden=\"true\" /></c:Style><c:Style id=\"sCol17\"><c:Protection hidden=\"true\" /></c:Style><c:Style id=\"sCol18\"><c:Protection hidden=\"true\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"tenRoomState\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"0\" /><t:Column t:key=\"room\" t:width=\"250\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"1\" /><t:Column t:key=\"floor\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"2\" /><t:Column t:key=\"buildingArea\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"3\" t:styleID=\"sCol3\" /><t:Column t:key=\"standardRent\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"4\" /><t:Column t:key=\"standardRentType\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"5\" /><t:Column t:key=\"standardRentPrice\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"6\" /><t:Column t:key=\"dayPrice\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"7\" t:styleID=\"sCol7\" /><t:Column t:key=\"dealRent\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"8\" /><t:Column t:key=\"dealRentType\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"9\" /><t:Column t:key=\"dealRentPrice\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"10\" /><t:Column t:key=\"flagAtTerm\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"11\" t:styleID=\"sCol11\" /><t:Column t:key=\"des\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"12\" /><t:Column t:key=\"fitment\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"13\" t:styleID=\"sCol13\" /><t:Column t:key=\"roomModel\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"14\" t:styleID=\"sCol14\" /><t:Column t:key=\"direction\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"15\" t:styleID=\"sCol15\" /><t:Column t:key=\"actDeliverDate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"16\" t:styleID=\"sCol16\" /><t:Column t:key=\"actQuitDate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"17\" t:styleID=\"sCol17\" /><t:Column t:key=\"roomEntryId\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol18\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{tenRoomState}</t:Cell><t:Cell>$Resource{room}</t:Cell><t:Cell>$Resource{floor}</t:Cell><t:Cell>$Resource{buildingArea}</t:Cell><t:Cell>$Resource{standardRent}</t:Cell><t:Cell>$Resource{standardRentType}</t:Cell><t:Cell>$Resource{standardRentPrice}</t:Cell><t:Cell>$Resource{dayPrice}</t:Cell><t:Cell>$Resource{dealRent}</t:Cell><t:Cell>$Resource{dealRentType}</t:Cell><t:Cell>$Resource{dealRentPrice}</t:Cell><t:Cell>$Resource{flagAtTerm}</t:Cell><t:Cell>$Resource{des}</t:Cell><t:Cell>$Resource{fitment}</t:Cell><t:Cell>$Resource{roomModel}</t:Cell><t:Cell>$Resource{direction}</t:Cell><t:Cell>$Resource{actDeliverDate}</t:Cell><t:Cell>$Resource{actQuitDate}</t:Cell><t:Cell>$Resource{roomEntryId}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
 		
@@ -1748,6 +1758,9 @@ public abstract class AbstractTenancyBillEditUI extends com.kingdee.eas.fdc.tena
         // cbContractType		
         this.cbContractType.setRequired(true);		
         this.cbContractType.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.tenancy.ContractTypeEnum").toArray());
+        // cbTenancyBillType		
+        this.cbTenancyBillType.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.tenancy.TenancyBillTypeEnum").toArray());		
+        this.cbTenancyBillType.setRequired(true);
         // contSpecialClause		
         this.contSpecialClause.setBoundLabelText(resHelper.getString("contSpecialClause.boundLabelText"));		
         this.contSpecialClause.setBoundLabelLength(100);		
@@ -2944,6 +2957,8 @@ kDContainer5.getContentPane().setLayout(new BorderLayout(0, 0));        kDContai
         kDPanel3.add(contTenPrice, new KDLayout.Constraints(760, 35, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         contContractType.setBounds(new Rectangle(261, 65, 236, 19));
         kDPanel3.add(contContractType, new KDLayout.Constraints(261, 65, 236, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        contTenancyBillType.setBounds(new Rectangle(513, 65, 236, 19));
+        kDPanel3.add(contTenancyBillType, new KDLayout.Constraints(513, 65, 236, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         //panelRoom
 panelRoom.getContentPane().setLayout(new BorderLayout(0, 0));        panelRoom.getContentPane().add(tblRoom, BorderLayout.CENTER);
         //contTenancyType
@@ -3027,6 +3042,8 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
         contTenPrice.setBoundEditor(txtTenPrice);
         //contContractType
         contContractType.setBoundEditor(cbContractType);
+        //contTenancyBillType
+        contTenancyBillType.setBoundEditor(cbTenancyBillType);
         //panelContractInfo
         panelContractInfo.setLayout(new KDLayout());
         panelContractInfo.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1005, 687));        contSpecialClause.setBounds(new Rectangle(588, 398, 270, 19));
@@ -3536,6 +3553,7 @@ panelAttachRes.setLayout(new BorderLayout(0, 0));        panelAttachRes.add(tblA
 		dataBinder.registerBinding("conRentType", com.kingdee.eas.fdc.tenancy.ConRentTypeEnum.class, this.cbConRentType, "selectedItem");
 		dataBinder.registerBinding("tenPrice", java.math.BigDecimal.class, this.txtTenPrice, "value");
 		dataBinder.registerBinding("contractType", com.kingdee.eas.fdc.tenancy.ContractTypeEnum.class, this.cbContractType, "selectedItem");
+		dataBinder.registerBinding("tenancyBillType", com.kingdee.eas.fdc.tenancy.TenancyBillTypeEnum.class, this.cbTenancyBillType, "selectedItem");
 		dataBinder.registerBinding("specialClause", String.class, this.txtSpecialClause, "text");
 		dataBinder.registerBinding("payeeBank", com.kingdee.eas.basedata.assistant.BankInfo.class, this.f7TenRevBank, "data");
 		dataBinder.registerBinding("standardTotalRent", java.math.BigDecimal.class, this.txtStandardTotalRent, "value");
@@ -3734,6 +3752,7 @@ panelAttachRes.setLayout(new BorderLayout(0, 0));        panelAttachRes.add(tblA
 		getValidateHelper().registerBindProperty("conRentType", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("tenPrice", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("contractType", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("tenancyBillType", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("specialClause", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("payeeBank", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("standardTotalRent", ValidateHelper.ON_SAVE);    
@@ -4323,6 +4342,7 @@ panelAttachRes.setLayout(new BorderLayout(0, 0));        panelAttachRes.add(tblA
         sic.add(new SelectorItemInfo("conRentType"));
         sic.add(new SelectorItemInfo("tenPrice"));
         sic.add(new SelectorItemInfo("contractType"));
+        sic.add(new SelectorItemInfo("tenancyBillType"));
         sic.add(new SelectorItemInfo("specialClause"));
 		if(selectorAll.equalsIgnoreCase("true"))
 		{

@@ -6058,6 +6058,10 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 			MsgBox.showInfo(this, "合同类型不能为空！");
 			this.abort();
 		}
+		if (this.cbTenancyBillType.getSelectedItem() == null) {
+			MsgBox.showInfo(this, "租赁类别不能为空！");
+			this.abort();
+		}
 		if(this.txtTenPrice.isRequired()&&this.txtTenPrice.getBigDecimalValue()==null){
 			MsgBox.showInfo(this, "佣金单价不能为空！");
 			this.abort();

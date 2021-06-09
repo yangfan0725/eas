@@ -191,7 +191,7 @@ public class SignManageControllerBean extends AbstractSignManageControllerBean
 			throw new EASBizException(new NumericExceptionSubItem("100","存在未审批佣金结算审批单，不能进行审批操作！"));
 		}
 		
-		DelayPayBillCollection col = DelayPayBillFactory.getLocalInstance(ctx).getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where state!='4AUDITTED' and room.id='"+info.getRoom().getId().toString()+"'");
+		DelayPayBillCollection col = DelayPayBillFactory.getLocalInstance(ctx).getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where state!='4AUDITTED' and room.id='"+info.getRoom().getId().toString()+"' and sourceFunction not like '%QUIT%'");
 		if(col.size()>0){
 			throw new EASBizException(new NumericExceptionSubItem("100","延期申请还未审批结束！"));
 		}

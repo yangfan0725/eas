@@ -1043,6 +1043,19 @@ public class AbstractTenancyBillInfo extends com.kingdee.eas.fdc.tenancy.TenBill
         setString("contractType", item.getValue());
 		}
     }
+    /**
+     * Object:K租赁合同's 租赁类别property 
+     */
+    public com.kingdee.eas.fdc.tenancy.TenancyBillTypeEnum getTenancyBillType()
+    {
+        return com.kingdee.eas.fdc.tenancy.TenancyBillTypeEnum.getEnum(getString("tenancyBillType"));
+    }
+    public void setTenancyBillType(com.kingdee.eas.fdc.tenancy.TenancyBillTypeEnum item)
+    {
+		if (item != null) {
+        setString("tenancyBillType", item.getValue());
+		}
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("7BA91DDE");

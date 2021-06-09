@@ -3322,6 +3322,48 @@
             </parent>
         </component>
         <component>
+            <name>contTenancyBillType</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[contTenancyBillType].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>513,65,236,19,385</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[contTenancyBillType].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[contTenancyBillType].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[contTenancyBillType].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="kDPanel3" />
+            </parent>
+        </component>
+        <component>
             <name>tblRoom</name>
             <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[tblRoom].alias</alias>
             <userDefined>true</userDefined>
@@ -5454,6 +5496,54 @@
                     <bindingObject>editData</bindingObject>
                     <bindingField>contractType</bindingField>
                     <fieldType>com.kingdee.eas.fdc.tenancy.ContractTypeEnum</fieldType>
+                    <accessType />
+                    <autoMode>false</autoMode>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </propertyBinding>
+            </propertyBindings>
+        </component>
+        <component>
+            <name>cbTenancyBillType</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[cbTenancyBillType].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDComboBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>items</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[cbTenancyBillType].properties.property[items].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>required</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[cbTenancyBillType].properties.property[required].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="contTenancyBillType" />
+            </parent>
+            <propertyBindings>
+                <propertyBinding>
+                    <propertyName>selectedItem</propertyName>
+                    <propertyType>java.lang.Object</propertyType>
+                    <bindingObject>editData</bindingObject>
+                    <bindingField>tenancyBillType</bindingField>
+                    <fieldType>com.kingdee.eas.fdc.tenancy.TenancyBillTypeEnum</fieldType>
                     <accessType />
                     <autoMode>false</autoMode>
                     <herited>false</herited>
@@ -14033,6 +14123,24 @@
             <lang locale="zh_HK" value="true" />
             <lang locale="zh_TW" value="true" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[cbTenancyBillType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[cbTenancyBillType].properties.property[items].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="[Enum]com.kingdee.eas.fdc.tenancy.TenancyBillTypeEnum" />
+            <lang locale="zh_HK" value="[Enum]com.kingdee.eas.fdc.tenancy.TenancyBillTypeEnum" />
+            <lang locale="zh_TW" value="[Enum]com.kingdee.eas.fdc.tenancy.TenancyBillTypeEnum" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[cbTenancyBillType].properties.property[required].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[chkIsAccLiquidated].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -16066,6 +16174,30 @@
             <lang locale="zh_CN" value="false" />
             <lang locale="zh_HK" value="false" />
             <lang locale="zh_TW" value="false" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[contTenancyBillType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[contTenancyBillType].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[contTenancyBillType].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租赁类别" />
+            <lang locale="zh_HK" value="租賃類別" />
+            <lang locale="zh_TW" value="租賃類別" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[contTenancyBillType].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.TenancyBillEditUI].components.component[contTenancyCustNew].alias">
             <lang locale="en_US" value="null" />

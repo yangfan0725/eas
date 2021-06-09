@@ -86,6 +86,9 @@ import com.kingdee.eas.fdc.sellhouse.ChangeManageInfo;
 import com.kingdee.eas.fdc.sellhouse.ChangeStateEnum;
 import com.kingdee.eas.fdc.sellhouse.ChangeTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.DealStateEnum;
+import com.kingdee.eas.fdc.sellhouse.DelayPayBillCollection;
+import com.kingdee.eas.fdc.sellhouse.DelayPayBillFactory;
+import com.kingdee.eas.fdc.sellhouse.DelayPayBillInfo;
 import com.kingdee.eas.fdc.sellhouse.IBaseTransaction;
 import com.kingdee.eas.fdc.sellhouse.MoneyDefineInfo;
 import com.kingdee.eas.fdc.sellhouse.PrePurchaseAgioEntryInfo;
@@ -169,6 +172,17 @@ public class ChangeManageControllerBean extends AbstractChangeManageControllerBe
 				SHEManageHelper.validTransaction(ctx,info.getTransactionID(),true);
 				this.setOtherBillState(ctx, info, AFMortgagedStateEnum.CANCELROOM,true);
 			}
+			if(ChangeBizTypeEnum.QUITROOM.equals(info.getBizType())){
+				DelayPayBillCollection dpcol=DelayPayBillFactory.getLocalInstance(ctx).getDelayPayBillCollection("select * from where room.id='"+info.getSrcRoom().getId()+"' and sourceFunction in('SIGN','PUR')");
+				SelectorItemCollection sic=new SelectorItemCollection();
+				sic.add("sourceFunction");
+				for(int i=0;i<dpcol.size();i++){
+					DelayPayBillInfo dp=dpcol.get(i);
+					dp.setSourceFunction(dp.getSourceFunction()+"-QUIT");
+					DelayPayBillFactory.getLocalInstance(ctx).updatePartial(dp, sic);
+				}
+			}
+					
 			setBizState(ctx,objectValue,info.getBizType(),FDCBillStateEnum.AUDITTED,false);
 			
 			if(info.getNewId()!=null){

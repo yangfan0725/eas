@@ -401,6 +401,7 @@ public class ContractPayPlanListUI extends AbstractContractPayPlanListUI
 		Set set=new HashSet();
 		if(isShow){
 			set.add(FDCBillStateEnum.AUDITTING_VALUE);
+			set.add(FDCBillStateEnum.SUBMITTED_VALUE);
 		}
 		set.add(FDCBillStateEnum.AUDITTED_VALUE);
 		return set;
