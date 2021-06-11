@@ -921,30 +921,30 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 //	                    builder.executeUpdate();
 //	    			}
 //	    			
-//	    			builder = new FDCSQLBuilder(ctx);
-//	    			builder.appendSql("select count(*) payTime from t_cas_paymentbill where fFdcPayReqID=?");
-//	    	        builder.addParam(payRequestBillId);
-//	    	        IRowSet rs=builder.executeQuery();
-//	    	        int  payTime=0;
-//	    	        Date payDate=null;
-//	    	    	try {
-//	    	    		while(rs.next()){
-//	    	    			payTime=rs.getInt("payTime");
-//	    	    		}
-//	    	    	} catch (SQLException e) {
-//	    				e.printStackTrace();
-//	    			}
-//	    	    	builder.clear();
-//	    	    	
-//	    	        builder.appendSql("update T_CON_PayRequestBill set fpayTime=?,fiscreatePay=?  where fid=? ");
-//	    	        builder.addParam(payTime);
-//	    	        if(payTime>0){
-//	    	        	builder.addParam(1);
-//	    	        }else{
-//	    	        	builder.addParam(0);
-//	    	        }
-//	    	        builder.addParam(payRequestBillId);
-//	    	        builder.executeUpdate();
+	    			builder = new FDCSQLBuilder(ctx);
+	    			builder.appendSql("select count(*) payTime from t_cas_paymentbill where fFdcPayReqID=?");
+	    	        builder.addParam(payRequestBillId);
+	    	        IRowSet rs=builder.executeQuery();
+	    	        int  payTime=0;
+	    	        Date payDate=null;
+	    	    	try {
+	    	    		while(rs.next()){
+	    	    			payTime=rs.getInt("payTime");
+	    	    		}
+	    	    	} catch (SQLException e) {
+	    				e.printStackTrace();
+	    			}
+	    	    	builder.clear();
+	    	    	
+	    	        builder.appendSql("update T_CON_PayRequestBill set fpayTime=?,fiscreatePay=?  where fid=? ");
+	    	        builder.addParam(payTime);
+	    	        if(payTime>0){
+	    	        	builder.addParam(1);
+	    	        }else{
+	    	        	builder.addParam(0);
+	    	        }
+	    	        builder.addParam(payRequestBillId);
+	    	        builder.executeUpdate();
 //	    	        
 //	    			SelectorItemCollection sel=new SelectorItemCollection();
 //	    			sel.add("company.*");

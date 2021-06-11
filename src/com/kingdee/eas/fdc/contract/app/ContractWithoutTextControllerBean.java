@@ -1086,8 +1086,10 @@ public class ContractWithoutTextControllerBean extends
 		prbiNew.setCompletePrjAmt(prbi.getCompletePrjAmt());
 		// 本位币金额
 		prbiNew.setAmount(prbi.getAmount());
+		prbiNew.setProjectPriceInContract(prbi.getAmount());
 		// 原币金额
 		prbiNew.setOriginalAmount(prbi.getOriginalAmount());
+		prbiNew.setProjectPriceInContractOri(prbi.getOriginalAmount());
 		// 款项说明
 		prbiNew.setUsage(prbi.getUsage());
 		// 款项说明
