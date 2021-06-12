@@ -2752,10 +2752,15 @@ protected void toContract(String sellProjectId,String productTypeId,String pid,S
 	sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
     sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
     sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
-    sql.append("\n   where sign.fbizState in ('SignAudit') ");
+    sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
     sql.append("         and  sign.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
     sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
     sql.append("\n     and sign.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
+    sql.append("\n     and NOT EXISTS   ");
+    sql.append("\n   (select tt.fnewId                                                                                                  ");
+    sql.append("\n            from t_she_changeManage tt                                                                                ");
+    sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                        ");
+    sql.append("\n             and sign.fid = tt.fnewId)                                                                                ");
     sql.append("\n     and pt.fname_l2  ='"+productTypeId+"'                                                                ");
     if(pid!=null){
  	   sql.append("\n     and p.fid  ='"+pid+"'");
@@ -2767,25 +2772,27 @@ protected void toContract(String sellProjectId,String productTypeId,String pid,S
  	   sql.append("\n     and sign.CFRecommended  ='"+rec+"'");
     }
     
-    sql.append("\n   union select sign.fid from t_she_changeManage change                                                                                        ");
-     sql.append("\n       left outer join t_she_signManage sign  on sign.fid = change.fsrcId                                                          ");
-     sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-     sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-     sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
-     sql.append("\n   where change.fstate in ('4AUDITTED') and change.FBizType='quitRoom'    ");
-     sql.append("         and  change.fchangeDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-     sql.append("        and  change.fchangeDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-     sql.append("\n     and change.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
-     sql.append("\n     and pt.fname_l2  ='"+productTypeId+"'                                                                ");
-     if(pid!=null){
-  	   sql.append("\n     and p.fid  ='"+pid+"'");
-     }
-     if(qd!=null){
-  	   sql.append("\n     and sign.FQdPerson  ='"+qd+"'");
-     }
-     if(rec!=null){
-  	   sql.append("\n     and sign.CFRecommended  ='"+rec+"'");
-     }
+//    sql.append("\n   union select sign.fid from t_she_changeManage change                                                                                        ");
+//     sql.append("\n       left outer join t_she_signManage sign  on sign.fid = change.fsrcId                                                          ");
+//     sql.append("\n       left outer join T_PM_User u  on u.fid = sign.FSalesmanID                                                         ");
+//     sql.append("\n       left outer join t_bd_person p  on p.fid = u.FpersonID              ");
+//     sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
+//     sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
+//     sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+//     sql.append("\n   where change.fstate in ('4AUDITTED') and change.FBizType='quitRoom'    ");
+//     sql.append("         and  change.fchangeDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//     sql.append("        and  change.fchangeDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//     sql.append("\n     and change.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
+//     sql.append("\n     and pt.fname_l2  ='"+productTypeId+"'                                                                ");
+//     if(pid!=null){
+//  	   sql.append("\n     and p.fid  ='"+pid+"'");
+//     }
+//     if(qd!=null){
+//  	   sql.append("\n     and sign.FQdPerson  ='"+qd+"'");
+//     }
+//     if(rec!=null){
+//  	   sql.append("\n     and sign.CFRecommended  ='"+rec+"'");
+//     }
 	   	FDCSQLBuilder _builder = new FDCSQLBuilder();
 		_builder.appendSql(sql.toString());
 		final IRowSet rowSet = _builder.executeQuery();
@@ -2915,7 +2922,7 @@ protected void toContract(String sellProjectId,String productTypeId,String pid,S
 			return;
 		}
 		if(tblSalesmanBonus.getRow(e.getRowIndex()).getCell(e.getColIndex()).getValue()==null||tblSalesmanBonus.getRow(e.getRowIndex()).getCell(e.getColIndex()).getValue() instanceof String
-				||((BigDecimal)tblSalesmanBonus.getRow(e.getRowIndex()).getCell(e.getColIndex()).getValue()).compareTo(FDCHelper.ZERO)==0){
+				||tblSalesmanBonus.getRow(e.getRowIndex()).getCell(e.getColIndex()).getValue() instanceof PersonInfo||((BigDecimal)tblSalesmanBonus.getRow(e.getRowIndex()).getCell(e.getColIndex()).getValue()).compareTo(FDCHelper.ZERO)==0){
 			return;
 		}
 		String pt=(String) tblSalesmanBonus.getRow(e.getRowIndex()).getCell("productType").getValue();

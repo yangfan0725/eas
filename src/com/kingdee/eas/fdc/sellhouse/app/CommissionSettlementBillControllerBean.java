@@ -273,21 +273,22 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
     sql.append("\n     and sign.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
     sql.append("\n   group by pt.fid,pt.fname_l2                                              ");
     
-    sql.append("\n   union select                                                                                                            ");
-   sql.append("\n             pt.fid productTypeId,                                                                                    ");
-    sql.append("\n             pt.fname_l2 productTypeName,                                                                             ");
-    sql.append("\n         0-sum(sign.fdealTotalAmount) contract                                                            ");
-    sql.append("\n    from t_she_changeManage change                                                                                        ");
-    sql.append("\n       left outer join t_she_signManage sign  on sign.fid = change.fsrcId                                                          ");
-    sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-    sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-    sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
-    sql.append("\n   where change.fstate in ('4AUDITTED') and change.FBizType='quitRoom'    ");
-    sql.append("         and  change.fchangeDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-    sql.append("        and  change.fchangeDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-    sql.append("\n     and change.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
-    sql.append("\n   group by pt.fid,pt.fname_l2    ) t group by t.productTypeId,t.productTypeName                                          ");
-  
+//    sql.append("\n   union select                                                                                                            ");
+//   sql.append("\n             pt.fid productTypeId,                                                                                    ");
+//    sql.append("\n             pt.fname_l2 productTypeName,                                                                             ");
+//    sql.append("\n         0-sum(sign.fdealTotalAmount) contract                                                            ");
+//    sql.append("\n    from t_she_changeManage change                                                                                        ");
+//    sql.append("\n       left outer join t_she_signManage sign  on sign.fid = change.fsrcId                                                          ");
+//    sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
+//    sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
+//    sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+//    sql.append("\n   where change.fstate in ('4AUDITTED') and change.FBizType='quitRoom'    ");
+//    sql.append("         and  change.fchangeDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//    sql.append("        and  change.fchangeDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//    sql.append("\n     and change.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
+//    sql.append("\n   group by pt.fid,pt.fname_l2                                         ");
+    sql.append("\n   ) t group by t.productTypeId,t.productTypeName                                          ");
+    
     
  	builder.appendSql(sql.toString());
     
@@ -573,28 +574,34 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
      sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
      sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
-     sql.append("\n   where sign.fbizState in ('SignAudit') ");
+     sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
      sql.append("         and  sign.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
      sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
      sql.append("\n     and sign.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
+     sql.append("\n     and NOT EXISTS                                                                                                   ");
+     sql.append("\n   (select tt.fnewId                                                                                                  ");
+     sql.append("\n            from t_she_changeManage tt                                                                                ");
+     sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                        ");
+     sql.append("\n             and sign.fid = tt.fnewId)                                                                                ");
      sql.append("\n   group by pt.fid,pt.fname_l2,p.fid                                              ");
     
-     sql.append("\n   union select                                                                                                            ");
-     sql.append("\n             p.fid pid,pt.fid productTypeId,                                                                                    ");
-      sql.append("\n             pt.fname_l2 productTypeName,                                                                             ");
-      sql.append("\n         0-sum(sign.fdealTotalAmount) contract                                                            ");
-      sql.append("\n    from t_she_changeManage change                                                                                        ");
-      sql.append("\n       left outer join t_she_signManage sign  on sign.fid = change.fsrcId                                                          ");
-      sql.append("\n       left join T_PM_User u  on u.fid = sign.FSalesmanID                                                         ");
-      sql.append("\n       left join t_bd_person p  on p.fid = u.FpersonID                                                      ");
-      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-      sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-      sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
-      sql.append("\n   where change.fstate in ('4AUDITTED') and change.FBizType='quitRoom'    ");
-      sql.append("         and  change.fchangeDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-      sql.append("        and  change.fchangeDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-      sql.append("\n     and change.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
-      sql.append("\n   group by pt.fid,pt.fname_l2,p.fid )t group by t.pid,t.productTypeId,t.productTypeName                                         ");
+//     sql.append("\n   union select                                                                                                            ");
+//     sql.append("\n             p.fid pid,pt.fid productTypeId,                                                                                    ");
+//      sql.append("\n             pt.fname_l2 productTypeName,                                                                             ");
+//      sql.append("\n         0-sum(sign.fdealTotalAmount) contract                                                            ");
+//      sql.append("\n    from t_she_changeManage change                                                                                        ");
+//      sql.append("\n       left outer join t_she_signManage sign  on sign.fid = change.fsrcId                                                          ");
+//      sql.append("\n       left join T_PM_User u  on u.fid = sign.FSalesmanID                                                         ");
+//      sql.append("\n       left join t_bd_person p  on p.fid = u.FpersonID                                                      ");
+//      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
+//      sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
+//      sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+//      sql.append("\n   where change.fstate in ('4AUDITTED') and change.FBizType='quitRoom'    ");
+//      sql.append("         and  change.fchangeDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//      sql.append("        and  change.fchangeDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//      sql.append("\n     and change.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
+//      sql.append("\n   group by pt.fid,pt.fname_l2,p.fid                                        ");
+      sql.append("\n   )t group by t.pid,t.productTypeId,t.productTypeName                                         ");
       
   	builder.appendSql(sql.toString());
      
@@ -865,26 +872,32 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
      sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
      sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
-     sql.append("\n   where sign.fbizState in ('SignAudit') ");
+     sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
      sql.append("         and  sign.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
      sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
      sql.append("\n     and sign.fsellprojectid  ='"+sellProjectId+"'                                                                     ");
+     sql.append("\n     and NOT EXISTS                                                                                                   ");
+     sql.append("\n   (select tt.fnewId                                                                                                  ");
+     sql.append("\n            from t_she_changeManage tt                                                                                ");
+     sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                        ");
+     sql.append("\n             and sign.fid = tt.fnewId)                                                                                ");
      sql.append("\n   group by pt.fid,pt.fname_l2,sign.fqdPerson                                            ");
     
-     sql.append("\n   union select                                                                                                            ");
-     sql.append("\n            sign.fqdPerson pid, pt.fid productTypeId,                                                                                    ");
-      sql.append("\n             pt.fname_l2 productTypeName,                                                                             ");
-      sql.append("\n         0-sum(sign.fdealTotalAmount) contract                                                            ");
-      sql.append("\n    from t_she_changeManage change                                                                                        ");
-      sql.append("\n       left outer join t_she_signManage sign  on sign.fid = change.fsrcId                                                          ");
-      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-      sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-      sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
-      sql.append("\n   where change.fstate in ('4AUDITTED') and change.FBizType='quitRoom'    ");
-      sql.append("         and  change.fchangeDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-      sql.append("        and  change.fchangeDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-      sql.append("\n     and change.fsellprojectid  ='"+sellProjectId+"'                                                                     ");
-      sql.append("\n   group by pt.fid,pt.fname_l2,sign.fqdPerson  )t     group by t.pid,t.productTypeid,t.productTypeName                                              ");
+//     sql.append("\n   union select                                                                                                            ");
+//     sql.append("\n            sign.fqdPerson pid, pt.fid productTypeId,                                                                                    ");
+//      sql.append("\n             pt.fname_l2 productTypeName,                                                                             ");
+//      sql.append("\n         0-sum(sign.fdealTotalAmount) contract                                                            ");
+//      sql.append("\n    from t_she_changeManage change                                                                                        ");
+//      sql.append("\n       left outer join t_she_signManage sign  on sign.fid = change.fsrcId                                                          ");
+//      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
+//      sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
+//      sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+//      sql.append("\n   where change.fstate in ('4AUDITTED') and change.FBizType='quitRoom'    ");
+//      sql.append("         and  change.fchangeDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//      sql.append("        and  change.fchangeDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//      sql.append("\n     and change.fsellprojectid  ='"+sellProjectId+"'                                                                     ");
+//      sql.append("\n   group by pt.fid,pt.fname_l2,sign.fqdPerson                                                ");
+      sql.append("\n   )t     group by t.pid,t.productTypeid,t.productTypeName                                              ");
       
   	builder.appendSql(sql.toString());
      
@@ -1156,26 +1169,32 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
      sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
      sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
-     sql.append("\n   where sign.fbizState in ('SignAudit') ");
+     sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
      sql.append("         and  sign.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
      sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
      sql.append("\n     and sign.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
+     sql.append("\n     and NOT EXISTS   ");
+     sql.append("\n   (select tt.fnewId                                                                                                  ");
+     sql.append("\n            from t_she_changeManage tt                                                                                ");
+     sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                        ");
+     sql.append("\n             and sign.fid = tt.fnewId)                                                                                ");
      sql.append("\n   group by pt.fid,pt.fname_l2,sign.CFRecommended                                            ");
     
-     sql.append("\n   union select                                                                                                            ");
-     sql.append("\n             sign.CFRecommended pid,pt.fid productTypeId,                                                                                    ");
-      sql.append("\n             pt.fname_l2 productTypeName,                                                                             ");
-      sql.append("\n         0-sum(sign.fdealTotalAmount) contract                                                            ");
-      sql.append("\n    from t_she_changeManage change                                                                                        ");
-      sql.append("\n       left outer join t_she_signManage sign  on sign.fid = change.fsrcId                                                          ");
-      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-      sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-      sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
-      sql.append("\n   where change.fstate in ('4AUDITTED') and change.FBizType='quitRoom'    ");
-      sql.append("         and  change.fchangeDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-      sql.append("        and  change.fchangeDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-      sql.append("\n     and change.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
-      sql.append("\n   group by pt.fid,pt.fname_l2,sign.CFRecommended )t group by  t.pid,t.productTypeid,t.productTypeName                                                       ");
+//     sql.append("\n   union select                                                                                                            ");
+//     sql.append("\n             sign.CFRecommended pid,pt.fid productTypeId,                                                                                    ");
+//      sql.append("\n             pt.fname_l2 productTypeName,                                                                             ");
+//      sql.append("\n         0-sum(sign.fdealTotalAmount) contract                                                            ");
+//      sql.append("\n    from t_she_changeManage change                                                                                        ");
+//      sql.append("\n       left outer join t_she_signManage sign  on sign.fid = change.fsrcId                                                          ");
+//      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
+//      sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
+//      sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+//      sql.append("\n   where change.fstate in ('4AUDITTED') and change.FBizType='quitRoom'    ");
+//      sql.append("         and  change.fchangeDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//      sql.append("        and  change.fchangeDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//      sql.append("\n     and change.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
+//      sql.append("\n   group by pt.fid,pt.fname_l2,sign.CFRecommended                                                        ");
+      sql.append("\n   )t group by  t.pid,t.productTypeid,t.productTypeName                                                       ");
       
   	builder.appendSql(sql.toString());
      
