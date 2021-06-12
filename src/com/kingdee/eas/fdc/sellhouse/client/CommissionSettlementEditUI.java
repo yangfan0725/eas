@@ -867,7 +867,7 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
     		 String pid=pKey.split("%")[0];
     		 Map userDate=(Map)userInputData.get(pid);
     		 entry = new MarketingCommissionEntryInfo();
-    		 if(amtMap.get("backAmt") == null)continue;
+//    		 if(amtMap.get("backAmt") == null)continue;
     		 if(userDate!=null){
     			 person=(PersonInfo) userDate.get("person");
     			 positionName =""+userDate.get("position");
