@@ -1221,6 +1221,43 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
 	}
 
 	@Override
+	protected void _unAudit(Context ctx, BOSUuid billId) throws BOSException,
+			EASBizException {
+		// TODO Auto-generated method stub
+		super._unAudit(ctx, billId);
+		CommissionSettlementBillInfo info=CommissionSettlementBillFactory.getLocalInstance(ctx).getCommissionSettlementBillInfo(new ObjectUuidPK(billId));
+		String sellProjectId=info.getSellProject().getId().toString();
+	       int year = info.getYear();
+	       int month = info.getMonth();
+	       String cs=String.valueOf(year)+String.valueOf(month);
+	       Date t=FDCDateHelper.stringToDate(year+"-"+month+"-01");
+		    Date startDate = FDCDateHelper.getFirstDayOfMonth(t);
+	    	Date endDate =  FDCDateHelper.getLastDayOfMonth(t);
+	       
+	       
+	       FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
+	       StringBuffer sql = new StringBuffer();
+	       sql = new StringBuffer();
+	       //获取回笼金额
+	        sql.append("  /*dialect*/ update t_bdc_sherevbillentry set fisCS=null where fid in( ");
+	        sql.append(" \n select                                                                         "); 
+	    	sql.append(" \n        entry.fid                                                            ");    
+	    	sql.append(" \n   from T_BDC_SHERevBill revBill                                                     ");
+	    	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
+	    	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
+	    	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
+	    	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
+	    	sql.append(" \n       and md.fname_l2 !='面积补差款' ");
+	    	sql.append(" \n       and revBill.fsellprojectid  ='"+sellProjectId+"'" );
+	    	sql.append(" \n       and revBill.fbizDate <to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+	    	sql.append(" \n       and EXISTS (select t.ftransactionid from t_she_signManage t where t.ftransactionid=revBill.frelateTransId and t.fbizState in ('QRNullify','ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit')) ");
+	    	sql.append(" \n       and  entry.fisCS ="+cs+")");
+	    	
+	    	builder.appendSql(sql.toString());
+		    builder.execute();
+	}
+
+	@Override
 	protected void _audit(Context ctx, BOSUuid billId) throws BOSException,
 			EASBizException {
 		super._audit(ctx, billId);
