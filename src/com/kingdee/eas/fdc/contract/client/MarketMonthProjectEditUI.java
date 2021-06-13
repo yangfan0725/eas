@@ -318,7 +318,7 @@ public class MarketMonthProjectEditUI extends AbstractMarketMonthProjectEditUI
 		info.setOrgUnit((FullOrgUnitInfo) this.getUIContext().get("org"));
 		
 		try {
-			CostAccountCollection col=CostAccountFactory.getRemoteInstance().getCostAccountCollection("select * from where isMarket=1 and fullOrgUnit.id='"+info.getOrgUnit().getId()+"' order by longNumber");
+			CostAccountCollection col=CostAccountFactory.getRemoteInstance().getCostAccountCollection("select * from where isMarket=1 and fullOrgUnit.id='"+info.getOrgUnit().getId()+"' and isEnabled=1 order by longNumber");
 			for(int i=0;i<col.size();i++){
 				CostAccountInfo cost=col.get(i);
 				MarketMonthProjectEntryInfo entry=new MarketMonthProjectEntryInfo();
