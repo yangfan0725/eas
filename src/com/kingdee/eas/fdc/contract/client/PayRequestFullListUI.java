@@ -503,7 +503,7 @@ public class PayRequestFullListUI extends AbstractPayRequestFullListUI implement
 						}
 					}
 					BigDecimal originalAmount=(BigDecimal) row.getCell("originalAmount").getValue();
-					BigDecimal payAmount=(BigDecimal) row.getCell("payAmount").getValue();
+					BigDecimal payAmount=(BigDecimal) row.getCell("payAmount").getValue()==null?FDCHelper.ZERO:(BigDecimal) row.getCell("payAmount").getValue();
 					if(FDCHelper.subtract(originalAmount, payAmount).compareTo(new BigDecimal(0))==0){
 						row.getStyleAttributes().setBackground(new Color(128,255,128));
 					}
