@@ -76,15 +76,15 @@ public class InviteTenderPlanningEditUI extends AbstractInviteTenderPlanningEdit
 	protected void verifyInputForSave() throws Exception {
 		super.verifyInputForSave();
 		FDCClientVerifyHelper.verifyEmpty(this, txtScope);
-		FDCClientVerifyHelper.verifyEmpty(this, txtPayMethod);
-		FDCClientVerifyHelper.verifyEmpty(this, this.cbType);
-		FDCClientVerifyHelper.verifyEmpty(this, this.txtZbt);
-		FDCClientVerifyHelper.verifyEmpty(this, this.txtSh);
-		FDCClientVerifyHelper.verifyEmpty(this, this.txtJs);
-		FDCClientVerifyHelper.verifyEmpty(this, this.txtDc);
-		FDCClientVerifyHelper.verifyEmpty(this, this.txtBd);
-		FDCClientVerifyHelper.verifyEmpty(this, this.txtJc);
-		FDCClientVerifyHelper.verifyEmpty(this, this.cbWfType);
+//		FDCClientVerifyHelper.verifyEmpty(this, txtPayMethod);
+//		FDCClientVerifyHelper.verifyEmpty(this, this.cbType);
+//		FDCClientVerifyHelper.verifyEmpty(this, this.txtZbt);
+//		FDCClientVerifyHelper.verifyEmpty(this, this.txtSh);
+//		FDCClientVerifyHelper.verifyEmpty(this, this.txtJs);
+//		FDCClientVerifyHelper.verifyEmpty(this, this.txtDc);
+//		FDCClientVerifyHelper.verifyEmpty(this, this.txtBd);
+//		FDCClientVerifyHelper.verifyEmpty(this, this.txtJc);
+//		FDCClientVerifyHelper.verifyEmpty(this, this.cbWfType);
 	}
 	
 	protected void loadEntry(){

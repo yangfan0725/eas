@@ -108,4 +108,28 @@ public abstract class AbstractWSSellHouseFacadeControllerBean extends AbstractBi
         return null;
     }
 
+    public String synTransaction(Context ctx, String str) throws BOSException, EASBizException
+    {
+        try {
+            ServiceContext svcCtx = createServiceContext(new MetaDataPK("f986e46b-1831-4091-bda5-efc7de88ecbd"), new Object[]{ctx, str});
+            invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
+            String retValue = (String)_synTransaction(ctx, str);
+            svcCtx.setMethodReturnValue(retValue);
+            }
+            invokeServiceAfter(svcCtx);
+            return (String)svcCtx.getMethodReturnValue();
+        } catch (BOSException ex) {
+            throw ex;
+        } catch (EASBizException ex0) {
+            throw ex0;
+        } finally {
+            super.cleanUpServiceState();
+        }
+    }
+    protected String _synTransaction(Context ctx, String str) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
+
 }

@@ -16,6 +16,7 @@ public class AbstractContractBillInfo extends com.kingdee.eas.fdc.basedata.FDCBi
     protected AbstractContractBillInfo(String pkField)
     {
         super(pkField);
+        put("yzEntry", new com.kingdee.eas.fdc.contract.ContractYZEntryCollection());
         put("otherLandDevelpers", new com.kingdee.eas.fdc.contract.ContractLandDeveloperCollection());
         put("rateEntry", new com.kingdee.eas.fdc.contract.ContractBillRateEntryCollection());
         put("contractPlan", new com.kingdee.eas.fdc.contract.ContractBillContractPlanCollection());
@@ -1210,6 +1211,13 @@ public class AbstractContractBillInfo extends com.kingdee.eas.fdc.basedata.FDCBi
     public void setOaOpinion(String item)
     {
         setString("oaOpinion", item);
+    }
+    /**
+     * Object: 合同单据 's 印章分录 property 
+     */
+    public com.kingdee.eas.fdc.contract.ContractYZEntryCollection getYzEntry()
+    {
+        return (com.kingdee.eas.fdc.contract.ContractYZEntryCollection)get("yzEntry");
     }
     public BOSObjectType getBOSType()
     {

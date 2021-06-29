@@ -61,6 +61,7 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contPayType;
     protected com.kingdee.bos.ctrl.kdf.table.KDTable kdtRoomEntry;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contAgioType;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contIsAS;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtName;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtNumber;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtDescription;
@@ -74,6 +75,7 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
     protected com.kingdee.bos.ctrl.swing.KDTabbedPane kDTabbedPane1;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox f7PayType;
     protected com.kingdee.bos.ctrl.swing.KDComboBox cbAgioType;
+    protected com.kingdee.bos.ctrl.swing.KDComboBox cbIsAS;
     protected com.kingdee.eas.fdc.sellhouse.AgioBillInfo editData = null;
     /**
      * output class constructor
@@ -127,6 +129,7 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
         this.contPayType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.kdtRoomEntry = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.contAgioType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contIsAS = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.txtName = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtDescription = new com.kingdee.bos.ctrl.swing.KDTextField();
@@ -140,6 +143,7 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
         this.kDTabbedPane1 = new com.kingdee.bos.ctrl.swing.KDTabbedPane();
         this.f7PayType = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.cbAgioType = new com.kingdee.bos.ctrl.swing.KDComboBox();
+        this.cbIsAS = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.contName.setName("contName");
         this.contNumber.setName("contNumber");
         this.contDescription.setName("contDescription");
@@ -155,6 +159,7 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
         this.contPayType.setName("contPayType");
         this.kdtRoomEntry.setName("kdtRoomEntry");
         this.contAgioType.setName("contAgioType");
+        this.contIsAS.setName("contIsAS");
         this.txtName.setName("txtName");
         this.txtNumber.setName("txtNumber");
         this.txtDescription.setName("txtDescription");
@@ -168,6 +173,7 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
         this.kDTabbedPane1.setName("kDTabbedPane1");
         this.f7PayType.setName("f7PayType");
         this.cbAgioType.setName("cbAgioType");
+        this.cbIsAS.setName("cbIsAS");
         // CoreUI		
         this.setPreferredSize(new Dimension(950,650));
         // contName		
@@ -230,6 +236,10 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
         this.contAgioType.setBoundLabelText(resHelper.getString("contAgioType.boundLabelText"));		
         this.contAgioType.setBoundLabelLength(100);		
         this.contAgioType.setBoundLabelUnderline(true);
+        // contIsAS		
+        this.contIsAS.setBoundLabelText(resHelper.getString("contIsAS.boundLabelText"));		
+        this.contIsAS.setBoundLabelLength(100);		
+        this.contIsAS.setBoundLabelUnderline(true);
         // txtName		
         this.txtName.setMaxLength(255);		
         this.txtName.setRequired(true);
@@ -306,6 +316,9 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
         // cbAgioType		
         this.cbAgioType.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.sellhouse.AgioTypeEnum").toArray());		
         this.cbAgioType.setRequired(true);
+        // cbIsAS		
+        this.cbIsAS.setRequired(true);		
+        this.cbIsAS.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.sellhouse.BooleanEnum").toArray());
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -337,8 +350,8 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
         this.add(contName, new KDLayout.Constraints(431, 9, 270, 19, 0));
         contNumber.setBounds(new Rectangle(10, 9, 270, 19));
         this.add(contNumber, new KDLayout.Constraints(10, 9, 270, 19, 0));
-        contDescription.setBounds(new Rectangle(10, 133, 691, 19));
-        this.add(contDescription, new KDLayout.Constraints(10, 133, 691, 19, 0));
+        contDescription.setBounds(new Rectangle(10, 131, 270, 19));
+        this.add(contDescription, new KDLayout.Constraints(10, 131, 270, 19, 0));
         contCalType.setBounds(new Rectangle(10, 35, 270, 19));
         this.add(contCalType, new KDLayout.Constraints(10, 35, 270, 19, 0));
         contPro.setBounds(new Rectangle(431, 58, 270, 19));
@@ -351,8 +364,8 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
         this.add(contCancelDate, new KDLayout.Constraints(10, 108, 270, 19, 0));
         chkIsEspecial.setBounds(new Rectangle(723, 69, 140, 19));
         this.add(chkIsEspecial, new KDLayout.Constraints(723, 69, 140, 19, 0));
-        kDPanel1.setBounds(new Rectangle(7, 170, 938, 478));
-        this.add(kDPanel1, new KDLayout.Constraints(7, 170, 938, 478, 0));
+        kDPanel1.setBounds(new Rectangle(7, 191, 938, 457));
+        this.add(kDPanel1, new KDLayout.Constraints(7, 191, 938, 457, 0));
         kDLabel1.setBounds(new Rectangle(431, 84, 272, 24));
         this.add(kDLabel1, new KDLayout.Constraints(431, 84, 272, 24, 0));
         kDLabel2.setBounds(new Rectangle(670, 104, 272, 19));
@@ -363,6 +376,8 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
         this.add(kdtRoomEntry, new KDLayout.Constraints(818, 33, 123, 55, 0));
         contAgioType.setBounds(new Rectangle(431, 108, 270, 19));
         this.add(contAgioType, new KDLayout.Constraints(431, 108, 270, 19, 0));
+        contIsAS.setBounds(new Rectangle(431, 131, 270, 19));
+        this.add(contIsAS, new KDLayout.Constraints(431, 131, 270, 19, 0));
         //contName
         contName.setBoundEditor(txtName);
         //contNumber
@@ -390,6 +405,8 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
         contPayType.setBoundEditor(f7PayType);
         //contAgioType
         contAgioType.setBoundEditor(cbAgioType);
+        //contIsAS
+        contIsAS.setBoundEditor(cbIsAS);
 
     }
 
@@ -577,7 +594,8 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
 		dataBinder.registerBinding("startDate", java.util.Date.class, this.pkStartDate, "value");
 		dataBinder.registerBinding("cancelDate", java.util.Date.class, this.pkCancelDate, "value");
 		dataBinder.registerBinding("payType", com.kingdee.eas.fdc.sellhouse.SHEPayTypeInfo.class, this.f7PayType, "data");
-		dataBinder.registerBinding("agioType", com.kingdee.eas.fdc.sellhouse.AgioTypeEnum.class, this.cbAgioType, "selectedItem");		
+		dataBinder.registerBinding("agioType", com.kingdee.eas.fdc.sellhouse.AgioTypeEnum.class, this.cbAgioType, "selectedItem");
+		dataBinder.registerBinding("isAS", com.kingdee.eas.fdc.sellhouse.BooleanEnum.class, this.cbIsAS, "selectedItem");		
 	}
 	//Regiester UI State
 	private void registerUIState(){		
@@ -647,7 +665,8 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
 		getValidateHelper().registerBindProperty("startDate", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("cancelDate", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("payType", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("agioType", ValidateHelper.ON_SAVE);    		
+		getValidateHelper().registerBindProperty("agioType", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("isAS", ValidateHelper.ON_SAVE);    		
 	}
 
 
@@ -726,6 +745,7 @@ public abstract class AbstractAgioEditUI extends com.kingdee.eas.fdc.basedata.cl
         	sic.add(new SelectorItemInfo("payType.name"));
 		}
         sic.add(new SelectorItemInfo("agioType"));
+        sic.add(new SelectorItemInfo("isAS"));
         return sic;
     }        
     	

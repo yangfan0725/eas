@@ -419,8 +419,6 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 	}
 	protected void prmtRoom_dataChanged(DataChangeEvent e) throws Exception {
 		RoomInfo room=(RoomInfo) this.prmtRoom.getValue();
-		this.kdtEntry.removeRows();
-		this.kdtNewEntry.removeRows();
 		this.prmtPayType.setValue(null);
 		this.txtCustomerNames.setText(null);
 		if(room!=null){
@@ -466,6 +464,9 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 				}
 				this.editData.setSourceFunction("SIGN");
 				
+				this.kdtEntry.removeRows();
+				this.kdtNewEntry.removeRows();
+				
 				SignPayListEntryCollection entryCol=signCol.get(0).getSignPayListEntry();
 				CRMHelper.sortCollection(entryCol, new String[]{"seq"}, true);
 				for(int i=0;i<entryCol.size();i++){
@@ -479,6 +480,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 					row.getCell("appAmount").setValue(entry.getAppAmount());
 					
 					IRow newrow=this.kdtNewEntry.addRow();
+					if(i==0)newrow.getStyleAttributes().setLocked(true);
 					DelayPayBillNewEntryInfo newdentry=new DelayPayBillNewEntryInfo();
 					newrow.setUserObject(newdentry);
 					
@@ -496,12 +498,17 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 					if(isUpdateDate){
 						this.pkPlanSignDate.setValue(FDCDateHelper.addDays(purCol.get(0).getBusAdscriptionDate(), 3));
 					}
+					this.kdtNewEntry.removeRows();
 					if(isUpdateDate){
+						this.kdtEntry.removeRows();
 						updatePayListByPayType(this.kdtEntry,purCol.get(0));
 					}
 					updatePayListByPayType(this.kdtNewEntry,purCol.get(0));
 				}
 			}
+		}else{
+			this.kdtEntry.removeRows();
+			this.kdtNewEntry.removeRows();
 		}
 	}
 	protected void updatePayListByPayType(KDTable table,PurchaseManageInfo info) {
@@ -524,6 +531,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 				IRow row =null;
 				if(i==0){
 					row = table.addRow(0);
+					if(i==0)row.getStyleAttributes().setLocked(true);
 				}else{
 					row = table.addRow(rowCount+1);
 				}
@@ -592,6 +600,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 		this.kdtNewEntry.removeRows();
 		for(int i=0;i<this.editData.getNewEntry().size();i++){
 			IRow row=this.kdtNewEntry.addRow();
+			if(i==0)row.getStyleAttributes().setLocked(true);
 			row.getCell("moneyDefine").setValue(this.editData.getNewEntry().get(i).getMoneyDefine());
 			row.getCell("appAmount").setValue(this.editData.getNewEntry().get(i).getAppAmount());
 			row.getCell("appDate").setValue(this.editData.getNewEntry().get(i).getAppDate());
@@ -698,6 +707,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 		FDCClientVerifyHelper.verifyEmpty(this, this.txtCaseInfo);
 		FDCClientVerifyHelper.verifyEmpty(this, this.cbType);
 		FDCClientVerifyHelper.verifyEmpty(this, this.pkPlanSignDate);
+		FDCClientVerifyHelper.verifyEmpty(this, this.cbIsPass);
 		RoomInfo room=(RoomInfo) this.prmtRoom.getValue();
 		PurchaseManageCollection purCol=PurchaseManageFactory.getRemoteInstance().getPurchaseManageCollection("select purPayListEntry.*,purPayListEntry.moneyDefine.*,payType.*,* from where room.id='"+room.getId()+"' and (bizState='PurApple' or bizState='PurAudit')");
 		if(purCol.size()>0){
@@ -705,6 +715,10 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 				FDCMsgBox.showWarning(this,"制度要求延期申请单必须认购当天发起！");
 				SysUtil.abort();
 			}
+		}
+		if(room.getSellState().equals(RoomSellStateEnum.Sign)&&!this.cbType.getSelectedItem().equals(DelayPayTypeEnum.YQFK)){
+			FDCMsgBox.showWarning(this,"签约状态不能进行延期签约");
+			SysUtil.abort();
 		}
 		if(this.kdtNewEntry.getRowCount()==0){
 			FDCMsgBox.showWarning(this,"新付款明细不能为空！");
@@ -992,8 +1006,11 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 		if(this.cbType.getSelectedItem().equals(DelayPayTypeEnum.YQQY)){
 			this.pkPlanSignDate.setEnabled(true);
 			this.kdtNewEntry.setEnabled(false);
-		}else{
+		}else if(this.cbType.getSelectedItem().equals(DelayPayTypeEnum.YQFK)){
 			this.pkPlanSignDate.setEnabled(false);
+			this.kdtNewEntry.setEnabled(true);
+		}else{
+			this.pkPlanSignDate.setEnabled(true);
 			this.kdtNewEntry.setEnabled(true);
 		}
 		isUpdateDate=true;

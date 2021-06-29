@@ -44,6 +44,7 @@ import net.sf.json.JSONArray;
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
 import org.apache.axis.encoding.XMLType;
+import org.apache.commons.httpclient.HttpException;
 import org.apache.log4j.Logger;
 import org.json.JSONString;
 
@@ -95,6 +96,7 @@ import com.kingdee.eas.fdc.invite.InviteTypeInfo;
 import com.kingdee.eas.fdc.invite.supplier.IsGradeEnum;
 import com.kingdee.eas.fdc.invite.supplier.client.NewSupplierStockEditUI;
 import com.kingdee.eas.fdc.invite.supplier.client.SupplierReviewGatherEditUI;
+import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
 import com.kingdee.eas.fi.cas.BillStatusEnum;
 import com.kingdee.eas.fi.cas.PaymentBillFactory;
 import com.kingdee.eas.fi.cas.PaymentBillInfo;
@@ -325,7 +327,7 @@ public class SupplierStockAddressReportUI extends
 		this.refresh();
 
 	Context ctx=null;
-//	_sendToDo(ctx);
+	_sendToDo(ctx);
 	
 	}
 
@@ -351,180 +353,41 @@ public class SupplierStockAddressReportUI extends
 	}
 
 
-	
-	
-		protected void _sendToDo(Context ctx) throws BOSException {
-			FDCSQLBuilder builder=new FDCSQLBuilder(ctx); 
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			
-			builder.appendSql("/*dialect*/ select FASSIGNID,FSUBJECT_L2,FPERSONUSERNAME_L1,FPROCDEFID,FPROCINSTID,FPERSONUSERID," +
-					"FPROCDEFNAME_L2,FPERSONUSERID,FCREATEDTIME,sendtimes from t_wfr_assign where fstate in (1,32) and sended is null");
-			
-			IRowSet rs=builder.executeQuery();
-			String modelId=null;
-			String subject=null;
-			String FPERSONUSERNAME_L1=null;
-			String modelName=null;
-			String targets=null;
-			String param1=null;
-			String param2=null;
-			String dateString=null;
-			String fPersonId=null;
-			String docCreator=null;
-			String url=null;
-			String link=null;
-			String errorMessage=null;
 
-//			记录已发送条数
-			int send=0;
-//			记录发送成功条数
-			int success=0;
-//			记录发送失败条数
-			int failed=0;
-//			一共待传条数
-			int waitToSend=0;
-			List<String> list=null;
+		protected void _sendToDo(Context ctx) throws BOSException {
+			String rs111 = null;
 			try {
-				while(rs.next()){
-					send=send+1;
-//					数据传输次数
-					int sendtimes=0;
-					if(rs.getString("sendtimes")!=null){
-						sendtimes=rs.getInt("sendtimes");
-					}
-					if(rs.getString("FASSIGNID")!=null){
-						 modelId=rs.getString("FASSIGNID");
-					}
-					if(rs.getString("FSUBJECT_L2")!=null){
-						subject=rs.getString("FSUBJECT_L2");
-					}
-					if(rs.getString("FPROCINSTID")!=null){
-						docCreator="";
-						param1=rs.getString("FPROCINSTID");
-						builder.clear();
-						builder.appendSql("select tpu.fnumber as num from t_pm_user tpu left join T_WFR_ProcInst twp on tpu.fid=twp.FINITIATORID where twp.FPROCINSTID='"+param1+"'");
-					
-						IRowSet rs2=builder.executeQuery();
-								while(rs2.next()){
-									docCreator=rs2.getString("num").toLowerCase();
-								}
-					}
-					if(rs.getString("FPERSONUSERNAME_L1")!=null){
-						FPERSONUSERNAME_L1=rs.getString("FPERSONUSERNAME_L1");
-					}
-					if(rs.getString("FPROCDEFNAME_L2")!=null){
-						param2=rs.getString("FPROCDEFNAME_L2");
-					}else{
-						param2="";
-					}
-					if(rs.getTimestamp("FCREATEDTIME")!=null){
-						Timestamp FCREATEDTIME=rs.getTimestamp("FCREATEDTIME");
-						long createTime1=FCREATEDTIME.getTime();
-						Date date2 = new Date(createTime1);
-						dateString=dateFormat.format(date2);
-					}
-					if(rs.getString("FPERSONUSERID")!=null){
-						String FPERSONUSERID=rs.getString("FPERSONUSERID");
-//					获取用户编码 targets
-						builder.clear();
-						builder.appendSql("/*dialect*/ select fnumber as num from T_PM_User where FID='"+FPERSONUSERID+"' ");
-//						System.out.println(builder.getTestSql().toString());
-						IRowSet rs2=builder.executeQuery();
-						while(rs2.next()){
-							targets=rs2.getString("num").toLowerCase();
-						}
-					}
-					builder.clear();
-					builder.appendSql("select furl from OAURL where type ='wsdl'");
-					IRowSet rsu=builder.executeQuery();
-					while(rsu.next()){
-						url=rsu.getString("furl");
-					}
-					builder.clear();
-					builder.appendSql("select furl from OAURL where type ='login'");
-					IRowSet rsl=builder.executeQuery();
-					while(rsl.next()){
-						link=rsl.getString("furl");
-					}
-//					 创建代办
-					Service service = new Service();
-					Call call = (Call) service.createCall();
-					
-					call.setTargetEndpointAddress(new java.net.URL(url));
-					call.setOperationName("sendERPTodo");
-					call.addParameter("arg0",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);		
-					call.setReturnType(org.apache.axis.encoding.XMLType.XSD_STRING);
-					call.setUseSOAPAction(true);
-					JSONObject data = new JSONObject();
-//					if(ctx.getAIS().equals("easdb")){  //easdb
-//						 data.put("appName", "DCEAS");
-//						 data.put("modelName", "金蝶地产");
-//					}
-//					else{
-				        data.put("appName", "WYEAS");
-				        data.put("modelName", "金蝶物业");
-//					}
-//			        data.put("modelName", "金蝶地产");
-//			        data.put("appName", "DCEAS");
-			        data.put("param1", param1);
-			        data.put("param2", param2);
-			        data.put("modelId", modelId);
-			        data.put("subject", subject);
-			        data.put("link", link);
-			        data.put("type", 1);
-			        data.put("key","" );
-			        data.put("docCreator",docCreator);
-			        data.put("targets",targets); //00641 
-			        data.put("createTime",dateString);
-					String dataJson = data.toString().replace("'", "");
-					
-					if(sendtimes<5){
-					try{
-					String result = (String) call.invoke(new Object[] {data.toString() });
-		        	System.out.println(data.toString());
-		        	JSONObject jsonObject= (JSONObject) JSON.parse(result);
-		        	 int code=Integer.parseInt(jsonObject.get("returnState").toString());
-		        	 errorMessage = jsonObject.get("message").toString().replace("'", "");	
-		        	 if(code==2){       //means success then updte sended=1, sendtimes donot update
-		        		 success=success+1;
-		        		    builder.clear();
-							builder.appendSql(" update t_wfr_assign set sended = 1 where FASSIGNID='"+modelId+"' ");
-							builder.executeUpdate();
-		        	 }else{// when failed update set sendtimes+1,sended donot update
-		        		 sendtimes=sendtimes+1;
-		        		 failed=failed+1;
-		        		 builder.clear();
-							builder.appendSql(" update t_wfr_assign set sendTimes = '"+sendtimes+"' where FASSIGNID='"+modelId+"' ");
-							builder.executeUpdate();
-							builder.clear();
-				        	builder.appendSql("/*dialect*/ INSERT INTO OAOADATASEND O (O.FASSIGNID,O.FSTATE,O.TARGETS,O.subject,O.code,O.json,O.message)" +
-				        			" values('"+modelId+"',"+00+",'"+targets+"','"+subject+"','"+code+"','"+dataJson+"','"+errorMessage+"')");
-				        	builder.execute();
-		        	 }
-					}catch(Exception e){
-						    e.printStackTrace();
-						 	builder.clear();
-				        	builder.appendSql("/*dialect*/ INSERT INTO OAOADATASEND O (O.FASSIGNID,O.FSTATE,O.TARGETS,O.subject,O.code,O.json,O.message)" +
-				        			" values('"+modelId+"',"+00+",'"+targets+"','"+subject+"','"+110+"','"+dataJson+"','"+e.getMessage()+"')");
-				        	builder.execute();
-				        	failed=failed+1;
-					}
-//					 sleep for 2seconds
-//					 try {
-//			                Thread.currentThread().sleep(2000);
-//			            } catch (InterruptedException e) {
-//			                e.printStackTrace();
-//			            }
-					}
-				}
-				System.out.println("一共发送数量："+send);
-				System.out.println("成功数量："+success);
-			} catch (Exception e2) {
+				rs111 = SHEManageHelper.getQJtoken(ctx);
+			} catch (HttpException e) {
 				// TODO Auto-generated catch block
-				e2.printStackTrace();
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-				
-		}    
+		
+			JSONObject rso = JSONObject.parseObject(rs111);
+			String token =rso.getJSONObject("data").getString("token");
+			
+			if(token!=null&&token!=""){
+				String yzInfo=null;
+				try {
+					yzInfo = SHEManageHelper.getQJYZ(ctx,token);
+				} catch (Exception e) { 
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				JSONObject yzJson = JSONObject.parseObject(yzInfo);
+				com.alibaba.fastjson.JSONArray yzArray = yzJson.getJSONArray("data");
+				yzJson.getJSONObject("status");
+			}
+		}
 	
 
 }

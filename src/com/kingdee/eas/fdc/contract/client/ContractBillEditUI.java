@@ -497,7 +497,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		if (editData.getState() == FDCBillStateEnum.SUBMITTED) {
 			actionSave.setEnabled(false);
 		}
-
+		if(!FDCBillStateEnum.SAVED.equals(editData.getState())){
+			this.prmtpartB.setEnabled(false);
+		}
 		//币别选择
 		GlUtils.setSelectedItem(comboCurrency, editData.getCurrency());
 
@@ -666,7 +668,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtTAEntry.setRequired(false);
 				this.prmtpartB.setEnabled(false);
 			}else{
-				this.prmtpartB.setEnabled(true);
+				if(FDCBillStateEnum.SAVED.equals(editData.getState())){
+					this.prmtpartB.setEnabled(true);
+				}
 			}
 			this.prmtMarketProject.setEnabled(false);
 			this.prmtMarketProject.setRequired(false);
@@ -951,6 +955,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		ContractBillInfo objectValue = new com.kingdee.eas.fdc.contract.ContractBillInfo();
 		objectValue.setId(BOSUuid.create(objectValue.getBOSType()));
 		objectValue.setCreator(SysContext.getSysContext().getCurrentUserInfo());
+		objectValue.setState(FDCBillStateEnum.SAVED);
 //		objectValue.setRespPerson(SysContext.getSysContext().getCurrentUserInfo().getPerson());
 		objectValue.setNeedPerson(SysContext.getSysContext().getCurrentUserInfo().getPerson());
 		PersonInfo person = SysContext.getSysContext().getCurrentUserInfo().getPerson();
@@ -1479,7 +1484,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtTAEntry.setRequired(false);
 				this.prmtpartB.setEnabled(false);
 			}else{
-				this.prmtpartB.setEnabled(true);
+				if(FDCBillStateEnum.SAVED.equals(editData.getState())){
+					this.prmtpartB.setEnabled(true);
+				}
 			}
 			this.prmtMarketProject.setEnabled(false);
 			this.prmtMarketProject.setRequired(false);
@@ -2857,6 +2864,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		}
 		kDTabbedPane1.add(this.panelInvite, resHelper.getString("panelInvite.constraints"));
 		kDTabbedPane1.add(this.kDContainer4, resHelper.getString("kDContainer4.constraints"));
+		kDTabbedPane1.add(this.kDContainer5, resHelper.getString("kDContainer5.constraints"));
 		
 //		kDTabbedPane1.add(pnlInviteInfo, resHelper.getString("pnlInviteInfo.constraints"));
 		//亿达需要，万科先注销
@@ -3139,7 +3147,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtTAEntry.setRequired(false);
 				this.prmtpartB.setEnabled(false);
 			}else{
-				this.prmtpartB.setEnabled(true);
+				if(FDCBillStateEnum.SAVED.equals(editData.getState())){
+					this.prmtpartB.setEnabled(true);
+				}
 			}
 			
 			this.prmtMarketProject.setEnabled(false);
@@ -5662,6 +5672,36 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		}
 		FDCClientVerifyHelper.verifyEmpty(this, pkStartDate);
 		FDCClientVerifyHelper.verifyEmpty(this, pkEndDate);
+		
+		boolean isUseYz=false;
+		CurProjectInfo project=CurProjectFactory.getRemoteInstance().getCurProjectInfo(new ObjectUuidPK(this.editData.getCurProject().getId()));
+		if(project.isIsOA()){
+			for(int i=0;i<tblDetail.getRowCount();i++){
+				if(tblDetail.getRow(i).getCell(DETAIL_COL).getValue().toString().equals("是否使用电子章")
+						&&tblDetail.getRow(i).getCell(CONTENT_COL).getValue().toString().equals("否")){
+					isUseYz=true;
+				}
+			}
+		}
+		if(isUseYz){
+			if(this.kdtYZEntry.getRowCount()==0){
+				FDCMsgBox.showWarning(this,"印章信息不能为空！");
+				SysUtil.abort();
+			}
+			if(this.kdtYZEntry.getRowCount()>10){
+				FDCMsgBox.showWarning(this,"印章信息不允许超过十个！");
+				SysUtil.abort();
+			}
+			for(int i=0;i<this.kdtYZEntry.getRowCount();i++){
+				IRow row=this.kdtYZEntry.getRow(i);
+				if(row.getCell("count").getValue()==null){
+					FDCMsgBox.showWarning(this,"印章使用次数不能为空！");
+					this.kdtYZEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtYZEntry.getColumnIndex("count"));
+					SysUtil.abort();
+				}
+			}
+		}
+		
 	}
 	private void verifyContractProgrammingPara() throws BOSException, SQLException, EASBizException {
 		ProgrammingContractInfo pc = (ProgrammingContractInfo) this.editData.getProgrammingContract();
@@ -7599,7 +7639,47 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		this.tblMarket.getColumn("rate").setRequired(true);
 		this.tblMarket.getColumn("amount").setRequired(true);
 		this.tblMarket.getColumn("amount").getStyleAttributes().setLocked(true);
+		
+		
+		this.kdtYZEntry.checkParsed();
+		this.kdtYZEntry.setEditable(true);
+		btnAddRowinfo = new KDWorkButton();
+		btnDeleteRowinfo = new KDWorkButton();
+
+		this.actionYZALine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_addline"));
+		btnAddRowinfo = (KDWorkButton) this.kDContainer5.add(this.actionYZALine);
+		btnAddRowinfo.setText("新增行");
+		btnAddRowinfo.setSize(new Dimension(140, 19));
+
+		this.actionYZRLine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_deleteline"));
+		btnDeleteRowinfo = (KDWorkButton) this.kDContainer5.add(this.actionYZRLine);
+		btnDeleteRowinfo.setText("删除行");
+		btnDeleteRowinfo.setSize(new Dimension(140, 19));
+		
+		this.kdtYZEntry.getColumn("name").getStyleAttributes().setLocked(true);
+		this.kdtYZEntry.getColumn("admin").getStyleAttributes().setLocked(true);
+		this.kdtYZEntry.getColumn("type").getStyleAttributes().setLocked(true);
+		this.kdtYZEntry.getColumn("count").setRequired(true);
 	}
+	public void actionYZALine_actionPerformed(ActionEvent e) throws Exception {
+		UIContext uiContext = new UIContext(this);
+		uiContext.put("table",this.kdtYZEntry);
+        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
+        IUIWindow uiWindow = uiFactory.create(QJ_YZSelectUI.class.getName(), uiContext,null,OprtState.VIEW);
+        uiWindow.show();
+	}
+	public void actionYZRLine_actionPerformed(ActionEvent e) throws Exception {
+		int activeRowIndex = kdtYZEntry.getSelectManager().getActiveRowIndex();
+		if(activeRowIndex<0){
+			FDCMsgBox.showError("请先选择一行数据");
+			abort();
+		}
+		kdtYZEntry.removeRow(activeRowIndex);
+	}
+	protected void kdtYZEntry_editStopped(KDTEditEvent e) throws Exception {
+		
+	}
+
 	protected void prmtMpCostAccount_willShow(SelectorEvent e) throws Exception {
 		Set id=new HashSet();
 		if(prmtMarketProject.getValue()!=null){

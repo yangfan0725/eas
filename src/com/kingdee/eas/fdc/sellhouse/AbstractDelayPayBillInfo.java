@@ -147,6 +147,19 @@ public class AbstractDelayPayBillInfo extends com.kingdee.eas.framework.CoreBill
     {
         setDate("planSignDate", item);
     }
+    /**
+     * Object:延期付款申请's 是否跨越property 
+     */
+    public com.kingdee.eas.fdc.sellhouse.BooleanEnum getIsPass()
+    {
+        return com.kingdee.eas.fdc.sellhouse.BooleanEnum.getEnum(getString("isPass"));
+    }
+    public void setIsPass(com.kingdee.eas.fdc.sellhouse.BooleanEnum item)
+    {
+		if (item != null) {
+        setString("isPass", item.getValue());
+		}
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("82836027");

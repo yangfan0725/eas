@@ -44,4 +44,5 @@ public interface IContractBill extends IFDCBill
     public void synReUpdateProgramming(String billId, IObjectValue programming) throws BOSException, EASBizException;
     public void costIndex(IObjectPK pk) throws BOSException, EASBizException;
     public Map getOAPosition(String number) throws BOSException, EASBizException;
+    public Map getQJYZ() throws BOSException, EASBizException;
 }

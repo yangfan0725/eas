@@ -297,4 +297,17 @@ public class ContractBill extends FDCBill implements IContractBill
             throw new EJBRemoteException(err);
         }
     }
+    /**
+     *ªÒ»°»∫Ω‹”°’¬-User defined method
+     *@return
+     */
+    public Map getQJYZ() throws BOSException, EASBizException
+    {
+        try {
+            return getController().getQJYZ(getContext());
+        }
+        catch(RemoteException err) {
+            throw new EJBRemoteException(err);
+        }
+    }
 }

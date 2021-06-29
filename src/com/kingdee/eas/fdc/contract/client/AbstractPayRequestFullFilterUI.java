@@ -58,6 +58,7 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
     protected com.kingdee.bos.ctrl.swing.KDCheckBox chkIncludeClose;
     protected com.kingdee.bos.ctrl.swing.KDPanel kDPanel1;
     protected com.kingdee.bos.ctrl.swing.KDPanel kDPanel2;
+    protected com.kingdee.bos.ctrl.swing.KDPanel kDPanel3;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtCompany;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtProject;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox f7Contract;
@@ -78,6 +79,10 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
     protected com.kingdee.bos.ctrl.swing.KDRadioButton radioHasPay;
     protected com.kingdee.bos.ctrl.swing.KDRadioButton radioNotPay;
     protected com.kingdee.bos.ctrl.swing.KDRadioButton radioAllPay;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioHasRealPay;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioHasPartRealPay;
+    protected com.kingdee.bos.ctrl.swing.KDRadioButton radioHasRealPayAll;
+    protected com.kingdee.bos.ctrl.swing.KDButtonGroup kDButtonGroup4;
     /**
      * output class constructor
      */
@@ -108,6 +113,7 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.chkIncludeClose = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.kDPanel1 = new com.kingdee.bos.ctrl.swing.KDPanel();
         this.kDPanel2 = new com.kingdee.bos.ctrl.swing.KDPanel();
+        this.kDPanel3 = new com.kingdee.bos.ctrl.swing.KDPanel();
         this.txtCompany = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtProject = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.f7Contract = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
@@ -128,6 +134,10 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.radioHasPay = new com.kingdee.bos.ctrl.swing.KDRadioButton();
         this.radioNotPay = new com.kingdee.bos.ctrl.swing.KDRadioButton();
         this.radioAllPay = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.radioHasRealPay = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.radioHasPartRealPay = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.radioHasRealPayAll = new com.kingdee.bos.ctrl.swing.KDRadioButton();
+        this.kDButtonGroup4 = new com.kingdee.bos.ctrl.swing.KDButtonGroup();
         this.contCompany.setName("contCompany");
         this.contPrjoect.setName("contPrjoect");
         this.contContract.setName("contContract");
@@ -140,6 +150,7 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.chkIncludeClose.setName("chkIncludeClose");
         this.kDPanel1.setName("kDPanel1");
         this.kDPanel2.setName("kDPanel2");
+        this.kDPanel3.setName("kDPanel3");
         this.txtCompany.setName("txtCompany");
         this.txtProject.setName("txtProject");
         this.f7Contract.setName("f7Contract");
@@ -157,6 +168,9 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.radioHasPay.setName("radioHasPay");
         this.radioNotPay.setName("radioNotPay");
         this.radioAllPay.setName("radioAllPay");
+        this.radioHasRealPay.setName("radioHasRealPay");
+        this.radioHasPartRealPay.setName("radioHasPartRealPay");
+        this.radioHasRealPayAll.setName("radioHasRealPayAll");
         // CustomerQueryPanel
         // contCompany		
         this.contCompany.setBoundLabelText(resHelper.getString("contCompany.boundLabelText"));		
@@ -221,6 +235,8 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.kDPanel1.setBorder(new TitledBorder(BorderFactory.createEtchedBorder(new Color(255,255,255),new Color(148,145,140)), resHelper.getString("kDPanel1.border.title")));
         // kDPanel2		
         this.kDPanel2.setBorder(new TitledBorder(BorderFactory.createEtchedBorder(new Color(255,255,255),new Color(148,145,140)), resHelper.getString("kDPanel2.border.title")));
+        // kDPanel3		
+        this.kDPanel3.setBorder(new TitledBorder(BorderFactory.createEtchedBorder(new Color(255,255,255),new Color(148,145,140)), resHelper.getString("kDPanel3.border.title")));
         // txtCompany		
         this.txtCompany.setEnabled(false);
         // txtProject		
@@ -274,6 +290,16 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.radioNotPay.setText(resHelper.getString("radioNotPay.text"));
         // radioAllPay		
         this.radioAllPay.setText(resHelper.getString("radioAllPay.text"));
+        // radioHasRealPay		
+        this.radioHasRealPay.setText(resHelper.getString("radioHasRealPay.text"));
+        // radioHasPartRealPay		
+        this.radioHasPartRealPay.setText(resHelper.getString("radioHasPartRealPay.text"));
+        // radioHasRealPayAll		
+        this.radioHasRealPayAll.setText(resHelper.getString("radioHasRealPayAll.text"));
+        // kDButtonGroup4
+        this.kDButtonGroup4.add(this.radioHasRealPay);
+        this.kDButtonGroup4.add(this.radioHasPartRealPay);
+        this.kDButtonGroup4.add(this.radioHasRealPayAll);
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -318,12 +344,14 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         this.add(btnCompanySelect, null);
         btnProjectSelect.setBounds(new Rectangle(288, 34, 69, 19));
         this.add(btnProjectSelect, null);
-        chkIncludeClose.setBounds(new Rectangle(19, 297, 208, 15));
+        chkIncludeClose.setBounds(new Rectangle(349, 293, 208, 15));
         this.add(chkIncludeClose, null);
         kDPanel1.setBounds(new Rectangle(121, 148, 116, 146));
         this.add(kDPanel1, null);
         kDPanel2.setBounds(new Rectangle(246, 148, 116, 146));
         this.add(kDPanel2, null);
+        kDPanel3.setBounds(new Rectangle(15, 299, 346, 64));
+        this.add(kDPanel3, null);
         //contCompany
         contCompany.setBoundEditor(txtCompany);
         //contPrjoect
@@ -361,6 +389,13 @@ public abstract class AbstractPayRequestFullFilterUI extends com.kingdee.eas.bas
         kDPanel2.add(radioNotPay, null);
         radioAllPay.setBounds(new Rectangle(26, 85, 61, 19));
         kDPanel2.add(radioAllPay, null);
+        //kDPanel3
+        kDPanel3.setLayout(null);        radioHasRealPay.setBounds(new Rectangle(13, 20, 74, 19));
+        kDPanel3.add(radioHasRealPay, null);
+        radioHasPartRealPay.setBounds(new Rectangle(120, 20, 124, 19));
+        kDPanel3.add(radioHasPartRealPay, null);
+        radioHasRealPayAll.setBounds(new Rectangle(272, 20, 54, 19));
+        kDPanel3.add(radioHasRealPayAll, null);
 
     }
 

@@ -172,6 +172,19 @@ public class AbstractAgioBillInfo extends com.kingdee.eas.fdc.basedata.FDCBillIn
         setString("agioType", item.getValue());
 		}
     }
+    /**
+     * Object:’€ø€'s ∞¥ ±«©‘º’€ø€property 
+     */
+    public com.kingdee.eas.fdc.sellhouse.BooleanEnum getIsAS()
+    {
+        return com.kingdee.eas.fdc.sellhouse.BooleanEnum.getEnum(getString("isAS"));
+    }
+    public void setIsAS(com.kingdee.eas.fdc.sellhouse.BooleanEnum item)
+    {
+		if (item != null) {
+        setString("isAS", item.getValue());
+		}
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("C93ED5CE");

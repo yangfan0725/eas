@@ -34,6 +34,16 @@ public class WSWSSellHouseFacadeSrvProxy {
         }
     }
 
+    public String synTransaction( String str ) throws WSInvokeException {
+        try {
+            return getController().synTransaction(
+            str);
+        }
+        catch( Throwable e ) {
+            throw new WSInvokeException( e ) ;
+        }
+    }
+
     public String isOldCustomer( String str ) throws WSInvokeException {
         try {
             return getController().isOldCustomer(

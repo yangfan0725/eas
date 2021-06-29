@@ -3803,7 +3803,7 @@ public class SHEManageHelper {
 			MoneyDefineInfo moneyDefine = (MoneyDefineInfo)entry.getCell("moneyName").getValue();
 			if(moneyDefine==null) continue;
 			if(entry.getCell("appAmount").getValue()==null) continue;
-			
+			if(i==0)continue;
 			MoneyTypeEnum moneyDefineType= moneyDefine.getMoneyType();
 			BigDecimal appAmount=(BigDecimal)entry.getCell("appAmount").getValue();
 			if(SHEManageHelper.isMergerToContractMoneyType(moneyDefineType,isEarnestInHouseAmount)&&!moneyDefineType.equals(MoneyTypeEnum.EarnestMoney)
@@ -5335,6 +5335,36 @@ public class SHEManageHelper {
         	return null;
         }       
 	}
+//	
+	public static String getQJtoken(Context ctx) throws Exception{
 
+        	HttpClient httpClient =new HttpClient();
+    		PostMethod post = new PostMethod("http://yz.songdu.com:11002/api/token/getToken");
+//    		post.addRequestHeader("token", "ybwy2019interface");
+    		post.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8") ;
+    		post.addParameter("restname", "songdu");
+    		post.addParameter("password", "123456");
+    		
+    		httpClient.executeMethod(post);
+    		
+    		String respStr = post.getResponseBodyAsString();
+            post.releaseConnection();
+            return respStr;
+               
+	}
+	public static String getQJYZ(Context ctx,String token) throws Exception{
+
+    	HttpClient httpClient =new HttpClient();
+		PostMethod post = new PostMethod("http://yz.songdu.com:11002/api/seal/queryAllSealBase");
+//		post.addRequestHeader("token", token);
+		post.setRequestHeader("Content-Type", "application/json") ;
+		post.setRequestHeader("Authorization", "Bearer "+token);
+		httpClient.executeMethod(post);
+		
+		String respStr = post.getResponseBodyAsString();
+        post.releaseConnection();
+        return respStr;
+           
+}
 	
 }

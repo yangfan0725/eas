@@ -494,6 +494,32 @@ public abstract class AbstractContractBillControllerBean extends FDCBillControll
         return null;
     }
 
+    public Map getQJYZ(Context ctx) throws BOSException, EASBizException
+    {
+        try {
+            ServiceContext svcCtx = createServiceContext(new MetaDataPK("e2a2f169-ada0-4fe1-990f-2a954e37d989"), new Object[]{ctx});
+            invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
+            Map retValue = (Map)_getQJYZ(ctx);
+            svcCtx.setMethodReturnValue(retValue);
+            }
+            invokeServiceAfter(svcCtx);
+            return (Map)svcCtx.getMethodReturnValue();
+        } catch (BOSException ex) {
+            this.setRollbackOnly();
+            throw ex;
+        } catch (EASBizException ex0) {
+            this.setRollbackOnly();
+            throw ex0;
+        } finally {
+            super.cleanUpServiceState();
+        }
+    }
+    protected Map _getQJYZ(Context ctx) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
+
     public FDCBillCollection getFDCBillCollection (Context ctx) throws BOSException
     {
     	return (FDCBillCollection)(getContractBillCollection(ctx).cast(FDCBillCollection.class));

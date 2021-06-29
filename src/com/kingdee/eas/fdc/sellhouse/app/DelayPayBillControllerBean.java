@@ -34,6 +34,9 @@ import com.kingdee.eas.fdc.sellhouse.DelayPayBillInfo;
 import com.kingdee.eas.fdc.sellhouse.DelayPayBillNewEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.MoneyDefineFactory;
 import com.kingdee.eas.fdc.sellhouse.MoneyDefineInfo;
+import com.kingdee.eas.fdc.sellhouse.PurchaseManageCollection;
+import com.kingdee.eas.fdc.sellhouse.PurchaseManageFactory;
+import com.kingdee.eas.fdc.sellhouse.PurchaseManageInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomSellStateEnum;
 import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
@@ -91,7 +94,6 @@ public class DelayPayBillControllerBean extends AbstractDelayPayBillControllerBe
 		return super._submit(ctx, info);
 	}
     protected void _audit(Context ctx, BOSUuid billID) throws BOSException {
-
     	DelayPayBillInfo billInfo = new DelayPayBillInfo();
 		billInfo.setId(billID);
 		billInfo.setState(FDCBillStateEnum.AUDITTED);
@@ -150,6 +152,17 @@ public class DelayPayBillControllerBean extends AbstractDelayPayBillControllerBe
 					SignPayListEntryFactory.getLocalInstance(ctx).updatePartial(entry, sic);
 				}
 				SHEManageHelper.updateTransaction(ctx,sign,RoomSellStateEnum.Sign,true);
+			}
+			
+			PurchaseManageCollection purcol=PurchaseManageFactory.getLocalInstance(ctx).getPurchaseManageCollection("select * from where room.id='"+room.getId()+"' and (bizState='PurApple' or bizState='PurAudit' or bizState='ToSign') order by purPayListEntry.seq");
+			if(col.size()>0){
+				PurchaseManageInfo pur=purcol.get(0);
+				
+				SelectorItemCollection sic=new SelectorItemCollection();
+				sic.add("planSignDate");
+				
+				pur.setPlanSignDate(bill.getPlanSignDate());
+				PurchaseManageFactory.getLocalInstance(ctx).updatePartial(pur, sic);
 			}
 		} catch (EASBizException e) {
 			e.printStackTrace();

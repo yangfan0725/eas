@@ -39,6 +39,9 @@ import com.kingdee.eas.fdc.basecrm.FDCCusBaseDataCollection;
 import com.kingdee.eas.fdc.basecrm.FDCCusBaseDataFactory;
 import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
+import com.kingdee.eas.fdc.sellhouse.PurchaseManageCollection;
+import com.kingdee.eas.fdc.sellhouse.PurchaseManageFactory;
+import com.kingdee.eas.fdc.sellhouse.PurchaseManageInfo;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerCollection;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerFactory;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerInfo;
@@ -46,6 +49,9 @@ import com.kingdee.eas.fdc.sellhouse.SellProjectCollection;
 import com.kingdee.eas.fdc.sellhouse.SellProjectFactory;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
 import com.kingdee.eas.fdc.sellhouse.SexEnum;
+import com.kingdee.eas.fdc.sellhouse.SignManageCollection;
+import com.kingdee.eas.fdc.sellhouse.SignManageFactory;
+import com.kingdee.eas.fdc.sellhouse.SignManageInfo;
 import com.kingdee.jdbc.rowset.IRowSet;
 
 public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeControllerBean
@@ -540,6 +546,86 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 		sql.execute();
 		return rs.toString();
 	}
-    
+	@Override
+	protected String _synTransaction(Context ctx, String str)
+			throws BOSException, EASBizException {
+		JSONObject obj = JSONObject.fromObject(str);
+		
+		JSONObject rs = new JSONObject();
+		if(obj.get("number")==null||"".equals(obj.getString("number").trim())){
+			rs.put("state", "0");
+			rs.put("msg", "单据编号不能为空！");
+			
+			FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
+			sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','',now(),'失败','"+rs.getString("msg")+"')");
+			sql.execute();
+		}
+		if(obj.get("type")==null||"".equals(obj.getString("type").trim())){
+			rs.put("state", "0");
+			rs.put("msg", "单据类型不能为空！");
+			
+			FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
+			sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
+			sql.execute();
+		}
+		SelectorItemCollection sic=new SelectorItemCollection();
+		sic.add("oneQd");
+		sic.add("twoQd");
+		if(obj.getString("type").equals("SIGN")){
+			SignManageCollection signCol=SignManageFactory.getLocalInstance(ctx).getSignManageCollection("select * from where number='"+obj.getString("number")+"'");
+			if(signCol.size()>0){
+				SignManageInfo sign=signCol.get(0);
+				sign.setOneQd(obj.getString("oneQd"));
+				sign.setTwoQd(obj.getString("twoQd"));
+				
+				SignManageFactory.getLocalInstance(ctx).updatePartial(sign, sic);
+				
+				rs.put("state", "1");
+				rs.put("msg", "同步成功！");
+				
+				FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
+				sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'成功','')");
+				sql.execute();
+			}else{
+				rs.put("state", "0");
+				rs.put("msg", "签约单不存在！");
+				
+				FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
+				sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
+				sql.execute();
+			}
+		}else if(obj.getString("type").equals("PUR")){
+			PurchaseManageCollection purCol=PurchaseManageFactory.getLocalInstance(ctx).getPurchaseManageCollection("select * from where number='"+obj.getString("number")+"'");
+			if(purCol.size()>0){
+				PurchaseManageInfo pur=purCol.get(0);
+				pur.setOneQd(obj.getString("oneQd"));
+				pur.setTwoQd(obj.getString("twoQd"));
+				
+				PurchaseManageFactory.getLocalInstance(ctx).updatePartial(pur, sic);
+				
+				rs.put("state", "1");
+				rs.put("msg", "同步成功！");
+				
+				FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
+				sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'成功','')");
+				sql.execute();
+			}else{
+				rs.put("state", "0");
+				rs.put("msg", "认购单不存在！");
+				
+				FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
+				sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
+				sql.execute();
+			}
+		}else{
+			rs.put("state", "0");
+			rs.put("msg", "类型错误！");
+			
+			FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
+			sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
+			sql.execute();
+		}
+		return rs.toString();
+	}
     
 }

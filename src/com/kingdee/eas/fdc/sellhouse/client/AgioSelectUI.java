@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -56,6 +57,7 @@ import com.kingdee.eas.fdc.sellhouse.AgioEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.AgioRoomEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.AgioRoomEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.AgioTypeEnum;
+import com.kingdee.eas.fdc.sellhouse.BooleanEnum;
 import com.kingdee.eas.fdc.sellhouse.CalcTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.ChangeAgioEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.ChangeManageInfo;
@@ -67,6 +69,7 @@ import com.kingdee.eas.fdc.sellhouse.PriceAccountTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.PurAgioEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.PurchaseAgioEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.PurchaseChangeAgioEntryInfo;
+import com.kingdee.eas.fdc.sellhouse.PurchaseManageFactory;
 import com.kingdee.eas.fdc.sellhouse.PurchaseManageInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomFactory;
 import com.kingdee.eas.fdc.sellhouse.RoomInfo;
@@ -342,16 +345,31 @@ public class AgioSelectUI extends AbstractAgioSelectUI {
 		
 		IObjectValue objectValue = (IObjectValue)this.getUIContext().get("objectValue");
 		
+		boolean isAs=true;
 		SHEPayTypeInfo pt=null;
 		if(objectValue instanceof SignManageInfo){
-			pt=((SignManageInfo)objectValue).getPayType();
-		}else if(objectValue instanceof PurchaseManageInfo){
-			pt=((PurchaseManageInfo)objectValue).getPayType();
+			SignManageInfo sign=((SignManageInfo)objectValue);
+			pt=sign.getPayType();
+			if(sign.getSrcId()!=null&&BOSUuid.read(sign.getSrcId().toString()).getType().equals(new PurchaseManageInfo().getBOSType())){
+				Date purDate=PurchaseManageFactory.getRemoteInstance().getPurchaseManageInfo(new ObjectUuidPK(sign.getSrcId())).getBusAdscriptionDate();
+				Date signDate=sign.getBusAdscriptionDate();
+				if(FDCDateHelper.getDiffDays(purDate,signDate)>4){
+					isAs=false;
+				}
+			}
 		}
 		if(pt!=null){
 			filter.getFilterItems().add(new FilterItemInfo("payType", pt.getId().toString(),CompareType.EQUALS));
 			filter.getFilterItems().add(new FilterItemInfo("payType", null,CompareType.EQUALS));
-			filter.setMaskString("#0 and #1 and #2 and (#3 or #4) and (#5 or #6) and (#7 or #8)");
+			if(!isAs){
+				filter.getFilterItems().add(new FilterItemInfo("isAS", BooleanEnum.NO_VALUE,CompareType.EQUALS));
+				filter.getFilterItems().add(new FilterItemInfo("isAS", null,CompareType.EQUALS));
+			}
+			if(!isAs){
+				filter.setMaskString("#0 and #1 and #2 and (#3 or #4) and (#5 or #6) and (#7 or #8) and (#9 or #10)");
+			}else{
+				filter.setMaskString("#0 and #1 and #2 and (#3 or #4) and (#5 or #6) and (#7 or #8) ");
+			}
 		}else{
 			filter.setMaskString("#0 and #1 and #2 and (#3 or #4) and (#5 or #6) ");
 		}
@@ -368,13 +386,6 @@ public class AgioSelectUI extends AbstractAgioSelectUI {
 		view.setSorter(sort);
 		AgioBillCollection agios = AgioBillFactory.getRemoteInstance().getAgioBillCollection(view);
 		
-		boolean isAgioType=false;
-		if(agios.size()>0&&agios.get(0).getAgioType()!=null&&agios.get(0).getAgioType().equals(AgioTypeEnum.XCHJ)){
-			isAgioType=true;
-			this.btnUp.setVisible(false);
-			this.btnDown.setVisible(false);
-		}
-		CRMHelper.sortCollection(agios, "calType", isAgioType);
 		
 //		AgioBillCollection seqAgios = new AgioBillCollection();		
 //		Map hasMap = new HashMap();		
@@ -393,6 +404,7 @@ public class AgioSelectUI extends AbstractAgioSelectUI {
 //			seqAgios.add(agios.get(i));
 //		}
 		
+		AgioBillCollection roomagios= new AgioBillCollection();
 		CRMHelper.sortCollection(agios, "seq", true);
 		for (int i = 0; i < agios.size(); i++) {
 			AgioBillInfo agio = agios.get(i);
@@ -411,6 +423,30 @@ public class AgioSelectUI extends AbstractAgioSelectUI {
 					continue;
 				}
 			}
+			roomagios.add(agio);
+		}
+		boolean isAgioType=false;
+		Set agioTypeSet=new HashSet();
+		for(int i=0;i<roomagios.size();i++){
+			if(roomagios.get(i).getAgioType()!=null){
+				agioTypeSet.add(roomagios.get(i).getAgioType());
+			}
+		}
+		if(agioTypeSet.size()==1){
+			for (Iterator it = agioTypeSet.iterator(); it.hasNext(); ) {
+	           if(((AgioTypeEnum)it.next()).equals(AgioTypeEnum.XCHJ)){
+	        	   isAgioType=true;
+	           }
+	        }
+		}
+//		if(roomagios.size()>0&&roomagios.get(0).getAgioType()!=null&&roomagios.get(0).getAgioType().equals(AgioTypeEnum.XCHJ)){
+//			isAgioType=true;
+			this.btnUp.setVisible(false);
+			this.btnDown.setVisible(false);
+//		}
+		CRMHelper.sortCollection(roomagios, "calType", isAgioType);
+		for (int i = 0; i < roomagios.size(); i++) {
+			AgioBillInfo agio = roomagios.get(i);
 			IRow row = this.tblSelect.addRow();
 			row.getCell("agioName").setValue(agio.getName());
 			row.getCell("agioName").setUserObject(agio);

@@ -33,6 +33,7 @@ import com.kingdee.bos.ctrl.kdf.table.event.KDTDataFillListener;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTDataRequestEvent;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTEditEvent;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTEditListener;
+import com.kingdee.bos.ctrl.kdf.table.foot.KDTFootManager;
 import com.kingdee.bos.ctrl.kdf.table.util.KDTableUtil;
 import com.kingdee.bos.ctrl.swing.KDComboBox;
 import com.kingdee.bos.ctrl.swing.KDWorkButton;
@@ -287,8 +288,70 @@ public class PayRequestFullListUI extends AbstractPayRequestFullListUI implement
 		FDCHelper.formatTableNumber(this.tblMain, "payAmount");
 		FDCHelper.formatTableNumber(this.tblMain, "latestPrice");
 		
-		ClientHelper.getFootRow(tblMain, new String[]{"payAmount","amount","srcAmount","deduct","guerden","actPaiedLocAmount"});
+		getFootRow(tblMain, new String[]{"srcOriginalAmount","originalAmount","payAmount","amount","srcAmount","deduct","guerden","actPaiedLocAmount"});
 	}
+	public void getFootRow(KDTable tblMain,String[] columnName){
+		IRow footRow = null;
+        KDTFootManager footRowManager = tblMain.getFootManager();
+        if(footRowManager == null)
+        {
+            String total = EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_Total");
+            footRowManager = new KDTFootManager(tblMain);
+            footRowManager.addFootView();
+            tblMain.setFootManager(footRowManager);
+            footRow = footRowManager.addFootRow(0);
+            footRow.getStyleAttributes().setHorizontalAlign(com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment.getAlignment("right"));
+            tblMain.getIndexColumn().setWidthAdjustMode((short)1);
+            tblMain.getIndexColumn().setWidth(30);
+            footRowManager.addIndexText(0, total);
+        } else
+        {
+            footRow = footRowManager.getFootRow(0);
+        }
+        int columnCount = tblMain.getColumnCount();
+        for(int c = 0; c < columnCount; c++)
+        {
+            String fieldName = tblMain.getColumn(c).getKey();
+            for(int i = 0; i < columnName.length; i++)
+            {
+                String colName = (String)columnName[i];
+                if(colName.equalsIgnoreCase(fieldName))
+                {
+                    ICell cell = footRow.getCell(c);
+                    cell.getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
+                    cell.getStyleAttributes().setHorizontalAlign(com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment.getAlignment("right"));
+                    cell.getStyleAttributes().setFontColor(java.awt.Color.BLACK);
+                    cell.setValue(getColumnValueSum(tblMain,colName));
+                }
+            }
+
+        }
+        footRow.getStyleAttributes().setBackground(new java.awt.Color(246, 246, 191));
+	}
+	public BigDecimal getColumnValueSum(KDTable table,String columnName) {
+    	BigDecimal sum = new BigDecimal(0);
+        for(int i=0;i<table.getRowCount();i++){
+        	if(table.getRow(i).getStyleAttributes().isHided()){
+        		continue;
+        	}
+        	if(table.getRow(i).getCell(columnName).getValue()!=null ){
+        		if( table.getRow(i).getCell(columnName).getValue() instanceof BigDecimal)
+            		sum = sum.add((BigDecimal)table.getRow(i).getCell(columnName).getValue());
+            	else if(table.getRow(i).getCell(columnName).getValue() instanceof String){
+            		String value = (String)table.getRow(i).getCell(columnName).getValue();
+            		if(value.indexOf("Áã")==-1 && value.indexOf("[]")==-1){
+            			value = value.replaceAll(",", "");
+                		sum = sum.add(new BigDecimal(value));
+            		}
+            	}
+            	else if(table.getRow(i).getCell(columnName).getValue() instanceof Integer){
+            		String value = table.getRow(i).getCell(columnName).getValue().toString();
+            		sum = sum.add(new BigDecimal(value));
+            	}
+        	}
+        }
+        return sum;
+    }
 	protected IQueryExecutor getQueryExecutor(IMetaDataPK queryPK, EntityViewInfo viewInfo) {
 		viewInfo = (EntityViewInfo) this.mainQuery.clone();
 		if(viewInfo.getSorter().size()==0){
@@ -504,8 +567,21 @@ public class PayRequestFullListUI extends AbstractPayRequestFullListUI implement
 					}
 					BigDecimal originalAmount=(BigDecimal) row.getCell("originalAmount").getValue();
 					BigDecimal payAmount=(BigDecimal) row.getCell("payAmount").getValue()==null?FDCHelper.ZERO:(BigDecimal) row.getCell("payAmount").getValue();
-					if(FDCHelper.subtract(originalAmount, payAmount).compareTo(new BigDecimal(0))==0){
+					BigDecimal subAmount=FDCHelper.subtract(originalAmount, payAmount);
+					if(subAmount.compareTo(new BigDecimal(0))==0){
 						row.getStyleAttributes().setBackground(new Color(128,255,128));
+					}
+					int state=getFilterUI().getCustomerParams().getInt("realPayState");
+					if(state==0){
+						if(subAmount.compareTo(new BigDecimal(0))!=0){
+							row.getStyleAttributes().setHided(true);
+						}
+					}else if(state==1){
+						if(subAmount.compareTo(new BigDecimal(0))==0){
+							row.getStyleAttributes().setHided(true);
+						}
+					}else{
+						
 					}
 					tblMain.getColumn("originalAmount").getStyleAttributes().setBackground(new Color(192,192,192));
 					tblMain.getColumn("payAmount").getStyleAttributes().setBackground(new Color(192,192,192));

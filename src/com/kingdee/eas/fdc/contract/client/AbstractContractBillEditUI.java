@@ -115,6 +115,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
     protected com.kingdee.bos.ctrl.kdf.table.KDTable kdtSupplyEntry;
     protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer3;
     protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer4;
+    protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer5;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contRemark;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contCoopLevel;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contPriceType;
@@ -184,6 +185,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
     protected com.kingdee.bos.ctrl.kdf.table.KDTable kdtDetailEntry;
     protected com.kingdee.bos.ctrl.kdf.table.KDTable tblMarket;
     protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsJT;
+    protected com.kingdee.bos.ctrl.kdf.table.KDTable kdtYZEntry;
     protected com.kingdee.bos.ctrl.swing.KDFormattedTextField txtExRate;
     protected com.kingdee.bos.ctrl.swing.KDFormattedTextField txtLocalAmount;
     protected com.kingdee.bos.ctrl.swing.KDFormattedTextField txtGrtAmount;
@@ -285,6 +287,8 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
     protected ActionDetailRLine actionDetailRLine = null;
     protected ActionMALine actionMALine = null;
     protected ActionMRLine actionMRLine = null;
+    protected ActionYZALine actionYZALine = null;
+    protected ActionYZRLine actionYZRLine = null;
     /**
      * output class constructor
      */
@@ -449,6 +453,14 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.actionMRLine = new ActionMRLine(this);
         getActionManager().registerAction("actionMRLine", actionMRLine);
          this.actionMRLine.addService(new com.kingdee.eas.framework.client.service.PermissionService());
+        //actionYZALine
+        this.actionYZALine = new ActionYZALine(this);
+        getActionManager().registerAction("actionYZALine", actionYZALine);
+         this.actionYZALine.addService(new com.kingdee.eas.framework.client.service.PermissionService());
+        //actionYZRLine
+        this.actionYZRLine = new ActionYZRLine(this);
+        getActionManager().registerAction("actionYZRLine", actionYZRLine);
+         this.actionYZRLine.addService(new com.kingdee.eas.framework.client.service.PermissionService());
         this.kDScrollPane3 = new com.kingdee.bos.ctrl.swing.KDScrollPane();
         this.tabPanel = new com.kingdee.bos.ctrl.swing.KDTabbedPane();
         this.mainPanel = new com.kingdee.bos.ctrl.swing.KDPanel();
@@ -518,6 +530,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.kdtSupplyEntry = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.kDContainer3 = new com.kingdee.bos.ctrl.swing.KDContainer();
         this.kDContainer4 = new com.kingdee.bos.ctrl.swing.KDContainer();
+        this.kDContainer5 = new com.kingdee.bos.ctrl.swing.KDContainer();
         this.contRemark = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contCoopLevel = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contPriceType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
@@ -587,6 +600,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.kdtDetailEntry = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.tblMarket = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.cbIsJT = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.kdtYZEntry = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.txtExRate = new com.kingdee.bos.ctrl.swing.KDFormattedTextField();
         this.txtLocalAmount = new com.kingdee.bos.ctrl.swing.KDFormattedTextField();
         this.txtGrtAmount = new com.kingdee.bos.ctrl.swing.KDFormattedTextField();
@@ -736,6 +750,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.kdtSupplyEntry.setName("kdtSupplyEntry");
         this.kDContainer3.setName("kDContainer3");
         this.kDContainer4.setName("kDContainer4");
+        this.kDContainer5.setName("kDContainer5");
         this.contRemark.setName("contRemark");
         this.contCoopLevel.setName("contCoopLevel");
         this.contPriceType.setName("contPriceType");
@@ -805,6 +820,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.kdtDetailEntry.setName("kdtDetailEntry");
         this.tblMarket.setName("tblMarket");
         this.cbIsJT.setName("cbIsJT");
+        this.kdtYZEntry.setName("kdtYZEntry");
         this.txtExRate.setName("txtExRate");
         this.txtLocalAmount.setName("txtLocalAmount");
         this.txtGrtAmount.setName("txtGrtAmount");
@@ -1279,6 +1295,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.kdtSupplyEntry.checkParsed();
         // kDContainer3
         // kDContainer4
+        // kDContainer5
         // contRemark		
         this.contRemark.setBoundLabelText(resHelper.getString("contRemark.boundLabelText"));		
         this.contRemark.setBoundLabelLength(100);		
@@ -1791,6 +1808,24 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         // cbIsJT		
         this.cbIsJT.setText(resHelper.getString("cbIsJT.text"));		
         this.cbIsJT.setEnabled(false);
+        // kdtYZEntry
+		String kdtYZEntryStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol4\"><c:Protection hidden=\"true\" /></c:Style><c:Style id=\"sCol5\"><c:Protection hidden=\"true\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"name\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"type\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"admin\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"count\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"adminID\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol4\" /><t:Column t:key=\"yzID\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol5\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{name}</t:Cell><t:Cell>$Resource{type}</t:Cell><t:Cell>$Resource{admin}</t:Cell><t:Cell>$Resource{count}</t:Cell><t:Cell>$Resource{adminID}</t:Cell><t:Cell>$Resource{yzID}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
+		
+        this.kdtYZEntry.setFormatXml(resHelper.translateString("kdtYZEntry",kdtYZEntryStrXML));
+        this.kdtYZEntry.addKDTEditListener(new com.kingdee.bos.ctrl.kdf.table.event.KDTEditAdapter() {
+            public void editStopped(com.kingdee.bos.ctrl.kdf.table.event.KDTEditEvent e) {
+                try {
+                    kdtYZEntry_editStopped(e);
+                } catch(Exception exc) {
+                    handUIException(exc);
+                }
+            }
+        });
+
+                this.kdtYZEntry.putBindContents("editData",new String[] {"name","type","admin","count","adminID","yzID"});
+
+
+        this.kdtYZEntry.checkParsed();
         // txtExRate		
         this.txtExRate.setRequired(true);		
         this.txtExRate.setPrecision(10);		
@@ -2584,6 +2619,7 @@ this.setLayout(new BorderLayout(0, 0));
         kDTabbedPane1.add(kdtSupplyEntry, resHelper.getString("kdtSupplyEntry.constraints"));
         kDTabbedPane1.add(kDContainer3, resHelper.getString("kDContainer3.constraints"));
         kDTabbedPane1.add(kDContainer4, resHelper.getString("kDContainer4.constraints"));
+        kDTabbedPane1.add(kDContainer5, resHelper.getString("kDContainer5.constraints"));
         //pnlInviteInfo
         pnlInviteInfo.setLayout(null);        contRemark.setBounds(new Rectangle(8, 88, 270, 19));
         pnlInviteInfo.add(contRemark, null);
@@ -2727,6 +2763,8 @@ kDContainer3.getContentPane().setLayout(new BorderLayout(0, 0));        kDContai
         kDContainer4.getContentPane().add(tblMarket, new KDLayout.Constraints(0, 28, 996, 196, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
         cbIsJT.setBounds(new Rectangle(7, 5, 279, 19));
         kDContainer4.getContentPane().add(cbIsJT, new KDLayout.Constraints(7, 5, 279, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        //kDContainer5
+kDContainer5.getContentPane().setLayout(new BorderLayout(0, 0));        kDContainer5.getContentPane().add(kdtYZEntry, BorderLayout.CENTER);
         //contExRate
         contExRate.setBoundEditor(txtExRate);
         //contLocalAmount
@@ -3102,6 +3140,13 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		dataBinder.registerBinding("marketEntry.content", String.class, this.tblMarket, "content.text");
 		dataBinder.registerBinding("marketEntry.remark", String.class, this.tblMarket, "remark.text");
 		dataBinder.registerBinding("isJT", boolean.class, this.cbIsJT, "selected");
+		dataBinder.registerBinding("yzEntry", com.kingdee.eas.fdc.contract.ContractYZEntryInfo.class, this.kdtYZEntry, "userObject");
+		dataBinder.registerBinding("yzEntry.name", String.class, this.kdtYZEntry, "name.text");
+		dataBinder.registerBinding("yzEntry.type", String.class, this.kdtYZEntry, "type.text");
+		dataBinder.registerBinding("yzEntry.admin", String.class, this.kdtYZEntry, "admin.text");
+		dataBinder.registerBinding("yzEntry.count", String.class, this.kdtYZEntry, "count.text");
+		dataBinder.registerBinding("yzEntry.adminID", String.class, this.kdtYZEntry, "adminID.text");
+		dataBinder.registerBinding("yzEntry.yzID", String.class, this.kdtYZEntry, "yzID.text");
 		dataBinder.registerBinding("exRate", java.math.BigDecimal.class, this.txtExRate, "value");
 		dataBinder.registerBinding("amount", java.math.BigDecimal.class, this.txtLocalAmount, "value");
 		dataBinder.registerBinding("grtAmount", java.math.BigDecimal.class, this.txtGrtAmount, "value");
@@ -3347,6 +3392,13 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		getValidateHelper().registerBindProperty("marketEntry.content", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("marketEntry.remark", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("isJT", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("yzEntry", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("yzEntry.name", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("yzEntry.type", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("yzEntry.admin", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("yzEntry.count", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("yzEntry.adminID", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("yzEntry.yzID", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("exRate", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("amount", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("grtAmount", ValidateHelper.ON_SAVE);    
@@ -3531,6 +3583,13 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
      * output tblMarket_editStopped method
      */
     protected void tblMarket_editStopped(com.kingdee.bos.ctrl.kdf.table.event.KDTEditEvent e) throws Exception
+    {
+    }
+
+    /**
+     * output kdtYZEntry_editStopped method
+     */
+    protected void kdtYZEntry_editStopped(com.kingdee.bos.ctrl.kdf.table.event.KDTEditEvent e) throws Exception
     {
     }
 
@@ -3861,6 +3920,18 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
     	sic.add(new SelectorItemInfo("marketEntry.content"));
     	sic.add(new SelectorItemInfo("marketEntry.remark"));
         sic.add(new SelectorItemInfo("isJT"));
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("yzEntry.*"));
+		}
+		else{
+			sic.add(new SelectorItemInfo("yzEntry.name"));
+		}
+    	sic.add(new SelectorItemInfo("yzEntry.type"));
+    	sic.add(new SelectorItemInfo("yzEntry.admin"));
+    	sic.add(new SelectorItemInfo("yzEntry.count"));
+    	sic.add(new SelectorItemInfo("yzEntry.adminID"));
+    	sic.add(new SelectorItemInfo("yzEntry.yzID"));
         sic.add(new SelectorItemInfo("exRate"));
         sic.add(new SelectorItemInfo("amount"));
         sic.add(new SelectorItemInfo("grtAmount"));
@@ -4249,6 +4320,22 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
     public void actionMRLine_actionPerformed(ActionEvent e) throws Exception
     {
     }
+    	
+
+    /**
+     * output actionYZALine_actionPerformed method
+     */
+    public void actionYZALine_actionPerformed(ActionEvent e) throws Exception
+    {
+    }
+    	
+
+    /**
+     * output actionYZRLine_actionPerformed method
+     */
+    public void actionYZRLine_actionPerformed(ActionEvent e) throws Exception
+    {
+    }
 	public RequestContext prepareActionSubmit(IItemAction itemAction) throws Exception {
 			RequestContext request = super.prepareActionSubmit(itemAction);		
 		if (request != null) {
@@ -4511,6 +4598,28 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
     }
 	
 	public boolean isPrepareActionMRLine() {
+    	return false;
+    }
+	public RequestContext prepareActionYZALine(IItemAction itemAction) throws Exception {
+			RequestContext request = new RequestContext();		
+		if (request != null) {
+    		request.setClassName(getUIHandlerClassName());
+		}
+		return request;
+    }
+	
+	public boolean isPrepareActionYZALine() {
+    	return false;
+    }
+	public RequestContext prepareActionYZRLine(IItemAction itemAction) throws Exception {
+			RequestContext request = new RequestContext();		
+		if (request != null) {
+    		request.setClassName(getUIHandlerClassName());
+		}
+		return request;
+    }
+	
+	public boolean isPrepareActionYZRLine() {
     	return false;
     }
 
@@ -5083,6 +5192,66 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
         {
         	getUIContext().put("ORG.PK", getOrgPK(this));
             innerActionPerformed("eas", AbstractContractBillEditUI.this, "ActionMRLine", "actionMRLine_actionPerformed", e);
+        }
+    }
+
+    /**
+     * output ActionYZALine class
+     */     
+    protected class ActionYZALine extends ItemAction {     
+    
+        public ActionYZALine()
+        {
+            this(null);
+        }
+
+        public ActionYZALine(IUIObject uiObject)
+        {     
+		super(uiObject);     
+        
+            String _tempStr = null;
+            _tempStr = resHelper.getString("ActionYZALine.SHORT_DESCRIPTION");
+            this.putValue(ItemAction.SHORT_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionYZALine.LONG_DESCRIPTION");
+            this.putValue(ItemAction.LONG_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionYZALine.NAME");
+            this.putValue(ItemAction.NAME, _tempStr);
+        }
+
+        public void actionPerformed(ActionEvent e)
+        {
+        	getUIContext().put("ORG.PK", getOrgPK(this));
+            innerActionPerformed("eas", AbstractContractBillEditUI.this, "ActionYZALine", "actionYZALine_actionPerformed", e);
+        }
+    }
+
+    /**
+     * output ActionYZRLine class
+     */     
+    protected class ActionYZRLine extends ItemAction {     
+    
+        public ActionYZRLine()
+        {
+            this(null);
+        }
+
+        public ActionYZRLine(IUIObject uiObject)
+        {     
+		super(uiObject);     
+        
+            String _tempStr = null;
+            _tempStr = resHelper.getString("ActionYZRLine.SHORT_DESCRIPTION");
+            this.putValue(ItemAction.SHORT_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionYZRLine.LONG_DESCRIPTION");
+            this.putValue(ItemAction.LONG_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionYZRLine.NAME");
+            this.putValue(ItemAction.NAME, _tempStr);
+        }
+
+        public void actionPerformed(ActionEvent e)
+        {
+        	getUIContext().put("ORG.PK", getOrgPK(this));
+            innerActionPerformed("eas", AbstractContractBillEditUI.this, "ActionYZRLine", "actionYZRLine_actionPerformed", e);
         }
     }
 

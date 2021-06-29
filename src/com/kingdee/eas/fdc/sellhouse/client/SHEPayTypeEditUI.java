@@ -209,8 +209,8 @@ public class SHEPayTypeEditUI extends AbstractSHEPayTypeEditUI {
 
 		});
 		
-//		txtAgio.setVisible(false);
-//		lblAgio.setVisible(false);
+		txtAgio.setVisible(false);
+		lblAgio.setVisible(false);
 		
 		this.btnAddLine.setVisible(false);
 		this.btnDeleteLine.setVisible(false);

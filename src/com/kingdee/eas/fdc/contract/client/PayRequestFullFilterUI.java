@@ -130,6 +130,7 @@ public class PayRequestFullFilterUI extends AbstractPayRequestFullFilterUI
 chkIncludeClose.setSelected(true);
 this.radioAllPay.setSelected(true);
 this.radioAllVoucher.setSelected(true);
+this.radioHasPartRealPay.setSelected(true);
 /* 130*/        f7Contract.setDisplayFormat("$name$");
 /* 131*/        f7Contract.setEditFormat("$number$");
 /* 132*/        f7Contract.setQueryInfo("com.kingdee.eas.fdc.contract.app.ContractAndWithoutUnionQuery");
@@ -507,6 +508,17 @@ this.radioAllVoucher.setSelected(true);
 	/* <-MISALIGNED-> */ /* 460*/            if(para.getInt("createPayState") == 2)
 	/* <-MISALIGNED-> */ /* 461*/                radioAllPay.setSelected(true);
 
+
+/* <-MISALIGNED-> */ /* 455*/        if(para.isNotNull("realPayState"))
+	/* <-MISALIGNED-> */ /* 456*/            if(para.getInt("realPayState") == 0)
+	/* <-MISALIGNED-> */ /* 457*/                radioHasRealPay.setSelected(true);
+	/* <-MISALIGNED-> */ /* 458*/            else
+	/* <-MISALIGNED-> */ /* 458*/            if(para.getInt("realPayState") == 1)
+	/* <-MISALIGNED-> */ /* 459*/                radioHasPartRealPay.setSelected(true);
+	/* <-MISALIGNED-> */ /* 460*/            else
+	/* <-MISALIGNED-> */ /* 460*/            if(para.getInt("realPayState") == 2)
+	/* <-MISALIGNED-> */ /* 461*/                radioHasRealPayAll.setSelected(true);
+
 /* <-MISALIGNED-> */ /* 471*/        super.setCustomerParams(cp);
             }
             public CustomerParams getCustomerParams()
@@ -643,6 +655,16 @@ this.radioAllVoucher.setSelected(true);
 	/* <-MISALIGNED-> */ /* 263*/        else
 	/* <-MISALIGNED-> */ /* 263*/        if(radioAllPay.isSelected())
 	/* <-MISALIGNED-> */ /* 264*/            param.add("createPayState", 2);
+
+
+/* <-MISALIGNED-> */ /* 259*/        if(radioHasRealPay.isSelected())
+	/* <-MISALIGNED-> */ /* 260*/            param.add("realPayState", 0);
+	/* <-MISALIGNED-> */ /* 261*/        else
+	/* <-MISALIGNED-> */ /* 261*/        if(radioHasPartRealPay.isSelected())
+	/* <-MISALIGNED-> */ /* 262*/            param.add("realPayState", 1);
+	/* <-MISALIGNED-> */ /* 263*/        else
+	/* <-MISALIGNED-> */ /* 263*/        if(radioHasRealPayAll.isSelected())
+	/* <-MISALIGNED-> */ /* 264*/            param.add("realPayState", 2);
 
 /* 596*/        return param.getCustomerParams();
             }

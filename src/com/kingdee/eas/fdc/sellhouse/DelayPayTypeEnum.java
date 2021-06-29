@@ -15,9 +15,11 @@ public class DelayPayTypeEnum extends StringEnum
 {
     public static final String YQQY_VALUE = "YQQY";//alias=延期签约
     public static final String YQFK_VALUE = "YQFK";//alias=延期付款
+    public static final String YQQYAYQFK_VALUE = "YQQYAYQFK";//alias=延期签约&延期付款
 
     public static final DelayPayTypeEnum YQQY = new DelayPayTypeEnum("YQQY", YQQY_VALUE);
     public static final DelayPayTypeEnum YQFK = new DelayPayTypeEnum("YQFK", YQFK_VALUE);
+    public static final DelayPayTypeEnum YQQYAYQFK = new DelayPayTypeEnum("YQQYAYQFK", YQQYAYQFK_VALUE);
 
     /**
      * construct function

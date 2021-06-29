@@ -64,6 +64,7 @@ public abstract class AbstractDelayPayBillEditUI1 extends com.kingdee.eas.framew
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contSignDate;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contType;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contPlanSignDate;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contIsPass;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtCreator;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkCreateTime;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtNumber;
@@ -83,6 +84,7 @@ public abstract class AbstractDelayPayBillEditUI1 extends com.kingdee.eas.framew
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkSignDate;
     protected com.kingdee.bos.ctrl.swing.KDComboBox cbType;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkPlanSignDate;
+    protected com.kingdee.bos.ctrl.swing.KDComboBox cbIsPass;
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnAudit;
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnUnAudit;
     protected com.kingdee.eas.fdc.sellhouse.DelayPayBillInfo editData = null;
@@ -198,6 +200,7 @@ public abstract class AbstractDelayPayBillEditUI1 extends com.kingdee.eas.framew
         this.contSignDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contPlanSignDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contIsPass = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.prmtCreator = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.pkCreateTime = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.txtNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
@@ -217,6 +220,7 @@ public abstract class AbstractDelayPayBillEditUI1 extends com.kingdee.eas.framew
         this.pkSignDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.cbType = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.pkPlanSignDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
+        this.cbIsPass = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.btnAudit = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.btnUnAudit = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.contCreator.setName("contCreator");
@@ -237,6 +241,7 @@ public abstract class AbstractDelayPayBillEditUI1 extends com.kingdee.eas.framew
         this.contSignDate.setName("contSignDate");
         this.contType.setName("contType");
         this.contPlanSignDate.setName("contPlanSignDate");
+        this.contIsPass.setName("contIsPass");
         this.prmtCreator.setName("prmtCreator");
         this.pkCreateTime.setName("pkCreateTime");
         this.txtNumber.setName("txtNumber");
@@ -256,6 +261,7 @@ public abstract class AbstractDelayPayBillEditUI1 extends com.kingdee.eas.framew
         this.pkSignDate.setName("pkSignDate");
         this.cbType.setName("cbType");
         this.pkPlanSignDate.setName("pkPlanSignDate");
+        this.cbIsPass.setName("cbIsPass");
         this.btnAudit.setName("btnAudit");
         this.btnUnAudit.setName("btnUnAudit");
         // CoreUI		
@@ -352,6 +358,10 @@ public abstract class AbstractDelayPayBillEditUI1 extends com.kingdee.eas.framew
         this.contPlanSignDate.setBoundLabelText(resHelper.getString("contPlanSignDate.boundLabelText"));		
         this.contPlanSignDate.setBoundLabelLength(100);		
         this.contPlanSignDate.setBoundLabelUnderline(true);
+        // contIsPass		
+        this.contIsPass.setBoundLabelText(resHelper.getString("contIsPass.boundLabelText"));		
+        this.contIsPass.setBoundLabelLength(463);		
+        this.contIsPass.setBoundLabelUnderline(true);
         // prmtCreator		
         this.prmtCreator.setEnabled(false);
         // pkCreateTime		
@@ -471,6 +481,9 @@ public abstract class AbstractDelayPayBillEditUI1 extends com.kingdee.eas.framew
                 }
             }
         });
+        // cbIsPass		
+        this.cbIsPass.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.sellhouse.BooleanEnum").toArray());		
+        this.cbIsPass.setRequired(true);
         // btnAudit
         this.btnAudit.setAction((IItemAction)ActionProxyFactory.getProxy(auditAction, new Class[] { IItemAction.class }, getServiceContext()));		
         this.btnAudit.setText(resHelper.getString("btnAudit.text"));
@@ -518,18 +531,18 @@ public abstract class AbstractDelayPayBillEditUI1 extends com.kingdee.eas.framew
         this.add(contsellProject, new KDLayout.Constraints(734, 10, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         contAuditTime.setBounds(new Rectangle(374, 600, 270, 19));
         this.add(contAuditTime, new KDLayout.Constraints(374, 600, 270, 19, KDLayout.Constraints.ANCHOR_BOTTOM | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
-        contCaseInfo.setBounds(new Rectangle(374, 76, 629, 23));
-        this.add(contCaseInfo, new KDLayout.Constraints(374, 76, 629, 23, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contCaseInfo.setBounds(new Rectangle(15, 102, 986, 75));
+        this.add(contCaseInfo, new KDLayout.Constraints(15, 102, 986, 75, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
         contRoom.setBounds(new Rectangle(15, 32, 270, 19));
         this.add(contRoom, new KDLayout.Constraints(15, 32, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contCustomerNames.setBounds(new Rectangle(15, 54, 270, 19));
         this.add(contCustomerNames, new KDLayout.Constraints(15, 54, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contPayType.setBounds(new Rectangle(15, 76, 270, 19));
         this.add(contPayType, new KDLayout.Constraints(15, 76, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
-        contEntry.setBounds(new Rectangle(13, 137, 491, 218));
-        this.add(contEntry, new KDLayout.Constraints(13, 137, 491, 218, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
-        contNewEntry.setBounds(new Rectangle(510, 135, 491, 221));
-        this.add(contNewEntry, new KDLayout.Constraints(510, 135, 491, 221, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contEntry.setBounds(new Rectangle(13, 188, 491, 167));
+        this.add(contEntry, new KDLayout.Constraints(13, 188, 491, 167, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        contNewEntry.setBounds(new Rectangle(510, 186, 491, 170));
+        this.add(contNewEntry, new KDLayout.Constraints(510, 186, 491, 170, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         contAttachment.setBounds(new Rectangle(15, 372, 986, 187));
         this.add(contAttachment, new KDLayout.Constraints(15, 372, 986, 187, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_BOTTOM_SCALE | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
         contBizDate.setBounds(new Rectangle(374, 10, 270, 19));
@@ -542,6 +555,8 @@ public abstract class AbstractDelayPayBillEditUI1 extends com.kingdee.eas.framew
         this.add(contType, new KDLayout.Constraints(374, 54, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contPlanSignDate.setBounds(new Rectangle(734, 54, 270, 19));
         this.add(contPlanSignDate, new KDLayout.Constraints(734, 54, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contIsPass.setBounds(new Rectangle(371, 76, 631, 19));
+        this.add(contIsPass, new KDLayout.Constraints(371, 76, 631, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         //contCreator
         contCreator.setBoundEditor(prmtCreator);
         //contCreateTime
@@ -580,6 +595,8 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
         contType.setBoundEditor(cbType);
         //contPlanSignDate
         contPlanSignDate.setBoundEditor(pkPlanSignDate);
+        //contIsPass
+        contIsPass.setBoundEditor(cbIsPass);
 
     }
 
@@ -768,7 +785,8 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
 		dataBinder.registerBinding("purDate", java.util.Date.class, this.pkPurDate, "value");
 		dataBinder.registerBinding("signDate", java.util.Date.class, this.pkSignDate, "value");
 		dataBinder.registerBinding("type", com.kingdee.eas.fdc.sellhouse.DelayPayTypeEnum.class, this.cbType, "selectedItem");
-		dataBinder.registerBinding("planSignDate", java.util.Date.class, this.pkPlanSignDate, "value");		
+		dataBinder.registerBinding("planSignDate", java.util.Date.class, this.pkPlanSignDate, "value");
+		dataBinder.registerBinding("isPass", com.kingdee.eas.fdc.sellhouse.BooleanEnum.class, this.cbIsPass, "selectedItem");		
 	}
 	//Regiester UI State
 	private void registerUIState(){		
@@ -854,7 +872,8 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
 		getValidateHelper().registerBindProperty("purDate", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("signDate", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("type", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("planSignDate", ValidateHelper.ON_SAVE);    		
+		getValidateHelper().registerBindProperty("planSignDate", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("isPass", ValidateHelper.ON_SAVE);    		
 	}
 
 
@@ -973,6 +992,7 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
         sic.add(new SelectorItemInfo("signDate"));
         sic.add(new SelectorItemInfo("type"));
         sic.add(new SelectorItemInfo("planSignDate"));
+        sic.add(new SelectorItemInfo("isPass"));
         return sic;
     }        
     	

@@ -54,6 +54,8 @@ import com.kingdee.eas.fdc.sellhouse.BuildingInfo;
 import com.kingdee.eas.fdc.sellhouse.CommerceChanceFactory;
 import com.kingdee.eas.fdc.sellhouse.CommerceChanceInfo;
 import com.kingdee.eas.fdc.sellhouse.CommerceChangeNewStatusEnum;
+import com.kingdee.eas.fdc.sellhouse.DelayPayBillCollection;
+import com.kingdee.eas.fdc.sellhouse.DelayPayBillFactory;
 import com.kingdee.eas.fdc.sellhouse.PrePurchaseManageInfo;
 import com.kingdee.eas.fdc.sellhouse.PurChangeStateEnum;
 import com.kingdee.eas.fdc.sellhouse.PurCustomerEntryCollection;
@@ -64,6 +66,7 @@ import com.kingdee.eas.fdc.sellhouse.PurPayListEntryFactory;
 import com.kingdee.eas.fdc.sellhouse.PurPayListEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.PurchaseManageFactory;
 import com.kingdee.eas.fdc.sellhouse.PurchaseManageInfo;
+import com.kingdee.eas.fdc.sellhouse.RoomInfo;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerInfo;
 import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
 import com.kingdee.eas.fdc.sellhouse.SignManageCollection;
@@ -373,5 +376,22 @@ public class PurchaseManageListUI extends AbstractPurchaseManageListUI
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+	}
+	public void actionEdit_actionPerformed(ActionEvent e) throws Exception {
+		checkSelected();
+		int rowIndex = this.tblMain.getSelectManager().getActiveRowIndex();
+		IRow row = this.tblMain.getRow(rowIndex);
+		String id = (String) row.getCell(this.getKeyFieldName()).getValue();
+		SelectorItemCollection sels = new SelectorItemCollection();
+		sels.add("room.*");
+		PurchaseManageInfo info =PurchaseManageFactory.getRemoteInstance().getPurchaseManageInfo(new ObjectUuidPK(id),sels);
+		if(info.getRoom()!=null){
+			DelayPayBillCollection col = DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+info.getRoom().getId().toString()+"' and sourceFunction not like '%QUIT%'");
+			if(col.size()>0){
+				MsgBox.showWarning(this,"存在延期申请单,禁止修改！");
+				SysUtil.abort();
+			}
+		}
+		super.actionEdit_actionPerformed(e);
 	}
 }

@@ -90,6 +90,8 @@ import com.kingdee.eas.fdc.sellhouse.CollectionInfo;
 import com.kingdee.eas.fdc.sellhouse.CommerceChanceFactory;
 import com.kingdee.eas.fdc.sellhouse.CommerceChanceInfo;
 import com.kingdee.eas.fdc.sellhouse.CommerceChangeNewStatusEnum;
+import com.kingdee.eas.fdc.sellhouse.DelayPayBillCollection;
+import com.kingdee.eas.fdc.sellhouse.DelayPayBillFactory;
 import com.kingdee.eas.fdc.sellhouse.HousePropertyEnum;
 import com.kingdee.eas.fdc.sellhouse.MarketUnitControlFactory;
 import com.kingdee.eas.fdc.sellhouse.MoneyDefineFactory;
@@ -197,8 +199,6 @@ public class PurchaseManageEditUI extends AbstractPurchaseManageEditUI
 		
 		this.txtDealTotalAmount.setEnabled(false);
 		this.pkPlanSignDate.setEnabled(false);
-		
-		this.contPlanSignDate.setVisible(false);
 	}
     public void setOprtState(String oprtType) {
 		super.setOprtState(oprtType);
@@ -1828,4 +1828,17 @@ public class PurchaseManageEditUI extends AbstractPurchaseManageEditUI
 		appHlp.printPreview(getTDFileName(), data, javax.swing.SwingUtilities
 				.getWindowAncestor(this));
 	}
+
+	public void actionEdit_actionPerformed(ActionEvent e) throws Exception {
+		RoomInfo room=(RoomInfo) this.f7Room.getValue();
+		if(room!=null){
+			DelayPayBillCollection col = DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+room.getId().toString()+"' and sourceFunction not like '%QUIT%'");
+			if(col.size()>0){
+				MsgBox.showWarning(this,"存在延期申请单,禁止修改！");
+				SysUtil.abort();
+			}
+		}
+		super.actionEdit_actionPerformed(e);
+	}
+	
 }

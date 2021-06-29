@@ -76,4 +76,18 @@ public class WSSellHouseFacade extends AbstractBizCtrl implements IWSSellHouseFa
             throw new EJBRemoteException(err);
         }
     }
+    /**
+     *更新认购签约渠道-User defined method
+     *@param str str
+     *@return
+     */
+    public String synTransaction(String str) throws BOSException, EASBizException
+    {
+        try {
+            return getController().synTransaction(getContext(), str);
+        }
+        catch(RemoteException err) {
+            throw new EJBRemoteException(err);
+        }
+    }
 }

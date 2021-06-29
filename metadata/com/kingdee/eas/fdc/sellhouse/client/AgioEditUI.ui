@@ -131,7 +131,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
             <isContainer>true</isContainer>
-            <constraints>10,133,691,19,0</constraints>
+            <constraints>10,131,270,19,0</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -424,7 +424,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDPanel</classType>
             <isContainer>true</isContainer>
-            <constraints>7,170,938,478,0</constraints>
+            <constraints>7,191,938,457,0</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -641,6 +641,48 @@
                     <name>boundLabelUnderline</name>
                     <type>boolean</type>
                     <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[contAgioType].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CoreUI" />
+            </parent>
+        </component>
+        <component>
+            <name>contIsAS</name>
+            <alias>uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[contIsAS].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>431,131,270,19,0</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[contIsAS].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[contIsAS].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[contIsAS].properties.property[boundLabelUnderline].value</value>
                     <isMultiLan>false</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
@@ -1221,6 +1263,54 @@
                 </propertyBinding>
             </propertyBindings>
         </component>
+        <component>
+            <name>cbIsAS</name>
+            <alias>uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[cbIsAS].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDComboBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>required</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[cbIsAS].properties.property[required].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>items</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[cbIsAS].properties.property[items].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="contIsAS" />
+            </parent>
+            <propertyBindings>
+                <propertyBinding>
+                    <propertyName>selectedItem</propertyName>
+                    <propertyType>java.lang.Object</propertyType>
+                    <bindingObject>editData</bindingObject>
+                    <bindingField>isAS</bindingField>
+                    <fieldType>com.kingdee.eas.fdc.sellhouse.BooleanEnum</fieldType>
+                    <accessType />
+                    <autoMode>false</autoMode>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </propertyBinding>
+            </propertyBindings>
+        </component>
     </components>
     <dataObjects>
         <dataObject>
@@ -1344,6 +1434,24 @@
             <lang locale="zh_TW" value="[Enum]com.kingdee.eas.fdc.sellhouse.AgioTypeEnum" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[cbAgioType].properties.property[required].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[cbIsAS].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[cbIsAS].properties.property[items].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="[Enum]com.kingdee.eas.fdc.sellhouse.BooleanEnum" />
+            <lang locale="zh_HK" value="[Enum]com.kingdee.eas.fdc.sellhouse.BooleanEnum" />
+            <lang locale="zh_TW" value="[Enum]com.kingdee.eas.fdc.sellhouse.BooleanEnum" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[cbIsAS].properties.property[required].value">
             <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_HK" value="true" />
@@ -1495,6 +1603,30 @@
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[contDescription].properties.property[boundLabelUnderline].value">
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[contIsAS].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[contIsAS].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[contIsAS].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="按时签约折扣" />
+            <lang locale="zh_HK" value="按時簽約折扣" />
+            <lang locale="zh_TW" value="按時簽約折扣" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.AgioEditUI].components.component[contIsAS].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_HK" value="true" />
             <lang locale="zh_TW" value="true" />

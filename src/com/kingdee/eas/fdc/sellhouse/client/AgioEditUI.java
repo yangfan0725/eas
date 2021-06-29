@@ -170,13 +170,13 @@ public class AgioEditUI extends AbstractAgioEditUI {
 		
 	}
 	protected void f7PayType_dataChanged(DataChangeEvent e) throws Exception {
-		SHEPayTypeInfo info=(SHEPayTypeInfo) this.f7PayType.getValue();
-		if(info!=null){
-			info=SHEPayTypeFactory.getRemoteInstance().getSHEPayTypeInfo(new ObjectUuidPK(info.getId()));
-			this.txtPro.setValue(info.getAgio());
-		}else{
-			this.txtPro.setValue(null);
-		}
+//		SHEPayTypeInfo info=(SHEPayTypeInfo) this.f7PayType.getValue();
+//		if(info!=null){
+//			info=SHEPayTypeFactory.getRemoteInstance().getSHEPayTypeInfo(new ObjectUuidPK(info.getId()));
+//			this.txtPro.setValue(info.getAgio());
+//		}else{
+//			this.txtPro.setValue(null);
+//		}
 	}
 
 	protected void fetchInitData() throws Exception {
@@ -323,6 +323,14 @@ public class AgioEditUI extends AbstractAgioEditUI {
 				MsgBox.showError("百分比录入错误!");
 				this.abort();
 			}
+		}
+		if(this.cbAgioType.getSelectedItem()==null){
+			MsgBox.showError("计算模式不能为空!");
+			this.abort();
+		}
+		if(this.cbIsAS.getSelectedItem()==null){
+			MsgBox.showError("按时签约折扣不能为空!");
+			this.abort();
 		}
 		if(this.kdtPriceAdjustEntry.getRowCount()==0){
 			MsgBox.showError("房间信息不能为空!");

@@ -49,4 +49,5 @@ public interface ContractBillController extends FDCBillController
     public void synReUpdateProgramming(Context ctx, String billId, IObjectValue programming) throws BOSException, EASBizException, RemoteException;
     public void costIndex(Context ctx, IObjectPK pk) throws BOSException, EASBizException, RemoteException;
     public Map getOAPosition(Context ctx, String number) throws BOSException, EASBizException, RemoteException;
+    public Map getQJYZ(Context ctx) throws BOSException, EASBizException, RemoteException;
 }

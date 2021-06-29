@@ -577,6 +577,27 @@
             </exceptions>
             <configured>false</configured>
         </method>
+        <method>
+            <name>getQJYZ</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].methods.method[getQJYZ].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].methods.method[getQJYZ].description</description>
+            <innerID>e2a2f169-ada0-4fe1-990f-2a954e37d989</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>java.util.Map</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
     </methods>
     <isAbstract>false</isAbstract>
     <bizUnitPK>com.kingdee.eas.fdc.contract.ContractBill</bizUnitPK>
@@ -2503,6 +2524,17 @@
                 <key name="name" value="FOaOpinion" />
             </mappingField>
         </ownProperty>
+        <linkProperty>
+            <name>yzEntry</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.linkProperty[yzEntry].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.linkProperty[yzEntry].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="R_ContractBill_ContractYZEntry_yzEntry" />
+            </relationship>
+        </linkProperty>
     </properties>
     <logicalKey>
         <name>id</name>
@@ -4087,6 +4119,18 @@
             <lang locale="zh_HK" value="合同ID集合" />
             <lang locale="zh_TW" value="合同ID集合" />
         </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].methods.method[getQJYZ].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取群杰印章" />
+            <lang locale="zh_HK" value="獲取群傑印章" />
+            <lang locale="zh_TW" value="獲取群傑印章" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].methods.method[getQJYZ].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取群杰印章" />
+            <lang locale="zh_HK" value="獲取群傑印章" />
+            <lang locale="zh_TW" value="獲取群傑印章" />
+        </rs>
         <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].methods.method[getValue].alias">
             <lang locale="en_US" value="getValue" />
             <lang locale="zh_CN" value="取值" />
@@ -5185,6 +5229,18 @@
             <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.linkProperty[yzEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="印章分录" />
+            <lang locale="zh_HK" value="印章分錄" />
+            <lang locale="zh_TW" value="印章分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.linkProperty[yzEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="印章分录" />
+            <lang locale="zh_HK" value="印章分錄" />
+            <lang locale="zh_TW" value="印章分錄" />
         </rs>
         <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.ownProperty[addPrjAmtPaid].alias">
             <lang locale="en_US" value="null" />

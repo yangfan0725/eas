@@ -21,4 +21,5 @@ public interface WSSellHouseFacadeController extends BizController
     public String sysCustomer(Context ctx, String str) throws BOSException, EASBizException, RemoteException;
     public String sysCustomerValid(Context ctx, String str) throws BOSException, EASBizException, RemoteException;
     public String isOldCustomer(Context ctx, String str) throws BOSException, EASBizException, RemoteException;
+    public String synTransaction(Context ctx, String str) throws BOSException, EASBizException, RemoteException;
 }

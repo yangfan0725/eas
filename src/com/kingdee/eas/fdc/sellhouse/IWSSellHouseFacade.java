@@ -18,4 +18,5 @@ public interface IWSSellHouseFacade extends IBizCtrl
     public String sysCustomer(String str) throws BOSException, EASBizException;
     public String sysCustomerValid(String str) throws BOSException, EASBizException;
     public String isOldCustomer(String str) throws BOSException, EASBizException;
+    public String synTransaction(String str) throws BOSException, EASBizException;
 }

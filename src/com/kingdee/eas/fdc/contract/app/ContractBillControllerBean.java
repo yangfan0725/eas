@@ -1,5 +1,6 @@
 package com.kingdee.eas.fdc.contract.app;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
@@ -23,6 +24,9 @@ import net.sf.json.JSONObject;
 
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.log4j.Logger;
 
 import com.kingdee.bos.BOSException;
@@ -123,6 +127,9 @@ import com.kingdee.eas.fdc.contract.ContractWFTypeInfo;
 import com.kingdee.eas.fdc.contract.ContractWithoutTextCollection;
 import com.kingdee.eas.fdc.contract.ContractWithoutTextFactory;
 import com.kingdee.eas.fdc.contract.ContractWithoutTextInfo;
+import com.kingdee.eas.fdc.contract.ContractYZEntryCollection;
+import com.kingdee.eas.fdc.contract.ContractYZEntryFactory;
+import com.kingdee.eas.fdc.contract.ContractYZEntryInfo;
 import com.kingdee.eas.fdc.contract.FDCUtils;
 import com.kingdee.eas.fdc.contract.IContractBill;
 import com.kingdee.eas.fdc.contract.IContractEstimateChangeBill;
@@ -326,11 +333,11 @@ public class ContractBillControllerBean extends
 				JSONObject json=new JSONObject();
 				
 				if(info.getSourceFunction()!=null){
-					call.setOperationName("updatetestEkpReview");
+					call.setOperationName("updateEkpReview");
 					json.put("id", info.getSourceFunction());
 					json.put("flowParam", info.getOaOpinion());
 				}else{
-					call.setOperationName("addtestEkpReview");
+					call.setOperationName("addEkpReview");
 					json.put("id", info.getId().toString());
 				}
 //				builder.clear();
@@ -375,10 +382,40 @@ public class ContractBillControllerBean extends
 					
 				}
 				obj.put("fd_38cf1798043f94", info.getAmount().doubleValue());
+				Boolean flag=true;
+				if(ctx.getAIS().equals("easdb")){  //easdb
+					 flag=false;
+				}
 				for(int i=0;i<info.getEntrys().size();i++){
 					ContractBillEntryInfo entry=ContractBillEntryFactory.getLocalInstance(ctx).getContractBillEntryInfo(new ObjectUuidPK(info.getEntrys().get(i).getId()));
 					if(entry.getDetail().equals("是否使用电子章")){
 						obj.put("fd_38f02d7df82f3e", entry.getContent());
+						if(entry.getContent().equals("否")){
+							ContractYZEntryCollection yzEntrys = info.getYzEntry();
+							if(yzEntrys.size()>0&&!flag){
+//								JSONArray yzArray = new JSONArray();
+							    for (int x=0;x<yzEntrys.size();x++) {
+							    	int y=x+1;
+//							    	JSONObject yzInfo=new JSONObject();
+							    	ContractYZEntryInfo yz =ContractYZEntryFactory.getLocalInstance(ctx).getContractYZEntryInfo(new ObjectUuidPK(info.getYzEntry().get(x).getId()));
+							    	if(y<10){
+							    		obj.put("seal_no"+String.valueOf(y), yz.getType());
+								    	obj.put("seal_name"+String.valueOf(y), yz.getName());
+								    	obj.put("seal_id"+String.valueOf(y), yz.getYzID());
+								    	obj.put("seal_admin"+String.valueOf(y), yz.getAdmin());
+								    	obj.put("seal_number"+String.valueOf(y), yz.getAdminID());
+								    	obj.put("seal_count"+String.valueOf(y), yz.getCount());
+							    	}else{
+							    		obj.put("seal_no_"+String.valueOf(y), yz.getType());
+								    	obj.put("seal_name_"+String.valueOf(y), yz.getName());
+								    	obj.put("seal_id_"+String.valueOf(y), yz.getYzID());
+								    	obj.put("seal_admin_"+String.valueOf(y), yz.getAdmin());
+								    	obj.put("seal_number_"+String.valueOf(y), yz.getAdminID());
+								    	obj.put("seal_count_"+String.valueOf(y), yz.getCount());
+							    	}
+							    }
+							}
+						}
 					}
 				}
 				if(info.isIsJT()){
@@ -403,7 +440,8 @@ public class ContractBillControllerBean extends
 //					token
 					String token = "&token=";
 					sendUrl = String.valueOf(sbv.append(appendUrl).append(appendType).append(appendId).append(token));
-					System.out.println(sendUrl);
+					System.out.println("======================================================================================================================================================================" +
+							"=============================================================================================================="+sendUrl);
 				}
 				json.put("fdPcViewLink", sendUrl);
 
@@ -470,6 +508,7 @@ public class ContractBillControllerBean extends
 	            json.put("attFile", attFile);
 				
 		        String result=(String)call.invoke(new Object[]{json.toString()} );
+		        System.out.println(json.toString());
 		        JSONObject rso = JSONObject.fromObject(result);
 		        if(!rso.getString("code").equals("1")){
 		        	throw new EASBizException(new NumericExceptionSubItem("100",rso.getString("massage")));
@@ -3196,4 +3235,94 @@ public class ContractBillControllerBean extends
 		}
 		return map;
 	}
+	
+	protected Map _getQJYZ(Context ctx) throws BOSException, EASBizException {
+		Map map=new HashMap();
+		FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
+		builder.appendSql("select furl from t_qj where ftype='getToken'");
+		IRowSet rs=builder.executeQuery();
+		String url=null;
+		try {
+			while(rs.next()){
+				url=rs.getString("furl");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		HttpClient httpClient =new HttpClient();
+		PostMethod post = new PostMethod(url);
+//		post.addRequestHeader("token", "ybwy2019interface");
+		post.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8") ;
+		post.addParameter("restname", "songdu");
+		post.addParameter("password", "123456");
+		
+		String respStr=null;
+		try {
+			httpClient.executeMethod(post);
+			respStr = post.getResponseBodyAsString();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        post.releaseConnection();
+        
+        com.alibaba.fastjson.JSONObject rso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+        if(!rso.getString("status").equals("0")){
+        	throw new EASBizException(new NumericExceptionSubItem("100",rso.getString("massage")));
+        }
+		String token =rso.getJSONObject("data").getString("token");
+		
+		if(token!=null&&token!=""){
+			builder.clear();
+			builder.appendSql("select furl from t_qj where ftype='getYZ'");
+			IRowSet rs1=builder.executeQuery();
+			String url1=null;
+			try {
+				while(rs1.next()){
+					url1=rs1.getString("furl");
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			HttpClient httpClient1 =new HttpClient();
+			PostMethod post1 = new PostMethod(url1);
+//			post.addRequestHeader("token", token);
+			post1.setRequestHeader("Content-Type", "application/json") ;
+			post1.setRequestHeader("Authorization", "Bearer "+token);
+			String str=null;
+			try {
+				httpClient.executeMethod(post1);
+				str = post1.getResponseBodyAsString();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			com.alibaba.fastjson.JSONObject yzJson =  com.alibaba.fastjson.JSONObject.parseObject(str);
+			 if(!yzJson.getString("status").equals("0")){
+		        	throw new EASBizException(new NumericExceptionSubItem("100",rso.getString("massage")));
+		        }
+			com.alibaba.fastjson.JSONArray yzArray = yzJson.getJSONArray("data");
+			Boolean flag=true;
+			if(ctx.getAIS().equals("easdb")){  //easdb
+				 flag=false;
+			}
+			
+			for (int i=0;i<yzArray.size();i++) {
+				String ifDC = yzArray.getJSONObject(i).getString("sealType");
+				if(flag&&ifDC.contains("物业")){
+				map.put(yzArray.getJSONObject(i).getString("id"), yzArray.getJSONObject(i));
+				}else if(!flag&&ifDC.contains("地产")){
+//					todo WY
+					map.put(yzArray.getJSONObject(i).getString("id"), yzArray.getJSONObject(i));
+				}
+            }
+	        post1.releaseConnection();
+		}
+		return map;
+	}
+	
 }

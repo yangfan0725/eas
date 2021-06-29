@@ -63,6 +63,7 @@ public class OaPositionUI extends AbstractOaPositionUI
 		Map map=(Map) this.getUIContext().get("map");
 		Iterator<Entry<String, String>> entries = map.entrySet().iterator();
 		while(entries.hasNext()){
+			
 		    Entry<String, String> entry = entries.next();
 		    String key = entry.getKey();
 		    String value = entry.getValue();
