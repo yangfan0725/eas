@@ -43,6 +43,7 @@ import com.kingdee.bos.dao.IObjectValue;
 import com.kingdee.eas.basedata.org.FullOrgUnitInfo;
 import com.kingdee.eas.common.client.OprtState;
 import com.kingdee.eas.common.client.SysContext;
+import com.kingdee.eas.fdc.basecrm.CRMHelper;
 import com.kingdee.eas.fdc.basedata.CostAccountCollection;
 import com.kingdee.eas.fdc.basedata.CostAccountFactory;
 import com.kingdee.eas.fdc.basedata.CostAccountInfo;
@@ -236,6 +237,15 @@ public class MarketYearProjectEditUI extends AbstractMarketYearProjectEditUI
 		} catch (BOSException e1) {
 			e1.printStackTrace();
 		}
+		Map happenMap=new HashMap();
+		try {
+			happenMap=getHappenAmount(this.editData.getYear());
+		} catch (BOSException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		Map rowMap=new HashMap();
 		for(int i=0;i<this.editData.getEntry().size();i++){
 			MarketYearProjectEntryInfo entry=this.editData.getEntry().get(i);
@@ -253,19 +263,13 @@ public class MarketYearProjectEditUI extends AbstractMarketYearProjectEditUI
 				r.getStyleAttributes().setBackground(new java.awt.Color(246, 246, 191));
 				r.getStyleAttributes().setLocked(true);
 			}else if(this.editData.getYear()!=0){
-				try {
-					r.getCell("happenAmount").setValue(getHappenAmount(entry.getCostAccount().getId().toString(),this.editData.getYear()));
-				} catch (BOSException e) {
-					e.printStackTrace();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				r.getCell("happenAmount").setValue(happenMap.get(entry.getCostAccount().getId().toString()));
 			}
 			r.getCell("amount"+entry.getMonth()).setValue(entry.getAmount());
 			
 			if(this.editData.getVersion()!=1){
 				BigDecimal comAmount=(BigDecimal) map.get(entry.getCostAccount().getId().toString()+"@"+entry.getMonth());
-				if(comAmount!=null){
+				if(comAmount!=null&&entry.getAmount()!=null){
 					if(comAmount.compareTo(entry.getAmount())>0){
 						r.getCell("amount"+entry.getMonth()).getStyleAttributes().setBackground(Color.GREEN);
 					}else if(comAmount.compareTo(entry.getAmount())<0){
@@ -302,25 +306,26 @@ public class MarketYearProjectEditUI extends AbstractMarketYearProjectEditUI
 		}
 		isLoad=false;
 	}
-	private BigDecimal getHappenAmount(String costAccountId,int year) throws BOSException, SQLException{
+	private Map getHappenAmount(int year) throws BOSException, SQLException{
+		Map map=new HashMap();
 		StringBuilder sql = new StringBuilder();
 //		sql.append(" select sum(entry.famount) amount from T_CON_ContractMarketEntry entry left join t_Con_contractBill head on head.fid=entry.fheadid");
 //		sql.append(" where year(fdate)="+year+" and head.fstate!='1SAVED' and head.FMpCostAccountId='"+costAccountId+"'");
-		sql.append(" select sum(t.famount) amount from(");
+		sql.append(" select sum(t.famount) amount,t.fcostAccountid costAccountId from(");
 		sql.append(" select (case when t.fsettleprice is null then entry.famount else t.fsettleprice*entry.frate/100 end)famount ,head.FMpCostAccountId fcostAccountid from T_CON_ContractMarketEntry entry left join t_con_contractbill head on head.fid=entry.fheadid");
 		sql.append(" left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=head.fid where head.fstate='4AUDITTED'");
 		sql.append(" and year(entry.fdate)="+year);
 		sql.append(" union all select mpEntry.famount,mpEntry.fcostAccountid from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid where mp.fstate!='1SAVED'");
 		sql.append(" and year(mp.fbizDate)="+year);
 		sql.append(" and not exists(select t1.fid from t_con_contractBill t1 where t1.fstate='4AUDITTED' and t1.FMarketProjectId=mp.fid and t1.FMpCostAccountId=mpEntry.fcostAccountid) ");
-		sql.append(" )t where t.fcostAccountid='"+costAccountId+"'");
+		sql.append(" )t group by t.fcostAccountid ");
 		FDCSQLBuilder _builder = new FDCSQLBuilder();
 		_builder.appendSql(sql.toString());
 		IRowSet rowSet = _builder.executeQuery();
 		while(rowSet.next()){
-			return rowSet.getBigDecimal("amount");
+			map.put(rowSet.getString("costAccountId"), rowSet.getBigDecimal("amount"));
 		}
-		return FDCHelper.ZERO;
+		return map;
 	}
 	protected IObjectValue createNewData() {
 		MarketYearProjectInfo info=(MarketYearProjectInfo)this.getUIContext().get("info");
@@ -361,11 +366,31 @@ public class MarketYearProjectEditUI extends AbstractMarketYearProjectEditUI
 			info.setVersion(info.getVersion()+1);
 			info.setId(null);
 			BigDecimal totalAmount=FDCHelper.ZERO;
-			for(int i=0;i<info.getEntry().size();i++){
-				info.getEntry().get(i).setId(BOSUuid.create(info.getEntry().get(i).getBOSType()));
-				if(info.getEntry().get(i).getCostAccount().isIsLeaf()){
-					totalAmount=FDCHelper.add(totalAmount,info.getEntry().get(i).getAmount());
+			try {
+				CostAccountCollection col=CostAccountFactory.getRemoteInstance().getCostAccountCollection("select * from where isMarket=1 and fullOrgUnit.id='"+info.getOrgUnit().getId()+"' and isEnabled=1 order by longNumber");
+				Set costAccount=new HashSet();
+				for(int i=0;i<info.getEntry().size();i++){
+					info.getEntry().get(i).setId(BOSUuid.create(info.getEntry().get(i).getBOSType()));
+					costAccount.add(info.getEntry().get(i).getCostAccount().getId().toString());
+					if(info.getEntry().get(i).getCostAccount().isIsLeaf()){
+						totalAmount=FDCHelper.add(totalAmount,info.getEntry().get(i).getAmount());
+					}
 				}
+				for(int i=0;i<col.size();i++){
+					CostAccountInfo cost=col.get(i);
+					if(costAccount.contains(cost.getId().toString())){
+						continue;
+					}
+					for(int j=1;j<13;j++){
+						MarketYearProjectEntryInfo entry=new MarketYearProjectEntryInfo();
+						entry.setCostAccount(cost);
+						entry.setMonth(j);
+						info.getEntry().add(entry);
+					}
+				}
+				CRMHelper.sortCollection(info.getEntry(), "costAccount.longNumber", true);
+			}catch (BOSException e) {
+				e.printStackTrace();
 			}
 			info.setLastTotalAmount(totalAmount);
 		}
@@ -414,17 +439,11 @@ public class MarketYearProjectEditUI extends AbstractMarketYearProjectEditUI
 		}else{
 			year_old = this.spYear.getIntegerVlaue().intValue();
 		}
-		
+		Map happenMap=getHappenAmount(this.spYear.getIntegerVlaue().intValue());
 		for(int i=0;i<this.kdtEntry.getRowCount();i++){
 			MarketYearProjectEntryInfo entry=(MarketYearProjectEntryInfo)this.kdtEntry.getRow(i).getCell("amount1").getUserObject();
 			if(entry.getCostAccount().isIsLeaf()){
-				try {
-					this.kdtEntry.getRow(i).getCell("happenAmount").setValue(getHappenAmount(entry.getCostAccount().getId().toString(),this.spYear.getIntegerVlaue().intValue()));
-				} catch (BOSException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
+				this.kdtEntry.getRow(i).getCell("happenAmount").setValue(happenMap.get(entry.getCostAccount().getId().toString()));
 			}
 		}
 		for(int i=this.kdtEntry.getRowCount()-1;i>=0;i--){
