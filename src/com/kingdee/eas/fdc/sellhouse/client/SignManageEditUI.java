@@ -1008,6 +1008,7 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 
 		sels.add("room.building.productType.*");
 		sels.add("room.saleRate");
+		sels.add("room.projectStandardPrice");
 		
 		sels.add("customerCertificateNumber");
 		return sels;
@@ -1182,12 +1183,10 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 			}
 			if(((BaseTransactionInfo)editData).isIsBasePriceSell()){
 				RoomInfo room = (RoomInfo) this.f7Room.getValue();
-				if(room.getBaseStandardPrice()==null){
-					FDCMsgBox.showWarning(this,"已启用强制底价控制参数，该房间总价底价不存在，请检查！");
+				if(room.getProjectStandardPrice()==null){
+					FDCMsgBox.showWarning(this,"已启用强制底价控制参数，该房间项目底价不存在，请检查！");
 					SysUtil.abort();
 				}
-				RoomInfo roomInfo = (RoomInfo) this.f7Room.getValue();
-				if(roomInfo==null) return;
 				AgioEntryCollection agioCol=((AgioEntryCollection)this.txtAgio.getUserObject());
 				
 				AgioParam oldAgioParam=new AgioParam();
@@ -1236,7 +1235,7 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 //					}
 					payTypeAgio = FDCHelper.ONE_HUNDRED;
 				}
-				PurchaseParam purParam = SHEManageHelper.getAgioParam(oldAgioParam, roomInfo, 
+				PurchaseParam purParam = SHEManageHelper.getAgioParam(oldAgioParam, room, 
 						 sellType,valuationType,isFitmentToContract,roomArea,buildingArea,roomPrice,buildingPrice,standardAmount,fitmentAmount, attachmentAmount, allCompensate ,SpecialAgioEnum.DaZhe, payTypeAgio,payTypeName);
 				
 				BigDecimal oldDealTotalAmount=purParam.getDealTotalAmount().setScale(digit, toIntegerType);
@@ -1257,12 +1256,12 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 		}else{
 			if(((BaseTransactionInfo)editData).isIsBasePriceSell()){
 				RoomInfo room = (RoomInfo) this.f7Room.getValue();
-				if(room.getBaseStandardPrice()==null){
-					FDCMsgBox.showWarning(this,"已启用强制底价控制参数，该房间底价不存在，请检查！");
+				if(room.getProjectStandardPrice()==null){
+					FDCMsgBox.showWarning(this,"已启用强制底价控制参数，该房间项目底价不存在，请检查！");
 					SysUtil.abort();
 				}
-				if(this.txtDealTotalAmount.getBigDecimalValue().setScale(digit, toIntegerType).compareTo(room.getBaseStandardPrice().setScale(digit, toIntegerType))<0){
-					FDCMsgBox.showWarning(this,"成交总价不能低于房间集团底价！("+this.txtDealTotalAmount.getBigDecimalValue().setScale(digit, toIntegerType)+"<"+room.getBaseStandardPrice().setScale(digit, toIntegerType)+")");
+				if(this.txtDealTotalAmount.getBigDecimalValue().setScale(digit, toIntegerType).compareTo(room.getProjectStandardPrice().setScale(digit, toIntegerType))<0){
+					FDCMsgBox.showWarning(this,"成交总价不能低于房间项目底价！("+this.txtDealTotalAmount.getBigDecimalValue().setScale(digit, toIntegerType)+"<"+room.getBaseStandardPrice().setScale(digit, toIntegerType)+")");
 					SysUtil.abort();
 				}
 			}

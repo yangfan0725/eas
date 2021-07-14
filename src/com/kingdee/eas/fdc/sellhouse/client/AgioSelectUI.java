@@ -353,7 +353,7 @@ public class AgioSelectUI extends AbstractAgioSelectUI {
 			if(sign.getSrcId()!=null&&BOSUuid.read(sign.getSrcId().toString()).getType().equals(new PurchaseManageInfo().getBOSType())){
 				Date purDate=PurchaseManageFactory.getRemoteInstance().getPurchaseManageInfo(new ObjectUuidPK(sign.getSrcId())).getBusAdscriptionDate();
 				Date signDate=sign.getBusAdscriptionDate();
-				if(FDCDateHelper.getDiffDays(purDate,signDate)>4){
+				if(FDCDateHelper.getDiffDays(purDate,signDate)>3){
 					isAs=false;
 				}
 			}

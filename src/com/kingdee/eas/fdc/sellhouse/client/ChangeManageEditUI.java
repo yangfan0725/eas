@@ -439,6 +439,11 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 					getRoomAttachmentList(info,objectValue);
 				}
 				
+				if(ChangeBizTypeEnum.QUITROOM.equals(info.getBizType())){
+					info.setDetails("1、 变更付款方式导致优惠变动：客户因XXX原因，申请从付款方式A变为付款方式B，相应折扣从XX折变为XX折，成交总价变为XX，该套房屋无需重新定调价。\n"+
+"2、其他退房：客户因XXX原因申请退房，该套房经重新评估，需要调整总价为XXX元，调价流程已上报(详见附件)，现发起退房流程。（或者是不需要重新定调价）\n");
+				}
+				
 			} catch (BOSException e) {
 				logger.error(e.getMessage());
 			} catch (EASBizException e) {
@@ -1735,6 +1740,9 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 			this.cbChangeType.addItem(ChangeTypeEnum.GMTF);
 			this.cbChangeType.addItem(ChangeTypeEnum.TSZKTF);
 			this.cbChangeType.addItem(ChangeTypeEnum.YGTF);
+			
+			this.details.setText("1、 变更付款方式导致优惠变动：客户因XXX原因，申请从付款方式A变为付款方式B，相应折扣从XX折变为XX折，成交总价变为XX，该套房屋无需重新定调价。\n"+
+					"2、其他退房：客户因XXX原因申请退房，该套房经重新评估，需要调整总价为XXX元，调价流程已上报(详见附件)，现发起退房流程。（或者是不需要重新定调价）\n");
 		}
 		if(ChangeBizTypeEnum.PRICECHANGE.equals((ChangeBizTypeEnum)comboBizType.getSelectedItem())&&this.tblPCPayList.getRowCount()==0){
 			loadPayList(editData,this.tblPCPayList);

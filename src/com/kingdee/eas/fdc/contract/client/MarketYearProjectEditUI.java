@@ -167,7 +167,17 @@ public class MarketYearProjectEditUI extends AbstractMarketYearProjectEditUI
 		editData.setName(editData.getOrgUnit().getName()+"_"+editData.getYear()+"年年度营销预算-"+this.editData.getVersion());
 		this.txtName.setName(editData.getName());
 		
-		if(this.kdtEntry.getRowCount()>0) this.txtTotalAmount.setValue(this.kdtEntry.getRow(0).getCell("totalAmount").getValue());
+		if(this.kdtEntry.getRowCount()>0){
+			BigDecimal totalAmount=FDCHelper.ZERO;
+			for(int i=0;i<this.kdtEntry.getRowCount();i++){
+				MarketYearProjectEntryInfo entryInfo=(MarketYearProjectEntryInfo)this.kdtEntry.getRow(i).getCell("amount1").getUserObject();
+				if(entryInfo.getCostAccount().getLevel()==2){
+					totalAmount=FDCHelper.add(totalAmount, this.kdtEntry.getRow(i).getCell("totalAmount").getValue());
+				}
+			}
+			this.editData.setTotalAmount(totalAmount);
+			this.txtTotalAmount.setValue(totalAmount);
+		}
 	}
 	public void loadFields() {
 		isLoad=true;
@@ -418,8 +428,8 @@ public class MarketYearProjectEditUI extends AbstractMarketYearProjectEditUI
 			if(totalAmount==null) totalAmount=FDCHelper.ZERO;
 			if(happenAmount==null) happenAmount=FDCHelper.ZERO;
 			if(totalAmount.compareTo(happenAmount)<0){
-//				FDCMsgBox.showWarning(this,"合计数低于已发生金额，不允许提交！");
-//				SysUtil.abort();
+				FDCMsgBox.showWarning(this,"合计数低于已发生金额，不允许提交！");
+				SysUtil.abort();
 			}
 		}
 		super.verifyInputForSubmint();

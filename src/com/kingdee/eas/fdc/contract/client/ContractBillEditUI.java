@@ -2751,6 +2751,40 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.ALLRANGE);
 		this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.BIGRANGE);
 		this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.SMALLRANGE);
+		
+		if(this.editData.getOaState()!=null&&this.editData.getOaState().equals("1")){
+			this.prmtcontractType.setEnabled(false);
+			this.txtcontractName.setEnabled(false);
+			this.prmtlandDeveloper.setEnabled(false);
+			this.prmtpartB.setEnabled(false);
+			this.prmtpartC.setEnabled(false);
+			this.contractPropert.setEnabled(false);
+			this.comboCurrency.setEnabled(false);
+			this.txtamount.setEnabled(false);
+			this.txtGrtRate.setEnabled(false);
+			this.pkbookedDate.setEnabled(false);
+			this.txtGrtAmount.setEnabled(false);
+			this.txtchgPercForWarn.setEnabled(false);
+			this.contractSource.setEnabled(false);
+			this.pkStartDate.setEnabled(false);
+			this.pkEndDate.setEnabled(false);
+			this.prmtRespPerson.setEnabled(false);
+			this.prmtContractWFType.setEnabled(false);
+			this.prmtRespDept.setEnabled(false);
+			this.cbOrgType.setEnabled(false);
+			this.prmtCreateOrg.setEnabled(false);
+			this.txtDes.setEnabled(false);
+			this.prmtLxNum.setEnabled(false);
+			this.txtBank.setEnabled(false);
+			this.txtBankAccount.setEnabled(false);
+			this.cbTaxerQua.setEnabled(false);
+			this.txtTaxerNum.setEnabled(false);
+			this.txtNumber.setEnabled(false);
+			this.prmtTAEntry.setEnabled(false);
+			this.prmtMarketProject.setEnabled(false);
+			this.prmtMpCostAccount.setEnabled(false);
+			this.prmtinviteType.setEnabled(false);
+		}
 	}
 	protected void prmtTAEntry_dataChanged(DataChangeEvent e) throws Exception {
 		this.tblInvite.removeRows();
@@ -3608,6 +3642,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		sic.add(new SelectorItemInfo("sourceFunction"));
 		sic.add(new SelectorItemInfo("oaPosition"));
 		sic.add(new SelectorItemInfo("oaOpinion"));
+		sic.add(new SelectorItemInfo("oaState"));
 		return sic;
 	}
 
@@ -4161,6 +4196,40 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			this.txtamount.setEnabled(true);
 		}else if (this.contractPropert.getSelectedItem() == ContractPropertyEnum.STRATEGY) {
 			this.txtamount.setEnabled(false);
+		}
+		
+		if(this.editData.getOaState()!=null&&this.editData.getOaState().equals("1")){
+			this.prmtcontractType.setEnabled(false);
+			this.txtcontractName.setEnabled(false);
+			this.prmtlandDeveloper.setEnabled(false);
+			this.prmtpartB.setEnabled(false);
+			this.prmtpartC.setEnabled(false);
+			this.contractPropert.setEnabled(false);
+			this.comboCurrency.setEnabled(false);
+			this.txtamount.setEnabled(false);
+			this.txtGrtRate.setEnabled(false);
+			this.pkbookedDate.setEnabled(false);
+			this.txtGrtAmount.setEnabled(false);
+			this.txtchgPercForWarn.setEnabled(false);
+			this.contractSource.setEnabled(false);
+			this.pkStartDate.setEnabled(false);
+			this.pkEndDate.setEnabled(false);
+			this.prmtRespPerson.setEnabled(false);
+			this.prmtContractWFType.setEnabled(false);
+			this.prmtRespDept.setEnabled(false);
+			this.cbOrgType.setEnabled(false);
+			this.prmtCreateOrg.setEnabled(false);
+			this.txtDes.setEnabled(false);
+			this.prmtLxNum.setEnabled(false);
+			this.txtBank.setEnabled(false);
+			this.txtBankAccount.setEnabled(false);
+			this.cbTaxerQua.setEnabled(false);
+			this.txtTaxerNum.setEnabled(false);
+			this.txtNumber.setEnabled(false);
+			this.prmtTAEntry.setEnabled(false);
+			this.prmtMarketProject.setEnabled(false);
+			this.prmtMpCostAccount.setEnabled(false);
+			this.prmtinviteType.setEnabled(false);
 		}
 	}
 
@@ -5523,19 +5592,19 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			}
 			BigDecimal rate=FDCHelper.ZERO;
 			for(int i=0;i<this.tblMarket.getRowCount();i++){
-				rate=FDCHelper.add(rate, this.tblMarket.getRow(i).getCell("rate").getValue());
-				if(this.tblMarket.getRow(i).getCell("date")==null){
+				if(this.tblMarket.getRow(i).getCell("date").getValue()==null){
 					FDCMsgBox.showWarning(this,"预计发生年月不能为空！");
 					SysUtil.abort();
 				}
-				if(this.tblMarket.getRow(i).getCell("rate")==null){
+				if(this.tblMarket.getRow(i).getCell("rate").getValue()==null){
 					FDCMsgBox.showWarning(this,"发生比例不能为空！");
 					SysUtil.abort();
 				}
-				if(this.tblMarket.getRow(i).getCell("amount")==null){
+				if(this.tblMarket.getRow(i).getCell("amount").getValue()==null){
 					FDCMsgBox.showWarning(this,"发生金额不能为空！");
 					SysUtil.abort();
 				}
+				rate=FDCHelper.add(rate, this.tblMarket.getRow(i).getCell("rate").getValue());
 			}
 			if(rate.compareTo(new BigDecimal(100))!=0){
 				FDCMsgBox.showWarning(this,"发生比例之和不等于100%！");

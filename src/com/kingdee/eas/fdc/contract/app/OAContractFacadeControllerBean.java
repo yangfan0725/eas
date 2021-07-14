@@ -1348,6 +1348,7 @@ public class OAContractFacadeControllerBean extends AbstractOAContractFacadeCont
 		String result = data.getString("result");
 //    	type 01:合同、02:合同付款申请单、03:无合同付款;04：供应商申请，05变更审批单，06变更确认单,07营销立项
 		String type = data.getString("type");
+		Object oaState=data.get("oaState");
 		final String easid = data.getString("easid");
 		try {
 			if(result.equals("01")){
@@ -1473,8 +1474,12 @@ public class OAContractFacadeControllerBean extends AbstractOAContractFacadeCont
 				if(type.equals("01")){
 		        	ContractBillInfo info=ContractBillFactory.getLocalInstance(ctx).getContractBillInfo(new ObjectUuidPK(easid));
 	        		info.setState(FDCBillStateEnum.SUBMITTED);
+	        		if(oaState!=null){
+	        			info.setOaState(oaState.toString());
+	        		}
 	        		SelectorItemCollection sic=new SelectorItemCollection();
 	        		sic.add("state");
+	        		sic.add("oaState");
 	        		ContractBillFactory.getLocalInstance(ctx).updatePartial(info, sic);
 		        }else if(type.equals("02")){
 		        	PayRequestBillInfo info=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(easid));

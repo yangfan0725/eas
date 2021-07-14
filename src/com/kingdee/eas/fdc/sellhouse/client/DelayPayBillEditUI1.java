@@ -76,6 +76,7 @@ import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.common.client.OprtState;
 import com.kingdee.eas.common.client.SysContext;
 import com.kingdee.eas.common.client.UIContext;
+import com.kingdee.eas.fdc.basecrm.CRMConstants;
 import com.kingdee.eas.fdc.basecrm.CRMHelper;
 import com.kingdee.eas.fdc.basecrm.client.NewCommerceHelper;
 import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
@@ -91,6 +92,7 @@ import com.kingdee.eas.fdc.basedata.client.FDCUIWeightWorker;
 import com.kingdee.eas.fdc.basedata.client.IFDCWork;
 import com.kingdee.eas.fdc.sellhouse.AgioEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.AgioParam;
+import com.kingdee.eas.fdc.sellhouse.BaseTransactionInfo;
 import com.kingdee.eas.fdc.sellhouse.BuildingInfo;
 import com.kingdee.eas.fdc.sellhouse.BuildingUnitInfo;
 import com.kingdee.eas.fdc.sellhouse.DelayPayBillCollection;
@@ -446,7 +448,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 	private void setTable() throws BOSException{
 		RoomInfo room=(RoomInfo) this.prmtRoom.getValue();
 		if(room!=null){
-			SignManageCollection signCol=SignManageFactory.getRemoteInstance().getSignManageCollection("select signPayListEntry.*,signPayListEntry.moneyDefine.*,payType.*,* from where room.id='"+room.getId()+"' and (bizState='SignApple' or bizState='SignAudit') order by signPayListEntry.seq");
+			SignManageCollection signCol=SignManageFactory.getRemoteInstance().getSignManageCollection("select signPayListEntry.*,signPayListEntry.moneyDefine.*,payType.*,sellProject.*,* from where room.id='"+room.getId()+"' and (bizState='SignApple' or bizState='SignAudit') order by signPayListEntry.seq");
 			if(signCol.size()>0){
 				this.prmtPayType.setValue(signCol.get(0).getPayType());
 				this.txtCustomerNames.setText(signCol.get(0).getCustomerNames());
@@ -463,6 +465,8 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 					this.pkPlanSignDate.setValue(signCol.get(0).getPlanSignDate());
 				}
 				this.editData.setSourceFunction("SIGN");
+				this.editData.setSellProject(signCol.get(0).getSellProject());
+				this.prmtSellProject.setValue(signCol.get(0).getSellProject());
 				
 				this.kdtEntry.removeRows();
 				this.kdtNewEntry.removeRows();
@@ -489,9 +493,11 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 					newrow.getCell("appAmount").setValue(entry.getAppAmount());
 				}
 			}else{
-				PurchaseManageCollection purCol=PurchaseManageFactory.getRemoteInstance().getPurchaseManageCollection("select room.*,purPayListEntry.*,purPayListEntry.moneyDefine.*,payType.*,* from where room.id='"+room.getId()+"' and (bizState='PurApple' or bizState='PurAudit')");
+				PurchaseManageCollection purCol=PurchaseManageFactory.getRemoteInstance().getPurchaseManageCollection("select room.*,purPayListEntry.*,purPayListEntry.moneyDefine.*,payType.*,sellProject.*,* from where room.id='"+room.getId()+"' and (bizState='PurApple' or bizState='PurAudit')");
 				if(purCol.size()>0){
 					this.editData.setSourceFunction("PUR");
+					this.editData.setSellProject(purCol.get(0).getSellProject());
+					this.prmtSellProject.setValue(purCol.get(0).getSellProject());
 					this.prmtPayType.setValue(purCol.get(0).getPayType());
 					this.txtCustomerNames.setText(purCol.get(0).getCustomerNames());
 					this.pkPurDate.setValue(purCol.get(0).getBusAdscriptionDate());
@@ -522,10 +528,23 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 			}
 			IRow fittment=null;
 			IRow roomAttach=null;
+			int digit=0;
+			int priceToIntegerType=0;
+			HashMap value = SHEManageHelper.getCRMConstants(SysContext.getSysContext().getCurrentOrgUnit().getId());
+			if(SHEManageHelper.setPrecision(info.getDigit())==null){
+				digit=SHEManageHelper.setPrecision(value.get(CRMConstants.FDCSHE_PARAM_TOLAMOUNT_BIT).toString()).intValue();
+			}else{
+				digit=SHEManageHelper.setPrecision(info.getDigit()).intValue();
+			}
+			if(SHEManageHelper.setRoundingMode(info.getPriceToIntegerType())==null){
+				priceToIntegerType=SHEManageHelper.setRoundingMode(value.get(CRMConstants.FDCSHE_PARAM_PRICE_TOINTEGER_TYPE).toString()).intValue();
+			}else{
+				priceToIntegerType=SHEManageHelper.setRoundingMode(info.getPriceToIntegerType()).intValue();
+			}
 			
 			List toAddRowEntry = SHEManageHelper.updatePayListByPayType((SHEPayTypeInfo) this.prmtPayType.getValue(), info.isIsEarnestInHouseAmount(), table, fittment, roomAttach, null, 
 					info.getContractTotalAmount(), info.getDealTotalAmount(),info.getRoom().getStandardTotalAmount()
-					, info.getBulidingArea(), info.getRoomArea(),info.getRoom(), Integer.parseInt(info.getDigit()), Integer.parseInt(info.getPriceToIntegerType()),(Date)this.pkPlanSignDate.getValue(),SHEPayTypeBizTimeEnum.SIGN,isAddFittment,isAddRoomAttach);
+					, info.getBulidingArea(), info.getRoomArea(),info.getRoom(), digit, priceToIntegerType,(Date)this.pkPlanSignDate.getValue(),SHEPayTypeBizTimeEnum.SIGN,isAddFittment,isAddRoomAttach);
 			int rowCount=0;
 			for (int i = 0; i < toAddRowEntry.size(); i++) {
 				IRow row =null;
@@ -711,7 +730,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 		RoomInfo room=(RoomInfo) this.prmtRoom.getValue();
 		PurchaseManageCollection purCol=PurchaseManageFactory.getRemoteInstance().getPurchaseManageCollection("select purPayListEntry.*,purPayListEntry.moneyDefine.*,payType.*,* from where room.id='"+room.getId()+"' and (bizState='PurApple' or bizState='PurAudit')");
 		if(purCol.size()>0){
-			if(FDCDateHelper.getDiffDays(purCol.get(0).getBusAdscriptionDate(), (Date) this.pkBizDate.getValue())>4){
+			if(FDCDateHelper.getDiffDays(purCol.get(0).getBusAdscriptionDate(), (Date) this.pkBizDate.getValue())>3){
 				FDCMsgBox.showWarning(this,"制度要求延期申请单必须认购当天发起！");
 				SysUtil.abort();
 			}
@@ -1006,12 +1025,21 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 		if(this.cbType.getSelectedItem().equals(DelayPayTypeEnum.YQQY)){
 			this.pkPlanSignDate.setEnabled(true);
 			this.kdtNewEntry.setEnabled(false);
+			this.txtCaseInfo.setText("1、按揭方式：客户因XX原因，申请延期签约，承诺于XX年XX月XX日支付XX%首付且签约，并于XX年XX月XX日办理按揭，预计全款到账时间为XX年XX月XX日。延期几天，请领导审批。\n"+
+"2、分期方式：客户因XX原因，申请延期签约，承诺于XX年XX月XX日支付XX%首付且签约，并于XX年XX月XX日付清剩余房款。延期几天，请领导审批。\n");
 		}else if(this.cbType.getSelectedItem().equals(DelayPayTypeEnum.YQFK)){
 			this.pkPlanSignDate.setEnabled(false);
 			this.kdtNewEntry.setEnabled(true);
+			this.txtCaseInfo.setText("1、延首付款：客户因XX原因，申请首付款延期付款，承诺于XX年XX月XX日支付XX%首付，并在XX月XX日付清剩余首付款，预计全款到账时间为XX年XX月XX日。本月首付分期分期已申请XX套，占当月签约比例XX%。延期几天，请领导审批。\n"+
+"2、延分期/按揭款：客户因XX原因，申请分期/按揭款延期付款，承诺于XX年XX月XX日支付/办理按揭，预计全款到账时间为XX年XX月XX日。延期几天，请领导审批。\n"+
+"3、变更付款方式但优惠不变：客户因XX原因，申请从XX付款方式变更为XX付款方式，预计全款到账日期为XX年XX月XX日，报XX同意，原优惠折扣不变。请领导审批。\n");
 		}else{
 			this.pkPlanSignDate.setEnabled(true);
 			this.kdtNewEntry.setEnabled(true);
+			this.txtCaseInfo.setText("1、延签后足额首付并按揭方式：客户因XX原因，申请延期签约&延期付款，承诺于XX年XX月XX日支付XX%首付且签约，并延期至XX年XX月XX日办理按揭，预计全款到账时间为XX年XX月XX日。延期签约XX天&延期付款XX天，请领导审批。\n"+
+"2、延签后足额首付并分期方式：客户因XX原因，申请延期签约&延期付款，承诺于XX年XX月XX日支付XX%首付且签约，并延期至XX年XX月XX日付清剩余房款。延期签约XX天&延期付款XX天，请领导审批。\n"+
+"3、延签后非足额首付并按揭方式：客户因XX原因，申请延期签约&延期付款，承诺于XX年XX月XX日支付XX%首付且签约，于XX月XX日付清剩余首付款。并延期至XX年XX月XX日办理按揭，预计全款到账时间为XX年XX月XX日。本月首付分期已申请XX万，占当月签约比例XX%。延期签约XX天&延期付款XX天，请领导审批。\n"+
+"4、延签后非足额首付并分期方式：客户因XX原因，申请延期签约&延期付款，承诺于XX年XX月XX日支付XX%首付且签约，于XX月XX日付清剩余首付款。并延期至XX年XX月XX日付清剩余房款。本月首付分期已申请XX万，占当月签约比例XX%。延期签约XX天&延期付款XX天，请领导审批。\n");
 		}
 		isUpdateDate=true;
 		setTable();

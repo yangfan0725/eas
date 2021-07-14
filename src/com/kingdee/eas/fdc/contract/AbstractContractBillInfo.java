@@ -1219,6 +1219,17 @@ public class AbstractContractBillInfo extends com.kingdee.eas.fdc.basedata.FDCBi
     {
         return (com.kingdee.eas.fdc.contract.ContractYZEntryCollection)get("yzEntry");
     }
+    /**
+     * Object:合同单据's 流程状态property 
+     */
+    public String getOaState()
+    {
+        return getString("oaState");
+    }
+    public void setOaState(String item)
+    {
+        setString("oaState", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("0D6DD1F4");

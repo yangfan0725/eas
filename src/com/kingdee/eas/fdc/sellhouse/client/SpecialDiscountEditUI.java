@@ -1020,7 +1020,7 @@ public class SpecialDiscountEditUI extends AbstractSpecialDiscountEditUI
 		SellProjectInfo sellproject=(SellProjectInfo) this.getUIContext().get("sellProject");
 		info.setSellProject(sellproject);
 		info.setCU(SysContext.getSysContext().getCurrentCtrlUnit());
-		
+		info.setCaseInfo("客户于XX年XX月XX日支付定金XX元，付款方式为XXX，根据项目“XX方案”可享受XX优惠折扣，优惠后总价XXX。现申请额外享受XX优惠折扣，最终成交总价XXX。客户承诺于XX年XX月XX日支付XX%首付并办理按揭，预计全款到账时间为XX年XX月XX日。");
 		String roomId=(String)this.getUIContext().get("roomId");
 		if(roomId!=null){
 			RoomInfo room=null;

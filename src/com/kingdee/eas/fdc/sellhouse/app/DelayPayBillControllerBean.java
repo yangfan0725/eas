@@ -155,7 +155,7 @@ public class DelayPayBillControllerBean extends AbstractDelayPayBillControllerBe
 			}
 			
 			PurchaseManageCollection purcol=PurchaseManageFactory.getLocalInstance(ctx).getPurchaseManageCollection("select * from where room.id='"+room.getId()+"' and (bizState='PurApple' or bizState='PurAudit' or bizState='ToSign') order by purPayListEntry.seq");
-			if(col.size()>0){
+			if(purcol.size()>0){
 				PurchaseManageInfo pur=purcol.get(0);
 				
 				SelectorItemCollection sic=new SelectorItemCollection();

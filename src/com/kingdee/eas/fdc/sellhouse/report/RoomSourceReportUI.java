@@ -163,7 +163,12 @@ public class RoomSourceReportUI extends AbstractRoomSourceReportUI
 					
 					BigDecimal sellAmount=FDCHelper.toBigDecimal(detialMap.get("sellAmount"));
 					BigDecimal backAmount=FDCHelper.toBigDecimal(detialMap.get("backAmount"));
-					if(sellAmount.compareTo(backAmount)==0){
+					boolean isColor=false;
+					if(row.getCell("sellState").getValue().toString().equals("«©‘º")||
+							row.getCell("sellState").getValue().toString().equals("»œπ∫")){
+						isColor=true;
+					}
+					if(isColor&&sellAmount.compareTo(backAmount)==0){
 						row.getStyleAttributes().setBackground(new Color(128,255,128));
 					}
 				}
