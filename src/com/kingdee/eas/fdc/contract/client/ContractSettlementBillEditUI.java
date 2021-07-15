@@ -512,9 +512,9 @@ public class ContractSettlementBillEditUI extends
 		
 		removeDataChangeListener(this.txtCostAuditCost);
 	}
-
+	boolean isOnload=false;
 	public void loadFields() {
-
+		isOnload=true;
 		// ÏÈ×¢Ïú¼àÌýÆ÷
 		detachListeners();
 
@@ -641,6 +641,7 @@ public class ContractSettlementBillEditUI extends
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		isOnload=false;
 	}
 
 	public void storeFields() {
@@ -1096,6 +1097,7 @@ public class ContractSettlementBillEditUI extends
 		
 		this.setPreferredSize(new Dimension(1013, 600));
 		txtOriginalAmount.setDataType(1);
+		txtCostAuditCost.setDataType(1);
 		txtcontractName.setMaxLength(200);
 		formatCtrl(this.txtqualityGuaranteRate);
 		super.onLoad();
@@ -2361,6 +2363,7 @@ public class ContractSettlementBillEditUI extends
 
 	protected void txtCostAuditCost_dataChanged(DataChangeEvent e)
 			throws Exception {
+		if(isOnload)return;
 		txtOriginalAmount.setValue(this.txtCostAuditCost.getBigDecimalValue());
 	}
 

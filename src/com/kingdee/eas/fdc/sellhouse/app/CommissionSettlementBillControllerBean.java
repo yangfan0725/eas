@@ -1270,7 +1270,6 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
 		    Date startDate = FDCDateHelper.getFirstDayOfMonth(t);
 	    	Date endDate =  FDCDateHelper.getLastDayOfMonth(t);
 	       
-	       
 	       FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
 	       StringBuffer sql = new StringBuffer();
 	       sql = new StringBuffer();
