@@ -260,6 +260,12 @@ public class ContractWithoutTextControllerBean extends
 				json.put("docSubject", info.getName());
 
 				json.put("loginName", u.getNumber());
+				
+				SelectorItemCollection cpsic=new SelectorItemCollection();
+				cpsic.add("fullOrgUnit.name");
+				CurProjectInfo cur=CurProjectFactory.getLocalInstance(ctx).getCurProjectInfo(new ObjectUuidPK(info.getCurProject().getId()), cpsic);
+				json.put("fdCompanyName", cur.getFullOrgUnit().getName());
+				
 				JSONObject obj = new JSONObject();
 				if(info.getPayContentType()!=null){
 					PayContentTypeInfo pct=PayContentTypeFactory.getLocalInstance(ctx).getPayContentTypeInfo(new ObjectUuidPK(info.getPayContentType().getId()));

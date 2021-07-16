@@ -39,6 +39,8 @@ import com.kingdee.eas.base.attachment.BoAttchAssoCollection;
 import com.kingdee.eas.base.attachment.BoAttchAssoFactory;
 import com.kingdee.eas.base.permission.UserFactory;
 import com.kingdee.eas.base.permission.UserInfo;
+import com.kingdee.eas.basedata.org.FullOrgUnitFactory;
+import com.kingdee.eas.basedata.org.FullOrgUnitInfo;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
@@ -151,6 +153,10 @@ public class MarketProjectControllerBean extends AbstractMarketProjectController
 				json.put("docSubject", info.getName());
 
 				json.put("loginName", u.getNumber());
+				
+				FullOrgUnitInfo org=FullOrgUnitFactory.getLocalInstance(ctx).getFullOrgUnitInfo(new ObjectUuidPK(info.getOrgUnit().getId()));
+				json.put("fdCompanyName", org.getName());
+				
 				JSONObject obj = new JSONObject();
 				//最大费用科目类型 fd_cost_account 、最大费用科目金额 fd_amount、状态 fd_status 放 流程data 參數中
 				builder.clear();

@@ -386,8 +386,13 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 					json.put("docSubject", info.getContractName()+"∏∂øÓ…Í«Î");
 					
 					json.put("loginName", u.getNumber());
-					JSONObject obj = new JSONObject();
 					
+					SelectorItemCollection cpsic=new SelectorItemCollection();
+					cpsic.add("fullOrgUnit.name");
+					CurProjectInfo cur=CurProjectFactory.getLocalInstance(ctx).getCurProjectInfo(new ObjectUuidPK(info.getCurProject().getId()), cpsic);
+					json.put("fdCompanyName", cur.getFullOrgUnit().getName());
+					
+					JSONObject obj = new JSONObject();
 					obj.put("fd_38c8d015c3c744", pc.getName());
 					obj.put("fd_38c8ce5e59839c", info.getAmount().doubleValue());
 					if(info.isIsJT()){
