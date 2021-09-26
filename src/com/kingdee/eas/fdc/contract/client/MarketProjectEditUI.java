@@ -949,6 +949,9 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 				FDCMsgBox.showWarning(this,"成本科目不能为空！");
 				SysUtil.abort();
 			}
+			CostAccountInfo cost=(CostAccountInfo) this.kdtCostEntry.getRow(i).getCell("costAccount").getValue();
+			costAccount.add(cost.getId().toString());
+			
 			if(this.kdtCostEntry.getRow(i).getCell("amount").getValue()==null){
 				FDCMsgBox.showWarning(this,"金额不能为空！");
 				SysUtil.abort();
@@ -958,13 +961,6 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 					FDCMsgBox.showWarning(this,"金额必须大于0！");
 					SysUtil.abort();
 				}
-			}else{
-				if(((BigDecimal)this.kdtCostEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)>=0){
-					FDCMsgBox.showWarning(this,"金额必须小于0！");
-					SysUtil.abort();
-				}
-			}
-			if(!this.cbIsSub.isSelected()){
 				if(this.kdtCostEntry.getRow(i).getCell("type").getValue()==null){
 					FDCMsgBox.showWarning(this,"控制单据不能为空！");
 					SysUtil.abort();
@@ -976,24 +972,16 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 				}else{
 					type.add(0);
 				}
-//				if(this.kdtCostEntry.getRow(i).getCell("jzType").getValue()==null){
-//					FDCMsgBox.showWarning(this,"记账类型不能为空！");
-//					SysUtil.abort();
-//				}
-//				JZTypeEnum jzType=(JZTypeEnum) this.kdtCostEntry.getRow(i).getCell("jzType").getValue();
-//				 if(JZTypeEnum.SE.equals(jzType)){
-//					 if(this.kdtCostEntry.getRow(i).getCell("startDate").getValue()==null){
-//							FDCMsgBox.showWarning(this,"开始时间不能为空！");
-//							SysUtil.abort();
-//					 }
-//					 if(this.kdtCostEntry.getRow(i).getCell("endDate").getValue()==null){
-//							FDCMsgBox.showWarning(this,"结束时间不能为空！");
-//							SysUtil.abort();
-//						}
-//				 }
+				if(this.isHasSubMP(cost.getId().toString())){
+					FDCMsgBox.showWarning(this,"成本科目:"+cost.getName()+"存在负数立项未审批通过！");
+					SysUtil.abort();
+				}
+			}else{
+				if(((BigDecimal)this.kdtCostEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)>=0){
+					FDCMsgBox.showWarning(this,"金额必须小于0！");
+					SysUtil.abort();
+				}
 			}
-			CostAccountInfo cost=(CostAccountInfo) this.kdtCostEntry.getRow(i).getCell("costAccount").getValue();
-			costAccount.add(cost.getId().toString());
 		}
 		if(type.size()>1){
 			FDCMsgBox.showWarning(this,"费用归属控制单据不允许存在记账单与合同或者无文本！");
@@ -1119,6 +1107,18 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 			return rowSet.getBigDecimal("amount");
 		}
 		return FDCHelper.ZERO;
+	}
+	public boolean isHasSubMP(String costAccountId) throws BOSException, SQLException{
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select mpEntry.fcostAccountid from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid");
+		sql.append(" where mp.FIsSub=1 and mp.fstate!='4AUDITTED' and mpEntry.fcostAccountid='"+costAccountId+"'");
+		FDCSQLBuilder _builder = new FDCSQLBuilder();
+		_builder.appendSql(sql.toString());
+		IRowSet rowSet = _builder.executeQuery();
+		while(rowSet.next()){
+			return true;
+		}
+		return false;
 	}
 	public BigDecimal getCostAccountAmount(String costAccountId,String year) throws BOSException, SQLException{
 		StringBuilder sql = new StringBuilder();

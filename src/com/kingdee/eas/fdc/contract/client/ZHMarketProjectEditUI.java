@@ -617,7 +617,6 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			FDCMsgBox.showWarning(this,"立项事项明细不能为空！");
 			SysUtil.abort();
 		}
-		Set costAccount=new HashSet();
 		Set type=new HashSet();
 		Set VMC=new HashSet();
 		boolean isJz=false;
@@ -628,44 +627,24 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			}
 			Date thisDate=new Date();
 			Date bizDate=(Date) this.kdtEntry.getRow(i).getCell("bizDate").getValue();
-			if(!this.cbIsSub.isSelected()&&FDCDateHelper.dateDiff(FDCDateHelper.getDayBegin(thisDate), bizDate)<0){
-				FDCMsgBox.showWarning(this,"事项预估发生日期不允许小于系统当前日期！");
-				SysUtil.abort();
-			}
-			if(this.cbIsSub.isSelected()&&this.kdtEntry.getRow(i).getCell("marketProject").getValue()==null){
-				FDCMsgBox.showWarning(this,"营销立项不能为空！");
-				SysUtil.abort();
-			}
 			if(this.kdtEntry.getRow(i).getCell("costAccount").getValue()==null){
 				FDCMsgBox.showWarning(this,"成本科目不能为空！");
 				SysUtil.abort();
 			}
-			if(this.cbIsSub.isSelected()){
-				CostAccountInfo caInfo=(CostAccountInfo) this.kdtEntry.getRow(i).getCell("costAccount").getValue();
-				MarketProjectInfo mp=(MarketProjectInfo) this.kdtEntry.getRow(i).getCell("marketProject").getValue();
-				if(VMC.contains(mp.getId().toString()+caInfo.getId().toString())){
-					FDCMsgBox.showWarning(this,"第"+(i+1)+"立項科目重複！");
-					SysUtil.abort();
-				}else{
-					VMC.add(mp.getId().toString()+caInfo.getId().toString());
-				}
-			}
+			CostAccountInfo cost=(CostAccountInfo) this.kdtEntry.getRow(i).getCell("costAccount").getValue();
 			if(this.kdtEntry.getRow(i).getCell("amount").getValue()==null){
 				FDCMsgBox.showWarning(this,"金额不能为空！");
 				SysUtil.abort();
 			}
 			if(!this.cbIsSub.isSelected()){
+				if(FDCDateHelper.dateDiff(FDCDateHelper.getDayBegin(thisDate), bizDate)<0){
+					FDCMsgBox.showWarning(this,"事项预估发生日期不允许小于系统当前日期！");
+					SysUtil.abort();
+				}
 				if(((BigDecimal)this.kdtEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)<=0){
 					FDCMsgBox.showWarning(this,"金额必须大于0！");
 					SysUtil.abort();
 				}
-			}else{
-				if(((BigDecimal)this.kdtEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)>=0){
-					FDCMsgBox.showWarning(this,"金额必须小于0！");
-					SysUtil.abort();
-				}
-			}
-			if(!this.cbIsSub.isSelected()){
 				if(this.kdtEntry.getRow(i).getCell("type").getValue()==null){
 					FDCMsgBox.showWarning(this,"控制单据不能为空！");
 					SysUtil.abort();
@@ -681,17 +660,28 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 					FDCMsgBox.showWarning(this,"比价单位不能为空！");
 					SysUtil.abort();
 				}
+				if(this.isHasSubMP(cost.getId().toString())){
+					FDCMsgBox.showWarning(this,"成本科目:"+cost.getName()+"存在负数立项未审批通过！");
+					SysUtil.abort();
+				}
+			}else{
+				if(this.kdtEntry.getRow(i).getCell("marketProject").getValue()==null){
+					FDCMsgBox.showWarning(this,"营销立项不能为空！");
+					SysUtil.abort();
+				}
+				CostAccountInfo caInfo=(CostAccountInfo) this.kdtEntry.getRow(i).getCell("costAccount").getValue();
+				MarketProjectInfo mp=(MarketProjectInfo) this.kdtEntry.getRow(i).getCell("marketProject").getValue();
+				if(VMC.contains(mp.getId().toString()+caInfo.getId().toString())){
+					FDCMsgBox.showWarning(this,"第"+(i+1)+"立项科目重复！");
+					SysUtil.abort();
+				}else{
+					VMC.add(mp.getId().toString()+caInfo.getId().toString());
+				}
+				if(((BigDecimal)this.kdtEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)>=0){
+					FDCMsgBox.showWarning(this,"金额必须小于0！");
+					SysUtil.abort();
+				}
 			}
-//			if(this.kdtEntry.getRow(i).getCell("supplier").getValue()==null){
-//				FDCMsgBox.showWarning(this,"签约单位不能为空！");
-//				SysUtil.abort();
-//			}
-//			if(this.kdtEntry.getRow(i).getCell("sdAmount").getValue()==null){
-//				FDCMsgBox.showWarning(this,"商定价不能为空！");
-//				SysUtil.abort();
-//			}
-			CostAccountInfo cost=(CostAccountInfo) this.kdtEntry.getRow(i).getCell("costAccount").getValue();
-			costAccount.add(cost.getId().toString());
 		}
 		if(type.size()>1){
 			FDCMsgBox.showWarning(this,"费用归属控制单据不允许存在记账单与合同或者无文本！");
@@ -787,6 +777,18 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			return rowSet.getBigDecimal("amount");
 		}
 		return FDCHelper.ZERO;
+	}
+	public boolean isHasSubMP(String costAccountId) throws BOSException, SQLException{
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select mpEntry.fcostAccountid from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid");
+		sql.append(" where mp.FIsSub=1 and mp.fstate!='4AUDITTED' and mpEntry.fcostAccountid='"+costAccountId+"'");
+		FDCSQLBuilder _builder = new FDCSQLBuilder();
+		_builder.appendSql(sql.toString());
+		IRowSet rowSet = _builder.executeQuery();
+		while(rowSet.next()){
+			return true;
+		}
+		return false;
 	}
 	public BigDecimal getCostAccountAmount(String costAccountId,String year) throws BOSException, SQLException{
 		StringBuilder sql = new StringBuilder();
