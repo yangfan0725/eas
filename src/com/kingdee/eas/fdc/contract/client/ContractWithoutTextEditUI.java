@@ -1931,6 +1931,11 @@ public class ContractWithoutTextEditUI extends
 		}
 		this.storeFields();
 		this.verifyInputForSubmint();
+		
+		for(int i=0;i<this.tblMarket.getRowCount();i++){
+			IRow row=this.tblMarket.getRow(i);
+			row.getCell("date").setValue(new Date());
+		}
 		UserInfo u=SysContext.getSysContext().getCurrentUserInfo();
 		CurProjectInfo project=CurProjectFactory.getRemoteInstance().getCurProjectInfo(new ObjectUuidPK(this.editData.getCurProject().getId()));
 		if(project.isIsOA()&&u.getPerson()!=null&&!isBillInWorkflow(this.editData.getId().toString())){
