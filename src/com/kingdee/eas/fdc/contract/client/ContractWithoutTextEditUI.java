@@ -3182,7 +3182,7 @@ public class ContractWithoutTextEditUI extends
 				cal.set(5, 15);
 				
 				int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
-				if(day<1){
+				if(day>1){
 					FDCMsgBox.showInfo(this,"合同流程必须在立项审批通过后7天内发起；除第三方佣金外的无文本立项，必须在次月15日之前发起无文本合同流程，超时发起流程将按照《宋都集团营销费用管理制度》规定，对责任人进行扣罚。");
 				}
 			}

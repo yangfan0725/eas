@@ -425,7 +425,7 @@ public class ContractWithoutTextControllerBean extends
 						cal.set(5, 15);
 						
 						int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
-						if(day<1){
+						if(day>1){
 							obj.put("fd_timeout", "ÊÇ");
 						}
 					}
