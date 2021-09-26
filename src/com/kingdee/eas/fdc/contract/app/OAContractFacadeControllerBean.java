@@ -119,6 +119,7 @@ import com.kingdee.eas.fdc.invite.TenderAccepterResultEntryInfo;
 import com.kingdee.eas.fi.cas.PaymentBillTypeInfo;
 import com.kingdee.eas.ma.budget.BgItemInfo;
 import com.kingdee.eas.util.SysUtil;
+import com.kingdee.eas.util.app.DbUtil;
 import com.kingdee.jdbc.rowset.IRowSet;
 import com.kingdee.util.UuidException;
 import com.sun.imageio.plugins.common.BogusColorSpace;
@@ -484,20 +485,20 @@ public class OAContractFacadeControllerBean extends AbstractOAContractFacadeCont
 				if(invoiceArray.getJSONObject(i).get("invoiceNumber")!=null){
 					entry.setInvoiceNumber(invoiceArray.getJSONObject(i).get("invoiceNumber").toString());
 				}
-				if(invoiceArray.getJSONObject(i).get("invoiceType")!=null){
-					if(invoiceArray.getJSONObject(i).get("invoiceType").toString().equals("增值税专用发票")){
-						entry.setInvoiceType(WTInvoiceTypeEnum.SPECIAL);
-					}
-					if(invoiceArray.getJSONObject(i).get("invoiceType").toString().equals("增值税普通发票")){
-						entry.setInvoiceType(WTInvoiceTypeEnum.ORDINARY);
-					}
-					if(invoiceArray.getJSONObject(i).get("invoiceType").toString().equals("普通发票")){
-						entry.setInvoiceType(WTInvoiceTypeEnum.NOMAL);
-					}
-					if(invoiceArray.getJSONObject(i).get("invoiceType").toString().equals("收据")){
-						entry.setInvoiceType(WTInvoiceTypeEnum.RECEIPT);
-					}
-				}
+//				if(invoiceArray.getJSONObject(i).get("invoiceType")!=null){
+//					if(invoiceArray.getJSONObject(i).get("invoiceType").toString().equals("增值税专用发票")){
+//						entry.setInvoiceType(WTInvoiceTypeEnum.SPECIAL);
+//					}
+//					if(invoiceArray.getJSONObject(i).get("invoiceType").toString().equals("增值税普通发票")){
+//						entry.setInvoiceType(WTInvoiceTypeEnum.ORDINARY);
+//					}
+//					if(invoiceArray.getJSONObject(i).get("invoiceType").toString().equals("普通发票")){
+//						entry.setInvoiceType(WTInvoiceTypeEnum.NOMAL);
+//					}
+//					if(invoiceArray.getJSONObject(i).get("invoiceType").toString().equals("收据")){
+//						entry.setInvoiceType(WTInvoiceTypeEnum.RECEIPT);
+//					}
+//				}
 				if(invoiceArray.getJSONObject(i).get("bizDate")!=null){
 					entry.setBizDate(FDCDateHelper.stringToDate(invoiceArray.getJSONObject(i).get("bizDate").toString()));
 				}
@@ -1380,19 +1381,25 @@ public class OAContractFacadeControllerBean extends AbstractOAContractFacadeCont
 		        	ContractBillInfo info=ContractBillFactory.getLocalInstance(ctx).getContractBillInfo(new ObjectUuidPK(easid));
 		        	if(info.getState().equals(FDCBillStateEnum.AUDITTED)){
 		        		ContractBillFactory.getLocalInstance(ctx).unAudit(BOSUuid.read(easid));
+		        		String sql = "update t_con_contractbill set fsourceFunction=null,foaState=null where fid=?";
+		        		DbUtil.execute(ctx,sql,new Object[]{easid});
 		        	}else{
 		        		info.setState(FDCBillStateEnum.SUBMITTED);
 		        		info.setSourceFunction(null);
+	        			info.setOaState(null);
 		        		
 		        		SelectorItemCollection sic=new SelectorItemCollection();
 		        		sic.add("state");
 		        		sic.add("sourceFunction");
+		        		sic.add("oaState");
 		        		ContractBillFactory.getLocalInstance(ctx).updatePartial(info, sic);
 		        	}
 		        }else if(type.equals("02")){
 		        	PayRequestBillInfo info=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(easid));
 		        	if(info.getState().equals(FDCBillStateEnum.AUDITTED)){
 		        		PayRequestBillFactory.getLocalInstance(ctx).unAudit(BOSUuid.read(easid));
+		        		String sql = "update T_CON_PayRequestBill set fsourceFunction=null where fid=?";
+		        		DbUtil.execute(ctx,sql,new Object[]{easid});
 		        	}else{
 		        		info.setState(FDCBillStateEnum.SUBMITTED);
 		        		info.setSourceFunction(null);
@@ -1406,6 +1413,8 @@ public class OAContractFacadeControllerBean extends AbstractOAContractFacadeCont
 		        	ContractWithoutTextInfo info=ContractWithoutTextFactory.getLocalInstance(ctx).getContractWithoutTextInfo(new ObjectUuidPK(easid));
 		        	if(info.getState().equals(FDCBillStateEnum.AUDITTED)){
 		        		ContractWithoutTextFactory.getLocalInstance(ctx).unAudit(BOSUuid.read(easid));
+		        		String sql = "update T_CON_ContractWithoutText set fsourceFunction=null where fid=?";
+		        		DbUtil.execute(ctx,sql,new Object[]{easid});
 		        	}else{
 		        		info.setState(FDCBillStateEnum.SUBMITTED);
 		        		info.setSourceFunction(null);
@@ -1419,6 +1428,8 @@ public class OAContractFacadeControllerBean extends AbstractOAContractFacadeCont
 		        	SupplierApplyInfo info=SupplierApplyFactory.getLocalInstance(ctx).getSupplierApplyInfo(new ObjectUuidPK(easid));
 		        	if(info.getState().equals(FDCBillStateEnum.AUDITTED)){
 		        		SupplierApplyFactory.getLocalInstance(ctx).unAudit(BOSUuid.read(easid));
+		        		String sql = "update T_CON_SupplierApply set fsourceFunction=null where fid=?";
+		        		DbUtil.execute(ctx,sql,new Object[]{easid});
 		        	}else{
 		        		info.setState(FDCBillStateEnum.SUBMITTED);
 		        		info.setSourceFunction(null);
@@ -1432,6 +1443,8 @@ public class OAContractFacadeControllerBean extends AbstractOAContractFacadeCont
 		        	ChangeAuditBillInfo info=ChangeAuditBillFactory.getLocalInstance(ctx).getChangeAuditBillInfo(new ObjectUuidPK(easid));
 		        	if(info.getState().equals(FDCBillStateEnum.AUDITTED)){
 		        		ChangeAuditBillFactory.getLocalInstance(ctx).unAudit(BOSUuid.read(easid));
+		        		String sql = "update T_CON_ChangeAuditBill set fsourceFunction=null where fid=?";
+		        		DbUtil.execute(ctx,sql,new Object[]{easid});
 		        	}else{
 		        		info.setChangeState(ChangeBillStateEnum.Submit);
 		        		info.setState(FDCBillStateEnum.SUBMITTED);
@@ -1447,6 +1460,8 @@ public class OAContractFacadeControllerBean extends AbstractOAContractFacadeCont
 		        	ContractChangeSettleBillInfo info=ContractChangeSettleBillFactory.getLocalInstance(ctx).getContractChangeSettleBillInfo(new ObjectUuidPK(easid));
 		        	if(info.getState().equals(FDCBillStateEnum.AUDITTED)){
 		        		ContractChangeSettleBillFactory.getLocalInstance(ctx).unAudit(BOSUuid.read(easid));
+		        		String sql = "update T_CON_ContractChangeSettleBill set fsourceFunction=null where fid=?";
+		        		DbUtil.execute(ctx,sql,new Object[]{easid});
 		        	}else{
 		        		info.setState(FDCBillStateEnum.SUBMITTED);
 		        		info.setSourceFunction(null);
@@ -1460,6 +1475,8 @@ public class OAContractFacadeControllerBean extends AbstractOAContractFacadeCont
 		        	MarketProjectInfo info=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectInfo(new ObjectUuidPK(easid));
 		        	if(info.getState().equals(FDCBillStateEnum.AUDITTED)){
 		        		MarketProjectFactory.getLocalInstance(ctx).unAudit(BOSUuid.read(easid));
+		        		String sql = "update T_CON_MarketProject set fsourceFunction=null where fid=?";
+		        		DbUtil.execute(ctx,sql,new Object[]{easid});
 		        	}else{
 		        		info.setState(FDCBillStateEnum.SUBMITTED);
 		        		info.setSourceFunction(null);

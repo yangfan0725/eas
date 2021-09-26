@@ -184,6 +184,19 @@ public class AbstractCostAccountInfo extends com.kingdee.eas.framework.TreeBaseI
     {
         setBoolean("isMarket", item);
     }
+    /**
+     * Object:成本科目's 成本科目属性property 
+     */
+    public com.kingdee.eas.fdc.basedata.CostAccountYJTypeEnum getYjType()
+    {
+        return com.kingdee.eas.fdc.basedata.CostAccountYJTypeEnum.getEnum(getString("yjType"));
+    }
+    public void setYjType(com.kingdee.eas.fdc.basedata.CostAccountYJTypeEnum item)
+    {
+		if (item != null) {
+        setString("yjType", item.getValue());
+		}
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("8423FF6E");

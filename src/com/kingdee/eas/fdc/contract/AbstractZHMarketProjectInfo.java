@@ -71,6 +71,17 @@ public class AbstractZHMarketProjectInfo extends com.kingdee.eas.fdc.basedata.FD
     {
         setBoolean("isJT", item);
     }
+    /**
+     * Object:综合营销立项's 是否负数立项property 
+     */
+    public boolean isIsSub()
+    {
+        return getBoolean("isSub");
+    }
+    public void setIsSub(boolean item)
+    {
+        setBoolean("isSub", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("BF423B34");

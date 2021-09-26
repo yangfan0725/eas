@@ -1,7 +1,8 @@
 package com.kingdee.eas.fdc.contract.app;
 
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.lang3.StringUtils;
+
+import com.kingdee.util.StringUtils;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;

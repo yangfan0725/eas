@@ -66,6 +66,13 @@ import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
 import com.kingdee.eas.fdc.basedata.client.FDCClientVerifyHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
+import com.kingdee.eas.fdc.contract.MarketProjectCollection;
+import com.kingdee.eas.fdc.contract.MarketProjectCostEntryFactory;
+import com.kingdee.eas.fdc.contract.MarketProjectCostEntryInfo;
+import com.kingdee.eas.fdc.contract.MarketProjectEntryFactory;
+import com.kingdee.eas.fdc.contract.MarketProjectEntryInfo;
+import com.kingdee.eas.fdc.contract.MarketProjectFactory;
+import com.kingdee.eas.fdc.contract.MarketProjectInfo;
 import com.kingdee.eas.fdc.contract.MarketProjectSourceEnum;
 import com.kingdee.eas.fdc.contract.MarketYearProjectCollection;
 import com.kingdee.eas.fdc.contract.MarketYearProjectFactory;
@@ -76,6 +83,7 @@ import com.kingdee.eas.fdc.contract.ZHMarketProjectInfo;
 import com.kingdee.eas.fdc.contract.app.MarketCostTypeEnum;
 import com.kingdee.eas.fdc.invite.client.CellTextRenderImpl;
 import com.kingdee.eas.fdc.sellhouse.InvoiceTypeEnum;
+import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
 import com.kingdee.eas.framework.*;
 import com.kingdee.eas.util.SysUtil;
 import com.kingdee.eas.util.client.EASResource;
@@ -122,6 +130,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		this.chkMenuItemSubmitAndPrint.setSelected(false);
 		
     	KDWorkButton btnAddRowinfo = new KDWorkButton();
+    	KDWorkButton btnInsertRowinfo = new KDWorkButton();
 		KDWorkButton btnDeleteRowinfo = new KDWorkButton();
 
 		this.actionALine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_addline"));
@@ -130,9 +139,9 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		btnAddRowinfo.setSize(new Dimension(140, 19));
 
 		this.actionILine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_insert"));
-		btnDeleteRowinfo = (KDWorkButton) contEntry.add(this.actionILine);
-		btnDeleteRowinfo.setText("插入行");
-		btnDeleteRowinfo.setSize(new Dimension(140, 19));
+		btnInsertRowinfo = (KDWorkButton) contEntry.add(this.actionILine);
+		btnInsertRowinfo.setText("插入行");
+		btnInsertRowinfo.setSize(new Dimension(140, 19));
 		
 		this.actionRLine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_deleteline"));
 		btnDeleteRowinfo = (KDWorkButton) contEntry.add(this.actionRLine);
@@ -160,7 +169,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		f7Editor = new KDTDefaultCellEditor(f7Box);
 		this.kdtEntry.getColumn("costAccount").setEditor(f7Editor);
 		this.kdtEntry.getColumn("costAccount").setRequired(true);
-    	
+		
 		this.kdtEntry.getColumn("costAccount").setRenderer(new ObjectValueRender(){
 			public String getText(Object obj) {
 				if(obj instanceof CostAccountInfo){
@@ -171,7 +180,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			}
 		});
 		
-		FilterInfo filter = new FilterInfo();
+		FilterInfo	filter = new FilterInfo();
 		FilterItemCollection filterItems = filter.getFilterItems();
 		filterItems.add(new FilterItemInfo("fullOrgUnit.id", this.editData.getOrgUnit().getId().toString()));
 		filterItems.add(new FilterItemInfo("isMarket", Boolean.TRUE));
@@ -181,12 +190,37 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		view.setFilter(filter);
 		f7Box.setEntityViewInfo(view);
 		
+		f7Box = new KDBizPromptBox(); 
+		f7Editor = new KDTDefaultCellEditor(f7Box);
+		f7Box.setDisplayFormat("$name$");
+		f7Box.setEditFormat("$name$");
+		f7Box.setCommitFormat("$name$");
+		f7Box.setQueryInfo("com.kingdee.eas.fdc.contract.app.MarketProjectQuery");
+		f7Editor = new KDTDefaultCellEditor(f7Box);
+		
 		filter = new FilterInfo();
 		filterItems = filter.getFilterItems();
-		filterItems.add(new FilterItemInfo("fullOrgUnit.id", this.editData.getOrgUnit().getId().toString()));
-		filterItems.add(new FilterItemInfo("isMarket", Boolean.TRUE));
-		filterItems.add(new FilterItemInfo("isLeaf", Boolean.TRUE));
+		filterItems.add(new FilterItemInfo("state",FDCBillStateEnum.AUDITTED_VALUE));
+		filterItems.add(new FilterItemInfo("isSub",Boolean.FALSE));
+		filterItems.add(new FilterItemInfo("orgUnit.id",this.editData.getOrgUnit().getId().toString()));
 		
+		view=new EntityViewInfo();
+		view.setFilter(filter);
+		f7Box.setEntityViewInfo(view);
+		
+		this.kdtEntry.getColumn("marketProject").setEditor(f7Editor);
+		this.kdtEntry.getColumn("marketProject").setRequired(true);
+		
+		this.kdtEntry.getColumn("marketProject").setRenderer(new ObjectValueRender(){
+			public String getText(Object obj) {
+				if(obj instanceof MarketProjectInfo){
+					MarketProjectInfo info = (MarketProjectInfo)obj;
+					return info.getName();
+				}
+				return super.getText(obj);
+			}
+		});
+    	
 		String formatString = "yyyy-MM-dd";
 		this.kdtEntry.getColumn("bizDate").getStyleAttributes().setNumberFormat(formatString);
 		this.kdtEntry.getColumn("bizDate").setRequired(true);
@@ -214,6 +248,11 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		this.kdtEntry.getColumn("type").setEditor(comboEditor);
 		this.kdtEntry.getColumn("type").setRequired(true);
 		
+		this.kdtEntry.getColumn("canAmount").setEditor(amountEditor);
+		this.kdtEntry.getColumn("canAmount").getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
+		this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.getAlignment("right"));
+		this.kdtEntry.getColumn("canAmount").setWidth(120);
+		this.kdtEntry.getColumn("canAmount").getStyleAttributes().setLocked(true);
 		
 //		this.kdtEntry.getColumn("supplier").setRequired(true);
 		
@@ -241,10 +280,14 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		this.cbNw.removeItem(ContractTypeOrgTypeEnum.BIGRANGE);
 		this.cbNw.removeItem(ContractTypeOrgTypeEnum.SMALLRANGE);
 		
-		this.kdtEntry.getMergeManager().setMergeMode(KDTMergeManager.GROUP_MERGE);
-    	this.kdtEntry.getGroupManager().setGroup(true);
-    	this.kdtEntry.getColumn("bizDate").setGroup(true);
-    	this.kdtEntry.getGroupManager().group();
+//		this.kdtEntry.getMergeManager().setMergeMode(KDTMergeManager.GROUP_MERGE);
+//    	this.kdtEntry.getGroupManager().setGroup(true);
+//    	this.kdtEntry.getColumn("bizDate").setGroup(true);
+//    	this.kdtEntry.getGroupManager().group();
+		
+		isOnload=true;
+		this.cbIsSub.setEnabled(false);
+		isOnload=false;
     }
     
     public void fillAttachmnetTable() throws EASBizException, BOSException {
@@ -391,10 +434,114 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		}
 		kdtEntry.removeRow(activeRowIndex);
 	}
+	protected void cbIsSub_stateChanged(ChangeEvent e) throws Exception {
+		if(isOnload)return;
+		if(cbIsSub.isSelected()){
+			try {
+				getHappenAmount();
+			} catch (BOSException e1) {
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			this.kdtEntry.getColumn("amount").getStyleAttributes().setLocked(true);
+			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setLocked(true);
+			this.kdtEntry.getColumn("bizDate").getStyleAttributes().setLocked(true);
+			this.kdtEntry.getColumn("costAccount").getStyleAttributes().setLocked(true);
+			this.kdtEntry.getColumn("type").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("supplier").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("sdAmount").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("sdRemark").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("unit").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setHided(false);
 			
+			this.actionALine.setVisible(false);
+			this.actionILine.setVisible(false);
+			this.actionRLine.setVisible(false);
+			
+		}else{
+			for(int i=0;i<this.kdtEntry.getRowCount();i++){
+				this.kdtEntry.getRow(i).getCell("marketProject").setValue(null);
+				this.kdtEntry.getRow(i).getCell("amount").setValue(null);
+			}
+			this.kdtEntry.getColumn("amount").getStyleAttributes().setLocked(false);
+			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setLocked(false);
+			this.kdtEntry.getColumn("bizDate").getStyleAttributes().setLocked(false);
+			this.kdtEntry.getColumn("costAccount").getStyleAttributes().setLocked(false);
+			this.kdtEntry.getColumn("type").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("supplier").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("sdAmount").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("sdRemark").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("unit").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setHided(true);
+			
+			this.actionALine.setVisible(true);
+			this.actionILine.setVisible(true);
+			this.actionRLine.setVisible(true);
+		}
+	}
+	private void getHappenAmount() throws BOSException, SQLException{
+		for(int i=0;i<this.kdtEntry.getRowCount();i++){
+			IRow r = this.kdtEntry.getRow(i);
+			CostAccountInfo caInfo=(CostAccountInfo) r.getCell("costAccount").getValue();
+			MarketProjectInfo mp=(MarketProjectInfo) r.getCell("marketProject").getValue();
+			if(caInfo!=null&&mp!=null){
+				 BigDecimal amount=FDCHelper.subtract(getMpAmount(mp.getId().toString(), caInfo.getId().toString()), getHappenAmount(mp.getId().toString(),caInfo.getId().toString()));
+				 r.getCell("canAmount").setValue(amount);
+				 r.getCell("amount").setValue(amount.negate());
+			}
+		}
+	}
+	public boolean isOnload=false;
 	public void loadFields() {
+		isOnload=true;
 		this.kdtEntry.checkParsed();
 		super.loadFields();
+		
+		if(cbIsSub.isSelected()){
+			try {
+				getHappenAmount();
+			} catch (BOSException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			this.kdtEntry.getColumn("amount").getStyleAttributes().setLocked(true);
+			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setLocked(true);
+			this.kdtEntry.getColumn("bizDate").getStyleAttributes().setLocked(true);
+			this.kdtEntry.getColumn("costAccount").getStyleAttributes().setLocked(true);
+			this.kdtEntry.getColumn("type").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("supplier").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("sdAmount").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("sdRemark").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("unit").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setHided(false);
+			
+			this.actionALine.setVisible(false);
+			this.actionILine.setVisible(false);
+			this.actionRLine.setVisible(false);
+		}else{
+			this.kdtEntry.getColumn("amount").getStyleAttributes().setLocked(false);
+			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setLocked(false);
+			this.kdtEntry.getColumn("bizDate").getStyleAttributes().setLocked(false);
+			this.kdtEntry.getColumn("costAccount").getStyleAttributes().setLocked(false);
+			this.kdtEntry.getColumn("type").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("supplier").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("sdAmount").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("sdRemark").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("unit").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setHided(true);
+			
+			this.actionALine.setVisible(true);
+			this.actionILine.setVisible(true);
+			this.actionRLine.setVisible(true);
+		}
 		try {
 			fillAttachmnetTable();
 		} catch (EASBizException e) {
@@ -402,6 +549,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		} catch (BOSException e) {
 			handleException(e);
 		}
+		isOnload=false;
 	}
 	public void actionAttachment_actionPerformed(ActionEvent e) throws Exception {
 		super.actionAttachment_actionPerformed(e);
@@ -415,11 +563,33 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		} catch (BOSException e) {
 			logger.error(e.getMessage());
 		}
+		info.setId(BOSUuid.create(info.getBOSType()));
 		info.setBizDate(now);
 		info.setState(FDCBillStateEnum.SAVED);
 		info.setCU(SysContext.getSysContext().getCurrentCtrlUnit());
 		info.setOrgUnit((FullOrgUnitInfo) this.getUIContext().get("org"));
 		
+		Set entryId=(Set) this.getUIContext().get("entryId");
+		if(entryId!=null){
+			info.setIsSub(true);
+			Iterator<String> it = entryId.iterator();
+			while (it.hasNext()) {
+				String str = it.next();
+			 	ZHMarketProjectEntryInfo entry=new ZHMarketProjectEntryInfo();
+			 	try {
+					MarketProjectCostEntryInfo mentry=MarketProjectCostEntryFactory.getRemoteInstance().getMarketProjectCostEntryInfo("select head.*,costAccount.* from where id='"+str+"'");
+					entry.setId(BOSUuid.create(entry.getBOSType()));
+					entry.setMarketProject(mentry.getHead());
+					entry.setCostAccount(mentry.getCostAccount());
+					entry.setBizDate(new Date());
+			 	} catch (EASBizException e) {
+					e.printStackTrace();
+				} catch (BOSException e) {
+					e.printStackTrace();
+				}
+				info.getEntry().add(entry);
+			}
+		}
 		return info;
 	}
 	protected void verifyInputForSave() throws Exception {
@@ -448,30 +618,69 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			SysUtil.abort();
 		}
 		Set costAccount=new HashSet();
+		Set type=new HashSet();
+		Set VMC=new HashSet();
+		boolean isJz=false;
 		for(int i=0;i<this.kdtEntry.getRowCount();i++){
 			if(this.kdtEntry.getRow(i).getCell("bizDate").getValue()==null){
 				FDCMsgBox.showWarning(this,"事项预估发生时间不能为空！");
+				SysUtil.abort();
+			}
+			Date thisDate=new Date();
+			Date bizDate=(Date) this.kdtEntry.getRow(i).getCell("bizDate").getValue();
+			if(!this.cbIsSub.isSelected()&&FDCDateHelper.dateDiff(FDCDateHelper.getDayBegin(thisDate), bizDate)<0){
+				FDCMsgBox.showWarning(this,"事项预估发生日期不允许小于系统当前日期！");
+				SysUtil.abort();
+			}
+			if(this.cbIsSub.isSelected()&&this.kdtEntry.getRow(i).getCell("marketProject").getValue()==null){
+				FDCMsgBox.showWarning(this,"营销立项不能为空！");
 				SysUtil.abort();
 			}
 			if(this.kdtEntry.getRow(i).getCell("costAccount").getValue()==null){
 				FDCMsgBox.showWarning(this,"成本科目不能为空！");
 				SysUtil.abort();
 			}
+			if(this.cbIsSub.isSelected()){
+				CostAccountInfo caInfo=(CostAccountInfo) this.kdtEntry.getRow(i).getCell("costAccount").getValue();
+				MarketProjectInfo mp=(MarketProjectInfo) this.kdtEntry.getRow(i).getCell("marketProject").getValue();
+				if(VMC.contains(mp.getId().toString()+caInfo.getId().toString())){
+					FDCMsgBox.showWarning(this,"第"+(i+1)+"立項科目重複！");
+					SysUtil.abort();
+				}else{
+					VMC.add(mp.getId().toString()+caInfo.getId().toString());
+				}
+			}
 			if(this.kdtEntry.getRow(i).getCell("amount").getValue()==null){
 				FDCMsgBox.showWarning(this,"金额不能为空！");
 				SysUtil.abort();
 			}
-			if(((BigDecimal)this.kdtEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)<=0){
-				FDCMsgBox.showWarning(this,"金额必须大于0！");
-				SysUtil.abort();
+			if(!this.cbIsSub.isSelected()){
+				if(((BigDecimal)this.kdtEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)<=0){
+					FDCMsgBox.showWarning(this,"金额必须大于0！");
+					SysUtil.abort();
+				}
+			}else{
+				if(((BigDecimal)this.kdtEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)>=0){
+					FDCMsgBox.showWarning(this,"金额必须小于0！");
+					SysUtil.abort();
+				}
 			}
-			if(this.kdtEntry.getRow(i).getCell("type").getValue()==null){
-				FDCMsgBox.showWarning(this,"控制单据不能为空！");
-				SysUtil.abort();
-			}
-			if(this.kdtEntry.getRow(i).getCell("unit").getValue()==null){
-				FDCMsgBox.showWarning(this,"比价单位不能为空！");
-				SysUtil.abort();
+			if(!this.cbIsSub.isSelected()){
+				if(this.kdtEntry.getRow(i).getCell("type").getValue()==null){
+					FDCMsgBox.showWarning(this,"控制单据不能为空！");
+					SysUtil.abort();
+				}
+				MarketCostTypeEnum entryType=(MarketCostTypeEnum)this.kdtEntry.getRow(i).getCell("type").getValue();
+				if(entryType.equals(MarketCostTypeEnum.JZ)){
+					isJz=true;
+					type.add(1);
+				}else{
+					type.add(0);
+				}
+				if(this.kdtEntry.getRow(i).getCell("unit").getValue()==null){
+					FDCMsgBox.showWarning(this,"比价单位不能为空！");
+					SysUtil.abort();
+				}
 			}
 //			if(this.kdtEntry.getRow(i).getCell("supplier").getValue()==null){
 //				FDCMsgBox.showWarning(this,"签约单位不能为空！");
@@ -484,22 +693,59 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			CostAccountInfo cost=(CostAccountInfo) this.kdtEntry.getRow(i).getCell("costAccount").getValue();
 			costAccount.add(cost.getId().toString());
 		}
+		if(type.size()>1){
+			FDCMsgBox.showWarning(this,"费用归属控制单据不允许存在记账单与合同或者无文本！");
+			SysUtil.abort();
+		}
 		
-		for(int i=0;i<this.kdtEntry.getRowCount();i++){
-			 Date bizDate=(Date) this.kdtEntry.getRow(i).getCell("bizDate").getValue();
-			 Calendar cal = Calendar.getInstance();
-			 cal.setTime(bizDate);
-			 int year=cal.get(Calendar.YEAR);
-			 
-			CostAccountInfo caInfo=(CostAccountInfo) this.kdtEntry.getRow(i).getCell("costAccount").getValue();
-			BigDecimal total=getCostAccountAmount(caInfo.getId().toString(),String.valueOf(year));
-			BigDecimal yearAmount=getYearAmount(caInfo.getId().toString(),String.valueOf(year));
-			if(yearAmount==null){
-				yearAmount=FDCHelper.ZERO;
+		if(!this.cbIsSub.isSelected()){
+			for(int i=0;i<this.kdtEntry.getRowCount();i++){
+				 Date bizDate=(Date) this.kdtEntry.getRow(i).getCell("bizDate").getValue();
+				 Calendar cal = Calendar.getInstance();
+				 cal.setTime(bizDate);
+				 int year=cal.get(Calendar.YEAR);
+				 
+				 MarketYearProjectCollection yearCol=MarketYearProjectFactory.getRemoteInstance().getMarketYearProjectCollection("select state,name from where year="+year+" and orgUnit.id='"+this.editData.getOrgUnit().getId()+"' order by version desc");
+				if(!isJz&&(yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED))){
+					FDCMsgBox.showWarning(this,"营销年度预算未审批通过！");
+					SysUtil.abort();
+				}
+				boolean isV=true;
+				if((yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED))&&isJz){
+					isV=false;
+				}
+				if(isV){
+					CostAccountInfo caInfo=(CostAccountInfo) this.kdtEntry.getRow(i).getCell("costAccount").getValue();
+					BigDecimal total=getCostAccountAmount(caInfo.getId().toString(),String.valueOf(year));
+					BigDecimal yearAmount=getYearAmount(caInfo.getId().toString(),String.valueOf(year));
+					if(yearAmount==null){
+						yearAmount=FDCHelper.ZERO;
+					}
+					if(FDCHelper.add(total, this.kdtEntry.getRow(i).getCell("amount").getValue()).compareTo(yearAmount)>0){
+						 FDCMsgBox.showWarning(this,"科目："+caInfo.getName()+" 超出年度预算！");
+						 SysUtil.abort();
+					}
+				}
 			}
-			if(FDCHelper.add(total, this.kdtEntry.getRow(i).getCell("amount").getValue()).compareTo(yearAmount)>0){
-				 FDCMsgBox.showWarning(this,"科目："+caInfo.getName()+" 超出年度预算！");
-				 SysUtil.abort();
+		}
+		if(this.cbIsSub.isSelected()){
+			for(int i=0;i<this.kdtEntry.getRowCount();i++){
+				CostAccountInfo caInfo=(CostAccountInfo) this.kdtEntry.getRow(i).getCell("costAccount").getValue();
+				MarketProjectInfo mp=(MarketProjectInfo) this.kdtEntry.getRow(i).getCell("marketProject").getValue();
+				BigDecimal total=getMpAmount(mp.getId().toString(),caInfo.getId().toString());
+				BigDecimal happen=getHappenAmount(mp.getId().toString(),caInfo.getId().toString());
+				if(happen==null){
+					happen=FDCHelper.ZERO;
+				}
+				if(FDCHelper.add(total, this.kdtEntry.getRow(i).getCell("amount").getValue()).compareTo(happen)<0){
+					 FDCMsgBox.showWarning(this,"科目："+caInfo.getName()+" 超出立项已发生！");
+					 SysUtil.abort();
+				}
+				MarketProjectCollection col=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select * from where isSub=1 and mp.id='"+mp.getId().toString()+"'");
+				if(col.size()>0){
+					FDCMsgBox.showWarning(this,"该费用已有负立项，不能重复发起！");
+					SysUtil.abort();
+				}
 			}
 		}
 	}
@@ -518,10 +764,10 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 	public BigDecimal getHappenAmount(String marketProjectId,String costAccountId) throws SQLException, BOSException{
 		StringBuilder sql = new StringBuilder();
 		sql.append("select sum(t.famount) amount from (select con.fmarketProjectId,con.FMpCostAccountId,entry.famount from");
-		sql.append(" t_con_contractbill con left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate!='1SAVED') t on t.fcontractbillid=con.fid left join T_CON_MarketProjectCostEntry entry on entry.fcostAccountid=con.FMpCostAccountId and con.fmarketProjectId=entry.fheadid  where con.fstate!='1SAVED'");
+		sql.append(" t_con_contractbill con left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=con.fid left join T_CON_MarketProjectCostEntry entry on entry.fcostAccountid=con.FMpCostAccountId and con.fmarketProjectId=entry.fheadid where con.fstate='4AUDITTED'");
     	
 		sql.append(" union all select con.fmarketProjectId,con.FMpCostAccountId,con.famount from");
-		sql.append(" T_CON_ContractWithoutText con where con.fstate!='1SAVED') t where t.FMpCostAccountId='"+costAccountId+"' and t.fmarketProjectId='"+marketProjectId+"' group by t.FMpCostAccountId,fmarketProjectId ");
+		sql.append(" T_CON_ContractWithoutText con) t where t.FMpCostAccountId='"+costAccountId+"' and t.fmarketProjectId='"+marketProjectId+"' group by t.FMpCostAccountId,fmarketProjectId ");
 		FDCSQLBuilder _builder = new FDCSQLBuilder();
 		_builder.appendSql(sql.toString());
 		IRowSet rowSet = _builder.executeQuery();
@@ -544,12 +790,18 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 	}
 	public BigDecimal getCostAccountAmount(String costAccountId,String year) throws BOSException, SQLException{
 		StringBuilder sql = new StringBuilder();
-		sql.append("  /*dialect*/  select sum(case when t.famount is null then entry.famount else t.famount end) amount from T_CON_MarketProjectCostEntry entry left join T_CON_MarketProject head on head.fid=entry.fheadid");
-		sql.append(" left join (select (case when con.fhasSettled = 1 then t.fsettleprice else con.famount end)famount,FMarketProjectId,FMpCostAccountId from t_con_contractBill con left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=con.fid where fstate='4AUDITTED')t on t.FMarketProjectId=head.fid and t.FMpCostAccountId=entry.fcostaccountid");
-		sql.append(" where entry.fcostaccountid='"+costAccountId+"' and to_char(head.fbizDate,'yyyy')='"+year+"' and head.fstate!='1SAVED'");
+		sql.append(" select sum(t.famount) amount from(");
+		sql.append(" select (case when t.fsettleprice is null then entry.famount else t.fsettleprice*entry.frate/100 end)famount ,head.FMpCostAccountId fcostAccountid from T_CON_ContractMarketEntry entry left join t_con_contractbill head on head.fid=entry.fheadid");
+		sql.append(" left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb) t on t.fcontractbillid=head.fid");
+		sql.append(" where head.fstate='4AUDITTED' and year(entry.fdate)="+year);
+		sql.append(" union all select mpEntry.famount,mpEntry.fcostAccountid from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid");
+		sql.append(" where mp.fstate!='1SAVED' and year(mp.fbizDate)="+year);
 		if(this.editData.getId()!=null){
-			sql.append(" and head.fid!='"+this.editData.getId()+"'");
+			sql.append(" and mp.fsourceBillid!='"+this.editData.getId()+"'");
 		}
+		sql.append(" and not exists(select t1.fid from t_con_contractBill t1 where t1.fstate='4AUDITTED' and t1.FMarketProjectId=mp.fid and t1.FMpCostAccountId=mpEntry.fcostAccountid) ");
+		sql.append(" )t where t.fcostAccountid='"+costAccountId+"'");
+		
 		FDCSQLBuilder _builder = new FDCSQLBuilder();
 		_builder.appendSql(sql.toString());
 		IRowSet rowSet = _builder.executeQuery();
@@ -576,29 +828,37 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			 }
 			 this.txtAmount.setValue(amount);
 		 }
-		 if(colIndex == this.kdtEntry.getColumnIndex("bizDate")){
-			 Date bizDate=(Date) this.kdtEntry.getRow(e.getRowIndex()).getCell("bizDate").getValue();
-			 if(bizDate!=null){
-				 Calendar cal = Calendar.getInstance();
-				 cal.setTime(bizDate);
-				 int year=cal.get(Calendar.YEAR);
-				
-				 MarketYearProjectCollection yearCol=MarketYearProjectFactory.getRemoteInstance().getMarketYearProjectCollection("select state,name from where year="+year+" and orgUnit.id='"+this.editData.getOrgUnit().getId()+"' order by version desc");
-				 if(yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
-					 FDCMsgBox.showWarning(this,"营销年度预算未审批通过！");
-					 this.kdtEntry.getRow(e.getRowIndex()).getCell("bizDate").setValue(null);
-					 SysUtil.abort();
-				 }
-				 
-				 Date thisDate=new Date();
-				 if(FDCDateHelper.dateDiff(FDCDateHelper.getDayBegin(thisDate), bizDate)<0){
-					 FDCMsgBox.showWarning(this,"事项预估发生日期不允许小于系统当前日期！");
-					 this.kdtEntry.getRow(e.getRowIndex()).getCell("bizDate").setValue(null);
-					 SysUtil.abort();
-				 }
+		 if(this.cbIsSub.isSelected()&&colIndex == this.kdtEntry.getColumnIndex("costAccount")){
+			 CostAccountInfo caInfo=(CostAccountInfo) r.getCell("costAccount").getValue();
+			 MarketProjectInfo mp=(MarketProjectInfo) r.getCell("marketProject").getValue();
+			 if(caInfo!=null&&mp!=null){
+				 BigDecimal amount=FDCHelper.subtract(getMpAmount(mp.getId().toString(), caInfo.getId().toString()), getHappenAmount(mp.getId().toString(),caInfo.getId().toString()));
+				 r.getCell("canAmount").setValue(amount);
+				 r.getCell("amount").setValue(amount.negate());	 
 			 }
-			 
 		 }
+//		 if(colIndex == this.kdtEntry.getColumnIndex("bizDate")){
+//			 Date bizDate=(Date) this.kdtEntry.getRow(e.getRowIndex()).getCell("bizDate").getValue();
+//			 if(bizDate!=null){
+//				 Calendar cal = Calendar.getInstance();
+//				 cal.setTime(bizDate);
+//				 int year=cal.get(Calendar.YEAR);
+//				
+//				 MarketYearProjectCollection yearCol=MarketYearProjectFactory.getRemoteInstance().getMarketYearProjectCollection("select state,name from where year="+year+" and orgUnit.id='"+this.editData.getOrgUnit().getId()+"' order by version desc");
+//				 if(yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
+//					 FDCMsgBox.showWarning(this,"营销年度预算未审批通过！");
+//					 this.kdtEntry.getRow(e.getRowIndex()).getCell("bizDate").setValue(null);
+//					 SysUtil.abort();
+//				 }
+//				 
+//				 Date thisDate=new Date();
+//				 if(FDCDateHelper.dateDiff(FDCDateHelper.getDayBegin(thisDate), bizDate)<0){
+//					 FDCMsgBox.showWarning(this,"事项预估发生日期不允许小于系统当前日期！");
+//					 this.kdtEntry.getRow(e.getRowIndex()).getCell("bizDate").setValue(null);
+//					 SysUtil.abort();
+//				 }
+//			 }
+//		 }
 	}
 	private  FileGetter fileGetter;
 	private  FileGetter getFileGetter() throws Exception {

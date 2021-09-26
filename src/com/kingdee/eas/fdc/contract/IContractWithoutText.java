@@ -10,8 +10,9 @@ import java.lang.String;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.bos.dao.IObjectPK;
-import com.kingdee.bos.metadata.entity.SelectorItemCollection;
+import java.util.Map;
 import com.kingdee.eas.fdc.basedata.IFDCBill;
+import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.eas.framework.CoreBaseCollection;
 import com.kingdee.eas.fdc.contract.programming.ProgrammingContractInfo;
 import com.kingdee.bos.util.*;
@@ -36,4 +37,6 @@ public interface IContractWithoutText extends IFDCBill
     public void synUpdateProgramming(String billId, ProgrammingContractInfo programming) throws BOSException, EASBizException;
     public void synReUpdateProgramming(String billId, IObjectValue programming) throws BOSException, EASBizException;
     public IObjectValue getNoPValue(IObjectPK pk, SelectorItemCollection sel) throws BOSException;
+    public Map getMKFP() throws BOSException, EASBizException;
+    public String getMKLink(String number) throws BOSException, EASBizException;
 }

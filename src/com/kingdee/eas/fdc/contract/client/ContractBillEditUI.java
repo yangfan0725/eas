@@ -24,10 +24,12 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.EventListener;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -183,7 +185,9 @@ import com.kingdee.eas.fdc.basedata.ContractTypeCollection;
 import com.kingdee.eas.fdc.basedata.ContractTypeFactory;
 import com.kingdee.eas.fdc.basedata.ContractTypeInfo;
 import com.kingdee.eas.fdc.basedata.ContractTypeOrgTypeEnum;
+import com.kingdee.eas.fdc.basedata.CostAccountFactory;
 import com.kingdee.eas.fdc.basedata.CostAccountInfo;
+import com.kingdee.eas.fdc.basedata.CostAccountYJTypeEnum;
 import com.kingdee.eas.fdc.basedata.CostSplitStateEnum;
 import com.kingdee.eas.fdc.basedata.CurProjectFactory;
 import com.kingdee.eas.fdc.basedata.CurProjectInfo;
@@ -193,6 +197,7 @@ import com.kingdee.eas.fdc.basedata.FDCBillInfo;
 import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
 import com.kingdee.eas.fdc.basedata.FDCCommonServerHelper;
 import com.kingdee.eas.fdc.basedata.FDCConstants;
+import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
 import com.kingdee.eas.fdc.basedata.IFDCBill;
@@ -250,7 +255,11 @@ import com.kingdee.eas.fdc.contract.CostPropertyEnum;
 import com.kingdee.eas.fdc.contract.FDCUtils;
 import com.kingdee.eas.fdc.contract.ForWriteMarkHelper;
 import com.kingdee.eas.fdc.contract.IContractBill;
+import com.kingdee.eas.fdc.contract.JZTypeEnum;
 import com.kingdee.eas.fdc.contract.MarketProjectCollection;
+import com.kingdee.eas.fdc.contract.MarketProjectCostEntryCollection;
+import com.kingdee.eas.fdc.contract.MarketProjectCostEntryFactory;
+import com.kingdee.eas.fdc.contract.MarketProjectCostEntryInfo;
 import com.kingdee.eas.fdc.contract.MarketProjectFactory;
 import com.kingdee.eas.fdc.contract.MarketProjectInfo;
 import com.kingdee.eas.fdc.contract.app.MarketCostTypeEnum;
@@ -434,6 +443,8 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		addDataChangeListener(txtExRate);
 		addDataChangeListener(txtStampTaxRate);
 		addDataChangeListener(prmtTAEntry);
+		addDataChangeListener(pkStartDate);
+		addDataChangeListener(pkEndDate);
 	}
 
 	protected void detachListeners() {
@@ -456,6 +467,8 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		removeDataChangeListener(prmtRespDept);
 		removeDataChangeListener(prmtNeedDept);
 		removeDataChangeListener(prmtTAEntry);
+		removeDataChangeListener(pkStartDate);
+		removeDataChangeListener(pkEndDate);
 	}
 
 	/** 是否使用不计成本的金额, 是否单据计算 = 是, 此变量值为 fasle, 是否单据计算 = 否, 此变量值 = true, 
@@ -649,6 +662,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtMarketProject.setRequired(true);
 				this.prmtMpCostAccount.setEnabled(true);
 				this.prmtMpCostAccount.setRequired(true);
+				this.cbJzType.setRequired(true);
+				this.pkJzStartDate.setRequired(true);
+				this.pkJzEndDate.setRequired(true);
 				this.actionMALine.setEnabled(true);
 				this.actionMRLine.setEnabled(true);
 			}else{
@@ -656,6 +672,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtMarketProject.setRequired(false);
 				this.prmtMpCostAccount.setEnabled(false);
 				this.prmtMpCostAccount.setRequired(false);
+				this.cbJzType.setRequired(false);
+				this.pkJzStartDate.setRequired(false);
+				this.pkJzEndDate.setRequired(false);
 				this.actionMALine.setEnabled(false);
 				this.actionMRLine.setEnabled(false);
 			}
@@ -1462,6 +1481,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtMarketProject.setRequired(true);
 				this.prmtMpCostAccount.setEnabled(true);
 				this.prmtMpCostAccount.setRequired(true);
+				this.cbJzType.setRequired(true);
+				this.pkJzStartDate.setRequired(true);
+				this.pkJzEndDate.setRequired(true);
 				this.actionMALine.setEnabled(true);
 				this.actionMRLine.setEnabled(true);
 			}else{
@@ -1469,6 +1491,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtMarketProject.setRequired(false);
 				this.prmtMpCostAccount.setEnabled(false);
 				this.prmtMpCostAccount.setRequired(false);
+				this.cbJzType.setRequired(false);
+				this.pkJzStartDate.setRequired(false);
+				this.pkJzEndDate.setRequired(false);
 				this.actionMALine.setEnabled(false);
 				this.actionMRLine.setEnabled(false);
 				this.prmtMarketProject.setValue(null);
@@ -2785,6 +2810,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			this.prmtMpCostAccount.setEnabled(false);
 			this.prmtinviteType.setEnabled(false);
 		}
+		
+		this.actionMALine.setVisible(false);
+		this.actionMRLine.setVisible(false);
 	}
 	protected void prmtTAEntry_dataChanged(DataChangeEvent e) throws Exception {
 		this.tblInvite.removeRows();
@@ -3150,6 +3178,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtMarketProject.setRequired(true);
 				this.prmtMpCostAccount.setEnabled(true);
 				this.prmtMpCostAccount.setRequired(true);
+				this.cbJzType.setRequired(true);
+				this.pkJzStartDate.setRequired(true);
+				this.pkJzEndDate.setRequired(true);
 				this.actionMALine.setEnabled(true);
 				this.actionMRLine.setEnabled(true);
 			}else{
@@ -3157,6 +3188,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtMarketProject.setRequired(false);
 				this.prmtMpCostAccount.setEnabled(false);
 				this.prmtMpCostAccount.setRequired(false);
+				this.cbJzType.setRequired(false);
+				this.pkJzStartDate.setRequired(false);
+				this.pkJzEndDate.setRequired(false);
 				this.actionMALine.setEnabled(false);
 				this.actionMRLine.setEnabled(false);
 				this.prmtMarketProject.setValue(null);
@@ -4694,10 +4728,11 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 
 		setCapticalAmount();
 		
-		for(int i=0;i<this.tblMarket.getRowCount();i++){
-			 IRow r = this.tblMarket.getRow(i);
-			 r.getCell("amount").setValue(FDCHelper.divide(FDCHelper.multiply(this.txtLocalAmount.getBigDecimalValue(), r.getCell("rate").getValue()), new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP));
-		}
+//		for(int i=0;i<this.tblMarket.getRowCount();i++){
+//			 IRow r = this.tblMarket.getRow(i);
+//			 r.getCell("amount").setValue(FDCHelper.divide(FDCHelper.multiply(this.txtLocalAmount.getBigDecimalValue(), r.getCell("rate").getValue()), new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP));
+//		}
+		setMarketEntry();
 	}
 
 	protected void txtGrtRate_dataChanged(DataChangeEvent e) throws Exception {
@@ -5586,6 +5621,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		}
 		if(prmtMarketProject.isRequired()){
 			FDCClientVerifyHelper.verifyEmpty(this, prmtMarketProject);
+			FDCClientVerifyHelper.verifyEmpty(this, cbJzType);
+			FDCClientVerifyHelper.verifyEmpty(this, pkJzStartDate);
+			FDCClientVerifyHelper.verifyEmpty(this, pkJzEndDate);
 			if(this.tblMarket.getRowCount()==0){
 				FDCMsgBox.showWarning(this,"营销合同分摊明细不能为空！");
 				SysUtil.abort();
@@ -5770,7 +5808,17 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				}
 			}
 		}
-		
+		if(this.prmtMpCostAccount.getValue()!=null&&this.prmtMarketProject.getValue()!=null){
+			CostAccountInfo info=CostAccountFactory.getRemoteInstance().getCostAccountInfo(new ObjectUuidPK(((CostAccountInfo)this.prmtMpCostAccount.getValue()).getId()));
+			MarketProjectInfo market=MarketProjectFactory.getRemoteInstance().getMarketProjectInfo(new ObjectUuidPK(((MarketProjectInfo)this.prmtMarketProject.getValue()).getId()));
+			if(info.getYjType()!=null&&info.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
+				
+				int day=FDCDateHelper.getDiffDays(market.getAuditTime(), new Date());
+				if(day>7){
+					FDCMsgBox.showInfo(this,"合同流程必须在立项审批通过后7天内发起；除第三方佣金外的无文本立项，必须在次月15日之前发起无文本合同流程，超时发起流程将按照《宋都集团营销费用管理制度》规定，对责任人进行扣罚。");
+				}
+			}
+		}
 	}
 	private void verifyContractProgrammingPara() throws BOSException, SQLException, EASBizException {
 		ProgrammingContractInfo pc = (ProgrammingContractInfo) this.editData.getProgrammingContract();
@@ -7707,8 +7755,10 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		this.tblMarket.getColumn("date").setRequired(true);
 		this.tblMarket.getColumn("rate").setRequired(true);
 		this.tblMarket.getColumn("amount").setRequired(true);
-		this.tblMarket.getColumn("amount").getStyleAttributes().setLocked(true);
 		
+		this.tblMarket.getColumn("amount").getStyleAttributes().setLocked(true);
+		this.tblMarket.getColumn("date").getStyleAttributes().setLocked(true);
+		this.tblMarket.getColumn("rate").getStyleAttributes().setLocked(true);
 		
 		this.kdtYZEntry.checkParsed();
 		this.kdtYZEntry.setEditable(true);
@@ -7748,6 +7798,96 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 	protected void kdtYZEntry_editStopped(KDTEditEvent e) throws Exception {
 		
 	}
+	protected void cbJzType_itemStateChanged(ItemEvent e) throws Exception {
+		if(isLoad){
+			return;
+		}
+		setMarketEntry();
+	}
+	protected void pkJzEndDate_dataChanged(DataChangeEvent e) throws Exception {
+		setMarketEntry();
+	}
+	protected void pkJzStartDate_dataChanged(DataChangeEvent e) throws Exception {
+		setMarketEntry();
+	}
+	private void setMarketEntry() throws ParseException{
+		if(this.pkJzStartDate.getValue()!=null&&this.pkJzEndDate.getValue()!=null&&this.cbJzType.getSelectedItem()!=null){
+			Date startDate=(Date) this.pkJzStartDate.getValue();
+			Date endDate=(Date) this.pkJzEndDate.getValue();
+			JZTypeEnum type=(JZTypeEnum) this.cbJzType.getSelectedItem();
+			this.tblMarket.removeRows();
+			if(type.equals(JZTypeEnum.YI)){
+				IRow row=this.tblMarket.addRow();
+				row.getCell("date").setValue(startDate);
+				row.getCell("rate").setValue(new BigDecimal(100));
+				row.getCell("amount").setValue(this.txtLocalAmount.getBigDecimalValue());
+			}else{
+				List monthList=getMonth(startDate,endDate);
+				int days=FDCDateHelper.getDiffDays(startDate, endDate);
+				BigDecimal sub=FDCHelper.divide(this.txtLocalAmount.getBigDecimalValue(), days, 2, BigDecimal.ROUND_HALF_UP);
+				BigDecimal allRate=FDCHelper.ZERO;
+				BigDecimal allAmount=FDCHelper.ZERO;
+				for(int i=0;i<monthList.size();i++){
+					IRow row=this.tblMarket.addRow();
+					row.getCell("date").setValue(FDCDateHelper.getFirstDayOfMonth(((Date) monthList.get(i))));
+					BigDecimal amount=FDCHelper.ZERO;
+					BigDecimal rate=FDCHelper.ZERO;
+					if(i==0){
+						amount=FDCHelper.multiply(sub, FDCDateHelper.getDiffDays(startDate, FDCDateHelper.getLastDayOfMonth(((Date) monthList.get(i)))));
+						rate=FDCHelper.divide(FDCHelper.multiply(amount, new BigDecimal(100)), this.txtLocalAmount.getBigDecimalValue(), 2, BigDecimal.ROUND_HALF_UP);
+						allRate=FDCHelper.add(allRate, rate);
+						allAmount=FDCHelper.add(allAmount, amount);
+					}else if(i==monthList.size()-1){
+						amount=FDCHelper.subtract(this.txtLocalAmount.getBigDecimalValue(), allAmount);
+//						amount=FDCHelper.divide(FDCHelper.multiply(this.txtLocalAmount.getBigDecimalValue(),rate), new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP);
+						rate=FDCHelper.subtract(100, allRate);
+					}else{
+						amount=FDCHelper.multiply(sub, FDCDateHelper.getDiffDays(FDCDateHelper.getFirstDayOfMonth(((Date) monthList.get(i))), FDCDateHelper.getLastDayOfMonth(((Date) monthList.get(i)))));
+						rate=FDCHelper.divide(FDCHelper.multiply(amount, new BigDecimal(100)), this.txtLocalAmount.getBigDecimalValue(), 2, BigDecimal.ROUND_HALF_UP);
+						allRate=FDCHelper.add(allRate, rate);
+						allAmount=FDCHelper.add(allAmount, amount);
+					}
+					
+					row.getCell("rate").setValue(rate);
+					row.getCell("amount").setValue(amount);
+					
+//					if(i==monthList.size()-1){
+//						row.getCell("rate").setValue(FDCHelper.subtract(100, allRate));
+//					}else{
+//						row.getCell("rate").setValue(rate);
+//						allRate=FDCHelper.add(allRate, rate);
+//					}
+//					row.getCell("amount").setValue(FDCHelper.divide(FDCHelper.multiply(this.txtLocalAmount.getBigDecimalValue(),row.getCell("rate").getValue()), new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP));
+				}
+			}
+		}
+	}
+	protected void prmtMpCostAccount_dataChanged(DataChangeEvent e)throws Exception {
+		
+	}
+	 /**
+     * 获取连个日期之间相差的月份
+     * @param startDate
+     * @param endDate
+     * @return
+     * @throws ParseException
+     */
+    private static List getMonth(Date startDate, Date endDate) throws ParseException {
+        List list = new ArrayList();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+        Calendar c1 = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+        c1.setTime(startDate);
+        c2.setTime(endDate);
+        int  year = c2.get(Calendar.YEAR) - c1.get(Calendar.YEAR);
+        int month = c2.get(Calendar.MONTH)+year*12 - c1.get(Calendar.MONTH);
+        for(int i = 0;i<=month;i++){
+            c1.setTime(startDate);
+            c1.add(c1.MONTH, i);
+            list.add(c1.getTime());
+        }
+        return list;
+    }
 
 	protected void prmtMpCostAccount_willShow(SelectorEvent e) throws Exception {
 		Set id=new HashSet();

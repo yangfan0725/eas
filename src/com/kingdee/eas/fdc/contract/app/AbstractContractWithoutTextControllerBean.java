@@ -24,6 +24,7 @@ import java.lang.String;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.bos.dao.IObjectPK;
+import java.util.Map;
 import com.kingdee.eas.fdc.basedata.app.FDCBillControllerBean;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.eas.framework.CoreBaseCollection;
@@ -34,8 +35,8 @@ import com.kingdee.eas.framework.CoreBillBaseCollection;
 import com.kingdee.eas.framework.CoreBaseInfo;
 import com.kingdee.eas.fdc.contract.ContractWithoutTextCollection;
 import com.kingdee.eas.fdc.basedata.FDCBillCollection;
-import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.eas.framework.ObjectBaseCollection;
+import com.kingdee.bos.util.BOSUuid;
 
 
 
@@ -324,6 +325,58 @@ public abstract class AbstractContractWithoutTextControllerBean extends FDCBillC
         }
     }
     protected abstract IObjectValue _getNoPValue(Context ctx, IObjectPK pk, SelectorItemCollection sel) throws BOSException;
+
+    public Map getMKFP(Context ctx) throws BOSException, EASBizException
+    {
+        try {
+            ServiceContext svcCtx = createServiceContext(new MetaDataPK("4a62cee9-bf1e-4b60-9ab7-860992870d43"), new Object[]{ctx});
+            invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
+            Map retValue = (Map)_getMKFP(ctx);
+            svcCtx.setMethodReturnValue(retValue);
+            }
+            invokeServiceAfter(svcCtx);
+            return (Map)svcCtx.getMethodReturnValue();
+        } catch (BOSException ex) {
+            this.setRollbackOnly();
+            throw ex;
+        } catch (EASBizException ex0) {
+            this.setRollbackOnly();
+            throw ex0;
+        } finally {
+            super.cleanUpServiceState();
+        }
+    }
+    protected Map _getMKFP(Context ctx) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
+
+    public String getMKLink(Context ctx, String number) throws BOSException, EASBizException
+    {
+        try {
+            ServiceContext svcCtx = createServiceContext(new MetaDataPK("b1fd5291-efb8-457b-aa05-697cce912306"), new Object[]{ctx, number});
+            invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
+            String retValue = (String)_getMKLink(ctx, number);
+            svcCtx.setMethodReturnValue(retValue);
+            }
+            invokeServiceAfter(svcCtx);
+            return (String)svcCtx.getMethodReturnValue();
+        } catch (BOSException ex) {
+            this.setRollbackOnly();
+            throw ex;
+        } catch (EASBizException ex0) {
+            this.setRollbackOnly();
+            throw ex0;
+        } finally {
+            super.cleanUpServiceState();
+        }
+    }
+    protected String _getMKLink(Context ctx, String number) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
 
     public FDCBillCollection getFDCBillCollection (Context ctx) throws BOSException
     {

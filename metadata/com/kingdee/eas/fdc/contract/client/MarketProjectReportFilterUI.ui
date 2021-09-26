@@ -112,6 +112,48 @@
             </parent>
         </component>
         <component>
+            <name>contIsYE</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[contIsYE].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>25,98,270,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[contIsYE].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[contIsYE].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[contIsYE].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
             <name>pkFromDate</name>
             <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[pkFromDate].alias</alias>
             <userDefined>true</userDefined>
@@ -149,6 +191,34 @@
                 <key name="name" value="kDLabelContainer2" />
             </parent>
         </component>
+        <component>
+            <name>cbIsYE</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[cbIsYE].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDComboBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>items</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[cbIsYE].properties.property[items].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="contIsYE" />
+            </parent>
+        </component>
     </components>
     <resource>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].alias">
@@ -162,6 +232,42 @@
             <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[cbIsYE].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[cbIsYE].properties.property[items].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="[Enum]com.kingdee.eas.fdc.contract.app.YesOrNoEnum" />
+            <lang locale="zh_HK" value="[Enum]com.kingdee.eas.fdc.contract.app.YesOrNoEnum" />
+            <lang locale="zh_TW" value="[Enum]com.kingdee.eas.fdc.contract.app.YesOrNoEnum" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[contIsYE].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[contIsYE].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[contIsYE].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="是否存在余额" />
+            <lang locale="zh_HK" value="是否存在餘額" />
+            <lang locale="zh_TW" value="是否存在餘額" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[contIsYE].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.MarketProjectReportFilterUI].components.component[kDLabelContainer1].alias">
             <lang locale="en_US" value="null" />

@@ -1,0 +1,1791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.contract.app</package>
+    <name>ThirdPartyExpenseBillEntry</name>
+    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].alias</alias>
+    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].description</description>
+    <userDefined>true</userDefined>
+    <bosType>5E8B4D8D</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.contract.ThirdPartyExpenseBillEntry</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntryController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].description</description>
+            <innerID>a1cd1cf2-da38-49c6-809f-206801a0fa16</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].description</description>
+            <innerID>bfbaf53a-8be6-4940-913a-437c64ef7c78</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>exists</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].description</description>
+            <innerID>42196e3c-6ed4-41c9-9189-f40e809402ac</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>Boolean</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].description</description>
+            <innerID>651485f3-7d46-4658-a877-82129f51a3d2</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].description</description>
+            <innerID>0e559cb8-e0b2-48e6-85f3-8d13f9cc5bb6</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>selector</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[selector].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[selector].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SelectorItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getValue</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].description</description>
+            <innerID>25fffd6e-bea7-46b7-be6e-94e57f6cce3a</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectValue</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>addnew</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].description</description>
+            <innerID>f7113184-22cd-4c27-a8e0-fce17884bf51</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>addnew</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].description</description>
+            <innerID>c7412ea9-a070-42d7-95df-eb67823b75e4</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>update</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].description</description>
+            <innerID>1147df39-ba6f-496e-8683-3dfb4e423650</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>updatePartial</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].description</description>
+            <innerID>7a5e0a22-09c6-43a3-9eda-a56b81c21f57</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>selector</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].parameters.parameter[selector].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].parameters.parameter[selector].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SelectorItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>updateBigObject</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].description</description>
+            <innerID>f3f5d3f7-411c-4fca-ae88-b69d248b11f3</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>model</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].parameters.parameter[model].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].parameters.parameter[model].description</description>
+                    <direction>in</direction>
+                    <dataType>ObjectValue</dataType>
+                    <metadataRef>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry</metadataRef>
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].description</description>
+            <innerID>fe9b9c5b-52ff-4279-9f23-b42c3d4e8a54</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>pk</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[pk].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[pk].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].description</description>
+            <innerID>a5ea5314-8f6f-44d7-bf83-55c2f14ed68f</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].description</description>
+            <innerID>11daffb5-6018-425f-bd8b-5588e4bb3a02</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getPKList</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].description</description>
+            <innerID>c42a86b1-f4ac-4bd7-b086-11984d9af5d2</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>sorter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[sorter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[sorter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.SorterItemCollection</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].description</description>
+            <innerID>3a2bdd86-6118-45b6-a51e-3478f758b7c6</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].description</description>
+            <innerID>23381ed9-c3f0-43e4-a9a6-885f7584f36b</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>view</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].parameters.parameter[view].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].parameters.parameter[view].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.EntityViewInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getCollection</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].description</description>
+            <innerID>32ac55e0-a576-4c2f-b9fd-2575fa6a8ce7</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>ObjectCollection</returnValueType>
+            <metadataRef>com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry</metadataRef>
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].description</description>
+            <innerID>45432550-aea2-4c17-8f2f-006915e5c08a</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>filter</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[filter].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[filter].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.metadata.entity.FilterInfo</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].description</description>
+            <innerID>8de25250-cd00-4741-8711-1df1b67fddd4</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>com.kingdee.bos.dao.IObjectPK[]</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>oql</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[oql].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[oql].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>delete</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].description</description>
+            <innerID>a9c59045-0645-40b3-8633-33fd59f83330</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType />
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>arrayPK</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[arrayPK].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[arrayPK].description</description>
+                    <direction>in</direction>
+                    <dataType>com.kingdee.bos.dao.IObjectPK[]</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <isAbstract>false</isAbstract>
+    <bizUnitPK />
+    <baseEntity>
+        <key name="package" value="com.kingdee.eas.framework.app" />
+        <key name="name" value="CoreBillEntryBase" />
+    </baseEntity>
+    <table>
+        <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+        <key name="name" value="T_CON_TPartyExpenseBillEntry" />
+    </table>
+    <properties>
+        <linkProperty>
+            <name>head</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[head].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[head].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FHeadId" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="R_ThirdPartyExpenseBill_ThirdPartyExpenseBillEntry_entry" />
+            </relationship>
+        </linkProperty>
+        <ownProperty>
+            <name>signManageId</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signManageId].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signManageId].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>44</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signManageId].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSignManageId" />
+            </mappingField>
+        </ownProperty>
+        <linkProperty>
+            <name>recommendType</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[recommendType].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[recommendType].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FRecommendTypeId" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="R_ThirdPartyExpenseBillEntry_RecommendType_recommendType" />
+            </relationship>
+        </linkProperty>
+        <linkProperty>
+            <name>costAccount</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[costAccount].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[costAccount].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FCostAccountId" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="R_ThirdPartyExpenseBillEntry_CostAccount_costAccount" />
+            </relationship>
+        </linkProperty>
+        <ownProperty>
+            <name>jtType</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jtType].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jtType].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Enum</dataType>
+            <metadataRef>com.kingdee.eas.fdc.contract.JTTypeEnum</metadataRef>
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jtType].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FJtType" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>dsxs</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dsxs].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dsxs].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dsxs].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FDsxs" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>tsxs</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[tsxs].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[tsxs].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[tsxs].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FTsxs" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>jl</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jl].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jl].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jl].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FJl" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>xz</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[xz].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[xz].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[xz].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FXz" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>sqjl</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[sqjl].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[sqjl].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[sqjl].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSqjl" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>bizType</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[bizType].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[bizType].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Enum</dataType>
+            <metadataRef>com.kingdee.eas.fdc.sellhouse.TransactionStateEnum</metadataRef>
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[bizType].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FBizType" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>room</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[room].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[room].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>200</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[room].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FRoom" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>customer</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[customer].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[customer].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>100</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[customer].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FCustomer" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>purDate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[purDate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[purDate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Date</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[purDate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FPurDate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>signDate</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signDate].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signDate].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Date</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signDate].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSignDate" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>buildingArea</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[buildingArea].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[buildingArea].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[buildingArea].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FBuildingArea" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>dealTotalAmount</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dealTotalAmount].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dealTotalAmount].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>BigDecimal</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>13</length>
+            <precision>28</precision>
+            <decimalDigits>10</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dealTotalAmount].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FDealTotalAmount" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>saleMan</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[saleMan].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[saleMan].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>100</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[saleMan].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FSaleMan" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>recommended</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[recommended].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[recommended].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>100</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[recommended].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FRecommended" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>qdPerson</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[qdPerson].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[qdPerson].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>100</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[qdPerson].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FQdPerson" />
+            </mappingField>
+        </ownProperty>
+        <ownProperty>
+            <name>nowSaleMan</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[nowSaleMan].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[nowSaleMan].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>String</dataType>
+            <metadataRef />
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>100</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[nowSaleMan].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FNowSaleMan" />
+            </mappingField>
+        </ownProperty>
+    </properties>
+    <logicalKey>
+        <name>id</name>
+        <alias>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].logicalKey[id].alias</alias>
+        <description>entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].logicalKey[id].description</description>
+        <keyClass>com.kingdee.bos.dao.IObjectPK</keyClass>
+        <userDefined>true</userDefined>
+        <keyProperties>
+            <baseProperty>
+                <key name="name" value="id" />
+            </baseProperty>
+        </keyProperties>
+    </logicalKey>
+    <resource>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="第三方费用申请单分录" />
+            <lang locale="zh_HK" value="第三方費用申請單分錄" />
+            <lang locale="zh_TW" value="第三方費用申請單分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="第三方费用申请单分录" />
+            <lang locale="zh_HK" value="第三方費用申請單分錄" />
+            <lang locale="zh_TW" value="第三方費用申請單分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].logicalKey[id].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].logicalKey[id].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[addnew].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[arrayPK].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[arrayPK].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[delete].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[exists].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].parameters.parameter[view].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getCollection].parameters.parameter[view].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[filter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[filter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[sorter].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getPKList].parameters.parameter[sorter].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[oql].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[oql].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[selector].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[getValue].parameters.parameter[selector].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updateBigObject].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].parameters.parameter[selector].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[updatePartial].parameters.parameter[selector].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].parameters.parameter[model].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].parameters.parameter[model].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].parameters.parameter[pk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].methods.method[update].parameters.parameter[pk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[costAccount].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="费用科目" />
+            <lang locale="zh_HK" value="費用科目" />
+            <lang locale="zh_TW" value="費用科目" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[costAccount].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="费用科目" />
+            <lang locale="zh_HK" value="費用科目" />
+            <lang locale="zh_TW" value="費用科目" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[head].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="头" />
+            <lang locale="zh_HK" value="頭" />
+            <lang locale="zh_TW" value="頭" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[head].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="头" />
+            <lang locale="zh_HK" value="頭" />
+            <lang locale="zh_TW" value="頭" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[recommendType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="推荐类型" />
+            <lang locale="zh_HK" value="推薦類型" />
+            <lang locale="zh_TW" value="推薦類型" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.linkProperty[recommendType].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="推荐类型" />
+            <lang locale="zh_HK" value="推薦類型" />
+            <lang locale="zh_TW" value="推薦類型" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[bizType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="业务状态" />
+            <lang locale="zh_HK" value="業務狀態" />
+            <lang locale="zh_TW" value="業務狀態" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[bizType].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[bizType].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="业务状态" />
+            <lang locale="zh_HK" value="業務狀態" />
+            <lang locale="zh_TW" value="業務狀態" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[buildingArea].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="建筑面积" />
+            <lang locale="zh_HK" value="建築面積" />
+            <lang locale="zh_TW" value="建築面積" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[buildingArea].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[buildingArea].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="建筑面积" />
+            <lang locale="zh_HK" value="建築面積" />
+            <lang locale="zh_TW" value="建築面積" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[customer].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户" />
+            <lang locale="zh_HK" value="客戶" />
+            <lang locale="zh_TW" value="客戶" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[customer].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[customer].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户" />
+            <lang locale="zh_HK" value="客戶" />
+            <lang locale="zh_TW" value="客戶" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dealTotalAmount].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="成交总价" />
+            <lang locale="zh_HK" value="成交總價" />
+            <lang locale="zh_TW" value="成交總價" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dealTotalAmount].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dealTotalAmount].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="成交总价" />
+            <lang locale="zh_HK" value="成交總價" />
+            <lang locale="zh_TW" value="成交總價" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dsxs].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="按点数计提系数" />
+            <lang locale="zh_HK" value="按點數計提係數" />
+            <lang locale="zh_TW" value="按點數計提係數" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dsxs].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[dsxs].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="按点数计提系数" />
+            <lang locale="zh_HK" value="按點數計提係數" />
+            <lang locale="zh_TW" value="按點數計提係數" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jl].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="奖励金额（元）" />
+            <lang locale="zh_HK" value="獎勵金額（元）" />
+            <lang locale="zh_TW" value="獎勵金額（元）" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jl].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jl].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="奖励金额（元）" />
+            <lang locale="zh_HK" value="獎勵金額（元）" />
+            <lang locale="zh_TW" value="獎勵金額（元）" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jtType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="计提方式" />
+            <lang locale="zh_HK" value="計提方式" />
+            <lang locale="zh_TW" value="計提方式" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jtType].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[jtType].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="计提方式" />
+            <lang locale="zh_HK" value="計提方式" />
+            <lang locale="zh_TW" value="計提方式" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[nowSaleMan].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="现置业顾问" />
+            <lang locale="zh_HK" value="現置業顧問" />
+            <lang locale="zh_TW" value="現置業顧問" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[nowSaleMan].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[nowSaleMan].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="现置业顾问" />
+            <lang locale="zh_HK" value="現置業顧問" />
+            <lang locale="zh_TW" value="現置業顧問" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[purDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="认购日期" />
+            <lang locale="zh_HK" value="認購日期" />
+            <lang locale="zh_TW" value="認購日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[purDate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[purDate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="认购日期" />
+            <lang locale="zh_HK" value="認購日期" />
+            <lang locale="zh_TW" value="認購日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[qdPerson].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="渠道人员" />
+            <lang locale="zh_HK" value="渠道人員" />
+            <lang locale="zh_TW" value="渠道人員" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[qdPerson].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[qdPerson].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="渠道人员" />
+            <lang locale="zh_HK" value="渠道人員" />
+            <lang locale="zh_TW" value="渠道人員" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[recommended].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="推荐人" />
+            <lang locale="zh_HK" value="推薦人" />
+            <lang locale="zh_TW" value="推薦人" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[recommended].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[recommended].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="推荐人" />
+            <lang locale="zh_HK" value="推薦人" />
+            <lang locale="zh_TW" value="推薦人" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[room].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间" />
+            <lang locale="zh_HK" value="房間" />
+            <lang locale="zh_TW" value="房間" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[room].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[room].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间" />
+            <lang locale="zh_HK" value="房間" />
+            <lang locale="zh_TW" value="房間" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[saleMan].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="置业顾问" />
+            <lang locale="zh_HK" value="置業顧問" />
+            <lang locale="zh_TW" value="置業顧問" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[saleMan].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[saleMan].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="置业顾问" />
+            <lang locale="zh_HK" value="置業顧問" />
+            <lang locale="zh_TW" value="置業顧問" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="签约日期" />
+            <lang locale="zh_HK" value="簽約日期" />
+            <lang locale="zh_TW" value="簽約日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signDate].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signDate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="签约日期" />
+            <lang locale="zh_HK" value="簽約日期" />
+            <lang locale="zh_TW" value="簽約日期" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signManageId].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="签约Id" />
+            <lang locale="zh_HK" value="簽約Id" />
+            <lang locale="zh_TW" value="簽約Id" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signManageId].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[signManageId].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="签约Id" />
+            <lang locale="zh_HK" value="簽約Id" />
+            <lang locale="zh_TW" value="簽約Id" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[sqjl].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="申请奖励金额" />
+            <lang locale="zh_HK" value="申請獎勵金額" />
+            <lang locale="zh_TW" value="申請獎勵金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[sqjl].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[sqjl].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="申请奖励金额" />
+            <lang locale="zh_HK" value="申請獎勵金額" />
+            <lang locale="zh_TW" value="申請獎勵金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[tsxs].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="按套数计提金额" />
+            <lang locale="zh_HK" value="按套數計提金額" />
+            <lang locale="zh_TW" value="按套數計提金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[tsxs].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[tsxs].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="按套数计提金额" />
+            <lang locale="zh_HK" value="按套數計提金額" />
+            <lang locale="zh_TW" value="按套數計提金額" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[xz].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="奖励金额修正" />
+            <lang locale="zh_HK" value="獎勵金額修正" />
+            <lang locale="zh_TW" value="獎勵金額修正" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[xz].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ThirdPartyExpenseBillEntry].properties.ownProperty[xz].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="奖励金额修正" />
+            <lang locale="zh_HK" value="獎勵金額修正" />
+            <lang locale="zh_TW" value="獎勵金額修正" />
+        </rs>
+    </resource>
+</entityObject>
+

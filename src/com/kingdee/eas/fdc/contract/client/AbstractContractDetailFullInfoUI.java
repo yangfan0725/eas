@@ -483,10 +483,22 @@ panelInvite.setLayout(new BorderLayout(0, 0));        panelInvite.add(tblInvite,
 kDContainer3.getContentPane().setLayout(new BorderLayout(0, 0));        kDContainer3.getContentPane().add(kdtDetailEntry, BorderLayout.CENTER);
         //kDContainer4
         kDContainer4.getContentPane().setLayout(new KDLayout());
-        kDContainer4.getContentPane().putClientProperty("OriginalBounds", new Rectangle(0, 0, 993, 238));        tblMarket.setBounds(new Rectangle(0, 28, 996, 196));
-        kDContainer4.getContentPane().add(tblMarket, new KDLayout.Constraints(0, 28, 996, 196, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
-        cbIsJT.setBounds(new Rectangle(7, 5, 279, 19));
-        kDContainer4.getContentPane().add(cbIsJT, new KDLayout.Constraints(7, 5, 279, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        kDContainer4.getContentPane().putClientProperty("OriginalBounds", new Rectangle(0, 0, 993, 238));        tblMarket.setBounds(new Rectangle(0, 36, 996, 188));
+        kDContainer4.getContentPane().add(tblMarket, new KDLayout.Constraints(0, 36, 996, 188, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
+        cbIsJT.setBounds(new Rectangle(7, 5, 89, 19));
+        kDContainer4.getContentPane().add(cbIsJT, new KDLayout.Constraints(7, 5, 89, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        contJzType.setBounds(new Rectangle(704, 5, 270, 19));
+        kDContainer4.getContentPane().add(contJzType, new KDLayout.Constraints(704, 5, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contJzStartDate.setBounds(new Rectangle(118, 5, 270, 19));
+        kDContainer4.getContentPane().add(contJzStartDate, new KDLayout.Constraints(118, 5, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        contJzEndDate.setBounds(new Rectangle(410, 5, 270, 19));
+        kDContainer4.getContentPane().add(contJzEndDate, new KDLayout.Constraints(410, 5, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        //contJzType
+        contJzType.setBoundEditor(cbJzType);
+        //contJzStartDate
+        contJzStartDate.setBoundEditor(pkJzStartDate);
+        //contJzEndDate
+        contJzEndDate.setBoundEditor(pkJzEndDate);
         //kDContainer5
 kDContainer5.getContentPane().setLayout(new BorderLayout(0, 0));        kDContainer5.getContentPane().add(kdtYZEntry, BorderLayout.CENTER);
         //contExRate
@@ -942,6 +954,9 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		getValidateHelper().registerBindProperty("marketEntry.content", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("marketEntry.remark", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("isJT", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("jzType", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("jzStartDate", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("jzEndDate", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("yzEntry", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("yzEntry.name", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("yzEntry.type", ValidateHelper.ON_SAVE);    

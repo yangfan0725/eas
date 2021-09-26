@@ -144,6 +144,17 @@ public class AbstractMarketProjectInfo extends com.kingdee.eas.fdc.basedata.FDCB
     {
         setString("oaOpinion", item);
     }
+    /**
+     * Object:营销立项's 是否营销框架协议property 
+     */
+    public boolean isIsKJ()
+    {
+        return getBoolean("isKJ");
+    }
+    public void setIsKJ(boolean item)
+    {
+        setBoolean("isKJ", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("82E888E2");

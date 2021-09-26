@@ -1230,6 +1230,41 @@ public class AbstractContractBillInfo extends com.kingdee.eas.fdc.basedata.FDCBi
     {
         setString("oaState", item);
     }
+    /**
+     * Object:合同单据's 记账类型property 
+     */
+    public com.kingdee.eas.fdc.contract.JZTypeEnum getJzType()
+    {
+        return com.kingdee.eas.fdc.contract.JZTypeEnum.getEnum(getString("jzType"));
+    }
+    public void setJzType(com.kingdee.eas.fdc.contract.JZTypeEnum item)
+    {
+		if (item != null) {
+        setString("jzType", item.getValue());
+		}
+    }
+    /**
+     * Object:合同单据's 开始时间property 
+     */
+    public java.util.Date getJzStartDate()
+    {
+        return getDate("jzStartDate");
+    }
+    public void setJzStartDate(java.util.Date item)
+    {
+        setDate("jzStartDate", item);
+    }
+    /**
+     * Object:合同单据's 结束时间property 
+     */
+    public java.util.Date getJzEndDate()
+    {
+        return getDate("jzEndDate");
+    }
+    public void setJzEndDate(java.util.Date item)
+    {
+        setDate("jzEndDate", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("0D6DD1F4");

@@ -49,4 +49,6 @@ public interface IPayRequestBill extends IFDCBill
     public BOSUuid auditAndOpenPayment(BOSUuid billId) throws BOSException, EASBizException;
     public void setUnAudited2Auditing(BOSUuid billId) throws BOSException, EASBizException;
     public boolean bgPass(BOSUuid id) throws BOSException, EASBizException;
+    public Map getMKFP() throws BOSException, EASBizException;
+    public String getMKLink(String number) throws BOSException, EASBizException;
 }

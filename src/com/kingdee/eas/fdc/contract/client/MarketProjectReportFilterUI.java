@@ -33,12 +33,14 @@ public class MarketProjectReportFilterUI extends AbstractMarketProjectReportFilt
 		super.onLoad();
 		this.pkFromDate.setValue(null);
 		this.pkToDate.setValue(null);
+		this.cbIsYE.setSelectedItem(null);
 	}
 
 	public RptParams getCustomCondition() {
 		 RptParams pp = new RptParams();
 		 pp.setObject("fromDate", this.pkFromDate.getValue());
 		 pp.setObject("toDate", this.pkToDate.getValue());
+		 pp.setObject("isYE", this.cbIsYE.getSelectedItem());
 		 return pp;
 	}
 	public void onInit(RptParams params) throws Exception {
@@ -47,5 +49,6 @@ public class MarketProjectReportFilterUI extends AbstractMarketProjectReportFilt
 	public void setCustomCondition(RptParams params) {
 		this.pkFromDate.setValue(params.getObject("fromDate"));
 		this.pkToDate.setValue(params.getObject("toDate"));
+		this.cbIsYE.setSelectedItem(params.getObject("isYE"));
 	}
 }

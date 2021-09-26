@@ -66,6 +66,7 @@ public abstract class AbstractMarketProjectEditUI extends com.kingdee.eas.fdc.ba
     protected com.kingdee.bos.ctrl.swing.KDLabel kDLabel1;
     protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsJT;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer conSource;
+    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsKJ;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtNumber;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtName;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtOrgUnit;
@@ -168,6 +169,7 @@ public abstract class AbstractMarketProjectEditUI extends com.kingdee.eas.fdc.ba
         this.kDLabel1 = new com.kingdee.bos.ctrl.swing.KDLabel();
         this.cbIsJT = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.conSource = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.cbIsKJ = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.txtNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtName = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.prmtOrgUnit = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
@@ -202,6 +204,7 @@ public abstract class AbstractMarketProjectEditUI extends com.kingdee.eas.fdc.ba
         this.kDLabel1.setName("kDLabel1");
         this.cbIsJT.setName("cbIsJT");
         this.conSource.setName("conSource");
+        this.cbIsKJ.setName("cbIsKJ");
         this.txtNumber.setName("txtNumber");
         this.txtName.setName("txtName");
         this.prmtOrgUnit.setName("prmtOrgUnit");
@@ -365,6 +368,8 @@ public abstract class AbstractMarketProjectEditUI extends com.kingdee.eas.fdc.ba
         this.conSource.setBoundLabelText(resHelper.getString("conSource.boundLabelText"));		
         this.conSource.setBoundLabelLength(100);		
         this.conSource.setBoundLabelUnderline(true);
+        // cbIsKJ		
+        this.cbIsKJ.setText(resHelper.getString("cbIsKJ.text"));
         // txtNumber
         // txtName		
         this.txtName.setRequired(true);
@@ -518,6 +523,8 @@ public abstract class AbstractMarketProjectEditUI extends com.kingdee.eas.fdc.ba
         this.add(cbIsJT, new KDLayout.Constraints(30, 98, 278, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         conSource.setBounds(new Rectangle(376, 98, 270, 19));
         this.add(conSource, new KDLayout.Constraints(376, 98, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        cbIsKJ.setBounds(new Rectangle(186, 75, 140, 19));
+        this.add(cbIsKJ, new KDLayout.Constraints(186, 75, 140, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         //contNumber
         contNumber.setBoundEditor(txtNumber);
         //contName
@@ -726,6 +733,7 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
 		dataBinder.registerBinding("isSupplier", boolean.class, this.cbIsSupplier, "selected");
 		dataBinder.registerBinding("isSub", boolean.class, this.cbIsSub, "selected");
 		dataBinder.registerBinding("isJT", boolean.class, this.cbIsJT, "selected");
+		dataBinder.registerBinding("isKJ", boolean.class, this.cbIsKJ, "selected");
 		dataBinder.registerBinding("number", String.class, this.txtNumber, "text");
 		dataBinder.registerBinding("name", String.class, this.txtName, "text");
 		dataBinder.registerBinding("orgUnit", com.kingdee.eas.basedata.org.FullOrgUnitInfo.class, this.prmtOrgUnit, "data");
@@ -810,6 +818,7 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
 		getValidateHelper().registerBindProperty("isSupplier", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("isSub", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("isJT", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("isKJ", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("number", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("name", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("orgUnit", ValidateHelper.ON_SAVE);    
@@ -898,6 +907,7 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
         sic.add(new SelectorItemInfo("isSupplier"));
         sic.add(new SelectorItemInfo("isSub"));
         sic.add(new SelectorItemInfo("isJT"));
+        sic.add(new SelectorItemInfo("isKJ"));
         sic.add(new SelectorItemInfo("number"));
         sic.add(new SelectorItemInfo("name"));
 		if(selectorAll.equalsIgnoreCase("true"))

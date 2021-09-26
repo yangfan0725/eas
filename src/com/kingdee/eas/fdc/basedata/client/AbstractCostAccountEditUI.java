@@ -59,12 +59,14 @@ public abstract class AbstractCostAccountEditUI extends com.kingdee.eas.framewor
     protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsProgramming;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contRate;
     protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsMarket;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contYjType;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangBox bizName;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtNumber;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtLongNumber;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtParentNumber;
     protected com.kingdee.bos.ctrl.swing.KDComboBox boxType;
     protected com.kingdee.bos.ctrl.swing.KDFormattedTextField txtRate;
+    protected com.kingdee.bos.ctrl.swing.KDComboBox cbYjType;
     protected com.kingdee.eas.fdc.basedata.CostAccountInfo editData = null;
     /**
      * output class constructor
@@ -98,12 +100,14 @@ public abstract class AbstractCostAccountEditUI extends com.kingdee.eas.framewor
         this.cbIsProgramming = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.contRate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.cbIsMarket = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.contYjType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.bizName = new com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangBox();
         this.txtNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtLongNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtParentNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.boxType = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.txtRate = new com.kingdee.bos.ctrl.swing.KDFormattedTextField();
+        this.cbYjType = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.contName.setName("contName");
         this.contNumber.setName("contNumber");
         this.contLongNumber.setName("contLongNumber");
@@ -117,12 +121,14 @@ public abstract class AbstractCostAccountEditUI extends com.kingdee.eas.framewor
         this.cbIsProgramming.setName("cbIsProgramming");
         this.contRate.setName("contRate");
         this.cbIsMarket.setName("cbIsMarket");
+        this.contYjType.setName("contYjType");
         this.bizName.setName("bizName");
         this.txtNumber.setName("txtNumber");
         this.txtLongNumber.setName("txtLongNumber");
         this.txtParentNumber.setName("txtParentNumber");
         this.boxType.setName("boxType");
         this.txtRate.setName("txtRate");
+        this.cbYjType.setName("cbYjType");
         // CoreUI		
         this.btnSave.setVisible(false);		
         this.btnCopy.setVisible(false);		
@@ -181,6 +187,10 @@ public abstract class AbstractCostAccountEditUI extends com.kingdee.eas.framewor
         this.contRate.setBoundLabelUnderline(true);
         // cbIsMarket		
         this.cbIsMarket.setText(resHelper.getString("cbIsMarket.text"));
+        // contYjType		
+        this.contYjType.setBoundLabelText(resHelper.getString("contYjType.boundLabelText"));		
+        this.contYjType.setBoundLabelLength(100);		
+        this.contYjType.setBoundLabelUnderline(true);
         // bizName		
         this.bizName.setRequired(true);
         // txtNumber		
@@ -205,6 +215,8 @@ public abstract class AbstractCostAccountEditUI extends com.kingdee.eas.framewor
         // txtRate		
         this.txtRate.setDataType(1);		
         this.txtRate.setPrecision(2);
+        // cbYjType		
+        this.cbYjType.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.basedata.CostAccountYJTypeEnum").toArray());
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -245,7 +257,7 @@ public abstract class AbstractCostAccountEditUI extends com.kingdee.eas.framewor
         this.add(kDLabelContainer1, null);
         kDLabel1.setBounds(new Rectangle(10, 200, 39, 19));
         this.add(kDLabel1, null);
-        bizDescription.setBounds(new Rectangle(10, 220, 270, 70));
+        bizDescription.setBounds(new Rectangle(10, 251, 270, 39));
         this.add(bizDescription, null);
         kDLabelContainer2.setBounds(new Rectangle(10, 130, 270, 19));
         this.add(kDLabelContainer2, null);
@@ -257,6 +269,8 @@ public abstract class AbstractCostAccountEditUI extends com.kingdee.eas.framewor
         this.add(contRate, null);
         cbIsMarket.setBounds(new Rectangle(227, 200, 140, 19));
         this.add(cbIsMarket, null);
+        contYjType.setBounds(new Rectangle(11, 224, 270, 19));
+        this.add(contYjType, null);
         //contName
         contName.setBoundEditor(bizName);
         //contNumber
@@ -269,6 +283,8 @@ public abstract class AbstractCostAccountEditUI extends com.kingdee.eas.framewor
         kDLabelContainer2.setBoundEditor(boxType);
         //contRate
         contRate.setBoundEditor(txtRate);
+        //contYjType
+        contYjType.setBoundEditor(cbYjType);
 
     }
 
@@ -387,7 +403,8 @@ public abstract class AbstractCostAccountEditUI extends com.kingdee.eas.framewor
 		dataBinder.registerBinding("name", String.class, this.bizName, "_multiLangItem");
 		dataBinder.registerBinding("number", String.class, this.txtNumber, "text");
 		dataBinder.registerBinding("type", com.kingdee.eas.fdc.basedata.CostAccountTypeEnum.class, this.boxType, "selectedItem");
-		dataBinder.registerBinding("rate", java.math.BigDecimal.class, this.txtRate, "value");		
+		dataBinder.registerBinding("rate", java.math.BigDecimal.class, this.txtRate, "value");
+		dataBinder.registerBinding("yjType", com.kingdee.eas.fdc.basedata.CostAccountYJTypeEnum.class, this.cbYjType, "selectedItem");		
 	}
 	//Regiester UI State
 	private void registerUIState(){		
@@ -455,7 +472,8 @@ public abstract class AbstractCostAccountEditUI extends com.kingdee.eas.framewor
 		getValidateHelper().registerBindProperty("name", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("number", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("type", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("rate", ValidateHelper.ON_SAVE);    		
+		getValidateHelper().registerBindProperty("rate", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("yjType", ValidateHelper.ON_SAVE);    		
 	}
 
 
@@ -498,6 +516,7 @@ public abstract class AbstractCostAccountEditUI extends com.kingdee.eas.framewor
         sic.add(new SelectorItemInfo("number"));
         sic.add(new SelectorItemInfo("type"));
         sic.add(new SelectorItemInfo("rate"));
+        sic.add(new SelectorItemInfo("yjType"));
         return sic;
     }        
 

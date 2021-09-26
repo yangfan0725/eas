@@ -54,4 +54,6 @@ public interface PayRequestBillController extends FDCBillController
     public BOSUuid auditAndOpenPayment(Context ctx, BOSUuid billId) throws BOSException, EASBizException, RemoteException;
     public void setUnAudited2Auditing(Context ctx, BOSUuid billId) throws BOSException, EASBizException, RemoteException;
     public boolean bgPass(Context ctx, BOSUuid id) throws BOSException, EASBizException, RemoteException;
+    public Map getMKFP(Context ctx) throws BOSException, EASBizException, RemoteException;
+    public String getMKLink(Context ctx, String number) throws BOSException, EASBizException, RemoteException;
 }

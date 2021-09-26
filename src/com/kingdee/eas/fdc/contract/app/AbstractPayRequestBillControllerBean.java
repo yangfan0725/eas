@@ -570,6 +570,58 @@ public abstract class AbstractPayRequestBillControllerBean extends FDCBillContro
     }
     protected abstract boolean _bgPass(Context ctx, BOSUuid id) throws BOSException, EASBizException;
 
+    public Map getMKFP(Context ctx) throws BOSException, EASBizException
+    {
+        try {
+            ServiceContext svcCtx = createServiceContext(new MetaDataPK("e1f61d56-4b45-4043-b39b-d318cbd168f4"), new Object[]{ctx});
+            invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
+            Map retValue = (Map)_getMKFP(ctx);
+            svcCtx.setMethodReturnValue(retValue);
+            }
+            invokeServiceAfter(svcCtx);
+            return (Map)svcCtx.getMethodReturnValue();
+        } catch (BOSException ex) {
+            this.setRollbackOnly();
+            throw ex;
+        } catch (EASBizException ex0) {
+            this.setRollbackOnly();
+            throw ex0;
+        } finally {
+            super.cleanUpServiceState();
+        }
+    }
+    protected Map _getMKFP(Context ctx) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
+
+    public String getMKLink(Context ctx, String number) throws BOSException, EASBizException
+    {
+        try {
+            ServiceContext svcCtx = createServiceContext(new MetaDataPK("81c7ba55-62ff-4cee-880f-b8cb7a0738d6"), new Object[]{ctx, number});
+            invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
+            String retValue = (String)_getMKLink(ctx, number);
+            svcCtx.setMethodReturnValue(retValue);
+            }
+            invokeServiceAfter(svcCtx);
+            return (String)svcCtx.getMethodReturnValue();
+        } catch (BOSException ex) {
+            this.setRollbackOnly();
+            throw ex;
+        } catch (EASBizException ex0) {
+            this.setRollbackOnly();
+            throw ex0;
+        } finally {
+            super.cleanUpServiceState();
+        }
+    }
+    protected String _getMKLink(Context ctx, String number) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
+
     public FDCBillCollection getFDCBillCollection (Context ctx) throws BOSException
     {
     	return (FDCBillCollection)(getPayRequestBillCollection(ctx).cast(FDCBillCollection.class));

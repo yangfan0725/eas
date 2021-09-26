@@ -63,6 +63,8 @@ import com.kingdee.eas.base.commonquery.SorterSignEnum;
 import com.kingdee.eas.base.permission.UserFactory;
 import com.kingdee.eas.base.permission.UserInfo;
 import com.kingdee.eas.basedata.assistant.PeriodInfo;
+import com.kingdee.eas.basedata.master.cssp.SupplierFactory;
+import com.kingdee.eas.basedata.master.cssp.SupplierInfo;
 import com.kingdee.eas.basedata.org.CostCenterOrgUnitInfo;
 import com.kingdee.eas.basedata.org.OrgConstants;
 import com.kingdee.eas.basedata.org.PositionInfo;
@@ -75,6 +77,9 @@ import com.kingdee.eas.fdc.basedata.ContractThirdTypeEnum;
 import com.kingdee.eas.fdc.basedata.ContractTypeFactory;
 import com.kingdee.eas.fdc.basedata.ContractTypeInfo;
 import com.kingdee.eas.fdc.basedata.ContractTypeOrgTypeEnum;
+import com.kingdee.eas.fdc.basedata.CostAccountFactory;
+import com.kingdee.eas.fdc.basedata.CostAccountInfo;
+import com.kingdee.eas.fdc.basedata.CostAccountYJTypeEnum;
 import com.kingdee.eas.fdc.basedata.CostSplitStateEnum;
 import com.kingdee.eas.fdc.basedata.CurProjectFactory;
 import com.kingdee.eas.fdc.basedata.CurProjectInfo;
@@ -82,9 +87,11 @@ import com.kingdee.eas.fdc.basedata.FDCBillInfo;
 import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
 import com.kingdee.eas.fdc.basedata.FDCBillWFFacadeFactory;
 import com.kingdee.eas.fdc.basedata.FDCConstants;
+import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
 import com.kingdee.eas.fdc.basedata.TimeTools;
+import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.contract.ConChangeSplitFactory;
 import com.kingdee.eas.fdc.contract.ConNoCostSplitCollection;
 import com.kingdee.eas.fdc.contract.ConNoCostSplitFactory;
@@ -134,6 +141,8 @@ import com.kingdee.eas.fdc.contract.FDCUtils;
 import com.kingdee.eas.fdc.contract.IContractBill;
 import com.kingdee.eas.fdc.contract.IContractEstimateChangeBill;
 import com.kingdee.eas.fdc.contract.IContractSettlementBill;
+import com.kingdee.eas.fdc.contract.MarketProjectFactory;
+import com.kingdee.eas.fdc.contract.MarketProjectInfo;
 import com.kingdee.eas.fdc.contract.PayContentTypeFactory;
 import com.kingdee.eas.fdc.contract.PayContentTypeInfo;
 import com.kingdee.eas.fdc.contract.SettlementCostSplitFactory;
@@ -369,12 +378,22 @@ public class ContractBillControllerBean extends
 
 				json.put("loginName", u.getNumber());
 				
-				SelectorItemCollection cpsic=new SelectorItemCollection();
-				cpsic.add("fullOrgUnit.name");
-				CurProjectInfo cur=CurProjectFactory.getLocalInstance(ctx).getCurProjectInfo(new ObjectUuidPK(info.getCurProject().getId()), cpsic);
-				json.put("fdCompanyName", cur.getFullOrgUnit().getName());
+				if(info.getPartB()!=null){
+					SupplierInfo Sup=SupplierFactory.getLocalInstance(ctx).getSupplierInfo(new ObjectUuidPK(info.getPartB().getId()));
+					json.put("fdCompanyName", Sup.getName());
+				}
 				
 				JSONObject obj = new JSONObject();
+				if(info.getMpCostAccount()!=null&&info.getMarketProject()!=null){
+					CostAccountInfo ca=CostAccountFactory.getLocalInstance(ctx).getCostAccountInfo(new ObjectUuidPK(info.getMpCostAccount().getId()));
+					MarketProjectInfo market=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectInfo(new ObjectUuidPK(info.getMarketProject().getId()));
+					if(ca.getYjType()!=null&&ca.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
+						int day=FDCDateHelper.getDiffDays(market.getAuditTime(), new Date());
+						if(day>7){
+							obj.put("fd_timeout", "是");
+						}
+					}
+				}
 				if(info.getContractWFType()!=null){
 					ContractWFTypeInfo wt=ContractWFTypeFactory.getLocalInstance(ctx).getContractWFTypeInfo(new ObjectUuidPK(info.getContractWFType().getId()));
 					obj.put("fd_38cf1780c1c14a", wt.getName());
@@ -388,17 +407,17 @@ public class ContractBillControllerBean extends
 					
 				}
 				obj.put("fd_38cf1798043f94", info.getAmount().doubleValue());
-				Boolean flag=true;
-				if(ctx.getAIS().equals("easdb")){  //easdb
-					 flag=false;
-				}
+//				Boolean flag=true;
+//				if(ctx.getAIS().equals("easdb")){  //easdb
+//					 flag=false;
+//				}
 				for(int i=0;i<info.getEntrys().size();i++){
 					ContractBillEntryInfo entry=ContractBillEntryFactory.getLocalInstance(ctx).getContractBillEntryInfo(new ObjectUuidPK(info.getEntrys().get(i).getId()));
 					if(entry.getDetail().equals("是否使用电子章")){
 						obj.put("fd_38f02d7df82f3e", entry.getContent());
 						if(entry.getContent().equals("否")){
 							ContractYZEntryCollection yzEntrys = info.getYzEntry();
-							if(yzEntrys.size()>0&&!flag){
+							if(yzEntrys.size()>0){
 //								JSONArray yzArray = new JSONArray();
 							    for (int x=0;x<yzEntrys.size();x++) {
 							    	int y=x+1;

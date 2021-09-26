@@ -1,8 +1,13 @@
 package com.kingdee.eas.fdc.contract.app;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,6 +23,8 @@ import net.sf.json.JSONObject;
 
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.log4j.Logger;
 
 import com.kingdee.bos.BOSException;
@@ -65,6 +72,7 @@ import com.kingdee.eas.basedata.master.auxacct.AsstActTypeFactory;
 import com.kingdee.eas.basedata.master.auxacct.IAsstActType;
 import com.kingdee.eas.basedata.master.cssp.SupplierCompanyInfoInfo;
 import com.kingdee.eas.basedata.master.cssp.SupplierFactory;
+import com.kingdee.eas.basedata.master.cssp.SupplierInfo;
 import com.kingdee.eas.basedata.org.CompanyOrgUnitInfo;
 import com.kingdee.eas.basedata.org.CostCenterOrgUnitInfo;
 import com.kingdee.eas.basedata.org.CtrlUnitInfo;
@@ -89,6 +97,7 @@ import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
 import com.kingdee.eas.fdc.basedata.IFDCBill;
 import com.kingdee.eas.fdc.basedata.PaymentTypeInfo;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
+import com.kingdee.eas.fdc.contract.AbstractContractWTInvoiceEntryInfo;
 import com.kingdee.eas.fdc.contract.ChangeAuditBillFactory;
 import com.kingdee.eas.fdc.contract.ChangeAuditBillInfo;
 import com.kingdee.eas.fdc.contract.CompensationBillFactory;
@@ -106,6 +115,9 @@ import com.kingdee.eas.fdc.contract.ContractCostSplitEntryInfo;
 import com.kingdee.eas.fdc.contract.ContractException;
 import com.kingdee.eas.fdc.contract.ContractSettlementBillCollection;
 import com.kingdee.eas.fdc.contract.ContractSettlementBillFactory;
+import com.kingdee.eas.fdc.contract.ContractWTInvoiceEntryCollection;
+import com.kingdee.eas.fdc.contract.ContractWTInvoiceEntryFactory;
+import com.kingdee.eas.fdc.contract.ContractWTInvoiceEntryInfo;
 import com.kingdee.eas.fdc.contract.ContractWithoutTextFactory;
 import com.kingdee.eas.fdc.contract.ContractWithoutTextInfo;
 import com.kingdee.eas.fdc.contract.DeductOfPayReqBillCollection;
@@ -129,7 +141,9 @@ import com.kingdee.eas.fdc.contract.PartAOfPayReqBillFactory;
 import com.kingdee.eas.fdc.contract.PartAOfPayReqBillInfo;
 import com.kingdee.eas.fdc.contract.PayContentTypeFactory;
 import com.kingdee.eas.fdc.contract.PayContentTypeInfo;
+import com.kingdee.eas.fdc.contract.PayReqInvoiceEntryCollection;
 import com.kingdee.eas.fdc.contract.PayReqInvoiceEntryFactory;
+import com.kingdee.eas.fdc.contract.PayReqInvoiceEntryInfo;
 import com.kingdee.eas.fdc.contract.PayRequestBillBgEntryInfo;
 import com.kingdee.eas.fdc.contract.PayRequestBillCollection;
 import com.kingdee.eas.fdc.contract.PayRequestBillConfirmEntryCollection;
@@ -185,21 +199,21 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
         Logger.getLogger("com.kingdee.eas.fdc.contract.app.PayRequestBillControllerBean");
     
     private BOSUuid payBillId;
-    private void checkInvoice(PayRequestBillInfo info,Context ctx) throws EASBizException, BOSException{
-    	for(int i=0;i<info.getInvoiceEntry().size();i++){
-    		FilterInfo filter=new FilterInfo();
-    		filter.getFilterItems().add(new FilterItemInfo("invoice.id",info.getInvoiceEntry().get(i).getInvoice().getId().toString()));
-    		if(info.getId()!=null){
-    			filter.getFilterItems().add(new FilterItemInfo("parent.id",info.getId().toString(),CompareType.NOTEQUALS));
-    		}
-    		if(PayReqInvoiceEntryFactory.getLocalInstance(ctx).exists(filter)){
-    			throw new EASBizException(new NumericExceptionSubItem("100","已经被其他付款申请单关联，请重新选择！"));
-    		}
-    	}
-    }
+//    private void checkInvoice(PayRequestBillInfo info,Context ctx) throws EASBizException, BOSException{
+//    	for(int i=0;i<info.getInvoiceEntry().size();i++){
+//    		FilterInfo filter=new FilterInfo();
+//    		filter.getFilterItems().add(new FilterItemInfo("invoice.id",info.getInvoiceEntry().get(i).getInvoice().getId().toString()));
+//    		if(info.getId()!=null){
+//    			filter.getFilterItems().add(new FilterItemInfo("parent.id",info.getId().toString(),CompareType.NOTEQUALS));
+//    		}
+//    		if(PayReqInvoiceEntryFactory.getLocalInstance(ctx).exists(filter)){
+//    			throw new EASBizException(new NumericExceptionSubItem("100","已经被其他付款申请单关联，请重新选择！"));
+//    		}
+//    	}
+//    }
 	protected void _save(Context ctx, IObjectPK pk, IObjectValue model) throws BOSException, EASBizException {
 		PayRequestBillInfo info=(PayRequestBillInfo)model;
-		checkInvoice(info,ctx);
+//		checkInvoice(info,ctx);
 		info.setAmount(FDCHelper.multiply(info.getOriginalAmount(), info.getExchangeRate()));
 		super._save(ctx, pk, info);
 		
@@ -209,7 +223,7 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 	protected IObjectPK _save(Context ctx, IObjectValue model) throws BOSException, EASBizException
 	{
 		PayRequestBillInfo info=(PayRequestBillInfo)model;
-		checkInvoice(info,ctx);
+//		checkInvoice(info,ctx);
 		info.setAmount(FDCHelper.multiply(info.getOriginalAmount(), info.getExchangeRate()));
 		IObjectPK pk = super._save(ctx, model);
 		
@@ -387,10 +401,10 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 					
 					json.put("loginName", u.getNumber());
 					
-					SelectorItemCollection cpsic=new SelectorItemCollection();
-					cpsic.add("fullOrgUnit.name");
-					CurProjectInfo cur=CurProjectFactory.getLocalInstance(ctx).getCurProjectInfo(new ObjectUuidPK(info.getCurProject().getId()), cpsic);
-					json.put("fdCompanyName", cur.getFullOrgUnit().getName());
+					if(info.getRealSupplier()!=null){
+						SupplierInfo Sup=SupplierFactory.getLocalInstance(ctx).getSupplierInfo(new ObjectUuidPK(info.getRealSupplier().getId()));
+						json.put("fdCompanyName", Sup.getName());
+					}
 					
 					JSONObject obj = new JSONObject();
 					obj.put("fd_38c8d015c3c744", pc.getName());
@@ -560,7 +574,7 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 	protected IObjectPK _submit(Context ctx, IObjectValue model) throws BOSException, EASBizException {
 		//提交前检查
 		PayRequestBillInfo info=(PayRequestBillInfo)model;
-		checkInvoice(info,ctx);
+//		checkInvoice(info,ctx);
 		boolean hasUsed=FDCUtils.getDefaultFDCParamByKey(ctx, null, FDCConstants.FDC_PARAM_ACCTBUDGET);
 		checkBillForSubmit( ctx,info);
 		info.setAmount(FDCHelper.multiply(info.getOriginalAmount(), info.getExchangeRate()));
@@ -580,7 +594,7 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 	}
 	protected void _submit(Context ctx, IObjectPK pk, IObjectValue model) throws BOSException, EASBizException {
 		PayRequestBillInfo info=(PayRequestBillInfo)model;
-		checkInvoice(info,ctx);
+//		checkInvoice(info,ctx);
 		boolean hasUsed=FDCUtils.getDefaultFDCParamByKey(ctx, null, FDCConstants.FDC_PARAM_ACCTBUDGET);
 		checkBillForSubmit( ctx,model);
 		info.setAmount(FDCHelper.multiply(info.getOriginalAmount(), info.getExchangeRate()));
@@ -634,6 +648,21 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 		for (Iterator iter = idList.iterator(); iter.hasNext();) {
 			String id = (String) iter.next();
 			unAudit(ctx, BOSUuid.read(id));
+			
+			//MK
+			PayRequestBillInfo info1=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo("select invoiceEntry.* from where id='"+id+"'");
+			if(info1!=null){
+				PayReqInvoiceEntryCollection entrys = info1.getInvoiceEntry();
+				if(entrys.size()>0){
+					for(int i=0;i<entrys.size();i++){
+						PayReqInvoiceEntryInfo invoiceInfo = entrys.get(i);
+						invoiceInfo.setIsMKUsed(0);
+						SelectorItemCollection sic=new SelectorItemCollection();
+						sic.add("isMkUsed");
+						PayReqInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(invoiceInfo,sic);
+					}
+				}
+			}
 		}	
 	}
 
@@ -3064,6 +3093,231 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 		}
 		return true;
 	}
+	
+	
+	public void updateMKFP(Context ctx,PayRequestBillInfo info) throws EASBizException, BOSException{
+		PayReqInvoiceEntryCollection fpEntrys = info.getInvoiceEntry();
+		if(fpEntrys.size()>0){
+			for (int x=0;x<fpEntrys.size();x++) {
+				PayReqInvoiceEntryInfo pay =PayReqInvoiceEntryFactory.getLocalInstance(ctx).getPayReqInvoiceEntryInfo(new ObjectUuidPK(info.getInvoiceEntry().get(x).getId()));
+				Integer use = pay.getIsMKUsed();
+			
+				String invoiceNumber = pay.getInvoiceNumber();
+				if("".equals(use)||use==1){
+					throw new EASBizException(new NumericExceptionSubItem("100","发票号为"+invoiceNumber+"的发票已被使用,请重新选择发票！"));
+				}
+//				调取每刻发票链接 修改金蝶发票状态为锁定
+				String number = pay.getInvoiceNumber();
+				String viewLink = getMKLink(ctx,number);
+				if(viewLink!=null&&viewLink!=""){
+					pay.setViewLink(viewLink);
+					pay.setIsMKUsed(1);
+					SelectorItemCollection sic=new SelectorItemCollection();
+					sic.add("isMkUsed");
+					sic.add("viewLink");
+					PayReqInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(pay,sic);
+				}
+			}
+		}
+	}
+	
+	public Map getMKFP(Context ctx) throws BOSException, EASBizException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		
+		Map map=new HashMap();
+		com.alibaba.fastjson.JSONObject login=new com.alibaba.fastjson.JSONObject();
+		String tokenId=null;
+		String entCode=null;
+		String appCode=null;
+		String secret=null;
+		String mturl=null;
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		long lt = ts.getTime();
+		try {
+			FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
+			builder.appendSql("select * from dl_mk where type = 'bx' ");
+			IRowSet rs=builder.executeQuery();
+			while(rs.next()){
+				mturl=rs.getString("url");
+				entCode=rs.getString("entCode");
+				appCode=rs.getString("appCode");
+				secret=rs.getString("secret");
+			}
+			login.put("appCode", appCode);
+			login.put("secret", SHA(secret+lt));
+			login.put("timestamp", lt);
+			
+			String respStr = HttpClientUtil.sendRequest(mturl+"/auth/login", "POST", "application/json;charse=UTF-8", "UTF-8", null, login.toJSONString());
+			
+			com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+			com.alibaba.fastjson.JSONObject d=crso.getJSONObject("data");
+			if(!"true".equals(crso.getString("success"))){
+				throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+			}else{
+				tokenId=d.getString("tokenId");
+				entCode=d.getString("entCode");
+			}
+		} catch (Exception e) {
+			try {
+				throw new EASBizException(new NumericExceptionSubItem("100",e.getMessage()));
+			} catch (EASBizException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		//get invoices
+		
+		Date now = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(now);
+		c.add(Calendar.MONTH, -1);
+		Date ago = c.getTime();
+		String exportAtEnd = simpleDateFormat.format(now);
+		String exportAtStart=simpleDateFormat.format(ago);
+		String employeeId=null;
+		UserInfo u=UserFactory.getLocalInstance(ctx).getUserByID(ctx.getCaller());
+	    employeeId = u.getNumber();
+	    
+		HashMap header=new HashMap();
+		header.put("tokenId", tokenId);
+		header.put("entCode", entCode);
+		com.alibaba.fastjson.JSONObject dataJson=new com.alibaba.fastjson.JSONObject();
+		dataJson.put("offset",0);
+		dataJson.put("limit", 50);
+		dataJson.put("exportAtStart", exportAtStart);
+		dataJson.put("exportAtEnd", exportAtEnd);
+		dataJson.put("employeeId", employeeId);
+		try {
+			String respStr = HttpClientUtil.sendRequest(mturl+"/invoice/search", "POST", "application/json;charse=UTF-8", "UTF-8", header, dataJson.toJSONString());
+			com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+			com.alibaba.fastjson.JSONArray fpArray=crso.getJSONArray("data");
+			for (int i=0;i<fpArray.size();i++) {
+				map.put(fpArray.getJSONObject(i).getString("invoiceNumber"), fpArray.getJSONObject(i));
+				}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return map;
+	}
+
+	public String getMKLink(Context ctx, String number) throws BOSException,
+			EASBizException {
+		String viewLink=null;
+	     com.alibaba.fastjson.JSONObject login=new com.alibaba.fastjson.JSONObject();
+	     String tokenId=null;
+	     String entCode=null;
+	     String appCode=null;
+	     String secret=null;
+	     String mturl=null;
+	     Timestamp ts = new Timestamp(System.currentTimeMillis());
+	     long lt = ts.getTime();
+	     try {
+	         FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
+	         builder.appendSql("select * from dl_mk where type='da'");
+	         IRowSet rs=builder.executeQuery();
+	         while(rs.next()){
+	             mturl=rs.getString("url");
+	             entCode=rs.getString("entCode");
+	             appCode=rs.getString("appCode");
+	             secret=rs.getString("secret");
+	         }
+	         login.put("userCode", appCode);
+	         login.put("secretToken", SHA(secret+":"+appCode+":"+lt));
+	         login.put("timestamp", lt);
+
+	         HttpClient httpClient =new HttpClient();
+	         PostMethod post = new PostMethod(mturl+"/open/auth/login");
+	         post.setRequestHeader("Content-Type", "application/json;charse=UTF-8") ;
+	         post.setRequestBody(login.toJSONString());
+	         httpClient.executeMethod(post);
+
+	         String respStr = post.getResponseBodyAsString();
+	         post.releaseConnection();
+
+	         com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+	         com.alibaba.fastjson.JSONObject d=crso.getJSONObject("data");
+	         if(200!=(crso.getInteger("code"))){
+	             throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+	         }else{
+	             tokenId=d.getString("token");
+	         }
+	     } catch (Exception e1) {
+	         try {
+	             throw new EASBizException(new NumericExceptionSubItem("100",e1.getMessage()));
+	         } catch (EASBizException e11) {
+	             // TODO Auto-generated catch block
+	             e11.printStackTrace();
+	         }
+	     }
+
+	     com.alibaba.fastjson.JSONObject dataJson=new com.alibaba.fastjson.JSONObject();
+//			获取发票查看链接
+	     try {
+	         dataJson.put("invoiceNumber", number);
+//				dataJson.put("invoiceCode", "3200211130");
+	         HttpClient httpClient =new HttpClient();
+	         PostMethod post = new PostMethod(mturl+"/open/ecm-invoice/search");
+	         post.setRequestHeader("Content-Type", "application/json;charse=UTF-8") ;
+	         post.setRequestHeader("Authorization", tokenId) ;
+	         post.setRequestBody(dataJson.toJSONString());
+	         httpClient.executeMethod(post);
+
+	         String respStr = post.getResponseBodyAsString();
+	         post.releaseConnection();
+	         com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+	         com.alibaba.fastjson.JSONObject data = crso.getJSONObject("data");
+	         com.alibaba.fastjson.JSONArray pageDataArray=data.getJSONArray("pageData");
+
+	         if(pageDataArray.size()>0){
+	             com.alibaba.fastjson.JSONObject view = pageDataArray.getJSONObject(0);
+	             if(view!=null){
+	                 com.alibaba.fastjson.JSONArray fileUrls = view.getJSONArray("fileUrls");
+	                 if(fileUrls!=null&&fileUrls.size()>0){
+	                     String fileUrl = fileUrls.getString(0);
+	                     if(fileUrl!=null&&fileUrl!=""){
+//								给VIEWURL赋值
+	                         viewLink = new StringBuffer().append("http://172.17.4.52:8080").append(fileUrl).toString();
+	                     }
+	                 }
+	             }
+	         }
+	     } catch (Exception e1) {
+	         throw new EASBizException(new NumericExceptionSubItem("100",e1.getMessage()));
+	         // TODO Auto-generated catch block
+	     }
+	     return viewLink;	
+	}
+	
+	public static String SHA(final String strText) {
+		MessageDigest messageDigest;
+        String encodeStr = "";
+		try {
+			messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(strText.getBytes("UTF-8"));
+            encodeStr = byte2Hex(messageDigest.digest());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return encodeStr;
+	}
+	private static String byte2Hex(byte[] bytes) {
+        StringBuffer stringBuffer = new StringBuffer();
+        String temp = null;
+        for (int i = 0; i < bytes.length; i++) {
+            temp = Integer.toHexString(bytes[i] & 0xFF);
+            if (temp.length() == 1) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(temp);
+        }
+        return stringBuffer.toString();
+    }
+	
 	
 	
 }

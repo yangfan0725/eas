@@ -114,4 +114,9 @@ public abstract class AbstractPayRequestBillEditUIHandler extends com.kingdee.ea
 	}
 	protected void _handleActionInvoiceRLine(RequestContext request,ResponseContext response, Context context) throws Exception {
 	}
+	public void handleActionMKFP(RequestContext request,ResponseContext response, Context context) throws Exception {
+		_handleActionMKFP(request,response,context);
+	}
+	protected void _handleActionMKFP(RequestContext request,ResponseContext response, Context context) throws Exception {
+	}
 }

@@ -11,8 +11,10 @@ import java.awt.event.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeSelectionEvent;
@@ -26,8 +28,11 @@ import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.ui.face.IUIWindow;
 import com.kingdee.bos.ui.face.UIFactory;
 import com.kingdee.bos.util.BOSUuid;
+import com.kingdee.bos.ctrl.bibench.platform.ui.util.MsgBox;
+import com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTDataRequestManager;
+import com.kingdee.bos.ctrl.kdf.table.KDTDefaultCellEditor;
 import com.kingdee.bos.ctrl.kdf.table.KDTMergeManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTStyleConstants;
@@ -35,6 +40,7 @@ import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTDataRequestEvent;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent;
 import com.kingdee.bos.ctrl.kdf.util.render.ObjectValueRender;
+import com.kingdee.bos.ctrl.swing.KDCheckBox;
 import com.kingdee.bos.ctrl.swing.tree.DefaultKingdeeTreeNode;
 import com.kingdee.bos.dao.IObjectValue;
 import com.kingdee.eas.base.permission.client.longtime.ILongTimeTask;
@@ -50,6 +56,7 @@ import com.kingdee.eas.fdc.basecrm.client.CRMTreeHelper;
 import com.kingdee.eas.fdc.basecrm.client.FDCSysContext;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.ProductTypeInfo;
+import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.contract.ContractBillInfo;
 import com.kingdee.eas.fdc.contract.MarketProjectReportFacadeFactory;
 import com.kingdee.eas.fdc.contract.MarketProjectSourceEnum;
@@ -80,6 +87,7 @@ public class MarketProjectReport1UI extends AbstractMarketProjectReport1UI
 {
     private static final Logger logger = CoreUIObject.getLogger(MarketProjectReport1UI.class);
     private boolean isQuery=false;
+    private boolean isOnLoad=false;
     public MarketProjectReport1UI() throws Exception
     {
         super();
@@ -106,6 +114,7 @@ public class MarketProjectReport1UI extends AbstractMarketProjectReport1UI
 		return tblMain;
 	}
 	public void onLoad() throws Exception {
+		isOnLoad=true;
     	setShowDialogOnLoad(true);
     	tblMain.getStyleAttributes().setLocked(true);
 		super.onLoad();
@@ -119,66 +128,12 @@ public class MarketProjectReport1UI extends AbstractMarketProjectReport1UI
 		this.treeMain.setSelectionNode(orgRoot);
 		this.treeMain.expandAllNodes(true, orgRoot);
 		
-		tblMain.getColumn("source").setRenderer(new ObjectValueRender(){
-			public String getText(Object obj) {
-				if(obj instanceof String){
-					String info = (String)obj;
-					if(MarketProjectSourceEnum.getEnum(info)==null){
-						return "";
-					}else{
-						return InvoiceTypeEnum.getEnum(info).getAlias();
-					}
-				}
-				return super.getText(obj);
-			}
-		});
+		isOnLoad=false;
     }
 	protected void query() {
+		if(isOnLoad) return;
 		tblMain.removeColumns();
 		tblMain.removeRows();
-		CRMClientHelper.changeTableNumberFormat(tblMain, new String[]{"subAmount","amount","conAmount","payAmount","unPayAmount","conMarketAmount"});
-		CRMClientHelper.fmtDate(tblMain, "auditTime");
-		CRMClientHelper.fmtDate(tblMain, "conAuditTime");
-		CRMClientHelper.fmtDate(tblMain, "conBizDate");
-		tblMain.getColumn("conNumber").getStyleAttributes().setFontColor(Color.BLUE);
-		tblMain.getColumn("number").getStyleAttributes().setFontColor(Color.BLUE);
-//		String[] fields=new String[tblMain.getColumnCount()];
-//		for(int i=0;i<tblMain.getColumnCount();i++){
-//			fields[i]=tblMain.getColumnKey(i);
-//		}
-//		KDTableHelper.setSortedColumn(tblMain,fields);
-		
-		CRMClientHelper.getFootRow(tblMain, new String[]{"conAmount","payAmount","unPayAmount"});
-//		BigDecimal roomArea=tblMain.getFootRow(0).getCell("roomArea").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("roomArea").getValue();
-//		BigDecimal buildArea=tblMain.getFootRow(0).getCell("buildArea").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("buildArea").getValue();
-//		BigDecimal account=tblMain.getFootRow(0).getCell("account").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("account").getValue();
-//		BigDecimal revAccount=tblMain.getFootRow(0).getCell("revAccount").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("revAccount").getValue();
-//		tblMain.getFootRow(0).getCell("buildPrice").setValue(buildArea.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:account.divide(buildArea, 2, BigDecimal.ROUND_HALF_UP));
-//		tblMain.getFootRow(0).getCell("roomPrice").setValue(roomArea.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:account.divide(roomArea, 2, BigDecimal.ROUND_HALF_UP));
-//		tblMain.getFootRow(0).getCell("revAccountRate").setValue(account.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:revAccount.divide(account, 2, BigDecimal.ROUND_HALF_UP));
-//		
-//		tblMain.getColumn("amount").getStyleAttributes().setFontColor(Color.BLUE);
-		
-		
-		this.tblMain.getMergeManager().setMergeMode(KDTMergeManager.GROUP_MERGE);
-    	this.tblMain.getGroupManager().setGroup(true);
-    	this.tblMain.getColumn("number").setGroup(true);
-    	this.tblMain.getColumn("auditTime").setGroup(true);
-    	this.tblMain.getColumn("name").setGroup(true);
-    	this.tblMain.getColumn("costAccount").setGroup(true);
-    	this.tblMain.getColumn("amount").setGroup(true);
-    	this.tblMain.getColumn("subAmount").setGroup(true);
-    	
-    	this.tblMain.getColumn("type").setGroup(true);
-    	this.tblMain.getColumn("conHasSettled").setGroup(true);
-    	this.tblMain.getColumn("conAuditTime").setGroup(true);
-    	this.tblMain.getColumn("conNumber").setGroup(true);
-    	this.tblMain.getColumn("conName").setGroup(true);
-    	this.tblMain.getColumn("conPartB").setGroup(true);
-    	this.tblMain.getColumn("conAmount").setGroup(true);
-    	this.tblMain.getColumn("payAmount").setGroup(true);
-    	this.tblMain.getColumn("unPayAmount").setGroup(true);
-    	this.tblMain.getGroupManager().group();
 	}
 //	protected void mergerTable(KDTable table,String coloum[],String mergeColoum[]){
 //		int merger=0;
@@ -245,6 +200,80 @@ public class MarketProjectReport1UI extends AbstractMarketProjectReport1UI
     	        	tblMain.repaint();
     	        }
     	        tblMain.setRefresh(true);
+    	        
+    	        CRMClientHelper.changeTableNumberFormat(tblMain, new String[]{"subAmount","amount","conAmount","payAmount","unPayAmount","conMarketAmount"});
+    			CRMClientHelper.fmtDate(tblMain, "auditTime");
+    			CRMClientHelper.fmtDate(tblMain, "conAuditTime");
+    			CRMClientHelper.fmtDate(tblMain, "conBizDate");
+    			
+    			KDCheckBox box = new KDCheckBox(); 
+    			KDTDefaultCellEditor editor = new KDTDefaultCellEditor(box);
+    			tblMain.getColumn("isSelect").setEditor(editor);
+    			tblMain.getColumn("isSelect").getStyleAttributes().setLocked(false);
+    			
+    			for(int i=0;i<tblMain.getRowCount();i++){
+    				tblMain.getRow(i).getCell("isSelect").setValue(Boolean.FALSE);
+    				if(tblMain.getRow(i).getCell("type").getValue()!=null&&tblMain.getRow(i).getCell("type").getValue().toString().equals("合同")){
+    					tblMain.getRow(i).getCell("isSelect").getStyleAttributes().setLocked(true);
+    				}
+    				if(tblMain.getRow(i).getCell("subAmount").getValue()!=null&&((BigDecimal)tblMain.getRow(i).getCell("subAmount").getValue()).compareTo(FDCHelper.ZERO)<=0){
+    					tblMain.getRow(i).getCell("isSelect").getStyleAttributes().setLocked(true);
+    				}
+    			}
+    			
+    			tblMain.getColumn("conNumber").getStyleAttributes().setFontColor(Color.BLUE);
+    			tblMain.getColumn("number").getStyleAttributes().setFontColor(Color.BLUE);
+//    			String[] fields=new String[tblMain.getColumnCount()];
+//    			for(int i=0;i<tblMain.getColumnCount();i++){
+//    				fields[i]=tblMain.getColumnKey(i);
+//    			}
+//    			KDTableHelper.setSortedColumn(tblMain,fields);
+    			
+    			CRMClientHelper.getFootRow(tblMain, new String[]{"conAmount","payAmount","unPayAmount"});
+//    			BigDecimal roomArea=tblMain.getFootRow(0).getCell("roomArea").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("roomArea").getValue();
+//    			BigDecimal buildArea=tblMain.getFootRow(0).getCell("buildArea").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("buildArea").getValue();
+//    			BigDecimal account=tblMain.getFootRow(0).getCell("account").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("account").getValue();
+//    			BigDecimal revAccount=tblMain.getFootRow(0).getCell("revAccount").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("revAccount").getValue();
+//    			tblMain.getFootRow(0).getCell("buildPrice").setValue(buildArea.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:account.divide(buildArea, 2, BigDecimal.ROUND_HALF_UP));
+//    			tblMain.getFootRow(0).getCell("roomPrice").setValue(roomArea.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:account.divide(roomArea, 2, BigDecimal.ROUND_HALF_UP));
+//    			tblMain.getFootRow(0).getCell("revAccountRate").setValue(account.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:revAccount.divide(account, 2, BigDecimal.ROUND_HALF_UP));
+//    			
+//    			tblMain.getColumn("amount").getStyleAttributes().setFontColor(Color.BLUE);
+    			
+    			
+    			tblMain.getMergeManager().setMergeMode(KDTMergeManager.GROUP_MERGE);
+    	    	tblMain.getGroupManager().setGroup(true);
+    	    	tblMain.getColumn("number").setGroup(true);
+    	    	tblMain.getColumn("auditTime").setGroup(true);
+    	    	tblMain.getColumn("name").setGroup(true);
+    	    	tblMain.getColumn("costAccount").setGroup(true);
+    	    	tblMain.getColumn("amount").setGroup(true);
+    	    	tblMain.getColumn("subAmount").setGroup(true);
+    	    	
+    	    	tblMain.getColumn("type").setGroup(true);
+    	    	tblMain.getColumn("conHasSettled").setGroup(true);
+    	    	tblMain.getColumn("conAuditTime").setGroup(true);
+    	    	tblMain.getColumn("conNumber").setGroup(true);
+    	    	tblMain.getColumn("conName").setGroup(true);
+    	    	tblMain.getColumn("conPartB").setGroup(true);
+    	    	tblMain.getColumn("conAmount").setGroup(true);
+    	    	tblMain.getColumn("payAmount").setGroup(true);
+    	    	tblMain.getColumn("unPayAmount").setGroup(true);
+    	    	tblMain.getGroupManager().group();
+    	    	
+    			tblMain.getColumn("source").setRenderer(new ObjectValueRender(){
+    				public String getText(Object obj) {
+    					if(obj instanceof String){
+    						String info = (String)obj;
+    						if(MarketProjectSourceEnum.getEnum(info)==null){
+    							return "";
+    						}else{
+    							return InvoiceTypeEnum.getEnum(info).getAlias();
+    						}
+    					}
+    					return super.getText(obj);
+    				}
+    			});
             }
         }
         );
@@ -295,6 +324,34 @@ public class MarketProjectReport1UI extends AbstractMarketProjectReport1UI
 				}
 			}
 		}
+	}
+
+	protected void btnToZHMP_actionPerformed(ActionEvent e) throws Exception {
+		Set entryId=new HashSet();
+		for(int i=0;i<tblMain.getRowCount();i++){
+			if((Boolean)tblMain.getRow(i).getCell("isSelect").getValue()){
+				entryId.add(tblMain.getRow(i).getCell("entryId").getValue().toString());
+			}
+		}
+		if(entryId.size()==0){
+			FDCMsgBox.showWarning(this,"请选择行！");
+			return;
+		}
+		UIContext uiContext = new UIContext(this);
+		uiContext.put(UIContext.OWNER, this);
+		uiContext.put("entryId", entryId);
+		DefaultKingdeeTreeNode treeNode = (DefaultKingdeeTreeNode)treeMain.getLastSelectedPathComponent();
+		if(treeNode!=null){
+			Object obj = treeNode.getUserObject();
+			if(obj!=null){
+				uiContext.put("org", ((OrgStructureInfo)obj).getUnit());
+			}else{
+				FDCMsgBox.showWarning(this,"请选择左树！");
+				return;
+			}
+		}
+		IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ZHMarketProjectEditUI.class.getName(), uiContext, null, OprtState.ADDNEW);
+		uiWindow.show();
 	}
 	
 }

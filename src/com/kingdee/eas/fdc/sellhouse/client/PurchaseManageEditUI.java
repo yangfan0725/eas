@@ -778,8 +778,9 @@ public class PurchaseManageEditUI extends AbstractPurchaseManageEditUI
 		purchase.setOneQd(oneQd);
 		purchase.setTwoQd(twoQd);
 		
-		try {
+		try {if(quc!=null){
 			entry.setUser(UserFactory.getRemoteInstance().getUserByID(new ObjectUuidPK(quc.getPropertyConsultant().getId())));
+		}
 		} catch (EASBizException e) {
 			e.printStackTrace();
 		} catch (BOSException e) {

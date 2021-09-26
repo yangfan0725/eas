@@ -351,7 +351,7 @@ public class AgioEditUI extends AbstractAgioEditUI {
 			BigDecimal baseAmount=room.getBaseStandardPrice();
 			AgioCalTypeEnum agioType = (AgioCalTypeEnum) this.comboCalType.getSelectedItem();
 			if (agioType.equals(AgioCalTypeEnum.Dazhe)) {
-				BigDecimal comAmount=room.getStandardTotalAmount().multiply(this.txtPro.getBigDecimalValue().divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_UP));
+				BigDecimal comAmount=room.getStandardTotalAmount().multiply(this.txtPro.getBigDecimalValue().divide(new BigDecimal(100), 0, BigDecimal.ROUND_HALF_UP));
 //				if(comAmount.compareTo(projectAmount)<0){
 //					MsgBox.showError("房间:"+room.getName()+"打折后低于项目底价!");
 //					this.abort();

@@ -369,4 +369,31 @@ public class PayRequestBill extends FDCBill implements IPayRequestBill
             throw new EJBRemoteException(err);
         }
     }
+    /**
+     *获取每刻发票-User defined method
+     *@return
+     */
+    public Map getMKFP() throws BOSException, EASBizException
+    {
+        try {
+            return getController().getMKFP(getContext());
+        }
+        catch(RemoteException err) {
+            throw new EJBRemoteException(err);
+        }
+    }
+    /**
+     *获取每刻发票链接-User defined method
+     *@param number 发票号码
+     *@return
+     */
+    public String getMKLink(String number) throws BOSException, EASBizException
+    {
+        try {
+            return getController().getMKLink(getContext(), number);
+        }
+        catch(RemoteException err) {
+            throw new EJBRemoteException(err);
+        }
+    }
 }

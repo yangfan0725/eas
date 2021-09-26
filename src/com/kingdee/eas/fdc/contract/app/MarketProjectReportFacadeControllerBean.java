@@ -50,6 +50,8 @@ public class MarketProjectReportFacadeControllerBean extends AbstractMarketProje
 	    RptTableHeader header = new RptTableHeader();
 	    RptTableColumn col = null;
 	    initColoum(header,col,"id",100,true);
+	    initColoum(header,col,"entryId",100,true);
+	    initColoum(header,col,"isSelect",50,false);
 	    initColoum(header,col,"source",100,true);
 	    initColoum(header,col,"number",100,false);
 	    initColoum(header,col,"auditTime",100,false);
@@ -74,13 +76,13 @@ public class MarketProjectReportFacadeControllerBean extends AbstractMarketProje
 	    header.setLabels(new Object[][]{ 
 	    		{
 //	    			"id","营销立项单据编号","立项审批通过时间","立项事项","费用归口口径","立项金额","签约单位/个人","单据类型","conId","合同审批通过时间","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属月份","营销费用发生额（含分摊）"
-	    			"id","立项来源","营销立项单据编号","立项审批通过时间","立项事项","费用归口口径","立项金额","立项可用余额","签约单位/个人","单据类型","conId","合同审批通过时间","已结算","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属月份","营销费用发生额（含分摊）"
+	    			"id","entryId","选择","立项来源","营销立项单据编号","立项审批通过时间","立项事项","费用归口口径","立项金额","立项可用余额","签约单位/个人","单据类型","conId","合同审批通过时间","已结算","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属月份","营销费用发生额（含分摊）"
 
 	    		}
 	    		,
 	    		{
 //	    			"id","营销立项单据编号","立项审批通过时间","立项事项","费用归口口径","立项金额","签约单位/个人","单据类型","conId","合同审批通过时间","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属月份","营销费用发生额（含分摊）"
-	    			"id","立项来源","营销立项单据编号","立项审批通过时间","立项事项","费用归口口径","立项金额","立项可用余额","签约单位/个人","单据类型","conId","合同审批通过时间","已结算","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属月份","营销费用发生额（含分摊）"
+	    			"id","entryId","选择","立项来源","营销立项单据编号","立项审批通过时间","立项事项","费用归口口径","立项金额","立项可用余额","签约单位/个人","单据类型","conId","合同审批通过时间","已结算","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属月份","营销费用发生额（含分摊）"
 
 	    		}
 	    },true);
@@ -97,18 +99,19 @@ public class MarketProjectReportFacadeControllerBean extends AbstractMarketProje
     protected String getSql(Context ctx,RptParams params){
     	Date fromDate = (Date)params.getObject("fromDate");
     	Date toDate =   (Date)params.getObject("toDate");
+    	YesOrNoEnum isYE=(YesOrNoEnum)params.getObject("isYE");
     	String org=params.getString("org");
     	StringBuffer sb = new StringBuffer();
     	
-    	sb.append(" select m.fid id,m.fsource source,m.fnumber number,m.fauditTime auditTime,m.fname name,c.fname_l2 costAccount,cost.famount amount,cost.famount-isnull(tt.amount,0)+isnull(fcost.famount,0),'' partB,t.type,t.conId,t.conAuditTime,t.conHasSettled,t.conNumber,");
-    	sb.append(" t.conName,t.conPartB,t.conAmount,t.payAmount,(t.conAmount-isnull(t.payAmount,0)) unPayAmount,t.conBizdate,t.conMarketAmount");
+    	sb.append(" select m.fid id,cost.fid entryId,0 isSelect,m.fsource source,m.fnumber number,m.fauditTime auditTime,m.fname name,c.fname_l2 costAccount,cost.famount amount,cost.famount-isnull(tt.amount,0)+isnull(fcost.famount,0),'' partB,case when cost.ftype='JZ' then '记账单' when cost.ftype='CONTRACT' then '合同' else '无文本' end,t.conId,t.conAuditTime,t.conHasSettled,t.conNumber,");
+    	sb.append(" t.conName,t.conPartB,t.conAmount,t.payAmount,(t.conAmount-isnull(t.payAmount,0)) unPayAmount,case when cost.ftype='JZ' then m.fbizDate else t.conBizdate end,case when cost.ftype='JZ' then cost.famount else t.conMarketAmount end");
     	sb.append(" from T_CON_MarketProject m left join T_CON_MarketProjectCostEntry cost on cost.fheadid=m.fid ");
     	sb.append(" left join T_CON_MarketProject fm on fm.FMpId=m.fid");
     	sb.append(" left join T_CON_MarketProjectCostEntry fcost on cost.fcostaccountid=fcost.fcostaccountid and fm.fid=fcost.fheadid");
     	sb.append(" left join T_FDC_CostAccount c on c.fid=cost.fcostaccountid ");
     	sb.append(" left join (select '合同' type,con.fid conId,con.fmarketProjectId,con.FMpCostAccountId,con.fauditTime conAuditTime,con.fnumber conNumber,(case when con.fhasSettled=0 then '否' else '是' end) conHasSettled, con.fname conName,supplier.fname_l2 conPartB,(case when t.fsettleprice is null then con.famount else t.fsettleprice end) conAmount,entry.fdate conBizdate,(case when t.fsettleprice is null then con.famount else t.fsettleprice end)*entry.frate/100  conMarketAmount,p.amount payAmount from");
     	sb.append(" t_con_contractbill con left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=con.fid left join t_bd_supplier supplier on supplier.fid=con.fpartBid left join (select p.fcontractid conId,sum(fActualPayAmount) amount from t_con_payrequestbill p left join t_cas_paymentbill t on t.ffdcPayReqID=p.fid where t.fbillStatus=15 group by p.fcontractid ) p on p.conId=con.fid");
-    	sb.append(" left join T_CON_ContractMarketEntry entry on entry.fheadid=con.fid where con.fstate!='1SAVED'");
+    	sb.append(" left join T_CON_ContractMarketEntry entry on entry.fheadid=con.fid where con.fstate='4AUDITTED'");
     	
 //    	sb.append(" left join T_CON_ContractBill con1 on entry.fheadid=con.fid where con.fstate!='1SAVED'");
 
@@ -116,16 +119,16 @@ public class MarketProjectReportFacadeControllerBean extends AbstractMarketProje
     	sb.append(" union all select '无文本' type,con.fid conId,con.fmarketProjectId,con.FMpCostAccountId,con.fauditTime conAuditTime,con.fnumber conNumber,'否' conHasSettled,con.fname conName,(case when supplier.fname_l2 is null then p.fname_l2 else supplier.fname_l2 end) conPartB,con.famount conAmount,entry.fdate conBizdate,entry.famount conMarketAmount,p.amount payAmount from");
     	sb.append(" T_CON_ContractWithoutText con left join t_bd_supplier supplier on supplier.fid=con.FReceiveUnitID left join (select p.fcontractid conId,sum(fActualPayAmount) amount from t_con_payrequestbill p left join t_cas_paymentbill t on t.ffdcPayReqID=p.fid where t.fbillStatus=15 group by p.fcontractid ) p on p.conId=con.fid");
     	sb.append(" left join t_bd_person p on p.fid=con.fpersonid left join T_CON_ContractWTMarketEntry entry on entry.fheadid=con.fid");
-    	sb.append(" where con.fstate!='1SAVED')t on t.fmarketProjectId=m.fid and t.FMpCostAccountId=cost.fcostAccountId");
+    	sb.append(" )t on t.fmarketProjectId=m.fid and t.FMpCostAccountId=cost.fcostAccountId");
     	
     	sb.append(" left join (select sum(t.conAmount) amount,t.fmarketProjectId,t.FMpCostAccountId from (select con.fmarketProjectId,con.FMpCostAccountId,(case when t.fsettleprice is null then con.famount else t.fsettleprice end) conAmount from");
     	sb.append(" t_con_contractbill con left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=con.fid ");
-    	sb.append(" where con.fstate!='1SAVED'");
+    	sb.append(" where con.fstate='4AUDITTED'");
     	
     	
     	sb.append(" union all select con.fmarketProjectId,con.FMpCostAccountId,con.famount conAmount from");
     	sb.append(" T_CON_ContractWithoutText con ");
-    	sb.append(" where con.fstate!='1SAVED')t group by t.fmarketProjectId,t.FMpCostAccountId)tt  on tt.fmarketProjectId=m.fid and tt.FMpCostAccountId=cost.fcostAccountId");
+    	sb.append(" )t group by t.fmarketProjectId,t.FMpCostAccountId)tt  on tt.fmarketProjectId=m.fid and tt.FMpCostAccountId=cost.fcostAccountId");
     
     	
     	sb.append(" where 1=1");
@@ -137,6 +140,13 @@ public class MarketProjectReportFacadeControllerBean extends AbstractMarketProje
 		}  
     	if(org!=null){
     		sb.append(" and m.forgUnitid='"+org+"'");
+    	}
+    	if(isYE!=null){
+    		if(isYE.equals(YesOrNoEnum.YES)){
+    			sb.append(" and (cost.famount-isnull(tt.amount,0)+isnull(fcost.famount,0))>0");
+    		}else{
+    			sb.append(" and (cost.famount-isnull(tt.amount,0)+isnull(fcost.famount,0))=0");
+    		}
     	}
     	sb.append(" order by m.fnumber,c.flongnumber,t.conNumber,t.conBizdate");
     	return sb.toString();

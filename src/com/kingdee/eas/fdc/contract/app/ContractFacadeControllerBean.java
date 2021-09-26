@@ -542,6 +542,15 @@ public class ContractFacadeControllerBean extends AbstractContractFacadeControll
         		sql.append("update T_CON_CONTRACTWITHOUTTEXT set famount=FORIGINALAMOUNT where FORIGINALAMOUNT !=famount and FCURRENCYID ='dfd38d11-00fd-1000-e000-1ebdc0a8100dDEB58FDC'");
         		builder.addBatch(sql.toString());
         		
+        		sql = new StringBuffer();
+        		sql.append("update t_con_contractbill set famount=FORIGINALAMOUNT where FORIGINALAMOUNT !=famount and FCURRENCYID ='dfd38d11-00fd-1000-e000-1ebdc0a8100dDEB58FDC'");
+        		builder.addBatch(sql.toString());
+        		 
+        		sql = new StringBuffer();
+        		sql.append("update t_con_marketproject a set famount=(select amount from(select fheadid,sum(famount) amount from T_CON_MarketProjectCostEntry group by fheadid )t where t.fheadid=a.fid)where fid in(");
+        		sql.append(" select a.fid from t_con_marketproject a left join (select fheadid,sum(famount) amount from T_CON_MarketProjectCostEntry group by fheadid )t on t.fheadid=a.fid where a.famount!=t.amount)");
+        		builder.addBatch(sql.toString());
+        				
         		builder.executeBatch();
 			}
 

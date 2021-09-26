@@ -147,6 +147,48 @@
             <scale>0</scale>
             <precision>0</precision>
         </column>
+        <column>
+            <name>FisMKUsed</name>
+            <alias>dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FisMKUsed].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FisMKUsed].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>INT</sqlType>
+            <length>4</length>
+            <scale>0</scale>
+            <precision>0</precision>
+        </column>
+        <column>
+            <name>FViewLink</name>
+            <alias>dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FViewLink].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FViewLink].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>VARCHAR</sqlType>
+            <length>300</length>
+            <scale>0</scale>
+            <precision>0</precision>
+        </column>
+        <column>
+            <name>FFromMk</name>
+            <alias>dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FFromMk].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FFromMk].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>INT</sqlType>
+            <length>4</length>
+            <scale>0</scale>
+            <precision>0</precision>
+        </column>
     </columns>
     <primaryKey>
         <name>PK_ContractWTInvoi</name>
@@ -212,6 +254,17 @@
             <lang locale="zh_CN" value="开票日期" />
             <lang locale="zh_HK" value="開票日期" />
             <lang locale="zh_TW" value="開票日期" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FFromMk].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FFromMk].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="是否来自每刻" />
+            <lang locale="zh_HK" value="是否來自每刻" />
+            <lang locale="zh_TW" value="是否來自每刻" />
         </rs>
         <rs key="dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FID].alias">
             <lang locale="en_US" value="null" />
@@ -306,6 +359,30 @@
             <lang locale="zh_CN" value="金额" />
             <lang locale="zh_HK" value="金額" />
             <lang locale="zh_TW" value="金額" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FViewLink].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="每刻发票链接" />
+            <lang locale="zh_HK" value="每刻發票鏈接" />
+            <lang locale="zh_TW" value="每刻發票鏈接" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FViewLink].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="每刻发票链接" />
+            <lang locale="zh_HK" value="每刻發票鏈接" />
+            <lang locale="zh_TW" value="每刻發票鏈接" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FisMKUsed].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="每科发票锁定" />
+            <lang locale="zh_HK" value="每科發票鎖定" />
+            <lang locale="zh_TW" value="每科發票鎖定" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].columns.column[FisMKUsed].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="0否1是 锁定" />
+            <lang locale="zh_HK" value="0否1是 鎖定" />
+            <lang locale="zh_TW" value="0否1是 鎖定" />
         </rs>
         <rs key="dataTable[com.kingdee.eas.fdc.contract.app.T_CON_ContractWTInvoiceEntry].description">
             <lang locale="en_US" value="null" />

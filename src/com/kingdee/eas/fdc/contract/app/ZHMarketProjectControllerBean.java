@@ -21,12 +21,18 @@ import com.kingdee.bos.service.ServiceContext;
 import com.kingdee.bos.service.IServiceContext;
 
 import java.lang.String;
+
+import com.kingdee.eas.base.attachment.BoAttchAssoCollection;
+import com.kingdee.eas.base.attachment.BoAttchAssoFactory;
+import com.kingdee.eas.base.attachment.BoAttchAssoInfo;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.dao.IObjectPK;
 import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
 import com.kingdee.eas.fdc.basedata.app.FDCBillControllerBean;
+import com.kingdee.bos.metadata.entity.FilterItemInfo;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
+import com.kingdee.bos.metadata.entity.SelectorItemInfo;
 import com.kingdee.bos.metadata.entity.SorterItemCollection;
 import com.kingdee.eas.framework.CoreBaseCollection;
 import com.kingdee.bos.metadata.entity.FilterInfo;
@@ -93,9 +99,9 @@ public class ZHMarketProjectControllerBean extends AbstractZHMarketProjectContro
 			mp.setSellProjecttxt(info.getSellProjecttxt());
 			mp.setIsJT(info.isIsJT());
 			mp.setNw(info.getNw());
-			mp.setSourceBillId(entry.getId().toString());
+			mp.setSourceBillId(info.getId().toString());
 			mp.setSource(MarketProjectSourceEnum.ZHLX);
-			mp.setIsSub(false);
+			mp.setIsSub(info.isIsSub());
 			mp.setState(FDCBillStateEnum.AUDITTING);
 			
 			mp.setDescription(entry.getDescription());
@@ -107,6 +113,7 @@ public class ZHMarketProjectControllerBean extends AbstractZHMarketProjectContro
 			costEntry.setType(entry.getType());
 			mp.getCostEntry().add(costEntry);
 			mp.setAmount(entry.getAmount());
+			mp.setMp(entry.getMarketProject());
 			
 			if(entry.getSupplier()!=null){
 				MarketProjectEntryInfo mpEntry=new MarketProjectEntryInfo();
@@ -120,7 +127,25 @@ public class ZHMarketProjectControllerBean extends AbstractZHMarketProjectContro
 			unitEntry.setRemark(entry.getUnit());
 			mp.getUnitEntry().add(unitEntry);
 			
-			MarketProjectFactory.getLocalInstance(ctx).addnew(mp);
+			IObjectPK pk=MarketProjectFactory.getLocalInstance(ctx).addnew(mp);
+			
+			SelectorItemCollection attsic = new SelectorItemCollection();
+			attsic.add(new SelectorItemInfo("*"));
+			attsic.add(new SelectorItemInfo("attachment.*"));
+			FilterInfo filter = new FilterInfo();
+			filter.getFilterItems().add(new FilterItemInfo("boID", info.getId().toString()));
+			EntityViewInfo evi = new EntityViewInfo();
+			evi.setFilter(filter);
+			evi.setSelector(attsic);
+			BoAttchAssoCollection cols= BoAttchAssoFactory.getLocalInstance(ctx).getBoAttchAssoCollection(evi);
+			
+            for (int j=0;j<cols.size();j++) {
+            	BoAttchAssoInfo boinfo=cols.get(j);
+            	BoAttchAssoInfo newInfo=(BoAttchAssoInfo) boinfo.clone();
+            	newInfo.setId(BOSUuid.create(boinfo.getBOSType()));
+            	newInfo.setBoID(pk.toString());
+            	BoAttchAssoFactory.getLocalInstance(ctx).addnew(newInfo);
+            }
 		}
 	}
 	protected void _setAudittingStatus(Context ctx, BOSUuid billId)

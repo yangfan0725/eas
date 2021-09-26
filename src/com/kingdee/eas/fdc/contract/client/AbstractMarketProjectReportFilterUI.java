@@ -48,8 +48,10 @@ public abstract class AbstractMarketProjectReportFilterUI extends com.kingdee.ea
     private static final Logger logger = CoreUIObject.getLogger(AbstractMarketProjectReportFilterUI.class);
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer kDLabelContainer1;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer kDLabelContainer2;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contIsYE;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkFromDate;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkToDate;
+    protected com.kingdee.bos.ctrl.swing.KDComboBox cbIsYE;
     /**
      * output class constructor
      */
@@ -70,12 +72,16 @@ public abstract class AbstractMarketProjectReportFilterUI extends com.kingdee.ea
         this.setUITitle(resHelper.getString("this.title"));
         this.kDLabelContainer1 = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.kDLabelContainer2 = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contIsYE = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.pkFromDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.pkToDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
+        this.cbIsYE = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.kDLabelContainer1.setName("kDLabelContainer1");
         this.kDLabelContainer2.setName("kDLabelContainer2");
+        this.contIsYE.setName("contIsYE");
         this.pkFromDate.setName("pkFromDate");
         this.pkToDate.setName("pkToDate");
+        this.cbIsYE.setName("cbIsYE");
         // CustomerQueryPanel
         // kDLabelContainer1		
         this.kDLabelContainer1.setBoundLabelText(resHelper.getString("kDLabelContainer1.boundLabelText"));		
@@ -85,8 +91,14 @@ public abstract class AbstractMarketProjectReportFilterUI extends com.kingdee.ea
         this.kDLabelContainer2.setBoundLabelText(resHelper.getString("kDLabelContainer2.boundLabelText"));		
         this.kDLabelContainer2.setBoundLabelLength(100);		
         this.kDLabelContainer2.setBoundLabelUnderline(true);
+        // contIsYE		
+        this.contIsYE.setBoundLabelText(resHelper.getString("contIsYE.boundLabelText"));		
+        this.contIsYE.setBoundLabelLength(100);		
+        this.contIsYE.setBoundLabelUnderline(true);
         // pkFromDate
         // pkToDate
+        // cbIsYE		
+        this.cbIsYE.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.contract.app.YesOrNoEnum").toArray());
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -117,10 +129,14 @@ public abstract class AbstractMarketProjectReportFilterUI extends com.kingdee.ea
         this.add(kDLabelContainer1, null);
         kDLabelContainer2.setBounds(new Rectangle(312, 59, 270, 19));
         this.add(kDLabelContainer2, null);
+        contIsYE.setBounds(new Rectangle(25, 98, 270, 19));
+        this.add(contIsYE, null);
         //kDLabelContainer1
         kDLabelContainer1.setBoundEditor(pkFromDate);
         //kDLabelContainer2
         kDLabelContainer2.setBoundEditor(pkToDate);
+        //contIsYE
+        contIsYE.setBoundEditor(cbIsYE);
 
     }
 

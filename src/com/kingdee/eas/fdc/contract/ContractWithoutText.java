@@ -10,12 +10,13 @@ import java.lang.String;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.bos.dao.IObjectPK;
+import java.util.Map;
 import com.kingdee.eas.fdc.basedata.IFDCBill;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.eas.framework.CoreBaseCollection;
 import com.kingdee.eas.fdc.contract.programming.ProgrammingContractInfo;
-import com.kingdee.bos.util.*;
 import com.kingdee.eas.fdc.basedata.FDCBill;
+import com.kingdee.bos.util.*;
 import com.kingdee.bos.BOSException;
 import com.kingdee.bos.Context;
 import com.kingdee.bos.dao.IObjectValue;
@@ -208,6 +209,33 @@ public class ContractWithoutText extends FDCBill implements IContractWithoutText
     {
         try {
             return getController().getNoPValue(getContext(), pk, sel);
+        }
+        catch(RemoteException err) {
+            throw new EJBRemoteException(err);
+        }
+    }
+    /**
+     *获取每刻发票-User defined method
+     *@return
+     */
+    public Map getMKFP() throws BOSException, EASBizException
+    {
+        try {
+            return getController().getMKFP(getContext());
+        }
+        catch(RemoteException err) {
+            throw new EJBRemoteException(err);
+        }
+    }
+    /**
+     *获取每科链接-User defined method
+     *@param number 发票号码
+     *@return
+     */
+    public String getMKLink(String number) throws BOSException, EASBizException
+    {
+        try {
+            return getController().getMKLink(getContext(), number);
         }
         catch(RemoteException err) {
             throw new EJBRemoteException(err);

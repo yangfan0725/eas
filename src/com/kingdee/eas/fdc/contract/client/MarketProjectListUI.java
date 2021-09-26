@@ -57,8 +57,10 @@ import com.kingdee.eas.fdc.contract.MarketProjectFactory;
 import com.kingdee.eas.fdc.contract.MarketProjectInfo;
 import com.kingdee.eas.fdc.contract.MarketProjectSourceEnum;
 import com.kingdee.eas.fdc.contract.PayReqUtils;
+import com.kingdee.eas.fdc.contract.ThirdPartyExpenseBillInfo;
 import com.kingdee.eas.fdc.contract.ZHMarketProjectEntryCollection;
 import com.kingdee.eas.fdc.contract.ZHMarketProjectEntryFactory;
+import com.kingdee.eas.fdc.contract.ZHMarketProjectEntryInfo;
 import com.kingdee.eas.fdc.contract.app.OaUtil;
 import com.kingdee.eas.fdc.invite.InviteTypeInfo;
 import com.kingdee.eas.fdc.sellhouse.CommissionSettlementBillFactory;
@@ -291,16 +293,23 @@ public class MarketProjectListUI extends AbstractMarketProjectListUI
 		IRow row = this.tblMain.getRow(rowIndex);
 		String id=row.getCell("id").getValue().toString();
 		MarketProjectInfo info=MarketProjectFactory.getRemoteInstance().getMarketProjectInfo(new ObjectUuidPK(id));
-		if(MarketProjectSourceEnum.ZHLX.equals(info.getSource())){
-			ZHMarketProjectEntryCollection col=ZHMarketProjectEntryFactory.getRemoteInstance().getZHMarketProjectEntryCollection("select head.id from where id='"+info.getSourceBillId()+"'");
-			if(col.size()>0){
-				UIContext uiContext = new UIContext(this);
-				uiContext.put("ID", col.get(0).getHead().getId());
-		        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
-		        IUIWindow uiWindow = uiFactory.create(ZHMarketProjectEditUI.class.getName(), uiContext,null,OprtState.VIEW);
-		        uiWindow.show();
-			}
-		}
+		if(info.getSourceBillId()!=null){
+    		if(BOSUuid.read(info.getSourceBillId()).getType().equals(new ThirdPartyExpenseBillInfo().getBOSType())){
+    			UIContext uiContext = new UIContext(this);
+    			uiContext.put(UIContext.OWNER, this);
+    			uiContext.put(UIContext.ID, info.getSourceBillId());
+    			IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ThirdPartyExpenseBillEditUI.class.getName(), uiContext, null, OprtState.VIEW);
+    			uiWindow.show();
+    		}else{
+    			UIContext uiContext = new UIContext(this);
+    			uiContext.put(UIContext.OWNER, this);
+    			uiContext.put(UIContext.ID, info.getSourceBillId());
+    			IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ZHMarketProjectEditUI.class.getName(), uiContext, null, OprtState.VIEW);
+    			uiWindow.show();
+    		}
+    	}else{
+    		super.actionTraceUp_actionPerformed(e);
+    	}
 	}
 	public void actionWorkFlowG_actionPerformed(ActionEvent e) throws Exception {
 		checkSelected();
@@ -354,4 +363,5 @@ public class MarketProjectListUI extends AbstractMarketProjectListUI
 	    		super.actionAuditResult_actionPerformed(e);
 	    	}
 	 }
+	 
 }

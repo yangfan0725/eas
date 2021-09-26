@@ -1024,6 +1024,37 @@
                 <key name="name" value="CostAccountQuery" />
             </query>
         </queryField>
+        <queryField>
+            <name>yjType</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.basedata.app.CostAccountQuery].units.queryField[yjType].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>2bff343f-1828-46a7-8a29-d0358f0e9c69</key>
+                    <parentUnit>
+                        <key name="name" value="yjType" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="CostAccount" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="yjType" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.basedata.app" />
+                <key name="name" value="CostAccountQuery" />
+            </query>
+        </queryField>
     </units>
     <defaultFilter>
         <name>defaultFilter</name>
@@ -1437,6 +1468,12 @@
             <lang locale="zh_CN" value="类别" />
             <lang locale="zh_HK" value="類別" />
             <lang locale="zh_TW" value="類別" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.basedata.app.CostAccountQuery].units.queryField[yjType].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="成本科目属性" />
+            <lang locale="zh_HK" value="成本科目屬性" />
+            <lang locale="zh_TW" value="成本科目屬性" />
         </rs>
     </resource>
 </joinQuery>

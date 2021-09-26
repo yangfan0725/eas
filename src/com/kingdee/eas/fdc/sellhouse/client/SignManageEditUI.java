@@ -567,8 +567,9 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 		sign.setOneQd(oneQd);
 		sign.setTwoQd(twoQd);
 		
-		try {
+		try {if(quc!=null){
 			entry.setUser(UserFactory.getRemoteInstance().getUserByID(new ObjectUuidPK(quc.getPropertyConsultant().getId())));
+		}
 		} catch (EASBizException e) {
 			e.printStackTrace();
 		} catch (BOSException e) {
@@ -1581,7 +1582,7 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 			oldAgioParam.setAgios(oldAgioCol);
 			
 			for(int i=0;i<agioCol.size();i++){
-				if(agioCol.get(i).getAgio()==null){
+				if(agioCol.get(i).getAgio()==null&&agioCol.get(i).getSeq()!=0){
 					isHasAgio=true;
 					agioEntryInfo=agioCol.get(i);
 				}else{
@@ -1623,7 +1624,7 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 			
 			BigDecimal amount=SHEManageHelper.setScale(digit, toIntegerType,purParam.getDealTotalAmount()).subtract(this.txtDealTotalAmount.getBigDecimalValue());
 			
-			if(amount.compareTo(new BigDecimal(0))>=0){
+			if(amount.compareTo(new BigDecimal(0))>0){
 				MsgBox.showInfo("成交价格只能上调!");
 				isEditDealAmount=false;
 				this.txtDealTotalAmount.setValue(purParam.getDealTotalAmount());
@@ -1774,6 +1775,9 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 //			SysUtil.abort();
 //		}
 		super.actionEdit_actionPerformed(e);
+		if(srcInfo!=null&&srcInfo instanceof PurchaseManageInfo){
+			this.f7PayType.setEnabled(false);
+		}
 	}
 	protected void updatePayListByPayType() {
 		try {
@@ -2003,30 +2007,20 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 		if(room!=null){
 			DelayPayBillCollection col=DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+room.getId().toString()+"' and state='4AUDITTED' and sourceFunction not like '%QUIT%' order by auditTime desc");
 			if(col.size()>0){
+				this.updatePayListByPayType();
+				
 				DelayPayBillInfo info=col.get(0);
-				this.tblPayList.removeRows();
 				
 				this.pkPlanSignDate.setValue(info.getPlanSignDate());
 				
 				DelayPayBillNewEntryCollection entryCol=info.getNewEntry();
 				CRMHelper.sortCollection(entryCol, new String[]{"seq"}, true);
 				for(int i=0;i<entryCol.size();i++){
-					IRow row=this.tblPayList.addRow();
-					
-					SignPayListEntryInfo entry=new SignPayListEntryInfo();
-					SHEManageHelper.setPayListEntry(entry, (TranPayListEntryInfo) entryCol.get(i),true);
-					row.setUserObject(entry);
-					row.getCell(PL_MONEYNAME).setValue(entry.getMoneyDefine());
-					row.getCell(PL_APPDATE).setValue(entry.getAppDate());
-					row.getCell(PL_APPAMOUNT).setValue(entry.getAppAmount());
-					row.getCell(PL_BALANCE).setValue(entry.getAppAmount());
-					row.getCell(PL_CURRENCY).setValue(entry.getCurrency());
-					row.getCell(PL_STATE).setValue(new Boolean(false));
-					
+					IRow row=this.tblPayList.getRow(i);
+					if(row==null) continue;
+					row.getCell(PL_APPDATE).setValue(entryCol.get(i).getAppDate());
 					row.getCell(PL_APPAMOUNT).getStyleAttributes().setLocked(true);
 				}
-				
-				this.updatePayList();
 			}else{
 				this.updatePayListByPayType();
 			}

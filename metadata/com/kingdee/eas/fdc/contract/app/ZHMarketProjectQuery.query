@@ -374,6 +374,37 @@
             </query>
         </queryField>
         <queryField>
+            <name>isSub</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ZHMarketProjectQuery].units.queryField[isSub].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Boolean</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>bebea27a-69e0-43b3-a69b-1d09d91543e8</key>
+                    <parentUnit>
+                        <key name="name" value="isSub" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ZHMarketProject" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="isSub" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ZHMarketProjectQuery" />
+            </query>
+        </queryField>
+        <queryField>
             <name>amount</name>
             <userDefined>true</userDefined>
             <formulaString />
@@ -815,6 +846,22 @@
             <lang locale="en_US" value="false" />
             <lang locale="zh_CN" value="false" />
             <lang locale="zh_TW" value="false" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ZHMarketProjectQuery].units.queryField[isSub].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="是否负数立项" />
+            <lang locale="zh_HK" value="是否負數立項" />
+            <lang locale="zh_TW" value="是否負數立項" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ZHMarketProjectQuery].units.queryField[isSub].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ZHMarketProjectQuery].units.queryField[isSub].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ZHMarketProjectQuery].units.queryField[name].displayName">
             <lang locale="en_US" value="null" />

@@ -15,9 +15,11 @@ public class MarketCostTypeEnum extends StringEnum
 {
     public static final String CONTRACT_VALUE = "CONTRACT";//alias=合同
     public static final String NOTEXTCONTRACT_VALUE = "NOTEXTCONTRACT";//alias=无文本
+    public static final String JZ_VALUE = "JZ";//alias=记账单
 
     public static final MarketCostTypeEnum CONTRACT = new MarketCostTypeEnum("CONTRACT", CONTRACT_VALUE);
     public static final MarketCostTypeEnum NOTEXTCONTRACT = new MarketCostTypeEnum("NOTEXTCONTRACT", NOTEXTCONTRACT_VALUE);
+    public static final MarketCostTypeEnum JZ = new MarketCostTypeEnum("JZ", JZ_VALUE);
 
     /**
      * construct function

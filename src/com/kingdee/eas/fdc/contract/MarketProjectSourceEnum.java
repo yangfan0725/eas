@@ -15,9 +15,11 @@ public class MarketProjectSourceEnum extends StringEnum
 {
     public static final String ZHLX_VALUE = "ZHLX";//alias=综合立项
     public static final String DXLX_VALUE = "DXLX";//alias=单项立项
+    public static final String DSF_VALUE = "DSF";//alias=第三方费用申请单
 
     public static final MarketProjectSourceEnum ZHLX = new MarketProjectSourceEnum("ZHLX", ZHLX_VALUE);
     public static final MarketProjectSourceEnum DXLX = new MarketProjectSourceEnum("DXLX", DXLX_VALUE);
+    public static final MarketProjectSourceEnum DSF = new MarketProjectSourceEnum("DSF", DSF_VALUE);
 
     /**
      * construct function

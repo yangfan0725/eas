@@ -3,6 +3,7 @@
  */
 package com.kingdee.eas.fdc.contract.client;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
 import java.math.BigDecimal;
@@ -51,10 +52,12 @@ import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent;
 import com.kingdee.bos.ctrl.kdf.util.render.ObjectValueRender;
 import com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment;
 import com.kingdee.bos.ctrl.swing.KDComboBox;
+import com.kingdee.bos.ctrl.swing.KDDatePicker;
 import com.kingdee.bos.ctrl.swing.KDFormattedTextField;
 import com.kingdee.bos.ctrl.swing.KDTextField;
 import com.kingdee.bos.ctrl.swing.KDWorkButton;
 import com.kingdee.bos.ctrl.swing.event.DataChangeEvent;
+import com.kingdee.bos.ctrl.swing.tree.DefaultKingdeeTreeNode;
 import com.kingdee.bos.dao.IObjectValue;
 import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
 import com.kingdee.eas.base.attachment.AttachmentFactory;
@@ -91,6 +94,7 @@ import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.contract.ContractBillFactory;
 import com.kingdee.eas.fdc.contract.ContractBillInfo;
 import com.kingdee.eas.fdc.contract.FDCUtils;
+import com.kingdee.eas.fdc.contract.JZTypeEnum;
 import com.kingdee.eas.fdc.contract.MarketProjectCollection;
 import com.kingdee.eas.fdc.contract.MarketProjectCostEntryCollection;
 import com.kingdee.eas.fdc.contract.MarketProjectCostEntryFactory;
@@ -104,6 +108,9 @@ import com.kingdee.eas.fdc.contract.MarketProjectUnitEntryCollection;
 import com.kingdee.eas.fdc.contract.MarketProjectUnitEntryInfo;
 import com.kingdee.eas.fdc.contract.MarketYearProjectCollection;
 import com.kingdee.eas.fdc.contract.MarketYearProjectFactory;
+import com.kingdee.eas.fdc.contract.ThirdPartyExpenseBillInfo;
+import com.kingdee.eas.fdc.contract.ZHMarketProjectEntryFactory;
+import com.kingdee.eas.fdc.contract.ZHMarketProjectEntryInfo;
 import com.kingdee.eas.fdc.contract.app.MarketCostTypeEnum;
 import com.kingdee.eas.fdc.contract.app.OaUtil;
 import com.kingdee.eas.fdc.finance.ProjectMonthPlanEntryInfo;
@@ -137,7 +144,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
     	this.actionNext.setVisible(false);
     	this.actionPre.setVisible(false);
     	this.actionTraceDown.setVisible(false);
-    	this.actionTraceUp.setVisible(false);
+//    	this.actionTraceUp.setVisible(false);
     	this.actionFirst.setVisible(false);
     	this.actionLast.setVisible(false);
     	
@@ -213,6 +220,22 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 		this.kdtCostEntry.getColumn("costAccount").setEditor(f7Editor);
 		this.kdtCostEntry.getColumn("costAccount").setRequired(true);
 		
+//		String formatString = "yyyy-MM-dd";
+//		this.kdtCostEntry.getColumn("startDate").getStyleAttributes().setNumberFormat(formatString);
+//		this.kdtCostEntry.getColumn("endDate").getStyleAttributes().setNumberFormat(formatString);
+//		
+//		KDDatePicker pk = new KDDatePicker();
+//		KDTDefaultCellEditor dateEditor = new KDTDefaultCellEditor(pk);
+//		this.kdtCostEntry.getColumn("startDate").setEditor(dateEditor);
+//		this.kdtCostEntry.getColumn("endDate").setEditor(dateEditor);
+//		
+//		KDComboBox jzcombo = new KDComboBox();
+//        for(int i = 0; i < JZTypeEnum.getEnumList().size(); i++){
+//        	jzcombo.addItem(JZTypeEnum.getEnumList().get(i));
+//        }
+//        KDTDefaultCellEditor jzcomboEditor = new KDTDefaultCellEditor(jzcombo);
+//		this.kdtCostEntry.getColumn("jzType").setEditor(jzcomboEditor);
+		
 		this.kdtCostEntry.getColumn("costAccount").setRenderer(new ObjectValueRender(){
 			public String getText(Object obj) {
 				if(obj instanceof CostAccountInfo){
@@ -258,6 +281,10 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 		this.kdtCostEntry.getColumn("type").setRequired(true);
 		
 		this.kdtCostEntry.getColumn("canAmount").setEditor(amountEditor);
+		this.kdtCostEntry.getColumn("canAmount").setEditor(amountEditor);
+		this.kdtCostEntry.getColumn("canAmount").getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
+		this.kdtCostEntry.getColumn("canAmount").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.getAlignment("right"));
+		this.kdtCostEntry.getColumn("canAmount").setWidth(120);
 		this.kdtCostEntry.getColumn("canAmount").getStyleAttributes().setLocked(true);
 		
 		this.kdtEntry.getColumn("supplier").setRequired(true);
@@ -309,6 +336,15 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 		this.cbNw.removeItem(ContractTypeOrgTypeEnum.ALLRANGE);
 		this.cbNw.removeItem(ContractTypeOrgTypeEnum.BIGRANGE);
 		this.cbNw.removeItem(ContractTypeOrgTypeEnum.SMALLRANGE);
+		
+		isOnload=true;
+		if(MarketProjectSourceEnum.DSF.equals(this.cbSource.getSelectedItem())){
+			this.kdtCostEntry.setEnabled(false);
+			this.cbIsSub.setEnabled(false);
+			this.actionACLine.setEnabled(false);
+			this.actionRCLine.setEnabled(false);
+		}
+		isOnload=false;
     }
     
     public void fillAttachmnetTable() throws EASBizException, BOSException {
@@ -380,7 +416,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
     	sic.add("source");
     	sic.add("sourceFunction");
     	sic.add("oaPosition");
-    	sic.add("oaOpinion");
+    	sic.add("createTime");
     	return sic;
     }
 	
@@ -493,9 +529,10 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 			this.actionALine.setEnabled(true);
 			this.actionRLine.setEnabled(true);
 			
-			this.actionACLine.setEnabled(true);
-			this.actionRCLine.setEnabled(true);
-			
+			if(!MarketProjectSourceEnum.DSF.equals(this.cbSource.getSelectedItem())){
+				this.actionACLine.setEnabled(true);
+				this.actionRCLine.setEnabled(true);
+			}
 			this.actionAULine.setEnabled(true);
 			this.actionRULine.setEnabled(true);
 		}
@@ -543,6 +580,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 		kdtUnitEntry.removeRow(activeRowIndex);
 	}
 	protected void cbIsSupplier_stateChanged(ChangeEvent e) throws Exception {
+		if(isOnload)return;
 		if(cbIsSupplier.isSelected()){
 			this.contEntry.setVisible(true);
 		}else{
@@ -552,6 +590,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 	}
 			
 	protected void cbIsSub_stateChanged(ChangeEvent e) throws Exception {
+		if(isOnload)return;
 		if(cbIsSub.isSelected()){
 			try {
 				getHappenAmount();
@@ -709,7 +748,9 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 			e1.printStackTrace();
 		}
 	}
+	public boolean isOnload=false;
 	public void loadFields() {
+		isOnload=true;
 		this.kdtEntry.checkParsed();
 		this.kdtCostEntry.checkParsed();
 		this.kdtUnitEntry.checkParsed();
@@ -734,6 +775,19 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 			this.kdtCostEntry.getColumn("type").getStyleAttributes().setHided(true);
 			this.kdtCostEntry.getColumn("canAmount").getStyleAttributes().setHided(false);
 		}else{
+//			for(int i=0;i<this.kdtCostEntry.getRowCount();i++){
+//				IRow r=this.kdtCostEntry.getRow(i);
+//				 JZTypeEnum jzType=(JZTypeEnum) r.getCell("jzType").getValue();
+//				 if(JZTypeEnum.YI.equals(jzType)){
+//					 r.getCell("startDate").setValue(null);
+//					 r.getCell("endDate").setValue(null);
+//					 r.getCell("startDate").getStyleAttributes().setLocked(true);
+//					 r.getCell("endDate").getStyleAttributes().setLocked(true);
+//				 }else{
+//					 r.getCell("startDate").getStyleAttributes().setLocked(false);
+//					 r.getCell("endDate").getStyleAttributes().setLocked(false);
+//				 }
+//			}
 			this.kdtCostEntry.getColumn("amount").getStyleAttributes().setLocked(false);
 			this.contMp.setVisible(false);
 			this.prmtMp.setRequired(false);
@@ -748,6 +802,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 		} catch (BOSException e) {
 			handleException(e);
 		}
+		isOnload=false;
 	}
 	public void actionAttachment_actionPerformed(ActionEvent e) throws Exception {
 		super.actionAttachment_actionPerformed(e);
@@ -856,16 +911,6 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 				SysUtil.abort();
 			}
 		}
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(this.pkBizDate.getSqlDate());
-		int year=cal.get(Calendar.YEAR);
-		
-		MarketYearProjectCollection yearCol=MarketYearProjectFactory.getRemoteInstance().getMarketYearProjectCollection("select state,name from where year="+year+" and orgUnit.id='"+this.editData.getOrgUnit().getId()+"' order by version desc");
-		if(yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
-			FDCMsgBox.showWarning(this,"营销年度预算未审批通过！");
-			SysUtil.abort();
-		}
-		
 		
 		FDCClientVerifyHelper.verifyEmpty(this, this.txtDescription,"立项说明");
 		
@@ -897,6 +942,8 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 			}
 		}
 		Set costAccount=new HashSet();
+		Set type=new HashSet();
+		boolean isJz=false;
 		for(int i=0;i<this.kdtCostEntry.getRowCount();i++){
 			if(this.kdtCostEntry.getRow(i).getCell("costAccount").getValue()==null){
 				FDCMsgBox.showWarning(this,"成本科目不能为空！");
@@ -906,18 +953,51 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 				FDCMsgBox.showWarning(this,"金额不能为空！");
 				SysUtil.abort();
 			}
-			if(!this.cbIsSub.isSelected()&&((BigDecimal)this.kdtCostEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)<=0){
-				FDCMsgBox.showWarning(this,"金额必须大于0！");
-				SysUtil.abort();
+			if(!this.cbIsSub.isSelected()){
+				if(((BigDecimal)this.kdtCostEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)<=0){
+					FDCMsgBox.showWarning(this,"金额必须大于0！");
+					SysUtil.abort();
+				}
+			}else{
+				if(((BigDecimal)this.kdtCostEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)>=0){
+					FDCMsgBox.showWarning(this,"金额必须小于0！");
+					SysUtil.abort();
+				}
 			}
 			if(!this.cbIsSub.isSelected()){
 				if(this.kdtCostEntry.getRow(i).getCell("type").getValue()==null){
 					FDCMsgBox.showWarning(this,"控制单据不能为空！");
 					SysUtil.abort();
 				}
+				MarketCostTypeEnum entryType=(MarketCostTypeEnum)this.kdtCostEntry.getRow(i).getCell("type").getValue();
+				if(entryType.equals(MarketCostTypeEnum.JZ)){
+					isJz=true;
+					type.add(1);
+				}else{
+					type.add(0);
+				}
+//				if(this.kdtCostEntry.getRow(i).getCell("jzType").getValue()==null){
+//					FDCMsgBox.showWarning(this,"记账类型不能为空！");
+//					SysUtil.abort();
+//				}
+//				JZTypeEnum jzType=(JZTypeEnum) this.kdtCostEntry.getRow(i).getCell("jzType").getValue();
+//				 if(JZTypeEnum.SE.equals(jzType)){
+//					 if(this.kdtCostEntry.getRow(i).getCell("startDate").getValue()==null){
+//							FDCMsgBox.showWarning(this,"开始时间不能为空！");
+//							SysUtil.abort();
+//					 }
+//					 if(this.kdtCostEntry.getRow(i).getCell("endDate").getValue()==null){
+//							FDCMsgBox.showWarning(this,"结束时间不能为空！");
+//							SysUtil.abort();
+//						}
+//				 }
 			}
 			CostAccountInfo cost=(CostAccountInfo) this.kdtCostEntry.getRow(i).getCell("costAccount").getValue();
 			costAccount.add(cost.getId().toString());
+		}
+		if(type.size()>1){
+			FDCMsgBox.showWarning(this,"费用归属控制单据不允许存在记账单与合同或者无文本！");
+			SysUtil.abort();
 		}
 		for(int i=0;i<this.kdtUnitEntry.getRowCount();i++){
 			if(this.kdtUnitEntry.getRow(i).getCell("unit").getValue()==null){
@@ -943,17 +1023,33 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 			 FDCMsgBox.showWarning(this,"费用归属存在重复科目！");
 			 SysUtil.abort();
 		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(this.pkBizDate.getSqlDate());
+		int year=cal.get(Calendar.YEAR);
 		
-		for(int i=0;i<this.kdtCostEntry.getRowCount();i++){
-			CostAccountInfo caInfo=(CostAccountInfo) this.kdtCostEntry.getRow(i).getCell("costAccount").getValue();
-			BigDecimal total=getCostAccountAmount(caInfo.getId().toString(),String.valueOf(year));
-			BigDecimal yearAmount=getYearAmount(caInfo.getId().toString(),String.valueOf(year));
-			if(yearAmount==null){
-				yearAmount=FDCHelper.ZERO;
+		if(!this.cbIsSub.isSelected()){
+			MarketYearProjectCollection yearCol=MarketYearProjectFactory.getRemoteInstance().getMarketYearProjectCollection("select state,name from where year="+year+" and orgUnit.id='"+this.editData.getOrgUnit().getId()+"' order by version desc");
+			if(!isJz&&(yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED))){
+				FDCMsgBox.showWarning(this,"营销年度预算未审批通过！");
+				SysUtil.abort();
 			}
-			if(FDCHelper.add(total, this.kdtCostEntry.getRow(i).getCell("amount").getValue()).compareTo(yearAmount)>0){
-				 FDCMsgBox.showWarning(this,"科目："+caInfo.getName()+" 超出年度预算！");
-				 SysUtil.abort();
+			boolean isV=true;
+			if((yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED))&&isJz){
+				isV=false;
+			}
+			if(isV){
+				for(int i=0;i<this.kdtCostEntry.getRowCount();i++){
+					CostAccountInfo caInfo=(CostAccountInfo) this.kdtCostEntry.getRow(i).getCell("costAccount").getValue();
+					BigDecimal total=getCostAccountAmount(caInfo.getId().toString(),String.valueOf(year));
+					BigDecimal yearAmount=getYearAmount(caInfo.getId().toString(),String.valueOf(year));
+					if(yearAmount==null){
+						yearAmount=FDCHelper.ZERO;
+					}
+					if(FDCHelper.add(total, this.kdtCostEntry.getRow(i).getCell("amount").getValue()).compareTo(yearAmount)>0){
+						 FDCMsgBox.showWarning(this,"科目："+caInfo.getName()+" 超出年度预算！");
+						 SysUtil.abort();
+					}
+				}
 			}
 		}
 		if(this.cbIsSub.isSelected()){
@@ -970,8 +1066,6 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 					 SysUtil.abort();
 				}
 			}
-		}
-		if(this.cbIsSub.isSelected()){
 			MarketProjectInfo info=(MarketProjectInfo) this.prmtMp.getValue();
 			if(info!=null){
 				MarketProjectCollection col=null;
@@ -1002,10 +1096,10 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 	public BigDecimal getHappenAmount(String marketProjectId,String costAccountId) throws SQLException, BOSException{
 		StringBuilder sql = new StringBuilder();
 		sql.append("select sum(t.famount) amount from (select con.fmarketProjectId,con.FMpCostAccountId,entry.famount from");
-		sql.append(" t_con_contractbill con left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate!='1SAVED') t on t.fcontractbillid=con.fid left join T_CON_MarketProjectCostEntry entry on entry.fcostAccountid=con.FMpCostAccountId and con.fmarketProjectId=entry.fheadid  where con.fstate!='1SAVED'");
+		sql.append(" t_con_contractbill con left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=con.fid left join T_CON_MarketProjectCostEntry entry on entry.fcostAccountid=con.FMpCostAccountId and con.fmarketProjectId=entry.fheadid where con.fstate='4AUDITTED'");
     	
 		sql.append(" union all select con.fmarketProjectId,con.FMpCostAccountId,con.famount from");
-		sql.append(" T_CON_ContractWithoutText con where con.fstate!='1SAVED') t where t.FMpCostAccountId='"+costAccountId+"' and t.fmarketProjectId='"+marketProjectId+"' group by t.FMpCostAccountId,fmarketProjectId ");
+		sql.append(" T_CON_ContractWithoutText con) t where t.FMpCostAccountId='"+costAccountId+"' and t.fmarketProjectId='"+marketProjectId+"' group by t.FMpCostAccountId,fmarketProjectId ");
 		FDCSQLBuilder _builder = new FDCSQLBuilder();
 		_builder.appendSql(sql.toString());
 		IRowSet rowSet = _builder.executeQuery();
@@ -1028,12 +1122,24 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 	}
 	public BigDecimal getCostAccountAmount(String costAccountId,String year) throws BOSException, SQLException{
 		StringBuilder sql = new StringBuilder();
-		sql.append("  /*dialect*/  select sum(case when t.famount is null then entry.famount else t.famount end) amount from T_CON_MarketProjectCostEntry entry left join T_CON_MarketProject head on head.fid=entry.fheadid");
-		sql.append(" left join (select (case when con.fhasSettled = 1 then t.fsettleprice else con.famount end)famount,FMarketProjectId,FMpCostAccountId from t_con_contractBill con left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=con.fid where fstate='4AUDITTED')t on t.FMarketProjectId=head.fid and t.FMpCostAccountId=entry.fcostaccountid");
-		sql.append(" where entry.fcostaccountid='"+costAccountId+"' and to_char(head.fbizDate,'yyyy')='"+year+"' and head.fstate!='1SAVED'");
+		sql.append(" select sum(t.famount) amount from(");
+		sql.append(" select (case when t.fsettleprice is null then entry.famount else t.fsettleprice*entry.frate/100 end)famount ,head.FMpCostAccountId fcostAccountid from T_CON_ContractMarketEntry entry left join t_con_contractbill head on head.fid=entry.fheadid");
+		sql.append(" left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=head.fid");
+		sql.append(" where head.fstate='4AUDITTED' and year(entry.fdate)="+year);
+		sql.append(" union all select mpEntry.famount,mpEntry.fcostAccountid from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid");
+		sql.append(" where mp.fstate!='1SAVED' and year(mp.fbizDate)="+year);
 		if(this.editData.getId()!=null){
-			sql.append(" and head.fid!='"+this.editData.getId()+"'");
+			sql.append(" and mp.fid!='"+this.editData.getId()+"'");
 		}
+		sql.append(" and not exists(select t1.fid from t_con_contractBill t1 where t1.fstate='4AUDITTED' and t1.FMarketProjectId=mp.fid and t1.FMpCostAccountId=mpEntry.fcostAccountid) ");
+		sql.append(" )t where t.fcostAccountid='"+costAccountId+"'");
+		
+//		sql.append("  /*dialect*/  select sum(case when t.famount is null then entry.famount else t.famount end) amount from T_CON_MarketProjectCostEntry entry left join T_CON_MarketProject head on head.fid=entry.fheadid");
+//		sql.append(" left join (select (case when con.fhasSettled = 1 then t.fsettleprice else con.famount end)famount,FMarketProjectId,FMpCostAccountId from t_con_contractBill con left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=con.fid where fstate='4AUDITTED')t on t.FMarketProjectId=head.fid and t.FMpCostAccountId=entry.fcostaccountid");
+//		sql.append(" where entry.fcostaccountid='"+costAccountId+"' and to_char(head.fbizDate,'yyyy')='"+year+"' and head.fstate!='1SAVED'");
+//		if(this.editData.getId()!=null){
+//			sql.append(" and head.fid!='"+this.editData.getId()+"'");
+//		}
 		FDCSQLBuilder _builder = new FDCSQLBuilder();
 		_builder.appendSql(sql.toString());
 		IRowSet rowSet = _builder.executeQuery();
@@ -1070,6 +1176,18 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 				 r.getCell("amount").setValue(amount.negate());	 
 			 }
 		 }
+//		 if(colIndex == this.kdtCostEntry.getColumnIndex("jzType")){
+//			 JZTypeEnum jzType=(JZTypeEnum) r.getCell("jzType").getValue();
+//			 if(JZTypeEnum.YI.equals(jzType)){
+//				 r.getCell("startDate").setValue(null);
+//				 r.getCell("endDate").setValue(null);
+//				 r.getCell("startDate").getStyleAttributes().setLocked(true);
+//				 r.getCell("endDate").getStyleAttributes().setLocked(true);
+//			 }else{
+//				 r.getCell("startDate").getStyleAttributes().setLocked(false);
+//				 r.getCell("endDate").getStyleAttributes().setLocked(false);
+//			 }
+//		 }
 	}
 	private void getHappenAmount() throws BOSException, SQLException{
 		for(int i=0;i<this.kdtCostEntry.getRowCount();i++){
@@ -1099,7 +1217,28 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 				String attachId=selectObj.toString();
 				fileGetter.viewAttachment(attachId);
 			}
-			
 		}
-}
+	}
+	public void actionTraceUp_actionPerformed(ActionEvent e) throws Exception {
+		String id = this.editData.getId().toString();
+    	MarketProjectInfo info=MarketProjectFactory.getRemoteInstance().getMarketProjectInfo(new ObjectUuidPK(id));
+    	if(info.getSourceBillId()!=null){
+    		if(BOSUuid.read(info.getSourceBillId()).getType().equals(new ThirdPartyExpenseBillInfo().getBOSType())){
+    			UIContext uiContext = new UIContext(this);
+    			uiContext.put(UIContext.OWNER, this);
+    			uiContext.put(UIContext.ID, info.getSourceBillId());
+    			IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ThirdPartyExpenseBillEditUI.class.getName(), uiContext, null, OprtState.VIEW);
+    			uiWindow.show();
+    		}else{
+    			UIContext uiContext = new UIContext(this);
+    			uiContext.put(UIContext.OWNER, this);
+    			uiContext.put(UIContext.ID, info.getSourceBillId());
+    			IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ZHMarketProjectEditUI.class.getName(), uiContext, null, OprtState.VIEW);
+    			uiWindow.show();
+    		}
+    	}else{
+    		super.actionTraceUp_actionPerformed(e);
+    	}
+	}
+	
 }

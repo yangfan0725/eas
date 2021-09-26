@@ -728,6 +728,59 @@
             </exceptions>
             <configured>false</configured>
         </method>
+        <method>
+            <name>getMKFP</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKFP].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKFP].description</description>
+            <innerID>e1f61d56-4b45-4043-b39b-d318cbd168f4</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>java.util.Map</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>getMKLink</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKLink].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKLink].description</description>
+            <innerID>81c7ba55-62ff-4cee-880f-b8cb7a0738d6</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>number</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKLink].parameters.parameter[number].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKLink].parameters.parameter[number].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
     </methods>
     <isAbstract>false</isAbstract>
     <bizUnitPK>com.kingdee.eas.fdc.contract.PayRequestBill</bizUnitPK>
@@ -4191,6 +4244,42 @@
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="" />
             <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKFP].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取每刻发票" />
+            <lang locale="zh_HK" value="獲取每刻發票" />
+            <lang locale="zh_TW" value="獲取每刻發票" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKFP].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取每刻发票" />
+            <lang locale="zh_HK" value="獲取每刻發票" />
+            <lang locale="zh_TW" value="獲取每刻發票" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKLink].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取每刻发票链接" />
+            <lang locale="zh_HK" value="獲取每刻發票鏈接" />
+            <lang locale="zh_TW" value="獲取每刻發票鏈接" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKLink].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取每刻发票链接" />
+            <lang locale="zh_HK" value="獲取每刻發票鏈接" />
+            <lang locale="zh_TW" value="獲取每刻發票鏈接" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKLink].parameters.parameter[number].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票号码" />
+            <lang locale="zh_HK" value="發票號碼" />
+            <lang locale="zh_TW" value="發票號碼" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getMKLink].parameters.parameter[number].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="发票号码" />
+            <lang locale="zh_HK" value="發票號碼" />
+            <lang locale="zh_TW" value="發票號碼" />
         </rs>
         <rs key="entityObject[com.kingdee.eas.fdc.contract.app.PayRequestBill].methods.method[getPaymentBillId].alias">
             <lang locale="en_US" value="null" />

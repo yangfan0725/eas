@@ -408,6 +408,10 @@ public class ContractDetailFullInfoUI extends AbstractContractDetailFullInfoUI {
 		sic.add(new SelectorItemInfo("marketEntry.*"));
 		
 		sic.add(new SelectorItemInfo("yzEntry.*"));
+		 sic.add(new SelectorItemInfo("jzType"));
+	        sic.add(new SelectorItemInfo("jzStartDate"));
+	        sic.add(new SelectorItemInfo("jzEndDate"));
+	        sic.add(new SelectorItemInfo("rateEntry.*"));
 		return sic;
 	}
 	//Regiester control's property binding.

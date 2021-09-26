@@ -151,6 +151,17 @@ public class AbstractZHMarketProjectEntryInfo extends com.kingdee.eas.framework.
     {
         setString("bjRemark", item);
     }
+    /**
+     * Object: 营销立项分录 's 营销立项 property 
+     */
+    public com.kingdee.eas.fdc.contract.MarketProjectInfo getMarketProject()
+    {
+        return (com.kingdee.eas.fdc.contract.MarketProjectInfo)get("marketProject");
+    }
+    public void setMarketProject(com.kingdee.eas.fdc.contract.MarketProjectInfo item)
+    {
+        put("marketProject", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("84A6BD9E");

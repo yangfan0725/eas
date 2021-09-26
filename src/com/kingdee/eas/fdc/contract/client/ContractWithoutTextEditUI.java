@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -27,6 +28,8 @@ import java.util.Map.Entry;
 import javax.swing.Action;
 import javax.swing.event.ChangeEvent;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.log4j.Logger;
 
 import com.kingdee.bos.BOSException;
@@ -131,8 +134,10 @@ import com.kingdee.eas.fdc.basedata.ContractTypeCollection;
 import com.kingdee.eas.fdc.basedata.ContractTypeFactory;
 import com.kingdee.eas.fdc.basedata.ContractTypeInfo;
 import com.kingdee.eas.fdc.basedata.ContractTypeOrgTypeEnum;
+import com.kingdee.eas.fdc.basedata.CostAccountFactory;
 import com.kingdee.eas.fdc.basedata.CostAccountInfo;
 import com.kingdee.eas.fdc.basedata.CostAccountWithBgItemFactory;
+import com.kingdee.eas.fdc.basedata.CostAccountYJTypeEnum;
 import com.kingdee.eas.fdc.basedata.CostSplitStateEnum;
 import com.kingdee.eas.fdc.basedata.CurProjectFactory;
 import com.kingdee.eas.fdc.basedata.CurProjectInfo;
@@ -181,6 +186,7 @@ import com.kingdee.eas.fdc.contract.ContractWithoutTextInfo;
 import com.kingdee.eas.fdc.contract.FDCUtils;
 import com.kingdee.eas.fdc.contract.FeeEntryInfo;
 import com.kingdee.eas.fdc.contract.FeeTypeEnum;
+import com.kingdee.eas.fdc.contract.JZTypeEnum;
 import com.kingdee.eas.fdc.contract.MarketProjectCollection;
 import com.kingdee.eas.fdc.contract.MarketProjectFactory;
 import com.kingdee.eas.fdc.contract.MarketProjectInfo;
@@ -238,6 +244,7 @@ import com.kingdee.eas.util.app.DbUtil;
 import com.kingdee.eas.util.client.EASResource;
 import com.kingdee.eas.util.client.MsgBox;
 import com.kingdee.jdbc.rowset.IRowSet;
+import com.kingdee.util.NumericExceptionSubItem;
 
 /**
  * 
@@ -724,6 +731,9 @@ public class ContractWithoutTextEditUI extends
 		this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.ALLRANGE);
 		this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.BIGRANGE);
 		this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.SMALLRANGE);
+		
+		this.actionMALine.setVisible(false);
+		this.actionMRLine.setVisible(false);
 	}
 	public void actionAccountView_actionPerformed(ActionEvent e)throws Exception {
 		if(!ContractWithoutTextFactory.getRemoteInstance().exists(new ObjectUuidPK(this.editData.getId()))){
@@ -2165,10 +2175,12 @@ public class ContractWithoutTextEditUI extends
 			this.actionInvoiceALine.setEnabled(false);
 			this.actionInvoiceILine.setEnabled(false);
 			this.actionInvoiceRLine.setEnabled(false);
+			this.actionMKFP.setEnabled(true);
 		} else {
 			this.actionInvoiceALine.setEnabled(true);
 			this.actionInvoiceILine.setEnabled(true);
 			this.actionInvoiceRLine.setEnabled(true);
+			this.actionMKFP.setEnabled(true);
 		}
 		if(this.curProject!=null){
 			if(TaxInfoEnum.SIMPLE.equals(curProject.getTaxInfo())){
@@ -2177,9 +2189,9 @@ public class ContractWithoutTextEditUI extends
 				this.cbTaxerQua.setEnabled(false);
 				this.txtTaxerNum.setEnabled(false);
 				
-				this.actionInvoiceALine.setEnabled(false);
-				this.actionInvoiceILine.setEnabled(false);
-				this.actionInvoiceRLine.setEnabled(false);
+//				this.actionInvoiceALine.setEnabled(false);
+//				this.actionInvoiceILine.setEnabled(false);
+//				this.actionInvoiceRLine.setEnabled(false);
 			}
 		}
 	}
@@ -2523,9 +2535,9 @@ public class ContractWithoutTextEditUI extends
 				this.cbTaxerQua.setEnabled(false);
 				this.txtTaxerNum.setEnabled(false);
 				
-				this.actionInvoiceALine.setEnabled(false);
-				this.actionInvoiceILine.setEnabled(false);
-				this.actionInvoiceRLine.setEnabled(false);
+//				this.actionInvoiceALine.setEnabled(false);
+//				this.actionInvoiceILine.setEnabled(false);
+//				this.actionInvoiceRLine.setEnabled(false);
 			}
 		}
 		String paramValue="true";
@@ -3022,57 +3034,57 @@ public class ContractWithoutTextEditUI extends
 				}
 			}
 		}
-		if(!TaxInfoEnum.SIMPLE.equals(this.curProject.getTaxInfo())){
-			FDCClientVerifyHelper.verifyEmpty(this, this.cbTaxerQua);
-			FDCClientVerifyHelper.verifyEmpty(this, this.txtTaxerNum);
-			if(this.kdtInvoiceEntry.getRowCount()==0){
-				FDCMsgBox.showWarning(this,"发票分录不能为空！");
-				SysUtil.abort();
-			}
-			for (int i = 0; i < this.kdtInvoiceEntry.getRowCount(); i++) {
-				IRow row = this.kdtInvoiceEntry.getRow(i);
-					
-				if (row.getCell("invoiceType").getValue() == null) {
-					FDCMsgBox.showWarning(this,"发票类型不能为空！");
-					this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("invoiceType"));
-					SysUtil.abort();
-				}
-				WTInvoiceTypeEnum type=(WTInvoiceTypeEnum) row.getCell("invoiceType").getValue();
-				if(type.equals(WTInvoiceTypeEnum.NOMAL)||type.equals(WTInvoiceTypeEnum.RECEIPT)){
-					if (row.getCell("totalAmount").getValue() == null) {
-						FDCMsgBox.showWarning(this,"含税金额不能为空！");
-						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("totalAmount"));
-						SysUtil.abort();
-					}
-				}else{
-					if (row.getCell("invoiceNumber").getValue() == null||"".equals(row.getCell("invoiceNumber").getValue().toString().trim())) {
-						FDCMsgBox.showWarning(this,"发票号码不能为空！");
-						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("invoiceNumber"));
-						SysUtil.abort();
-					}
-					if (row.getCell("bizDate").getValue() == null) {
-						FDCMsgBox.showWarning(this,"开票日期不能为空！");
-						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("bizDate"));
-						SysUtil.abort();
-					}
-					if (row.getCell("totalAmount").getValue() == null) {
-						FDCMsgBox.showWarning(this,"含税金额不能为空！");
-						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("totalAmount"));
-						SysUtil.abort();
-					}
-					if (row.getCell("rate").getValue() == null) {
-						FDCMsgBox.showWarning(this,"税率不能为空！");
-						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("rate"));
-						SysUtil.abort();
-					}
-					if (row.getCell("amount").getValue() == null) {
-						FDCMsgBox.showWarning(this,"税额不能为空！");
-						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("amount"));
-						SysUtil.abort();
-					}
-				}
-			}
-		}
+//		if(!TaxInfoEnum.SIMPLE.equals(this.curProject.getTaxInfo())){
+//			FDCClientVerifyHelper.verifyEmpty(this, this.cbTaxerQua);
+//			FDCClientVerifyHelper.verifyEmpty(this, this.txtTaxerNum);
+//			if(this.kdtInvoiceEntry.getRowCount()==0){
+//				FDCMsgBox.showWarning(this,"发票分录不能为空！");
+//				SysUtil.abort();
+//			}
+//			for (int i = 0; i < this.kdtInvoiceEntry.getRowCount(); i++) {
+//				IRow row = this.kdtInvoiceEntry.getRow(i);
+//					
+//				if (row.getCell("invoiceType").getValue() == null) {
+//					FDCMsgBox.showWarning(this,"发票类型不能为空！");
+//					this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("invoiceType"));
+//					SysUtil.abort();
+//				}
+//				WTInvoiceTypeEnum type=(WTInvoiceTypeEnum) row.getCell("invoiceType").getValue();
+//				if(type.equals(WTInvoiceTypeEnum.NOMAL)||type.equals(WTInvoiceTypeEnum.RECEIPT)){
+//					if (row.getCell("totalAmount").getValue() == null) {
+//						FDCMsgBox.showWarning(this,"含税金额不能为空！");
+//						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("totalAmount"));
+//						SysUtil.abort();
+//					}
+//				}else{
+//					if (row.getCell("invoiceNumber").getValue() == null||"".equals(row.getCell("invoiceNumber").getValue().toString().trim())) {
+//						FDCMsgBox.showWarning(this,"发票号码不能为空！");
+//						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("invoiceNumber"));
+//						SysUtil.abort();
+//					}
+//					if (row.getCell("bizDate").getValue() == null) {
+//						FDCMsgBox.showWarning(this,"开票日期不能为空！");
+//						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("bizDate"));
+//						SysUtil.abort();
+//					}
+//					if (row.getCell("totalAmount").getValue() == null) {
+//						FDCMsgBox.showWarning(this,"含税金额不能为空！");
+//						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("totalAmount"));
+//						SysUtil.abort();
+//					}
+//					if (row.getCell("rate").getValue() == null) {
+//						FDCMsgBox.showWarning(this,"税率不能为空！");
+//						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("rate"));
+//						SysUtil.abort();
+//					}
+//					if (row.getCell("amount").getValue() == null) {
+//						FDCMsgBox.showWarning(this,"税额不能为空！");
+//						this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("amount"));
+//						SysUtil.abort();
+//					}
+//				}
+//			}
+//		}
 		
 		if(prmtMpCostAccount.isRequired()){
 			FDCClientVerifyHelper.verifyEmpty(this, prmtMpCostAccount);
@@ -3158,6 +3170,21 @@ public class ContractWithoutTextEditUI extends
 			if(FDCHelper.add(comAmount, this.txtamount.getBigDecimalValue()).compareTo(subAmount)>0){
 				FDCMsgBox.showWarning(this,"合同金额超出立项剩余金额！");
 				SysUtil.abort();
+			}
+		}
+		if(this.prmtMpCostAccount.getValue()!=null&&this.prmtMarketProject.getValue()!=null){
+			CostAccountInfo info=CostAccountFactory.getRemoteInstance().getCostAccountInfo(new ObjectUuidPK(((CostAccountInfo)this.prmtMpCostAccount.getValue()).getId()));
+			MarketProjectInfo market=MarketProjectFactory.getRemoteInstance().getMarketProjectInfo(new ObjectUuidPK(((MarketProjectInfo)this.prmtMarketProject.getValue()).getId()));
+			if(info.getYjType()!=null&&info.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
+				
+				Calendar cal = new GregorianCalendar();
+				cal.setTime(FDCDateHelper.getNextMonth(market.getAuditTime()));
+				cal.set(5, 15);
+				
+				int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
+				if(day<1){
+					FDCMsgBox.showInfo(this,"合同流程必须在立项审批通过后7天内发起；除第三方佣金外的无文本立项，必须在次月15日之前发起无文本合同流程，超时发起流程将按照《宋都集团营销费用管理制度》规定，对责任人进行扣罚。");
+				}
 			}
 		}
 		super.verifyInputForSubmint();
@@ -4674,7 +4701,10 @@ public class ContractWithoutTextEditUI extends
 		this.tblMarket.getColumn("date").setRequired(true);
 		this.tblMarket.getColumn("rate").setRequired(true);
 		this.tblMarket.getColumn("amount").setRequired(true);
+	
 		this.tblMarket.getColumn("amount").getStyleAttributes().setLocked(true);
+		this.tblMarket.getColumn("date").getStyleAttributes().setLocked(true);
+		this.tblMarket.getColumn("rate").getStyleAttributes().setLocked(true);
 	}
 	protected void prmtMpCostAccount_willShow(SelectorEvent e) throws Exception {
 		Set id=new HashSet();
@@ -4705,6 +4735,14 @@ public class ContractWithoutTextEditUI extends
 			this.cbIsJT.setSelected(false);
 		}
 	}
+	protected void prmtMpCostAccount_dataChanged(DataChangeEvent e)throws Exception {
+		this.tblMarket.removeRows();
+		IRow row=this.tblMarket.addRow();
+		row.getCell("date").setValue(new Date());
+		row.getCell("rate").setValue(new BigDecimal(100));
+		row.getCell("amount").setValue(this.txtamount.getBigDecimalValue());
+	}
+
 	protected void tblMarket_editStopped(KDTEditEvent e) throws Exception {
 		 IRow r = this.tblMarket.getRow(e.getRowIndex());
 		 int colIndex = e.getColIndex();
@@ -4747,118 +4785,176 @@ public class ContractWithoutTextEditUI extends
 		KDWorkButton btnAddRowinfo = new KDWorkButton();
 		KDWorkButton btnInsertRowinfo = new KDWorkButton();
 		KDWorkButton btnDeleteRowinfo = new KDWorkButton();
+		KDWorkButton mkFpViewInfo = new KDWorkButton();
+//
+//		this.actionInvoiceALine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_addline"));
+//		btnAddRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceALine);
+//		btnAddRowinfo.setText("新增行");
+//		btnAddRowinfo.setSize(new Dimension(140, 19));
+//
+//		this.actionInvoiceILine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_insert"));
+//		btnInsertRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceILine);
+//		btnInsertRowinfo.setText("插入行");
+//		btnInsertRowinfo.setSize(new Dimension(140, 19));
+//
+//		this.actionInvoiceRLine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_deleteline"));
+//		btnDeleteRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceRLine);
+//		btnDeleteRowinfo.setText("删除行");
+//		btnDeleteRowinfo.setSize(new Dimension(140, 19));
+//
+//		this.kdtInvoiceEntry.checkParsed();
+//		
+//		KDTextField textField = new KDTextField();
+//		textField.setMaxLength(80);
+//		KDTDefaultCellEditor txtEditor = new KDTDefaultCellEditor(textField);
+//		this.kdtInvoiceEntry.getColumn("invoiceNumber").setEditor(txtEditor);
+//		
+//		KDDatePicker pk = new KDDatePicker();
+//		KDTDefaultCellEditor dateEditor = new KDTDefaultCellEditor(pk);
+//		this.kdtInvoiceEntry.getColumn("bizDate").setEditor(dateEditor);
+//		
+//		ObjectValueRender date_scale = new ObjectValueRender();
+//		date_scale.setFormat(new IDataFormat() {
+//			public String format(Object o) {
+//				Date str = (Date)o;
+//				return FDCDateHelper.DateToString(str);
+//			}
+//		});
+//		this.kdtInvoiceEntry.getColumn("bizDate").setRenderer(date_scale);
+//		
+//		KDFormattedTextField amount = new KDFormattedTextField();
+//		amount.setDataType(KDFormattedTextField.BIGDECIMAL_TYPE);
+//		amount.setDataVerifierType(KDFormattedTextField.NO_VERIFIER);
+//		amount.setNegatived(false);
+//		amount.setPrecision(2);
+//		KDTDefaultCellEditor amountEditor = new KDTDefaultCellEditor(amount);
+//		this.kdtInvoiceEntry.getColumn("amount").setEditor(amountEditor);
+//		this.kdtInvoiceEntry.getColumn("amount").getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
+//		this.kdtInvoiceEntry.getColumn("amount").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.getAlignment("right"));
+//		
+//		KDFormattedTextField rateamount = new KDFormattedTextField();
+//		rateamount.setDataType(KDFormattedTextField.BIGDECIMAL_TYPE);
+//		rateamount.setDataVerifierType(KDFormattedTextField.NO_VERIFIER);
+//		rateamount.setNegatived(false);
+//		rateamount.setPrecision(2);
+//		rateamount.setMaximumValue(new BigDecimal(100));
+//		rateamount.setMinimumValue(FDCHelper.ZERO);
+//		KDTDefaultCellEditor rateamountEditor = new KDTDefaultCellEditor(rateamount);
+//		this.kdtInvoiceEntry.getColumn("rate").setEditor(rateamountEditor);
+//		this.kdtInvoiceEntry.getColumn("rate").getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
+//		this.kdtInvoiceEntry.getColumn("rate").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.getAlignment("right"));
+//		
+//		this.kdtInvoiceEntry.getColumn("totalAmount").setEditor(amountEditor);
+//		this.kdtInvoiceEntry.getColumn("totalAmount").getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
+//		this.kdtInvoiceEntry.getColumn("totalAmount").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.getAlignment("right"));
+//		
+//		ObjectValueRender render_scale = new ObjectValueRender();
+//		render_scale.setFormat(new IDataFormat() {
+//			public String format(Object o) {
+//				String str = o.toString();
+//				if (!FDCHelper.isEmpty(str)) {
+//					return str + "%";
+//				}
+//				return str;
+//			}
+//		});
+//		this.kdtInvoiceEntry.getColumn("rate").setRenderer(render_scale);
+		
+		
+		this.kdtInvoiceEntry.checkParsed();
+		this.kdtInvoiceEntry.setEditable(true);
+		btnAddRowinfo = new KDWorkButton();
+		btnDeleteRowinfo = new KDWorkButton();
 
+		
 		this.actionInvoiceALine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_addline"));
 		btnAddRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceALine);
 		btnAddRowinfo.setText("新增行");
 		btnAddRowinfo.setSize(new Dimension(140, 19));
 
-		this.actionInvoiceILine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_insert"));
-		btnInsertRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceILine);
-		btnInsertRowinfo.setText("插入行");
-		btnInsertRowinfo.setSize(new Dimension(140, 19));
-
 		this.actionInvoiceRLine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_deleteline"));
 		btnDeleteRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceRLine);
 		btnDeleteRowinfo.setText("删除行");
 		btnDeleteRowinfo.setSize(new Dimension(140, 19));
-
-		this.kdtInvoiceEntry.checkParsed();
 		
-		KDTextField textField = new KDTextField();
-		textField.setMaxLength(80);
-		KDTDefaultCellEditor txtEditor = new KDTDefaultCellEditor(textField);
-		this.kdtInvoiceEntry.getColumn("invoiceNumber").setEditor(txtEditor);
+		this.actionMKFP.putValue("SmallIcon", EASResource.getIcon("imgTbtn_addline"));
+		mkFpViewInfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionMKFP);
+		mkFpViewInfo.setText("点击查看发票");
+		mkFpViewInfo.setSize(new Dimension(140, 19));
 		
-		KDDatePicker pk = new KDDatePicker();
-		KDTDefaultCellEditor dateEditor = new KDTDefaultCellEditor(pk);
-		this.kdtInvoiceEntry.getColumn("bizDate").setEditor(dateEditor);
-		
-		ObjectValueRender date_scale = new ObjectValueRender();
-		date_scale.setFormat(new IDataFormat() {
-			public String format(Object o) {
-				Date str = (Date)o;
-				return FDCDateHelper.DateToString(str);
-			}
-		});
-		this.kdtInvoiceEntry.getColumn("bizDate").setRenderer(date_scale);
-		
-		KDFormattedTextField amount = new KDFormattedTextField();
-		amount.setDataType(KDFormattedTextField.BIGDECIMAL_TYPE);
-		amount.setDataVerifierType(KDFormattedTextField.NO_VERIFIER);
-		amount.setNegatived(false);
-		amount.setPrecision(2);
-		KDTDefaultCellEditor amountEditor = new KDTDefaultCellEditor(amount);
-		this.kdtInvoiceEntry.getColumn("amount").setEditor(amountEditor);
-		this.kdtInvoiceEntry.getColumn("amount").getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
-		this.kdtInvoiceEntry.getColumn("amount").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.getAlignment("right"));
-		
-		KDFormattedTextField rateamount = new KDFormattedTextField();
-		rateamount.setDataType(KDFormattedTextField.BIGDECIMAL_TYPE);
-		rateamount.setDataVerifierType(KDFormattedTextField.NO_VERIFIER);
-		rateamount.setNegatived(false);
-		rateamount.setPrecision(2);
-		rateamount.setMaximumValue(new BigDecimal(100));
-		rateamount.setMinimumValue(FDCHelper.ZERO);
-		KDTDefaultCellEditor rateamountEditor = new KDTDefaultCellEditor(rateamount);
-		this.kdtInvoiceEntry.getColumn("rate").setEditor(rateamountEditor);
-		this.kdtInvoiceEntry.getColumn("rate").getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
-		this.kdtInvoiceEntry.getColumn("rate").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.getAlignment("right"));
-		
-		this.kdtInvoiceEntry.getColumn("totalAmount").setEditor(amountEditor);
-		this.kdtInvoiceEntry.getColumn("totalAmount").getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
-		this.kdtInvoiceEntry.getColumn("totalAmount").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.getAlignment("right"));
-		
-		ObjectValueRender render_scale = new ObjectValueRender();
-		render_scale.setFormat(new IDataFormat() {
-			public String format(Object o) {
-				String str = o.toString();
-				if (!FDCHelper.isEmpty(str)) {
-					return str + "%";
-				}
-				return str;
-			}
-		});
-		this.kdtInvoiceEntry.getColumn("rate").setRenderer(render_scale);
+		this.kdtInvoiceEntry.getColumn("invoiceNumber").getStyleAttributes().setLocked(true);
+		this.kdtInvoiceEntry.getColumn("invoiceTypeDesc").getStyleAttributes().setLocked(true);
+		this.kdtInvoiceEntry.getColumn("issueDate").getStyleAttributes().setLocked(true);
+		this.kdtInvoiceEntry.getColumn("totalPriceAndTax").getStyleAttributes().setLocked(true);
+		this.kdtInvoiceEntry.getColumn("specialVATTaxRate").getStyleAttributes().setLocked(true);
+		this.kdtInvoiceEntry.getColumn("totalTaxAmount").getStyleAttributes().setLocked(true);
 	}
 	public void actionInvoiceALine_actionPerformed(ActionEvent e) throws Exception {
-		IRow row = this.kdtInvoiceEntry.addRow();
-		ContractWTInvoiceEntryInfo entry = new ContractWTInvoiceEntryInfo();
-		row.setUserObject(entry);
+//		IRow row = this.kdtInvoiceEntry.addRow();
+//		ContractWTInvoiceEntryInfo entry = new ContractWTInvoiceEntryInfo();
+//		row.setUserObject(entry);
+		
+		UIContext uiContext = new UIContext(this);
+		uiContext.put("table",this.kdtInvoiceEntry);
+        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
+        IUIWindow uiWindow = uiFactory.create(MK_FPSelectUI.class.getName(), uiContext,null,OprtState.VIEW);
+        uiWindow.show();
 	}
 
-	public void actionInvoiceILine_actionPerformed(ActionEvent e) throws Exception {
-		IRow row = null;
-		if (this.kdtInvoiceEntry.getSelectManager().size() > 0) {
-			int top = this.kdtInvoiceEntry.getSelectManager().get().getTop();
-			if (isTableColumnSelected(this.kdtInvoiceEntry))
-				row = this.kdtInvoiceEntry.addRow();
-			else
-				row = this.kdtInvoiceEntry.addRow(top);
-		} else {
-			row = this.kdtInvoiceEntry.addRow();
+//	public void actionInvoiceILine_actionPerformed(ActionEvent e) throws Exception {
+//		IRow row = null;
+//		if (this.kdtInvoiceEntry.getSelectManager().size() > 0) {
+//			int top = this.kdtInvoiceEntry.getSelectManager().get().getTop();
+//			if (isTableColumnSelected(this.kdtInvoiceEntry))
+//				row = this.kdtInvoiceEntry.addRow();
+//			else
+//				row = this.kdtInvoiceEntry.addRow(top);
+//		} else {
+//			row = this.kdtInvoiceEntry.addRow();
+//		}
+//		ContractWTInvoiceEntryInfo entry = new ContractWTInvoiceEntryInfo();
+//		row.setUserObject(entry);
+//	}
+
+	public void actionMKFP_actionPerformed(ActionEvent e) throws Exception {
+		int activeRowIndex = kdtInvoiceEntry.getSelectManager().getActiveRowIndex();
+		if(activeRowIndex<0){
+			FDCMsgBox.showError("请先选择一行数据");
+			abort();
 		}
-		ContractWTInvoiceEntryInfo entry = new ContractWTInvoiceEntryInfo();
-		row.setUserObject(entry);
+		String invoiceNumber = (String)this.kdtInvoiceEntry.getRow(activeRowIndex).getCell("invoiceNumber").getValue();
+//		String invoiceNumber = (String)this.editData.getInvoiceEntry().get(activeRowIndex).get("invoiceNumber");
+		String link = ContractWithoutTextFactory.getRemoteInstance().getMKLink(invoiceNumber);
+		if(link==null||link.equals("")){
+			FDCMsgBox.showError("未找到对应发票图片！请确认发票图片已上传");
+		}
+		Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+link);
 	}
+	
 
 	public void actionInvoiceRLine_actionPerformed(ActionEvent e) throws Exception {
-		if (this.kdtInvoiceEntry.getSelectManager().size() == 0 || isTableColumnSelected(this.kdtInvoiceEntry)) {
-			FDCMsgBox.showInfo(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_NoneEntry"));
-			return;
+//		if (this.kdtInvoiceEntry.getSelectManager().size() == 0 || isTableColumnSelected(this.kdtInvoiceEntry)) {
+//			FDCMsgBox.showInfo(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_NoneEntry"));
+//			return;
+//		}
+//		if (FDCMsgBox.isYes(FDCMsgBox.showConfirm2(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Confirm_Delete")))) {
+//			int top = this.kdtInvoiceEntry.getSelectManager().get().getBeginRow();
+//			int bottom = this.kdtInvoiceEntry.getSelectManager().get().getEndRow();
+//			for (int i = top; i <= bottom; i++) {
+//				if (this.kdtInvoiceEntry.getRow(top) == null) {
+//					FDCMsgBox.showInfo(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_NoneEntry"));
+//					return;
+//				}
+//				this.kdtInvoiceEntry.removeRow(top);
+//				setInvoiceAmt();
+//			}
+//		}
+		int activeRowIndex = kdtInvoiceEntry.getSelectManager().getActiveRowIndex();
+		if(activeRowIndex<0){
+			FDCMsgBox.showError("请先选择一行数据");
+			abort();
 		}
-		if (FDCMsgBox.isYes(FDCMsgBox.showConfirm2(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Confirm_Delete")))) {
-			int top = this.kdtInvoiceEntry.getSelectManager().get().getBeginRow();
-			int bottom = this.kdtInvoiceEntry.getSelectManager().get().getEndRow();
-			for (int i = top; i <= bottom; i++) {
-				if (this.kdtInvoiceEntry.getRow(top) == null) {
-					FDCMsgBox.showInfo(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_NoneEntry"));
-					return;
-				}
-				this.kdtInvoiceEntry.removeRow(top);
-				setInvoiceAmt();
-			}
-		}
+		kdtInvoiceEntry.removeRow(activeRowIndex);
 	}
 	protected void prmtLxNum_dataChanged(DataChangeEvent e) throws Exception {
 		BankNumInfo info=(BankNumInfo) this.prmtLxNum.getValue();

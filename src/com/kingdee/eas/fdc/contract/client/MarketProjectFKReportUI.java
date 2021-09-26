@@ -54,6 +54,7 @@ public class MarketProjectFKReportUI extends AbstractMarketProjectFKReportUI
 {
     private static final Logger logger = CoreUIObject.getLogger(MarketProjectFKReportUI.class);
     private boolean isQuery=false;
+    private boolean isOnLoad=false;
     public MarketProjectFKReportUI() throws Exception
     {
         super();
@@ -79,6 +80,7 @@ public class MarketProjectFKReportUI extends AbstractMarketProjectFKReportUI
 		return tblMain;
 	}
 	public void onLoad() throws Exception {
+		isOnLoad=true;
     	setShowDialogOnLoad(true);
     	tblMain.getStyleAttributes().setLocked(true);
 		super.onLoad();
@@ -91,78 +93,13 @@ public class MarketProjectFKReportUI extends AbstractMarketProjectFKReportUI
 		DefaultKingdeeTreeNode orgRoot = (DefaultKingdeeTreeNode) ((TreeModel) this.treeMain.getModel()).getRoot();
 		this.treeMain.setSelectionNode(orgRoot);
 		this.treeMain.expandAllNodes(true, orgRoot);
+		isOnLoad=false;
     }
 	
 	protected void query() {
+		if(isOnLoad) return;
 		tblMain.removeColumns();
 		tblMain.removeRows();
-		CRMClientHelper.changeTableNumberFormat(tblMain, new String[]{"FYearLXAmount","FYearHTAmount","FYearAmount","FYearFSAmount","FMonthLJFSAmount","FMonthAmount","FMonthFSAmount","FNextMonthAmount","ZMonthAmount","ZPayAmount","ZYearPayAmount","ZUnPayAmount","ZNextMonthAmount"});
-//		CRMClientHelper.fmtDate(tblMain, "auditTime");
-//		CRMClientHelper.fmtDate(tblMain, "conAuditTime");
-//		CRMClientHelper.fmtDate(tblMain, "conBizDate");
-//		String[] fields=new String[tblMain.getColumnCount()];
-//		for(int i=0;i<tblMain.getColumnCount();i++){
-//			fields[i]=tblMain.getColumnKey(i);
-//		}
-//		KDTableHelper.setSortedColumn(tblMain,fields);
-		
-//		CRMClientHelper.getFootRow(tblMain, new String[]{"conAmount","payAmount","unPayAmount"});
-//		BigDecimal roomArea=tblMain.getFootRow(0).getCell("roomArea").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("roomArea").getValue();
-//		BigDecimal buildArea=tblMain.getFootRow(0).getCell("buildArea").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("buildArea").getValue();
-//		BigDecimal account=tblMain.getFootRow(0).getCell("account").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("account").getValue();
-//		BigDecimal revAccount=tblMain.getFootRow(0).getCell("revAccount").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("revAccount").getValue();
-//		tblMain.getFootRow(0).getCell("buildPrice").setValue(buildArea.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:account.divide(buildArea, 2, BigDecimal.ROUND_HALF_UP));
-//		tblMain.getFootRow(0).getCell("roomPrice").setValue(roomArea.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:account.divide(roomArea, 2, BigDecimal.ROUND_HALF_UP));
-//		tblMain.getFootRow(0).getCell("revAccountRate").setValue(account.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:revAccount.divide(account, 2, BigDecimal.ROUND_HALF_UP));
-//		
-//		tblMain.getColumn("amount").getStyleAttributes().setFontColor(Color.BLUE);
-		
-		
-//		this.tblMain.getMergeManager().setMergeMode(KDTMergeManager.GROUP_MERGE);
-//    	this.tblMain.getGroupManager().setGroup(true);
-//    	this.tblMain.getColumn("number").setGroup(true);
-//    	this.tblMain.getColumn("auditTime").setGroup(true);
-//    	this.tblMain.getColumn("name").setGroup(true);
-//    	this.tblMain.getColumn("costAccount").setGroup(true);
-//    	this.tblMain.getColumn("amount").setGroup(true);
-//    	
-//    	this.tblMain.getColumn("conAuditTime").setGroup(true);
-//    	this.tblMain.getColumn("conNumber").setGroup(true);
-//    	this.tblMain.getColumn("conName").setGroup(true);
-//    	this.tblMain.getColumn("conPartB").setGroup(true);
-//    	this.tblMain.getColumn("conAmount").setGroup(true);
-//    	this.tblMain.getColumn("payAmount").setGroup(true);
-//    	this.tblMain.getColumn("unPayAmount").setGroup(true);
-//    	this.tblMain.getGroupManager().group();
-		
-		for(int i=this.tblMain.getRowCount()-1;i>=0;i--){
-			CostAccountInfo ca=null;
-			try {
-				ca = CostAccountFactory.getRemoteInstance().getCostAccountInfo(new ObjectUuidPK(this.tblMain.getRow(i).getCell("id").getValue().toString()));
-			} catch (EASBizException e) {
-				e.printStackTrace();
-			} catch (BOSException e) {
-				e.printStackTrace();
-			}
-			if(ca.isIsLeaf()){
-				continue;
-			}else{
-				this.tblMain.getRow(i).getStyleAttributes().setBackground(new java.awt.Color(246, 246, 191));
-			}
-			String totalNumber=this.tblMain.getRow(i).getCell("number").getValue().toString();
-			for(int k=3;k<this.tblMain.getColumnCount();k++){
-				BigDecimal amount=FDCHelper.ZERO;
-				for(int j=i+1;j<this.tblMain.getRowCount();j++){
-					String number=this.tblMain.getRow(j).getCell("number").getValue().toString();
-					if(number.substring(0, number.lastIndexOf(".")).equals(totalNumber)){
-						amount=FDCHelper.add(amount,this.tblMain.getRow(j).getCell(k).getValue());
-					}
-				}
-//				if(amount.compareTo(FDCHelper.ZERO)>0){
-					this.tblMain.getRow(i).getCell(k).setValue(amount);
-//				}
-			}
-		}
 	}
 //	protected void mergerTable(KDTable table,String coloum[],String mergeColoum[]){
 //		int merger=0;
@@ -229,6 +166,66 @@ public class MarketProjectFKReportUI extends AbstractMarketProjectFKReportUI
     	        	tblMain.repaint();
     	        }
     	        tblMain.setRefresh(true);
+    	        
+    	        CRMClientHelper.changeTableNumberFormat(tblMain, new String[]{"FYearLXAmount","FYearHTAmount","FYearAmount","FYearFSAmount","FMonthLJFSAmount","FMonthAmount","FMonthFSAmount","FNextMonthAmount","ZMonthAmount","ZPayAmount","ZYearPayAmount","ZUnPayAmount","ZNextMonthAmount"});
+//    			CRMClientHelper.fmtDate(tblMain, "auditTime");
+//    			CRMClientHelper.fmtDate(tblMain, "conAuditTime");
+//    			CRMClientHelper.fmtDate(tblMain, "conBizDate");
+//    			String[] fields=new String[tblMain.getColumnCount()];
+//    			for(int i=0;i<tblMain.getColumnCount();i++){
+//    				fields[i]=tblMain.getColumnKey(i);
+//    			}
+//    			KDTableHelper.setSortedColumn(tblMain,fields);
+    			
+//    			CRMClientHelper.getFootRow(tblMain, new String[]{"conAmount","payAmount","unPayAmount"});
+//    			BigDecimal roomArea=tblMain.getFootRow(0).getCell("roomArea").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("roomArea").getValue();
+//    			BigDecimal buildArea=tblMain.getFootRow(0).getCell("buildArea").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("buildArea").getValue();
+//    			BigDecimal account=tblMain.getFootRow(0).getCell("account").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("account").getValue();
+//    			BigDecimal revAccount=tblMain.getFootRow(0).getCell("revAccount").getValue()==null?FDCHelper.ZERO:(BigDecimal)tblMain.getFootRow(0).getCell("revAccount").getValue();
+//    			tblMain.getFootRow(0).getCell("buildPrice").setValue(buildArea.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:account.divide(buildArea, 2, BigDecimal.ROUND_HALF_UP));
+//    			tblMain.getFootRow(0).getCell("roomPrice").setValue(roomArea.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:account.divide(roomArea, 2, BigDecimal.ROUND_HALF_UP));
+//    			tblMain.getFootRow(0).getCell("revAccountRate").setValue(account.compareTo(FDCHelper.ZERO)==0?FDCHelper.ZERO:revAccount.divide(account, 2, BigDecimal.ROUND_HALF_UP));
+//    			
+//    			tblMain.getColumn("amount").getStyleAttributes().setFontColor(Color.BLUE);
+    			
+    			
+//    			this.tblMain.getMergeManager().setMergeMode(KDTMergeManager.GROUP_MERGE);
+//    	    	this.tblMain.getGroupManager().setGroup(true);
+//    	    	this.tblMain.getColumn("number").setGroup(true);
+//    	    	this.tblMain.getColumn("auditTime").setGroup(true);
+//    	    	this.tblMain.getColumn("name").setGroup(true);
+//    	    	this.tblMain.getColumn("costAccount").setGroup(true);
+//    	    	this.tblMain.getColumn("amount").setGroup(true);
+//    	    	
+//    	    	this.tblMain.getColumn("conAuditTime").setGroup(true);
+//    	    	this.tblMain.getColumn("conNumber").setGroup(true);
+//    	    	this.tblMain.getColumn("conName").setGroup(true);
+//    	    	this.tblMain.getColumn("conPartB").setGroup(true);
+//    	    	this.tblMain.getColumn("conAmount").setGroup(true);
+//    	    	this.tblMain.getColumn("payAmount").setGroup(true);
+//    	    	this.tblMain.getColumn("unPayAmount").setGroup(true);
+//    	    	this.tblMain.getGroupManager().group();
+    			
+    			for(int i=tblMain.getRowCount()-1;i>=0;i--){
+    				if(tblMain.getRow(i).getCell("isLeaf").getValue()!=null&&tblMain.getRow(i).getCell("isLeaf").getValue().toString().equals("1")){
+    					continue;
+    				}else{
+    					tblMain.getRow(i).getStyleAttributes().setBackground(new java.awt.Color(246, 246, 191));
+    				}
+    				String totalNumber=tblMain.getRow(i).getCell("number").getValue().toString();
+    				for(int k=4;k<tblMain.getColumnCount();k++){
+    					BigDecimal amount=FDCHelper.ZERO;
+    					for(int j=i+1;j<tblMain.getRowCount();j++){
+    						String number=tblMain.getRow(j).getCell("number").getValue().toString();
+    						if(number.substring(0, number.lastIndexOf(".")).equals(totalNumber)){
+    							amount=FDCHelper.add(amount,tblMain.getRow(j).getCell(k).getValue());
+    						}
+    					}
+//    					if(amount.compareTo(FDCHelper.ZERO)>0){
+    						tblMain.getRow(i).getCell(k).setValue(amount);
+//    					}
+    				}
+    			}
             }
         }
         );

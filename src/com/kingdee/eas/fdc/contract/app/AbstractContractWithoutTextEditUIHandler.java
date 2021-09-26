@@ -69,4 +69,9 @@ public abstract class AbstractContractWithoutTextEditUIHandler extends com.kingd
 	}
 	protected void _handleActionMRLine(RequestContext request,ResponseContext response, Context context) throws Exception {
 	}
+	public void handleActionMKFP(RequestContext request,ResponseContext response, Context context) throws Exception {
+		_handleActionMKFP(request,response,context);
+	}
+	protected void _handleActionMKFP(RequestContext request,ResponseContext response, Context context) throws Exception {
+	}
 }

@@ -185,6 +185,12 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
     protected com.kingdee.bos.ctrl.kdf.table.KDTable kdtDetailEntry;
     protected com.kingdee.bos.ctrl.kdf.table.KDTable tblMarket;
     protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsJT;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contJzType;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contJzStartDate;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contJzEndDate;
+    protected com.kingdee.bos.ctrl.swing.KDComboBox cbJzType;
+    protected com.kingdee.bos.ctrl.swing.KDDatePicker pkJzStartDate;
+    protected com.kingdee.bos.ctrl.swing.KDDatePicker pkJzEndDate;
     protected com.kingdee.bos.ctrl.kdf.table.KDTable kdtYZEntry;
     protected com.kingdee.bos.ctrl.swing.KDFormattedTextField txtExRate;
     protected com.kingdee.bos.ctrl.swing.KDFormattedTextField txtLocalAmount;
@@ -600,6 +606,12 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.kdtDetailEntry = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.tblMarket = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.cbIsJT = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.contJzType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contJzStartDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contJzEndDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.cbJzType = new com.kingdee.bos.ctrl.swing.KDComboBox();
+        this.pkJzStartDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
+        this.pkJzEndDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.kdtYZEntry = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.txtExRate = new com.kingdee.bos.ctrl.swing.KDFormattedTextField();
         this.txtLocalAmount = new com.kingdee.bos.ctrl.swing.KDFormattedTextField();
@@ -820,6 +832,12 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.kdtDetailEntry.setName("kdtDetailEntry");
         this.tblMarket.setName("tblMarket");
         this.cbIsJT.setName("cbIsJT");
+        this.contJzType.setName("contJzType");
+        this.contJzStartDate.setName("contJzStartDate");
+        this.contJzEndDate.setName("contJzEndDate");
+        this.cbJzType.setName("cbJzType");
+        this.pkJzStartDate.setName("pkJzStartDate");
+        this.pkJzEndDate.setName("pkJzEndDate");
         this.kdtYZEntry.setName("kdtYZEntry");
         this.txtExRate.setName("txtExRate");
         this.txtLocalAmount.setName("txtLocalAmount");
@@ -1808,6 +1826,52 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         // cbIsJT		
         this.cbIsJT.setText(resHelper.getString("cbIsJT.text"));		
         this.cbIsJT.setEnabled(false);
+        // contJzType		
+        this.contJzType.setBoundLabelText(resHelper.getString("contJzType.boundLabelText"));		
+        this.contJzType.setBoundLabelLength(100);		
+        this.contJzType.setBoundLabelUnderline(true);
+        // contJzStartDate		
+        this.contJzStartDate.setBoundLabelText(resHelper.getString("contJzStartDate.boundLabelText"));		
+        this.contJzStartDate.setBoundLabelLength(100);		
+        this.contJzStartDate.setBoundLabelUnderline(true);
+        // contJzEndDate		
+        this.contJzEndDate.setBoundLabelText(resHelper.getString("contJzEndDate.boundLabelText"));		
+        this.contJzEndDate.setBoundLabelLength(100);		
+        this.contJzEndDate.setBoundLabelUnderline(true);
+        // cbJzType		
+        this.cbJzType.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.contract.JZTypeEnum").toArray());
+        this.cbJzType.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent e) {
+                try {
+                    cbJzType_itemStateChanged(e);
+                } catch (Exception exc) {
+                    handUIException(exc);
+                } finally {
+                }
+            }
+        });
+        // pkJzStartDate
+        this.pkJzStartDate.addDataChangeListener(new com.kingdee.bos.ctrl.swing.event.DataChangeListener() {
+            public void dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) {
+                try {
+                    pkJzStartDate_dataChanged(e);
+                } catch (Exception exc) {
+                    handUIException(exc);
+                } finally {
+                }
+            }
+        });
+        // pkJzEndDate
+        this.pkJzEndDate.addDataChangeListener(new com.kingdee.bos.ctrl.swing.event.DataChangeListener() {
+            public void dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) {
+                try {
+                    pkJzEndDate_dataChanged(e);
+                } catch (Exception exc) {
+                    handUIException(exc);
+                } finally {
+                }
+            }
+        });
         // kdtYZEntry
 		String kdtYZEntryStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol4\"><c:Protection hidden=\"true\" /></c:Style><c:Style id=\"sCol5\"><c:Protection hidden=\"true\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"name\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"type\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"admin\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"count\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"adminID\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol4\" /><t:Column t:key=\"yzID\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol5\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{name}</t:Cell><t:Cell>$Resource{type}</t:Cell><t:Cell>$Resource{admin}</t:Cell><t:Cell>$Resource{count}</t:Cell><t:Cell>$Resource{adminID}</t:Cell><t:Cell>$Resource{yzID}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
 		
@@ -2151,8 +2215,28 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         });
         // pkStartDate		
         this.pkStartDate.setRequired(true);
+        this.pkStartDate.addDataChangeListener(new com.kingdee.bos.ctrl.swing.event.DataChangeListener() {
+            public void dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) {
+                try {
+                    pkStartDate_dataChanged(e);
+                } catch (Exception exc) {
+                    handUIException(exc);
+                } finally {
+                }
+            }
+        });
         // pkEndDate		
         this.pkEndDate.setRequired(true);
+        this.pkEndDate.addDataChangeListener(new com.kingdee.bos.ctrl.swing.event.DataChangeListener() {
+            public void dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) {
+                try {
+                    pkEndDate_dataChanged(e);
+                } catch (Exception exc) {
+                    handUIException(exc);
+                } finally {
+                }
+            }
+        });
         // prmtTAEntry		
         this.prmtTAEntry.setCommitFormat("$name$");		
         this.prmtTAEntry.setDisplayFormat("$name$");		
@@ -2192,6 +2276,16 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
             public void willShow(com.kingdee.bos.ctrl.swing.event.SelectorEvent e) {
                 try {
                     prmtMpCostAccount_willShow(e);
+                } catch (Exception exc) {
+                    handUIException(exc);
+                } finally {
+                }
+            }
+        });
+        this.prmtMpCostAccount.addDataChangeListener(new com.kingdee.bos.ctrl.swing.event.DataChangeListener() {
+            public void dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) {
+                try {
+                    prmtMpCostAccount_dataChanged(e);
                 } catch (Exception exc) {
                     handUIException(exc);
                 } finally {
@@ -2759,10 +2853,22 @@ panelInvite.setLayout(new BorderLayout(0, 0));        panelInvite.add(tblInvite,
 kDContainer3.getContentPane().setLayout(new BorderLayout(0, 0));        kDContainer3.getContentPane().add(kdtDetailEntry, BorderLayout.CENTER);
         //kDContainer4
         kDContainer4.getContentPane().setLayout(new KDLayout());
-        kDContainer4.getContentPane().putClientProperty("OriginalBounds", new Rectangle(0, 0, 999, 241));        tblMarket.setBounds(new Rectangle(0, 28, 996, 196));
-        kDContainer4.getContentPane().add(tblMarket, new KDLayout.Constraints(0, 28, 996, 196, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
-        cbIsJT.setBounds(new Rectangle(7, 5, 279, 19));
-        kDContainer4.getContentPane().add(cbIsJT, new KDLayout.Constraints(7, 5, 279, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        kDContainer4.getContentPane().putClientProperty("OriginalBounds", new Rectangle(0, 0, 999, 241));        tblMarket.setBounds(new Rectangle(0, 53, 996, 171));
+        kDContainer4.getContentPane().add(tblMarket, new KDLayout.Constraints(0, 53, 996, 171, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
+        cbIsJT.setBounds(new Rectangle(27, 5, 89, 19));
+        kDContainer4.getContentPane().add(cbIsJT, new KDLayout.Constraints(27, 5, 89, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        contJzType.setBounds(new Rectangle(697, 23, 270, 19));
+        kDContainer4.getContentPane().add(contJzType, new KDLayout.Constraints(697, 23, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contJzStartDate.setBounds(new Rectangle(27, 23, 270, 19));
+        kDContainer4.getContentPane().add(contJzStartDate, new KDLayout.Constraints(27, 23, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        contJzEndDate.setBounds(new Rectangle(362, 23, 270, 19));
+        kDContainer4.getContentPane().add(contJzEndDate, new KDLayout.Constraints(362, 23, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        //contJzType
+        contJzType.setBoundEditor(cbJzType);
+        //contJzStartDate
+        contJzStartDate.setBoundEditor(pkJzStartDate);
+        //contJzEndDate
+        contJzEndDate.setBoundEditor(pkJzEndDate);
         //kDContainer5
 kDContainer5.getContentPane().setLayout(new BorderLayout(0, 0));        kDContainer5.getContentPane().add(kdtYZEntry, BorderLayout.CENTER);
         //contExRate
@@ -2847,10 +2953,10 @@ contMode.getContentPane().setLayout(new BorderLayout(0, 0));        contMode.get
         kDContainer2.getContentPane().add(contTaxerQua, new KDLayout.Constraints(31, 40, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contBankAccount.setBounds(new Rectangle(698, 14, 270, 19));
         kDContainer2.getContentPane().add(contBankAccount, new KDLayout.Constraints(698, 14, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
-        contTaxerNum.setBounds(new Rectangle(372, 40, 270, 19));
-        kDContainer2.getContentPane().add(contTaxerNum, new KDLayout.Constraints(372, 40, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
-        contBank.setBounds(new Rectangle(372, 14, 270, 19));
-        kDContainer2.getContentPane().add(contBank, new KDLayout.Constraints(372, 14, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        contTaxerNum.setBounds(new Rectangle(364, 40, 270, 19));
+        kDContainer2.getContentPane().add(contTaxerNum, new KDLayout.Constraints(364, 40, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        contBank.setBounds(new Rectangle(364, 14, 270, 19));
+        kDContainer2.getContentPane().add(contBank, new KDLayout.Constraints(364, 14, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contLxNum.setBounds(new Rectangle(31, 14, 270, 19));
         kDContainer2.getContentPane().add(contLxNum, new KDLayout.Constraints(31, 14, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         //contTaxerQua
@@ -3140,6 +3246,9 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		dataBinder.registerBinding("marketEntry.content", String.class, this.tblMarket, "content.text");
 		dataBinder.registerBinding("marketEntry.remark", String.class, this.tblMarket, "remark.text");
 		dataBinder.registerBinding("isJT", boolean.class, this.cbIsJT, "selected");
+		dataBinder.registerBinding("jzType", com.kingdee.eas.fdc.contract.JZTypeEnum.class, this.cbJzType, "selectedItem");
+		dataBinder.registerBinding("jzStartDate", java.util.Date.class, this.pkJzStartDate, "value");
+		dataBinder.registerBinding("jzEndDate", java.util.Date.class, this.pkJzEndDate, "value");
 		dataBinder.registerBinding("yzEntry", com.kingdee.eas.fdc.contract.ContractYZEntryInfo.class, this.kdtYZEntry, "userObject");
 		dataBinder.registerBinding("yzEntry.name", String.class, this.kdtYZEntry, "name.text");
 		dataBinder.registerBinding("yzEntry.type", String.class, this.kdtYZEntry, "type.text");
@@ -3392,6 +3501,9 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		getValidateHelper().registerBindProperty("marketEntry.content", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("marketEntry.remark", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("isJT", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("jzType", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("jzStartDate", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("jzEndDate", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("yzEntry", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("yzEntry.name", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("yzEntry.type", ValidateHelper.ON_SAVE);    
@@ -3587,6 +3699,27 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
     }
 
     /**
+     * output cbJzType_itemStateChanged method
+     */
+    protected void cbJzType_itemStateChanged(java.awt.event.ItemEvent e) throws Exception
+    {
+    }
+
+    /**
+     * output pkJzStartDate_dataChanged method
+     */
+    protected void pkJzStartDate_dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) throws Exception
+    {
+    }
+
+    /**
+     * output pkJzEndDate_dataChanged method
+     */
+    protected void pkJzEndDate_dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) throws Exception
+    {
+    }
+
+    /**
      * output kdtYZEntry_editStopped method
      */
     protected void kdtYZEntry_editStopped(com.kingdee.bos.ctrl.kdf.table.event.KDTEditEvent e) throws Exception
@@ -3700,6 +3833,20 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
     }
 
     /**
+     * output pkStartDate_dataChanged method
+     */
+    protected void pkStartDate_dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) throws Exception
+    {
+    }
+
+    /**
+     * output pkEndDate_dataChanged method
+     */
+    protected void pkEndDate_dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) throws Exception
+    {
+    }
+
+    /**
      * output prmtTAEntry_dataChanged method
      */
     protected void prmtTAEntry_dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) throws Exception
@@ -3717,6 +3864,13 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
      * output prmtMpCostAccount_willShow method
      */
     protected void prmtMpCostAccount_willShow(com.kingdee.bos.ctrl.swing.event.SelectorEvent e) throws Exception
+    {
+    }
+
+    /**
+     * output prmtMpCostAccount_dataChanged method
+     */
+    protected void prmtMpCostAccount_dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) throws Exception
     {
     }
 
@@ -3920,6 +4074,9 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
     	sic.add(new SelectorItemInfo("marketEntry.content"));
     	sic.add(new SelectorItemInfo("marketEntry.remark"));
         sic.add(new SelectorItemInfo("isJT"));
+        sic.add(new SelectorItemInfo("jzType"));
+        sic.add(new SelectorItemInfo("jzStartDate"));
+        sic.add(new SelectorItemInfo("jzEndDate"));
 		if(selectorAll.equalsIgnoreCase("true"))
 		{
 			sic.add(new SelectorItemInfo("yzEntry.*"));

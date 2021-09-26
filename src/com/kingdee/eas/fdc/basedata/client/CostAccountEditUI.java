@@ -529,6 +529,7 @@ public class CostAccountEditUI extends AbstractCostAccountEditUI{
         sic.add(new SelectorItemInfo("isProgramming"));
         sic.add(new SelectorItemInfo("rate"));
         sic.add(new SelectorItemInfo("isMarket"));
+        sic.add(new SelectorItemInfo("yjType"));
         return sic;
     }  
 }

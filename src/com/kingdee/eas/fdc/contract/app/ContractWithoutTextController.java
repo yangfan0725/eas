@@ -10,6 +10,7 @@ import java.lang.String;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.bos.dao.IObjectPK;
+import java.util.Map;
 import com.kingdee.eas.fdc.basedata.app.FDCBillController;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.eas.framework.CoreBaseCollection;
@@ -41,4 +42,6 @@ public interface ContractWithoutTextController extends FDCBillController
     public void synUpdateProgramming(Context ctx, String billId, ProgrammingContractInfo programming) throws BOSException, EASBizException, RemoteException;
     public void synReUpdateProgramming(Context ctx, String billId, IObjectValue programming) throws BOSException, EASBizException, RemoteException;
     public IObjectValue getNoPValue(Context ctx, IObjectPK pk, SelectorItemCollection sel) throws BOSException, RemoteException;
+    public Map getMKFP(Context ctx) throws BOSException, EASBizException, RemoteException;
+    public String getMKLink(Context ctx, String number) throws BOSException, EASBizException, RemoteException;
 }

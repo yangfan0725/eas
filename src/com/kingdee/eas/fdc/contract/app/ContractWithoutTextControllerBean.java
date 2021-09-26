@@ -1,10 +1,17 @@
 package com.kingdee.eas.fdc.contract.app;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -18,6 +25,8 @@ import net.sf.json.JSONObject;
 
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.log4j.Logger;
 
 import com.kingdee.bos.BOSException;
@@ -51,7 +60,11 @@ import com.kingdee.eas.base.log.LogUtil;
 import com.kingdee.eas.base.permission.UserFactory;
 import com.kingdee.eas.base.permission.UserInfo;
 import com.kingdee.eas.basedata.assistant.PeriodInfo;
+import com.kingdee.eas.basedata.master.cssp.SupplierFactory;
+import com.kingdee.eas.basedata.master.cssp.SupplierInfo;
 import com.kingdee.eas.basedata.org.CostCenterOrgUnitInfo;
+import com.kingdee.eas.basedata.person.PersonFactory;
+import com.kingdee.eas.basedata.person.PersonInfo;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.common.client.SysContext;
 import com.kingdee.eas.cp.bc.ExpenseTypeFactory;
@@ -61,19 +74,25 @@ import com.kingdee.eas.fdc.basedata.ChangeTypeInfo;
 import com.kingdee.eas.fdc.basedata.ContractTypeFactory;
 import com.kingdee.eas.fdc.basedata.ContractTypeInfo;
 import com.kingdee.eas.fdc.basedata.ContractTypeOrgTypeEnum;
+import com.kingdee.eas.fdc.basedata.CostAccountFactory;
+import com.kingdee.eas.fdc.basedata.CostAccountInfo;
+import com.kingdee.eas.fdc.basedata.CostAccountYJTypeEnum;
 import com.kingdee.eas.fdc.basedata.CurProjectFactory;
 import com.kingdee.eas.fdc.basedata.CurProjectInfo;
 import com.kingdee.eas.fdc.basedata.FDCBillInfo;
 import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
 import com.kingdee.eas.fdc.basedata.FDCCommonServerHelper;
 import com.kingdee.eas.fdc.basedata.FDCConstants;
+import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
+import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.contract.ChangeAuditBillFactory;
 import com.kingdee.eas.fdc.contract.ChangeAuditBillInfo;
 import com.kingdee.eas.fdc.contract.ChangeBillStateEnum;
 import com.kingdee.eas.fdc.contract.ContractBaseDataFactory;
 import com.kingdee.eas.fdc.contract.ContractBillCollection;
+import com.kingdee.eas.fdc.contract.ContractBillEntryInfo;
 import com.kingdee.eas.fdc.contract.ContractBillFactory;
 import com.kingdee.eas.fdc.contract.ContractBillInfo;
 import com.kingdee.eas.fdc.contract.ContractEstimateChangeBillCollection;
@@ -84,14 +103,25 @@ import com.kingdee.eas.fdc.contract.ContractExecInfosFactory;
 import com.kingdee.eas.fdc.contract.ContractExecInfosInfo;
 import com.kingdee.eas.fdc.contract.ContractPCSplitBillEntryCollection;
 import com.kingdee.eas.fdc.contract.ContractPCSplitBillEntryFactory;
+import com.kingdee.eas.fdc.contract.ContractWTInvoiceEntryCollection;
+import com.kingdee.eas.fdc.contract.ContractWTInvoiceEntryFactory;
+import com.kingdee.eas.fdc.contract.ContractWTInvoiceEntryInfo;
 import com.kingdee.eas.fdc.contract.ContractWithProgramInfo;
 import com.kingdee.eas.fdc.contract.ContractWithoutTextCollection;
 import com.kingdee.eas.fdc.contract.ContractWithoutTextFactory;
 import com.kingdee.eas.fdc.contract.ContractWithoutTextInfo;
+import com.kingdee.eas.fdc.contract.ContractYZEntryCollection;
+import com.kingdee.eas.fdc.contract.ContractYZEntryFactory;
+import com.kingdee.eas.fdc.contract.ContractYZEntryInfo;
 import com.kingdee.eas.fdc.contract.FDCUtils;
 import com.kingdee.eas.fdc.contract.IPayRequestBill;
+import com.kingdee.eas.fdc.contract.MarketProjectFactory;
+import com.kingdee.eas.fdc.contract.MarketProjectInfo;
 import com.kingdee.eas.fdc.contract.PayContentTypeFactory;
 import com.kingdee.eas.fdc.contract.PayContentTypeInfo;
+import com.kingdee.eas.fdc.contract.PayReqInvoiceEntryCollection;
+import com.kingdee.eas.fdc.contract.PayReqInvoiceEntryFactory;
+import com.kingdee.eas.fdc.contract.PayReqInvoiceEntryInfo;
 import com.kingdee.eas.fdc.contract.PayRequestBillCollection;
 import com.kingdee.eas.fdc.contract.PayRequestBillEntryFactory;
 import com.kingdee.eas.fdc.contract.PayRequestBillFactory;
@@ -170,6 +200,7 @@ public class ContractWithoutTextControllerBean extends
 		if(model.get("fromweb")==null){
 			sendtoOA(ctx, (ContractWithoutTextInfo) model);
 		}
+		updateMKFP(ctx, (ContractWithoutTextInfo) model);
 	}
 
 	protected IObjectPK _submit(Context ctx, IObjectValue model)throws BOSException, EASBizException {
@@ -185,6 +216,7 @@ public class ContractWithoutTextControllerBean extends
 		if(model.get("fromweb")==null){
 			sendtoOA(ctx, (ContractWithoutTextInfo) model);
 		}
+		updateMKFP(ctx, (ContractWithoutTextInfo) model);
 		return pk;
 	}
 	public boolean isBillInWorkflow(Context ctx,String id) throws BOSException{
@@ -205,6 +237,120 @@ public class ContractWithoutTextControllerBean extends
 			return false;
 		}
     }
+	
+	public void updateMKFP(Context ctx,ContractWithoutTextInfo info) throws EASBizException, BOSException{
+		ContractWTInvoiceEntryCollection fpEntrys = info.getInvoiceEntry();
+		if(fpEntrys.size()>0){
+			for (int x=0;x<fpEntrys.size();x++) {
+				ContractWTInvoiceEntryInfo fp =ContractWTInvoiceEntryFactory.getLocalInstance(ctx).getContractWTInvoiceEntryInfo(new ObjectUuidPK(info.getInvoiceEntry().get(x).getId()));
+				Integer use = fp.getIsMKUsed();
+			
+				String invoiceNumber = fp.getInvoiceNumber();
+				if("".equals(use)||use==1){
+					throw new EASBizException(new NumericExceptionSubItem("100","发票号为"+invoiceNumber+"的发票已被使用,请重新选择发票！"));
+				}
+//				调取每刻发票链接 修改金蝶发票状态为锁定
+				String number = fp.getInvoiceNumber();
+				String viewLink = getMKLink(ctx,number);
+				if(viewLink!=null&&viewLink!=""){
+					fp.setViewLink(viewLink);
+					fp.setIsMKUsed(1);
+					SelectorItemCollection sic=new SelectorItemCollection();
+					sic.add("isMkUsed");
+					sic.add("viewLink");
+					ContractWTInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(fp,sic);
+				}
+			}
+		}
+	}
+	public String getMKLink(Context ctx,String number) throws EASBizException, BOSException{
+		String viewLink=null;
+		com.alibaba.fastjson.JSONObject login=new com.alibaba.fastjson.JSONObject();
+		String tokenId=null;
+		String entCode=null;
+		String appCode=null;
+		String secret=null;
+		String mturl=null;
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		long lt = ts.getTime();
+		try {
+			FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
+			builder.appendSql("select * from dl_mk where type='da'");
+			IRowSet rs=builder.executeQuery();
+			while(rs.next()){
+				mturl=rs.getString("url");
+				entCode=rs.getString("entCode");
+				appCode=rs.getString("appCode");
+				secret=rs.getString("secret");
+			}
+			login.put("userCode", appCode);
+			login.put("secretToken", SHA(secret+":"+appCode+":"+lt));
+			login.put("timestamp", lt);
+			
+			HttpClient httpClient =new HttpClient();
+    		PostMethod post = new PostMethod(mturl+"/open/auth/login");
+    		post.setRequestHeader("Content-Type", "application/json;charse=UTF-8") ;
+    		post.setRequestBody(login.toJSONString());
+    		httpClient.executeMethod(post);
+    		
+    		String respStr = post.getResponseBodyAsString();
+            post.releaseConnection();
+			
+            com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+            com.alibaba.fastjson.JSONObject d=crso.getJSONObject("data");
+			if(200!=(crso.getInteger("code"))){
+				throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+			}else{
+				tokenId=d.getString("token");
+			}
+		} catch (Exception e) {
+			try {
+				throw new EASBizException(new NumericExceptionSubItem("100",e.getMessage()));
+			} catch (EASBizException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		com.alibaba.fastjson.JSONObject dataJson=new com.alibaba.fastjson.JSONObject();
+//		获取发票查看链接
+		try {
+			dataJson.put("invoiceNumber", number);
+//			dataJson.put("invoiceCode", "3200211130");
+			HttpClient httpClient =new HttpClient();
+    		PostMethod post = new PostMethod(mturl+"/open/ecm-invoice/search");
+			post.setRequestHeader("Content-Type", "application/json;charse=UTF-8") ;
+			post.setRequestHeader("Authorization", tokenId) ;
+    		post.setRequestBody(dataJson.toJSONString());
+    		httpClient.executeMethod(post);
+    		
+    		String respStr = post.getResponseBodyAsString();
+            post.releaseConnection();
+            com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+            com.alibaba.fastjson.JSONObject data = crso.getJSONObject("data");
+			com.alibaba.fastjson.JSONArray pageDataArray=data.getJSONArray("pageData");
+			
+			if(pageDataArray.size()>0){
+				com.alibaba.fastjson.JSONObject view = pageDataArray.getJSONObject(0);
+				if(view!=null){
+					com.alibaba.fastjson.JSONArray fileUrls = view.getJSONArray("fileUrls");
+					if(fileUrls!=null&&fileUrls.size()>0){
+						String fileUrl = fileUrls.getString(0);
+						if(fileUrl!=null&&fileUrl!=""){
+//							给VIEWURL赋值
+							viewLink = new StringBuffer().append("http://172.17.4.52:8080").append(fileUrl).toString();
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			throw new EASBizException(new NumericExceptionSubItem("100",e.getMessage()));
+			// TODO Auto-generated catch block
+			
+		}
+		return viewLink;
+	}
+	
 	public void sendtoOA(Context ctx,ContractWithoutTextInfo info) throws EASBizException{
     	try {
     		UserInfo u=UserFactory.getLocalInstance(ctx).getUserByID(ctx.getCaller());
@@ -261,12 +407,29 @@ public class ContractWithoutTextControllerBean extends
 
 				json.put("loginName", u.getNumber());
 				
-				SelectorItemCollection cpsic=new SelectorItemCollection();
-				cpsic.add("fullOrgUnit.name");
-				CurProjectInfo cur=CurProjectFactory.getLocalInstance(ctx).getCurProjectInfo(new ObjectUuidPK(info.getCurProject().getId()), cpsic);
-				json.put("fdCompanyName", cur.getFullOrgUnit().getName());
+				if(info.getReceiveUnit()!=null){
+					SupplierInfo Sup=SupplierFactory.getLocalInstance(ctx).getSupplierInfo(new ObjectUuidPK(info.getReceiveUnit().getId()));
+					json.put("fdCompanyName", Sup.getName());
+				}else if(info.getPerson()!=null){
+					PersonInfo Sup=PersonFactory.getLocalInstance(ctx).getPersonInfo(new ObjectUuidPK(info.getPerson().getId()));
+					json.put("fdCompanyName", Sup.getName());
+				}
 				
 				JSONObject obj = new JSONObject();
+				if(info.getMpCostAccount()!=null&&info.getMarketProject()!=null){
+					CostAccountInfo ca=CostAccountFactory.getLocalInstance(ctx).getCostAccountInfo(new ObjectUuidPK(info.getMpCostAccount().getId()));
+					MarketProjectInfo market=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectInfo(new ObjectUuidPK(info.getMarketProject().getId()));
+					if(ca.getYjType()!=null&&ca.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
+						Calendar cal = new GregorianCalendar();
+						cal.setTime(FDCDateHelper.getNextMonth(market.getAuditTime()));
+						cal.set(5, 15);
+						
+						int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
+						if(day<1){
+							obj.put("fd_timeout", "是");
+						}
+					}
+				}
 				if(info.getPayContentType()!=null){
 					PayContentTypeInfo pct=PayContentTypeFactory.getLocalInstance(ctx).getPayContentTypeInfo(new ObjectUuidPK(info.getPayContentType().getId()));
 					obj.put("fd_38cf18383073ec", pct.getName());
@@ -298,7 +461,7 @@ public class ContractWithoutTextControllerBean extends
 				}
 				obj.put("fd_395ad26fab0362", et);
 				
-//				web页面查看路径
+//				web页面查看路径 陪你走过那山高水长 陪你一起分享
 				builder.clear();
 				builder.appendSql("select url from weburl where type='view'");
 				IRowSet rsv = builder.executeQuery();
@@ -685,7 +848,7 @@ public class ContractWithoutTextControllerBean extends
 		}
 
 		checkBillForUnAudit(ctx, billId, null);
-
+		
 		String sql = "update T_CON_PayRequestBill set fstate=?,fhasClosed=0 where fcontractid=?";
 		String[] params = new String[] { FDCBillStateEnum.SUBMITTED_VALUE,
 				billId.toString() };
@@ -745,6 +908,21 @@ public class ContractWithoutTextControllerBean extends
 		}
 		ContractExecInfosFactory.getLocalInstance(ctx).updateContract(
 				ContractExecInfosInfo.EXECINFO_UNAUDIT, billId.toString());
+		
+		//MK
+		ContractWithoutTextInfo info1=ContractWithoutTextFactory.getLocalInstance(ctx).getContractWithoutTextInfo("select invoiceEntry.* from where id='"+billId+"'");
+		if(info1!=null){
+			ContractWTInvoiceEntryCollection entrys = info1.getInvoiceEntry();
+			if(entrys.size()>0){
+				for(int i=0;i<entrys.size();i++){
+					ContractWTInvoiceEntryInfo invoiceInfo = entrys.get(i);
+					invoiceInfo.setIsMKUsed(0);
+					SelectorItemCollection sic=new SelectorItemCollection();
+					sic.add("isMkUsed");
+					ContractWTInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(invoiceInfo,sic);
+				}
+			}
+		}
 	}
 
 	// 新增
@@ -1722,6 +1900,21 @@ public class ContractWithoutTextControllerBean extends
 		if(pay.size()>0){
 			PayRequestBillFactory.getLocalInstance(ctx).setSubmitStatus(pay.get(0).getId());
 		}
+	
+		//MK
+		ContractWithoutTextInfo info=ContractWithoutTextFactory.getLocalInstance(ctx).getContractWithoutTextInfo("select invoiceEntry.* from where id='"+billId+"'");
+		if(info!=null){
+			ContractWTInvoiceEntryCollection entrys = info.getInvoiceEntry();
+			if(entrys.size()>0){
+				for(int i=0;i<entrys.size();i++){
+					ContractWTInvoiceEntryInfo invoiceInfo = entrys.get(i);
+					invoiceInfo.setIsMKUsed(0);
+					SelectorItemCollection sic=new SelectorItemCollection();
+					sic.add("isMkUsed");
+					ContractWTInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(invoiceInfo,sic);
+				}
+			}
+		}
 	}
 	protected void _setAudittingStatus(Context ctx, BOSUuid billId)throws BOSException, EASBizException {
 		super._setAudittingStatus(ctx,billId);
@@ -1766,4 +1959,202 @@ public class ContractWithoutTextControllerBean extends
 			throw new ContractException(ContractException.NUMBER_DUP);
 		else return;
 	}
+	
+	public Map getMKFP(Context ctx) throws BOSException, EASBizException {
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		
+		Map map=new HashMap();
+		com.alibaba.fastjson.JSONObject login=new com.alibaba.fastjson.JSONObject();
+		String tokenId=null;
+		String entCode=null;
+		String appCode=null;
+		String secret=null;
+		String mturl=null;
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		long lt = ts.getTime();
+		try {
+			FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
+			builder.appendSql("select * from dl_mk where type = 'bx' ");
+			IRowSet rs=builder.executeQuery();
+			while(rs.next()){
+				mturl=rs.getString("url");
+				entCode=rs.getString("entCode");
+				appCode=rs.getString("appCode");
+				secret=rs.getString("secret");
+			}
+			login.put("appCode", appCode);
+			login.put("secret", SHA(secret+lt));
+			login.put("timestamp", lt);
+			
+			String respStr = HttpClientUtil.sendRequest(mturl+"/auth/login", "POST", "application/json;charse=UTF-8", "UTF-8", null, login.toJSONString());
+			
+			com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+			com.alibaba.fastjson.JSONObject d=crso.getJSONObject("data");
+			if(!"true".equals(crso.getString("success"))){
+				throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+			}else{
+				tokenId=d.getString("tokenId");
+				entCode=d.getString("entCode");
+			}
+		} catch (Exception e) {
+			try {
+				throw new EASBizException(new NumericExceptionSubItem("100",e.getMessage()));
+			} catch (EASBizException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		//get invoices
+		
+		Date now = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(now);
+		c.add(Calendar.MONTH, -1);
+		Date ago = c.getTime();
+		String exportAtEnd = simpleDateFormat.format(now);
+		String exportAtStart=simpleDateFormat.format(ago);
+		String employeeId=null;
+		UserInfo u=UserFactory.getLocalInstance(ctx).getUserByID(ctx.getCaller());
+	    employeeId = u.getNumber();
+	    
+		HashMap header=new HashMap();
+		header.put("tokenId", tokenId);
+		header.put("entCode", entCode);
+		com.alibaba.fastjson.JSONObject dataJson=new com.alibaba.fastjson.JSONObject();
+		dataJson.put("offset",0);
+		dataJson.put("limit", 50);
+		dataJson.put("exportAtStart", exportAtStart);
+		dataJson.put("exportAtEnd", exportAtEnd);
+		dataJson.put("employeeId", employeeId);
+		try {
+			String respStr = HttpClientUtil.sendRequest(mturl+"/invoice/search", "POST", "application/json;charse=UTF-8", "UTF-8", header, dataJson.toJSONString());
+			com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+			com.alibaba.fastjson.JSONArray fpArray=crso.getJSONArray("data");
+			for (int i=0;i<fpArray.size();i++) {
+				map.put(fpArray.getJSONObject(i).getString("invoiceNumber"), fpArray.getJSONObject(i));
+				}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return map;
+	}
+	public static String SHA(final String strText) {
+		MessageDigest messageDigest;
+        String encodeStr = "";
+		try {
+			messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(strText.getBytes("UTF-8"));
+            encodeStr = byte2Hex(messageDigest.digest());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return encodeStr;
+	}
+	private static String byte2Hex(byte[] bytes) {
+        StringBuffer stringBuffer = new StringBuffer();
+        String temp = null;
+        for (int i = 0; i < bytes.length; i++) {
+            temp = Integer.toHexString(bytes[i] & 0xFF);
+            if (temp.length() == 1) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(temp);
+        }
+        return stringBuffer.toString();
+    }
+	
+	public String _getMKLink(Context ctx, String number)
+			throws BOSException, EASBizException {
+		String viewLink=null;
+	     com.alibaba.fastjson.JSONObject login=new com.alibaba.fastjson.JSONObject();
+	     String tokenId=null;
+	     String entCode=null;
+	     String appCode=null;
+	     String secret=null;
+	     String mturl=null;
+	     Timestamp ts = new Timestamp(System.currentTimeMillis());
+	     long lt = ts.getTime();
+	     try {
+	         FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
+	         builder.appendSql("select * from dl_mk where type='da'");
+	         IRowSet rs=builder.executeQuery();
+	         while(rs.next()){
+	             mturl=rs.getString("url");
+	             entCode=rs.getString("entCode");
+	             appCode=rs.getString("appCode");
+	             secret=rs.getString("secret");
+	         }
+	         login.put("userCode", appCode);
+	         login.put("secretToken", SHA(secret+":"+appCode+":"+lt));
+	         login.put("timestamp", lt);
+
+	         HttpClient httpClient =new HttpClient();
+	         PostMethod post = new PostMethod(mturl+"/open/auth/login");
+	         post.setRequestHeader("Content-Type", "application/json;charse=UTF-8") ;
+	         post.setRequestBody(login.toJSONString());
+	         httpClient.executeMethod(post);
+
+	         String respStr = post.getResponseBodyAsString();
+	         post.releaseConnection();
+
+	         com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+	         com.alibaba.fastjson.JSONObject d=crso.getJSONObject("data");
+	         if(200!=(crso.getInteger("code"))){
+	             throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+	         }else{
+	             tokenId=d.getString("token");
+	         }
+	     } catch (Exception e1) {
+	         try {
+	             throw new EASBizException(new NumericExceptionSubItem("100",e1.getMessage()));
+	         } catch (EASBizException e11) {
+	             // TODO Auto-generated catch block
+	             e11.printStackTrace();
+	         }
+	     }
+
+	     com.alibaba.fastjson.JSONObject dataJson=new com.alibaba.fastjson.JSONObject();
+//			获取发票查看链接
+	     try {
+	         dataJson.put("invoiceNumber", number);
+//				dataJson.put("invoiceCode", "3200211130");
+	         HttpClient httpClient =new HttpClient();
+	         PostMethod post = new PostMethod(mturl+"/open/ecm-invoice/search");
+	         post.setRequestHeader("Content-Type", "application/json;charse=UTF-8") ;
+	         post.setRequestHeader("Authorization", tokenId) ;
+	         post.setRequestBody(dataJson.toJSONString());
+	         httpClient.executeMethod(post);
+
+	         String respStr = post.getResponseBodyAsString();
+	         post.releaseConnection();
+	         com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+	         com.alibaba.fastjson.JSONObject data = crso.getJSONObject("data");
+	         com.alibaba.fastjson.JSONArray pageDataArray=data.getJSONArray("pageData");
+
+	         if(pageDataArray.size()>0){
+	             com.alibaba.fastjson.JSONObject view = pageDataArray.getJSONObject(0);
+	             if(view!=null){
+	                 com.alibaba.fastjson.JSONArray fileUrls = view.getJSONArray("fileUrls");
+	                 if(fileUrls!=null&&fileUrls.size()>0){
+	                     String fileUrl = fileUrls.getString(0);
+	                     if(fileUrl!=null&&fileUrl!=""){
+//								给VIEWURL赋值
+	                         viewLink = new StringBuffer().append("http://172.17.4.52:8080").append(fileUrl).toString();
+	                     }
+	                 }
+	             }
+	         }
+	     } catch (Exception e1) {
+	         throw new EASBizException(new NumericExceptionSubItem("100",e1.getMessage()));
+	         // TODO Auto-generated catch block
+	     }
+	     return viewLink;	
+	}
+	 
 }

@@ -2762,15 +2762,17 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 			this.actionInvoiceALine.setEnabled(false);
 			this.actionInvoiceILine.setEnabled(false);
 			this.actionInvoiceRLine.setEnabled(false);
+			this.actionMKFP.setEnabled(true);
 		} else {
 			this.actionInvoiceALine.setEnabled(true);
 			this.actionInvoiceILine.setEnabled(true);
 			this.actionInvoiceRLine.setEnabled(true);
+			this.actionMKFP.setEnabled(true);
 		}
 		if(this.curProject!=null&&TaxInfoEnum.SIMPLE.equals(this.curProject.getTaxInfo())){
-			this.actionInvoiceALine.setEnabled(false);
-			this.actionInvoiceILine.setEnabled(false);
-			this.actionInvoiceRLine.setEnabled(false);
+//			this.actionInvoiceALine.setEnabled(false);
+//			this.actionInvoiceILine.setEnabled(false);
+//			this.actionInvoiceRLine.setEnabled(false);
 		}
 	}
 
@@ -8403,103 +8405,161 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 		KDWorkButton btnAddRowinfo = new KDWorkButton();
 		KDWorkButton btnInsertRowinfo = new KDWorkButton();
 		KDWorkButton btnDeleteRowinfo = new KDWorkButton();
+		KDWorkButton mkFpViewInfo = new KDWorkButton();
 
+//		this.actionInvoiceALine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_addline"));
+//		btnAddRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceALine);
+//		btnAddRowinfo.setText("新增行");
+//		btnAddRowinfo.setSize(new Dimension(140, 19));
+//
+//		this.actionInvoiceILine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_insert"));
+//		btnInsertRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceILine);
+//		btnInsertRowinfo.setText("插入行");
+//		btnInsertRowinfo.setSize(new Dimension(140, 19));
+//
+//		this.actionInvoiceRLine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_deleteline"));
+//		btnDeleteRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceRLine);
+//		btnDeleteRowinfo.setText("删除行");
+//		btnDeleteRowinfo.setSize(new Dimension(140, 19));
+//
+//		this.kdtInvoiceEntry.checkParsed();
+//
+//		KDBizPromptBox f7Box = new KDBizPromptBox();
+//		f7Box.setQueryInfo("com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery");
+//		f7Box.setEnabledMultiSelection(false);
+//		f7Box.setEditFormat("$invoiceNumber$");
+//		f7Box.setDisplayFormat("$invoiceNumber$");
+//		f7Box.setCommitFormat("$invoiceNumber$");
+//		
+//		EntityViewInfo view = new EntityViewInfo();
+//		FilterInfo filter = new FilterInfo();
+//		filter.getFilterItems().add(new FilterItemInfo("contract.id",this.editData.getContractId()));
+//		filter.getFilterItems().add(new FilterItemInfo("state",FDCBillStateEnum.AUDITTED_VALUE));
+//		
+//		PayRequestBillCollection col=PayRequestBillFactory.getRemoteInstance().getPayRequestBillCollection("select invoiceEntry.invoice.* from where contractId='"+this.editData.getContractId()+"'");
+//		Set invoiceId=new HashSet();
+//		for(int i=0;i<col.size();i++){
+//			if(this.editData.getId()!=null&&col.get(i).getId().toString().equals(this.editData.getId().toString())){
+//				continue;
+//			}
+//			for(int j=0;j<col.get(i).getInvoiceEntry().size();j++){
+//				invoiceId.add(col.get(i).getInvoiceEntry().get(j).getInvoice().getId().toString());
+//			}
+//		}
+//		if(invoiceId.size()>0){
+//			filter.getFilterItems().add(new FilterItemInfo("id",invoiceId,CompareType.NOTINCLUDE));
+//		}
+//		view.setFilter(filter);
+//		f7Box.setEntityViewInfo(view);
+//		KDTDefaultCellEditor f7Editor = new KDTDefaultCellEditor(f7Box);
+//		this.kdtInvoiceEntry.getColumn("invoiceNumber").setEditor(f7Editor);
+//		
+//		this.kdtInvoiceEntry.getColumn("invoiceNumber").setRenderer(new ObjectValueRender(){
+//			public String getText(Object obj) {
+//				if(obj instanceof ContractInvoiceInfo){
+//					ContractInvoiceInfo info = (ContractInvoiceInfo)obj;
+//					return info.getInvoiceNumber();
+//				}
+//				return super.getText(obj);
+//			}
+//		});
+		
+		this.kdtInvoiceEntry.checkParsed();
+		this.kdtInvoiceEntry.setEditable(true);
+		btnAddRowinfo = new KDWorkButton();
+		btnDeleteRowinfo = new KDWorkButton();
+
+		
 		this.actionInvoiceALine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_addline"));
 		btnAddRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceALine);
 		btnAddRowinfo.setText("新增行");
 		btnAddRowinfo.setSize(new Dimension(140, 19));
 
-		this.actionInvoiceILine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_insert"));
-		btnInsertRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceILine);
-		btnInsertRowinfo.setText("插入行");
-		btnInsertRowinfo.setSize(new Dimension(140, 19));
-
 		this.actionInvoiceRLine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_deleteline"));
 		btnDeleteRowinfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionInvoiceRLine);
 		btnDeleteRowinfo.setText("删除行");
 		btnDeleteRowinfo.setSize(new Dimension(140, 19));
-
-		this.kdtInvoiceEntry.checkParsed();
-
-		KDBizPromptBox f7Box = new KDBizPromptBox();
-		f7Box.setQueryInfo("com.kingdee.eas.fdc.contract.app.ContractInvoiceQuery");
-		f7Box.setEnabledMultiSelection(false);
-		f7Box.setEditFormat("$invoiceNumber$");
-		f7Box.setDisplayFormat("$invoiceNumber$");
-		f7Box.setCommitFormat("$invoiceNumber$");
 		
-		EntityViewInfo view = new EntityViewInfo();
-		FilterInfo filter = new FilterInfo();
-		filter.getFilterItems().add(new FilterItemInfo("contract.id",this.editData.getContractId()));
-		filter.getFilterItems().add(new FilterItemInfo("state",FDCBillStateEnum.AUDITTED_VALUE));
+		this.actionMKFP.putValue("SmallIcon", EASResource.getIcon("imgTbtn_addline"));
+		mkFpViewInfo = (KDWorkButton) this.contInvoiceEntry.add(this.actionMKFP);
+		mkFpViewInfo.setText("点击查看发票");
+		mkFpViewInfo.setSize(new Dimension(140, 19));
 		
-		PayRequestBillCollection col=PayRequestBillFactory.getRemoteInstance().getPayRequestBillCollection("select invoiceEntry.invoice.* from where contractId='"+this.editData.getContractId()+"'");
-		Set invoiceId=new HashSet();
-		for(int i=0;i<col.size();i++){
-			if(this.editData.getId()!=null&&col.get(i).getId().toString().equals(this.editData.getId().toString())){
-				continue;
-			}
-			for(int j=0;j<col.get(i).getInvoiceEntry().size();j++){
-				invoiceId.add(col.get(i).getInvoiceEntry().get(j).getInvoice().getId().toString());
-			}
-		}
-		if(invoiceId.size()>0){
-			filter.getFilterItems().add(new FilterItemInfo("id",invoiceId,CompareType.NOTINCLUDE));
-		}
-		view.setFilter(filter);
-		f7Box.setEntityViewInfo(view);
-		KDTDefaultCellEditor f7Editor = new KDTDefaultCellEditor(f7Box);
-		this.kdtInvoiceEntry.getColumn("invoiceNumber").setEditor(f7Editor);
-		
-		this.kdtInvoiceEntry.getColumn("invoiceNumber").setRenderer(new ObjectValueRender(){
-			public String getText(Object obj) {
-				if(obj instanceof ContractInvoiceInfo){
-					ContractInvoiceInfo info = (ContractInvoiceInfo)obj;
-					return info.getInvoiceNumber();
-				}
-				return super.getText(obj);
-			}
-		});
+		this.kdtInvoiceEntry.getColumn("invoiceNumber").getStyleAttributes().setLocked(true);
+		this.kdtInvoiceEntry.getColumn("invoiceTypeDesc").getStyleAttributes().setLocked(true);
+		this.kdtInvoiceEntry.getColumn("issueDate").getStyleAttributes().setLocked(true);
+		this.kdtInvoiceEntry.getColumn("totalPriceAndTax").getStyleAttributes().setLocked(true);
+		this.kdtInvoiceEntry.getColumn("specialVATTaxRate").getStyleAttributes().setLocked(true);
+		this.kdtInvoiceEntry.getColumn("totalTaxAmount").getStyleAttributes().setLocked(true);
 	}
 	public void actionInvoiceALine_actionPerformed(ActionEvent e) throws Exception {
-		IRow row = this.kdtInvoiceEntry.addRow();
-		PayReqInvoiceEntryInfo entry = new PayReqInvoiceEntryInfo();
-		row.setUserObject(entry);
+//		IRow row = this.kdtInvoiceEntry.addRow();
+//		PayReqInvoiceEntryInfo entry = new PayReqInvoiceEntryInfo();
+//		row.setUserObject(entry);
+		UIContext uiContext = new UIContext(this);
+		uiContext.put("table",this.kdtInvoiceEntry);
+        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
+        IUIWindow uiWindow = uiFactory.create(MK_FPSelectUI.class.getName(), uiContext,null,OprtState.VIEW);
+        uiWindow.show();
 	}
+//
+//	public void actionInvoiceILine_actionPerformed(ActionEvent e) throws Exception {
+//		IRow row = null;
+//		if (this.kdtInvoiceEntry.getSelectManager().size() > 0) {
+//			int top = this.kdtInvoiceEntry.getSelectManager().get().getTop();
+//			if (isTableColumnSelected(this.kdtInvoiceEntry))
+//				row = this.kdtInvoiceEntry.addRow();
+//			else
+//				row = this.kdtInvoiceEntry.addRow(top);
+//		} else {
+//			row = this.kdtInvoiceEntry.addRow();
+//		}
+//		PayReqInvoiceEntryInfo entry = new PayReqInvoiceEntryInfo();
+//		row.setUserObject(entry);
+//	}
 
-	public void actionInvoiceILine_actionPerformed(ActionEvent e) throws Exception {
-		IRow row = null;
-		if (this.kdtInvoiceEntry.getSelectManager().size() > 0) {
-			int top = this.kdtInvoiceEntry.getSelectManager().get().getTop();
-			if (isTableColumnSelected(this.kdtInvoiceEntry))
-				row = this.kdtInvoiceEntry.addRow();
-			else
-				row = this.kdtInvoiceEntry.addRow(top);
-		} else {
-			row = this.kdtInvoiceEntry.addRow();
+	
+	public void actionMKFP_actionPerformed(ActionEvent e) throws Exception {
+		int activeRowIndex = kdtInvoiceEntry.getSelectManager().getActiveRowIndex();
+		if(activeRowIndex<0){
+			FDCMsgBox.showError("请先选择一行数据");
+			abort();
 		}
-		PayReqInvoiceEntryInfo entry = new PayReqInvoiceEntryInfo();
-		row.setUserObject(entry);
+		String invoiceNumber = (String)this.kdtInvoiceEntry.getRow(activeRowIndex).getCell("invoiceNumber").getValue();
+//		String invoiceNumber = (String)this.editData.getInvoiceEntry().get(activeRowIndex).get("invoiceNumber");
+		String link = ContractWithoutTextFactory.getRemoteInstance().getMKLink(invoiceNumber);
+		if(link==null||link.equals("")){
+			FDCMsgBox.showError("未找到对应发票图片！请确认发票图片已上传");
+		}
+		Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+link);
 	}
-
+	
 	public void actionInvoiceRLine_actionPerformed(ActionEvent e) throws Exception {
-		if (this.kdtInvoiceEntry.getSelectManager().size() == 0 || isTableColumnSelected(this.kdtInvoiceEntry)) {
-			FDCMsgBox.showInfo(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_NoneEntry"));
-			return;
+//		if (this.kdtInvoiceEntry.getSelectManager().size() == 0 || isTableColumnSelected(this.kdtInvoiceEntry)) {
+//			FDCMsgBox.showInfo(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_NoneEntry"));
+//			return;
+//		}
+//		if (FDCMsgBox.isYes(FDCMsgBox.showConfirm2(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Confirm_Delete")))) {
+//			int top = this.kdtInvoiceEntry.getSelectManager().get().getBeginRow();
+//			int bottom = this.kdtInvoiceEntry.getSelectManager().get().getEndRow();
+//			for (int i = top; i <= bottom; i++) {
+//				if (this.kdtInvoiceEntry.getRow(top) == null) {
+//					FDCMsgBox.showInfo(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_NoneEntry"));
+//					return;
+//				}
+//				this.kdtInvoiceEntry.removeRow(top);
+//				setInvoiceAmt();
+//			}
+//		}
+		int activeRowIndex = kdtInvoiceEntry.getSelectManager().getActiveRowIndex();
+		if(activeRowIndex<0){
+			FDCMsgBox.showError("请先选择一行数据");
+			abort();
 		}
-		if (FDCMsgBox.isYes(FDCMsgBox.showConfirm2(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Confirm_Delete")))) {
-			int top = this.kdtInvoiceEntry.getSelectManager().get().getBeginRow();
-			int bottom = this.kdtInvoiceEntry.getSelectManager().get().getEndRow();
-			for (int i = top; i <= bottom; i++) {
-				if (this.kdtInvoiceEntry.getRow(top) == null) {
-					FDCMsgBox.showInfo(this, EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_NoneEntry"));
-					return;
-				}
-				this.kdtInvoiceEntry.removeRow(top);
-				setInvoiceAmt();
-			}
-		}
+		kdtInvoiceEntry.removeRow(activeRowIndex);
 	}
+	
+
 	protected void kdtInvoiceEntry_tableClicked(KDTMouseEvent e)throws Exception {
 		if (e.getType() == KDTStyleConstants.BODY_ROW && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2) {
 			IRow row = kdtInvoiceEntry.getRow(e.getRowIndex());

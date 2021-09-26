@@ -280,18 +280,18 @@ public class MarketMonthProjectEditUI extends AbstractMarketMonthProjectEditUI
     	
     	sql.append(" left join(select sum(t.famount) amount,fcostAccountid from(");
     	sql.append(" select (case when t.fsettleprice is null then entry.famount else t.fsettleprice*entry.frate/100 end)famount ,head.FMpCostAccountId fcostAccountid from T_CON_ContractMarketEntry entry left join t_con_contractbill head on head.fid=entry.fheadid");
-    	sql.append(" left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=head.fid where head.fstate='4AUDITTED'");
-    	sql.append(" and year(entry.fdate)="+year);
-    	sql.append(" union all select mpEntry.famount,mpEntry.fcostAccountid from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid where mp.fstate!='1SAVED'");
-    	sql.append(" and year(mp.fbizDate)="+year);
+    	sql.append(" left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=head.fid");
+    	sql.append(" where head.fstate='4AUDITTED' and year(entry.fdate)="+year);
+    	sql.append(" union all select mpEntry.famount,mpEntry.fcostAccountid from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid");
+    	sql.append(" where mp.fstate!='1SAVED' and year(mp.fbizDate)="+year);
     	sql.append(" and not exists(select t1.fid from t_con_contractBill t1 where t1.fstate='4AUDITTED' and t1.FMarketProjectId=mp.fid and t1.FMpCostAccountId=mpEntry.fcostAccountid) ");
 //    	sb.append(" and mp.fbizDate>{ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(fromDate))+ "'}");
 //    	sb.append(" and mp.fbizDate<={ts '" + FDCConstants.FORMAT_TIME.formast(FDCDateHelper.getSQLEnd(toDate))+ "'}");
 //    	sb.append(" and not exists(select t1.fid from t_con_contractBill t1 where t1.fstate='4AUDITTED' and t1.FMarketProjectId=mp.fid and t1.FMpCostAccountId=mpEntry.fcostAccountid) ");
-    	sql.append(" and not exists(select t.fid from T_CON_ContractWithoutText t where t.fstate!='1SAVED' and t.FMarketProjectId=mp.fid and t.FMpCostAccountId=mpEntry.fcostAccountid) ");
-    	sql.append(" union all select mpEntry.famount,mpEntry.fcostAccountid from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid where mp.fstate!='1SAVED'");
-    	sql.append(" and year(mp.fbizDate)="+year);
-    	sql.append(" and  exists(select t.fid from T_CON_ContractWithoutText t where t.fstate!='1SAVED' and t.FMarketProjectId=mp.fid and t.FMpCostAccountId=mpEntry.fcostAccountid) ");
+//    	sql.append(" and not exists(select t.fid from T_CON_ContractWithoutText t where t.fstate!='1SAVED' and t.FMarketProjectId=mp.fid and t.FMpCostAccountId=mpEntry.fcostAccountid) ");
+//    	sql.append(" union all select mpEntry.famount,mpEntry.fcostAccountid from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid where mp.fstate!='1SAVED'");
+//    	sql.append(" and year(mp.fbizDate)="+year);
+//    	sql.append(" and  exists(select t.fid from T_CON_ContractWithoutText t where t.fstate!='1SAVED' and t.FMarketProjectId=mp.fid and t.FMpCostAccountId=mpEntry.fcostAccountid) ");
     	sql.append(" )t group by t.fcostAccountid) t6 on t6.fcostAccountid=entry.fcostAccountId");
     	
     	

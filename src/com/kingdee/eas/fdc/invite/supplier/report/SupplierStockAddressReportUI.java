@@ -15,18 +15,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +49,9 @@ import net.sf.json.JSONArray;
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
 import org.apache.axis.encoding.XMLType;
+import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.log4j.Logger;
 import org.json.JSONString;
 
@@ -76,6 +83,7 @@ import com.kingdee.eas.basedata.org.NewOrgUtils;
 import com.kingdee.eas.basedata.org.OrgStructureInfo;
 import com.kingdee.eas.basedata.org.OrgUnitInfo;
 import com.kingdee.eas.basedata.org.OrgViewType;
+import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.common.client.OprtState;
 import com.kingdee.eas.common.client.SysContext;
 import com.kingdee.eas.common.client.UIContext;
@@ -89,6 +97,7 @@ import com.kingdee.eas.fdc.basedata.client.FDCClientHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.contract.BankNumCollection;
 import com.kingdee.eas.fdc.contract.BankNumFactory;
+import com.kingdee.eas.fdc.contract.app.HttpClientUtil;
 import com.kingdee.eas.fdc.contract.client.ContractBillEditUI;
 import com.kingdee.eas.fdc.contract.client.ContractWithoutTextEditUI;
 import com.kingdee.eas.fdc.invite.InviteTypeFactory;
@@ -115,6 +124,7 @@ import com.kingdee.eas.ma.budget.client.LongTimeDialog;
 import com.kingdee.eas.util.SysUtil;
 import com.kingdee.eas.util.client.MsgBox;
 import com.kingdee.jdbc.rowset.IRowSet;
+import com.kingdee.util.NumericExceptionSubItem;
 
 /**
  * output class name
@@ -327,7 +337,8 @@ public class SupplierStockAddressReportUI extends
 		this.refresh();
 
 	Context ctx=null;
-	_sendToDo(ctx);
+//	_sendToDo(ctx);
+	mkdangan(ctx);
 	
 	}
 
@@ -355,39 +366,199 @@ public class SupplierStockAddressReportUI extends
 
 
 		protected void _sendToDo(Context ctx) throws BOSException {
-			String rs111 = null;
-			try {
-				rs111 = SHEManageHelper.getQJtoken(ctx);
-			} catch (HttpException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			JSONObject login=new JSONObject();
+    		String tokenId=null;
+    		String entCode=null;
+    		String appCode=null;
+    		String secret=null;
+    		String mturl=null;
+    		Timestamp ts = new Timestamp(System.currentTimeMillis());
+    		long lt = ts.getTime();
+    		try {
+    			FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
+    			builder.appendSql("select * from dl_mk where type='bx' ");
+    			IRowSet rs=builder.executeQuery();
+    			while(rs.next()){
+    				mturl=rs.getString("url");
+    				entCode=rs.getString("entCode");
+    				appCode=rs.getString("appCode");
+    				secret=rs.getString("secret");
+    			}
+    			login.put("appCode", appCode);
+    			login.put("secret", SHA(secret+lt));
+    			login.put("timestamp", lt);
+    			
+    			String respStr = HttpClientUtil.sendRequest(mturl+"/auth/login", "POST", "application/json;charse=UTF-8", "UTF-8", null, login.toJSONString());
+    			
+    			JSONObject crso = JSONObject.parseObject(respStr);
+    			JSONObject d=crso.getJSONObject("data");
+    			if(!"true".equals(crso.getString("success"))){
+    				throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+    			}else{
+    				tokenId=d.getString("tokenId");
+    				entCode=d.getString("entCode");
+    			}
+    		} catch (Exception e) {
+    			try {
+					throw new EASBizException(new NumericExceptionSubItem("100",e.getMessage()));
+				} catch (EASBizException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+    		}
+    		//get invoices
+    		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    		Date now = new Date();
+    		Calendar c = Calendar.getInstance();
+    		c.setTime(now);
+    		c.add(Calendar.MONTH, -1);
+    		Date ago = c.getTime();
+    		String exportAtEnd = simpleDateFormat.format(now);
+    		String exportAtStart=simpleDateFormat.format(ago);
+    		
+    		HashMap header=new HashMap();
+    		header.put("tokenId", tokenId);
+    		header.put("entCode", entCode);
+    		JSONObject dataJson=new JSONObject();
+//    		dataJson.put("offset",0);
+//    		dataJson.put("limit", 10);
+//    		dataJson.put("exportAtStart", exportAtStart);
+//    		dataJson.put("exportAtEnd", exportAtEnd);
+//    		dataJson.put("employeeId", "00718");
+//    		try {
+//				String respStr = HttpClientUtil.sendRequest(mturl+"/invoice/search", "POST", "application/json;charse=UTF-8", "UTF-8", header, dataJson.toJSONString());
+//				JSONObject crso = JSONObject.parseObject(respStr);
+//			    com.alibaba.fastjson.JSONArray dJson=crso.getJSONArray("data");
+//				System.out.print(dJson.size());
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			
+
+		}
+		
+		protected void mkdangan(Context ctx) throws BOSException {
+			JSONObject login=new JSONObject();
+    		String tokenId=null;
+    		String entCode=null;
+    		String appCode=null;
+    		String secret=null;
+    		String mturl=null;
+    		Timestamp ts = new Timestamp(System.currentTimeMillis());
+    		long lt = ts.getTime();
+    		try {
+    			FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
+    			builder.appendSql("select * from dl_mk where type='da'");
+    			IRowSet rs=builder.executeQuery();
+    			while(rs.next()){
+    				mturl=rs.getString("url");
+    				entCode=rs.getString("entCode");
+    				appCode=rs.getString("appCode");
+    				secret=rs.getString("secret");
+    			}
+    			login.put("userCode", appCode);
+    			login.put("secretToken", SHA(secret+appCode+lt));
+    			login.put("timestamp", lt);
+    			
+    			HttpClient httpClient =new HttpClient();
+        		PostMethod post = new PostMethod("http://172.17.4.52:8080/open/auth/login");
+        		post.setRequestHeader("Content-Type", "application/json;charse=UTF-8") ;
+        		post.setRequestBody(login.toJSONString());
+        		httpClient.executeMethod(post);
+        		
+        		String respStr = post.getResponseBodyAsString();
+                post.releaseConnection();
+    			
+    			JSONObject crso = JSONObject.parseObject(respStr);
+    			JSONObject d=crso.getJSONObject("data");
+    			if(200!=(crso.getInteger("code"))){
+    				throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+    			}else{
+    				tokenId=d.getString("token");
+    			}
+    		} catch (Exception e) {
+    			try {
+					throw new EASBizException(new NumericExceptionSubItem("100",e.getMessage()));
+				} catch (EASBizException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+    		}
+			
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    		Date now = new Date();
+    		Calendar c = Calendar.getInstance();
+    		c.setTime(now);
+    		c.add(Calendar.MONTH, -1);
+    		Date ago = c.getTime();
+    		String exportAtEnd = simpleDateFormat.format(now);
+    		String exportAtStart=simpleDateFormat.format(ago);
+    		
+    		HashMap header=new HashMap();
+    		header.put("tokenId", tokenId);
+    		header.put("entCode", entCode);
+    		JSONObject dataJson=new JSONObject();
+//			获取发票查看链接
+    		try {
+				dataJson.put("invoiceNumber", "18875941");
+//    			dataJson.put("invoiceCode", "3200211130");
+    			HttpClient httpClient =new HttpClient();
+        		PostMethod post = new PostMethod("http://172.17.4.52:8080/open/ecm-invoice/search");
+    			post.setRequestHeader("Content-Type", "application/json;charse=UTF-8") ;
+    			post.setRequestHeader("Authorization", tokenId) ;
+        		post.setRequestBody(dataJson.toJSONString());
+        		httpClient.executeMethod(post);
+        		
+        		String respStr = post.getResponseBodyAsString();
+                post.releaseConnection();
+				JSONObject crso = JSONObject.parseObject(respStr);
+				JSONObject data = crso.getJSONObject("data");
+				com.alibaba.fastjson.JSONArray pageDataArray=data.getJSONArray("pageData");
+				
+				if(pageDataArray.size()>0){
+					JSONObject view = pageDataArray.getJSONObject(0);
+					if(view!=null){
+						String fileUrl = view.getString("fileUrl");
+						if(fileUrl!=null&&fileUrl!=""){
+//							给VIEWURL赋值
+							String viewUrl = new StringBuffer().append("http://172.17.4.52:8080").append(fileUrl).toString();
+							int i = 0 ;
+						}
+					}
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
-			JSONObject rso = JSONObject.parseObject(rs111);
-			String token =rso.getJSONObject("data").getString("token");
-			
-			if(token!=null&&token!=""){
-				String yzInfo=null;
-				try {
-					yzInfo = SHEManageHelper.getQJYZ(ctx,token);
-				} catch (Exception e) { 
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				JSONObject yzJson = JSONObject.parseObject(yzInfo);
-				com.alibaba.fastjson.JSONArray yzArray = yzJson.getJSONArray("data");
-				yzJson.getJSONObject("status");
-			}
 		}
-	
+		
+		
+		public static String SHA(final String strText) {
+			MessageDigest messageDigest;
+	        String encodeStr = "";
+			try {
+				messageDigest = MessageDigest.getInstance("SHA-256");
+	            messageDigest.update(strText.getBytes("UTF-8"));
+	            encodeStr = byte2Hex(messageDigest.digest());
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			return encodeStr;
+		}
+		private static String byte2Hex(byte[] bytes) {
+	        StringBuffer stringBuffer = new StringBuffer();
+	        String temp = null;
+	        for (int i = 0; i < bytes.length; i++) {
+	            temp = Integer.toHexString(bytes[i] & 0xFF);
+	            if (temp.length() == 1) {
+	                stringBuffer.append("0");
+	            }
+	            stringBuffer.append(temp);
+	        }
+	        return stringBuffer.toString();
+	    }
 
 }

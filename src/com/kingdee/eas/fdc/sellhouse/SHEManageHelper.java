@@ -3897,6 +3897,7 @@ public class SHEManageHelper {
 				payType=SHEPayTypeFactory.getRemoteInstance().getSHEPayTypeInfo(new ObjectUuidPK(payType.getId()),sic);
 				
 				BigDecimal addAmount=FDCHelper.ZERO;
+				BigDecimal subAmount=FDCHelper.ZERO;
 				BigDecimal oldAmount=FDCHelper.ZERO;
 				BigDecimal remain = contractTotalAmount==null?FDCHelper.ZERO:contractTotalAmount.setScale(digit, toIntegerType);
 				BigDecimal totalAmount= contractTotalAmount==null?FDCHelper.ZERO:contractTotalAmount.setScale(digit, toIntegerType);
@@ -3961,11 +3962,13 @@ public class SHEManageHelper {
 						if(moneyDefineType.equals(MoneyTypeEnum.LoanAmount)||moneyDefineType.equals(MoneyTypeEnum.AccFundAmount)){
 							if (oldAmount.compareTo(remain) > 0) {
 //								amount = remain;
+								subAmount=oldAmount.subtract(remain);
 								for(int j=toAddRowEntry.size()-1;j>0;j--){
 									TranPayListEntryInfo tranEntry=(TranPayListEntryInfo) toAddRowEntry.get(j);
 									MoneyTypeEnum type=tranEntry.getMoneyDefine().getMoneyType();
 									if(SHEManageHelper.isUnGoOnRoomMoneyType(type)){
-										tranEntry.setAppAmount(tranEntry.getAppAmount().subtract(oldAmount.subtract(remain)));
+										tranEntry.setAppAmount(tranEntry.getAppAmount().subtract(subAmount));
+										subAmount=FDCHelper.ZERO;
 									}
 								}
 								remain = FDCHelper.ZERO;
@@ -4561,17 +4564,25 @@ public class SHEManageHelper {
 		
 		PurchaseParam purParam = new PurchaseParam();
 		if(agioParam.getSpecialAgio()!=null){
-			AgioEntryCollection agios=new AgioEntryCollection();
-			AgioEntryInfo info=new SignAgioEntryInfo();
-			try {
-				SpecialDiscountEntryCollection col=SpecialDiscountEntryFactory.getRemoteInstance().getSpecialDiscountEntryCollection("select discountAfAmount from where parent.id='"+agioParam.getSpecialAgio().getId().toString()+"' and room.id='"+roomInfo.getId().toString()+"'");
-				if(col.size()>0){
-					info.setAmount(FDCHelper.subtract(standardAmount, col.get(0).getDiscountAfAmount()));
-					agios.add(info);
-					agioParam.setAgios(agios);
+			AgioEntryCollection agioCol=agioParam.getAgios();
+			boolean isHasAgio=false;
+			for(int i=0;i<agioCol.size();i++){
+				if(agioCol.get(i).getAgio()==null&&agioCol.get(i).getSeq()==0){
+					isHasAgio=true;
 				}
-			} catch (BOSException e) {
-				e.printStackTrace();
+			}
+			if(!isHasAgio){
+				AgioEntryInfo info=new SignAgioEntryInfo();
+				try {
+					SpecialDiscountEntryCollection col=SpecialDiscountEntryFactory.getRemoteInstance().getSpecialDiscountEntryCollection("select discountAfAmount from where parent.id='"+agioParam.getSpecialAgio().getId().toString()+"' and room.id='"+roomInfo.getId().toString()+"'");
+					if(col.size()>0){
+						info.setAmount(FDCHelper.subtract(standardAmount, col.get(0).getDiscountAfAmount()));
+						agioCol.add(info);
+						agioParam.setAgios(agioCol);
+					}
+				} catch (BOSException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		
@@ -5364,7 +5375,6 @@ public class SHEManageHelper {
 		String respStr = post.getResponseBodyAsString();
         post.releaseConnection();
         return respStr;
-           
 }
 	
 }

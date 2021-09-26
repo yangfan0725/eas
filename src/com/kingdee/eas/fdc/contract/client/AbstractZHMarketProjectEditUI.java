@@ -58,6 +58,7 @@ public abstract class AbstractZHMarketProjectEditUI extends com.kingdee.eas.fdc.
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contNw;
     protected com.kingdee.bos.ctrl.swing.KDLabel kDLabel1;
     protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsJT;
+    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsSub;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtNumber;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtName;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtOrgUnit;
@@ -132,6 +133,7 @@ public abstract class AbstractZHMarketProjectEditUI extends com.kingdee.eas.fdc.
         this.contNw = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.kDLabel1 = new com.kingdee.bos.ctrl.swing.KDLabel();
         this.cbIsJT = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.cbIsSub = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.txtNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtName = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.prmtOrgUnit = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
@@ -153,6 +155,7 @@ public abstract class AbstractZHMarketProjectEditUI extends com.kingdee.eas.fdc.
         this.contNw.setName("contNw");
         this.kDLabel1.setName("kDLabel1");
         this.cbIsJT.setName("cbIsJT");
+        this.cbIsSub.setName("cbIsSub");
         this.txtNumber.setName("txtNumber");
         this.txtName.setName("txtName");
         this.prmtOrgUnit.setName("prmtOrgUnit");
@@ -270,6 +273,18 @@ public abstract class AbstractZHMarketProjectEditUI extends com.kingdee.eas.fdc.
         this.kDLabel1.setText(resHelper.getString("kDLabel1.text"));
         // cbIsJT		
         this.cbIsJT.setText(resHelper.getString("cbIsJT.text"));
+        // cbIsSub		
+        this.cbIsSub.setText(resHelper.getString("cbIsSub.text"));
+        this.cbIsSub.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent e) {
+                try {
+                    cbIsSub_stateChanged(e);
+                } catch (Exception exc) {
+                    handUIException(exc);
+                } finally {
+                }
+            }
+        });
         // txtNumber
         // txtName		
         this.txtName.setRequired(true);
@@ -282,7 +297,7 @@ public abstract class AbstractZHMarketProjectEditUI extends com.kingdee.eas.fdc.
         this.txtAmount.setRequired(true);		
         this.txtAmount.setEnabled(false);
         // kdtEntry
-		String kdtEntryStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles /><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"bizDate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"0\" /><t:Column t:key=\"costAccount\" t:width=\"100\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"1\" /><t:Column t:key=\"amount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"2\" /><t:Column t:key=\"type\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"3\" /><t:Column t:key=\"description\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"supplier\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"sdAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"sdRemark\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"unit\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{bizDate}</t:Cell><t:Cell>$Resource{costAccount}</t:Cell><t:Cell>$Resource{amount}</t:Cell><t:Cell>$Resource{type}</t:Cell><t:Cell>$Resource{description}</t:Cell><t:Cell>$Resource{supplier}</t:Cell><t:Cell>$Resource{sdAmount}</t:Cell><t:Cell>$Resource{sdRemark}</t:Cell><t:Cell>$Resource{unit}</t:Cell></t:Row><t:Row t:name=\"header2\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{bizDate_Row2}</t:Cell><t:Cell>$Resource{costAccount_Row2}</t:Cell><t:Cell>$Resource{amount_Row2}</t:Cell><t:Cell>$Resource{type_Row2}</t:Cell><t:Cell>$Resource{description_Row2}</t:Cell><t:Cell>$Resource{supplier_Row2}</t:Cell><t:Cell>$Resource{sdAmount_Row2}</t:Cell><t:Cell>$Resource{sdRemark_Row2}</t:Cell><t:Cell>$Resource{unit_Row2}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head><t:Block t:top=\"0\" t:left=\"0\" t:bottom=\"1\" t:right=\"0\" /><t:Block t:top=\"0\" t:left=\"1\" t:bottom=\"0\" t:right=\"3\" /><t:Block t:top=\"0\" t:left=\"4\" t:bottom=\"1\" t:right=\"4\" /><t:Block t:top=\"0\" t:left=\"8\" t:bottom=\"1\" t:right=\"8\" /><t:Block t:top=\"0\" t:left=\"5\" t:bottom=\"0\" t:right=\"7\" /></t:Head></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
+		String kdtEntryStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles /><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"bizDate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"0\" /><t:Column t:key=\"marketProject\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"1\" /><t:Column t:key=\"costAccount\" t:width=\"100\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"2\" /><t:Column t:key=\"amount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"3\" /><t:Column t:key=\"type\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"4\" /><t:Column t:key=\"canAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"5\" /><t:Column t:key=\"description\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"6\" /><t:Column t:key=\"supplier\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"7\" /><t:Column t:key=\"sdAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"8\" /><t:Column t:key=\"sdRemark\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"9\" /><t:Column t:key=\"unit\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"10\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{bizDate}</t:Cell><t:Cell>$Resource{marketProject}</t:Cell><t:Cell>$Resource{costAccount}</t:Cell><t:Cell>$Resource{amount}</t:Cell><t:Cell>$Resource{type}</t:Cell><t:Cell>$Resource{canAmount}</t:Cell><t:Cell>$Resource{description}</t:Cell><t:Cell>$Resource{supplier}</t:Cell><t:Cell>$Resource{sdAmount}</t:Cell><t:Cell>$Resource{sdRemark}</t:Cell><t:Cell>$Resource{unit}</t:Cell></t:Row><t:Row t:name=\"header2\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{bizDate_Row2}</t:Cell><t:Cell>$Resource{marketProject_Row2}</t:Cell><t:Cell>$Resource{costAccount_Row2}</t:Cell><t:Cell>$Resource{amount_Row2}</t:Cell><t:Cell>$Resource{type_Row2}</t:Cell><t:Cell>$Resource{canAmount_Row2}</t:Cell><t:Cell>$Resource{description_Row2}</t:Cell><t:Cell>$Resource{supplier_Row2}</t:Cell><t:Cell>$Resource{sdAmount_Row2}</t:Cell><t:Cell>$Resource{sdRemark_Row2}</t:Cell><t:Cell>$Resource{unit_Row2}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head><t:Block t:top=\"0\" t:left=\"0\" t:bottom=\"1\" t:right=\"0\" /><t:Block t:top=\"0\" t:left=\"2\" t:bottom=\"0\" t:right=\"5\" /><t:Block t:top=\"0\" t:left=\"6\" t:bottom=\"1\" t:right=\"6\" /><t:Block t:top=\"0\" t:left=\"10\" t:bottom=\"1\" t:right=\"10\" /><t:Block t:top=\"0\" t:left=\"7\" t:bottom=\"0\" t:right=\"9\" /><t:Block t:top=\"0\" t:left=\"1\" t:bottom=\"1\" t:right=\"1\" /></t:Head></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
 		
         this.kdtEntry.setFormatXml(resHelper.translateString("kdtEntry",kdtEntryStrXML));
         this.kdtEntry.addKDTEditListener(new com.kingdee.bos.ctrl.kdf.table.event.KDTEditAdapter() {
@@ -295,7 +310,7 @@ public abstract class AbstractZHMarketProjectEditUI extends com.kingdee.eas.fdc.
             }
         });
 
-                this.kdtEntry.putBindContents("editData",new String[] {"bizDate","costAccount","amount","type","description","supplier","sdAmount","sdRemark","unit"});
+                this.kdtEntry.putBindContents("editData",new String[] {"bizDate","marketProject","costAccount","amount","type","","description","supplier","sdAmount","sdRemark","unit"});
 
 
         // tblAttachement
@@ -369,8 +384,10 @@ public abstract class AbstractZHMarketProjectEditUI extends com.kingdee.eas.fdc.
         this.add(contNw, new KDLayout.Constraints(704, 75, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         kDLabel1.setBounds(new Rectangle(704, 97, 294, 19));
         this.add(kDLabel1, new KDLayout.Constraints(704, 97, 294, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
-        cbIsJT.setBounds(new Rectangle(30, 45, 278, 19));
-        this.add(cbIsJT, new KDLayout.Constraints(30, 45, 278, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        cbIsJT.setBounds(new Rectangle(30, 67, 278, 19));
+        this.add(cbIsJT, new KDLayout.Constraints(30, 67, 278, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        cbIsSub.setBounds(new Rectangle(30, 45, 140, 19));
+        this.add(cbIsSub, new KDLayout.Constraints(30, 45, 140, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         //contNumber
         contNumber.setBoundEditor(txtNumber);
         //contName
@@ -567,6 +584,7 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
 	//Regiester control's property binding.
 	private void registerBindings(){
 		dataBinder.registerBinding("isJT", boolean.class, this.cbIsJT, "selected");
+		dataBinder.registerBinding("isSub", boolean.class, this.cbIsSub, "selected");
 		dataBinder.registerBinding("number", String.class, this.txtNumber, "text");
 		dataBinder.registerBinding("name", String.class, this.txtName, "text");
 		dataBinder.registerBinding("orgUnit", com.kingdee.eas.basedata.org.FullOrgUnitInfo.class, this.prmtOrgUnit, "data");
@@ -582,6 +600,7 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
 		dataBinder.registerBinding("entry.sdAmount", java.math.BigDecimal.class, this.kdtEntry, "sdAmount.text");
 		dataBinder.registerBinding("entry.sdRemark", String.class, this.kdtEntry, "sdRemark.text");
 		dataBinder.registerBinding("entry.unit", String.class, this.kdtEntry, "unit.text");
+		dataBinder.registerBinding("entry.marketProject", com.kingdee.eas.fdc.contract.MarketProjectInfo.class, this.kdtEntry, "marketProject.text");
 		dataBinder.registerBinding("sellProjecttxt", String.class, this.txtSellProject, "text");
 		dataBinder.registerBinding("nw", com.kingdee.eas.fdc.basedata.ContractTypeOrgTypeEnum.class, this.cbNw, "selectedItem");		
 	}
@@ -644,6 +663,7 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
 	protected void registerValidator() {
     	getValidateHelper().setCustomValidator( getValidator() );
 		getValidateHelper().registerBindProperty("isJT", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("isSub", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("number", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("name", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("orgUnit", ValidateHelper.ON_SAVE);    
@@ -659,6 +679,7 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
 		getValidateHelper().registerBindProperty("entry.sdAmount", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("entry.sdRemark", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("entry.unit", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("entry.marketProject", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("sellProjecttxt", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("nw", ValidateHelper.ON_SAVE);    		
 	}
@@ -676,6 +697,13 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
         } else if (STATUS_VIEW.equals(this.oprtState)) {
         } else if (STATUS_FINDVIEW.equals(this.oprtState)) {
         }
+    }
+
+    /**
+     * output cbIsSub_stateChanged method
+     */
+    protected void cbIsSub_stateChanged(javax.swing.event.ChangeEvent e) throws Exception
+    {
     }
 
     /**
@@ -704,6 +732,7 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
 			selectorAll = "true";
 		}
         sic.add(new SelectorItemInfo("isJT"));
+        sic.add(new SelectorItemInfo("isSub"));
         sic.add(new SelectorItemInfo("number"));
         sic.add(new SelectorItemInfo("name"));
 		if(selectorAll.equalsIgnoreCase("true"))
@@ -748,6 +777,15 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
     	sic.add(new SelectorItemInfo("entry.sdAmount"));
     	sic.add(new SelectorItemInfo("entry.sdRemark"));
     	sic.add(new SelectorItemInfo("entry.unit"));
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("entry.marketProject.*"));
+		}
+		else{
+	    	sic.add(new SelectorItemInfo("entry.marketProject.id"));
+			sic.add(new SelectorItemInfo("entry.marketProject.name"));
+        	sic.add(new SelectorItemInfo("entry.marketProject.number"));
+		}
         sic.add(new SelectorItemInfo("sellProjecttxt"));
         sic.add(new SelectorItemInfo("nw"));
         return sic;

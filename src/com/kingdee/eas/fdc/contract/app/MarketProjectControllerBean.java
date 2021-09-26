@@ -57,6 +57,7 @@ import com.kingdee.eas.fdc.contract.ContractWFTypeFactory;
 import com.kingdee.eas.fdc.contract.ContractWFTypeInfo;
 import com.kingdee.eas.fdc.contract.MarketProjectCollection;
 import com.kingdee.eas.fdc.contract.MarketProjectFactory;
+import com.kingdee.eas.fdc.contract.MarketProjectSourceEnum;
 import com.kingdee.bos.metadata.entity.SorterItemCollection;
 import com.kingdee.eas.framework.CoreBaseCollection;
 import com.kingdee.bos.metadata.entity.FilterInfo;
@@ -89,6 +90,9 @@ public class MarketProjectControllerBean extends AbstractMarketProjectController
 		if(info.getSourceFunction()!=null){
     		throw new EASBizException(new NumericExceptionSubItem("100","已存在OA流程，禁止删除！"));
     	}
+		if(MarketProjectSourceEnum.DSF.equals(info.getSource())){
+			throw new EASBizException(new NumericExceptionSubItem("100","第三方费用申请单生成立项，禁止删除！"));
+		}
 		super._delete(ctx, pk);
 	}
 
@@ -153,9 +157,6 @@ public class MarketProjectControllerBean extends AbstractMarketProjectController
 				json.put("docSubject", info.getName());
 
 				json.put("loginName", u.getNumber());
-				
-				FullOrgUnitInfo org=FullOrgUnitFactory.getLocalInstance(ctx).getFullOrgUnitInfo(new ObjectUuidPK(info.getOrgUnit().getId()));
-				json.put("fdCompanyName", org.getName());
 				
 				JSONObject obj = new JSONObject();
 				//最大费用科目类型 fd_cost_account 、最大费用科目金额 fd_amount、状态 fd_status 放 流程data 參數中

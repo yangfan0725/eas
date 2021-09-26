@@ -50,6 +50,7 @@ public abstract class AbstractMarketProjectReport1UI extends com.kingdee.eas.fra
     protected com.kingdee.bos.ctrl.swing.KDTreeView treeView;
     protected com.kingdee.bos.ctrl.kdf.table.KDTable tblMain;
     protected com.kingdee.bos.ctrl.swing.KDTree treeMain;
+    protected com.kingdee.bos.ctrl.swing.KDWorkButton btnToZHMP;
     /**
      * output class constructor
      */
@@ -72,10 +73,12 @@ public abstract class AbstractMarketProjectReport1UI extends com.kingdee.eas.fra
         this.treeView = new com.kingdee.bos.ctrl.swing.KDTreeView();
         this.tblMain = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.treeMain = new com.kingdee.bos.ctrl.swing.KDTree();
+        this.btnToZHMP = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.kDSplitPane1.setName("kDSplitPane1");
         this.treeView.setName("treeView");
         this.tblMain.setName("tblMain");
         this.treeMain.setName("treeMain");
+        this.btnToZHMP.setName("btnToZHMP");
         // CoreUI
         // kDSplitPane1		
         this.kDSplitPane1.setDividerLocation(200);
@@ -105,6 +108,20 @@ public abstract class AbstractMarketProjectReport1UI extends com.kingdee.eas.fra
                 } catch (Exception exc) {
                     handUIException(exc);
                 } finally {
+                }
+            }
+        });
+        // btnToZHMP		
+        this.btnToZHMP.setText(resHelper.getString("btnToZHMP.text"));
+        this.btnToZHMP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                beforeActionPerformed(e);
+                try {
+                    btnToZHMP_actionPerformed(e);
+                } catch (Exception exc) {
+                    handUIException(exc);
+                } finally {
+                    afterActionPerformed(e);
                 }
             }
         });
@@ -208,6 +225,7 @@ public abstract class AbstractMarketProjectReport1UI extends com.kingdee.eas.fra
         this.toolBar.add(btnPrintPreview);
         this.toolBar.add(separator2);
         this.toolBar.add(btnChart);
+        this.toolBar.add(btnToZHMP);
 
 
     }
@@ -295,6 +313,13 @@ public abstract class AbstractMarketProjectReport1UI extends com.kingdee.eas.fra
      * output treeMain_valueChanged method
      */
     protected void treeMain_valueChanged(javax.swing.event.TreeSelectionEvent e) throws Exception
+    {
+    }
+
+    /**
+     * output btnToZHMP_actionPerformed method
+     */
+    protected void btnToZHMP_actionPerformed(java.awt.event.ActionEvent e) throws Exception
     {
     }
 

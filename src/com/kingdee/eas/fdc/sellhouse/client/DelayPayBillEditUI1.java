@@ -501,6 +501,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 					this.prmtPayType.setValue(purCol.get(0).getPayType());
 					this.txtCustomerNames.setText(purCol.get(0).getCustomerNames());
 					this.pkPurDate.setValue(purCol.get(0).getBusAdscriptionDate());
+					this.pkSignDate.setValue(null);
 					if(isUpdateDate){
 						this.pkPlanSignDate.setValue(FDCDateHelper.addDays(purCol.get(0).getBusAdscriptionDate(), 3));
 					}

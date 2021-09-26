@@ -239,6 +239,7 @@ public abstract class AbstractPayRequestBillEditUI extends com.kingdee.eas.fdc.b
     protected ActionInvoiceALine actionInvoiceALine = null;
     protected ActionInvoiceILine actionInvoiceILine = null;
     protected ActionInvoiceRLine actionInvoiceRLine = null;
+    protected ActionMKFP actionMKFP = null;
     public final static String STATUS_CLOSE = "CLOSE";
     /**
      * output class constructor
@@ -391,6 +392,10 @@ public abstract class AbstractPayRequestBillEditUI extends com.kingdee.eas.fdc.b
         this.actionInvoiceRLine = new ActionInvoiceRLine(this);
         getActionManager().registerAction("actionInvoiceRLine", actionInvoiceRLine);
          this.actionInvoiceRLine.addService(new com.kingdee.eas.framework.client.service.PermissionService());
+        //actionMKFP
+        this.actionMKFP = new ActionMKFP(this);
+        getActionManager().registerAction("actionMKFP", actionMKFP);
+         this.actionMKFP.addService(new com.kingdee.eas.framework.client.service.PermissionService());
         this.kDScrollPane1 = new com.kingdee.bos.ctrl.swing.KDScrollPane();
         this.kDPanel1 = new com.kingdee.bos.ctrl.swing.KDPanel();
         this.contpaymentRequestBillNumber = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
@@ -1635,7 +1640,7 @@ public abstract class AbstractPayRequestBillEditUI extends com.kingdee.eas.fdc.b
         this.txtCompleteRate.setDataType(1);		
         this.txtCompleteRate.setEnabled(false);
         // kdtInvoiceEntry
-		String kdtInvoiceEntryStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol1\"><c:Protection locked=\"true\" /></c:Style><c:Style id=\"sCol2\"><c:Protection locked=\"true\" /></c:Style><c:Style id=\"sCol3\"><c:Protection locked=\"true\" /></c:Style><c:Style id=\"sCol4\"><c:Protection locked=\"true\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"invoiceNumber\" t:width=\"250\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"invoiceType\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol1\" /><t:Column t:key=\"bizDate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol2\" /><t:Column t:key=\"totalAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol3\" /><t:Column t:key=\"amount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol4\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{invoiceNumber}</t:Cell><t:Cell>$Resource{invoiceType}</t:Cell><t:Cell>$Resource{bizDate}</t:Cell><t:Cell>$Resource{totalAmount}</t:Cell><t:Cell>$Resource{amount}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
+		String kdtInvoiceEntryStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol1\"><c:Protection locked=\"true\" /></c:Style><c:Style id=\"sCol2\"><c:Protection locked=\"true\" /></c:Style><c:Style id=\"sCol3\"><c:Protection locked=\"true\" /></c:Style><c:Style id=\"sCol4\"><c:Protection locked=\"true\" /></c:Style><c:Style id=\"sCol6\"><c:Protection hidden=\"true\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"invoiceNumber\" t:width=\"150\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"invoiceTypeDesc\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol1\" /><t:Column t:key=\"issueDate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol2\" /><t:Column t:key=\"totalPriceAndTax\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol3\" /><t:Column t:key=\"specialVATTaxRate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol4\" /><t:Column t:key=\"totalTaxAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"fromMK\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol6\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{invoiceNumber}</t:Cell><t:Cell>$Resource{invoiceTypeDesc}</t:Cell><t:Cell>$Resource{issueDate}</t:Cell><t:Cell>$Resource{totalPriceAndTax}</t:Cell><t:Cell>$Resource{specialVATTaxRate}</t:Cell><t:Cell>$Resource{totalTaxAmount}</t:Cell><t:Cell>$Resource{fromMK}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
 		
         this.kdtInvoiceEntry.setFormatXml(resHelper.translateString("kdtInvoiceEntry",kdtInvoiceEntryStrXML));
         this.kdtInvoiceEntry.addKDTMouseListener(new com.kingdee.bos.ctrl.kdf.table.event.KDTMouseListener() {
@@ -1658,50 +1663,24 @@ public abstract class AbstractPayRequestBillEditUI extends com.kingdee.eas.fdc.b
             }
         });
 
-                this.kdtInvoiceEntry.putBindContents("editData",new String[] {"invoice","invoice.invoiceType","invoice.bizDate","invoice.totalAmount","invoice.totalRateAmount"});
+                this.kdtInvoiceEntry.putBindContents("editData",new String[] {"invoiceNumber","invoiceTypeDesc","issueDate","totalPriceAndTax","specialVATTaxRate","totalTaxAmount","fromMK"});
 
 
         this.kdtInvoiceEntry.checkParsed();
-        final KDBizPromptBox kdtInvoiceEntry_invoiceNumber_PromptBox = new KDBizPromptBox();
-        kdtInvoiceEntry_invoiceNumber_PromptBox.setQueryInfo("-");
-        kdtInvoiceEntry_invoiceNumber_PromptBox.setVisible(true);
-        kdtInvoiceEntry_invoiceNumber_PromptBox.setEditable(true);
-        kdtInvoiceEntry_invoiceNumber_PromptBox.setDisplayFormat("$number$");
-        kdtInvoiceEntry_invoiceNumber_PromptBox.setEditFormat("$number$");
-        kdtInvoiceEntry_invoiceNumber_PromptBox.setCommitFormat("$number$");
-        KDTDefaultCellEditor kdtInvoiceEntry_invoiceNumber_CellEditor = new KDTDefaultCellEditor(kdtInvoiceEntry_invoiceNumber_PromptBox);
-        this.kdtInvoiceEntry.getColumn("invoiceNumber").setEditor(kdtInvoiceEntry_invoiceNumber_CellEditor);
-        ObjectValueRender kdtInvoiceEntry_invoiceNumber_OVR = new ObjectValueRender();
-        kdtInvoiceEntry_invoiceNumber_OVR.setFormat(new BizDataFormat("$name$"));
-        this.kdtInvoiceEntry.getColumn("invoiceNumber").setRenderer(kdtInvoiceEntry_invoiceNumber_OVR);
-        KDComboBox kdtInvoiceEntry_invoiceType_ComboBox = new KDComboBox();
-        kdtInvoiceEntry_invoiceType_ComboBox.setName("kdtInvoiceEntry_invoiceType_ComboBox");
-        kdtInvoiceEntry_invoiceType_ComboBox.setVisible(true);
-        kdtInvoiceEntry_invoiceType_ComboBox.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.contract.app.InvoiceTypeEnum").toArray());
-        KDTDefaultCellEditor kdtInvoiceEntry_invoiceType_CellEditor = new KDTDefaultCellEditor(kdtInvoiceEntry_invoiceType_ComboBox);
-        this.kdtInvoiceEntry.getColumn("invoiceType").setEditor(kdtInvoiceEntry_invoiceType_CellEditor);
-        KDFormattedTextField kdtInvoiceEntry_totalAmount_TextField = new KDFormattedTextField();
-        kdtInvoiceEntry_totalAmount_TextField.setName("kdtInvoiceEntry_totalAmount_TextField");
-        kdtInvoiceEntry_totalAmount_TextField.setVisible(true);
-        kdtInvoiceEntry_totalAmount_TextField.setEditable(true);
-        kdtInvoiceEntry_totalAmount_TextField.setHorizontalAlignment(2);
-        kdtInvoiceEntry_totalAmount_TextField.setDataType(1);
-        	kdtInvoiceEntry_totalAmount_TextField.setMinimumValue(new java.math.BigDecimal("-999.9999999999"));
-        	kdtInvoiceEntry_totalAmount_TextField.setMaximumValue(new java.math.BigDecimal("999.9999999999"));
-        kdtInvoiceEntry_totalAmount_TextField.setPrecision(10);
-        KDTDefaultCellEditor kdtInvoiceEntry_totalAmount_CellEditor = new KDTDefaultCellEditor(kdtInvoiceEntry_totalAmount_TextField);
-        this.kdtInvoiceEntry.getColumn("totalAmount").setEditor(kdtInvoiceEntry_totalAmount_CellEditor);
-        KDFormattedTextField kdtInvoiceEntry_amount_TextField = new KDFormattedTextField();
-        kdtInvoiceEntry_amount_TextField.setName("kdtInvoiceEntry_amount_TextField");
-        kdtInvoiceEntry_amount_TextField.setVisible(true);
-        kdtInvoiceEntry_amount_TextField.setEditable(true);
-        kdtInvoiceEntry_amount_TextField.setHorizontalAlignment(2);
-        kdtInvoiceEntry_amount_TextField.setDataType(1);
-        	kdtInvoiceEntry_amount_TextField.setMinimumValue(new java.math.BigDecimal("-999.9999999999"));
-        	kdtInvoiceEntry_amount_TextField.setMaximumValue(new java.math.BigDecimal("999.9999999999"));
-        kdtInvoiceEntry_amount_TextField.setPrecision(10);
-        KDTDefaultCellEditor kdtInvoiceEntry_amount_CellEditor = new KDTDefaultCellEditor(kdtInvoiceEntry_amount_TextField);
-        this.kdtInvoiceEntry.getColumn("amount").setEditor(kdtInvoiceEntry_amount_CellEditor);
+        KDDatePicker kdtInvoiceEntry_issueDate_DatePicker = new KDDatePicker();
+        kdtInvoiceEntry_issueDate_DatePicker.setName("kdtInvoiceEntry_issueDate_DatePicker");
+        kdtInvoiceEntry_issueDate_DatePicker.setVisible(true);
+        kdtInvoiceEntry_issueDate_DatePicker.setEditable(true);
+        KDTDefaultCellEditor kdtInvoiceEntry_issueDate_CellEditor = new KDTDefaultCellEditor(kdtInvoiceEntry_issueDate_DatePicker);
+        this.kdtInvoiceEntry.getColumn("issueDate").setEditor(kdtInvoiceEntry_issueDate_CellEditor);
+        KDFormattedTextField kdtInvoiceEntry_fromMK_TextField = new KDFormattedTextField();
+        kdtInvoiceEntry_fromMK_TextField.setName("kdtInvoiceEntry_fromMK_TextField");
+        kdtInvoiceEntry_fromMK_TextField.setVisible(true);
+        kdtInvoiceEntry_fromMK_TextField.setEditable(true);
+        kdtInvoiceEntry_fromMK_TextField.setHorizontalAlignment(2);
+        kdtInvoiceEntry_fromMK_TextField.setDataType(0);
+        KDTDefaultCellEditor kdtInvoiceEntry_fromMK_CellEditor = new KDTDefaultCellEditor(kdtInvoiceEntry_fromMK_TextField);
+        this.kdtInvoiceEntry.getColumn("fromMK").setEditor(kdtInvoiceEntry_fromMK_CellEditor);
         // cmbAttachment
         // txtTaxerQua		
         this.txtTaxerQua.setEnabled(false);
@@ -2423,12 +2402,14 @@ contInvoiceEntry.getContentPane().setLayout(new BorderLayout(0, 0));        cont
 		dataBinder.registerBinding("process", String.class, this.txtProcess, "text");
 		dataBinder.registerBinding("rateAmount", java.math.BigDecimal.class, this.txtRateAmount, "value");
 		dataBinder.registerBinding("completePrjAmt", java.math.BigDecimal.class, this.txtcompletePrjAmt, "value");
-		dataBinder.registerBinding("invoiceEntry.invoice", com.kingdee.eas.fdc.contract.ContractInvoiceInfo.class, this.kdtInvoiceEntry, "invoiceNumber.text");
-		dataBinder.registerBinding("invoiceEntry.invoice.invoiceType", com.kingdee.eas.fdc.contract.app.InvoiceTypeEnum.class, this.kdtInvoiceEntry, "invoiceType.text");
-		dataBinder.registerBinding("invoiceEntry.invoice.bizDate", java.util.Date.class, this.kdtInvoiceEntry, "bizDate.text");
-		dataBinder.registerBinding("invoiceEntry.invoice.totalAmount", java.math.BigDecimal.class, this.kdtInvoiceEntry, "totalAmount.text");
 		dataBinder.registerBinding("invoiceEntry", com.kingdee.eas.fdc.contract.PayReqInvoiceEntryInfo.class, this.kdtInvoiceEntry, "userObject");
-		dataBinder.registerBinding("invoiceEntry.invoice.totalRateAmount", java.math.BigDecimal.class, this.kdtInvoiceEntry, "amount.text");
+		dataBinder.registerBinding("invoiceEntry.invoiceNumber", String.class, this.kdtInvoiceEntry, "invoiceNumber.text");
+		dataBinder.registerBinding("invoiceEntry.invoiceTypeDesc", String.class, this.kdtInvoiceEntry, "invoiceTypeDesc.text");
+		dataBinder.registerBinding("invoiceEntry.issueDate", String.class, this.kdtInvoiceEntry, "issueDate.text");
+		dataBinder.registerBinding("invoiceEntry.totalPriceAndTax", String.class, this.kdtInvoiceEntry, "totalPriceAndTax.text");
+		dataBinder.registerBinding("invoiceEntry.totalTaxAmount", String.class, this.kdtInvoiceEntry, "totalTaxAmount.text");
+		dataBinder.registerBinding("invoiceEntry.specialVATTaxRate", String.class, this.kdtInvoiceEntry, "specialVATTaxRate.text");
+		dataBinder.registerBinding("invoiceEntry.fromMK", int.class, this.kdtInvoiceEntry, "fromMK.text");
 		dataBinder.registerBinding("appAmount", java.math.BigDecimal.class, this.txtAppAmount, "value");
 		dataBinder.registerBinding("lxNum", com.kingdee.eas.fdc.contract.BankNumInfo.class, this.prmtLxNum, "data");		
 	}
@@ -2622,12 +2603,14 @@ contInvoiceEntry.getContentPane().setLayout(new BorderLayout(0, 0));        cont
 		getValidateHelper().registerBindProperty("process", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("rateAmount", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("completePrjAmt", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("invoiceEntry.invoice", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("invoiceEntry.invoice.invoiceType", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("invoiceEntry.invoice.bizDate", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("invoiceEntry.invoice.totalAmount", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("invoiceEntry", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("invoiceEntry.invoice.totalRateAmount", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("invoiceEntry.invoiceNumber", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("invoiceEntry.invoiceTypeDesc", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("invoiceEntry.issueDate", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("invoiceEntry.totalPriceAndTax", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("invoiceEntry.totalTaxAmount", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("invoiceEntry.specialVATTaxRate", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("invoiceEntry.fromMK", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("appAmount", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("lxNum", ValidateHelper.ON_SAVE);    		
 	}
@@ -3211,23 +3194,17 @@ contInvoiceEntry.getContentPane().setLayout(new BorderLayout(0, 0));        cont
         sic.add(new SelectorItemInfo("completePrjAmt"));
 		if(selectorAll.equalsIgnoreCase("true"))
 		{
-			sic.add(new SelectorItemInfo("invoiceEntry.invoice.*"));
-		}
-		else{
-	    	sic.add(new SelectorItemInfo("invoiceEntry.invoice.id"));
-			sic.add(new SelectorItemInfo("invoiceEntry.invoice.name"));
-        	sic.add(new SelectorItemInfo("invoiceEntry.invoice.number"));
-		}
-    	sic.add(new SelectorItemInfo("invoiceEntry.invoice.invoiceType"));
-    	sic.add(new SelectorItemInfo("invoiceEntry.invoice.bizDate"));
-    	sic.add(new SelectorItemInfo("invoiceEntry.invoice.totalAmount"));
-		if(selectorAll.equalsIgnoreCase("true"))
-		{
 			sic.add(new SelectorItemInfo("invoiceEntry.*"));
 		}
 		else{
 		}
-    	sic.add(new SelectorItemInfo("invoiceEntry.invoice.totalRateAmount"));
+    	sic.add(new SelectorItemInfo("invoiceEntry.invoiceNumber"));
+    	sic.add(new SelectorItemInfo("invoiceEntry.invoiceTypeDesc"));
+    	sic.add(new SelectorItemInfo("invoiceEntry.issueDate"));
+    	sic.add(new SelectorItemInfo("invoiceEntry.totalPriceAndTax"));
+    	sic.add(new SelectorItemInfo("invoiceEntry.totalTaxAmount"));
+    	sic.add(new SelectorItemInfo("invoiceEntry.specialVATTaxRate"));
+    	sic.add(new SelectorItemInfo("invoiceEntry.fromMK"));
         sic.add(new SelectorItemInfo("appAmount"));
 		if(selectorAll.equalsIgnoreCase("true"))
 		{
@@ -3434,6 +3411,14 @@ contInvoiceEntry.getContentPane().setLayout(new BorderLayout(0, 0));        cont
      * output actionInvoiceRLine_actionPerformed method
      */
     public void actionInvoiceRLine_actionPerformed(ActionEvent e) throws Exception
+    {
+    }
+    	
+
+    /**
+     * output actionMKFP_actionPerformed method
+     */
+    public void actionMKFP_actionPerformed(ActionEvent e) throws Exception
     {
     }
 	public RequestContext prepareActionSubmit(IItemAction itemAction) throws Exception {
@@ -3698,6 +3683,17 @@ contInvoiceEntry.getContentPane().setLayout(new BorderLayout(0, 0));        cont
     }
 	
 	public boolean isPrepareActionInvoiceRLine() {
+    	return false;
+    }
+	public RequestContext prepareActionMKFP(IItemAction itemAction) throws Exception {
+			RequestContext request = new RequestContext();		
+		if (request != null) {
+    		request.setClassName(getUIHandlerClassName());
+		}
+		return request;
+    }
+	
+	public boolean isPrepareActionMKFP() {
     	return false;
     }
 
@@ -4303,6 +4299,36 @@ contInvoiceEntry.getContentPane().setLayout(new BorderLayout(0, 0));        cont
         {
         	getUIContext().put("ORG.PK", getOrgPK(this));
             innerActionPerformed("eas", AbstractPayRequestBillEditUI.this, "ActionInvoiceRLine", "actionInvoiceRLine_actionPerformed", e);
+        }
+    }
+
+    /**
+     * output ActionMKFP class
+     */     
+    protected class ActionMKFP extends ItemAction {     
+    
+        public ActionMKFP()
+        {
+            this(null);
+        }
+
+        public ActionMKFP(IUIObject uiObject)
+        {     
+		super(uiObject);     
+        
+            String _tempStr = null;
+            _tempStr = resHelper.getString("ActionMKFP.SHORT_DESCRIPTION");
+            this.putValue(ItemAction.SHORT_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionMKFP.LONG_DESCRIPTION");
+            this.putValue(ItemAction.LONG_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionMKFP.NAME");
+            this.putValue(ItemAction.NAME, _tempStr);
+        }
+
+        public void actionPerformed(ActionEvent e)
+        {
+        	getUIContext().put("ORG.PK", getOrgPK(this));
+            innerActionPerformed("eas", AbstractPayRequestBillEditUI.this, "ActionMKFP", "actionMKFP_actionPerformed", e);
         }
     }
 

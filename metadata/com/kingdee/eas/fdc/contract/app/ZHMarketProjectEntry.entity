@@ -824,6 +824,20 @@
                 <key name="name" value="FBjRemark" />
             </mappingField>
         </ownProperty>
+        <linkProperty>
+            <name>marketProject</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ZHMarketProjectEntry].properties.linkProperty[marketProject].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ZHMarketProjectEntry].properties.linkProperty[marketProject].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <mappingField>
+                <key name="name" value="FMarketProjectId" />
+            </mappingField>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="R_ZHMarketProjectEntry_MarketProject_marketProject" />
+            </relationship>
+        </linkProperty>
     </properties>
     <logicalKey>
         <name>id</name>
@@ -1269,6 +1283,18 @@
             <lang locale="zh_CN" value="头" />
             <lang locale="zh_HK" value="頭" />
             <lang locale="zh_TW" value="頭" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ZHMarketProjectEntry].properties.linkProperty[marketProject].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="营销立项" />
+            <lang locale="zh_HK" value="營銷立項" />
+            <lang locale="zh_TW" value="營銷立項" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ZHMarketProjectEntry].properties.linkProperty[marketProject].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="营销立项" />
+            <lang locale="zh_HK" value="營銷立項" />
+            <lang locale="zh_TW" value="營銷立項" />
         </rs>
         <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ZHMarketProjectEntry].properties.linkProperty[supplier].alias">
             <lang locale="en_US" value="null" />

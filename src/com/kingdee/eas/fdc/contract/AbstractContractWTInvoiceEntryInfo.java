@@ -42,15 +42,13 @@ public class AbstractContractWTInvoiceEntryInfo extends com.kingdee.eas.framewor
     /**
      * Object:发票管理分录's 发票类型property 
      */
-    public com.kingdee.eas.fdc.contract.app.WTInvoiceTypeEnum getInvoiceType()
+    public String getInvoiceType()
     {
-        return com.kingdee.eas.fdc.contract.app.WTInvoiceTypeEnum.getEnum(getString("invoiceType"));
+        return getString("invoiceType");
     }
-    public void setInvoiceType(com.kingdee.eas.fdc.contract.app.WTInvoiceTypeEnum item)
+    public void setInvoiceType(String item)
     {
-		if (item != null) {
-        setString("invoiceType", item.getValue());
-		}
+        setString("invoiceType", item);
     }
     /**
      * Object:发票管理分录's 开票日期property 
@@ -106,6 +104,39 @@ public class AbstractContractWTInvoiceEntryInfo extends com.kingdee.eas.framewor
     public void setIsValid(boolean item)
     {
         setBoolean("isValid", item);
+    }
+    /**
+     * Object:发票管理分录's 每刻锁定property 
+     */
+    public int getIsMKUsed()
+    {
+        return getInt("isMKUsed");
+    }
+    public void setIsMKUsed(int item)
+    {
+        setInt("isMKUsed", item);
+    }
+    /**
+     * Object:发票管理分录's 每刻发票链接property 
+     */
+    public String getViewLink()
+    {
+        return getString("viewLink");
+    }
+    public void setViewLink(String item)
+    {
+        setString("viewLink", item);
+    }
+    /**
+     * Object:发票管理分录's 是否来自每刻property 
+     */
+    public int getFromMk()
+    {
+        return getInt("fromMk");
+    }
+    public void setFromMk(int item)
+    {
+        setInt("fromMk", item);
     }
     public BOSObjectType getBOSType()
     {
