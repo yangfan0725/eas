@@ -385,14 +385,7 @@ public class ContractBillControllerBean extends
 				
 				JSONObject obj = new JSONObject();
 				if(info.getMpCostAccount()!=null&&info.getMarketProject()!=null){
-					CostAccountInfo ca=CostAccountFactory.getLocalInstance(ctx).getCostAccountInfo(new ObjectUuidPK(info.getMpCostAccount().getId()));
-					MarketProjectInfo market=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectInfo(new ObjectUuidPK(info.getMarketProject().getId()));
-					if(ca.getYjType()!=null&&ca.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
-						int day=FDCDateHelper.getDiffDays(market.getAuditTime(), new Date());
-						if(day>7){
-							obj.put("fd_timeout", "ÊÇ");
-						}
-					}
+					obj.put("fd_timeout", info.getIsTimeOut());
 				}
 				if(info.getContractWFType()!=null){
 					ContractWFTypeInfo wt=ContractWFTypeFactory.getLocalInstance(ctx).getContractWFTypeInfo(new ObjectUuidPK(info.getContractWFType().getId()));

@@ -1265,6 +1265,17 @@ public class AbstractContractBillInfo extends com.kingdee.eas.fdc.basedata.FDCBi
     {
         setDate("jzEndDate", item);
     }
+    /**
+     * Object:合同单据's 是否超时property 
+     */
+    public String getIsTimeOut()
+    {
+        return getString("isTimeOut");
+    }
+    public void setIsTimeOut(String item)
+    {
+        setString("isTimeOut", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("0D6DD1F4");

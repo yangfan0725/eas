@@ -116,12 +116,12 @@ public class MarketProjectFKReportFacadeControllerBean extends AbstractMarketPro
     	
 //    	年度合同
     	sb.append(" left join(select t.fcostAccountid,sum(t.famount) amount from (");
-    	sb.append(" select con.FMpCostAccountId fcostAccountid,(case when t.fsettleprice is null then entry.famount else t.fsettleprice*entry.frate/100 end)famount from");
-    	sb.append(" t_con_contractbill con left join  T_CON_ContractMarketEntry entry  on con.fid=entry.fheadid left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=con.fid left join T_CON_MarketProject mp on mp.fid=con.fmarketProjectId");
+    	sb.append(" select con.fid,con.FMpCostAccountId fcostAccountid,con.famount from");
+    	sb.append(" t_con_contractbill con left join  T_CON_ContractMarketEntry entry  on con.fid=entry.fheadid ");
 //    	sb.append(" and year(mp.fbizDate)="+fromYear);   	
-    	sb.append(" where con.fstate='4AUDITTED' and year(entry.fdate)="+fromYear);   	
-    	sb.append(" union all select mpEntry.fcostAccountid,mpEntry.famount from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid");
-    	sb.append(" where mp.fstate!='1SAVED' and year(mp.fbizDate)="+fromYear);
+    	sb.append(" where con.fstate='4AUDITTED' and year(entry.fdate)="+fromYear+" group by con.fid,con.FMpCostAccountId,con.famount");   	
+    	sb.append(" union all select mpEntry.fid,mpEntry.fcostAccountid,mpEntry.famount from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid");
+    	sb.append(" where mpEntry.ftype in('NOTEXTCONTRACT','JZ') and mp.fstate!='1SAVED' and year(mp.fbizDate)="+fromYear);
     	sb.append(" and not exists(select t1.fid from t_con_contractBill t1 where t1.fstate='4AUDITTED' and t1.FMarketProjectId=mp.fid and t1.FMpCostAccountId=mpEntry.fcostAccountid) ");
 //    	sb.append(" and exists(select t.fid from T_CON_ContractWithoutText t where t.fstate!='1SAVED' and t.FMarketProjectId=mp.fid and t.FMpCostAccountId=mpEntry.fcostAccountid) ");
 //    	sb.append(" union all select mpEntry.fcostAccountid,mpEntry.famount from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid where mp.fstate!='1SAVED'");
@@ -136,10 +136,10 @@ public class MarketProjectFKReportFacadeControllerBean extends AbstractMarketPro
 //    	sb.append(" t_con_contractbill con left join T_CON_ContractMarketEntry entry   on con.fid=entry.fheadid left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=con.fid left join T_CON_MarketProject mp on mp.fid=con.fmarketProjectId where con.fstate='4AUDITTED'");
 //    	sb.append(" month(entry.fdate)="+month);   	
 //    	sb.append(" union all select mpEntry.fcostAccountid,mpEntry.famount from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid where mp.fstate!='1SAVED'");
-//    	sb.append(" month(mp.FBookedDate)="+month);  
+//    	sb.append(" month(mp.fbizDate)="+month);  
 //    	sb.append(" and  exists(select t.fid from T_CON_ContractWithoutText t where t.fstate!='1SAVED' and t.FMarketProjectId=mp.fid and t.FMpCostAccountId=mpEntry.fcostAccountid) ");
 //    	sb.append(" union all select mpEntry.fcostAccountid,mpEntry.famount from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid where mp.fstate!='1SAVED'");
-//    	sb.append(" and month(mp.FBookedDate)="+month);  
+//    	sb.append(" and month(mp.fbizDate)="+month);  
 //    	sb.append(" and mp.fisSub=1 ");
 //    	sb.append(" )t group by t.fcostAccountid) t8 on t8.fcostAccountid=entry.fcostAccountId");
     	 
@@ -179,11 +179,11 @@ public class MarketProjectFKReportFacadeControllerBean extends AbstractMarketPro
     	sb.append(" T_CON_ContractMarketEntry entry left join  t_con_contractbill con  on con.fid=entry.fheadid left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=con.fid left join T_CON_MarketProject mp on mp.fid=con.fmarketProjectId ");
     	sb.append(" where con.fstate='4AUDITTED' and year(entry.fdate)="+fromYear+" and month(entry.fdate) between "+fromMonth+" and "+toMonth);   	
     	sb.append(" union all select mpEntry.fcostAccountid,mpEntry.famount from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid ");
-    	sb.append(" where mp.fstate!='1SAVED' and year(mp.FBookedDate)="+fromYear+" and month(mp.FBookedDate) between "+fromMonth+" and "+toMonth); 
+    	sb.append(" where mp.fstate!='1SAVED' and year(mp.fbizDate)="+fromYear+" and month(mp.fbizDate) between "+fromMonth+" and "+toMonth); 
     	sb.append(" and not exists(select t1.fid from t_con_contractBill t1 where t1.fstate='4AUDITTED' and t1.FMarketProjectId=mp.fid and t1.FMpCostAccountId=mpEntry.fcostAccountid) ");
 //    	sb.append(" and exists(select t.fid from T_CON_ContractWithoutText t where t.fstate!='1SAVED' and t.FMarketProjectId=mp.fid and t.FMpCostAccountId=mpEntry.fcostAccountid) ");
 //    	sb.append(" union all select mpEntry.fcostAccountid,mpEntry.famount from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid where mp.fstate!='1SAVED'");
-//    	sb.append(" and year(mp.FBookedDate)="+fromYear+" and year(mp.FBookedDate) between "+fromMonth+" and "+toMonth); 
+//    	sb.append(" and year(mp.fbizDate)="+fromYear+" and year(mp.fbizDate) between "+fromMonth+" and "+toMonth); 
 //    	sb.append(" and mp.fisSub=1 ");
     	sb.append(" )t group by t.fcostAccountid) t11 on t11.fcostAccountid=entry.fcostAccountId");
     	
@@ -207,11 +207,11 @@ public class MarketProjectFKReportFacadeControllerBean extends AbstractMarketPro
     	sb.append(" t_con_contractbill con left join T_CON_ContractMarketEntry entry  on con.fid=entry.fheadid left join (select sb.fsettleprice,sb.fcontractbillid from T_CON_ContractSettlementBill sb where sb.fstate='4AUDITTED') t on t.fcontractbillid=con.fid ");
     	sb.append(" where con.fstate='4AUDITTED' and year(entry.fdate)="+fromYear+" and month(entry.fdate)="+month);   	
     	sb.append(" union all select mpEntry.fcostAccountid,mpEntry.famount from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid");
-    	sb.append(" where mp.fstate!='1SAVED' and year(mp.FBookedDate)="+fromYear+" and month(mp.FBookedDate)="+month);  
+    	sb.append(" where mp.fstate!='1SAVED' and year(mp.fbizDate)="+fromYear+" and month(mp.fbizDate)="+month);  
     	sb.append(" and not exists(select t1.fid from t_con_contractBill t1 where t1.fstate='4AUDITTED' and t1.FMarketProjectId=mp.fid and t1.FMpCostAccountId=mpEntry.fcostAccountid) ");
 //    	sb.append(" and not exists(select t.fid from T_CON_ContractWithoutText t where t.fstate='4AUDITTED' and t.FMarketProjectId=mp.fid and t.FMpCostAccountId=mpEntry.fcostAccountid) ");
 //    	sb.append(" union all select mpEntry.fcostAccountid,mpEntry.famount from T_CON_MarketProjectCostEntry mpEntry left join T_CON_MarketProject mp on mp.fid=mpEntry.fheadid where mp.fstate!='1SAVED'");
-//    	sb.append(" and year(mp.FBookedDate)="+fromYear+" and month(mp.FBookedDate)="+month);  
+//    	sb.append(" and year(mp.fbizDate)="+fromYear+" and month(mp.fbizDate)="+month);  
 //    	sb.append(" and mp.fisSub=1 ");
     	sb.append(" )t group by t.fcostAccountid) t8 on t8.fcostAccountid=entry.fcostAccountId");
     	

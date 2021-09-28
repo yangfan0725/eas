@@ -1932,10 +1932,6 @@ public class ContractWithoutTextEditUI extends
 		this.storeFields();
 		this.verifyInputForSubmint();
 		
-		for(int i=0;i<this.tblMarket.getRowCount();i++){
-			IRow row=this.tblMarket.getRow(i);
-			row.getCell("date").setValue(new Date());
-		}
 		UserInfo u=SysContext.getSysContext().getCurrentUserInfo();
 		CurProjectInfo project=CurProjectFactory.getRemoteInstance().getCurProjectInfo(new ObjectUuidPK(this.editData.getCurProject().getId()));
 		if(project.isIsOA()&&u.getPerson()!=null&&!isBillInWorkflow(this.editData.getId().toString())){
@@ -1978,6 +1974,30 @@ public class ContractWithoutTextEditUI extends
 		// 提交前反写所关联的框架合约“是否引用”字段
 		updateProgrammingContract(this.editData.getProgrammingContract(),0);
 		
+		if(this.prmtMpCostAccount.getValue()!=null&&this.prmtMarketProject.getValue()!=null&&FDCHelper.isEmpty(this.editData.getIsTimeOut())){
+			CostAccountInfo info=CostAccountFactory.getRemoteInstance().getCostAccountInfo(new ObjectUuidPK(((CostAccountInfo)this.prmtMpCostAccount.getValue()).getId()));
+			MarketProjectInfo market=MarketProjectFactory.getRemoteInstance().getMarketProjectInfo(new ObjectUuidPK(((MarketProjectInfo)this.prmtMarketProject.getValue()).getId()));
+			if(info.getYjType()!=null&&info.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
+				
+				Calendar cal = new GregorianCalendar();
+				cal.setTime(FDCDateHelper.getNextMonth(market.getAuditTime()));
+				cal.set(5, 15);
+				
+				int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
+				if(day>1){
+					FDCMsgBox.showInfo(this,"合同流程必须在立项审批通过后2天内发起；除第三方佣金外的无文本立项，必须在次月15日之前发起无文本合同流程，超时发起流程将按照《宋都集团营销费用管理制度》规定，对责任人进行扣罚。");
+					this.editData.setIsTimeOut("是");
+				}else{
+					this.editData.setIsTimeOut("否");
+				}
+			}else{
+				this.editData.setIsTimeOut("否");
+			}
+		}
+		for(int i=0;i<this.tblMarket.getRowCount();i++){
+			IRow row=this.tblMarket.getRow(i);
+			row.getCell("date").setValue(new Date());
+		}
 		super.actionSubmit_actionPerformed(e);
 		modify=false;
 		// 提交后反写写所关联的框架合约状态
@@ -2365,6 +2385,7 @@ public class ContractWithoutTextEditUI extends
 		selectorItemCollection.add("sourceFunction");
 		selectorItemCollection.add("oaPosition");
 		selectorItemCollection.add("oaOpinion");
+		selectorItemCollection.add("isTimeOut");
 		return selectorItemCollection;
 	}
 	   
@@ -3175,21 +3196,6 @@ public class ContractWithoutTextEditUI extends
 			if(FDCHelper.add(comAmount, this.txtamount.getBigDecimalValue()).compareTo(subAmount)>0){
 				FDCMsgBox.showWarning(this,"合同金额超出立项剩余金额！");
 				SysUtil.abort();
-			}
-		}
-		if(this.prmtMpCostAccount.getValue()!=null&&this.prmtMarketProject.getValue()!=null){
-			CostAccountInfo info=CostAccountFactory.getRemoteInstance().getCostAccountInfo(new ObjectUuidPK(((CostAccountInfo)this.prmtMpCostAccount.getValue()).getId()));
-			MarketProjectInfo market=MarketProjectFactory.getRemoteInstance().getMarketProjectInfo(new ObjectUuidPK(((MarketProjectInfo)this.prmtMarketProject.getValue()).getId()));
-			if(info.getYjType()!=null&&info.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
-				
-				Calendar cal = new GregorianCalendar();
-				cal.setTime(FDCDateHelper.getNextMonth(market.getAuditTime()));
-				cal.set(5, 15);
-				
-				int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
-				if(day>1){
-					FDCMsgBox.showInfo(this,"合同流程必须在立项审批通过后7天内发起；除第三方佣金外的无文本立项，必须在次月15日之前发起无文本合同流程，超时发起流程将按照《宋都集团营销费用管理制度》规定，对责任人进行扣罚。");
-				}
 			}
 		}
 		super.verifyInputForSubmint();

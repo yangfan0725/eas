@@ -213,7 +213,7 @@ public class MarketProjectReport1UI extends AbstractMarketProjectReport1UI
     			
     			for(int i=0;i<tblMain.getRowCount();i++){
     				tblMain.getRow(i).getCell("isSelect").setValue(Boolean.FALSE);
-    				if(tblMain.getRow(i).getCell("type").getValue()!=null&&tblMain.getRow(i).getCell("type").getValue().toString().equals("合同")){
+    				if(tblMain.getRow(i).getCell("type").getValue()!=null&&(tblMain.getRow(i).getCell("type").getValue().toString().equals("合同")||tblMain.getRow(i).getCell("type").getValue().toString().equals("记账单"))){
     					tblMain.getRow(i).getCell("isSelect").getStyleAttributes().setLocked(true);
     				}
     				if(tblMain.getRow(i).getCell("subAmount").getValue()!=null&&((BigDecimal)tblMain.getRow(i).getCell("subAmount").getValue()).compareTo(FDCHelper.ZERO)<=0){
@@ -253,6 +253,7 @@ public class MarketProjectReport1UI extends AbstractMarketProjectReport1UI
     	    	tblMain.getColumn("type").setGroup(true);
     	    	tblMain.getColumn("conHasSettled").setGroup(true);
     	    	tblMain.getColumn("conAuditTime").setGroup(true);
+    	    	tblMain.getColumn("isTimeOut").setGroup(true);
     	    	tblMain.getColumn("conNumber").setGroup(true);
     	    	tblMain.getColumn("conName").setGroup(true);
     	    	tblMain.getColumn("conPartB").setGroup(true);

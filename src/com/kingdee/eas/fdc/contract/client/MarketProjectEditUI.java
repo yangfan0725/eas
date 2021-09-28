@@ -325,10 +325,8 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 		btnAttachment.setText("附件管理");
 		btnAttachment.setSize(new Dimension(140, 19));
 		
-		
-		kDTextArea1.setText("无文本立项成本科目选择说明：\n" 
-				+ "  1、事项明确的无文本立项，成本科目选择实际发生的费用科目；\n"
-				+ "  2、事项不明确的无文本立项，成本科目选择二级科目下的“其他费用”科目；\n");
+		kDTextArea1.setText( "  1、 合同必须于立项审批通过后2天内发起流程；无文本费用报销必须于立项审批通过后次月 15日前发起报销流程；后补立项必须在请示后2天内发起；\n"
+				+ "  2、 超时签订合同或超时无文本费用报销或超时后补立项的，城市/项目营销负责人乐捐100元/笔，流程发起/报销人乐捐300 元/笔；\n");
 		kDTextArea1.setEnabled(false);
 		
 		this.txtDescription.setRequired(true);

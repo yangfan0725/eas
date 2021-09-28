@@ -619,6 +619,17 @@ public class AbstractContractWithoutTextInfo extends com.kingdee.eas.fdc.basedat
     {
         setString("oaOpinion", item);
     }
+    /**
+     * Object:无文本合同's 是否超时property 
+     */
+    public String getIsTimeOut()
+    {
+        return getString("isTimeOut");
+    }
+    public void setIsTimeOut(String item)
+    {
+        setString("isTimeOut", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("3D9A5388");

@@ -417,18 +417,7 @@ public class ContractWithoutTextControllerBean extends
 				
 				JSONObject obj = new JSONObject();
 				if(info.getMpCostAccount()!=null&&info.getMarketProject()!=null){
-					CostAccountInfo ca=CostAccountFactory.getLocalInstance(ctx).getCostAccountInfo(new ObjectUuidPK(info.getMpCostAccount().getId()));
-					MarketProjectInfo market=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectInfo(new ObjectUuidPK(info.getMarketProject().getId()));
-					if(ca.getYjType()!=null&&ca.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
-						Calendar cal = new GregorianCalendar();
-						cal.setTime(FDCDateHelper.getNextMonth(market.getAuditTime()));
-						cal.set(5, 15);
-						
-						int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
-						if(day>1){
-							obj.put("fd_timeout", "ÊÇ");
-						}
-					}
+					obj.put("fd_timeout", info.getIsTimeOut());
 				}
 				if(info.getPayContentType()!=null){
 					PayContentTypeInfo pct=PayContentTypeFactory.getLocalInstance(ctx).getPayContentTypeInfo(new ObjectUuidPK(info.getPayContentType().getId()));

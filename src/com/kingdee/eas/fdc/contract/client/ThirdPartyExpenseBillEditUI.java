@@ -575,9 +575,9 @@ public class ThirdPartyExpenseBillEditUI extends AbstractThirdPartyExpenseBillEd
 		StringBuilder sql = new StringBuilder();
 		sql.append(" /*dialect*/ select sign.fid signManageId,sign.fbizState bizType,r.fname_l2 room,sign.fcustomerNames customer,pur.FBusAdscriptionDate purDate, ");
 		sql.append(" sign.FBusAdscriptionDate signDate,sign.FBulidingArea buildingArea,sign.FDealTotalAmount dealTotalAmount,saleMan.fname_l2 saleMan,sign.CFRecommended recommended,sign.fqdPerson qdPerson,sign.FSaleManNames nowSaleMan ");
-		sql.append(" from t_she_signManage sign left join t_she_room r on sign.froomid=r.fid left join t_she_purchaseManage pur on sign.fsourcebillid=pur.fid ");
+		sql.append(" from t_she_signManage sign left join t_she_room r on sign.froomid=r.fid left join t_she_purchaseManage pur on sign.fsrcId=pur.fid ");
 		sql.append(" left join t_pm_user saleMan on saleMan.fid=sign.FSalesmanID");
-		sql.append(" where sign.CFRecommended is not null and sign.fsourceFunction is null and sign.fbizState='SignAudit' and sign.fsellProjectId='"+this.editData.getSellProject().getId().toString()+"' ");
+		sql.append(" where sign.FBusAdscriptionDate>=to_date('2021-10-01 00:00:00','yyyy-mm-dd hh24:mi:ss') and sign.CFRecommended is not null and sign.fsourceFunction is null and sign.fbizState='SignAudit' and sign.fsellProjectId='"+this.editData.getSellProject().getId().toString()+"' ");
 		sql.append(" and NOT EXISTS (select t.fsignManageId from T_CON_TPartyExpenseBillEntry t where t.fheadid!='"+this.editData.getId().toString()+"' and t.fsignManageId=sign.fid )");
 		FDCSQLBuilder _builder = new FDCSQLBuilder();
 		_builder.appendSql(sql.toString());
