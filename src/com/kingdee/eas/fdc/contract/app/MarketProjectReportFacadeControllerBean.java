@@ -104,7 +104,7 @@ public class MarketProjectReportFacadeControllerBean extends AbstractMarketProje
     	String org=params.getString("org");
     	StringBuffer sb = new StringBuffer();
     	
-    	sb.append(" select m.fid id,cost.fid entryId,0 isSelect,m.fsource source,m.fnumber number,m.fauditTime auditTime,m.fname name,c.fname_l2 costAccount,cost.famount amount,cost.famount-isnull(tt.amount,0)+isnull(fcost.famount,0),'' partB,case when cost.ftype='JZ' then '记账单' when cost.ftype='CONTRACT' then '合同' else '无文本' end,t.conId,t.conAuditTime,t.isTimeOut,t.conHasSettled,t.conNumber,");
+    	sb.append(" select m.fid id,cost.fid entryId,0 isSelect,m.fsource source,m.fnumber number,case when m.fstate='4AUDITTED' then m.fauditTime else null end auditTime,m.fname name,c.fname_l2 costAccount,cost.famount amount,cost.famount-isnull(tt.amount,0)+isnull(fcost.famount,0),'' partB,case when cost.ftype='JZ' then '记账单' when cost.ftype='CONTRACT' then '合同' else '无文本' end,t.conId,t.conAuditTime,t.isTimeOut,t.conHasSettled,t.conNumber,");
     	sb.append(" t.conName,t.conPartB,t.conAmount,t.payAmount,(t.conAmount-isnull(t.payAmount,0)) unPayAmount,case when cost.ftype='JZ' then m.fbizDate else t.conBizdate end,case when cost.ftype='JZ' then cost.famount else t.conMarketAmount end");
     	sb.append(" from T_CON_MarketProject m left join T_CON_MarketProjectCostEntry cost on cost.fheadid=m.fid ");
     	sb.append(" left join T_CON_MarketProject fm on fm.FMpId=m.fid");
