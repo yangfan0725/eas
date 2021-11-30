@@ -4,6 +4,7 @@
 package com.kingdee.eas.fdc.contract.client;
 
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
@@ -42,6 +43,7 @@ public class MK_FPSelectUI extends AbstractMK_FPSelectUI
     }
     protected void btnYes_actionPerformed(java.awt.event.ActionEvent e) throws Exception
     {
+    	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
     	for(int i=0;i<this.kdtable.getRowCount();i++){
 			Boolean isSelect=(Boolean) this.kdtable.getRow(i).getCell("select").getValue();
 			if(isSelect){
@@ -60,12 +62,13 @@ public class MK_FPSelectUI extends AbstractMK_FPSelectUI
 					row.getCell("totalPriceAndTax").setValue(this.kdtable.getRow(i).getCell("totalPriceAndTax").getValue());
 //					row.getCell("supplierName").setValue(this.kdtable.getRow(i).getCell("supplierName").getValue());
 					row.getCell("invoiceTypeDesc").setValue(this.kdtable.getRow(i).getCell("invoiceTypeDesc").getValue());
-					if(this.kdtable.getRow(i).getCell("issueDate").getValue()!=null&& !String.valueOf(this.kdtable.getRow(i).getCell("issueDate").getValue()).equals("")){
-					row.getCell("issueDate").setValue(new Date(Long.valueOf((String) this.kdtable.getRow(i).getCell("issueDate").getValue())));
+					if(this.kdtable.getRow(i).getCell("bizDate").getValue()!=null&& !String.valueOf(this.kdtable.getRow(i).getCell("bizDate").getValue()).equals("")){
+					Date d = new Date(Long.valueOf((String) this.kdtable.getRow(i).getCell("bizDate").getValue()));
+					row.getCell("bizDate").setValue(d);
 					}
 					row.getCell("specialVATTaxRate").setValue(this.kdtable.getRow(i).getCell("specialVATTaxRate").getValue());
 					row.getCell("totalTaxAmount").setValue(this.kdtable.getRow(i).getCell("totalTaxAmount").getValue());
-					row.getCell("fromMK").setValue(1);
+					row.getCell("fromMk").setValue(1);
 				}
 			}
 		}
@@ -99,7 +102,7 @@ public class MK_FPSelectUI extends AbstractMK_FPSelectUI
 			row.getCell("totalPriceAndTax").setValue(value.getString("totalPriceAndTax"));
 			row.getCell("supplierName").setValue(value.getString("supplierName"));
 			row.getCell("invoiceTypeDesc").setValue(value.getString("invoiceTypeDesc"));
-			row.getCell("issueDate").setValue(value.getString("issueDate"));
+			row.getCell("bizDate").setValue(value.getString("issueDate"));
 			row.getCell("specialVATTaxRate").setValue(value.getString("specialVATTaxRate"));
 			row.getCell("totalTaxAmount").setValue(value.getString("totalTaxAmount"));
 		}
@@ -122,7 +125,7 @@ public class MK_FPSelectUI extends AbstractMK_FPSelectUI
 					row.getCell("totalPriceAndTax").setValue(value.getString("totalPriceAndTax"));
 					row.getCell("supplierName").setValue(value.getString("supplierName"));
 					row.getCell("invoiceTypeDesc").setValue(value.getString("invoiceTypeDesc"));
-					row.getCell("issueDate").setValue(value.getString("issueDate"));
+					row.getCell("bizDate").setValue(value.getString("issueDate"));
 					row.getCell("specialVATTaxRate").setValue(value.getString("specialVATTaxRate"));
 					row.getCell("totalTaxAmount").setValue(value.getString("totalTaxAmount"));
 		    }

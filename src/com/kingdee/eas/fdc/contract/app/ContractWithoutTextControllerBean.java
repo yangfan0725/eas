@@ -103,6 +103,7 @@ import com.kingdee.eas.fdc.contract.ContractExecInfosFactory;
 import com.kingdee.eas.fdc.contract.ContractExecInfosInfo;
 import com.kingdee.eas.fdc.contract.ContractPCSplitBillEntryCollection;
 import com.kingdee.eas.fdc.contract.ContractPCSplitBillEntryFactory;
+import com.kingdee.eas.fdc.contract.ContractWTInvoiceEntry;
 import com.kingdee.eas.fdc.contract.ContractWTInvoiceEntryCollection;
 import com.kingdee.eas.fdc.contract.ContractWTInvoiceEntryFactory;
 import com.kingdee.eas.fdc.contract.ContractWTInvoiceEntryInfo;
@@ -190,6 +191,14 @@ public class ContractWithoutTextControllerBean extends
 	protected void _submit(Context ctx, IObjectPK pk, IObjectValue model) throws BOSException, EASBizException {
 		FDCBillInfo con = ((FDCBillInfo) model);
 		checkBillForSubmit(ctx, con);
+		
+		try {
+			updateMKFP(ctx, (ContractWithoutTextInfo) model);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		PayRequestBillInfo prbi = (PayRequestBillInfo) con.get("PayRequestBillInfo");
 		con.setAmount(FDCHelper.multiply(con.getOriginalAmount(), prbi.getExchangeRate()));
 		prbi.setAmount(con.getAmount());
@@ -200,12 +209,20 @@ public class ContractWithoutTextControllerBean extends
 		if(model.get("fromweb")==null){
 			sendtoOA(ctx, (ContractWithoutTextInfo) model);
 		}
-		updateMKFP(ctx, (ContractWithoutTextInfo) model);
+		
 	}
 
 	protected IObjectPK _submit(Context ctx, IObjectValue model)throws BOSException, EASBizException {
 		FDCBillInfo con = ((FDCBillInfo) model);
 		checkBillForSubmit(ctx, con);
+		
+		try {
+			updateMKFP(ctx, (ContractWithoutTextInfo) model);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		PayRequestBillInfo prbi = (PayRequestBillInfo) con.get("PayRequestBillInfo");
 		con.setAmount(FDCHelper.multiply(con.getOriginalAmount(), prbi.getExchangeRate()));
 		prbi.setAmount(con.getAmount());
@@ -216,7 +233,7 @@ public class ContractWithoutTextControllerBean extends
 		if(model.get("fromweb")==null){
 			sendtoOA(ctx, (ContractWithoutTextInfo) model);
 		}
-		updateMKFP(ctx, (ContractWithoutTextInfo) model);
+		
 		return pk;
 	}
 	public boolean isBillInWorkflow(Context ctx,String id) throws BOSException{
@@ -238,28 +255,66 @@ public class ContractWithoutTextControllerBean extends
 		}
     }
 	
-	public void updateMKFP(Context ctx,ContractWithoutTextInfo info) throws EASBizException, BOSException{
+	public void updateMKFP(Context ctx,ContractWithoutTextInfo info) throws EASBizException, BOSException, SQLException{
 		ContractWTInvoiceEntryCollection fpEntrys = info.getInvoiceEntry();
 		if(fpEntrys.size()>0){
 			for (int x=0;x<fpEntrys.size();x++) {
-				ContractWTInvoiceEntryInfo fp =ContractWTInvoiceEntryFactory.getLocalInstance(ctx).getContractWTInvoiceEntryInfo(new ObjectUuidPK(info.getInvoiceEntry().get(x).getId()));
-				Integer use = fp.getIsMKUsed();
+				ContractWTInvoiceEntryInfo fp =info.getInvoiceEntry().get(x);
+//				Integer use = fp.getIsMKUsed();
 			
 				String invoiceNumber = fp.getInvoiceNumber();
-				if("".equals(use)||use==1){
-					throw new EASBizException(new NumericExceptionSubItem("100","发票号为"+invoiceNumber+"的发票已被使用,请重新选择发票！"));
-				}
-//				调取每刻发票链接 修改金蝶发票状态为锁定
-				String number = fp.getInvoiceNumber();
-				String viewLink = getMKLink(ctx,number);
-				if(viewLink!=null&&viewLink!=""){
-					fp.setViewLink(viewLink);
-					fp.setIsMKUsed(1);
-					SelectorItemCollection sic=new SelectorItemCollection();
-					sic.add("isMkUsed");
-					sic.add("viewLink");
-					ContractWTInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(fp,sic);
-				}
+//				if("".equals(use)||use==1){
+					//找到该单据的主单  看状态是否是 保存 或者 已提交 。 其余一律不允许再使用该发票；
+					FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
+					builder.appendSql("select fparentid from T_CON_ContractWTInvoiceEntry where FInvoiceNumber='" + invoiceNumber + "'");
+					IRowSet rs=builder.executeQuery();
+					while(rs.next()){
+						String fparentid =rs.getString("fparentid");
+						if(fparentid.equals(info.getId().toString())){
+							continue;
+						}
+						builder.clear();
+						builder.appendSql("select fstate from T_CON_ContractWithoutText where fid='" + fparentid + "'");
+						IRowSet rsCon=builder.executeQuery();
+						while(rsCon.next()){
+							String conState =rsCon.getString("fstate");
+							if(conState.equals(FDCBillStateEnum.SAVED_VALUE)){
+								continue;
+							}else{
+							throw new EASBizException(new NumericExceptionSubItem("100","发票号为"+invoiceNumber+"的发票已被使用,请重新选择发票！"));
+							}
+						}
+					}
+					builder=new FDCSQLBuilder(ctx);
+					builder.appendSql("select fparentid from T_CON_PayReqInvoiceEntry where FInvoiceNumber='" + invoiceNumber + "'");
+					rs=builder.executeQuery();
+					while(rs.next()){
+						String fparentid =rs.getString("fparentid");
+						builder.clear();
+						builder.appendSql("select fstate from T_CON_PayRequestBill where fid='" + fparentid + "'");
+						IRowSet rsCon=builder.executeQuery();
+						while(rsCon.next()){
+							String conState =rsCon.getString("fstate");
+							if(conState.equals(FDCBillStateEnum.SAVED_VALUE)){
+								continue;
+							}else{
+							throw new EASBizException(new NumericExceptionSubItem("100","发票号为"+invoiceNumber+"的发票已被使用,请重新选择发票！"));
+							}
+						}
+					}
+//				}
+//				SelectorItemCollection sic=new SelectorItemCollection();
+////				调取每刻发票链接 修改金蝶发票状态为锁定
+//				String number = fp.getInvoiceNumber();
+//				String viewLink = getMKLink(ctx,number);
+//				if(viewLink!=null&&viewLink!=""){
+//					fp.setViewLink(viewLink);
+//					sic.add("viewLink");
+//				}
+//					fp.setIsMKUsed(1);//上面一段代码判断后 此处不需
+//					sic.add("isMkUsed");
+//					ContractWTInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(fp,sic);
+				
 			}
 		}
 	}
@@ -899,19 +954,19 @@ public class ContractWithoutTextControllerBean extends
 				ContractExecInfosInfo.EXECINFO_UNAUDIT, billId.toString());
 		
 		//MK
-		ContractWithoutTextInfo info1=ContractWithoutTextFactory.getLocalInstance(ctx).getContractWithoutTextInfo("select invoiceEntry.* from where id='"+billId+"'");
-		if(info1!=null){
-			ContractWTInvoiceEntryCollection entrys = info1.getInvoiceEntry();
-			if(entrys.size()>0){
-				for(int i=0;i<entrys.size();i++){
-					ContractWTInvoiceEntryInfo invoiceInfo = entrys.get(i);
-					invoiceInfo.setIsMKUsed(0);
-					SelectorItemCollection sic=new SelectorItemCollection();
-					sic.add("isMkUsed");
-					ContractWTInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(invoiceInfo,sic);
-				}
-			}
-		}
+//		ContractWithoutTextInfo info1=ContractWithoutTextFactory.getLocalInstance(ctx).getContractWithoutTextInfo("select invoiceEntry.* from where id='"+billId+"'");
+//		if(info1!=null){
+//			ContractWTInvoiceEntryCollection entrys = info1.getInvoiceEntry();
+//			if(entrys.size()>0){
+//				for(int i=0;i<entrys.size();i++){
+//					ContractWTInvoiceEntryInfo invoiceInfo = entrys.get(i);
+//					invoiceInfo.setIsMKUsed(0);
+//					SelectorItemCollection sic=new SelectorItemCollection();
+//					sic.add("isMkUsed");
+//					ContractWTInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(invoiceInfo,sic);
+//				}
+//			}
+//		}
 	}
 
 	// 新增
@@ -1891,19 +1946,19 @@ public class ContractWithoutTextControllerBean extends
 		}
 	
 		//MK
-		ContractWithoutTextInfo info=ContractWithoutTextFactory.getLocalInstance(ctx).getContractWithoutTextInfo("select invoiceEntry.* from where id='"+billId+"'");
-		if(info!=null){
-			ContractWTInvoiceEntryCollection entrys = info.getInvoiceEntry();
-			if(entrys.size()>0){
-				for(int i=0;i<entrys.size();i++){
-					ContractWTInvoiceEntryInfo invoiceInfo = entrys.get(i);
-					invoiceInfo.setIsMKUsed(0);
-					SelectorItemCollection sic=new SelectorItemCollection();
-					sic.add("isMkUsed");
-					ContractWTInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(invoiceInfo,sic);
-				}
-			}
-		}
+//		ContractWithoutTextInfo info=ContractWithoutTextFactory.getLocalInstance(ctx).getContractWithoutTextInfo("select invoiceEntry.* from where id='"+billId+"'");
+//		if(info!=null){
+//			ContractWTInvoiceEntryCollection entrys = info.getInvoiceEntry();
+//			if(entrys.size()>0){
+//				for(int i=0;i<entrys.size();i++){
+//					ContractWTInvoiceEntryInfo invoiceInfo = entrys.get(i);
+//					invoiceInfo.setIsMKUsed(0);
+//					SelectorItemCollection sic=new SelectorItemCollection();
+//					sic.add("isMkUsed");
+//					ContractWTInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(invoiceInfo,sic);
+//				}
+//			}
+//		}
 	}
 	protected void _setAudittingStatus(Context ctx, BOSUuid billId)throws BOSException, EASBizException {
 		super._setAudittingStatus(ctx,billId);
@@ -1987,12 +2042,7 @@ public class ContractWithoutTextControllerBean extends
 				entCode=d.getString("entCode");
 			}
 		} catch (Exception e) {
-			try {
 				throw new EASBizException(new NumericExceptionSubItem("100",e.getMessage()));
-			} catch (EASBizException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 		}
 		
 		//get invoices
@@ -2022,7 +2072,9 @@ public class ContractWithoutTextControllerBean extends
 			com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
 			com.alibaba.fastjson.JSONArray fpArray=crso.getJSONArray("data");
 			for (int i=0;i<fpArray.size();i++) {
-				map.put(fpArray.getJSONObject(i).getString("invoiceNumber"), fpArray.getJSONObject(i));
+				com.alibaba.fastjson.JSONObject obj = fpArray.getJSONObject(i);
+				obj.put("fromMk", 1);
+				map.put(fpArray.getJSONObject(i).getString("invoiceNumber"), obj);
 				}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

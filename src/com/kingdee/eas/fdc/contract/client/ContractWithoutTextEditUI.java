@@ -330,6 +330,7 @@ public class ContractWithoutTextEditUI extends
 	}
 	protected void afterSubmitAddNew() {
 		clearPayRequestFieldCtrl();
+		
 		super.afterSubmitAddNew();
 		setFocus();
 	}
@@ -1961,6 +1962,7 @@ public class ContractWithoutTextEditUI extends
 		    		return;
 				}
 			}else{
+				this.editData.setOaOpinion(null);
 				UIContext uiContext = new UIContext(this);
 				uiContext.put("editData", this.editData);
 		        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
@@ -1974,24 +1976,30 @@ public class ContractWithoutTextEditUI extends
 		// 提交前反写所关联的框架合约“是否引用”字段
 		updateProgrammingContract(this.editData.getProgrammingContract(),0);
 		
-		if(this.prmtMpCostAccount.getValue()!=null&&this.prmtMarketProject.getValue()!=null&&FDCHelper.isEmpty(this.editData.getIsTimeOut())){
+		if(this.prmtMpCostAccount.getValue()!=null&&this.prmtMarketProject.getValue()!=null){
 			CostAccountInfo info=CostAccountFactory.getRemoteInstance().getCostAccountInfo(new ObjectUuidPK(((CostAccountInfo)this.prmtMpCostAccount.getValue()).getId()));
 			MarketProjectInfo market=MarketProjectFactory.getRemoteInstance().getMarketProjectInfo(new ObjectUuidPK(((MarketProjectInfo)this.prmtMarketProject.getValue()).getId()));
-			if(info.getYjType()!=null&&info.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
-				
-				Calendar cal = new GregorianCalendar();
-				cal.setTime(FDCDateHelper.getNextMonth(market.getAuditTime()));
-				cal.set(5, 15);
-				
-				int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
-				if(day>1){
-					FDCMsgBox.showInfo(this,"合同流程必须在立项审批通过后2天内发起；除第三方佣金外的无文本立项，必须在次月15日之前发起无文本合同流程，超时发起流程将按照《宋都集团营销费用管理制度》规定，对责任人进行扣罚。");
-					this.editData.setIsTimeOut("是");
+			boolean isSet=false;
+			ContractWithoutTextCollection col=ContractWithoutTextFactory.getRemoteInstance().getContractWithoutTextCollection("select marketProject.id from where id='"+this.editData.getId()+"'");
+			if(col.size()>0&&col.get(0).getMarketProject()!=null&&!col.get(0).getMarketProject().getId().toString().equals(market.getId().toString())){
+				isSet=true;
+			}
+			if(FDCHelper.isEmpty(this.editData.getIsTimeOut())||isSet){
+				if(info.getYjType()!=null&&info.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
+					Calendar cal = new GregorianCalendar();
+					cal.setTime(FDCDateHelper.getNextMonth(market.getAuditTime()));
+					cal.set(5, 15);
+					
+					int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
+					if(day>1){
+						FDCMsgBox.showInfo(this,"合同流程必须在立项审批通过后2天内发起；除第三方佣金外的无文本立项，必须在次月15日之前发起无文本合同流程，超时发起流程将按照《宋都集团营销费用管理制度》规定，对责任人进行扣罚。");
+						this.editData.setIsTimeOut("是");
+					}else{
+						this.editData.setIsTimeOut("否");
+					}
 				}else{
 					this.editData.setIsTimeOut("否");
 				}
-			}else{
-				this.editData.setIsTimeOut("否");
 			}
 		}
 		for(int i=0;i<this.tblMarket.getRowCount();i++){
@@ -4823,16 +4831,16 @@ public class ContractWithoutTextEditUI extends
 //		KDDatePicker pk = new KDDatePicker();
 //		KDTDefaultCellEditor dateEditor = new KDTDefaultCellEditor(pk);
 //		this.kdtInvoiceEntry.getColumn("bizDate").setEditor(dateEditor);
-//		
-//		ObjectValueRender date_scale = new ObjectValueRender();
-//		date_scale.setFormat(new IDataFormat() {
-//			public String format(Object o) {
-//				Date str = (Date)o;
-//				return FDCDateHelper.DateToString(str);
-//			}
-//		});
-//		this.kdtInvoiceEntry.getColumn("bizDate").setRenderer(date_scale);
-//		
+		
+		ObjectValueRender date_scale = new ObjectValueRender();
+		date_scale.setFormat(new IDataFormat() {
+			public String format(Object o) {
+				Date str = (Date)o;
+				return FDCDateHelper.DateToString(str);
+			}
+		});
+		this.kdtInvoiceEntry.getColumn("bizDate").setRenderer(date_scale);
+		this.kdtInvoiceEntry.getColumn("specialVATTaxRate").getStyleAttributes().setHided(true);
 //		KDFormattedTextField amount = new KDFormattedTextField();
 //		amount.setDataType(KDFormattedTextField.BIGDECIMAL_TYPE);
 //		amount.setDataVerifierType(KDFormattedTextField.NO_VERIFIER);
@@ -4895,7 +4903,7 @@ public class ContractWithoutTextEditUI extends
 		
 		this.kdtInvoiceEntry.getColumn("invoiceNumber").getStyleAttributes().setLocked(true);
 		this.kdtInvoiceEntry.getColumn("invoiceTypeDesc").getStyleAttributes().setLocked(true);
-		this.kdtInvoiceEntry.getColumn("issueDate").getStyleAttributes().setLocked(true);
+		this.kdtInvoiceEntry.getColumn("bizDate").getStyleAttributes().setLocked(true);
 		this.kdtInvoiceEntry.getColumn("totalPriceAndTax").getStyleAttributes().setLocked(true);
 		this.kdtInvoiceEntry.getColumn("specialVATTaxRate").getStyleAttributes().setLocked(true);
 		this.kdtInvoiceEntry.getColumn("totalTaxAmount").getStyleAttributes().setLocked(true);

@@ -2663,7 +2663,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		
 		this.tblAttachement.checkParsed();
 		KDWorkButton btnUpLoad = new KDWorkButton();
-		KDWorkButton btnAgreementText = new KDWorkButton();
+//		KDWorkButton btnAgreementText = new KDWorkButton();
 		KDWorkButton btnAttachment = new KDWorkButton();
 
 		this.actionUpLoad.putValue("SmallIcon", EASResource.getIcon("imgTbtn_affixmanage"));
@@ -2671,10 +2671,10 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		btnUpLoad.setText("上传标准合同");
 		btnUpLoad.setSize(new Dimension(140, 19));
 		
-		this.actionAgreementText.putValue("SmallIcon", EASResource.getIcon("imgTbtn_affixmanage"));
-		btnAgreementText = (KDWorkButton)this.contAttachment.add(this.actionAgreementText);
-		btnAgreementText.setText("上传补充条款");
-		btnAgreementText.setSize(new Dimension(140, 19));
+//		this.actionAgreementText.putValue("SmallIcon", EASResource.getIcon("imgTbtn_affixmanage"));
+//		btnAgreementText = (KDWorkButton)this.contAttachment.add(this.actionAgreementText);
+//		btnAgreementText.setText("上传补充条款");
+//		btnAgreementText.setSize(new Dimension(140, 19));
 
 		this.actionAttachment.putValue("SmallIcon", EASResource.getIcon("imgTbtn_affixmanage"));
 		btnAttachment = (KDWorkButton) this.contAttachment.add(this.actionAttachment);
@@ -6273,6 +6273,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		    		return;
 				}
 			}else{
+				this.editData.setOaOpinion(null);
 				UIContext uiContext = new UIContext(this);
 				uiContext.put("editData", this.editData);
 		        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
@@ -6286,19 +6287,26 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		// 保存前反写所关联的框架合约“是否引用”字段
 		updateProgrammingContract(this.editData.getProgrammingContract(),0);
 		
-		if(this.prmtMpCostAccount.getValue()!=null&&this.prmtMarketProject.getValue()!=null&&FDCHelper.isEmpty(this.editData.getIsTimeOut())){
+		if(this.prmtMpCostAccount.getValue()!=null&&this.prmtMarketProject.getValue()!=null){
 			CostAccountInfo info=CostAccountFactory.getRemoteInstance().getCostAccountInfo(new ObjectUuidPK(((CostAccountInfo)this.prmtMpCostAccount.getValue()).getId()));
 			MarketProjectInfo market=MarketProjectFactory.getRemoteInstance().getMarketProjectInfo(new ObjectUuidPK(((MarketProjectInfo)this.prmtMarketProject.getValue()).getId()));
-			if(info.getYjType()!=null&&info.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
-				int day=FDCDateHelper.getDiffDays(market.getAuditTime(), new Date());
-				if(day>3){
-					FDCMsgBox.showInfo(this,"合同流程必须在立项审批通过后2天内发起；除第三方佣金外的无文本立项，必须在次月15日之前发起无文本合同流程，超时发起流程将按照《宋都集团营销费用管理制度》规定，对责任人进行扣罚。");
-					this.editData.setIsTimeOut("是");
+			boolean isSet=false;
+			ContractBillCollection col=ContractBillFactory.getRemoteInstance().getContractBillCollection("select marketProject.id from where id='"+this.editData.getId()+"'");
+			if(col.size()>0&&col.get(0).getMarketProject()!=null&&!col.get(0).getMarketProject().getId().toString().equals(market.getId().toString())){
+				isSet=true;
+			}
+			if(FDCHelper.isEmpty(this.editData.getIsTimeOut())||isSet){
+				if(info.getYjType()!=null&&info.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
+					int day=FDCDateHelper.getDiffDays(market.getAuditTime(), new Date());
+					if(day>3){
+						FDCMsgBox.showInfo(this,"合同流程必须在立项审批通过后2天内发起；除第三方佣金外的无文本立项，必须在次月15日之前发起无文本合同流程，超时发起流程将按照《宋都集团营销费用管理制度》规定，对责任人进行扣罚。");
+						this.editData.setIsTimeOut("是");
+					}else{
+						this.editData.setIsTimeOut("否");
+					}
 				}else{
 					this.editData.setIsTimeOut("否");
 				}
-			}else{
-				this.editData.setIsTimeOut("否");
 			}
 		}
 		super.actionSubmit_actionPerformed(e);

@@ -489,6 +489,12 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			CostAccountInfo caInfo=(CostAccountInfo) r.getCell("costAccount").getValue();
 			MarketProjectInfo mp=(MarketProjectInfo) r.getCell("marketProject").getValue();
 			if(caInfo!=null&&mp!=null){
+				String type=getMpType(mp.getId().toString(), caInfo.getId().toString());
+				 if(type!=null&&(type.equals("CONTRACT")||type.equals("JZ"))){
+					 FDCMsgBox.showWarning(this,"控制类型为合同或者记账单的立项不允许负立项！");
+					 r.getCell("costAccount").setValue(null);
+					 SysUtil.abort();
+				 }
 				 BigDecimal amount=FDCHelper.subtract(getMpAmount(mp.getId().toString(), caInfo.getId().toString()), getHappenAmount(mp.getId().toString(),caInfo.getId().toString()));
 				 r.getCell("canAmount").setValue(amount);
 				 r.getCell("amount").setValue(amount.negate());
@@ -731,7 +737,12 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 					 FDCMsgBox.showWarning(this,"科目："+caInfo.getName()+" 超出立项已发生！");
 					 SysUtil.abort();
 				}
-				MarketProjectCollection col=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select * from where isSub=1 and mp.id='"+mp.getId().toString()+"'");
+				MarketProjectCollection col=null;
+				if(this.editData.getId()!=null){
+					col=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select * from where isSub=1 and mp.id='"+mp.getId().toString()+"' and sourceBillId!='"+this.editData.getId()+"'");
+				}else{
+					col=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select * from where isSub=1 and mp.id='"+mp.getId().toString()+"'");
+				}
 				if(col.size()>0){
 					FDCMsgBox.showWarning(this,"该费用已有负立项，不能重复发起！");
 					SysUtil.abort();
@@ -750,6 +761,18 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			return rowSet.getBigDecimal("amount");
 		}
 		return FDCHelper.ZERO;
+	}
+	public String getMpType(String marketProjectId,String costAccountId) throws SQLException, BOSException{
+		StringBuilder sql = new StringBuilder();
+		sql.append("  /*dialect*/  select entry.FType type from T_CON_MarketProjectCostEntry entry left join T_CON_MarketProject head on head.fid=entry.fheadid");
+		sql.append(" where entry.fcostaccountid='"+costAccountId+"' and head.fid='"+marketProjectId+"'");
+		FDCSQLBuilder _builder = new FDCSQLBuilder();
+		_builder.appendSql(sql.toString());
+		IRowSet rowSet = _builder.executeQuery();
+		while(rowSet.next()){
+			return rowSet.getString("type");
+		}
+		return null;
 	}
 	public BigDecimal getHappenAmount(String marketProjectId,String costAccountId) throws SQLException, BOSException{
 		StringBuilder sql = new StringBuilder();
@@ -834,6 +857,12 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			 CostAccountInfo caInfo=(CostAccountInfo) r.getCell("costAccount").getValue();
 			 MarketProjectInfo mp=(MarketProjectInfo) r.getCell("marketProject").getValue();
 			 if(caInfo!=null&&mp!=null){
+				 String type=getMpType(mp.getId().toString(), caInfo.getId().toString());
+				 if(type!=null&&(type.equals("CONTRACT")||type.equals("JZ"))){
+					 FDCMsgBox.showWarning(this,"控制类型为合同或者记账单的立项不允许负立项！");
+					 r.getCell("costAccount").setValue(null);
+					 SysUtil.abort();
+				 }
 				 BigDecimal amount=FDCHelper.subtract(getMpAmount(mp.getId().toString(), caInfo.getId().toString()), getHappenAmount(mp.getId().toString(),caInfo.getId().toString()));
 				 r.getCell("canAmount").setValue(amount);
 				 r.getCell("amount").setValue(amount.negate());	 

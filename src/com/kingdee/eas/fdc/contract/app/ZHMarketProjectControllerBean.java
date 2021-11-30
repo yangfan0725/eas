@@ -78,17 +78,17 @@ public class ZHMarketProjectControllerBean extends AbstractZHMarketProjectContro
 		createMarketProjectInfo(ctx,(ZHMarketProjectInfo) model);
 		return super._submit(ctx, model);
 	}
-	public void deleteMarketProjectInfo(Context ctx,ZHMarketProjectInfo info) throws EASBizException, BOSException{
-		for(int i=0;i<info.getEntry().size();i++){
-			MarketProjectCollection col=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectCollection("select * from where sourceBillId='"+info.getEntry().get(i).getId()+"'");
-			if(col.size()>0){
-				MarketProjectFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(col.get(0).getId()));
-			}
+	public void deleteMarketProjectInfo(Context ctx,String id) throws EASBizException, BOSException{
+		MarketProjectCollection col=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectCollection("select * from where sourceBillId='"+id+"'");
+		for(int i=0;i<col.size();i++){
+			FilterInfo filter = new FilterInfo();
+			filter.getFilterItems().add(new FilterItemInfo("boID", col.get(i).getId()));
+			BoAttchAssoFactory.getLocalInstance(ctx).delete(filter);
+			MarketProjectFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(col.get(i).getId()));
 		}
-		
 	}
 	public void createMarketProjectInfo(Context ctx,ZHMarketProjectInfo info) throws EASBizException, BOSException{
-		deleteMarketProjectInfo(ctx,info);
+		deleteMarketProjectInfo(ctx,info.getId().toString());
 		for(int i=0;i<info.getEntry().size();i++){
 			ZHMarketProjectEntryInfo entry=info.getEntry().get(i);
 			
@@ -150,51 +150,42 @@ public class ZHMarketProjectControllerBean extends AbstractZHMarketProjectContro
 	}
 	protected void _setAudittingStatus(Context ctx, BOSUuid billId)
 			throws BOSException, EASBizException {
-		ZHMarketProjectInfo info=this.getZHMarketProjectInfo(ctx, new ObjectUuidPK(billId));
-		for(int i=0;i<info.getEntry().size();i++){
-			MarketProjectCollection col=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectCollection("select * from where sourceBillId='"+info.getEntry().get(i).getId()+"'");
-			if(col.size()>0){
-				MarketProjectInfo mp=col.get(0);
-				mp.setState(FDCBillStateEnum.AUDITTING);
-				
-				SelectorItemCollection selector = new SelectorItemCollection();
-				selector.add("state");
-				MarketProjectFactory.getLocalInstance(ctx).updatePartial(mp, selector);
-			}
+		MarketProjectCollection col=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectCollection("select * from where sourceBillId='"+billId+"'");
+		for(int i=0;i<col.size();i++){
+			MarketProjectInfo mp=col.get(i);
+			mp.setState(FDCBillStateEnum.AUDITTING);
+			
+			SelectorItemCollection selector = new SelectorItemCollection();
+			selector.add("state");
+			MarketProjectFactory.getLocalInstance(ctx).updatePartial(mp, selector);
 		}
 		super._setAudittingStatus(ctx, billId);
 	}
 	protected void _setSubmitStatus(Context ctx, BOSUuid billId)
 			throws BOSException, EASBizException {
-		ZHMarketProjectInfo info=this.getZHMarketProjectInfo(ctx, new ObjectUuidPK(billId));
-		for(int i=0;i<info.getEntry().size();i++){
-			MarketProjectCollection col=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectCollection("select * from where sourceBillId='"+info.getEntry().get(i).getId()+"'");
-			if(col.size()>0){
-				MarketProjectInfo mp=col.get(0);
-				mp.setState(FDCBillStateEnum.SUBMITTED);
-				
-				SelectorItemCollection selector = new SelectorItemCollection();
-				selector.add("state");
-				MarketProjectFactory.getLocalInstance(ctx).updatePartial(mp, selector);
-			}
+		MarketProjectCollection col=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectCollection("select * from where sourceBillId='"+billId+"'");
+		for(int i=0;i<col.size();i++){
+			MarketProjectInfo mp=col.get(i);
+			mp.setState(FDCBillStateEnum.SUBMITTED);
+			
+			SelectorItemCollection selector = new SelectorItemCollection();
+			selector.add("state");
+			MarketProjectFactory.getLocalInstance(ctx).updatePartial(mp, selector);
 		}
 		super._setSubmitStatus(ctx, billId);
 	}
 	protected void _audit(Context ctx, BOSUuid billId) throws BOSException,
 			EASBizException {
-		ZHMarketProjectInfo info=this.getZHMarketProjectInfo(ctx, new ObjectUuidPK(billId));
-		for(int i=0;i<info.getEntry().size();i++){
-			MarketProjectCollection col=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectCollection("select * from where sourceBillId='"+info.getEntry().get(i).getId()+"'");
-			if(col.size()>0){
-				MarketProjectInfo mp=col.get(0);
-				MarketProjectFactory.getLocalInstance(ctx).audit(mp.getId());
-			}
+		MarketProjectCollection col=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectCollection("select * from where sourceBillId='"+billId+"'");
+		for(int i=0;i<col.size();i++){
+			MarketProjectInfo mp=col.get(i);
+			MarketProjectFactory.getLocalInstance(ctx).audit(mp.getId());
 		}
+		
 		super._audit(ctx, billId);
 	}
 	protected void _delete(Context ctx, IObjectPK pk) throws BOSException, EASBizException {
-		ZHMarketProjectInfo info=this.getZHMarketProjectInfo(ctx, pk);
-		deleteMarketProjectInfo(ctx,info);
+		deleteMarketProjectInfo(ctx,pk.toString());
 		super._delete(ctx, pk);
 	}
 	protected void _unAudit(Context ctx, BOSUuid billId) throws BOSException,

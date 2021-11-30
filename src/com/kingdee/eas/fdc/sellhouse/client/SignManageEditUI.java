@@ -214,18 +214,18 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 		loadReceiveBill();
 		loadPayList(editData);
 		
-//		RoomInfo room=(RoomInfo) this.f7Room.getValue();
-//		if(room!=null){
-//			try {
-//				DelayPayBillCollection col = DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+room.getId().toString()+"' and state='4AUDITTED' and sourceFunction not like '%QUIT%'");
-//				if(col.size()>0){
-//					this.tblPayList.getColumn("appAmount").getStyleAttributes().setLocked(true);
-//					this.f7PayType.setEnabled(false);
-//				}
-//			} catch (BOSException e) {
-//				e.printStackTrace();
-//			}
-//		}
+		RoomInfo room=(RoomInfo) this.f7Room.getValue();
+		if(room!=null){
+			try {
+				DelayPayBillCollection col = DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+room.getId().toString()+"' and state='4AUDITTED' and sourceFunction not like '%QUIT%'");
+				if(col.size()>0){
+					this.tblPayList.getColumn("appAmount").getStyleAttributes().setLocked(true);
+					this.f7PayType.setEnabled(false);
+				}
+			} catch (BOSException e) {
+				e.printStackTrace();
+			}
+		}
 		loadAfterService(editData);
 		loadAttachmentEntry(editData);
 		loadBizReview();
@@ -259,9 +259,9 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 		this.txtDealBuildPriceNT.setValue(FDCHelper.divide(this.txtDealTotalAmountNT.getBigDecimalValue(),buildingArea, 2, BigDecimal.ROUND_HALF_UP));
 		this.txtDealRoomPriceNT.setValue(FDCHelper.divide(this.txtDealTotalAmountNT.getBigDecimalValue(),roomArea, 2, BigDecimal.ROUND_HALF_UP));
 		
-		if(srcInfo!=null&&srcInfo instanceof PurchaseManageInfo){
-			this.f7PayType.setEnabled(false);
-		}
+//		if(srcInfo!=null&&srcInfo instanceof PurchaseManageInfo){
+//			this.f7PayType.setEnabled(false);
+//		}
 		
 		attachListeners();
 	}
@@ -1301,12 +1301,12 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 			if(!isAudit){
 				setRoomNull("延期申请还未审批结束！");
 			}else{
-//				this.tblPayList.getColumn("appAmount").getStyleAttributes().setLocked(true);
-//				this.f7PayType.setEnabled(false);
+				this.tblPayList.getColumn("appAmount").getStyleAttributes().setLocked(true);
+				this.f7PayType.setEnabled(false);
 			}
 		}else{
-//			this.tblPayList.getColumn("appAmount").getStyleAttributes().setLocked(false);
-//			this.f7PayType.setEnabled(true);
+			this.tblPayList.getColumn("appAmount").getStyleAttributes().setLocked(false);
+			this.f7PayType.setEnabled(true);
 		}
 		IObjectValue objectValue=SHEManageHelper.getCurTransactionBill(room.getId());
 		if(objectValue!=null&&((objectValue instanceof PrePurchaseManageInfo)||(objectValue instanceof PurchaseManageInfo))){
@@ -1325,9 +1325,9 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 		}else{
 			this.btnSetEntry.setEnabled(false);
 		}
-		if(srcInfo!=null&&srcInfo instanceof PurchaseManageInfo){
-			this.f7PayType.setEnabled(false);
-		}
+//		if(srcInfo!=null&&srcInfo instanceof PurchaseManageInfo){
+//			this.f7PayType.setEnabled(false);
+//		}
 	}
 	protected void updateAmount(){
 		isEditDealAmount=false;
@@ -1775,8 +1775,20 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 //			SysUtil.abort();
 //		}
 		super.actionEdit_actionPerformed(e);
-		if(srcInfo!=null&&srcInfo instanceof PurchaseManageInfo){
-			this.f7PayType.setEnabled(false);
+//		if(srcInfo!=null&&srcInfo instanceof PurchaseManageInfo){
+//			this.f7PayType.setEnabled(false);
+//		}
+		RoomInfo room=(RoomInfo) this.f7Room.getValue();
+		if(room!=null){
+			try {
+				DelayPayBillCollection col = DelayPayBillFactory.getRemoteInstance().getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where room.id='"+room.getId().toString()+"' and state='4AUDITTED' and sourceFunction not like '%QUIT%'");
+				if(col.size()>0){
+					this.tblPayList.getColumn("appAmount").getStyleAttributes().setLocked(true);
+					this.f7PayType.setEnabled(false);
+				}
+			} catch (BOSException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 	protected void updatePayListByPayType() {

@@ -579,6 +579,13 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 		checkBillForSubmit( ctx,info);
 		info.setAmount(FDCHelper.multiply(info.getOriginalAmount(), info.getExchangeRate()));
 		
+		try {
+			updateMKFP(ctx, (PayRequestBillInfo) model);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		final IObjectPK pk = super._submit(ctx, model);
 		
 		//R101207-373 付款申请单修改提交时，需要重新计算后续申请单的“合同内工程累计申请”的值  by zhiyuan_tang 2010/12/20
@@ -599,6 +606,13 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 		checkBillForSubmit( ctx,model);
 		info.setAmount(FDCHelper.multiply(info.getOriginalAmount(), info.getExchangeRate()));
 		
+		try {
+			updateMKFP(ctx, (PayRequestBillInfo) model);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		super._submit(ctx, pk, model);
 		
 		//R101207-373 付款申请单修改提交时，需要重新计算后续申请单的“合同内工程累计申请”的值  by zhiyuan_tang 2010/12/20
@@ -650,19 +664,19 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 			unAudit(ctx, BOSUuid.read(id));
 			
 			//MK
-			PayRequestBillInfo info1=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo("select invoiceEntry.* from where id='"+id+"'");
-			if(info1!=null){
-				PayReqInvoiceEntryCollection entrys = info1.getInvoiceEntry();
-				if(entrys.size()>0){
-					for(int i=0;i<entrys.size();i++){
-						PayReqInvoiceEntryInfo invoiceInfo = entrys.get(i);
-						invoiceInfo.setIsMKUsed(0);
-						SelectorItemCollection sic=new SelectorItemCollection();
-						sic.add("isMkUsed");
-						PayReqInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(invoiceInfo,sic);
-					}
-				}
-			}
+//			PayRequestBillInfo info1=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo("select invoiceEntry.* from where id='"+id+"'");
+//			if(info1!=null){
+//				PayReqInvoiceEntryCollection entrys = info1.getInvoiceEntry();
+//				if(entrys.size()>0){
+//					for(int i=0;i<entrys.size();i++){
+//						PayReqInvoiceEntryInfo invoiceInfo = entrys.get(i);
+//						invoiceInfo.setIsMKUsed(0);
+//						SelectorItemCollection sic=new SelectorItemCollection();
+//						sic.add("isMkUsed");
+//						PayReqInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(invoiceInfo,sic);
+//					}
+//				}
+//			}
 		}	
 	}
 
@@ -3095,28 +3109,66 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 	}
 	
 	
-	public void updateMKFP(Context ctx,PayRequestBillInfo info) throws EASBizException, BOSException{
+	public void updateMKFP(Context ctx,PayRequestBillInfo info) throws EASBizException, BOSException, SQLException{
 		PayReqInvoiceEntryCollection fpEntrys = info.getInvoiceEntry();
 		if(fpEntrys.size()>0){
 			for (int x=0;x<fpEntrys.size();x++) {
-				PayReqInvoiceEntryInfo pay =PayReqInvoiceEntryFactory.getLocalInstance(ctx).getPayReqInvoiceEntryInfo(new ObjectUuidPK(info.getInvoiceEntry().get(x).getId()));
-				Integer use = pay.getIsMKUsed();
+				PayReqInvoiceEntryInfo fp =info.getInvoiceEntry().get(x);
+//				Integer use = fp.getIsMKUsed();
 			
-				String invoiceNumber = pay.getInvoiceNumber();
-				if("".equals(use)||use==1){
-					throw new EASBizException(new NumericExceptionSubItem("100","发票号为"+invoiceNumber+"的发票已被使用,请重新选择发票！"));
-				}
-//				调取每刻发票链接 修改金蝶发票状态为锁定
-				String number = pay.getInvoiceNumber();
-				String viewLink = getMKLink(ctx,number);
-				if(viewLink!=null&&viewLink!=""){
-					pay.setViewLink(viewLink);
-					pay.setIsMKUsed(1);
-					SelectorItemCollection sic=new SelectorItemCollection();
-					sic.add("isMkUsed");
-					sic.add("viewLink");
-					PayReqInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(pay,sic);
-				}
+				String invoiceNumber = fp.getInvoiceNumber();
+//				if("".equals(use)||use==1){
+					//找到该单据的主单  看状态是否是 保存 或者 已提交 。 其余一律不允许再使用该发票；
+					FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
+					builder.appendSql("select fparentid from T_CON_ContractWTInvoiceEntry where FInvoiceNumber='" + invoiceNumber + "'");
+					IRowSet rs=builder.executeQuery();
+					while(rs.next()){
+						String fparentid =rs.getString("fparentid");
+						builder.clear();
+						builder.appendSql("select fstate from T_CON_ContractWithoutText where fid='" + fparentid + "'");
+						IRowSet rsCon=builder.executeQuery();
+						while(rsCon.next()){
+							String conState =rsCon.getString("fstate");
+							if(conState.equals(FDCBillStateEnum.SAVED_VALUE)){
+								continue;
+							}else{
+							throw new EASBizException(new NumericExceptionSubItem("100","发票号为"+invoiceNumber+"的发票已被使用,请重新选择发票！"));
+							}
+						}
+					}
+					builder=new FDCSQLBuilder(ctx);
+					builder.appendSql("select fparentid from T_CON_PayReqInvoiceEntry where FInvoiceNumber='" + invoiceNumber + "'");
+					rs=builder.executeQuery();
+					while(rs.next()){
+						String fparentid =rs.getString("fparentid");
+						if(fparentid.equals(info.getId().toString())){
+							continue;
+						}
+						builder.clear();
+						builder.appendSql("select fstate from T_CON_PayRequestBill where fid='" + fparentid + "'");
+						IRowSet rsCon=builder.executeQuery();
+						while(rsCon.next()){
+							String conState =rsCon.getString("fstate");
+							if(conState.equals(FDCBillStateEnum.SAVED_VALUE)){
+								continue;
+							}else{
+							throw new EASBizException(new NumericExceptionSubItem("100","发票号为"+invoiceNumber+"的发票已被使用,请重新选择发票！"));
+							}
+						}
+					}
+//				}
+//				SelectorItemCollection sic=new SelectorItemCollection();
+////				调取每刻发票链接 修改金蝶发票状态为锁定
+//				String number = fp.getInvoiceNumber();
+//				String viewLink = getMKLink(ctx,number);
+//				if(viewLink!=null&&viewLink!=""){
+//					fp.setViewLink(viewLink);
+//					sic.add("viewLink");
+//				}
+//					fp.setIsMKUsed(1);//上面一段代码判断后 此处不需
+//					sic.add("isMkUsed");
+//					ContractWTInvoiceEntryFactory.getLocalInstance(ctx).updatePartial(fp,sic);
+				
 			}
 		}
 	}

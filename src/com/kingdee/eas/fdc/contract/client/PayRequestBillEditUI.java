@@ -37,6 +37,7 @@ import com.kingdee.bos.BOSException;
 import com.kingdee.bos.Context;
 import com.kingdee.bos.ctrl.extendcontrols.BizDataFormat;
 import com.kingdee.bos.ctrl.extendcontrols.ExtendParser;
+import com.kingdee.bos.ctrl.extendcontrols.IDataFormat;
 import com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox;
 import com.kingdee.bos.ctrl.kdf.servertable.KDTStyleConstants;
 import com.kingdee.bos.ctrl.kdf.table.ICell;
@@ -3377,6 +3378,7 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 		    		return;
 				}
 			}else{
+				this.editData.setOaOpinion(null);
 				UIContext uiContext = new UIContext(this);
 				uiContext.put("editData", this.editData);
 		        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);
@@ -8463,7 +8465,15 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 //				return super.getText(obj);
 //			}
 //		});
-		
+		ObjectValueRender date_scale = new ObjectValueRender();
+		date_scale.setFormat(new IDataFormat() {
+			public String format(Object o) {
+				Date str = (Date)o;
+				return FDCDateHelper.DateToString(str);
+			}
+		});
+		this.kdtInvoiceEntry.getColumn("issueDate").setRenderer(date_scale);
+		this.kdtInvoiceEntry.getColumn("specialVATTaxRate").getStyleAttributes().setHided(true);
 		this.kdtInvoiceEntry.checkParsed();
 		this.kdtInvoiceEntry.setEditable(true);
 		btnAddRowinfo = new KDWorkButton();

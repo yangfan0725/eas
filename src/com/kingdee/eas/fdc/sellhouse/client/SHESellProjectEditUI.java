@@ -377,7 +377,7 @@ public class SHESellProjectEditUI extends AbstractSHESellProjectEditUI {
 
 		UIContext uiContext = new UIContext(this);
 		uiContext.put(RoomModelEditUI.KEY_DESTORY_WINDOW, Boolean.TRUE);
-		uiContext.put("SheSellProjectID", this.editData.getParent() !=null ?this.editData.getParent().getId().toString():this.editData.getId().toString());
+		uiContext.put("SheSellProjectID", this.editData.getId().toString());
 		// 创建UI对象并显示
 
 		IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.MODEL)

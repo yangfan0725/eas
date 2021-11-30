@@ -102,10 +102,10 @@ public class PublicCustomerFacadeControllerBean extends AbstractPublicCustomerFa
 		sql.append("left join T_BAS_Param param on param.fid = pitem.fkeyid where change.freason ='05' and param.FNUMBER = 'FDCSHE_120__PUBLICCOUSTERMER_TRANSFORM' and DATEDIFF (d, change.fcreateTime , now())<=pItem.Fvalue_L2 ");
 		sql.append("union all select preCustomer.fcustomerid customerid from t_she_prePurchaseCustomerEntry preCustomer left join t_she_prePurchasemanage pre on pre.fid=preCustomer.fheadid where pre.fbizState not in('PreNullify','QRNullify') ");
 		sql.append("union all select purCustomer.fcustomerid customerid from t_she_purCustomerEntry purCustomer left join t_she_purchasemanage pur on pur.fid=purCustomer.fheadid where pur.fbizState not in('PurNullify','QRNullify') ");
-		sql.append("union all select signCustomer.fcustomerid customerid from t_she_signCustomerEntry signCustomer left join t_she_signmanage sign on sign.fid=signCustomer.fheadid where sign.fbizState not in('SignNullify','QRNullify'))nocustomer where nocustomer.customerid =customer.fid) ");
+		sql.append("union all select signCustomer.fcustomerid customerid from t_she_signCustomerEntry signCustomer left join t_she_signmanage sign on sign.fid=signCustomer.fheadid where sign.fbizState not in('SignNullify','QRNullify') ");
 		
 		sql.append("union all select customer.fid customerid from t_she_shecustomer customer left join t_she_sellProject sp on sp.fid=customer.fsellprojectid left join  t_bas_paramItem pitem on pitem.FOrgUnitID = sp.forgUnitid ");
-		sql.append("left join T_BAS_Param param on param.fid = pitem.fkeyid where param.FNUMBER = 'YF_WF' and pItem.Fvalue_L2='true'");
+		sql.append("left join T_BAS_Param param on param.fid = pitem.fkeyid where param.FNUMBER = 'YF_WF' and pItem.Fvalue_L2='true' )nocustomer where nocustomer.customerid =customer.fid)");
 		build.addBatch(sql.toString());
 		
 		build.executeBatch();

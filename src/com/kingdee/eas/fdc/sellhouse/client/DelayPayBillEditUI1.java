@@ -731,7 +731,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 		RoomInfo room=(RoomInfo) this.prmtRoom.getValue();
 		PurchaseManageCollection purCol=PurchaseManageFactory.getRemoteInstance().getPurchaseManageCollection("select purPayListEntry.*,purPayListEntry.moneyDefine.*,payType.*,* from where room.id='"+room.getId()+"' and (bizState='PurApple' or bizState='PurAudit')");
 		if(purCol.size()>0){
-			if(FDCDateHelper.getDiffDays(purCol.get(0).getBusAdscriptionDate(), (Date) this.pkBizDate.getValue())>3){
+			if(FDCDateHelper.getDiffDays(purCol.get(0).getBusAdscriptionDate(), (Date) this.pkBizDate.getValue())>4){
 				FDCMsgBox.showWarning(this,"制度要求延期申请单必须认购当天发起！");
 				SysUtil.abort();
 			}

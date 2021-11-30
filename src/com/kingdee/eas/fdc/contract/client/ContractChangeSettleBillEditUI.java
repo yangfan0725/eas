@@ -538,6 +538,7 @@ public class ContractChangeSettleBillEditUI extends AbstractContractChangeSettle
 		    		return;
 				}
 			}else{
+				this.editData.setOaOpinion(null);
 				UIContext uiContext = new UIContext(this);
 				uiContext.put("editData", this.editData);
 		        IUIFactory uiFactory = UIFactory.createUIFactory(UIFactoryName.MODEL);

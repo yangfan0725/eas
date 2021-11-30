@@ -130,11 +130,11 @@ public class ThirdPartyExpenseBillControllerBean extends AbstractThirdPartyExpen
 		}
 		public void createMarketProjectInfo(Context ctx,ThirdPartyExpenseBillInfo info) throws EASBizException, BOSException{
 			MarketProjectCollection col=MarketProjectFactory.getLocalInstance(ctx).getMarketProjectCollection("select * from where sourceBillId='"+info.getId().toString()+"'");
-			if(col.size()>0){
+			for(int i=0;i<col.size();i++){
 				FilterInfo filter = new FilterInfo();
-				filter.getFilterItems().add(new FilterItemInfo("boID", col.get(0).getId()));
+				filter.getFilterItems().add(new FilterItemInfo("boID", col.get(i).getId()));
 				BoAttchAssoFactory.getLocalInstance(ctx).delete(filter);
-				MarketProjectFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(col.get(0).getId()));
+				MarketProjectFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(col.get(i).getId()));
 			}
 			Map rowMap=new HashMap();
 	    	for(int i=0;i<info.getEntry().size();i++){

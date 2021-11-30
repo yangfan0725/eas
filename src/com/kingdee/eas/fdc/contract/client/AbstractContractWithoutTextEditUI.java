@@ -1727,7 +1727,7 @@ public abstract class AbstractContractWithoutTextEditUI extends com.kingdee.eas.
         this.prmtPayBillType.setDisplayFormat("$number$ $name$");		
         this.prmtPayBillType.setVisible(false);
         // kdtInvoiceEntry
-		String kdtInvoiceEntryStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol6\"><c:Protection hidden=\"true\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"invoiceNumber\" t:width=\"250\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"invoiceTypeDesc\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"issueDate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"totalPriceAndTax\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"specialVATTaxRate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"4\" /><t:Column t:key=\"totalTaxAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"5\" /><t:Column t:key=\"fromMk\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol6\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{invoiceNumber}</t:Cell><t:Cell>$Resource{invoiceTypeDesc}</t:Cell><t:Cell>$Resource{issueDate}</t:Cell><t:Cell>$Resource{totalPriceAndTax}</t:Cell><t:Cell>$Resource{specialVATTaxRate}</t:Cell><t:Cell>$Resource{totalTaxAmount}</t:Cell><t:Cell>$Resource{fromMk}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
+		String kdtInvoiceEntryStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol6\"><c:Protection hidden=\"true\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"invoiceNumber\" t:width=\"250\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"invoiceTypeDesc\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"bizDate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"totalPriceAndTax\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"specialVATTaxRate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"4\" /><t:Column t:key=\"totalTaxAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"5\" /><t:Column t:key=\"fromMk\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" t:styleID=\"sCol6\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{invoiceNumber}</t:Cell><t:Cell>$Resource{invoiceTypeDesc}</t:Cell><t:Cell>$Resource{bizDate}</t:Cell><t:Cell>$Resource{totalPriceAndTax}</t:Cell><t:Cell>$Resource{specialVATTaxRate}</t:Cell><t:Cell>$Resource{totalTaxAmount}</t:Cell><t:Cell>$Resource{fromMk}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
 		
         this.kdtInvoiceEntry.setFormatXml(resHelper.translateString("kdtInvoiceEntry",kdtInvoiceEntryStrXML));
         this.kdtInvoiceEntry.addKDTEditListener(new com.kingdee.bos.ctrl.kdf.table.event.KDTEditAdapter() {
@@ -1744,12 +1744,12 @@ public abstract class AbstractContractWithoutTextEditUI extends com.kingdee.eas.
 
 
         this.kdtInvoiceEntry.checkParsed();
-        KDDatePicker kdtInvoiceEntry_issueDate_DatePicker = new KDDatePicker();
-        kdtInvoiceEntry_issueDate_DatePicker.setName("kdtInvoiceEntry_issueDate_DatePicker");
-        kdtInvoiceEntry_issueDate_DatePicker.setVisible(true);
-        kdtInvoiceEntry_issueDate_DatePicker.setEditable(true);
-        KDTDefaultCellEditor kdtInvoiceEntry_issueDate_CellEditor = new KDTDefaultCellEditor(kdtInvoiceEntry_issueDate_DatePicker);
-        this.kdtInvoiceEntry.getColumn("issueDate").setEditor(kdtInvoiceEntry_issueDate_CellEditor);
+        KDDatePicker kdtInvoiceEntry_bizDate_DatePicker = new KDDatePicker();
+        kdtInvoiceEntry_bizDate_DatePicker.setName("kdtInvoiceEntry_bizDate_DatePicker");
+        kdtInvoiceEntry_bizDate_DatePicker.setVisible(true);
+        kdtInvoiceEntry_bizDate_DatePicker.setEditable(true);
+        KDTDefaultCellEditor kdtInvoiceEntry_bizDate_CellEditor = new KDTDefaultCellEditor(kdtInvoiceEntry_bizDate_DatePicker);
+        this.kdtInvoiceEntry.getColumn("bizDate").setEditor(kdtInvoiceEntry_bizDate_CellEditor);
         KDFormattedTextField kdtInvoiceEntry_totalPriceAndTax_TextField = new KDFormattedTextField();
         kdtInvoiceEntry_totalPriceAndTax_TextField.setName("kdtInvoiceEntry_totalPriceAndTax_TextField");
         kdtInvoiceEntry_totalPriceAndTax_TextField.setVisible(true);
@@ -2434,12 +2434,12 @@ contInvoiceEntry.getContentPane().setLayout(new BorderLayout(0, 0));        cont
 		dataBinder.registerBinding("payBillType", com.kingdee.eas.fi.cas.PaymentBillTypeInfo.class, this.prmtPayBillType, "data");
 		dataBinder.registerBinding("invoiceEntry", com.kingdee.eas.fdc.contract.ContractWTInvoiceEntryInfo.class, this.kdtInvoiceEntry, "userObject");
 		dataBinder.registerBinding("invoiceEntry.invoiceType", com.kingdee.eas.fdc.contract.app.WTInvoiceTypeEnum.class, this.kdtInvoiceEntry, "invoiceTypeDesc.text");
-		dataBinder.registerBinding("invoiceEntry.bizDate", java.util.Date.class, this.kdtInvoiceEntry, "issueDate.text");
 		dataBinder.registerBinding("invoiceEntry.totalAmount", java.math.BigDecimal.class, this.kdtInvoiceEntry, "totalPriceAndTax.text");
 		dataBinder.registerBinding("invoiceEntry.rate", java.math.BigDecimal.class, this.kdtInvoiceEntry, "specialVATTaxRate.text");
 		dataBinder.registerBinding("invoiceEntry.amount", java.math.BigDecimal.class, this.kdtInvoiceEntry, "totalTaxAmount.text");
 		dataBinder.registerBinding("invoiceEntry.invoiceNumber", String.class, this.kdtInvoiceEntry, "invoiceNumber.text");
 		dataBinder.registerBinding("invoiceEntry.fromMk", int.class, this.kdtInvoiceEntry, "fromMk.text");
+		dataBinder.registerBinding("invoiceEntry.bizDate", java.util.Date.class, this.kdtInvoiceEntry, "bizDate.text");
 		dataBinder.registerBinding("rateAmount", java.math.BigDecimal.class, this.txtRateAmount, "value");
 		dataBinder.registerBinding("taxerQua", com.kingdee.eas.fdc.contract.app.TaxerQuaEnum.class, this.cbTaxerQua, "selectedItem");
 		dataBinder.registerBinding("taxerNum", String.class, this.txtTaxerNum, "text");
@@ -2647,12 +2647,12 @@ contInvoiceEntry.getContentPane().setLayout(new BorderLayout(0, 0));        cont
 		getValidateHelper().registerBindProperty("payBillType", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("invoiceEntry", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("invoiceEntry.invoiceType", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("invoiceEntry.bizDate", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("invoiceEntry.totalAmount", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("invoiceEntry.rate", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("invoiceEntry.amount", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("invoiceEntry.invoiceNumber", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("invoiceEntry.fromMk", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("invoiceEntry.bizDate", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("rateAmount", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("taxerQua", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("taxerNum", ValidateHelper.ON_SAVE);    
@@ -3196,12 +3196,12 @@ contInvoiceEntry.getContentPane().setLayout(new BorderLayout(0, 0));        cont
 		else{
 		}
     	sic.add(new SelectorItemInfo("invoiceEntry.invoiceType"));
-    	sic.add(new SelectorItemInfo("invoiceEntry.bizDate"));
     	sic.add(new SelectorItemInfo("invoiceEntry.totalAmount"));
     	sic.add(new SelectorItemInfo("invoiceEntry.rate"));
     	sic.add(new SelectorItemInfo("invoiceEntry.amount"));
     	sic.add(new SelectorItemInfo("invoiceEntry.invoiceNumber"));
     	sic.add(new SelectorItemInfo("invoiceEntry.fromMk"));
+    	sic.add(new SelectorItemInfo("invoiceEntry.bizDate"));
         sic.add(new SelectorItemInfo("rateAmount"));
         sic.add(new SelectorItemInfo("taxerQua"));
         sic.add(new SelectorItemInfo("taxerNum"));
