@@ -348,6 +348,9 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             if(payCol.size()>0){
             	throw new EASBizException(new NumericExceptionSubItem("100","请取消付款代理公司付款单！"));
             }
+            if(info.isIsCommittoBe()){
+    			throw new EASBizException(new NumericExceptionSubItem("100","已传递资金系统，禁止取消付款！"));
+    		}
             if(info.getSourceType().equals(SourceTypeEnum.FDC)||(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType()))){
             	String payRequestBillId=null;
             	if(info.getSourceBillId()!=null){
@@ -357,9 +360,6 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		payRequestBillId=info.getFdcPayReqID();
             	}
             	if(payRequestBillId != null){
-            		if(info.isIsCommittoBe()){
-            			throw new EASBizException(new NumericExceptionSubItem("100","已传递资金系统，禁止取消付款！"));
-            		}
             		PayRequestBillInfo payRequest=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(payRequestBillId),getSelectors());
             		if(payRequest.isHasClosed()){
             			throw new EASBizException(new NumericExceptionSubItem("100","付款申请单已经关闭，禁止取消付款！"));
@@ -427,6 +427,9 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             if(payCol.size()>0){
             	throw new EASBizException(new NumericExceptionSubItem("100","请取消付款代理公司付款单！"));
             }
+            if(info.isIsCommittoBe()){
+    			throw new EASBizException(new NumericExceptionSubItem("100","已传递资金系统，禁止取消付款！"));
+    		}
             if(info.getSourceType().equals(SourceTypeEnum.FDC)||(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType()))){
             	String payRequestBillId=null;
             	if(info.getSourceBillId()!=null){
@@ -436,9 +439,6 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		payRequestBillId=info.getFdcPayReqID();
             	}
             	if(payRequestBillId != null){
-            		if(info.isIsCommittoBe()){
-            			throw new EASBizException(new NumericExceptionSubItem("100","已传递资金系统，禁止取消付款！"));
-            		}
             		PayRequestBillInfo payRequest=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(payRequestBillId),getSelectors());
             		if(payRequest.isHasClosed()){
             			throw new EASBizException(new NumericExceptionSubItem("100","付款申请单已经关闭，禁止取消付款！"));

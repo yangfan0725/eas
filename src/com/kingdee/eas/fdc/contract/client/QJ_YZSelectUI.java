@@ -103,14 +103,24 @@ public class QJ_YZSelectUI extends AbstractQJ_YZSelectUI
 		    Entry<String, JSONObject> entry = entries.next();
 		    String key = entry.getKey();
 		    JSONObject value = entry.getValue();
-		    if(value.getString("sealName").contains(this.textName.getText())){
-		    	  IRow row=this.kdtable.addRow();
+		    if(this.textName.getText()!=null&&!"".equals(this.textName.getText().trim())){
+		    	if(value.getString("sealName").contains(this.textName.getText())){
+		    		IRow row=this.kdtable.addRow();
 				    row.getCell("select").setValue(Boolean.FALSE);
 					row.getCell("name").setValue(value.getString("sealName"));
 					row.getCell("yzID").setValue(value.getString("id"));
 					row.getCell("admin").setValue(value.getString("adminName"));
 					row.getCell("adminID").setValue(value.getString("adminId"));
 					row.getCell("type").setValue(value.getString("sealType"));
+			    }
+		    }else{
+		    	IRow row=this.kdtable.addRow();
+			    row.getCell("select").setValue(Boolean.FALSE);
+				row.getCell("name").setValue(value.getString("sealName"));
+				row.getCell("yzID").setValue(value.getString("id"));
+				row.getCell("admin").setValue(value.getString("adminName"));
+				row.getCell("adminID").setValue(value.getString("adminId"));
+				row.getCell("type").setValue(value.getString("sealType"));
 		    }
 		}
 	}

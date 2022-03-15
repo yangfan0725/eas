@@ -1126,7 +1126,8 @@ public abstract class AbstractPayRequestBillEditUI extends com.kingdee.eas.fdc.b
         // kDLabelContainer8		
         this.kDLabelContainer8.setBoundLabelText(resHelper.getString("kDLabelContainer8.boundLabelText"));		
         this.kDLabelContainer8.setBoundLabelLength(140);		
-        this.kDLabelContainer8.setBoundLabelUnderline(true);
+        this.kDLabelContainer8.setBoundLabelUnderline(true);		
+        this.kDLabelContainer8.setVisible(false);
         // contStartDate		
         this.contStartDate.setBoundLabelText(resHelper.getString("contStartDate.boundLabelText"));		
         this.contStartDate.setBoundLabelLength(100);		
@@ -1966,8 +1967,8 @@ public abstract class AbstractPayRequestBillEditUI extends com.kingdee.eas.fdc.b
         kDPanel1.add(contPlanHasCon, new KDLayout.Constraints(851, 1217, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contDescription.setBounds(new Rectangle(875, 1043, 270, 19));
         kDPanel1.add(contDescription, new KDLayout.Constraints(875, 1043, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
-        contpaymentProportion.setBounds(new Rectangle(372, 614, 270, 19));
-        kDPanel1.add(contpaymentProportion, new KDLayout.Constraints(372, 614, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        contpaymentProportion.setBounds(new Rectangle(8, 614, 270, 19));
+        kDPanel1.add(contpaymentProportion, new KDLayout.Constraints(8, 614, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         kDLabelContainer7.setBounds(new Rectangle(370, 344, 270, 19));
         kDPanel1.add(kDLabelContainer7, new KDLayout.Constraints(370, 344, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contPayBillType.setBounds(new Rectangle(888, 1151, 270, 19));

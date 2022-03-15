@@ -392,6 +392,35 @@
             <transactionAttribute>Required</transactionAttribute>
             <userDefined>true</userDefined>
             <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>startDate</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[startDate].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[startDate].description</description>
+                    <direction>in</direction>
+                    <dataType>Date</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>endDate</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[endDate].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[endDate].description</description>
+                    <direction>in</direction>
+                    <dataType>Date</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+                <parameter>
+                    <name>offset</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[offset].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[offset].description</description>
+                    <direction>in</direction>
+                    <dataType>Integer</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
             <exceptions>
                 <bizException>
                     <key name="package" value="com.kingdee.eas.common" />
@@ -418,6 +447,38 @@
                     <name>number</name>
                     <alias>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKLink].parameters.parameter[number].alias</alias>
                     <description>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKLink].parameters.parameter[number].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+        <method>
+            <name>clearMKFP</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[clearMKFP].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[clearMKFP].description</description>
+            <innerID>33511135-b093-40e5-97bd-6ba13170bd57</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Required</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>number</name>
+                    <alias>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[clearMKFP].parameters.parameter[number].alias</alias>
+                    <description>entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[clearMKFP].parameters.parameter[number].description</description>
                     <direction>in</direction>
                     <dataType>String</dataType>
                     <metadataRef />
@@ -2563,6 +2624,29 @@
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[clearMKFP].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="解锁发票" />
+            <lang locale="zh_HK" value="解鎖發票" />
+            <lang locale="zh_TW" value="解鎖發票" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[clearMKFP].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="解锁发票" />
+            <lang locale="zh_HK" value="解鎖發票" />
+            <lang locale="zh_TW" value="解鎖發票" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[clearMKFP].parameters.parameter[number].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="number" />
+            <lang locale="zh_HK" value="number" />
+            <lang locale="zh_TW" value="number" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[clearMKFP].parameters.parameter[number].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
         <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getCollection].alias">
             <lang locale="en_US" value="getCollection" />
             <lang locale="zh_CN" value="取集合" />
@@ -2631,6 +2715,39 @@
             <lang locale="zh_CN" value="获取每刻发票" />
             <lang locale="zh_HK" value="獲取每刻發票" />
             <lang locale="zh_TW" value="獲取每刻發票" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[endDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="endDate" />
+            <lang locale="zh_HK" value="endDate" />
+            <lang locale="zh_TW" value="endDate" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[endDate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[offset].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="offset" />
+            <lang locale="zh_HK" value="offset" />
+            <lang locale="zh_TW" value="offset" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[offset].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[startDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="startDate" />
+            <lang locale="zh_HK" value="startDate" />
+            <lang locale="zh_TW" value="startDate" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKFP].parameters.parameter[startDate].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractWithoutText].methods.method[getMKLink].alias">
             <lang locale="en_US" value="null" />

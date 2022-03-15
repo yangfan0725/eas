@@ -8050,7 +8050,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			this.txtTaxerNum.setText(supplier.getTaxRegisterNo());
 		}else{
 			this.txtBank.setText(null);
-			this.txtBankAccount.setText(null);
+//			this.txtBankAccount.setText(null);
 			this.txtTaxerNum.setText(null);
 		}
 	}

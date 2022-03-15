@@ -179,6 +179,11 @@ public class MarketProjectControllerBean extends AbstractMarketProjectController
 				}else{
 					obj.put("fd_38cf17bb650026", "外部供应商客户往来类");
 				}
+				if(info.isIsKJ()){
+					obj.put("fd_ifFramework", "是");
+				}else{
+					obj.put("fd_ifFramework", "否");
+				}
 				
 //				web页面查看路径
 				builder.clear();

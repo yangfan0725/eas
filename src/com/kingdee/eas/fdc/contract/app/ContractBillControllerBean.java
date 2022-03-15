@@ -3238,7 +3238,7 @@ public class ContractBillControllerBean extends
 				String result=(String)call.invoke(new Object[]{number} );
 		        JSONObject rso = JSONObject.fromObject(result);
 		        if(!rso.getString("status").equals("0")){
-		        	throw new EASBizException(new NumericExceptionSubItem("100",rso.getString("massage")));
+		        	throw new EASBizException(new NumericExceptionSubItem("100",rso.getString("message")));
 		        }else{
 		        	JSONArray returnMessage = rso.getJSONArray("ReturnMessage");
 					for (int i=0;i<returnMessage.size();i++) {

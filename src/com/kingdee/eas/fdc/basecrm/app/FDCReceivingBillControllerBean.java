@@ -39,11 +39,13 @@ import com.kingdee.eas.basedata.master.auxacct.AsstAccountInfo;
 import com.kingdee.eas.basedata.master.auxacct.AsstActGroupDetailCollection;
 import com.kingdee.eas.basedata.master.auxacct.AsstActTypeInfo;
 import com.kingdee.eas.basedata.master.cssp.CustomerInfo;
+import com.kingdee.eas.basedata.org.CostCenterOrgUnitFactory;
 import com.kingdee.eas.basedata.org.CtrlUnitInfo;
 import com.kingdee.eas.basedata.org.OrgUnitInfo;
 import com.kingdee.eas.common.EASAppException;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.common.client.SysContext;
+import com.kingdee.eas.cp.bc.ExpenseTypeFactory;
 import com.kingdee.eas.fdc.basecrm.CRMHelper;
 import com.kingdee.eas.fdc.basecrm.FDCReceivingBillCollection;
 import com.kingdee.eas.fdc.basecrm.FDCReceivingBillEntryCollection;
@@ -1420,7 +1422,14 @@ public class FDCReceivingBillControllerBean extends AbstractFDCReceivingBillCont
 									}
 								}
 							}
-							
+							payBillEntryInfo.setExpenseType(ExpenseTypeFactory.getLocalInstance(ctx).getExpenseTypeCollection("select * from where number='888.01'").get(0));
+							EntityViewInfo ev = new EntityViewInfo();
+							FilterInfo filter = new FilterInfo();
+							ev.setFilter(filter);
+							filter.getFilterItems().add(
+									new FilterItemInfo("number", "999",
+											CompareType.EQUALS));
+							payBillEntryInfo.setCostCenter(CostCenterOrgUnitFactory.getLocalInstance(ctx).getCostCenterOrgUnitInfo(new ObjectUuidPK(fdcReceivingBillInfo.getCompany().getId())));
 							payBillEntry.add(payBillEntryInfo);
 							if(billEntry.get(k).getMoneyDefine()!=null)
 								mdName.add(billEntry.get(k).getMoneyDefine().getName());

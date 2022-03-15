@@ -11,6 +11,7 @@ import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.bos.dao.IObjectPK;
 import java.util.Map;
+import java.util.Date;
 import com.kingdee.eas.fdc.basedata.IFDCBill;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.eas.framework.CoreBaseCollection;
@@ -37,6 +38,7 @@ public interface IContractWithoutText extends IFDCBill
     public void synUpdateProgramming(String billId, ProgrammingContractInfo programming) throws BOSException, EASBizException;
     public void synReUpdateProgramming(String billId, IObjectValue programming) throws BOSException, EASBizException;
     public IObjectValue getNoPValue(IObjectPK pk, SelectorItemCollection sel) throws BOSException;
-    public Map getMKFP() throws BOSException, EASBizException;
+    public Map getMKFP(Date startDate, Date endDate, int offset) throws BOSException, EASBizException;
     public String getMKLink(String number) throws BOSException, EASBizException;
+    public String clearMKFP(String number) throws BOSException, EASBizException;
 }

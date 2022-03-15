@@ -220,6 +220,8 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 		
 		handleCodingRule();
 		this.txtNumber.setEnabled(false);
+		
+		this.actionSave.setVisible(false);
 	}
     protected void handleCodingRule() throws BOSException, CodingRuleException, EASBizException {
 

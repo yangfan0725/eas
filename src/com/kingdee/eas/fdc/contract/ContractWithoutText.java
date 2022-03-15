@@ -11,6 +11,7 @@ import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.bos.dao.IObjectPK;
 import java.util.Map;
+import java.util.Date;
 import com.kingdee.eas.fdc.basedata.IFDCBill;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.eas.framework.CoreBaseCollection;
@@ -216,12 +217,15 @@ public class ContractWithoutText extends FDCBill implements IContractWithoutText
     }
     /**
      *获取每刻发票-User defined method
+     *@param startDate startDate
+     *@param endDate endDate
+     *@param offset offset
      *@return
      */
-    public Map getMKFP() throws BOSException, EASBizException
+    public Map getMKFP(Date startDate, Date endDate, int offset) throws BOSException, EASBizException
     {
         try {
-            return getController().getMKFP(getContext());
+            return getController().getMKFP(getContext(), startDate, endDate, offset);
         }
         catch(RemoteException err) {
             throw new EJBRemoteException(err);
@@ -236,6 +240,20 @@ public class ContractWithoutText extends FDCBill implements IContractWithoutText
     {
         try {
             return getController().getMKLink(getContext(), number);
+        }
+        catch(RemoteException err) {
+            throw new EJBRemoteException(err);
+        }
+    }
+    /**
+     *解锁发票-User defined method
+     *@param number number
+     *@return
+     */
+    public String clearMKFP(String number) throws BOSException, EASBizException
+    {
+        try {
+            return getController().clearMKFP(getContext(), number);
         }
         catch(RemoteException err) {
             throw new EJBRemoteException(err);

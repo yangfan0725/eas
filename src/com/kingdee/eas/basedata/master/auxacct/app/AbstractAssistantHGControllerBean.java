@@ -137,7 +137,10 @@ public abstract class AbstractAssistantHGControllerBean extends ObjectBaseContro
             super.cleanUpServiceState();
         }
     }
-    protected abstract IObjectValue _getAssistantHG(Context ctx, AssistantHGInfo assGrp, String bookId, AsstActTypeCollection items) throws BOSException, EASBizException;
+    protected IObjectValue _getAssistantHG(Context ctx, AssistantHGInfo assGrp, String bookId, AsstActTypeCollection items) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
 
     public AssistantHGInfo getAssistantHGInfo(Context ctx, IObjectPK pk) throws BOSException, EASBizException
     {
@@ -235,7 +238,10 @@ public abstract class AbstractAssistantHGControllerBean extends ObjectBaseContro
             super.cleanUpServiceState();
         }
     }
-    protected abstract IObjectValue _getAssistantHG(Context ctx, IObjectPK asstHGPK, String bookId, IObjectPK[] items) throws BOSException, EASBizException;
+    protected IObjectValue _getAssistantHG(Context ctx, IObjectPK asstHGPK, String bookId, IObjectPK[] items) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
 
     public ObjectBaseCollection getObjectBaseCollection (Context ctx) throws BOSException
     {

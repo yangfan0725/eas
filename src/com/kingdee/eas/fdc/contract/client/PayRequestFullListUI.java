@@ -46,6 +46,7 @@ import com.kingdee.bos.metadata.bot.BOTMappingFactory;
 import com.kingdee.bos.metadata.bot.BOTMappingInfo;
 import com.kingdee.bos.metadata.bot.BOTRelationCollection;
 import com.kingdee.bos.metadata.bot.BOTRelationFactory;
+import com.kingdee.bos.metadata.bot.BOTRelationInfo;
 import com.kingdee.bos.metadata.bot.IBOTRelation;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;

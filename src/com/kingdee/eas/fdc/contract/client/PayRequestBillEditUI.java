@@ -1817,7 +1817,7 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 		txtWeight.setDataType(KDFormattedTextField.BIGDECIMAL_TYPE);
 		txtWeight.setDataVerifierType(KDFormattedTextField.NO_VERIFIER);
 		txtWeight.setPrecision(2);
-		txtWeight.setMinimumValue(FDCHelper.ZERO);
+//		txtWeight.setMinimumValue(FDCHelper.ZERO);
 		KDTDefaultCellEditor weight = new KDTDefaultCellEditor(txtWeight);
 		this.kdtBgEntry.getColumn("requestAmount").setEditor(weight);
 		this.kdtBgEntry.getColumn("requestAmount").getStyleAttributes().setNumberFormat("#0.00");
@@ -4840,11 +4840,11 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 					this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("requestAmount"));
 					SysUtil.abort();
 				}
-				if (((BigDecimal) row.getCell("requestAmount").getValue()).compareTo(FDCHelper.ZERO) < 0) {
-					FDCMsgBox.showWarning(this, "费用清单申请金额必须大于0！");
-					this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("requestAmount"));
-					SysUtil.abort();
-				}
+//				if (((BigDecimal) row.getCell("requestAmount").getValue()).compareTo(FDCHelper.ZERO) < 0) {
+//					FDCMsgBox.showWarning(this, "费用清单申请金额必须大于0！");
+//					this.kdtBgEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtBgEntry.getColumnIndex("requestAmount"));
+//					SysUtil.abort();
+//				}
 				BgItemInfo bgItem = (BgItemInfo) row.getCell("bgItem").getValue();
 				for (int j = 0; j < coll.size(); j++) {
 					if (bgItem.getNumber().equals(coll.get(j).getItemCombinNumber())) {
@@ -8572,13 +8572,13 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 
 	protected void kdtInvoiceEntry_tableClicked(KDTMouseEvent e)throws Exception {
 		if (e.getType() == KDTStyleConstants.BODY_ROW && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2) {
-			IRow row = kdtInvoiceEntry.getRow(e.getRowIndex());
-			if(row.getCell("invoiceNumber").getValue()==null) return;
-			UIContext uiContext = new UIContext(this);
-			ContractInvoiceInfo info=(ContractInvoiceInfo) row.getCell("invoiceNumber").getValue();
-			uiContext.put("ID", info.getId());
-			IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.MODEL).create(ContractInvoiceEditUI.class.getName(), uiContext, null, OprtState.VIEW);
-			uiWindow.show();
+//			IRow row = kdtInvoiceEntry.getRow(e.getRowIndex());
+//			if(row.getCell("invoiceNumber").getValue()==null) return;
+//			UIContext uiContext = new UIContext(this);
+//			ContractInvoiceInfo info=(ContractInvoiceInfo) row.getCell("invoiceNumber").getValue();
+//			uiContext.put("ID", info.getId());
+//			IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.MODEL).create(ContractInvoiceEditUI.class.getName(), uiContext, null, OprtState.VIEW);
+//			uiWindow.show();
 		}
 	}
 	protected void prmtLxNum_dataChanged(DataChangeEvent e) throws Exception {

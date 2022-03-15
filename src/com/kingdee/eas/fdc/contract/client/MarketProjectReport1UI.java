@@ -202,7 +202,8 @@ public class MarketProjectReport1UI extends AbstractMarketProjectReport1UI
     	        tblMain.setRefresh(true);
     	        
     	        CRMClientHelper.changeTableNumberFormat(tblMain, new String[]{"subAmount","amount","conAmount","payAmount","unPayAmount","conMarketAmount"});
-    			CRMClientHelper.fmtDate(tblMain, "auditTime");
+    	        CRMClientHelper.fmtDate(tblMain, "bizDate");
+    	        CRMClientHelper.fmtDate(tblMain, "auditTime");
     			CRMClientHelper.fmtDate(tblMain, "conAuditTime");
     			CRMClientHelper.fmtDate(tblMain, "conBizDate");
     			

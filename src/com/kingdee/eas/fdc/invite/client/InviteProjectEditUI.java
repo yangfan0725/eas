@@ -1468,11 +1468,11 @@ public class InviteProjectEditUI extends AbstractInviteProjectEditUI
 			
 			this.kdtSupplierEntry.checkParsed();
 			FDCTableHelper.disableAutoAddLine(this.kdtSupplierEntry);
-			IColumn col = this.kdtSupplierEntry.addColumn(1);
-			col.setKey("inviteType");
-			col.setWidth(100);
-			col.getStyleAttributes().setLocked(true);
-			this.kdtSupplierEntry.getHeadRow(0).getCell("inviteType").setValue("采购类别");
+//			IColumn col = this.kdtSupplierEntry.addColumn(1);
+//			col.setKey("inviteType");
+//			col.setWidth(100);
+//			col.getStyleAttributes().setLocked(true);
+//			this.kdtSupplierEntry.getHeadRow(0).getCell("inviteType").setValue("采购类别");
 
 			this.kdtSupplierEntry.getColumn("linkPerson").setEditor(editorSize);
 		 	this.kdtSupplierEntry.getColumn("linkPhone").setEditor(editorSize);

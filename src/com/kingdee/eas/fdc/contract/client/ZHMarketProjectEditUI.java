@@ -225,9 +225,14 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		this.kdtEntry.getColumn("bizDate").getStyleAttributes().setNumberFormat(formatString);
 		this.kdtEntry.getColumn("bizDate").setRequired(true);
 		
+		this.kdtEntry.getColumn("srcBizDate").getStyleAttributes().setNumberFormat(formatString);
+		this.kdtEntry.getColumn("srcBizDate").setRequired(true);
+		
 		KDDatePicker pk = new KDDatePicker();
 		KDTDefaultCellEditor dateEditor = new KDTDefaultCellEditor(pk);
 		this.kdtEntry.getColumn("bizDate").setEditor(dateEditor);
+		
+		this.kdtEntry.getColumn("srcBizDate").setEditor(dateEditor);
 		
 		KDFormattedTextField amount = new KDFormattedTextField();
 		amount.setDataType(KDFormattedTextField.BIGDECIMAL_TYPE);
@@ -446,6 +451,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			}
 			this.kdtEntry.getColumn("amount").getStyleAttributes().setLocked(true);
 			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setLocked(true);
+			this.kdtEntry.getColumn("srcBizDate").getStyleAttributes().setLocked(true);
 			this.kdtEntry.getColumn("bizDate").getStyleAttributes().setLocked(true);
 			this.kdtEntry.getColumn("costAccount").getStyleAttributes().setLocked(true);
 			this.kdtEntry.getColumn("type").getStyleAttributes().setHided(true);
@@ -455,6 +461,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			this.kdtEntry.getColumn("unit").getStyleAttributes().setHided(true);
 			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(false);
 			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("srcBizDate").getStyleAttributes().setHided(false);
 			
 			this.actionALine.setVisible(false);
 			this.actionILine.setVisible(false);
@@ -467,6 +474,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			}
 			this.kdtEntry.getColumn("amount").getStyleAttributes().setLocked(false);
 			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setLocked(false);
+			this.kdtEntry.getColumn("srcBizDate").getStyleAttributes().setLocked(false);
 			this.kdtEntry.getColumn("bizDate").getStyleAttributes().setLocked(false);
 			this.kdtEntry.getColumn("costAccount").getStyleAttributes().setLocked(false);
 			this.kdtEntry.getColumn("type").getStyleAttributes().setHided(false);
@@ -477,6 +485,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(true);
 			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(true);
 			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("srcBizDate").getStyleAttributes().setHided(true);
 			
 			this.actionALine.setVisible(true);
 			this.actionILine.setVisible(true);
@@ -498,6 +507,8 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 				 BigDecimal amount=FDCHelper.subtract(getMpAmount(mp.getId().toString(), caInfo.getId().toString()), getHappenAmount(mp.getId().toString(),caInfo.getId().toString()));
 				 r.getCell("canAmount").setValue(amount);
 				 r.getCell("amount").setValue(amount.negate());
+				 
+				 r.getCell("srcBizDate").setValue(mp.getBizDate());
 			}
 		}
 	}
@@ -517,6 +528,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			}
 			this.kdtEntry.getColumn("amount").getStyleAttributes().setLocked(true);
 			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setLocked(true);
+			this.kdtEntry.getColumn("srcBizDate").getStyleAttributes().setLocked(true);
 			this.kdtEntry.getColumn("bizDate").getStyleAttributes().setLocked(true);
 			this.kdtEntry.getColumn("costAccount").getStyleAttributes().setLocked(true);
 			this.kdtEntry.getColumn("type").getStyleAttributes().setHided(true);
@@ -526,6 +538,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			this.kdtEntry.getColumn("unit").getStyleAttributes().setHided(true);
 			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(false);
 			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setHided(false);
+			this.kdtEntry.getColumn("srcBizDate").getStyleAttributes().setHided(false);
 			
 			this.actionALine.setVisible(false);
 			this.actionILine.setVisible(false);
@@ -533,6 +546,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		}else{
 			this.kdtEntry.getColumn("amount").getStyleAttributes().setLocked(false);
 			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setLocked(false);
+			this.kdtEntry.getColumn("srcBizDate").getStyleAttributes().setLocked(false);
 			this.kdtEntry.getColumn("bizDate").getStyleAttributes().setLocked(false);
 			this.kdtEntry.getColumn("costAccount").getStyleAttributes().setLocked(false);
 			this.kdtEntry.getColumn("type").getStyleAttributes().setHided(false);
@@ -543,6 +557,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(true);
 			this.kdtEntry.getColumn("canAmount").getStyleAttributes().setHided(true);
 			this.kdtEntry.getColumn("marketProject").getStyleAttributes().setHided(true);
+			this.kdtEntry.getColumn("srcBizDate").getStyleAttributes().setHided(true);
 			
 			this.actionALine.setVisible(true);
 			this.actionILine.setVisible(true);
@@ -587,7 +602,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 					entry.setId(BOSUuid.create(entry.getBOSType()));
 					entry.setMarketProject(mentry.getHead());
 					entry.setCostAccount(mentry.getCostAccount());
-					entry.setBizDate(new Date());
+					entry.setBizDate(mentry.getHead().getBizDate());
 			 	} catch (EASBizException e) {
 					e.printStackTrace();
 				} catch (BOSException e) {
@@ -628,7 +643,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		boolean isJz=false;
 		for(int i=0;i<this.kdtEntry.getRowCount();i++){
 			if(this.kdtEntry.getRow(i).getCell("bizDate").getValue()==null){
-				FDCMsgBox.showWarning(this,"事项预估发生时间不能为空！");
+				FDCMsgBox.showWarning(this,"事项预估发生日期不能为空！");
 				SysUtil.abort();
 			}
 			Date thisDate=new Date();

@@ -90,6 +90,9 @@ public class SaleScheduleReportFacadeControllerBean extends AbstractSaleSchedule
 		
 		RptRowSet revRS = executeQuery(getSheRevBill(orgUnit,fromDate,toDate), null, ctx);
 		params.setObject("revRS", revRS);
+		
+		RptRowSet bcRS = executeQuery(getBCSheRevBill(orgUnit,fromDate,toDate), null, ctx);
+		params.setObject("bcRS", bcRS);
 		return params;
     }
     private String getRoom(String orgUnit){
@@ -213,6 +216,38 @@ public class SaleScheduleReportFacadeControllerBean extends AbstractSaleSchedule
     	sb.append(" select 'year' name,org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(isnull(entry.fAmount,0)+isnull(entry.frevAmount,0)) amount from T_BDC_SHERevBillEntry entry left join T_BDC_SHERevBill revBill on revBill.fid=entry.fparentid");
     	sb.append(" left join t_she_room r on revBill.froomid=r.fid left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid left join t_org_baseUnit org on org.fid=s.forgUnitId left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId ");
     	sb.append(" where revBill.fstate in('2SUBMITTED','4AUDITTED') and md.fmoneyType in('FisrtAmount','HouseAmount','LoanAmount','AccFundAmount')");
+		if(toDate!=null){
+			sb.append(" and revBill.fbizDate>={ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(FDCDateHelper.getFirstYearDate(toDate)))+ "'}");
+			sb.append(" and revBill.fbizDate<{ts '"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(toDate))+ "'}");
+		}
+		if(orgUnit!=null){
+			sb.append(" and org.fid in("+orgUnit+")");
+		}
+    	sb.append(" group by org.fid,org.fname_l2,org.flongNumber) t group by t.orgId,t.company,t.number order by t.number");
+    	return sb.toString();
+    }
+    private String getBCSheRevBill(String orgUnit,Date fromDate,Date toDate){
+    	StringBuffer sb=new StringBuffer();
+    	sb.append(" select t.orgId,t.number,t.company,sum(case t.name when 'month' then round(t.amount,2) else 0 end)/10000 monthAmount,sum(case t.name when 'year' then round(t.amount,2) else 0 end)/10000 yearAmount");
+    	sb.append(" from (select 'month' name,org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(isnull(entry.fAmount,0)+isnull(entry.frevAmount,0)) amount from T_BDC_SHERevBillEntry entry left join T_BDC_SHERevBill revBill on revBill.fid=entry.fparentid");
+    	sb.append(" left join t_she_room r on revBill.froomid=r.fid left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid left join t_org_baseUnit org on org.fid=s.forgUnitId left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId ");
+    	sb.append(" where revBill.fstate in('2SUBMITTED','4AUDITTED') and md.fnumber='16'");
+		if(fromDate!=null){
+			sb.append(" and revBill.fbizDate>={ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(fromDate))+ "'}");
+		}
+		if(toDate!=null){
+			sb.append(" and revBill.fbizDate<{ts '"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(toDate))+ "'}");
+		}
+		if(orgUnit!=null){
+			sb.append(" and org.fid in("+orgUnit+")");
+		}
+    	sb.append(" group by org.fid,org.fname_l2,org.flongNumber");
+    	
+    	sb.append(" union all");
+    	
+    	sb.append(" select 'year' name,org.fid orgId,org.flongNumber number,org.fname_l2 company,sum(isnull(entry.fAmount,0)+isnull(entry.frevAmount,0)) amount from T_BDC_SHERevBillEntry entry left join T_BDC_SHERevBill revBill on revBill.fid=entry.fparentid");
+    	sb.append(" left join t_she_room r on revBill.froomid=r.fid left join t_she_building b on r.fbuildingid=b.fid left join t_she_sellProject s on b.fsellProjectid=s.fid left join t_org_baseUnit org on org.fid=s.forgUnitId left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId ");
+    	sb.append(" where revBill.fstate in('2SUBMITTED','4AUDITTED') and md.fnumber='16'");
 		if(toDate!=null){
 			sb.append(" and revBill.fbizDate>={ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(FDCDateHelper.getFirstYearDate(toDate)))+ "'}");
 			sb.append(" and revBill.fbizDate<{ts '"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(toDate))+ "'}");

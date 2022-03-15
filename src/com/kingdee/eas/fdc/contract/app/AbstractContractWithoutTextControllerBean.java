@@ -25,6 +25,7 @@ import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.bos.dao.IObjectPK;
 import java.util.Map;
+import java.util.Date;
 import com.kingdee.eas.fdc.basedata.app.FDCBillControllerBean;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.eas.framework.CoreBaseCollection;
@@ -326,13 +327,13 @@ public abstract class AbstractContractWithoutTextControllerBean extends FDCBillC
     }
     protected abstract IObjectValue _getNoPValue(Context ctx, IObjectPK pk, SelectorItemCollection sel) throws BOSException;
 
-    public Map getMKFP(Context ctx) throws BOSException, EASBizException
+    public Map getMKFP(Context ctx, Date startDate, Date endDate, int offset) throws BOSException, EASBizException
     {
         try {
-            ServiceContext svcCtx = createServiceContext(new MetaDataPK("4a62cee9-bf1e-4b60-9ab7-860992870d43"), new Object[]{ctx});
+            ServiceContext svcCtx = createServiceContext(new MetaDataPK("4a62cee9-bf1e-4b60-9ab7-860992870d43"), new Object[]{ctx, startDate, endDate, new Integer(offset)});
             invokeServiceBefore(svcCtx);
             if(!svcCtx.invokeBreak()) {
-            Map retValue = (Map)_getMKFP(ctx);
+            Map retValue = (Map)_getMKFP(ctx, startDate, endDate, offset);
             svcCtx.setMethodReturnValue(retValue);
             }
             invokeServiceAfter(svcCtx);
@@ -347,7 +348,7 @@ public abstract class AbstractContractWithoutTextControllerBean extends FDCBillC
             super.cleanUpServiceState();
         }
     }
-    protected Map _getMKFP(Context ctx) throws BOSException, EASBizException
+    protected Map _getMKFP(Context ctx, Date startDate, Date endDate, int offset) throws BOSException, EASBizException
     {    	
         return null;
     }
@@ -374,6 +375,32 @@ public abstract class AbstractContractWithoutTextControllerBean extends FDCBillC
         }
     }
     protected String _getMKLink(Context ctx, String number) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
+
+    public String clearMKFP(Context ctx, String number) throws BOSException, EASBizException
+    {
+        try {
+            ServiceContext svcCtx = createServiceContext(new MetaDataPK("33511135-b093-40e5-97bd-6ba13170bd57"), new Object[]{ctx, number});
+            invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
+            String retValue = (String)_clearMKFP(ctx, number);
+            svcCtx.setMethodReturnValue(retValue);
+            }
+            invokeServiceAfter(svcCtx);
+            return (String)svcCtx.getMethodReturnValue();
+        } catch (BOSException ex) {
+            this.setRollbackOnly();
+            throw ex;
+        } catch (EASBizException ex0) {
+            this.setRollbackOnly();
+            throw ex0;
+        } finally {
+            super.cleanUpServiceState();
+        }
+    }
+    protected String _clearMKFP(Context ctx, String number) throws BOSException, EASBizException
     {    	
         return null;
     }

@@ -724,7 +724,7 @@ public abstract class AbstractInviteProjectEditUI extends com.kingdee.eas.fdc.ba
             }
         });
 
-                this.kdtSupplierEntry.putBindContents("editData",new String[] {"supplier","","linkPerson","linkPhone","supplierState","recommended","supplier.grade","supplier.quaLevel","score1","score2","result","reason","coState","manager","isAccept","remark"});
+                this.kdtSupplierEntry.putBindContents("editData",new String[] {"supplier","supplier.inviteType.name","linkPerson","linkPhone","supplierState","recommended","supplier.grade","supplier.quaLevel","score1","score2","result","reason","coState","manager","isAccept","remark"});
 
 
         // prmtCreator		
@@ -1223,6 +1223,7 @@ contInviteSupplier.getContentPane().setLayout(new BorderLayout(0, 0));        co
 		dataBinder.registerBinding("supplierEntry.manager", String.class, this.kdtSupplierEntry, "manager.text");
 		dataBinder.registerBinding("supplierEntry.isAccept", com.kingdee.eas.fdc.invite.supplier.DefaultStatusEnum.class, this.kdtSupplierEntry, "isAccept.text");
 		dataBinder.registerBinding("supplierEntry.remark", String.class, this.kdtSupplierEntry, "remark.text");
+		dataBinder.registerBinding("supplierEntry.supplier.inviteType.name", String.class, this.kdtSupplierEntry, "inviteType.text");
 		dataBinder.registerBinding("creator", com.kingdee.eas.base.permission.UserInfo.class, this.prmtCreator, "data");
 		dataBinder.registerBinding("auditor", com.kingdee.eas.base.permission.UserInfo.class, this.prmtAuditor, "data");
 		dataBinder.registerBinding("createTime", java.sql.Timestamp.class, this.pkCreateTime, "value");
@@ -1348,6 +1349,7 @@ contInviteSupplier.getContentPane().setLayout(new BorderLayout(0, 0));        co
 		getValidateHelper().registerBindProperty("supplierEntry.manager", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("supplierEntry.isAccept", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("supplierEntry.remark", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("supplierEntry.supplier.inviteType.name", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("creator", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("auditor", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("createTime", ValidateHelper.ON_SAVE);    
@@ -1640,6 +1642,7 @@ contInviteSupplier.getContentPane().setLayout(new BorderLayout(0, 0));        co
     	sic.add(new SelectorItemInfo("supplierEntry.manager"));
     	sic.add(new SelectorItemInfo("supplierEntry.isAccept"));
     	sic.add(new SelectorItemInfo("supplierEntry.remark"));
+    	sic.add(new SelectorItemInfo("supplierEntry.supplier.inviteType.name"));
 		if(selectorAll.equalsIgnoreCase("true"))
 		{
 			sic.add(new SelectorItemInfo("creator.*"));

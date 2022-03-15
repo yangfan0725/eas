@@ -591,6 +591,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 	protected void cbIsSub_stateChanged(ChangeEvent e) throws Exception {
 		if(isOnload)return;
 		if(cbIsSub.isSelected()){
+			this.pkBizDate.setEnabled(false);
 			try {
 				getHappenAmount();
 			} catch (BOSException e1) {
@@ -605,6 +606,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 			this.kdtCostEntry.getColumn("type").getStyleAttributes().setHided(true);
 			
 		}else{
+			this.pkBizDate.setEnabled(true);
 			this.prmtMp.setValue(null);
 			for(int i=0;i<this.kdtCostEntry.getRowCount();i++){
 				this.kdtCostEntry.getRow(i).getCell("amount").setValue(null);
@@ -740,6 +742,8 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 //	===============================================================================================================================
 	protected void prmtMp_dataChanged(DataChangeEvent e) throws Exception {
 		try {
+			MarketProjectInfo mp=(MarketProjectInfo) this.prmtMp.getValue();
+			this.pkBizDate.setValue(mp.getBizDate());
 			getHappenAmount();
 		} catch (BOSException e1) {
 			e1.printStackTrace();
@@ -760,6 +764,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 			this.contEntry.setVisible(false);
 		}
 		if(cbIsSub.isSelected()){
+			this.pkBizDate.setEnabled(false);
 			try {
 				getHappenAmount();
 			} catch (BOSException e) {
@@ -774,6 +779,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 			this.kdtCostEntry.getColumn("type").getStyleAttributes().setHided(true);
 			this.kdtCostEntry.getColumn("canAmount").getStyleAttributes().setHided(false);
 		}else{
+			this.pkBizDate.setEnabled(true);
 //			for(int i=0;i<this.kdtCostEntry.getRowCount();i++){
 //				IRow r=this.kdtCostEntry.getRow(i);
 //				 JZTypeEnum jzType=(JZTypeEnum) r.getCell("jzType").getValue();
@@ -1176,6 +1182,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 				 BigDecimal amount=FDCHelper.subtract(getMpAmount(mp.getId().toString(), caInfo.getId().toString()), getHappenAmount(mp.getId().toString(),caInfo.getId().toString()));
 				 r.getCell("canAmount").setValue(amount);
 				 r.getCell("amount").setValue(amount.negate());	 
+				 r.getCell("type").setValue(null);
 			 }
 		 }
 //		 if(colIndex == this.kdtCostEntry.getColumnIndex("jzType")){
@@ -1206,6 +1213,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 				 BigDecimal amount=FDCHelper.subtract(getMpAmount(mp.getId().toString(), caInfo.getId().toString()), getHappenAmount(mp.getId().toString(),caInfo.getId().toString()));
 				 r.getCell("canAmount").setValue(amount);
 				 r.getCell("amount").setValue(amount.negate());
+				 r.getCell("type").setValue(null);
 			}
 		}
 	}

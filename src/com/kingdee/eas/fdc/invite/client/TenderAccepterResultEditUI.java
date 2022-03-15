@@ -650,6 +650,7 @@ public class TenderAccepterResultEditUI extends AbstractTenderAccepterResultEdit
 		view.getSelector().add(new SelectorItemInfo("*"));
 		view.getSelector().add(new SelectorItemInfo("supplier.*"));
 		view.getSelector().add(new SelectorItemInfo("supplier.grade.*"));
+		view.getSelector().add(new SelectorItemInfo("supplier.inviteType.*"));
 		view.getSelector().add(new SelectorItemInfo("entry.*"));
 		
 		SorterItemCollection sort=new SorterItemCollection();

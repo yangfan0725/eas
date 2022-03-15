@@ -2004,7 +2004,7 @@ public class ContractWithoutTextControllerBean extends
 		else return;
 	}
 	
-	public Map getMKFP(Context ctx) throws BOSException, EASBizException {
+	protected Map _getMKFP(Context ctx, Date startDate, Date endDate, int offset)throws BOSException, EASBizException {
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		
@@ -2046,42 +2046,93 @@ public class ContractWithoutTextControllerBean extends
 		}
 		
 		//get invoices
-		
-		Date now = new Date();
-		Calendar c = Calendar.getInstance();
-		c.setTime(now);
-		c.add(Calendar.MONTH, -1);
-		Date ago = c.getTime();
-		String exportAtEnd = simpleDateFormat.format(now);
-		String exportAtStart=simpleDateFormat.format(ago);
-		String employeeId=null;
 		UserInfo u=UserFactory.getLocalInstance(ctx).getUserByID(ctx.getCaller());
-	    employeeId = u.getNumber();
+		String employeeId = u.getNumber();
 	    
 		HashMap header=new HashMap();
 		header.put("tokenId", tokenId);
 		header.put("entCode", entCode);
 		com.alibaba.fastjson.JSONObject dataJson=new com.alibaba.fastjson.JSONObject();
-		dataJson.put("offset",0);
+		dataJson.put("offset",offset);
 		dataJson.put("limit", 50);
-		dataJson.put("exportAtStart", exportAtStart);
-		dataJson.put("exportAtEnd", exportAtEnd);
+		dataJson.put("exportAtStart", simpleDateFormat.format(FDCDateHelper.getDayBegin(startDate)));
+		dataJson.put("exportAtEnd", simpleDateFormat.format(FDCDateHelper.getDayEnd(endDate)));
 		dataJson.put("employeeId", employeeId);
 		try {
 			String respStr = HttpClientUtil.sendRequest(mturl+"/invoice/search", "POST", "application/json;charse=UTF-8", "UTF-8", header, dataJson.toJSONString());
 			com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
-			com.alibaba.fastjson.JSONArray fpArray=crso.getJSONArray("data");
-			for (int i=0;i<fpArray.size();i++) {
-				com.alibaba.fastjson.JSONObject obj = fpArray.getJSONObject(i);
-				obj.put("fromMk", 1);
-				map.put(fpArray.getJSONObject(i).getString("invoiceNumber"), obj);
+			if(!"ACK".equals(crso.getString("code"))){
+				throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+			}else{
+				com.alibaba.fastjson.JSONArray fpArray=crso.getJSONArray("data");
+				for (int i=0;i<fpArray.size();i++) {
+					com.alibaba.fastjson.JSONObject obj = fpArray.getJSONObject(i);
+					obj.put("fromMk", 1);
+					map.put(fpArray.getJSONObject(i).getString("invoiceNumber"), obj);
 				}
+			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EASBizException(new NumericExceptionSubItem("100",e.getMessage()));
 		}
 		
 		return map;
+	}
+	
+	protected String _clearMKFP(Context ctx, String number)
+			throws BOSException, EASBizException {
+		com.alibaba.fastjson.JSONObject login=new com.alibaba.fastjson.JSONObject();
+		String tokenId=null;
+		String entCode=null;
+		String appCode=null;
+		String secret=null;
+		String mturl=null;
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		long lt = ts.getTime();
+		
+		try {
+			FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
+			builder.appendSql("select * from dl_mk where type = 'bx' ");
+			IRowSet rs=builder.executeQuery();
+			while(rs.next()){
+				mturl=rs.getString("url");
+				entCode=rs.getString("entCode");
+				appCode=rs.getString("appCode");
+				secret=rs.getString("secret");
+			}
+			login.put("appCode", appCode);
+			login.put("secret", SHA(secret+lt));
+			login.put("timestamp", lt);
+			
+			String respStr = HttpClientUtil.sendRequest(mturl+"/auth/login", "POST", "application/json;charse=UTF-8", "UTF-8", null, login.toJSONString());
+			
+			com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+			com.alibaba.fastjson.JSONObject d=crso.getJSONObject("data");
+			if(!"true".equals(crso.getString("success"))){
+				throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+			}else{
+				tokenId=d.getString("tokenId");
+				entCode=d.getString("entCode");
+			}
+		} catch (Exception e) {
+			throw new EASBizException(new NumericExceptionSubItem("100",e.getMessage()));
+		}
+		
+		
+		HashMap header=new HashMap();
+		header.put("tokenId", tokenId);
+		header.put("entCode", entCode);
+		com.alibaba.fastjson.JSONObject dataJson=new com.alibaba.fastjson.JSONObject();
+		dataJson.put("invoiceDataCode",number); 
+		try {
+			String respStr = HttpClientUtil.sendRequest(mturl+"/invoice/updateExport", "POST", "application/json;charse=UTF-8", "UTF-8", header, dataJson.toJSONString());
+			com.alibaba.fastjson.JSONObject crso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
+			if(!"succeed".equals(crso.getString("message"))){
+				throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+			}
+		} catch (Exception e) {
+			throw new EASBizException(new NumericExceptionSubItem("100",e.getMessage()));
+		}
+		return null;
 	}
 	public static String SHA(final String strText) {
 		MessageDigest messageDigest;
@@ -2152,12 +2203,7 @@ public class ContractWithoutTextControllerBean extends
 	             tokenId=d.getString("token");
 	         }
 	     } catch (Exception e1) {
-	         try {
-	             throw new EASBizException(new NumericExceptionSubItem("100",e1.getMessage()));
-	         } catch (EASBizException e11) {
-	             // TODO Auto-generated catch block
-	             e11.printStackTrace();
-	         }
+	    	 throw new EASBizException(new NumericExceptionSubItem("100",e1.getMessage()));
 	     }
 
 	     com.alibaba.fastjson.JSONObject dataJson=new com.alibaba.fastjson.JSONObject();
