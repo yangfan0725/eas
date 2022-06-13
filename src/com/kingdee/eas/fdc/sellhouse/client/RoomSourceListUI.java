@@ -1669,81 +1669,130 @@ if (node == null)
 	public void actionRemove_actionPerformed(ActionEvent e) throws Exception
 	{
 		
-		for (int b = 0; b < this.tblGraph.getSelectManager().size(); b++)
-		{
-			KDTSelectBlock block = this.tblGraph.getSelectManager().get(b);
-			for (int i = block.getBeginRow(); i <= block.getEndRow(); i++)
+//		for (int b = 0; b < this.tblGraph.getSelectManager().size(); b++)
+//		{
+//			KDTSelectBlock block = this.tblGraph.getSelectManager().get(b);
+//			for (int i = block.getBeginRow(); i <= block.getEndRow(); i++)
+//			{
+//				for (int j = block.getBeginCol(); j <= block.getEndCol(); j++)
+//				{
+//					RoomInfo room = (RoomInfo) this.tblGraph.getCell(i, j)
+//							.getUserObject();
+//					if (room == null)
+//					{
+//						continue;
+//					}
+//					if (!RoomSellStateEnum.Init.equals(room.getSellState()))
+//					{
+//						MsgBox.showInfo("非初始房间不能删除!");
+//						return;
+//					}
+//					if(room.getTenancyState()!=null){
+//						if(!(room.getTenancyState().equals(TenancyStateEnum.unTenancy) 
+//								||room.getTenancyState().equals(TenancyStateEnum.waitTenancy))){
+//							MsgBox.showInfo("只有未推盘、未放租、待售或待租的房间才能删除!");
+//							return;
+//						}
+//					}
+//					FilterInfo filter = new FilterInfo();
+//					filter.getFilterItems().add(
+//							new FilterItemInfo("room.id", room.getId()
+//									.toString()));
+//					if (RoomPriceBillEntryFactory.getRemoteInstance().exists(
+//							filter))
+//					{
+//						MsgBox.showInfo("房间已参与定价,不能删除!");
+//						return;
+//					}
+//
+//					if (PriceAdjustEntryFactory.getRemoteInstance().exists(
+//							filter))
+//					{
+//						MsgBox.showInfo("房间已参与调价,不能删除!");
+//						return;
+//					}
+//
+//					if (room.getAttachmentEntry() != null
+//							&& !room.getAttachmentEntry().isEmpty())
+//					{
+//						MsgBox.showInfo("已绑定其他房间,不能删除!");
+//						return;
+//					}
+//
+//					if (RoomAttachmentEntryFactory.getRemoteInstance().exists(
+//							filter))
+//					{
+//						MsgBox.showInfo("已被其他房间绑定,不能删除！");
+//						return;
+//					}
+//				}
+//			}
+//		}
+//		int index = this.kDTabbedPane1.getSelectedIndex();
+//		if(index == 0){
+//
+//			checkSelected();
+//		}else{
+//			if(this.tblGraph.getSelectManager().size()<1){
+//				MsgBox.showInfo("请选中房间！");
+//				this.abort();
+//			}
+//		}
+//		if (confirmRemove())
+//		{
+//			// prepareRemove(null).callHandler();
+//			Remove();
+//			refresh(e);
+//		}
+		checkSelected();
+		ArrayList id = getSelectedIdValues();
+		for(int i = 0; i < id.size(); i++){
+	    	RoomInfo room=RoomFactory.getRemoteInstance().getRoomInfo(new ObjectUuidPK(id.get(i).toString()));
+	    	if (!RoomSellStateEnum.Init.equals(room.getSellState()))
 			{
-				for (int j = block.getBeginCol(); j <= block.getEndCol(); j++)
-				{
-					RoomInfo room = (RoomInfo) this.tblGraph.getCell(i, j)
-							.getUserObject();
-					if (room == null)
-					{
-						continue;
-					}
-					if (!RoomSellStateEnum.Init.equals(room.getSellState()))
-					{
-						MsgBox.showInfo("非初始房间不能删除!");
-						return;
-					}
-					if(room.getTenancyState()!=null){
-						if(!(room.getTenancyState().equals(TenancyStateEnum.unTenancy) 
-								||room.getTenancyState().equals(TenancyStateEnum.waitTenancy))){
-							MsgBox.showInfo("只有未推盘、未放租、待售或待租的房间才能删除!");
-							return;
-						}
-					}
-					FilterInfo filter = new FilterInfo();
-					filter.getFilterItems().add(
-							new FilterItemInfo("room.id", room.getId()
-									.toString()));
-					if (RoomPriceBillEntryFactory.getRemoteInstance().exists(
-							filter))
-					{
-						MsgBox.showInfo("房间已参与定价,不能删除!");
-						return;
-					}
-
-					if (PriceAdjustEntryFactory.getRemoteInstance().exists(
-							filter))
-					{
-						MsgBox.showInfo("房间已参与调价,不能删除!");
-						return;
-					}
-
-					if (room.getAttachmentEntry() != null
-							&& !room.getAttachmentEntry().isEmpty())
-					{
-						MsgBox.showInfo("已绑定其他房间,不能删除!");
-						return;
-					}
-
-					if (RoomAttachmentEntryFactory.getRemoteInstance().exists(
-							filter))
-					{
-						MsgBox.showInfo("已被其他房间绑定,不能删除！");
-						return;
-					}
+				MsgBox.showInfo("非初始房间不能删除!");
+				return;
+			}
+			if(room.getTenancyState()!=null){
+				if(!(room.getTenancyState().equals(TenancyStateEnum.unTenancy) 
+						||room.getTenancyState().equals(TenancyStateEnum.waitTenancy))){
+					MsgBox.showInfo("只有未推盘、未放租、待售或待租的房间才能删除!");
+					return;
 				}
 			}
-		}
-		int index = this.kDTabbedPane1.getSelectedIndex();
-		if(index == 0){
+			FilterInfo filter = new FilterInfo();
+			filter.getFilterItems().add(
+					new FilterItemInfo("room.id", room.getId()
+							.toString()));
+			if (RoomPriceBillEntryFactory.getRemoteInstance().exists(
+					filter))
+			{
+				MsgBox.showInfo("房间已参与定价,不能删除!");
+				return;
+			}
 
-			checkSelected();
-		}else{
-			if(this.tblGraph.getSelectManager().size()<1){
-				MsgBox.showInfo("请选中房间！");
-				this.abort();
+			if (PriceAdjustEntryFactory.getRemoteInstance().exists(
+					filter))
+			{
+				MsgBox.showInfo("房间已参与调价,不能删除!");
+				return;
+			}
+
+			if (room.getAttachmentEntry() != null
+					&& !room.getAttachmentEntry().isEmpty())
+			{
+				MsgBox.showInfo("已绑定其他房间,不能删除!");
+				return;
+			}
+
+			if (RoomAttachmentEntryFactory.getRemoteInstance().exists(
+					filter))
+			{
+				MsgBox.showInfo("已被其他房间绑定,不能删除！");
+				return;
 			}
 		}
-		if (confirmRemove())
-		{
-			// prepareRemove(null).callHandler();
-			Remove();
-			refresh(e);
-		}
+		super.actionRemove_actionPerformed(e);
 	}
 
 	

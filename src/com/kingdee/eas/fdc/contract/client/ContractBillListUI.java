@@ -1058,45 +1058,45 @@ protected void tblMain_tableSelectChanged(
 					if(pc!=null&&pc.getId().toString().equals(contractBillInfo.getProgrammingContract().getId().toString())){
 						return;
 					}
-//					int i = Integer.parseInt(param);
-//					switch (i) {
-//					case 0:
-//						// 严格控制时
-//						if (contractBillInfo.getProgrammingContract() != null) {
-//							if (contractBillInfo.getAmount().compareTo(FDCHelper.toBigDecimal(FDCHelper.toBigDecimal(contractBillInfo.getProgrammingContract().getBalance()))) > 0) {
-//								FDCMsgBox.showWarning(this, "合同签约金额超过关联的合约控制余额！");
-//								SysUtil.abort();
-//							}
-//						} else {
-//							FDCMsgBox.showWarning(this, "未关联框架合约！");
-//							SysUtil.abort();
-//						}
-//						break;
-//					case 1:
-//						// 提示控制时
-//						if (contractBillInfo.getProgrammingContract() != null) {
-//							if (contractBillInfo.getAmount().compareTo(FDCHelper.toBigDecimal(contractBillInfo.getProgrammingContract().getBalance())) > 0) {
-//								if (FDCMsgBox.showConfirm2(this, "合同签约金额超过关联的合约控制余额，请确认是否关联？") == FDCMsgBox.CANCEL) {
-//									SysUtil.abort();
-//								}
-//							}
-//						} else {
-//							FDCMsgBox.showWarning(this, "未关联框架合约！");
-//							SysUtil.abort();
-//						}
-//						break;
-//					case 2:
-//						// 不控制时
-//						if (contractBillInfo.getProgrammingContract() != null) {
-//							if (contractBillInfo.getAmount().compareTo(
-//									FDCHelper.toBigDecimal(contractBillInfo.getProgrammingContract().getBalance())) > 0) {
-//								if (FDCMsgBox.showConfirm2(this, "合同签约金额超过关联的合约控制余额，请确认是否关联？") == FDCMsgBox.CANCEL) {
-//									SysUtil.abort();
-//								}
-//							}
-//						}
-//						break;
-//					}
+					int i = Integer.parseInt(param);
+					switch (i) {
+					case 0:
+						// 严格控制时
+						if (contractBillInfo.getProgrammingContract() != null) {
+							if (contractBillInfo.getAmount().compareTo(FDCHelper.toBigDecimal(FDCHelper.toBigDecimal(contractBillInfo.getProgrammingContract().getBalance()))) > 0) {
+								FDCMsgBox.showWarning(this, "合同签约金额超过关联的合约控制余额！");
+								SysUtil.abort();
+							}
+						} else {
+							FDCMsgBox.showWarning(this, "未关联框架合约！");
+							SysUtil.abort();
+						}
+						break;
+					case 1:
+						// 提示控制时
+						if (contractBillInfo.getProgrammingContract() != null) {
+							if (contractBillInfo.getAmount().compareTo(FDCHelper.toBigDecimal(contractBillInfo.getProgrammingContract().getBalance())) > 0) {
+								if (FDCMsgBox.showConfirm2(this, "合同签约金额超过关联的合约控制余额，请确认是否关联？") == FDCMsgBox.CANCEL) {
+									SysUtil.abort();
+								}
+							}
+						} else {
+							FDCMsgBox.showWarning(this, "未关联框架合约！");
+							SysUtil.abort();
+						}
+						break;
+					case 2:
+						// 不控制时
+						if (contractBillInfo.getProgrammingContract() != null) {
+							if (contractBillInfo.getAmount().compareTo(
+									FDCHelper.toBigDecimal(contractBillInfo.getProgrammingContract().getBalance())) > 0) {
+								if (FDCMsgBox.showConfirm2(this, "合同签约金额超过关联的合约控制余额，请确认是否关联？") == FDCMsgBox.CANCEL) {
+									SysUtil.abort();
+								}
+							}
+						}
+						break;
+					}
 					ContractBillFactory.getRemoteInstance().synReUpdateProgramming(contractBillInfo.getId().toString(), pc);
 					SelectorItemCollection sicz = new SelectorItemCollection();
 					sicz.add("programmingContract");

@@ -32,6 +32,8 @@ import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.bos.metadata.entity.SelectorItemInfo;
+import com.kingdee.bos.metadata.entity.SorterItemCollection;
+import com.kingdee.bos.metadata.entity.SorterItemInfo;
 import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.eas.base.codingrule.CodingRuleException;
@@ -489,8 +491,12 @@ public class RestReceivableEditUI extends AbstractRestReceivableEditUI {
 								MoneyTypeEnum.REPLACEFEE_VALUE));
 		filter.getFilterItems().add(
 				new FilterItemInfo("moneyType", MoneyTypeEnum.BREACHFEE_VALUE));
-		filter.setMaskString("#0 and (#1 or #2 or #3 or #4 or #5 or #6)");
+		filter.getFilterItems().add(new FilterItemInfo("name", "%×÷·Ï%",CompareType.NOTLIKE));
+		filter.setMaskString("#0 and (#1 or #2 or #3 or #4 or #5 or #6) and #7");
 		view.setFilter(filter);
+		SorterItemCollection sort=new SorterItemCollection();
+		sort.add(new SorterItemInfo("number"));
+		view.setSorter(sort);
 		return view;
 	}
 

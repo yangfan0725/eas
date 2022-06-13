@@ -1,24 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><joinQuery xmlns="com.kingdee.bos.metadata">
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
     <package>com.kingdee.eas.fdc.tenancy.app</package>
     <name>F7RoomQuery</name>
     <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].alias</alias>
     <description>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].description</description>
     <userDefined>false</userDefined>
-    <reportDataSource/>
-    <bizUnitPK/>
-    <connectionProvider/>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
     <subObjects>
         <subEntity>
             <name>Room</name>
             <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].subObjects.subEntity[Room].alias</alias>
             <userDefined>false</userDefined>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
             <entityRef>
-                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app"/>
-                <key name="name" value="Room"/>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="Room" />
             </entityRef>
         </subEntity>
         <subEntity>
@@ -26,12 +27,12 @@
             <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].subObjects.subEntity[buildingFloor].alias</alias>
             <userDefined>false</userDefined>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
             <entityRef>
-                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app"/>
-                <key name="name" value="BuildingFloorEntry"/>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="BuildingFloorEntry" />
             </entityRef>
         </subEntity>
         <subEntity>
@@ -39,12 +40,38 @@
             <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].subObjects.subEntity[lastTenancy].alias</alias>
             <userDefined>false</userDefined>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
             <entityRef>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="TenancyBill"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="TenancyBill" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>building</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].subObjects.subEntity[building].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="Building" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>sellProject</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].subObjects.subEntity[sellProject].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="SellProject" />
             </entityRef>
         </subEntity>
     </subObjects>
@@ -52,10 +79,10 @@
         <queryField>
             <name>tenancyState</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[tenancyState].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -65,28 +92,28 @@
                 <propertyRef>
                     <key>ea2d8d70-ce6c-4749-b986-8bc5505872bd</key>
                     <parentUnit>
-                        <key name="name" value="tenancyState"/>
+                        <key name="name" value="tenancyState" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="Room"/>
+                        <key name="name" value="Room" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="tenancyState"/>
+                        <key name="name" value="tenancyState" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <queryField>
             <name>name</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[name].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -96,28 +123,28 @@
                 <propertyRef>
                     <key>eddca119-f256-425b-9253-8e6315d81b5a</key>
                     <parentUnit>
-                        <key name="name" value="name"/>
+                        <key name="name" value="name" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="Room"/>
+                        <key name="name" value="Room" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="name"/>
+                        <key name="name" value="name" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <queryField>
             <name>number</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[number].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -127,28 +154,28 @@
                 <propertyRef>
                     <key>0aa1e6c3-a981-451a-bc4e-700cf53c6217</key>
                     <parentUnit>
-                        <key name="name" value="number"/>
+                        <key name="name" value="number" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="Room"/>
+                        <key name="name" value="Room" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="number"/>
+                        <key name="name" value="number" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <queryField>
             <name>buildingFloor.floorAlias</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[buildingFloor.floorAlias].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -158,28 +185,28 @@
                 <propertyRef>
                     <key>f4b5852c-ecce-4164-ac26-df91e7d7e989</key>
                     <parentUnit>
-                        <key name="name" value="buildingFloor.floorAlias"/>
+                        <key name="name" value="buildingFloor.floorAlias" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="buildingFloor"/>
+                        <key name="name" value="buildingFloor" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="floorAlias"/>
+                        <key name="name" value="floorAlias" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <queryField>
             <name>lastTenancy.number</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.number].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -189,28 +216,28 @@
                 <propertyRef>
                     <key>77fd3c0e-d7c0-4650-8cb4-541fe5128230</key>
                     <parentUnit>
-                        <key name="name" value="lastTenancy.number"/>
+                        <key name="name" value="lastTenancy.number" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="lastTenancy"/>
+                        <key name="name" value="lastTenancy" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="number"/>
+                        <key name="name" value="number" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <queryField>
             <name>lastTenancy.tenancyName</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.tenancyName].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -220,28 +247,28 @@
                 <propertyRef>
                     <key>5cede94e-403c-4e65-993c-d1335dbc270f</key>
                     <parentUnit>
-                        <key name="name" value="lastTenancy.tenancyName"/>
+                        <key name="name" value="lastTenancy.tenancyName" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="lastTenancy"/>
+                        <key name="name" value="lastTenancy" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="tenancyName"/>
+                        <key name="name" value="tenancyName" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <queryField>
             <name>lastTenancy.leaseCount</name>
             <userDefined>false</userDefined>
             <formulaString>TO_DECIMAL ( #0 , 18 , 0 )</formulaString>
-            <constString/>
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.leaseCount].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -251,28 +278,28 @@
                 <propertyRef>
                     <key>82f949f9-1ec5-43fc-a0b6-41038721606e</key>
                     <parentUnit>
-                        <key name="name" value="lastTenancy.leaseCount"/>
+                        <key name="name" value="lastTenancy.leaseCount" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="lastTenancy"/>
+                        <key name="name" value="lastTenancy" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="leaseCount"/>
+                        <key name="name" value="leaseCount" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <queryField>
             <name>lastTenancy.startDate</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.startDate].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -282,28 +309,28 @@
                 <propertyRef>
                     <key>3f5039b1-bff3-4327-9bca-21ece00c48a5</key>
                     <parentUnit>
-                        <key name="name" value="lastTenancy.startDate"/>
+                        <key name="name" value="lastTenancy.startDate" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="lastTenancy"/>
+                        <key name="name" value="lastTenancy" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="startDate"/>
+                        <key name="name" value="startDate" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <queryField>
             <name>lastTenancy.endDate</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.endDate].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -313,28 +340,28 @@
                 <propertyRef>
                     <key>2f9bf566-c078-4c3a-92dd-235fc6b31bd2</key>
                     <parentUnit>
-                        <key name="name" value="lastTenancy.endDate"/>
+                        <key name="name" value="lastTenancy.endDate" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="lastTenancy"/>
+                        <key name="name" value="lastTenancy" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="endDate"/>
+                        <key name="name" value="endDate" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <queryField>
             <name>id</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[id].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -344,28 +371,28 @@
                 <propertyRef>
                     <key>2f255482-b82b-4af3-bbab-de1019fe20f5</key>
                     <parentUnit>
-                        <key name="name" value="id"/>
+                        <key name="name" value="id" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="Room"/>
+                        <key name="name" value="Room" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="id"/>
+                        <key name="name" value="id" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <queryField>
             <name>buildingFloor.id</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[buildingFloor.id].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -375,28 +402,28 @@
                 <propertyRef>
                     <key>95350e44-7e98-4b14-91bb-3ca03970911e</key>
                     <parentUnit>
-                        <key name="name" value="buildingFloor.id"/>
+                        <key name="name" value="buildingFloor.id" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="buildingFloor"/>
+                        <key name="name" value="buildingFloor" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="id"/>
+                        <key name="name" value="id" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <queryField>
             <name>lastTenancy.id</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.id].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>true</isSelector>
             <isFilter>true</isFilter>
             <isSorter>false</isSorter>
@@ -406,28 +433,28 @@
                 <propertyRef>
                     <key>8f7ea4d6-4e4e-48d6-b977-64766c30bc7a</key>
                     <parentUnit>
-                        <key name="name" value="lastTenancy.id"/>
+                        <key name="name" value="lastTenancy.id" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="lastTenancy"/>
+                        <key name="name" value="lastTenancy" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="id"/>
+                        <key name="name" value="id" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </queryField>
         <propertyUnit>
             <name>dc13a192-c1c2-4ab9-8a94-5a64f85b93a7</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[dc13a192-c1c2-4ab9-8a94-5a64f85b93a7].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>false</isSelector>
             <isFilter>false</isFilter>
             <isSorter>false</isSorter>
@@ -437,28 +464,28 @@
                 <propertyRef>
                     <key>d7bc395f-1c33-41a5-959a-1a25a8c5bf20</key>
                     <parentUnit>
-                        <key name="name" value="dc13a192-c1c2-4ab9-8a94-5a64f85b93a7"/>
+                        <key name="name" value="dc13a192-c1c2-4ab9-8a94-5a64f85b93a7" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="Room"/>
+                        <key name="name" value="Room" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="buildingFloor"/>
+                        <key name="name" value="buildingFloor" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </propertyUnit>
         <propertyUnit>
             <name>224facac-a21d-4949-8aef-477a92966efb</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[224facac-a21d-4949-8aef-477a92966efb].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>false</isSelector>
             <isFilter>false</isFilter>
             <isSorter>false</isSorter>
@@ -468,28 +495,28 @@
                 <propertyRef>
                     <key>7ff3ade3-ba6c-4c63-a48a-d01721968556</key>
                     <parentUnit>
-                        <key name="name" value="224facac-a21d-4949-8aef-477a92966efb"/>
+                        <key name="name" value="224facac-a21d-4949-8aef-477a92966efb" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="buildingFloor"/>
+                        <key name="name" value="buildingFloor" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="id"/>
+                        <key name="name" value="id" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </propertyUnit>
         <propertyUnit>
             <name>b74f6dee-d179-4d34-9ef6-c7468d2993bf</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[b74f6dee-d179-4d34-9ef6-c7468d2993bf].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>false</isSelector>
             <isFilter>false</isFilter>
             <isSorter>false</isSorter>
@@ -499,28 +526,28 @@
                 <propertyRef>
                     <key>e88ec05e-514b-49d0-9444-ca731db64772</key>
                     <parentUnit>
-                        <key name="name" value="b74f6dee-d179-4d34-9ef6-c7468d2993bf"/>
+                        <key name="name" value="b74f6dee-d179-4d34-9ef6-c7468d2993bf" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="Room"/>
+                        <key name="name" value="Room" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="lastTenancy"/>
+                        <key name="name" value="lastTenancy" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </propertyUnit>
         <propertyUnit>
             <name>0fd030af-6541-4f1e-8912-a54a8b3fec50</name>
             <userDefined>false</userDefined>
-            <formulaString/>
-            <constString/>
+            <formulaString />
+            <constString />
             <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[0fd030af-6541-4f1e-8912-a54a8b3fec50].displayName</displayName>
-            <groupType/>
+            <groupType />
             <isSelector>false</isSelector>
             <isFilter>false</isFilter>
             <isSorter>false</isSorter>
@@ -530,28 +557,183 @@
                 <propertyRef>
                     <key>e69a8e51-c3dd-4a37-90ba-2b0c482f92ae</key>
                     <parentUnit>
-                        <key name="name" value="0fd030af-6541-4f1e-8912-a54a8b3fec50"/>
+                        <key name="name" value="0fd030af-6541-4f1e-8912-a54a8b3fec50" />
                     </parentUnit>
                     <subEntity>
-                        <key name="name" value="lastTenancy"/>
+                        <key name="name" value="lastTenancy" />
                     </subEntity>
                     <refProperty>
-                        <key name="name" value="id"/>
+                        <key name="name" value="id" />
                     </refProperty>
                 </propertyRef>
             </propertyRefs>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </propertyUnit>
+        <propertyUnit>
+            <name>55c7f4be-1b8a-446a-94cb-cf0d0c5d2ebf</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[55c7f4be-1b8a-446a-94cb-cf0d0c5d2ebf].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>1d0c2bde-2831-4882-bd2e-751e549f3ee5</key>
+                    <parentUnit>
+                        <key name="name" value="55c7f4be-1b8a-446a-94cb-cf0d0c5d2ebf" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="Room" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="building" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>fe0ca422-2638-4f14-9d8d-d56e23aacb4a</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[fe0ca422-2638-4f14-9d8d-d56e23aacb4a].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>5bc4989f-f047-4a5d-bdc9-3e69c824624f</key>
+                    <parentUnit>
+                        <key name="name" value="fe0ca422-2638-4f14-9d8d-d56e23aacb4a" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="building" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>40d936d6-052f-4352-ba4b-191e804de94a</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[40d936d6-052f-4352-ba4b-191e804de94a].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>39478ab6-e30f-4f6a-8466-62a9472c30aa</key>
+                    <parentUnit>
+                        <key name="name" value="40d936d6-052f-4352-ba4b-191e804de94a" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="building" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="sellProject" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>d415de8a-c582-4119-8b38-dc8f8451eeb2</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[d415de8a-c582-4119-8b38-dc8f8451eeb2].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType />
+            <propertyRefs>
+                <propertyRef>
+                    <key>8974bdea-60e9-4e1b-9278-91cbef57e134</key>
+                    <parentUnit>
+                        <key name="name" value="d415de8a-c582-4119-8b38-dc8f8451eeb2" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="sellProject" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>sellProject.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[sellProject.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>d76d262c-95aa-4989-86c2-0f6d93466df9</key>
+                    <parentUnit>
+                        <key name="name" value="sellProject.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="sellProject" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
+            </query>
+        </queryField>
     </units>
     <defaultFilter>
         <name>defaultFilter</name>
-        <formulaString/>
+        <formulaString />
         <query>
-            <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-            <key name="name" value="F7RoomQuery"/>
+            <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+            <key name="name" value="F7RoomQuery" />
         </query>
     </defaultFilter>
     <queryPK>
@@ -560,7 +742,7 @@
         <description>joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].queryPK[QueryPK].description</description>
         <keyProperties>
             <queryField>
-                <key name="name" value="id"/>
+                <key name="name" value="id" />
             </queryField>
         </keyProperties>
     </queryPK>
@@ -571,29 +753,29 @@
             <formulaString>#0</formulaString>
             <type>LEFT OUTER JOIN</type>
             <leftObject>
-                <key name="name" value="Room"/>
+                <key name="name" value="Room" />
             </leftObject>
             <rightObject>
-                <key name="name" value="buildingFloor"/>
+                <key name="name" value="buildingFloor" />
             </rightObject>
             <joinItems>
                 <joinItem>
                     <name>b8ceba41-5ed4-4e7e-a2d9-0c2ed37d7da0</name>
                     <compareType>=</compareType>
                     <leftField>
-                        <key name="name" value="dc13a192-c1c2-4ab9-8a94-5a64f85b93a7"/>
+                        <key name="name" value="dc13a192-c1c2-4ab9-8a94-5a64f85b93a7" />
                     </leftField>
                     <rightField>
-                        <key name="name" value="224facac-a21d-4949-8aef-477a92966efb"/>
+                        <key name="name" value="224facac-a21d-4949-8aef-477a92966efb" />
                     </rightField>
                     <join>
-                        <key name="name" value="09b57675-107f-4a18-a7f3-e2f9682749b0"/>
+                        <key name="name" value="09b57675-107f-4a18-a7f3-e2f9682749b0" />
                     </join>
                 </joinItem>
             </joinItems>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </join>
         <join>
@@ -601,245 +783,353 @@
             <formulaString>#0</formulaString>
             <type>LEFT OUTER JOIN</type>
             <leftObject>
-                <key name="name" value="Room"/>
+                <key name="name" value="Room" />
             </leftObject>
             <rightObject>
-                <key name="name" value="lastTenancy"/>
+                <key name="name" value="lastTenancy" />
             </rightObject>
             <joinItems>
                 <joinItem>
                     <name>666d95a1-8b39-4ddc-a2dc-575c9946895c</name>
                     <compareType>=</compareType>
                     <leftField>
-                        <key name="name" value="b74f6dee-d179-4d34-9ef6-c7468d2993bf"/>
+                        <key name="name" value="b74f6dee-d179-4d34-9ef6-c7468d2993bf" />
                     </leftField>
                     <rightField>
-                        <key name="name" value="0fd030af-6541-4f1e-8912-a54a8b3fec50"/>
+                        <key name="name" value="0fd030af-6541-4f1e-8912-a54a8b3fec50" />
                     </rightField>
                     <join>
-                        <key name="name" value="e5941542-4ca1-47b9-a679-ae7ebb658484"/>
+                        <key name="name" value="e5941542-4ca1-47b9-a679-ae7ebb658484" />
                     </join>
                 </joinItem>
             </joinItems>
             <query>
-                <key name="package" value="com.kingdee.eas.fdc.tenancy.app"/>
-                <key name="name" value="F7RoomQuery"/>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
+            </query>
+        </join>
+        <join>
+            <name>e19b10b7-b0d9-443f-8732-9abd1e9e59da</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="Room" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="building" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>8cd0aeaf-86f7-47cd-812b-2122e0cb8707</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="55c7f4be-1b8a-446a-94cb-cf0d0c5d2ebf" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="fe0ca422-2638-4f14-9d8d-d56e23aacb4a" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="e19b10b7-b0d9-443f-8732-9abd1e9e59da" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
+            </query>
+        </join>
+        <join>
+            <name>c88c7077-ddad-4dab-8164-fd18ef744d83</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="building" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="sellProject" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>018c63c2-f787-4a0a-83ed-e84ef4cd8f3f</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="40d936d6-052f-4352-ba4b-191e804de94a" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="d415de8a-c582-4119-8b38-dc8f8451eeb2" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="c88c7077-ddad-4dab-8164-fd18ef744d83" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="F7RoomQuery" />
             </query>
         </join>
     </joins>
     <resource>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].alias">
-            <lang locale="zh_CN" value="租赁房间F7查询"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="租賃房間F7查詢"/>
-            <lang locale="zh_TW" value="租賃房間F7查詢"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租赁房间F7查询" />
+            <lang locale="zh_HK" value="租賃房間F7查詢" />
+            <lang locale="zh_TW" value="租賃房間F7查詢" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].description">
-            <lang locale="zh_CN" value="租赁房间F7查询"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="租賃房間F7查詢"/>
-            <lang locale="zh_TW" value="租賃房間F7查詢"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租赁房间F7查询" />
+            <lang locale="zh_HK" value="租賃房間F7查詢" />
+            <lang locale="zh_TW" value="租賃房間F7查詢" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].queryPK[QueryPK].alias">
-            <lang locale="zh_CN" value="null"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="null"/>
-            <lang locale="zh_TW" value="null"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].queryPK[QueryPK].description">
-            <lang locale="zh_CN" value="null"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="null"/>
-            <lang locale="zh_TW" value="null"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].subObjects.subEntity[Room].alias">
-            <lang locale="zh_CN" value="null"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="null"/>
-            <lang locale="zh_TW" value="null"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].subObjects.subEntity[buildingFloor].alias">
-            <lang locale="zh_CN" value="null"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="null"/>
-            <lang locale="zh_TW" value="null"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].subObjects.subEntity[building].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].subObjects.subEntity[lastTenancy].alias">
-            <lang locale="zh_CN" value="null"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="null"/>
-            <lang locale="zh_TW" value="null"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].subObjects.subEntity[sellProject].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[0fd030af-6541-4f1e-8912-a54a8b3fec50].displayName">
-            <lang locale="zh_CN" value="null"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="null"/>
-            <lang locale="zh_TW" value="null"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[224facac-a21d-4949-8aef-477a92966efb].displayName">
-            <lang locale="zh_CN" value="null"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="null"/>
-            <lang locale="zh_TW" value="null"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[40d936d6-052f-4352-ba4b-191e804de94a].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[55c7f4be-1b8a-446a-94cb-cf0d0c5d2ebf].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[b74f6dee-d179-4d34-9ef6-c7468d2993bf].displayName">
-            <lang locale="zh_CN" value="null"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="null"/>
-            <lang locale="zh_TW" value="null"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[d415de8a-c582-4119-8b38-dc8f8451eeb2].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[dc13a192-c1c2-4ab9-8a94-5a64f85b93a7].displayName">
-            <lang locale="zh_CN" value="null"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="null"/>
-            <lang locale="zh_TW" value="null"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.propertyUnit[fe0ca422-2638-4f14-9d8d-d56e23aacb4a].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[buildingFloor.floorAlias].displayName">
-            <lang locale="zh_CN" value="楼层别名"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="樓層別名"/>
-            <lang locale="zh_TW" value="樓層別名"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="楼层别名" />
+            <lang locale="zh_HK" value="樓層別名" />
+            <lang locale="zh_TW" value="樓層別名" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[buildingFloor.id].displayName">
-            <lang locale="zh_CN" value="楼层ID"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="樓層ID"/>
-            <lang locale="zh_TW" value="樓層ID"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="楼层ID" />
+            <lang locale="zh_HK" value="樓層ID" />
+            <lang locale="zh_TW" value="樓層ID" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[buildingFloor.id].extendedProperty.isVisibleForKDTable">
-            <lang locale="zh_CN" value="false"/>
-            <lang locale="zh_TW" value="false"/>
-            <lang locale="en_US" value="false"/>
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_TW" value="false" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[id].displayName">
-            <lang locale="zh_CN" value="房间ID"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="房間ID"/>
-            <lang locale="zh_TW" value="房間ID"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间ID" />
+            <lang locale="zh_HK" value="房間ID" />
+            <lang locale="zh_TW" value="房間ID" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[id].extendedProperty.isVisibleForKDTable">
-            <lang locale="zh_CN" value="false"/>
-            <lang locale="zh_TW" value="false"/>
-            <lang locale="en_US" value="false"/>
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_TW" value="false" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.endDate].displayName">
-            <lang locale="zh_CN" value="结束日期"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="結束日期"/>
-            <lang locale="zh_TW" value="結束日期"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="结束日期" />
+            <lang locale="zh_HK" value="結束日期" />
+            <lang locale="zh_TW" value="結束日期" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.id].displayName">
-            <lang locale="zh_CN" value="租赁合同ID"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="租賃合同ID"/>
-            <lang locale="zh_TW" value="租賃合同ID"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租赁合同ID" />
+            <lang locale="zh_HK" value="租賃合同ID" />
+            <lang locale="zh_TW" value="租賃合同ID" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.id].extendedProperty.isVisibleForKDTable">
-            <lang locale="zh_CN" value="false"/>
-            <lang locale="zh_TW" value="false"/>
-            <lang locale="en_US" value="false"/>
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_TW" value="false" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.leaseCount].displayName">
-            <lang locale="zh_CN" value="租期"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="租期"/>
-            <lang locale="zh_TW" value="租期"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租期" />
+            <lang locale="zh_HK" value="租期" />
+            <lang locale="zh_TW" value="租期" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.leaseCount].extendedProperty.isCommonQueryFilter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.leaseCount].extendedProperty.isCommonQuerySorter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.number].displayName">
-            <lang locale="zh_CN" value="合同编号"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="合同編號"/>
-            <lang locale="zh_TW" value="合同編號"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同编号" />
+            <lang locale="zh_HK" value="合同編號" />
+            <lang locale="zh_TW" value="合同編號" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.number].extendedProperty.isCommonQueryFilter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.number].extendedProperty.isCommonQuerySorter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.startDate].displayName">
-            <lang locale="zh_CN" value="起始日期"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="起始日期"/>
-            <lang locale="zh_TW" value="起始日期"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="起始日期" />
+            <lang locale="zh_HK" value="起始日期" />
+            <lang locale="zh_TW" value="起始日期" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.tenancyName].displayName">
-            <lang locale="zh_CN" value="合同名称"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="合同名稱"/>
-            <lang locale="zh_TW" value="合同名稱"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同名称" />
+            <lang locale="zh_HK" value="合同名稱" />
+            <lang locale="zh_TW" value="合同名稱" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.tenancyName].extendedProperty.isCommonQueryFilter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[lastTenancy.tenancyName].extendedProperty.isCommonQuerySorter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[name].displayName">
-            <lang locale="zh_CN" value="房间名称"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="房間名稱"/>
-            <lang locale="zh_TW" value="房間名稱"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间名称" />
+            <lang locale="zh_HK" value="房間名稱" />
+            <lang locale="zh_TW" value="房間名稱" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[name].extendedProperty.isCommonQueryFilter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[name].extendedProperty.isCommonQuerySorter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[number].displayName">
-            <lang locale="zh_CN" value="房间编号"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="房間編號"/>
-            <lang locale="zh_TW" value="房間編號"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间编号" />
+            <lang locale="zh_HK" value="房間編號" />
+            <lang locale="zh_TW" value="房間編號" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[number].extendedProperty.isCommonQueryFilter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[number].extendedProperty.isCommonQuerySorter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[sellProject.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[sellProject.id].extendedProperty.isVisibleForKDTable">
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_TW" value="false" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[tenancyState].displayName">
-            <lang locale="zh_CN" value="租恁状态"/>
-            <lang locale="en_US" value="null"/>
-            <lang locale="zh_HK" value="租恁狀態"/>
-            <lang locale="zh_TW" value="租恁狀態"/>
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="租恁状态" />
+            <lang locale="zh_HK" value="租恁狀態" />
+            <lang locale="zh_TW" value="租恁狀態" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[tenancyState].extendedProperty.isCommonQueryFilter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.tenancy.app.F7RoomQuery].units.queryField[tenancyState].extendedProperty.isCommonQuerySorter">
-            <lang locale="zh_CN" value="true"/>
-            <lang locale="zh_TW" value="true"/>
-            <lang locale="en_US" value="true"/>
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
     </resource>
 </joinQuery>
+

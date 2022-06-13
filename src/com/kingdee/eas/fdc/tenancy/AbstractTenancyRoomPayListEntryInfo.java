@@ -129,6 +129,17 @@ public class AbstractTenancyRoomPayListEntryInfo extends com.kingdee.eas.fdc.bas
         setString("collectionFlag", item.getValue());
 		}
     }
+    /**
+     * Object:房间付款计划分录's 是否无需付款property 
+     */
+    public boolean isIsUnPay()
+    {
+        return getBoolean("isUnPay");
+    }
+    public void setIsUnPay(boolean item)
+    {
+        setBoolean("isUnPay", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("31D11A7E");

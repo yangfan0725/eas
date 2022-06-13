@@ -229,7 +229,7 @@ public abstract class BaseTransactionListUI extends AbstractBaseTransactionListU
 		FDCHelper.formatTableDate(getBillListTable(), "busAdscriptionDate");
 		
 		this.actionPriceChange.setVisible(false);
-		
+		this.actionChangeRoom.setVisible(false);
 		
 		if(IAMPREPURCHASE.equals(whoAmI())){
 			this.actionUpdateRC.setVisible(false);

@@ -140,6 +140,17 @@ public class AbstractTenBillOtherPayInfo extends com.kingdee.eas.fdc.basecrm.Rev
     {
         setBigDecimal("amount", item);
     }
+    /**
+     * Object:租赁合同其他应付明细分录's 是否无需付款property 
+     */
+    public boolean isIsUnPay()
+    {
+        return getBoolean("isUnPay");
+    }
+    public void setIsUnPay(boolean item)
+    {
+        setBoolean("isUnPay", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("E17EA893");

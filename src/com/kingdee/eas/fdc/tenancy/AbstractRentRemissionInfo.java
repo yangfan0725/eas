@@ -19,7 +19,7 @@ public class AbstractRentRemissionInfo extends com.kingdee.eas.fdc.tenancy.TenBi
         put("entry", new com.kingdee.eas.fdc.tenancy.RentRemissionEntryCollection());
     }
     /**
-     * Object: 租金减免 's 租赁合同 property 
+     * Object: K租金减免单（合同签订后） 's 租赁合同 property 
      */
     public com.kingdee.eas.fdc.tenancy.TenancyBillInfo getTenancy()
     {
@@ -30,7 +30,7 @@ public class AbstractRentRemissionInfo extends com.kingdee.eas.fdc.tenancy.TenBi
         put("tenancy", item);
     }
     /**
-     * Object:租金减免's 房间property 
+     * Object:K租金减免单（合同签订后）'s 房间property 
      */
     public String getRoomName()
     {
@@ -41,7 +41,7 @@ public class AbstractRentRemissionInfo extends com.kingdee.eas.fdc.tenancy.TenBi
         setString("roomName", item);
     }
     /**
-     * Object:租金减免's 配套资源property 
+     * Object:K租金减免单（合同签订后）'s 配套资源property 
      */
     public String getAttachResource()
     {
@@ -52,7 +52,7 @@ public class AbstractRentRemissionInfo extends com.kingdee.eas.fdc.tenancy.TenBi
         setString("attachResource", item);
     }
     /**
-     * Object:租金减免's 客户名称property 
+     * Object:K租金减免单（合同签订后）'s 客户名称property 
      */
     public String getCustomerName()
     {
@@ -63,7 +63,7 @@ public class AbstractRentRemissionInfo extends com.kingdee.eas.fdc.tenancy.TenBi
         setString("customerName", item);
     }
     /**
-     * Object:租金减免's 合同租期property 
+     * Object:K租金减免单（合同签订后）'s 合同租期property 
      */
     public java.math.BigDecimal getLeaseCount()
     {
@@ -74,14 +74,14 @@ public class AbstractRentRemissionInfo extends com.kingdee.eas.fdc.tenancy.TenBi
         setBigDecimal("leaseCount", item);
     }
     /**
-     * Object: 租金减免 's 租金减免分录 property 
+     * Object: K租金减免单（合同签订后） 's 租金减免分录 property 
      */
     public com.kingdee.eas.fdc.tenancy.RentRemissionEntryCollection getEntry()
     {
         return (com.kingdee.eas.fdc.tenancy.RentRemissionEntryCollection)get("entry");
     }
     /**
-     * Object: 租金减免 's 销售项目 property 
+     * Object: K租金减免单（合同签订后） 's 销售项目 property 
      */
     public com.kingdee.eas.fdc.sellhouse.SellProjectInfo getSellProject()
     {
@@ -92,7 +92,7 @@ public class AbstractRentRemissionInfo extends com.kingdee.eas.fdc.tenancy.TenBi
         put("sellProject", item);
     }
     /**
-     * Object:租金减免's 备注property 
+     * Object:K租金减免单（合同签订后）'s 备注property 
      */
     public String getRemark()
     {
@@ -103,7 +103,7 @@ public class AbstractRentRemissionInfo extends com.kingdee.eas.fdc.tenancy.TenBi
         setString("remark", item);
     }
     /**
-     * Object: 租金减免 's 批量单ID property 
+     * Object: K租金减免单（合同签订后） 's 批量单ID property 
      */
     public com.kingdee.eas.fdc.tenancy.BatchRentRemissionInfo getBatchBill()
     {
@@ -112,6 +112,19 @@ public class AbstractRentRemissionInfo extends com.kingdee.eas.fdc.tenancy.TenBi
     public void setBatchBill(com.kingdee.eas.fdc.tenancy.BatchRentRemissionInfo item)
     {
         put("batchBill", item);
+    }
+    /**
+     * Object:K租金减免单（合同签订后）'s 减免类型property 
+     */
+    public com.kingdee.eas.fdc.tenancy.RemissionTypeEnum getType()
+    {
+        return com.kingdee.eas.fdc.tenancy.RemissionTypeEnum.getEnum(getString("type"));
+    }
+    public void setType(com.kingdee.eas.fdc.tenancy.RemissionTypeEnum item)
+    {
+		if (item != null) {
+        setString("type", item.getValue());
+		}
     }
     public BOSObjectType getBOSType()
     {

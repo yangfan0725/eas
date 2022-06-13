@@ -229,6 +229,14 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
             	        	 CRMClientHelper.fmtDate(tblMain, new String[]{year+"Y"+month+"M"+"appDate"});
             	        	 
             	        	 column=tblMain.addColumn();
+            	        	 column.setKey(year+"Y"+month+"M"+"isUnPay");
+            	        	 column.setWidth(70);
+            	        	 column.getStyleAttributes().setHided(true);
+            	        	 
+            	        	 tblMain.getHeadRow(0).getCell(column.getKey()).setValue(year+"-"+month);
+            	        	 tblMain.getHeadRow(1).getCell(column.getKey()).setValue("是否无需付款");
+            	        	 
+            	        	 column=tblMain.addColumn();
             	        	 column.setKey(year+"Y"+month+"M"+"appAmount");
             	        	 column.setWidth(70);
             	        	 
@@ -289,7 +297,7 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
             	     		 });
             	     		 tblMain.getColumn(column.getKey()).setRenderer(render_scale);
             	        	 
-            	        	 tblMain.getHeadMergeManager().mergeBlock(0, merge, 0, merge+6);
+            	        	 tblMain.getHeadMergeManager().mergeBlock(0, merge, 0, merge+7);
             	         }
          	         }
          	         
@@ -303,6 +311,7 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
         	        		if(row.getCell(year+"Y"+month+"M"+"appAmount")==null){
         	        			continue;
         	        		}
+        	        		row.getCell(year+"Y"+month+"M"+"isUnPay").setValue(detailrs.getObject("isUnPay"));
         	        		row.getCell(year+"Y"+month+"M"+"appDate").setValue(detailrs.getObject("appDate"));
         	        		row.getCell(year+"Y"+month+"M"+"appAmount").setValue(detailrs.getBigDecimal("appAmount"));
         	        		row.getCell(year+"Y"+month+"M"+"invoiceAmount").setValue(detailrs.getBigDecimal("invoiceAmount"));
@@ -390,6 +399,16 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
         	        			row.getCell(year+"Y"+month+"M"+"unRevAmount").getStyleAttributes().setBackground(Color.RED);
         	        			row.getCell(year+"Y"+month+"M"+"overdueDays").getStyleAttributes().setBackground(Color.RED);
         	        			row.getCell(year+"Y"+month+"M"+"accountRate").getStyleAttributes().setBackground(Color.RED);
+        	        		}
+        	        		
+        	        		if(detailrs.getBigDecimal("isUnPay")!=null&&detailrs.getBigDecimal("isUnPay").compareTo(new BigDecimal(1))==0){
+        	        			row.getCell(year+"Y"+month+"M"+"appDate").getStyleAttributes().setBackground(Color.CYAN);
+        	        			row.getCell(year+"Y"+month+"M"+"appAmount").getStyleAttributes().setBackground(Color.CYAN);
+        	        			row.getCell(year+"Y"+month+"M"+"invoiceAmount").getStyleAttributes().setBackground(Color.CYAN);
+        	        			row.getCell(year+"Y"+month+"M"+"actRevAmount").getStyleAttributes().setBackground(Color.CYAN);
+        	        			row.getCell(year+"Y"+month+"M"+"unRevAmount").getStyleAttributes().setBackground(Color.CYAN);
+        	        			row.getCell(year+"Y"+month+"M"+"overdueDays").getStyleAttributes().setBackground(Color.CYAN);
+        	        			row.getCell(year+"Y"+month+"M"+"accountRate").getStyleAttributes().setBackground(Color.CYAN);
         	        		}
         	        		
         	        		getFootRow(tblMain, new String[]{"appAmount","invoiceAmount","actRevAmount","unRevAmount","overdueDays",year+"Y"+month+"M"+"appAmount",year+"Y"+month+"M"+"invoiceAmount",year+"Y"+month+"M"+"actRevAmount",year+"Y"+month+"M"+"unRevAmount",year+"Y"+month+"M"+"overdueDays"});

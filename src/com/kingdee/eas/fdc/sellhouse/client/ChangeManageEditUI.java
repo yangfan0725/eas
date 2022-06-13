@@ -509,6 +509,11 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 			loadCustomerEntry(editData);
 			loadSrcCustomerEntry(objectValue);
 			loadPayList(editData,this.tblPayList);
+			
+			this.cbChangeType.removeAllItems();
+			this.cbChangeType.addItem(ChangeTypeEnum.ZXQSGM);
+			
+			this.cbChangeType.setSelectedItem(this.editData.getChangeType());
 		}
 		if(ChangeBizTypeEnum.CHANGEROOM.equals(editData.getBizType())){
 			this.f7CRMoneyDefine.setValue(editData.getMoneyDefine());
@@ -528,6 +533,15 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 			if(STATUS_ADDNEW.equals(this.oprtState)){
 				this.txtQuitAmount.setValue(this.txtQRActAmount.getBigDecimalValue());
 			}
+			
+			this.cbChangeType.removeAllItems();
+			this.cbChangeType.addItem(ChangeTypeEnum.YBTF);
+			this.cbChangeType.addItem(ChangeTypeEnum.HFTF);
+			this.cbChangeType.addItem(ChangeTypeEnum.GMTF);
+			this.cbChangeType.addItem(ChangeTypeEnum.TSZKTF);
+			this.cbChangeType.addItem(ChangeTypeEnum.YGTF);
+			
+			this.cbChangeType.setSelectedItem(this.editData.getChangeType());
 		}
 		if(ChangeBizTypeEnum.PRICECHANGE.equals(editData.getBizType())){
 			
@@ -1729,7 +1743,7 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 			
 			this.cbChangeType.removeAllItems();
 			this.cbChangeType.addItem(ChangeTypeEnum.ZXQSGM);
-			this.cbChangeType.addItem(ChangeTypeEnum.FZXQSGM);
+//			this.cbChangeType.addItem(ChangeTypeEnum.FZXQSGM);
 		}
 		if(ChangeBizTypeEnum.QUITROOM.equals((ChangeBizTypeEnum)comboBizType.getSelectedItem())){
 			loadPayList(editData,this.tblQRPayList);

@@ -102,9 +102,9 @@ public class RoomAccountReportFacadeControllerBean extends AbstractRoomAccountRe
 	    header.setLabels(new Object[][]{ 
 	    		{
 	    		    "sellProjectId","项目","productTypeId","业态",
-	    		    "可售货值","可售货值","已售货值","已售货值","剩余货值","剩余货值",
+	    		    "可售货值","可售货值","已售货值","已售货值","库存货值","库存货值",
 	    		    "可售房源","可售房源","可售房源","可售房源","可售房源",
-	    		    "待售房源","待售房源","待售房源","待售房源","待售房源",
+	    		    "库存房源","库存房源","库存房源","库存房源","库存房源",
 	    		    "预定","预定","预定","预定","预定",
 	    		    "认购","认购","认购","认购","认购",
 	    		    "签约","签约","签约","签约","签约"
@@ -150,7 +150,7 @@ public class RoomAccountReportFacadeControllerBean extends AbstractRoomAccountRe
     	Date toDate =   (Date)params.getObject("toDate");
     	
     	StringBuffer sb = new StringBuffer();
-    	sb.append(" select room.sellProjectId,room.sellProjectName,room.productTypeId,room.productTypeName,isnull(room.amount,0) hz1,isnull(room.account,0) hz2,isnull(pur.amount,0)+isnull(sign.amount,0) hz3,isnull(pur.account,0)+isnull(sign.account,0) hz4,isnull(onSellRoom.amount,0) hz5,isnull(onSellRoom.account,0) hz6,isnull(room.amount,0) canSellAmount,isnull(room.buildArea,0) canSellBuildArea,isnull(room.roomArea,0) canSellRoomArea,isnull(room.account,0) canSellAccount,isnull(room.price,0) canSellPrice,");
+    	sb.append(" select room.sellProjectId,room.sellProjectName,room.productTypeId,room.productTypeName,isnull(room.amount,0) hz1,isnull(room.account,0) hz2,isnull(sign.amount,0) hz3,isnull(sign.account,0) hz4,isnull(onSellRoom.amount,0) hz5,isnull(onSellRoom.account,0) hz6,isnull(room.amount,0) canSellAmount,isnull(room.buildArea,0) canSellBuildArea,isnull(room.roomArea,0) canSellRoomArea,isnull(room.account,0) canSellAccount,isnull(room.price,0) canSellPrice,");
     	sb.append(" isnull(onSellRoom.amount,0) onSellAmount,isnull(onSellRoom.buildArea,0) onSellBuildArea,isnull(onSellRoom.roomArea,0) onSellRoomArea,isnull(onSellRoom.account,0) onSellAccount,isnull(onSellRoom.price,0) onSellPrice,");
     	sb.append(" isnull(pre.amount,0) preAmount,isnull(pre.buildArea,0) preBuildArea,isnull(pre.roomArea,0) preRoomArea,isnull(pre.account,0) preAccount,isnull(pre.price,0) prePrice,");
     	sb.append(" isnull(pur.amount,0) purAmount,isnull(pur.buildArea,0) purBuildArea,isnull(pur.roomArea,0) purRoomArea,isnull(pur.account,0) purAccount,isnull(pur.price,0) purPrice,");
@@ -171,19 +171,19 @@ public class RoomAccountReportFacadeControllerBean extends AbstractRoomAccountRe
     	
     	sb.append(" left join (");
     	sb.append(" select t.sellProjectId,t.sellProjectName,t.productTypeId,t.productTypeName,count(*) amount,sum(t.buildArea) buildArea,sum(t.roomArea) roomArea,sum(t.account) account,(case when sum(t.buildArea)=0 then 0 else sum(t.account)/sum(t.buildArea) end ) price from (");
-    	getBaseTransaction(sb,"t_she_prepurchaseManage","'PreApple','PreAudit'",fromDate,toDate);
+    	getBaseTransaction(sb,"t_she_prepurchaseManage","'ChangeNameAuditing','QuitRoomAuditing','ChangeRoomAuditing','PreApple','PreAudit'",fromDate,toDate);
     	sb.append(" )t group by t.sellProjectId,t.sellProjectName,t.productTypeId,t.productTypeName");
     	sb.append(") pre on room.sellProjectid=pre.sellProjectid and room.productTypeId=pre.productTypeId ");
     	
     	sb.append(" left join (");
     	sb.append(" select t.sellProjectId,t.sellProjectName,t.productTypeId,t.productTypeName,count(*) amount,sum(t.buildArea) buildArea,sum(t.roomArea) roomArea,sum(t.account) account,(case when sum(t.buildArea)=0 then 0 else sum(t.account)/sum(t.buildArea) end )price from (");
-    	getBaseTransaction(sb,"t_she_purchaseManage","'PurApple','PurAudit'",fromDate,toDate);
+    	getBaseTransaction(sb,"t_she_purchaseManage","'ChangeNameAuditing','QuitRoomAuditing','ChangeRoomAuditing','PurApple','PurAudit'",fromDate,toDate);
     	sb.append(" )t group by t.sellProjectId,t.sellProjectName,t.productTypeId,t.productTypeName");
     	sb.append(") pur on room.sellProjectid=pur.sellProjectid and room.productTypeId=pur.productTypeId ");
     	
     	sb.append(" left join (");
     	sb.append(" select t.sellProjectId,t.sellProjectName,t.productTypeId,t.productTypeName,count(*) amount,sum(t.buildArea) buildArea,sum(t.roomArea) roomArea,sum(t.account) account,(case when sum(t.buildArea)=0 then 0 else sum(t.account)/sum(t.buildArea) end ) price from (");
-    	getBaseTransaction(sb,"t_she_signManage","'SignApple','SignAudit'",fromDate,toDate);
+    	getBaseTransaction(sb,"t_she_signManage","'ChangeNameAuditing','QuitRoomAuditing','ChangeRoomAuditing','SignApple','SignAudit'",fromDate,toDate);
     	sb.append(" )t group by t.sellProjectId,t.sellProjectName,t.productTypeId,t.productTypeName");
     	sb.append(") sign on room.sellProjectid=sign.sellProjectid and room.productTypeId=sign.productTypeId where 1=1");
     	
@@ -202,8 +202,8 @@ public class RoomAccountReportFacadeControllerBean extends AbstractRoomAccountRe
 	private StringBuffer getRoom(StringBuffer sb){
 		sb.append(" select sellProject.fid sellProjectId,sellProject.fname_l2 sellProjectName,productType.fid productTypeId,productType.fname_l2 productTypeName,sum(case when FIsActualAreaAudited='1' then room.factualBuildingArea else case when fispre='1' then room.fBuildingArea else case when FIsPlan='1' then room.fplanBuildingArea else room.fplanBuildingArea end end end )buildArea,");
 		sb.append(" sum(case when FIsActualAreaAudited='1' then room.factualRoomArea else case when fispre='1' then room.fRoomArea else case when FIsPlan='1' then room.fplanRoomArea else room.fplanRoomArea end end end )RoomArea,");
-		sb.append(" sum(room.fstandardTotalAmount)account,");
-		sb.append(" case when sum(case when FIsActualAreaAudited='1' then room.factualBuildingArea else case when fispre='1' then room.fBuildingArea else case when FIsPlan='1' then room.fplanBuildingArea else room.fplanBuildingArea end end end )=0 then 0 else sum(room.fstandardTotalAmount)/sum(case when FIsActualAreaAudited='1' then room.factualBuildingArea else case when fispre='1' then room.fBuildingArea else case when FIsPlan='1' then room.fplanBuildingArea else room.fplanBuildingArea end end end ) end price");
+		sb.append(" sum(case when room.FBaseStandardPrice is null then room.fstandardTotalAmount else room.FBaseStandardPrice end)account,");
+		sb.append(" case when sum(case when FIsActualAreaAudited='1' then room.factualBuildingArea else case when fispre='1' then room.fBuildingArea else case when FIsPlan='1' then room.fplanBuildingArea else room.fplanBuildingArea end end end )=0 then 0 else sum(case when room.FBaseStandardPrice is null then room.fstandardTotalAmount else room.FBaseStandardPrice end)/sum(case when FIsActualAreaAudited='1' then room.factualBuildingArea else case when fispre='1' then room.fBuildingArea else case when FIsPlan='1' then room.fplanBuildingArea else room.fplanBuildingArea end end end ) end price");
 		sb.append(" from T_SHE_Room room");
 		sb.append(" left join t_she_building build on build.fid=room.fbuildingid left join t_she_sellProject sellproject on sellProject.fid=build.fsellProjectid  inner join T_FDC_ProductType productType on productType.fid=room.fproductTypeid");
 //		sb.append(" where build.FIsGetCertificated='1' and room.fsellstate<>'Sign'");
@@ -213,20 +213,28 @@ public class RoomAccountReportFacadeControllerBean extends AbstractRoomAccountRe
 	private StringBuffer getOnShowRoom(StringBuffer sb){
 		sb.append(" select sellProject.fid sellProjectId,sellProject.fname_l2 sellProjectName,productType.fid productTypeId,productType.fname_l2 productTypeName,sum(case when FIsActualAreaAudited='1' then room.factualBuildingArea else case when fispre='1' then room.fBuildingArea else case when FIsPlan='1' then room.fplanBuildingArea else room.fplanBuildingArea end end end )buildArea,");
 		sb.append(" sum(case when FIsActualAreaAudited='1' then room.factualRoomArea else case when fispre='1' then room.fRoomArea else case when FIsPlan='1' then room.fplanRoomArea else room.fplanRoomArea end end end )RoomArea,");
-		sb.append(" sum(room.fstandardTotalAmount)account,");
-		sb.append(" case when sum(case when FIsActualAreaAudited='1' then room.factualBuildingArea else case when fispre='1' then room.fBuildingArea else case when FIsPlan='1' then room.fplanBuildingArea else room.fplanBuildingArea end end end )=0 then 0 else sum(room.fstandardTotalAmount)/sum(case when FIsActualAreaAudited='1' then room.factualBuildingArea else case when fispre='1' then room.fBuildingArea else case when FIsPlan='1' then room.fplanBuildingArea else room.fplanBuildingArea end end end ) end price");
+		sb.append(" sum(case when room.FBaseStandardPrice is null then room.fstandardTotalAmount else room.FBaseStandardPrice end)account,");
+		sb.append(" case when sum(case when FIsActualAreaAudited='1' then room.factualBuildingArea else case when fispre='1' then room.fBuildingArea else case when FIsPlan='1' then room.fplanBuildingArea else room.fplanBuildingArea end end end )=0 then 0 else sum(case when room.FBaseStandardPrice is null then room.fstandardTotalAmount else room.FBaseStandardPrice end)/sum(case when FIsActualAreaAudited='1' then room.factualBuildingArea else case when fispre='1' then room.fBuildingArea else case when FIsPlan='1' then room.fplanBuildingArea else room.fplanBuildingArea end end end ) end price");
 		sb.append(" from T_SHE_Room room");
 		sb.append(" left join t_she_building build on build.fid=room.fbuildingid left join t_she_sellProject sellproject on sellProject.fid=build.fsellProjectid  inner join T_FDC_ProductType productType on productType.fid=room.fproductTypeid");
-		sb.append(" where room.fsellstate='Onshow' or room.fsellstate='Init'");
+		sb.append(" where room.fsellstate='Onshow' or room.fsellstate='Purchase' or room.fsellstate='SincerPurchase' or room.fsellstate='KeepDown' or room.fsellstate='Init'");
 		sb.append(" group by sellProject.fid,sellProject.fname_l2,productType.fid,productType.fname_l2,room.fid");
 		return sb;
 	}
 	private StringBuffer getBaseTransaction(StringBuffer sb,String table,String state,Date fromDate,Date toDate){
 		sb.append(" select deal.fsellProjectid sellProjectId ,sellProject.fname_l2 sellProjectName,productType.fid productTypeId,productType.fname_l2 productTypeName,sum(case deal.fsellType when 'PlanningSell' then deal.fstrdPlanBuildingArea when 'PreSell' then deal.fbulidingArea else deal.fstrdActualBuildingArea end )buildArea,");
-		sb.append(" sum(case deal.fsellType when 'PlanningSell' then deal.fstrdPlanRoomArea when 'PreSell' then deal.froomArea else deal.fstrdActualRoomArea end )roomArea,sum(deal.fdealTotalAmount) account,case when sum(case deal.fsellType when 'PlanningSell' then deal.fstrdPlanBuildingArea when 'PreSell' then deal.fbulidingArea else deal.fstrdActualBuildingArea end )=0 then 0 else sum(deal.fdealTotalAmount)/sum(case deal.fsellType when 'PlanningSell' then deal.fstrdPlanBuildingArea when 'PreSell' then deal.fbulidingArea else deal.fstrdActualBuildingArea end ) end price");
-    	sb.append(" from "+table+" deal");
+		sb.append(" sum(case deal.fsellType when 'PlanningSell' then deal.fstrdPlanRoomArea when 'PreSell' then deal.froomArea else deal.fstrdActualRoomArea end )roomArea,");
+    	if(table.equals("t_she_signManage")){
+    		sb.append(" sum(deal.fsellAmount) account,case when sum(case deal.fsellType when 'PlanningSell' then deal.fstrdPlanBuildingArea when 'PreSell' then deal.fbulidingArea else deal.fstrdActualBuildingArea end )=0 then 0 else sum(deal.fsellAmount)/sum(case deal.fsellType when 'PlanningSell' then deal.fstrdPlanBuildingArea when 'PreSell' then deal.fbulidingArea else deal.fstrdActualBuildingArea end ) end price");
+    	}else if(table.equals("t_she_purchaseManage")){
+    		sb.append(" sum(room.FBaseStandardPrice) account,case when sum(case deal.fsellType when 'PlanningSell' then deal.fstrdPlanBuildingArea when 'PreSell' then deal.fbulidingArea else deal.fstrdActualBuildingArea end )=0 then 0 else sum(room.FBaseStandardPrice)/sum(case deal.fsellType when 'PlanningSell' then deal.fstrdPlanBuildingArea when 'PreSell' then deal.fbulidingArea else deal.fstrdActualBuildingArea end ) end price");
+    	}else{
+    		sb.append(" sum(deal.fdealTotalAmount) account,case when sum(case deal.fsellType when 'PlanningSell' then deal.fstrdPlanBuildingArea when 'PreSell' then deal.fbulidingArea else deal.fstrdActualBuildingArea end )=0 then 0 else sum(deal.fdealTotalAmount)/sum(case deal.fsellType when 'PlanningSell' then deal.fstrdPlanBuildingArea when 'PreSell' then deal.fbulidingArea else deal.fstrdActualBuildingArea end ) end price");
+    	}
+		sb.append(" from "+table+" deal");
     	sb.append(" left join t_she_sellProject sellproject on sellProject.fid=deal.fsellProjectid left join t_she_room room on room.fid=deal.froomid  left join t_she_building build on build.fid=room.fbuildingid inner join T_FDC_ProductType productType on productType.fid=room.fproductTypeid");
     	sb.append(" where deal.fbizState in("+state+") and productType.fid is not null");
+    	sb.append(" and NOT EXISTS (select tt.fnewId from t_she_changeManage tt where tt.fstate in('2SUBMITTED','3AUDITTING') and deal.fid=tt.fnewId )");
     	if(fromDate!=null){
 			sb.append(" and deal.fbusAdscriptionDate>={ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(fromDate))+ "'}");
 		}

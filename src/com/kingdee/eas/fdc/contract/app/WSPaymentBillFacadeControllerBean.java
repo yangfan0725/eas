@@ -122,7 +122,7 @@ public class WSPaymentBillFacadeControllerBean extends AbstractWSPaymentBillFaca
 				String bgItem=entryjs.getJSONObject(i).getString("bgItem");
 				String amount=entryjs.getJSONObject(i).getString("amount");
 				String costCenter=entryjs.getJSONObject(i).getString("costCenter");
-				String oppAccount=entryjs.getJSONObject(i).getString("oppAccount");
+//				String oppAccount=entryjs.getJSONObject(i).getString("oppAccount");
 				String remark=entryjs.getJSONObject(i).getString("remark");
 				
 				PaymentBillEntryInfo entry=new PaymentBillEntryInfo();
@@ -140,14 +140,14 @@ public class WSPaymentBillFacadeControllerBean extends AbstractWSPaymentBillFaca
 					return rs.toString();
 				}
 				
-				AccountViewCollection accountCol=AccountViewFactory.getLocalInstance(ctx).getAccountViewCollection("select * from where number='"+oppAccount+"'");
-				if(accountCol.size()>0){
-					entry.setOppAccount(accountCol.get(0));
-				}else{
-					rs.put("state", "0");
-					rs.put("msg", "对方科目不存在！");
-					return rs.toString();
-				}
+//				AccountViewCollection accountCol=AccountViewFactory.getLocalInstance(ctx).getAccountViewCollection("select * from where number='"+oppAccount+"'");
+//				if(accountCol.size()>0){
+//					entry.setOppAccount(accountCol.get(0));
+//				}else{
+//					rs.put("state", "0");
+//					rs.put("msg", "对方科目不存在！");
+//					return rs.toString();
+//				}
 				
 				EntityViewInfo view=new EntityViewInfo();
 				FilterInfo filter=new FilterInfo();

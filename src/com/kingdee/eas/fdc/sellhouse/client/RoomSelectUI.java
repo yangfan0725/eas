@@ -162,9 +162,6 @@ public class RoomSelectUI extends AbstractRoomSelectUI {
 //		
 //		
 //		SHEHelper.fillRoomTableByNode(this.tblMain,node, moneySysTypeEnum, roomColl,sellProject,setting,null);
-//		if(moneySysTypeEnum!=null&&moneySysTypeEnum.equals(MoneySysTypeEnum.SalehouseSys)){
-//			setSellStateCountByColor();
-//		}
 		
 		DefaultKingdeeTreeNode node = (DefaultKingdeeTreeNode) treeMain.getLastSelectedPathComponent();
 		if (node == null) 
@@ -186,6 +183,9 @@ public class RoomSelectUI extends AbstractRoomSelectUI {
 		//SHEHelper.fillRoomTableByNode(this.tblMain,node, moneySysTypeEnum, roomColl,setting);
 		SHEHelper.fillRoomTableByNode(this.tblMain,node,moneySysTypeEnum,roomColl,sellProject,setting,null);
 		
+		if(moneySysTypeEnum!=null&&moneySysTypeEnum.equals(MoneySysTypeEnum.SalehouseSys)){
+			setSellStateCountByColor();
+		}
 	}
 	
 	private void setSellStateCountByColor() throws BOSException {

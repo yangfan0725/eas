@@ -5,17 +5,24 @@ package com.kingdee.eas.fdc.contract.client;
 
 import java.awt.event.*;
 import java.rmi.RemoteException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.apache.log4j.Logger;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.dao.IObjectValue;
+import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
 import com.kingdee.eas.base.attachment.FtpConfigFactory;
 import com.kingdee.eas.fdc.basedata.FDCDataBaseInfo;
+import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.client.ContractTypeEditUI;
 import com.kingdee.eas.fdc.contract.BankNumFactory;
 import com.kingdee.eas.fdc.contract.BankNumInfo;
 import com.kingdee.eas.fdc.contract.ChangeWFTypeFactory;
 import com.kingdee.eas.fdc.contract.ChangeWFTypeInfo;
+import com.kingdee.eas.fdc.contract.MarketProjectFactory;
+import com.kingdee.eas.fdc.contract.MarketProjectInfo;
 import com.kingdee.eas.fdc.sellhouse.WSSellHouseFacadeFactory;
 import com.kingdee.eas.framework.*;
 import javax.xml.namespace.QName;
@@ -41,6 +48,15 @@ public class BankNumListUI extends AbstractBankNumListUI
     public BankNumListUI() throws Exception
     {
         super();
+//        MarketProjectInfo info=MarketProjectFactory.getRemoteInstance().getMarketProjectInfo(new ObjectUuidPK("Hx3iBxzFQqSduDVCdlkiQoLoiOI="));
+//        Calendar cal = new GregorianCalendar();
+//		cal.setTime(FDCDateHelper.getNextMonth(info.getAuditTime()));
+//		cal.set(5, 15);
+//		cal.set(11, 0);
+//		cal.set(12, 0);
+//		cal.set(13, 0);
+//		cal.set(14, 0);
+//		int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
 //        Service s=new Service();
 //        Call call=null;
 //		try {

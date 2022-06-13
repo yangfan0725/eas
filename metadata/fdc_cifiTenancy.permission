@@ -12776,7 +12776,7 @@
             <alias>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_addnew].alias</alias>
             <description>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_addnew].description</description>
             <type>ADDNEW</type>
-            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18押金处理申请单</groupName>
+            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18退款申请单</groupName>
             <group>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_addnew].group</group>
             <userDefined>true</userDefined>
             <entityObjectRef>
@@ -12827,7 +12827,7 @@
             <alias>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_edit].alias</alias>
             <description>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_edit].description</description>
             <type>UPDATE</type>
-            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18押金处理申请单</groupName>
+            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18退款申请单</groupName>
             <group>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_edit].group</group>
             <userDefined>true</userDefined>
             <entityObjectRef>
@@ -12878,7 +12878,7 @@
             <alias>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_delete].alias</alias>
             <description>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_delete].description</description>
             <type>DELETE</type>
-            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18押金处理申请单</groupName>
+            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18退款申请单</groupName>
             <group>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_delete].group</group>
             <userDefined>true</userDefined>
             <entityObjectRef>
@@ -12929,7 +12929,7 @@
             <alias>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_view].alias</alias>
             <description>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_view].description</description>
             <type>READ</type>
-            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18押金处理申请单</groupName>
+            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18退款申请单</groupName>
             <group>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_view].group</group>
             <userDefined>true</userDefined>
             <entityObjectRef>
@@ -12984,7 +12984,7 @@
             <alias>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_audit].alias</alias>
             <description>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_audit].description</description>
             <type>OTHER</type>
-            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18押金处理申请单</groupName>
+            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18退款申请单</groupName>
             <group>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_audit].group</group>
             <userDefined>true</userDefined>
             <entityObjectRef>
@@ -13035,7 +13035,7 @@
             <alias>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_unAudit].alias</alias>
             <description>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_unAudit].description</description>
             <type>OTHER</type>
-            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18押金处理申请单</groupName>
+            <groupName>EAS系统.199营销服务管理.61租赁管理.30交易管理.18退款申请单</groupName>
             <group>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_unAudit].group</group>
             <userDefined>true</userDefined>
             <entityObjectRef>
@@ -15528,6 +15528,33 @@
                         </bizProperty>
                         <bizProperty>
                             <property>ActionPrintPreview</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+            </bizRefs>
+        </permissionItem>
+        <permissionItem>
+            <innerID>1d5376ba-57bb-47fd-9908-e95a6ece1f33PERMITEM</innerID>
+            <name>ten_DepositAmountReport_view</name>
+            <alias>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_DepositAmountReport_view].alias</alias>
+            <description>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_DepositAmountReport_view].description</description>
+            <type>OTHER</type>
+            <groupName>EAS系统.199营销服务管理.61租赁管理.50分析报表.23保证金押金台账</groupName>
+            <group>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_DepositAmountReport_view].group</group>
+            <userDefined>true</userDefined>
+            <bizRefs>
+                <bizRef>
+                    <id>4972e6a9-09b2-44a3-b67a-8c6803811f97</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.tenancy.client</package>
+                        <name>DepositAmountReportUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionOnLoad</property>
                             <userDefined>true</userDefined>
                         </bizProperty>
                     </bizPropertys>
@@ -18391,6 +18418,12 @@
                 </refPermissionItem>
             </referingItems>
         </dependence>
+        <dependence>
+            <id>1d5376ba-57bb-47fd-9908-e95a6ece1f33PERMITEM</id>
+            <referedItem>
+                <key name="innerID" value="1d5376ba-57bb-47fd-9908-e95a6ece1f33PERMITEM" />
+            </referedItem>
+        </dependence>
     </dependences>
     <resource>
         <rs key="permission[.fdc_cifiTenancy].alias">
@@ -18768,6 +18801,34 @@
             <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.更名管理" />
             <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.更名管理" />
             <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.更名管理" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_DepositAmountReport_view].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="保证金押金台账查看" />
+            <lang locale="zh_HK" value="保證金押金台賬查看" />
+            <lang locale="zh_TW" value="保證金押金台賬查看" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_DepositAmountReport_view].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="保证金押金台账查看" />
+            <lang locale="zh_HK" value="保證金押金台賬查看" />
+            <lang locale="zh_TW" value="保證金押金台賬查看" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_DepositAmountReport_view].extendedProperty.orgRelation">
+            <lang locale="en_US" value="Sale" />
+            <lang locale="zh_CN" value="Sale" />
+            <lang locale="zh_TW" value="Sale" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_DepositAmountReport_view].extendedProperty.permItemType">
+            <lang locale="en_US" value="20" />
+            <lang locale="zh_CN" value="20" />
+            <lang locale="zh_TW" value="20" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_DepositAmountReport_view].group">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.分析报表.保证金押金台账" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.分析報表.保證金押金台賬" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.分析報表.保證金押金台賬" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_FeesWarrant_addnew].alias">
             <lang locale="en_US" value="null" />
@@ -22060,15 +22121,15 @@
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_addnew].alias">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-新增" />
-            <lang locale="zh_HK" value="押金處理申請單-新增" />
-            <lang locale="zh_TW" value="押金處理申請單-新增" />
+            <lang locale="zh_CN" value="退款申请单-新增" />
+            <lang locale="zh_HK" value="退款申請單-新增" />
+            <lang locale="zh_TW" value="退款申請單-新增" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_addnew].description">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-新增" />
-            <lang locale="zh_HK" value="押金處理申請單-新增" />
-            <lang locale="zh_TW" value="押金處理申請單-新增" />
+            <lang locale="zh_CN" value="退款申请单-新增" />
+            <lang locale="zh_HK" value="退款申請單-新增" />
+            <lang locale="zh_TW" value="退款申請單-新增" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_addnew].extendedProperty.orgRelation">
             <lang locale="en_US" value="Sale" />
@@ -22082,21 +22143,21 @@
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_addnew].group">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.押金处理申请单" />
-            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
-            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.退款申请单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_audit].alias">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-审批" />
-            <lang locale="zh_HK" value="押金處理申請單-審批" />
-            <lang locale="zh_TW" value="押金處理申請單-審批" />
+            <lang locale="zh_CN" value="退款申请单-审批" />
+            <lang locale="zh_HK" value="退款申請單-審批" />
+            <lang locale="zh_TW" value="退款申請單-審批" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_audit].description">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-审批" />
-            <lang locale="zh_HK" value="押金處理申請單-審批" />
-            <lang locale="zh_TW" value="押金處理申請單-審批" />
+            <lang locale="zh_CN" value="退款申请单-审批" />
+            <lang locale="zh_HK" value="退款申請單-審批" />
+            <lang locale="zh_TW" value="退款申請單-審批" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_audit].extendedProperty.orgRelation">
             <lang locale="en_US" value="Sale" />
@@ -22110,21 +22171,21 @@
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_audit].group">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.押金处理申请单" />
-            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
-            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.退款申请单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_delete].alias">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-删除" />
-            <lang locale="zh_HK" value="押金處理申請單-刪除" />
-            <lang locale="zh_TW" value="押金處理申請單-刪除" />
+            <lang locale="zh_CN" value="退款申请单-删除" />
+            <lang locale="zh_HK" value="退款申請單-刪除" />
+            <lang locale="zh_TW" value="退款申請單-刪除" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_delete].description">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-删除" />
-            <lang locale="zh_HK" value="押金處理申請單-刪除" />
-            <lang locale="zh_TW" value="押金處理申請單-刪除" />
+            <lang locale="zh_CN" value="退款申请单-删除" />
+            <lang locale="zh_HK" value="退款申請單-刪除" />
+            <lang locale="zh_TW" value="退款申請單-刪除" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_delete].extendedProperty.orgRelation">
             <lang locale="en_US" value="Sale" />
@@ -22138,21 +22199,21 @@
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_delete].group">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.押金处理申请单" />
-            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
-            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.退款申请单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_edit].alias">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-修改" />
-            <lang locale="zh_HK" value="押金處理申請單-修改" />
-            <lang locale="zh_TW" value="押金處理申請單-修改" />
+            <lang locale="zh_CN" value="退款申请单-修改" />
+            <lang locale="zh_HK" value="退款申請單-修改" />
+            <lang locale="zh_TW" value="退款申請單-修改" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_edit].description">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-修改" />
-            <lang locale="zh_HK" value="押金處理申請單-修改" />
-            <lang locale="zh_TW" value="押金處理申請單-修改" />
+            <lang locale="zh_CN" value="退款申请单-修改" />
+            <lang locale="zh_HK" value="退款申請單-修改" />
+            <lang locale="zh_TW" value="退款申請單-修改" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_edit].extendedProperty.orgRelation">
             <lang locale="en_US" value="Sale" />
@@ -22166,21 +22227,21 @@
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_edit].group">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.押金处理申请单" />
-            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
-            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.退款申请单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_unAudit].alias">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-反审批" />
-            <lang locale="zh_HK" value="押金處理申請單-反審批" />
-            <lang locale="zh_TW" value="押金處理申請單-反審批" />
+            <lang locale="zh_CN" value="退款申请单-反审批" />
+            <lang locale="zh_HK" value="退款申請單-反審批" />
+            <lang locale="zh_TW" value="退款申請單-反審批" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_unAudit].description">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-反审批" />
-            <lang locale="zh_HK" value="押金處理申請單-反審批" />
-            <lang locale="zh_TW" value="押金處理申請單-反審批" />
+            <lang locale="zh_CN" value="退款申请单-反审批" />
+            <lang locale="zh_HK" value="退款申請單-反審批" />
+            <lang locale="zh_TW" value="退款申請單-反審批" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_unAudit].extendedProperty.orgRelation">
             <lang locale="en_US" value="Sale" />
@@ -22194,21 +22255,21 @@
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_unAudit].group">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.押金处理申请单" />
-            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
-            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.退款申请单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_view].alias">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-查看" />
-            <lang locale="zh_HK" value="押金處理申請單-查看" />
-            <lang locale="zh_TW" value="押金處理申請單-查看" />
+            <lang locale="zh_CN" value="退款申请单-查看" />
+            <lang locale="zh_HK" value="退款申請單-查看" />
+            <lang locale="zh_TW" value="退款申請單-查看" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_view].description">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="押金处理申请单-查看" />
-            <lang locale="zh_HK" value="押金處理申請單-查看" />
-            <lang locale="zh_TW" value="押金處理申請單-查看" />
+            <lang locale="zh_CN" value="退款申请单-查看" />
+            <lang locale="zh_HK" value="退款申請單-查看" />
+            <lang locale="zh_TW" value="退款申請單-查看" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_view].extendedProperty.orgRelation">
             <lang locale="en_US" value="Sale" />
@@ -22222,9 +22283,9 @@
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_depositDealBill_view].group">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.押金处理申请单" />
-            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
-            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.押金處理申請單" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.交易管理.退款申请单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.交易管理.退款申請單" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_financecommission_actionfinace].alias">
             <lang locale="en_US" value="null" />

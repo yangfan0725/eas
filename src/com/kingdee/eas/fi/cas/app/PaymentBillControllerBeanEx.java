@@ -101,14 +101,14 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		if(payRequest.isHasClosed()){
             			throw new EASBizException(new NumericExceptionSubItem("100","付款申请单已经关闭，禁止付款！"));
             		}
-            		if(payRequest.isIsBgControl()){
-            			IBgControlFacade iBgControlFacade = BgControlFacadeFactory.getLocalInstance(ctx);
-            			info.setPayDate(now);
-            			Map bgmap=iBgControlFacade.checkBudget(info);
-            			if(!((Boolean)bgmap.get("isPass")).booleanValue()){
-            				throw new EASBizException(new NumericExceptionSubItem("100",bgmap.get("message").toString()));
-            			}
-            		}
+//            		if(payRequest.isIsBgControl()){
+//            			IBgControlFacade iBgControlFacade = BgControlFacadeFactory.getLocalInstance(ctx);
+//            			info.setPayDate(now);
+//            			Map bgmap=iBgControlFacade.checkBudget(info);
+//            			if(!((Boolean)bgmap.get("isPass")).booleanValue()){
+//            				throw new EASBizException(new NumericExceptionSubItem("100",bgmap.get("message").toString()));
+//            			}
+//            		}
                 }
             	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
                 builder.appendSql("update T_CAS_PaymentBill set fbizDate=? where fid=? ");
@@ -141,7 +141,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
                         builder.addParam(info.getSourceBillId());
                         builder.executeUpdate();
                     }
-                    BgControlFacadeFactory.getLocalInstance(ctx).bgAudit(info.getId().toString(), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
+//                    BgControlFacadeFactory.getLocalInstance(ctx).bgAudit(info.getId().toString(), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
                     for(int k=0;k<info.getEntries().size();k++){
                     	if(info.getEntries().get(k).getSourceBillEntryId()!=null){
                     		PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));
@@ -364,7 +364,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		if(payRequest.isHasClosed()){
             			throw new EASBizException(new NumericExceptionSubItem("100","付款申请单已经关闭，禁止取消付款！"));
             		}
-        			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
+//        			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
         			for(int k=0;k<info.getEntries().size();k++){
         				if(info.getEntries().get(k).getSourceBillEntryId()!=null){
         					PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));
@@ -443,7 +443,7 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             		if(payRequest.isHasClosed()){
             			throw new EASBizException(new NumericExceptionSubItem("100","付款申请单已经关闭，禁止取消付款！"));
             		}
-        			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
+//        			BgControlFacadeFactory.getLocalInstance(ctx).returnBudget(BOSUuid.read(info.getId().toString()), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
         			for(int k=0;k<info.getEntries().size();k++){
         				if(info.getEntries().get(k).getSourceBillEntryId()!=null){
         					PayRequestBillBgEntryInfo bgEntry=PayRequestBillBgEntryFactory.getLocalInstance(ctx).getPayRequestBillBgEntryInfo(new ObjectUuidPK(info.getEntries().get(k).getSourceBillEntryId()));

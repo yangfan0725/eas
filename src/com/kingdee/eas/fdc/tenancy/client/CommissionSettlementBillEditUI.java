@@ -1047,8 +1047,12 @@ public class CommissionSettlementBillEditUI extends AbstractCommissionSettlement
 		entry.setTenancyBill(ten);
 		r.getCell("orgUnit").setValue(ten.getOrgUnit().getName());
 		r.getCell("sellProject").setValue(ten.getSellProject().getName());
-		r.getCell("productType").setValue(ten.getTenancyRoomList().get(0).getRoom().getProductType().getName());
-		r.getCell("build").setValue(ten.getTenancyRoomList().get(0).getRoom().getBuilding().getName());
+		if(ten.getTenancyRoomList().get(0).getRoom().getProductType()!=null){
+			r.getCell("productType").setValue(ten.getTenancyRoomList().get(0).getRoom().getProductType().getName());
+		}
+		if(ten.getTenancyRoomList().get(0).getRoom().getBuilding()!=null){
+			r.getCell("build").setValue(ten.getTenancyRoomList().get(0).getRoom().getBuilding().getName());
+		}
 		r.getCell("state").setValue(ten.getTenancyState().getAlias());
 		r.getCell("room").setValue(ten.getTenRoomsDes());
 		r.getCell("name").setValue(ten.getTenancyName());

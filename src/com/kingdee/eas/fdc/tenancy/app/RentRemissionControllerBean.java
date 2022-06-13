@@ -15,6 +15,7 @@ import com.kingdee.eas.common.SysContextConstant;
 import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.tenancy.ITenBillOtherPay;
+import com.kingdee.eas.fdc.tenancy.RemissionTypeEnum;
 import com.kingdee.eas.fdc.tenancy.RentRemissionEntryCollection;
 import com.kingdee.eas.fdc.tenancy.RentRemissionEntryInfo;
 import com.kingdee.eas.fdc.tenancy.RentRemissionInfo;
@@ -59,9 +60,14 @@ public class RentRemissionControllerBean extends AbstractRentRemissionController
         		String otherPayId = entryInfo.getOtherPayListID();
         		ObjectUuidPK otherPayPk = new ObjectUuidPK(BOSUuid.read(otherPayId));
         		TenBillOtherPayInfo oPayInfo = tenBillOtherPay.getTenBillOtherPayInfo(new ObjectUuidPK(BOSUuid.read(otherPayId)));
-        		oldAppAmount = oPayInfo.getAppAmount();
-        		leatestAppAmount = oldAppAmount.subtract(remisAmount);
-        		oPayInfo.setAppAmount(leatestAppAmount);
+        		
+        		if(RemissionTypeEnum.WXSK.equals(rentRemisInfo.getType())){
+        			oPayInfo.setIsUnPay(true);
+        		}else{
+        			oldAppAmount = oPayInfo.getAppAmount();
+            		leatestAppAmount = oldAppAmount.subtract(remisAmount);
+            		oPayInfo.setAppAmount(leatestAppAmount);
+        		}
         		tenBillOtherPay.update(otherPayPk,oPayInfo);
         		continue;
         	}
@@ -69,12 +75,16 @@ public class RentRemissionControllerBean extends AbstractRentRemissionController
         	ObjectUuidPK roomPaypk = new ObjectUuidPK(roomPayId);        	      	
         	TenancyRoomPayListEntryInfo roomPayInfo=TenancyRoomPayListEntryFactory.getLocalInstance(ctx).getTenancyRoomPayListEntryInfo(roomPaypk);        	
         	if(roomPayInfo!=null){
-        		oldAppAmount=FDCHelper.toBigDecimal(roomPayInfo.getAppAmount());
-        		leatestAppAmount=oldAppAmount.subtract(remisAmount);  
-        		roomPayInfo.setAppAmount(leatestAppAmount);
-        		BigDecimal remisAmountSum = FDCHelper.toBigDecimal(roomPayInfo.getRemissionAmount());  
-        		remisAmountSum=remisAmountSum.add(remisAmount);
-        		roomPayInfo.setRemissionAmount(remisAmountSum); 
+        		if(RemissionTypeEnum.WXSK.equals(rentRemisInfo.getType())){
+        			roomPayInfo.setIsUnPay(true);
+        		}else{
+        			oldAppAmount=FDCHelper.toBigDecimal(roomPayInfo.getAppAmount());
+            		leatestAppAmount=oldAppAmount.subtract(remisAmount);  
+            		roomPayInfo.setAppAmount(leatestAppAmount);
+            		BigDecimal remisAmountSum = FDCHelper.toBigDecimal(roomPayInfo.getRemissionAmount());  
+            		remisAmountSum=remisAmountSum.add(remisAmount);
+            		roomPayInfo.setRemissionAmount(remisAmountSum);
+        		}
         		TenancyRoomPayListEntryFactory.getLocalInstance(ctx).update(roomPaypk, roomPayInfo);  
         	}   
         	
@@ -112,9 +122,13 @@ public class RentRemissionControllerBean extends AbstractRentRemissionController
 	        		String otherPayId = entryInfo.getOtherPayListID();
 	        		ObjectUuidPK otherPayPk = new ObjectUuidPK(BOSUuid.read(otherPayId));
 	        		TenBillOtherPayInfo oPayInfo = tenBillOtherPay.getTenBillOtherPayInfo(new ObjectUuidPK(BOSUuid.read(otherPayId)));
-	        		oldAppAmount = oPayInfo.getAppAmount();
-	        		leatestAppAmount = oldAppAmount.add(remisAmount);
-	        		oPayInfo.setAppAmount(leatestAppAmount);
+	        		if(RemissionTypeEnum.WXSK.equals(rentRemisInfo.getType())){
+	        			oPayInfo.setIsUnPay(false);
+	        		}else{
+	        			oldAppAmount = oPayInfo.getAppAmount();
+		        		leatestAppAmount = oldAppAmount.add(remisAmount);
+		        		oPayInfo.setAppAmount(leatestAppAmount);
+	        		}
 	        		tenBillOtherPay.update(otherPayPk,oPayInfo);
 	        		continue;
 	        	}
@@ -122,14 +136,17 @@ public class RentRemissionControllerBean extends AbstractRentRemissionController
 	        	String roomPayId=entryInfo.getRentRemissionRoom().getId().toString();
 	        	ObjectUuidPK roomPaypk = new ObjectUuidPK(roomPayId);        	      	
 	        	TenancyRoomPayListEntryInfo roomPayInfo=TenancyRoomPayListEntryFactory.getLocalInstance(ctx).getTenancyRoomPayListEntryInfo(roomPaypk);        	
-	        	
 	        	if(roomPayInfo!=null){
-	        		oldAppAmount=FDCHelper.toBigDecimal(roomPayInfo.getAppAmount());
-	        		leatestAppAmount=oldAppAmount.add(remisAmount);  
-	        		roomPayInfo.setAppAmount(leatestAppAmount);
-	        		BigDecimal remisAmountSum = FDCHelper.toBigDecimal(roomPayInfo.getRemissionAmount());  
-	        		remisAmountSum=remisAmountSum.subtract(remisAmount);
-	        		roomPayInfo.setRemissionAmount(remisAmountSum); 
+	        		if(RemissionTypeEnum.WXSK.equals(rentRemisInfo.getType())){
+	        			roomPayInfo.setIsUnPay(false);
+	        		}else{
+	        			oldAppAmount=FDCHelper.toBigDecimal(roomPayInfo.getAppAmount());
+		        		leatestAppAmount=oldAppAmount.add(remisAmount);  
+		        		roomPayInfo.setAppAmount(leatestAppAmount);
+		        		BigDecimal remisAmountSum = FDCHelper.toBigDecimal(roomPayInfo.getRemissionAmount());  
+		        		remisAmountSum=remisAmountSum.subtract(remisAmount);
+		        		roomPayInfo.setRemissionAmount(remisAmountSum);
+	        		}
 	        		TenancyRoomPayListEntryFactory.getLocalInstance(ctx).update(roomPaypk, roomPayInfo);  
 	        	}   
 	         }

@@ -353,6 +353,11 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 				.equals(this.comboTenancyType.getSelectedItem())
 				&& OprtState.ADDNEW.equals(this.getOprtState())) {
 
+			for(int i=0;i<tenBill.getOldTenancyBill()
+			.getTenancyRoomList().size();i++){
+				tenBill.getOldTenancyBill()
+				.getTenancyRoomList().get(i).getDealAmounts().clear();
+			}
 			loadTblRentSetbyTrans(tenBill.getOldTenancyBill()
 					.getTenancyRoomList());
 		}
@@ -2501,6 +2506,7 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 							tenEntry.setDepositAmount(desposit2);
 						}
 					}
+					updateTotalInfo();
 				}
 			}
 			if (C_RENT_FIRST_RENT.equals(colKey)) {
@@ -2637,6 +2643,8 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 						}
 					}
 					reSetRentSetInfo(getTenRoomListFromView());
+					
+					updateTotalInfo();
 				}
 			}
 			if (C_RENT_FIRST_RENT.equals(colKey)) {
@@ -2781,9 +2789,9 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 			}
 		}
 		
-	    if("1003".equals(colKey)){
-	    	updateTotalInfo();
-	    }
+//	    if("1003".equals(colKey)){
+//	    	updateTotalInfo();
+//	    }
 		if (!this.chkIsFreeContract.isSelected()) {
 			updatePayListInfo();
 		}
@@ -3264,7 +3272,14 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 		 }
 		 //显示保证金信息
 		 if(this.tblRentSet.getRow(0) != null){
-			 this.txtDepoist.setText(this.tblRentSet.getRow(0).getCell("1003").getValue()+"");
+			 BigDecimal depositAmount=FDCHelper.ZERO;
+			 for (int k = 0; k < monDefineColl.size(); k++) {
+					MoneyDefineInfo moneyInfo = monDefineColl.get(k);
+					if (this.tblRentSet.getRow(0).getCell(moneyInfo.getNumber())!=null) {
+						depositAmount=FDCHelper.add(depositAmount, this.tblRentSet.getRow(0).getCell(moneyInfo.getNumber()).getValue());
+					}
+			 }
+			 this.txtDepoist.setText(depositAmount+"");
 			 this.txtDepoist.setHorizontalAlignment(11);
 		 }
 		 
@@ -7123,7 +7138,6 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 		if (sellProjectInfo != null) {
 			tenancyBill.setSellProject(sellProjectInfo);
 		}
-
 		// add by yangfan
 		if (TenancyContractTypeEnum.NewTenancy.equals(contractType)) {
 			try {

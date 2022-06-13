@@ -2212,7 +2212,7 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 						txtBgAmount = new KDTextField();
 						txtBgAmount.setEnabled(false);
 						this.contBgEntry.add(txtBgAmount);
-						txtBgAmount.setBounds(400, 2, 400, 18);
+						txtBgAmount.setBounds(110, 2, 400, 18);
 					}
 					this.storeFields();
 					BgItemInfo bgItem = (BgItemInfo) this.kdtBgEntry.getRow(top).getCell("bgItem").getValue();
@@ -4782,6 +4782,7 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 		pay.setCompany((CompanyOrgUnitInfo) this.prmtCostedCompany.getValue());
 		pay.setCostCenter((CostCenterOrgUnitInfo) this.prmtCostedDept.getValue());
 		pay.setPayDate(FDCCommonServerHelper.getServerTimeStamp());
+//		pay.setBizDate(FDCCommonServerHelper.getServerTimeStamp());
 		pay.setCurrency((CurrencyInfo) this.prmtcurrency.getValue());
 
 		return pay;

@@ -59,6 +59,7 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnAdd;
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnDel;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contRemark;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contType;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtNumber;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkBizDate;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtName;
@@ -70,6 +71,7 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtSellProject;
     protected com.kingdee.bos.ctrl.swing.KDScrollPane kDScrollPane1;
     protected com.kingdee.bos.ctrl.swing.KDTextArea txtRemark;
+    protected com.kingdee.bos.ctrl.swing.KDComboBox cbType;
     protected com.kingdee.eas.fdc.tenancy.RentRemissionInfo editData = null;
     protected ActionAdd actionAdd = null;
     protected ActionDel actionDel = null;
@@ -128,6 +130,7 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
         this.btnAdd = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.btnDel = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.contRemark = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.txtNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.pkBizDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.txtName = new com.kingdee.bos.ctrl.swing.KDTextField();
@@ -139,6 +142,7 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
         this.prmtSellProject = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.kDScrollPane1 = new com.kingdee.bos.ctrl.swing.KDScrollPane();
         this.txtRemark = new com.kingdee.bos.ctrl.swing.KDTextArea();
+        this.cbType = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.contNumber.setName("contNumber");
         this.contBizDate.setName("contBizDate");
         this.contName.setName("contName");
@@ -152,6 +156,7 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
         this.btnAdd.setName("btnAdd");
         this.btnDel.setName("btnDel");
         this.contRemark.setName("contRemark");
+        this.contType.setName("contType");
         this.txtNumber.setName("txtNumber");
         this.pkBizDate.setName("pkBizDate");
         this.txtName.setName("txtName");
@@ -163,6 +168,7 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
         this.prmtSellProject.setName("prmtSellProject");
         this.kDScrollPane1.setName("kDScrollPane1");
         this.txtRemark.setName("txtRemark");
+        this.cbType.setName("cbType");
         // CoreUI		
         this.btnAudit.setIcon(com.kingdee.eas.util.client.EASResource.getIcon("imgTbtn_audit"));		
         this.menuItemAudit.setIcon(com.kingdee.eas.util.client.EASResource.getIcon("imgTbtn_audit"));
@@ -189,7 +195,9 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
         // contAttachResource		
         this.contAttachResource.setBoundLabelText(resHelper.getString("contAttachResource.boundLabelText"));		
         this.contAttachResource.setBoundLabelLength(100);		
-        this.contAttachResource.setBoundLabelUnderline(true);
+        this.contAttachResource.setBoundLabelUnderline(true);		
+        this.contAttachResource.setEnabled(false);		
+        this.contAttachResource.setVisible(false);
         // contCustomerName		
         this.contCustomerName.setBoundLabelText(resHelper.getString("contCustomerName.boundLabelText"));		
         this.contCustomerName.setBoundLabelLength(100);		
@@ -228,6 +236,10 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
         this.contRemark.setBoundLabelText(resHelper.getString("contRemark.boundLabelText"));		
         this.contRemark.setBoundLabelLength(100);		
         this.contRemark.setBoundLabelUnderline(true);
+        // contType		
+        this.contType.setBoundLabelText(resHelper.getString("contType.boundLabelText"));		
+        this.contType.setBoundLabelLength(100);		
+        this.contType.setBoundLabelUnderline(true);
         // txtNumber		
         this.txtNumber.setRequired(true);		
         this.txtNumber.setMaxLength(44);
@@ -266,6 +278,19 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
         this.prmtSellProject.setDisplayFormat("$name$");
         // kDScrollPane1
         // txtRemark
+        // cbType		
+        this.cbType.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.tenancy.RemissionTypeEnum").toArray());		
+        this.cbType.setRequired(true);
+        this.cbType.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent e) {
+                try {
+                    cbType_itemStateChanged(e);
+                } catch (Exception exc) {
+                    handUIException(exc);
+                } finally {
+                }
+            }
+        });
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -302,7 +327,7 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
         this.add(contTenancy, null);
         contRoomName.setBounds(new Rectangle(313, 39, 270, 19));
         this.add(contRoomName, null);
-        contAttachResource.setBounds(new Rectangle(617, 39, 270, 19));
+        contAttachResource.setBounds(new Rectangle(470, 87, 270, 19));
         this.add(contAttachResource, null);
         contCustomerName.setBounds(new Rectangle(10, 68, 270, 19));
         this.add(contCustomerName, null);
@@ -318,6 +343,8 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
         this.add(btnDel, null);
         contRemark.setBounds(new Rectangle(10, 106, 878, 92));
         this.add(contRemark, null);
+        contType.setBounds(new Rectangle(617, 39, 270, 19));
+        this.add(contType, null);
         //contNumber
         contNumber.setBoundEditor(txtNumber);
         //contBizDate
@@ -340,6 +367,8 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
         contRemark.setBoundEditor(kDScrollPane1);
         //kDScrollPane1
         kDScrollPane1.getViewport().add(txtRemark, null);
+        //contType
+        contType.setBoundEditor(cbType);
 
     }
 
@@ -524,7 +553,8 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
 		dataBinder.registerBinding("roomName", String.class, this.txtRoomName, "text");
 		dataBinder.registerBinding("leaseCount", java.math.BigDecimal.class, this.txtLeaseCount, "value");
 		dataBinder.registerBinding("sellProject", com.kingdee.eas.fdc.crm.basedata.SellProjectInfo.class, this.prmtSellProject, "data");
-		dataBinder.registerBinding("remark", String.class, this.txtRemark, "text");		
+		dataBinder.registerBinding("remark", String.class, this.txtRemark, "text");
+		dataBinder.registerBinding("type", com.kingdee.eas.fdc.tenancy.RemissionTypeEnum.class, this.cbType, "selectedItem");		
 	}
 	//Regiester UI State
 	private void registerUIState(){		
@@ -591,7 +621,8 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
 		getValidateHelper().registerBindProperty("roomName", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("leaseCount", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("sellProject", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("remark", ValidateHelper.ON_SAVE);    		
+		getValidateHelper().registerBindProperty("remark", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("type", ValidateHelper.ON_SAVE);    		
 	}
 
 
@@ -620,6 +651,13 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
      * output prmtTenancy_dataChanged method
      */
     protected void prmtTenancy_dataChanged(com.kingdee.bos.ctrl.swing.event.DataChangeEvent e) throws Exception
+    {
+    }
+
+    /**
+     * output cbType_itemStateChanged method
+     */
+    protected void cbType_itemStateChanged(java.awt.event.ItemEvent e) throws Exception
     {
     }
 
@@ -658,6 +696,7 @@ public abstract class AbstractRentRemissionEditUI extends com.kingdee.eas.fdc.te
         	sic.add(new SelectorItemInfo("sellProject.name"));
 		}
         sic.add(new SelectorItemInfo("remark"));
+        sic.add(new SelectorItemInfo("type"));
         return sic;
     }        
     	

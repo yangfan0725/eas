@@ -93,6 +93,8 @@ import com.kingdee.eas.fdc.basedata.client.FDCClientVerifyHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.contract.ContractBillFactory;
 import com.kingdee.eas.fdc.contract.ContractBillInfo;
+import com.kingdee.eas.fdc.contract.ContractWithoutTextCollection;
+import com.kingdee.eas.fdc.contract.ContractWithoutTextFactory;
 import com.kingdee.eas.fdc.contract.FDCUtils;
 import com.kingdee.eas.fdc.contract.JZTypeEnum;
 import com.kingdee.eas.fdc.contract.MarketProjectCollection;
@@ -908,9 +910,12 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 		FDCClientVerifyHelper.verifyEmpty(this, this.pkBizDate);
 		FDCClientVerifyHelper.verifyEmpty(this, this.cbNw);
 		Date thisDate=new Date();
+		if(this.editData.getCreateTime()!=null){
+			thisDate=this.editData.getCreateTime();
+		}
 		Date bizDate=(Date) this.pkBizDate.getValue();
 		if(!this.cbIsSub.isSelected()&&FDCDateHelper.dateDiff(FDCDateHelper.getDayBegin(thisDate), bizDate)<0){
-			FDCMsgBox.showWarning(this,"事项预估发生日期不允许小于系统当前日期！");
+			FDCMsgBox.showWarning(this,"事项预估发生日期不允许小于单据创建日期！");
 			SysUtil.abort();
 		}
 		
@@ -956,11 +961,9 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 					SysUtil.abort();
 				}
 				MarketCostTypeEnum entryType=(MarketCostTypeEnum)this.kdtCostEntry.getRow(i).getCell("type").getValue();
+				type.add(entryType);
 				if(entryType.equals(MarketCostTypeEnum.JZ)){
 					isJz=true;
-					type.add(1);
-				}else{
-					type.add(0);
 				}
 				if(this.isHasSubMP(cost.getId().toString())){
 					FDCMsgBox.showWarning(this,"成本科目:"+cost.getName()+"存在负数立项未审批通过！");
@@ -974,7 +977,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 			}
 		}
 		if(type.size()>1){
-			FDCMsgBox.showWarning(this,"费用归属控制单据不允许存在记账单与合同或者无文本！");
+			FDCMsgBox.showWarning(this,"费用归属控制单据类型不允许存在多种类型！");
 			SysUtil.abort();
 		}
 		for(int i=0;i<this.kdtUnitEntry.getRowCount();i++){
@@ -1044,19 +1047,6 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 					 SysUtil.abort();
 				}
 			}
-			MarketProjectInfo mp=(MarketProjectInfo) this.prmtMp.getValue();
-			if(mp!=null){
-				MarketProjectCollection col=null;
-				if(this.editData.getId()!=null){
-					col=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select * from where isSub=1 and mp.id='"+mp.getId().toString()+"' and id!='"+this.editData.getId()+"'");
-				}else{
-					col=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select * from where isSub=1 and mp.id='"+mp.getId().toString()+"'");
-				}
-				if(col.size()>0){
-					FDCMsgBox.showWarning(this,"该费用已有负立项，不能重复发起！");
-					SysUtil.abort();
-				}
-			}
 		}
 	}
 	public BigDecimal getMpAmount(String marketProjectId,String costAccountId) throws SQLException, BOSException{
@@ -1082,6 +1072,32 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 			return rowSet.getString("type");
 		}
 		return null;
+	}
+	public boolean hasSubMp(String marketProjectId,String costAccountId,String id) throws SQLException, BOSException{
+		StringBuilder sql = new StringBuilder();
+		sql.append("  /*dialect*/  select entry.fid id from T_CON_MarketProjectCostEntry entry left join T_CON_MarketProject head on head.fid=entry.fheadid");
+		sql.append(" where entry.fcostaccountid='"+costAccountId+"' and head.FMpId='"+marketProjectId+"' and head.fid!='"+id+"'");
+		FDCSQLBuilder _builder = new FDCSQLBuilder();
+		_builder.appendSql(sql.toString());
+		IRowSet rowSet = _builder.executeQuery();
+		while(rowSet.next()){
+			return true;
+		}
+		return false;
+	}
+	public boolean isSubAudit(String marketProjectId,String costAccountId) throws SQLException, BOSException{
+		StringBuilder sql = new StringBuilder();
+		sql.append("  /*dialect*/  select con.fstate from T_CON_ContractWithoutText con ");
+		sql.append(" where con.FMpCostAccountId='"+costAccountId+"' and con.fmarketProjectId='"+marketProjectId+"'");
+		FDCSQLBuilder _builder = new FDCSQLBuilder();
+		_builder.appendSql(sql.toString());
+		IRowSet rowSet = _builder.executeQuery();
+		while(rowSet.next()){
+			if(!rowSet.getString("fstate").equals("4AUDITTED")){
+				return false;
+			}
+		}
+		return true;
 	}
 	public BigDecimal getHappenAmount(String marketProjectId,String costAccountId) throws SQLException, BOSException{
 		StringBuilder sql = new StringBuilder();
@@ -1179,6 +1195,18 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 					 r.getCell("costAccount").setValue(null);
 					 SysUtil.abort();
 				 }
+				 boolean hasSubMp=hasSubMp(mp.getId().toString(), caInfo.getId().toString(),this.editData.getId().toString());
+				 if(hasSubMp){
+					 FDCMsgBox.showWarning(this,"该费用已有负立项，不能重复发起！");
+					 r.getCell("costAccount").setValue(null);
+					 SysUtil.abort();
+				 }
+				 boolean isSubAudit=isSubAudit(mp.getId().toString(), caInfo.getId().toString());
+				 if(!isSubAudit){
+					 FDCMsgBox.showWarning(this,"当前存在未审批完的无文本报销单或保存状态的无文本报销单，不允许提交负立项！");
+					 r.getCell("costAccount").setValue(null);
+					 SysUtil.abort();
+				 }
 				 BigDecimal amount=FDCHelper.subtract(getMpAmount(mp.getId().toString(), caInfo.getId().toString()), getHappenAmount(mp.getId().toString(),caInfo.getId().toString()));
 				 r.getCell("canAmount").setValue(amount);
 				 r.getCell("amount").setValue(amount.negate());	 
@@ -1207,6 +1235,18 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 				String type=getMpType(mp.getId().toString(), caInfo.getId().toString());
 				 if(type!=null&&(type.equals("CONTRACT")||type.equals("JZ"))){
 					 FDCMsgBox.showWarning(this,"控制类型为合同或者记账单的立项不允许负立项！");
+					 r.getCell("costAccount").setValue(null);
+					 SysUtil.abort();
+				 }
+				 boolean hasSubMp=hasSubMp(mp.getId().toString(), caInfo.getId().toString(),this.editData.getId().toString());
+				 if(hasSubMp){
+					 FDCMsgBox.showWarning(this,"该费用已有负立项，不能重复发起！");
+					 r.getCell("costAccount").setValue(null);
+					 SysUtil.abort();
+				 }
+				 boolean isSubAudit=isSubAudit(mp.getId().toString(), caInfo.getId().toString());
+				 if(!isSubAudit){
+					 FDCMsgBox.showWarning(this,"当前存在未审批完的无文本报销单或保存状态的无文本报销单，不允许提交负立项！");
 					 r.getCell("costAccount").setValue(null);
 					 SysUtil.abort();
 				 }

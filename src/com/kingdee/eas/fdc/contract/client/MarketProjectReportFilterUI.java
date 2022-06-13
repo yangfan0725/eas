@@ -34,6 +34,13 @@ public class MarketProjectReportFilterUI extends AbstractMarketProjectReportFilt
 		this.pkFromDate.setValue(null);
 		this.pkToDate.setValue(null);
 		this.cbIsYE.setSelectedItem(null);
+		this.pkFromBizDate.setValue(null);
+		this.pkToBizDate.setValue(null);
+		this.pkFromConBizDate.setValue(null);
+		this.pkToConBizDate.setValue(null);
+		this.cbContract.setSelected(false);
+		this.cbWithoutContract.setSelected(false);
+		this.cbJZ.setSelected(false);
 	}
 
 	public RptParams getCustomCondition() {
@@ -41,6 +48,13 @@ public class MarketProjectReportFilterUI extends AbstractMarketProjectReportFilt
 		 pp.setObject("fromDate", this.pkFromDate.getValue());
 		 pp.setObject("toDate", this.pkToDate.getValue());
 		 pp.setObject("isYE", this.cbIsYE.getSelectedItem());
+		 pp.setObject("fromBizDate", this.pkFromBizDate.getValue());
+		 pp.setObject("toBizDate", this.pkToBizDate.getValue());
+		 pp.setObject("fromConBizDate", this.pkFromConBizDate.getValue());
+		 pp.setObject("toConBizDate", this.pkToConBizDate.getValue());
+		 pp.setObject("isContract", this.cbContract.isSelected());
+		 pp.setObject("isWithoutContract", this.cbWithoutContract.isSelected());
+		 pp.setObject("isJZ", this.cbJZ.isSelected());
 		 return pp;
 	}
 	public void onInit(RptParams params) throws Exception {
@@ -50,5 +64,12 @@ public class MarketProjectReportFilterUI extends AbstractMarketProjectReportFilt
 		this.pkFromDate.setValue(params.getObject("fromDate"));
 		this.pkToDate.setValue(params.getObject("toDate"));
 		this.cbIsYE.setSelectedItem(params.getObject("isYE"));
+		this.pkFromBizDate.setValue(params.getObject("fromBizDate"));
+		this.pkToBizDate.setValue(params.getObject("toBizDate"));
+		this.pkFromConBizDate.setValue(params.getObject("fromConBizDate"));
+		this.pkToConBizDate.setValue(params.getObject("toConBizDate"));
+		this.cbContract.setSelected(params.getBoolean("isContract"));
+		this.cbWithoutContract.setSelected(params.getBoolean("isWithoutContract"));
+		this.cbJZ.setSelected(params.getBoolean("isJZ"));
 	}
 }

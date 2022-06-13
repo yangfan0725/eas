@@ -386,7 +386,10 @@ public class ContractBillControllerBean extends
 				JSONObject obj = new JSONObject();
 				if(info.getMpCostAccount()!=null&&info.getMarketProject()!=null){
 					obj.put("fd_timeout", info.getIsTimeOut());
+					obj.put("fd_expensetype", CostAccountFactory.getLocalInstance(ctx).getCostAccountInfo(new ObjectUuidPK(info.getMpCostAccount().getId())).getName());
+					obj.put("fd_contracttype", info.getContractPropert().getAlias());
 				}
+				
 				if(info.getContractWFType()!=null){
 					ContractWFTypeInfo wt=ContractWFTypeFactory.getLocalInstance(ctx).getContractWFTypeInfo(new ObjectUuidPK(info.getContractWFType().getId()));
 					obj.put("fd_38cf1780c1c14a", wt.getName());
@@ -3272,7 +3275,7 @@ public class ContractBillControllerBean extends
 		HttpClient httpClient =new HttpClient();
 		PostMethod post = new PostMethod(url);
 //		post.addRequestHeader("token", "ybwy2019interface");
-		post.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8") ;
+		post.setRequestHeader("Content-Type", "application/x-www-form-urlencoded") ;
 		post.addParameter("restname", "songdu");
 		post.addParameter("password", "123456");
 		
@@ -3288,7 +3291,7 @@ public class ContractBillControllerBean extends
         
         com.alibaba.fastjson.JSONObject rso = com.alibaba.fastjson.JSONObject.parseObject(respStr);
         if(!rso.getString("status").equals("0")){
-        	throw new EASBizException(new NumericExceptionSubItem("100",rso.getString("massage")));
+        	throw new EASBizException(new NumericExceptionSubItem("100",rso.getString("message")));
         }
 		String token =rso.getJSONObject("data").getString("token");
 		
@@ -3311,30 +3314,28 @@ public class ContractBillControllerBean extends
 //			post.addRequestHeader("token", token);
 			post1.setRequestHeader("Content-Type", "application/json") ;
 			post1.setRequestHeader("Authorization", "Bearer "+token);
+			post1.setRequestHeader("Accept", "application/json;charset=utf-8");
 			String str=null;
 			try {
 				httpClient.executeMethod(post1);
 				str = post1.getResponseBodyAsString();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			com.alibaba.fastjson.JSONObject yzJson =  com.alibaba.fastjson.JSONObject.parseObject(str);
 			 if(!yzJson.getString("status").equals("0")){
-		        	throw new EASBizException(new NumericExceptionSubItem("100",rso.getString("massage")));
+		        	throw new EASBizException(new NumericExceptionSubItem("100",rso.getString("message")));
 		        }
 			com.alibaba.fastjson.JSONArray yzArray = yzJson.getJSONArray("data");
 			Boolean flag=true;
 			if(ctx.getAIS().equals("easdb")){  //easdb
 				 flag=false;
 			}
-			
 			for (int i=0;i<yzArray.size();i++) {
 				String ifDC = yzArray.getJSONObject(i).getString("sealType");
 				if(flag&&ifDC.contains("物业")){
-				map.put(yzArray.getJSONObject(i).getString("id"), yzArray.getJSONObject(i));
+					map.put(yzArray.getJSONObject(i).getString("id"), yzArray.getJSONObject(i));
 				}else if(!flag&&ifDC.contains("地产")){
-//					todo WY
 					map.put(yzArray.getJSONObject(i).getString("id"), yzArray.getJSONObject(i));
 				}
             }

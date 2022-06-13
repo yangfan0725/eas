@@ -35,6 +35,7 @@ import com.kingdee.bos.metadata.entity.FilterItemInfo;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.bos.metadata.entity.SorterItemCollection;
 import com.kingdee.bos.metadata.entity.SorterItemInfo;
+import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox;
@@ -371,8 +372,13 @@ public class OtherBillEditUI extends AbstractOtherBillEditUI implements TenancyB
 		filter.getFilterItems().add(new FilterItemInfo("moneyType", MoneyTypeEnum.ELSEAMOUNT_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("moneyType", MoneyTypeEnum.REPLACEFEE_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("moneyType", MoneyTypeEnum.BREACHFEE_VALUE));
-		filter.setMaskString("#0 and (#1 or #2 or #3 or #4 or #5 or #6)");
+		filter.getFilterItems().add(new FilterItemInfo("moneyType", MoneyTypeEnum.DEPOSITAMOUNT_VALUE));
+		filter.getFilterItems().add(new FilterItemInfo("name", "%作废%",CompareType.NOTLIKE));
+		filter.setMaskString("#0 and (#1 or #2 or #3 or #4 or #5 or #6 or #7) and #8");
 		view.setFilter(filter);
+		SorterItemCollection sort=new SorterItemCollection();
+		sort.add(new SorterItemInfo("number"));
+		view.setSorter(sort);
 		this.kdtEntry.getColumn("moneyDefine").setEditor(CommerceHelper.getKDBizPromptBoxEditor("com.kingdee.eas.fdc.sellhouse.app.MoneyDefineQuery", view));
 
 		KDFormattedTextField formattedTextField = new KDFormattedTextField(KDFormattedTextField.BIGDECIMAL_TYPE);
@@ -422,6 +428,8 @@ public class OtherBillEditUI extends AbstractOtherBillEditUI implements TenancyB
 		this.actionPrintPreview.setVisible(true);
 		this.actionPrint.setEnabled(true);
 		this.actionPrintPreview.setEnabled(true);
+		
+		this.contDes.setVisible(false);
 	}
 	public void setOprtState(String oprtType) {
 		super.setOprtState(oprtType);
@@ -695,6 +703,7 @@ public class OtherBillEditUI extends AbstractOtherBillEditUI implements TenancyB
 			IObjectCollection newPayList = (IObjectCollection) payColClazz.newInstance();
 			// 统计一个房间不包含押金的所有租金总合,提交时各付款明细的总合应和该值相等. 
 			BigDecimal oneEntryTotalRent = FDCHelper.ZERO;
+			
 			int seq = 0;
 			for (int j = 0; j < leaseList.size(); j++) {
 				List monthes = (List) leaseList.get(j);// 月份集合
@@ -702,11 +711,83 @@ public class OtherBillEditUI extends AbstractOtherBillEditUI implements TenancyB
 				Date[] firstMonth = (Date[]) monthes.get(0);// 该租期的首月
 				Date[] lastMonth = (Date[]) monthes.get(monthes.size() - 1);// 该租期的最后1月
 				
+				// -------计算该房间该租期的租金---
+				BigDecimal leaseRent = getRentOfThisLease(monthes, rentMoney, dealAmounts, rentFrees, rentCountType, daysPerYear);
+				//取整
+				leaseRent = SHEComHelper.getAmountAfterToInteger(leaseRent, isToInteger, toIntegerType, digit);
+				// ---------------------
+				
+				if (leaseRent == null)
+					leaseRent = FDCHelper.ZERO;
+				
+				int freeDaysOfThisLease = 0;// 该租期免租的天数
+				oneEntryTotalRent = oneEntryTotalRent.add(leaseRent);
+				
+				if (j == 0) {// 如果是第一租期,可能会有多条 押金 和 首期租金，我们把押金记录存在成交租金分录可以从那里取
+					ITenancyPayListInfo depositPay = null;
+					ITenancyPayListInfo firstPay = null;
+					for(int m=0;m<dealAmounts.size();m++)
+					{
+						IDealAmountInfo dealAmount = (IDealAmountInfo) dealAmounts.getObject(m);
+						if(MoneyTypeEnum.DepositAmount.equals(dealAmount.getMoneyDefine().getMoneyType()))
+						{				
+							depositPay = (ITenancyPayListInfo) tenPayClazz.newInstance();// 押金
+							depositPay.setTenEntry(tenEntry);
+							setRoomPayParam(depositPay, dealAmount.getMoneyDefine(), dealAmount.getAmount(), j + 1, seq++,
+									firstMonth[0], lastMonth[1], freeDaysOfThisLease, chargeDateType, chargeOffsetDays,pkTenancyDate,dPickFromMonth,spinLeaseTime,j);
+							newPayList.addObject(depositPay);
+						}
+					}
+//					firstPay = (ITenancyPayListInfo) tenPayClazz.newInstance();
+//					firstPay.setTenEntry(tenEntry);
+////					if (payList.size() > 1) {// 如果原本就有付款明细,则押金和首期租金肯定同时存在
+////						// 这种处理方式主要是为了保留原有付款明细记录的ID值,使得最终提交认租单时,
+////						// 对该条付款明细记录执行的是update操作
+////						depositPay = (ITenancyPayListInfo) payList.getObject(0);// 押金
+////						firstPay = (ITenancyPayListInfo) payList.getObject(1);// 首期租金
+////					} else if(payList.size() == 1){
+////						depositPay = (ITenancyPayListInfo) payList.getObject(0);// 押金
+////						firstPay = (ITenancyPayListInfo) tenPayClazz.newInstance();
+////						firstPay.setTenEntry(tenEntry);
+////					} else{
+////						depositPay = (ITenancyPayListInfo) tenPayClazz.newInstance();// 押金
+////						firstPay = (ITenancyPayListInfo) tenPayClazz.newInstance();
+////						depositPay.setTenEntry(tenEntry);
+////						firstPay.setTenEntry(tenEntry);
+////					}
+//
+//					// if (!hasPayoff(roomDepositPay)) {//默认押金为该房间的成交租金
+////					setRoomPayParam(roomDepositPay, getDepositMoneyDefine(), getRentPerLease(tenRoomEntry.getDealRentType(), tenRoomEntry.getDealRoomRent(), this.spinLeaseTime.getIntegerVlaue().intValue()), j + 1, seq++,
+////							firstMonth[0], lastMonth[1], freeDaysOfThisLease);
+////					setRoomPayParam(depositPay, depositMoney, tenEntry.getDepositAmount(), j + 1, seq++,
+////							firstMonth[0], lastMonth[1], freeDaysOfThisLease, chargeDateType, chargeOffsetDays);
+////					 }
+//					// if (!hasPayoff(roomFirstPay)) {
+//					setRoomPayParam(firstPay, rentMoney, leaseRent, j + 1, seq++, firstMonth[0], lastMonth[1], freeDaysOfThisLease, chargeDateType, chargeOffsetDays,pkTenancyDate,dPickFromMonth,spinLeaseTime,j);
+//					// }
+//					
+//					newPayList.addObject(firstPay);
+				} else {
+//					ITenancyPayListInfo payEntry = null;
+//					if (j < payList.size() - 1) {
+//						payEntry = (ITenancyPayListInfo) payList.getObject(j + 1);
+//					} else {
+//						payEntry = (ITenancyPayListInfo) tenPayClazz.newInstance();
+//						payEntry.setTenEntry(tenEntry);
+//					}
+//					// 如果已经付清该明细,不修改该条付款明细
+//					// if (!hasPayoff(roomPayEntry)) {
+//					setRoomPayParam(payEntry, rentMoney, leaseRent, j + 1, seq++, firstMonth[0], lastMonth[1], freeDaysOfThisLease, chargeDateType, chargeOffsetDays,null,dPickFromMonth,spinLeaseTime,j);
+//					// }
+//					newPayList.addObject(payEntry);
+				}
+				
 				//如果存在周期性费用，则需要增加周期性费用的应收明细
 				MoneyDefineInfo money = new MoneyDefineInfo();
 				for(int k=0; k<dealAmounts.size(); k++){
 					IDealAmountInfo dealAmount = (IDealAmountInfo) dealAmounts.getObject(k);
-					if(dealAmount.getAmount() != null 
+					if(!MoneyTypeEnum.DepositAmount.equals(dealAmount.getMoneyDefine().getMoneyType())  
+							&&  dealAmount.getAmount() != null 
 							//&&  dealAmount.getAmount().compareTo(FDCHelper.ZERO) > 0 除掉这个判断，不然会造成生成的应收明细错位 xin_wang 2010.11.22
 							){
 						if(dealAmount.getMoneyDefine().equals(money))

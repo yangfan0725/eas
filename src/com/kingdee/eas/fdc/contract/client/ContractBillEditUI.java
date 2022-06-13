@@ -347,7 +347,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 	private String controlType;
 
 	//合同审批前进行拆分
-	private boolean splitBeforeAudit;
+	public boolean splitBeforeAudit;
 	
 	//是否显示“合同费用项目”
 	private boolean isShowCharge = false;
@@ -613,16 +613,16 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			}
 			
 			//如果是简易计征
-			if(TaxInfoEnum.SIMPLE.equals(curProject.getTaxInfo())){
-				this.cbTaxerQua.setEnabled(true);
-				this.txtTaxerNum.setEnabled(true);
-				this.txtBank.setEnabled(true);
-				this.txtBankAccount.setEnabled(true);
-				
-				this.actionDetailALine.setEnabled(true);
-				this.actionDetailILine.setEnabled(true);
-				this.actionDetailRLine.setEnabled(true);
-			}
+//			if(TaxInfoEnum.SIMPLE.equals(curProject.getTaxInfo())){
+//				this.cbTaxerQua.setEnabled(true);
+//				this.txtTaxerNum.setEnabled(true);
+//				this.txtBank.setEnabled(true);
+//				this.txtBankAccount.setEnabled(true);
+//				
+//				this.actionDetailALine.setEnabled(true);
+//				this.actionDetailILine.setEnabled(true);
+//				this.actionDetailRLine.setEnabled(true);
+//			}
 		}
 		try {
 			if(this.editData.getTaEntry()!=null){
@@ -712,6 +712,34 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			} catch (BOSException e) {
 				e.printStackTrace();
 			}
+		}
+		try {
+			boolean isUseYz=false;
+			CurProjectInfo project = CurProjectFactory.getRemoteInstance().getCurProjectInfo(new ObjectUuidPK(this.editData.getCurProject().getId()));
+			if(project.isIsOA()){
+				for(int i=0;i<tblDetail.getRowCount();i++){
+					if(tblDetail.getRow(i).getCell(DETAIL_COL).getValue().toString().equals("是否使用电子章")&&
+							tblDetail.getRow(i).getCell(CONTENT_COL).getValue()!=null&&tblDetail.getRow(i).getCell(CONTENT_COL).getValue().toString().equals("否")){
+						isUseYz=true;
+					}
+				}
+			}
+			if(this.getOprtState().equals(OprtState.VIEW)){
+				this.actionYZALine.setEnabled(false);
+				this.actionYZRLine.setEnabled(false);
+			}else{
+				if(isUseYz){
+					this.actionYZALine.setEnabled(true);
+					this.actionYZRLine.setEnabled(true);
+				}else{
+					this.actionYZALine.setEnabled(false);
+					this.actionYZRLine.setEnabled(false);
+				}
+			}
+		} catch (EASBizException e) {
+			e.printStackTrace();
+		} catch (BOSException e) {
+			e.printStackTrace();
 		}
 		attachListeners();
 	}
@@ -2811,6 +2839,19 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			this.prmtMarketProject.setEnabled(false);
 			this.prmtMpCostAccount.setEnabled(false);
 			this.prmtinviteType.setEnabled(false);
+			
+			this.actionDetailALine.setEnabled(false);
+			this.actionDetailILine.setEnabled(false);
+			this.actionDetailRLine.setEnabled(false);
+			this.kdtDetailEntry.setEnabled(false);
+			this.actionYZALine.setEnabled(false);
+			this.actionYZRLine.setEnabled(false);
+			this.kdtYZEntry.setEnabled(false);
+			this.cbJzType.setEnabled(false);
+			this.pkJzStartDate.setEnabled(false);
+			this.pkJzEndDate.setEnabled(false);
+			this.tblMarket.setEnabled(false);
+			this.tblDetail.setEnabled(false);
 		}
 		
 		this.actionMALine.setVisible(false);
@@ -3534,7 +3575,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		}
 		
 		if(this.curProject!=null){
-			if(TaxInfoEnum.SIMPLE.equals(curProject.getTaxInfo())){
+//			if(TaxInfoEnum.SIMPLE.equals(curProject.getTaxInfo())){
 //				this.cbTaxerQua.setAccessAuthority(CtrlCommonConstant.AUTHORITY_COMMON);
 //				this.txtTaxerNum.setAccessAuthority(CtrlCommonConstant.AUTHORITY_COMMON);
 //				this.txtBank.setAccessAuthority(CtrlCommonConstant.AUTHORITY_COMMON);
@@ -3547,10 +3588,32 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 //				this.actionDetailALine.setEnabled(false);
 //				this.actionDetailILine.setEnabled(false);
 //				this.actionDetailRLine.setEnabled(false);
+//			}
+			
+			boolean isUseYz=false;
+			if(curProject.isIsOA()){
+				for(int i=0;i<tblDetail.getRowCount();i++){
+					if(tblDetail.getRow(i).getCell(DETAIL_COL).getValue().toString().equals("是否使用电子章")
+							&&tblDetail.getRow(i).getCell(CONTENT_COL).getValue()!=null&&tblDetail.getRow(i).getCell(CONTENT_COL).getValue().toString().equals("否")){
+						isUseYz=true;
+					}
+				}
+			}
+			if(oprtType.equals(OprtState.VIEW)){
+				this.actionYZALine.setEnabled(false);
+				this.actionYZRLine.setEnabled(false);
+			}else{
+				if(isUseYz){
+					this.actionYZALine.setEnabled(true);
+					this.actionYZRLine.setEnabled(true);
+				}else{
+					this.actionYZALine.setEnabled(false);
+					this.actionYZRLine.setEnabled(false);
+				}
 			}
 		}
 	}
-	private void setProgAndAccountState(ContractTypeInfo contractType,ContractPropertyEnum contractProperty){
+	public void setProgAndAccountState(ContractTypeInfo contractType,ContractPropertyEnum contractProperty){
 		if(STATUS_ADDNEW.equals(this.getOprtState()) ||STATUS_EDIT.equals(this.getOprtState())){
 			if (ContractPropertyEnum.SUPPLY.equals(contractProperty)) {
 				this.btnProgram.setEnabled(false);
@@ -3576,7 +3639,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 	/*
 	 * 20070315 jack 没有完成审批(也包括归档，因为归档前提是完成审批)的合同的合同类型可以修改，合同编码也可以修改
 	 */
-	private void setContractType() {
+	public void setContractType() {
 		if (STATUS_EDIT.equals(getOprtState())) {
 			if (this.editData.getState() != null
 					&& (this.editData.getState()
@@ -4267,6 +4330,19 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			this.prmtMarketProject.setEnabled(false);
 			this.prmtMpCostAccount.setEnabled(false);
 			this.prmtinviteType.setEnabled(false);
+			
+			this.actionDetailALine.setEnabled(false);
+			this.actionDetailILine.setEnabled(false);
+			this.actionDetailRLine.setEnabled(false);
+			this.kdtDetailEntry.setEnabled(false);
+			this.actionYZALine.setEnabled(false);
+			this.actionYZRLine.setEnabled(false);
+			this.kdtYZEntry.setEnabled(false);
+			this.cbJzType.setEnabled(false);
+			this.pkJzStartDate.setEnabled(false);
+			this.pkJzEndDate.setEnabled(false);
+			this.tblMarket.setEnabled(false);
+			this.tblDetail.setEnabled(false);
 		}
 	}
 
@@ -4929,6 +5005,23 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				if(contractBillInfo.getTaEntry()!=null){
 					this.prmtTAEntry.setValue(TenderAccepterResultEntryFactory.getRemoteInstance().getTenderAccepterResultEntryInfo(new ObjectUuidPK(contractBillInfo.getTaEntry().getId())));
 				}
+			}
+		}
+		CurProjectInfo project=CurProjectFactory.getRemoteInstance().getCurProjectInfo(new ObjectUuidPK(this.editData.getCurProject().getId()));
+		if (colKey.equals("content")&&"是否使用电子章".equals(entryRow.getCell(DETAIL_COL).getValue())){
+			if(project.isIsOA()){
+				if(newValue==null||(newValue!=null&&(((BooleanEnum)newValue).equals(BooleanEnum.TRUE)))){
+					this.kdtYZEntry.removeRows();
+					this.actionYZALine.setEnabled(false);
+					this.actionYZRLine.setEnabled(false);
+				}else{
+					this.actionYZALine.setEnabled(true);
+					this.actionYZRLine.setEnabled(true);
+				}
+			}else{
+				this.kdtYZEntry.removeRows();
+				this.actionYZALine.setEnabled(false);
+				this.actionYZRLine.setEnabled(false);
 			}
 		}
 	}
@@ -5627,6 +5720,15 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			FDCClientVerifyHelper.verifyEmpty(this, cbJzType);
 			FDCClientVerifyHelper.verifyEmpty(this, pkJzStartDate);
 			FDCClientVerifyHelper.verifyEmpty(this, pkJzEndDate);
+			Date thisDate=new Date();
+			if(this.editData.getCreateTime()!=null){
+				thisDate=this.editData.getCreateTime();
+			}
+			Date bizDate=(Date) this.pkJzStartDate.getValue();
+			if(FDCDateHelper.dateDiff(FDCDateHelper.getDayBegin(thisDate), bizDate)<0){
+				FDCMsgBox.showWarning(this,"开始日期不允许小于单据创建日期！");
+				SysUtil.abort();
+			}
 			if(this.tblMarket.getRowCount()==0){
 				FDCMsgBox.showWarning(this,"营销合同分摊明细不能为空！");
 				SysUtil.abort();
@@ -6297,7 +6399,13 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			}
 			if(FDCHelper.isEmpty(this.editData.getIsTimeOut())||isSet){
 				if(info.getYjType()!=null&&info.getYjType().equals(CostAccountYJTypeEnum.FYJ)&&market.getAuditTime()!=null){
-					int day=FDCDateHelper.getDiffDays(market.getAuditTime(), new Date());
+					Calendar cal = new GregorianCalendar();
+					cal.setTime(market.getAuditTime());
+					cal.set(11, 0);
+					cal.set(12, 0);
+					cal.set(13, 0);
+					cal.set(14, 0);
+					int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
 					if(day>3){
 						FDCMsgBox.showInfo(this,"合同流程必须在立项审批通过后2天内发起；除第三方佣金外的无文本立项，必须在次月15日之前发起无文本合同流程，超时发起流程将按照《宋都集团营销费用管理制度》规定，对责任人进行扣罚。");
 						this.editData.setIsTimeOut("是");

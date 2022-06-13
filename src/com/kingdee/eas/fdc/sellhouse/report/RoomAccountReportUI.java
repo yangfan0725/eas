@@ -267,7 +267,7 @@ public class RoomAccountReportUI extends AbstractRoomAccountReportUI
 			if(this.tblMain.getColumn(e.getColIndex()).getKey().equals("canSellAmount")){
 
 			}else if(this.tblMain.getColumn(e.getColIndex()).getKey().equals("onSellAmount")){
-				sellState="('Onshow','Init')";
+				sellState="('Onshow','Init','Purchase','KeepDown','SincerPurchase')";
 			}else if(this.tblMain.getColumn(e.getColIndex()).getKey().equals("purAmount")){
 				sellState="('Purchase')";
 			}else if(this.tblMain.getColumn(e.getColIndex()).getKey().equals("signAmount")){

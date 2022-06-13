@@ -144,7 +144,7 @@ public class DealRoomReportFacadeControllerBean extends AbstractDealRoomReportFa
 		sb.append(" sum(case when room.cfmanagerAgio=null then room.fstandardTotalAmount else case when room.cfmanagerAgio=0 then room.fstandardTotalAmount else room.fstandardTotalAmount*room.cfmanagerAgio end end )account");
 		sb.append(" from T_SHE_Room room");
 		sb.append(" left join t_she_building build on build.fid=room.fbuildingid left join t_she_sellProject sellproject on sellProject.fid=build.fsellProjectid  inner join T_FDC_ProductType productType on productType.fid=room.fproductTypeid");
-		sb.append(" where build.FIsGetCertificated='1' and room.fsellstate<>'Sign'");
+//		sb.append(" where build.FIsGetCertificated='1' and room.fsellstate<>'Sign'");
 		sb.append(" group by sellProject.fid,sellProject.fname_l2,productType.fid,productType.fname_l2,room.fid");
 		return sb;
 	}

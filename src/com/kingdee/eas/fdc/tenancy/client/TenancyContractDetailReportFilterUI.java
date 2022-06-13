@@ -80,7 +80,7 @@ public class TenancyContractDetailReportFilterUI extends AbstractTenancyContract
 //				MoneySysTypeEnum.TenancySys, null,null);
 //		this.prmtRoom.setSelector(dialog);
 		
-		 this.prmtRoom.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.RoomQuery");		
+		 this.prmtRoom.setQueryInfo("com.kingdee.eas.fdc.tenancy.app.F7RoomQuery");		
 	     this.prmtRoom.setDisplayFormat("$name$");		
 	     this.prmtRoom.setEditFormat("$name$");	
 	     this.prmtRoom.setFilterInfoProducer(new IFilterInfoProducer(){
@@ -90,7 +90,7 @@ public class TenancyContractDetailReportFilterUI extends AbstractTenancyContract
 				filter.getFilterItems().add(new FilterItemInfo("isForTen",Boolean.TRUE));
 				if(TenancyContractDetailReportFilterUI.this.getUIContext().get("sellProject")!=null){
 					SellProjectInfo sellProject = (SellProjectInfo)TenancyContractDetailReportFilterUI.this.getUIContext().get("sellProject");
-					filter.getFilterItems().add(new FilterItemInfo("building.sellProject.id",sellProject.getId().toString()));
+					filter.getFilterItems().add(new FilterItemInfo("sellProject.id",sellProject.getId().toString()));
 					
 				}
 				return filter;

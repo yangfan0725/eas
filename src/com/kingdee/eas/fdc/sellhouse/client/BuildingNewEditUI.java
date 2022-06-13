@@ -251,6 +251,10 @@ public class BuildingNewEditUI extends AbstractBuildingNewEditUI {
 		if(isBand){
 			this.prmtBanBasedataEntry.setRequired(true);
 		}
+		
+		this.isGetCertificated.setVisible(false);
+		this.contSellCertifiNum.setVisible(false);
+		this.contSellCertifiDate.setVisible(false);
 	}
 
 	public void lockNoEdit() {

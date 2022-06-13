@@ -361,6 +361,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
     	SelectorItemCollection sic = super.getSelectors();
     	sic.add("CU.*");
     	sic.add("state");
+    	sic.add("createTime");
     	return sic;
     }
 	public void actionRemove_actionPerformed(ActionEvent e) throws Exception {
@@ -501,6 +502,18 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 				String type=getMpType(mp.getId().toString(), caInfo.getId().toString());
 				 if(type!=null&&(type.equals("CONTRACT")||type.equals("JZ"))){
 					 FDCMsgBox.showWarning(this,"控制类型为合同或者记账单的立项不允许负立项！");
+					 r.getCell("costAccount").setValue(null);
+					 SysUtil.abort();
+				 }
+				 boolean hasSubMp=hasSubMp(mp.getId().toString(), caInfo.getId().toString(),this.editData.getId().toString());
+				 if(hasSubMp){
+					 FDCMsgBox.showWarning(this,"该费用已有负立项，不能重复发起！");
+					 r.getCell("costAccount").setValue(null);
+					 SysUtil.abort();
+				 }
+				 boolean isSubAudit=isSubAudit(mp.getId().toString(), caInfo.getId().toString());
+				 if(!isSubAudit){
+					 FDCMsgBox.showWarning(this,"当前存在未审批完的无文本报销单或保存状态的无文本报销单，不允许提交负立项！");
 					 r.getCell("costAccount").setValue(null);
 					 SysUtil.abort();
 				 }
@@ -647,6 +660,9 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 				SysUtil.abort();
 			}
 			Date thisDate=new Date();
+			if(this.editData.getCreateTime()!=null){
+				thisDate=this.editData.getCreateTime();
+			}
 			Date bizDate=(Date) this.kdtEntry.getRow(i).getCell("bizDate").getValue();
 			if(this.kdtEntry.getRow(i).getCell("costAccount").getValue()==null){
 				FDCMsgBox.showWarning(this,"成本科目不能为空！");
@@ -659,7 +675,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			}
 			if(!this.cbIsSub.isSelected()){
 				if(FDCDateHelper.dateDiff(FDCDateHelper.getDayBegin(thisDate), bizDate)<0){
-					FDCMsgBox.showWarning(this,"事项预估发生日期不允许小于系统当前日期！");
+					FDCMsgBox.showWarning(this,"事项预估发生日期不允许小于单据创建日期！");
 					SysUtil.abort();
 				}
 				if(((BigDecimal)this.kdtEntry.getRow(i).getCell("amount").getValue()).compareTo(FDCHelper.ZERO)<=0){
@@ -671,11 +687,9 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 					SysUtil.abort();
 				}
 				MarketCostTypeEnum entryType=(MarketCostTypeEnum)this.kdtEntry.getRow(i).getCell("type").getValue();
+				type.add(entryType);
 				if(entryType.equals(MarketCostTypeEnum.JZ)){
 					isJz=true;
-					type.add(1);
-				}else{
-					type.add(0);
 				}
 				if(this.kdtEntry.getRow(i).getCell("unit").getValue()==null){
 					FDCMsgBox.showWarning(this,"比价单位不能为空！");
@@ -705,7 +719,7 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			}
 		}
 		if(type.size()>1){
-			FDCMsgBox.showWarning(this,"费用归属控制单据不允许存在记账单与合同或者无文本！");
+			FDCMsgBox.showWarning(this,"费用归属控制单据类型不允许存在多种类型！");
 			SysUtil.abort();
 		}
 		
@@ -752,16 +766,6 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 					 FDCMsgBox.showWarning(this,"科目："+caInfo.getName()+" 超出立项已发生！");
 					 SysUtil.abort();
 				}
-				MarketProjectCollection col=null;
-				if(this.editData.getId()!=null){
-					col=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select * from where isSub=1 and mp.id='"+mp.getId().toString()+"' and sourceBillId!='"+this.editData.getId()+"'");
-				}else{
-					col=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select * from where isSub=1 and mp.id='"+mp.getId().toString()+"'");
-				}
-				if(col.size()>0){
-					FDCMsgBox.showWarning(this,"该费用已有负立项，不能重复发起！");
-					SysUtil.abort();
-				}
 			}
 		}
 	}
@@ -788,6 +792,32 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 			return rowSet.getString("type");
 		}
 		return null;
+	}
+	public boolean hasSubMp(String marketProjectId,String costAccountId,String id) throws SQLException, BOSException{
+		StringBuilder sql = new StringBuilder();
+		sql.append("  /*dialect*/  select entry.fid id from T_CON_MarketProjectCostEntry entry left join T_CON_MarketProject head on head.fid=entry.fheadid");
+		sql.append(" where entry.fcostaccountid='"+costAccountId+"' and head.FMpId='"+marketProjectId+"' and head.fsourceBillid!='"+id+"'");
+		FDCSQLBuilder _builder = new FDCSQLBuilder();
+		_builder.appendSql(sql.toString());
+		IRowSet rowSet = _builder.executeQuery();
+		while(rowSet.next()){
+			return true;
+		}
+		return false;
+	}
+	public boolean isSubAudit(String marketProjectId,String costAccountId) throws SQLException, BOSException{
+		StringBuilder sql = new StringBuilder();
+		sql.append("  /*dialect*/  select con.fstate from T_CON_ContractWithoutText con ");
+		sql.append(" where con.FMpCostAccountId='"+costAccountId+"' and con.fmarketProjectId='"+marketProjectId+"'");
+		FDCSQLBuilder _builder = new FDCSQLBuilder();
+		_builder.appendSql(sql.toString());
+		IRowSet rowSet = _builder.executeQuery();
+		while(rowSet.next()){
+			if(!rowSet.getString("fstate").equals("4AUDITTED")){
+				return false;
+			}
+		}
+		return true;
 	}
 	public BigDecimal getHappenAmount(String marketProjectId,String costAccountId) throws SQLException, BOSException{
 		StringBuilder sql = new StringBuilder();
@@ -875,6 +905,18 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 				 String type=getMpType(mp.getId().toString(), caInfo.getId().toString());
 				 if(type!=null&&(type.equals("CONTRACT")||type.equals("JZ"))){
 					 FDCMsgBox.showWarning(this,"控制类型为合同或者记账单的立项不允许负立项！");
+					 r.getCell("costAccount").setValue(null);
+					 SysUtil.abort();
+				 }
+				 boolean hasSubMp=hasSubMp(mp.getId().toString(), caInfo.getId().toString(),this.editData.getId().toString());
+				 if(hasSubMp){
+					 FDCMsgBox.showWarning(this,"该费用已有负立项，不能重复发起！");
+					 r.getCell("costAccount").setValue(null);
+					 SysUtil.abort();
+				 }
+				 boolean isSubAudit=isSubAudit(mp.getId().toString(), caInfo.getId().toString());
+				 if(!isSubAudit){
+					 FDCMsgBox.showWarning(this,"当前存在未审批完的无文本报销单或保存状态的无文本报销单，不允许提交负立项！");
 					 r.getCell("costAccount").setValue(null);
 					 SysUtil.abort();
 				 }

@@ -13,13 +13,13 @@ import com.kingdee.util.enums.StringEnum;
  */
 public class DepositDealTypeEnum extends StringEnum
 {
-    public static final String QUIT_VALUE = "QUIT";//alias=退押金申请
-    public static final String OFFSET_VALUE = "OFFSET";//alias=押金冲抵租金申请
-    public static final String NOTQUIT_VALUE = "NOTQUIT";//alias=押金不退
+    public static final String QUITYJ_VALUE = "QUITYJ";//alias=退押金申请
+    public static final String QUITZJ_VALUE = "QUITZJ";//alias=退租金申请
+    public static final String QUITQT_VALUE = "QUITQT";//alias=退其他款项申请
 
-    public static final DepositDealTypeEnum QUIT = new DepositDealTypeEnum("QUIT", QUIT_VALUE);
-    public static final DepositDealTypeEnum OFFSET = new DepositDealTypeEnum("OFFSET", OFFSET_VALUE);
-    public static final DepositDealTypeEnum NOTQUIT = new DepositDealTypeEnum("NOTQUIT", NOTQUIT_VALUE);
+    public static final DepositDealTypeEnum QUITYJ = new DepositDealTypeEnum("QUITYJ", QUITYJ_VALUE);
+    public static final DepositDealTypeEnum QUITZJ = new DepositDealTypeEnum("QUITZJ", QUITZJ_VALUE);
+    public static final DepositDealTypeEnum QUITQT = new DepositDealTypeEnum("QUITQT", QUITQT_VALUE);
 
     /**
      * construct function

@@ -239,6 +239,19 @@ public class F7SelectRentMoneyDefineListUI extends AbstractF7SelectRentMoneyDefi
 				row.getCell("isSelected").getStyleAttributes().setLocked(true);
 			}
 		}
+		if(revListInfo instanceof TenBillOtherPayInfo){
+			if(((TenBillOtherPayInfo)revListInfo).isIsUnPay()){
+				row.getStyleAttributes().setBackground(KEY_LOCKED_ROW);
+//				row.getStyleAttributes().setLocked(true);
+				row.getCell("isSelected").getStyleAttributes().setLocked(true);
+			}
+		}else if(revListInfo instanceof TenancyRoomPayListEntryInfo){
+			if(((TenancyRoomPayListEntryInfo)revListInfo).isIsUnPay()){
+				row.getStyleAttributes().setBackground(KEY_LOCKED_ROW);
+//				row.getStyleAttributes().setLocked(true);
+				row.getCell("isSelected").getStyleAttributes().setLocked(true);
+			}
+		}
 	}
 	private static final Logger logger = CoreUIObject.getLogger(F7SelectRentMoneyDefineListUI.class);
 

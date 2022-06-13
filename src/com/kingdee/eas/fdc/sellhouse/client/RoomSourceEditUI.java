@@ -913,7 +913,7 @@ public class RoomSourceEditUI extends AbstractRoomSourceEditUI {
 			this.actionAddNew.setVisible(false);
 		}
 
-		
+		this.actionEdit.setVisible(false);
 
 		setAreaEditable();
 		this.storeFields();

@@ -4,6 +4,7 @@
 package com.kingdee.eas.fdc.tenancy.client;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,10 +43,12 @@ import com.kingdee.eas.common.client.UIContext;
 import com.kingdee.eas.common.client.UIFactoryName;
 import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
+import com.kingdee.eas.fdc.basedata.client.FDCClientVerifyHelper;
 import com.kingdee.eas.fdc.invite.client.TenderAccepterResultPrintDataProvider;
 import com.kingdee.eas.fdc.sellhouse.MoneyDefineInfo;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
 import com.kingdee.eas.fdc.tenancy.ITenBillOtherPay;
+import com.kingdee.eas.fdc.tenancy.RemissionTypeEnum;
 import com.kingdee.eas.fdc.tenancy.RentRemissionEntryCollection;
 import com.kingdee.eas.fdc.tenancy.RentRemissionEntryFactory;
 import com.kingdee.eas.fdc.tenancy.RentRemissionEntryInfo;
@@ -629,6 +632,7 @@ public class RentRemissionEditUI extends AbstractRentRemissionEditUI {
 		row.getCell("aftAppAmount").setValue(FDCHelper.subtract(appAmount, remisionAmount));
 	}
 	protected void verifyInput(ActionEvent e) throws Exception {
+		FDCClientVerifyHelper.verifyEmpty(this, this.cbType);
 		veryfyRemission();
 		super.verifyInput(e);
 	}
@@ -640,10 +644,23 @@ public class RentRemissionEditUI extends AbstractRentRemissionEditUI {
 		IRow row =null;
 		for(int i =0;i<this.kdtEntry.getRowCount();i++){
 			row = kdtEntry.getRow(i);
-			if(row.getCell("remisionAmount").getValue()==null){
+			if(RemissionTypeEnum.ZZJM.equals(cbType.getSelectedItem())&&row.getCell("remisionAmount").getValue()==null){
 				MsgBox.showInfo("第"+(i+1)+"行的减免金额不能为空");
 				this.abort();
 			}
+		}
+	}
+
+	protected void cbType_itemStateChanged(ItemEvent e) throws Exception {
+		if(RemissionTypeEnum.WXSK.equals(cbType.getSelectedItem())){
+			this.kdtEntry.getColumn("remisionAmount").getStyleAttributes().setLocked(true);
+			for(int i=0;i<this.kdtEntry.getRowCount();i++){
+				this.kdtEntry.getRow(i).getCell("remisionAmount").setValue(null);
+				BigDecimal appAmount = (BigDecimal) this.kdtEntry.getRow(i).getCell("appAmount").getValue();
+				this.kdtEntry.getRow(i).getCell("aftAppAmount").setValue(appAmount);
+			}
+		}else{
+			this.kdtEntry.getColumn("remisionAmount").getStyleAttributes().setLocked(false);
 		}
 	}
 	

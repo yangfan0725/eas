@@ -16,9 +16,10 @@ public class AbstractDepositDealBillInfo extends com.kingdee.eas.fdc.tenancy.Ten
     protected AbstractDepositDealBillInfo(String pkField)
     {
         super(pkField);
+        put("entry", new com.kingdee.eas.fdc.tenancy.DepositDealBillEntryCollection());
     }
     /**
-     * Object: K押金处理申请单 's 租赁合同 property 
+     * Object: K退款申请单 's 租赁合同 property 
      */
     public com.kingdee.eas.fdc.tenancy.TenancyBillInfo getTenancyBill()
     {
@@ -29,7 +30,7 @@ public class AbstractDepositDealBillInfo extends com.kingdee.eas.fdc.tenancy.Ten
         put("tenancyBill", item);
     }
     /**
-     * Object:K押金处理申请单's 处理类型property 
+     * Object:K退款申请单's 处理类型property 
      */
     public com.kingdee.eas.fdc.tenancy.DepositDealTypeEnum getType()
     {
@@ -40,6 +41,13 @@ public class AbstractDepositDealBillInfo extends com.kingdee.eas.fdc.tenancy.Ten
 		if (item != null) {
         setString("type", item.getValue());
 		}
+    }
+    /**
+     * Object: K退款申请单 's 分录 property 
+     */
+    public com.kingdee.eas.fdc.tenancy.DepositDealBillEntryCollection getEntry()
+    {
+        return (com.kingdee.eas.fdc.tenancy.DepositDealBillEntryCollection)get("entry");
     }
     public BOSObjectType getBOSType()
     {

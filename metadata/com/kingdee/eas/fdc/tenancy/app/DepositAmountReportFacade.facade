@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facade xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>DepositAmountReportFacade</name>
+    <alias>facade[com.kingdee.eas.fdc.tenancy.app.DepositAmountReportFacade].alias</alias>
+    <description>facade[com.kingdee.eas.fdc.tenancy.app.DepositAmountReportFacade].description</description>
+    <userDefined>true</userDefined>
+    <bosType>FF09111B</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.tenancy.DepositAmountReportFacade</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.tenancy.app.DepositAmountReportFacadeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <baseFacade>
+        <key name="package" value="com.kingdee.eas.framework.report.app" />
+        <key name="name" value="CommRptBase" />
+    </baseFacade>
+    <resource>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.DepositAmountReportFacade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="保证金押金台账" />
+            <lang locale="zh_HK" value="保證金押金台賬" />
+            <lang locale="zh_TW" value="保證金押金台賬" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.DepositAmountReportFacade].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="保证金押金台账" />
+            <lang locale="zh_HK" value="保證金押金台賬" />
+            <lang locale="zh_TW" value="保證金押金台賬" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.DepositAmountReportFacade].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+    </resource>
+</facade>
+

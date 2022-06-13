@@ -161,16 +161,21 @@ public class MarketProjectControllerBean extends AbstractMarketProjectController
 				JSONObject obj = new JSONObject();
 				//最大费用科目类型 fd_cost_account 、最大费用科目金额 fd_amount、状态 fd_status 放 流程data 參數中
 				builder.clear();
-				builder.appendSql("select cost.FNAME_L2 as title,en.FAMOUNT as amount from T_FDC_CostAccount cost " +
+				builder.appendSql("select cost.FNAME_L2 as title,en.FAMOUNT as amount,en.FType as type from T_FDC_CostAccount cost " +
 						"left join T_CON_MARKETPROJECTCOSTENTRY en on cost.fid=en.FCOSTACCOUNTID " +
 						"where en.FHEADID='"+info.getId()+"' order by en.FAMOUNT asc ");
 				IRowSet costAccounts = builder.executeQuery();
 				String fdCostAccount=null;
+				String type=null;
 				BigDecimal fdAmount=BigDecimal.ZERO;
 				while(costAccounts.next()){
 					fdCostAccount=costAccounts.getString("title");
 					fdAmount=costAccounts.getBigDecimal("amount");
+					if(costAccounts.getString("type")!=null){
+						type=MarketCostTypeEnum.getEnum(costAccounts.getString("type")).getAlias();
+					}
 				}
+				obj.put("fd_bill_type", type);
 				obj.put("fd_38f672bcb4a998", fdCostAccount);
 				obj.put("fd_38cf1798043f94", String.valueOf(fdAmount));
 				

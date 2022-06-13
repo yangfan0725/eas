@@ -214,11 +214,17 @@ public class MarketProjectReport1UI extends AbstractMarketProjectReport1UI
     			
     			for(int i=0;i<tblMain.getRowCount();i++){
     				tblMain.getRow(i).getCell("isSelect").setValue(Boolean.FALSE);
-    				if(tblMain.getRow(i).getCell("type").getValue()!=null&&(tblMain.getRow(i).getCell("type").getValue().toString().equals("合同")||tblMain.getRow(i).getCell("type").getValue().toString().equals("记账单"))){
+    				if(tblMain.getRow(i).getCell("type").getValue()==null||(tblMain.getRow(i).getCell("type").getValue()!=null&&(tblMain.getRow(i).getCell("type").getValue().toString().equals("合同")||tblMain.getRow(i).getCell("type").getValue().toString().equals("记账单")))){
     					tblMain.getRow(i).getCell("isSelect").getStyleAttributes().setLocked(true);
+    					tblMain.getRow(i).getStyleAttributes().setBackground(new Color(192,192,192));
     				}
     				if(tblMain.getRow(i).getCell("subAmount").getValue()!=null&&((BigDecimal)tblMain.getRow(i).getCell("subAmount").getValue()).compareTo(FDCHelper.ZERO)<=0){
     					tblMain.getRow(i).getCell("isSelect").getStyleAttributes().setLocked(true);
+    					tblMain.getRow(i).getStyleAttributes().setBackground(new Color(192,192,192));
+    				}
+    				if(tblMain.getRow(i).getCell("isSub").getValue()!=null&&((BigDecimal)tblMain.getRow(i).getCell("isSub").getValue()).compareTo(new BigDecimal(1))==0){
+    					tblMain.getRow(i).getCell("isSelect").getStyleAttributes().setLocked(true);
+    					tblMain.getRow(i).getStyleAttributes().setBackground(new Color(192,192,192));
     				}
     			}
     			
@@ -333,6 +339,11 @@ public class MarketProjectReport1UI extends AbstractMarketProjectReport1UI
 		for(int i=0;i<tblMain.getRowCount();i++){
 			if((Boolean)tblMain.getRow(i).getCell("isSelect").getValue()){
 				entryId.add(tblMain.getRow(i).getCell("entryId").getValue().toString());
+				
+				if(tblMain.getRow(i).getCell("state").getValue()!=null&&!tblMain.getRow(i).getCell("state").getValue().toString().equals("4AUDITTED")){
+					FDCMsgBox.showWarning(this,"当前存在未审批完的无文本报销单或保存状态的无文本报销单，不允许提交负立项！");
+					return;
+				}
 			}
 		}
 		if(entryId.size()==0){

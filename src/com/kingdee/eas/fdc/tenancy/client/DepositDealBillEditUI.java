@@ -3,18 +3,22 @@
  */
 package com.kingdee.eas.fdc.tenancy.client;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.SpinnerNumberModel;
@@ -31,6 +35,7 @@ import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.bos.ui.face.CoreUIObject;
+import com.kingdee.bos.ui.face.UIException;
 import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.bos.ctrl.kdf.table.ICell;
 import com.kingdee.bos.ctrl.kdf.table.IColumn;
@@ -60,6 +65,8 @@ import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.common.client.OprtState;
 import com.kingdee.eas.common.client.UIContext;
 import com.kingdee.eas.fdc.basecrm.CRMHelper;
+import com.kingdee.eas.fdc.basecrm.RevListCollection;
+import com.kingdee.eas.fdc.basecrm.RevListTypeEnum;
 import com.kingdee.eas.fdc.basecrm.client.CRMClientHelper;
 import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
@@ -69,6 +76,8 @@ import com.kingdee.eas.fdc.basedata.client.FDCClientVerifyHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.contract.client.ContractBillEditUI;
 import com.kingdee.eas.fdc.sellhouse.DigitEnum;
+import com.kingdee.eas.fdc.sellhouse.MoneyDefineCollection;
+import com.kingdee.eas.fdc.sellhouse.MoneyDefineFactory;
 import com.kingdee.eas.fdc.sellhouse.MoneyDefineInfo;
 import com.kingdee.eas.fdc.sellhouse.MoneyTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.SHEComHelper;
@@ -76,8 +85,12 @@ import com.kingdee.eas.fdc.sellhouse.ToIntegerTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.client.CommerceHelper;
 import com.kingdee.eas.fdc.tenancy.ChargeDateTypeEnum;
 import com.kingdee.eas.fdc.tenancy.DealAmountEntryInfo;
+import com.kingdee.eas.fdc.tenancy.DepositDealBillEntryCollection;
+import com.kingdee.eas.fdc.tenancy.DepositDealBillEntryFactory;
+import com.kingdee.eas.fdc.tenancy.DepositDealBillEntryInfo;
 import com.kingdee.eas.fdc.tenancy.DepositDealBillFactory;
 import com.kingdee.eas.fdc.tenancy.DepositDealBillInfo;
+import com.kingdee.eas.fdc.tenancy.DepositDealTypeEnum;
 import com.kingdee.eas.fdc.tenancy.FirstLeaseTypeEnum;
 import com.kingdee.eas.fdc.tenancy.IDealAmountInfo;
 import com.kingdee.eas.fdc.tenancy.ITenancyEntryInfo;
@@ -90,6 +103,7 @@ import com.kingdee.eas.fdc.tenancy.RentFreeEntryCollection;
 import com.kingdee.eas.fdc.tenancy.RentTypeEnum;
 import com.kingdee.eas.fdc.tenancy.TenAttachResourceEntryCollection;
 import com.kingdee.eas.fdc.tenancy.TenBillOtherPayCollection;
+import com.kingdee.eas.fdc.tenancy.TenBillOtherPayFactory;
 import com.kingdee.eas.fdc.tenancy.TenBillOtherPayInfo;
 import com.kingdee.eas.fdc.tenancy.TenancyBillFactory;
 import com.kingdee.eas.fdc.tenancy.TenancyBillInfo;
@@ -97,6 +111,7 @@ import com.kingdee.eas.fdc.tenancy.TenancyHelper;
 import com.kingdee.eas.fdc.tenancy.TenancyRoomEntryCollection;
 import com.kingdee.eas.fdc.tenancy.TenancyRoomEntryInfo;
 import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryCollection;
+import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryFactory;
 import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryInfo;
 import com.kingdee.eas.framework.*;
 import com.kingdee.eas.util.SysUtil;
@@ -115,84 +130,92 @@ public class DepositDealBillEditUI extends AbstractDepositDealBillEditUI
         super();
     }
     public void loadFields() {
-		detachListeners();
-		super.loadFields();
-		setSaveActionStatus();
-		
-		this.kdtEntry.checkParsed();
+    	
+    	this.kdtEntry.checkParsed();
 		this.kdtEntry.getSelectManager().setSelectMode(KDTSelectManager.CELL_SELECT);
 		this.kdtEntry.setActiveCellStatus(KDTStyleConstants.ACTIVE_CELL_EDIT);
-		this.kdtEntry.setEnabled(false);
 		
 		KDFormattedTextField formattedTextField = new KDFormattedTextField(KDFormattedTextField.BIGDECIMAL_TYPE);
 		formattedTextField.setSupportedEmpty(true);
 		formattedTextField.setPrecision(2);
 		formattedTextField.setNegatived(false);
 		ICellEditor numberEditor = new KDTDefaultCellEditor(formattedTextField);
+//		this.kdtEntry.getColumn("appAmount").setEditor(numberEditor);
+//		this.kdtEntry.getColumn("appAmount").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.RIGHT);
+//		this.kdtEntry.getColumn("appAmount").getStyleAttributes().setNumberFormat(FDCHelper.getNumberFtm(2));
+		
 		this.kdtEntry.getColumn("appAmount").setEditor(numberEditor);
 		this.kdtEntry.getColumn("appAmount").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.RIGHT);
 		this.kdtEntry.getColumn("appAmount").getStyleAttributes().setNumberFormat(FDCHelper.getNumberFtm(2));
 		
-		this.kdtEntry.getColumn("actRevAmount").setEditor(numberEditor);
-		this.kdtEntry.getColumn("actRevAmount").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.RIGHT);
-		this.kdtEntry.getColumn("actRevAmount").getStyleAttributes().setNumberFormat(FDCHelper.getNumberFtm(2));
-
+		this.kdtEntry.getColumn("actAmount").setEditor(numberEditor);
+		this.kdtEntry.getColumn("actAmount").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.RIGHT);
+		this.kdtEntry.getColumn("actAmount").getStyleAttributes().setNumberFormat(FDCHelper.getNumberFtm(2));
+		
+		this.kdtEntry.getColumn("amount").setRequired(true);
+		this.kdtEntry.getColumn("amount").setEditor(numberEditor);
+		this.kdtEntry.getColumn("amount").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.RIGHT);
+		this.kdtEntry.getColumn("amount").getStyleAttributes().setNumberFormat(FDCHelper.getNumberFtm(2));
+		
+		this.kdtEntry.getColumn("moneyDefine").getStyleAttributes().setLocked(true);
+		this.kdtEntry.getColumn("startDate").getStyleAttributes().setLocked(true);
+		this.kdtEntry.getColumn("endDate").getStyleAttributes().setLocked(true);
+		this.kdtEntry.getColumn("appDate").getStyleAttributes().setLocked(true);
+		this.kdtEntry.getColumn("appAmount").getStyleAttributes().setLocked(true);
+		this.kdtEntry.getColumn("actAmount").getStyleAttributes().setLocked(true);
+		this.kdtEntry.getColumn("actDate").getStyleAttributes().setLocked(true);
+		
+		this.kdtEntry.getColumn("actAmount").getStyleAttributes().setBackground(new Color(225,225,225));
+		this.kdtEntry.getColumn("actDate").getStyleAttributes().setBackground(new Color(225,225,225));
+		
+		detachListeners();
+		super.loadFields();
+		setSaveActionStatus();
+		
+		UIContext uiContext = new UIContext(this);
+		uiContext.put("ID", editData.getTenancyBill().getId().toString());
 		try {
-			SelectorItemCollection sic=new SelectorItemCollection();
-			sic.add("otherPayList.*");
-			sic.add("otherPayList.moneyDefine.*");
-			sic.add("tenancyRoomList.*");
-			sic.add("tenancyRoomList.roomPayList.*");
-			sic.add("tenancyRoomList.roomPayList.moneyDefine.*");
-			TenancyBillInfo tenBill = TenancyBillFactory.getRemoteInstance().getTenancyBillInfo(new ObjectUuidPK(this.editData.getTenancyBill().getId()), sic);
-			TenBillOtherPayCollection otherPayList = new TenBillOtherPayCollection();
-			for (int i = 0; i < tenBill.getOtherPayList().size(); i++) {
-				TenBillOtherPayInfo entry=tenBill.getOtherPayList().get(i);
-				otherPayList.add(entry);
-			}
-			if(tenBill.getTenancyRoomList().size()>0){
-				for (int i = 0; i < tenBill.getTenancyRoomList().get(0).getPayList().size(); i++) {
-					TenancyRoomPayListEntryInfo tenOtherInfo = tenBill.getTenancyRoomList().get(0).getRoomPayList().get(i);
-					TenBillOtherPayInfo entry=new TenBillOtherPayInfo();
-					entry.setMoneyDefine(tenOtherInfo.getMoneyDefine());
-					entry.setAppAmount(tenOtherInfo.getAppAmount());
-					entry.setActRevAmount(tenOtherInfo.getActRevAmount());
-					otherPayList.add(entry);
-				}
-			}
-			CRMHelper.sortCollection(otherPayList, "moneyDefine.number", true);
-			
-			this.kdtEntry.removeRows();
-			Map addRow=new HashMap();
-			for (int i = 0; i < otherPayList.size(); i++) {
-				TenBillOtherPayInfo entry=otherPayList.get(i);
-				if(entry.getMoneyDefine()!=null){
-					if(addRow.containsKey(entry.getMoneyDefine().getNumber())){
-						IRow row=(IRow) addRow.get(entry.getMoneyDefine().getNumber());
-						row.getCell("appAmount").setValue(FDCHelper.add(row.getCell("appAmount").getValue(), entry.getAppAmount()));
-						row.getCell("actRevAmount").setValue(FDCHelper.add(row.getCell("actRevAmount").getValue(), entry.getActRevAmount()));
-					}else{
-						IRow row=this.kdtEntry.addRow();
-						row.getCell("moneyDefine").setValue(entry.getMoneyDefine().getName());
-						row.getCell("appAmount").setValue(entry.getAppAmount());
-						row.getCell("actRevAmount").setValue(entry.getActRevAmount());
-						addRow.put(entry.getMoneyDefine().getNumber(), row);
-					}
-				}
-			}
-			CRMClientHelper.getFootRow(this.kdtEntry, new String[]{"appAmount","actRevAmount"});
-			
-			UIContext uiContext = new UIContext(this);
-			uiContext.put("ID", editData.getTenancyBill().getId().toString());
 			TenancyBillEditUI ui = (TenancyBillEditUI) UIFactoryHelper.initUIObject(TenancyBillEditUI.class.getName(), uiContext, null,OprtState.VIEW);
 			this.panel.setViewportView(ui);
 			this.panel.setKeyBoardControl(true);
 			this.panel.setEnabled(false);
+		} catch (UIException e) {
+			e.printStackTrace();
+		}
+		try {
+			SelectorItemCollection sic=new SelectorItemCollection();
+			sic.add("*");
+			sic.add("moneyDefine.*");
+			for(int i=0;i<this.kdtEntry.getRowCount();i++){
+				DepositDealBillEntryInfo entry=(DepositDealBillEntryInfo) this.kdtEntry.getRow(i).getUserObject();
+				if(BOSUuid.read(entry.getSrcId()).getType().equals(new TenancyRoomPayListEntryInfo().getBOSType())){
+					TenancyRoomPayListEntryInfo srcInfo= TenancyRoomPayListEntryFactory.getRemoteInstance().getTenancyRoomPayListEntryInfo(new ObjectUuidPK(entry.getSrcId()),sic);
+					this.kdtEntry.getRow(i).getCell("moneyDefine").setValue(srcInfo.getMoneyDefine().getName());
+					this.kdtEntry.getRow(i).getCell("startDate").setValue(srcInfo.getStartDate());
+					this.kdtEntry.getRow(i).getCell("endDate").setValue(srcInfo.getEndDate());
+					this.kdtEntry.getRow(i).getCell("appDate").setValue(srcInfo.getAppDate());
+					this.kdtEntry.getRow(i).getCell("appAmount").setValue(srcInfo.getAppAmount());
+					this.kdtEntry.getRow(i).getCell("actAmount").setValue(srcInfo.getActRevAmount());
+					this.kdtEntry.getRow(i).getCell("actDate").setValue(srcInfo.getActRevDate());
+				}else{
+					TenBillOtherPayInfo srcInfo=TenBillOtherPayFactory.getRemoteInstance().getTenBillOtherPayInfo(new ObjectUuidPK(entry.getSrcId()),sic);
+					this.kdtEntry.getRow(i).getCell("moneyDefine").setValue(srcInfo.getMoneyDefine().getName());
+					this.kdtEntry.getRow(i).getCell("startDate").setValue(srcInfo.getStartDate());
+					this.kdtEntry.getRow(i).getCell("endDate").setValue(srcInfo.getEndDate());
+					this.kdtEntry.getRow(i).getCell("appDate").setValue(srcInfo.getAppDate());
+					this.kdtEntry.getRow(i).getCell("appAmount").setValue(srcInfo.getAppAmount());
+					this.kdtEntry.getRow(i).getCell("actAmount").setValue(srcInfo.getActRevAmount());
+					this.kdtEntry.getRow(i).getCell("actDate").setValue(srcInfo.getActRevDate());
+				}
+			}
 		} catch (EASBizException e) {
 			e.printStackTrace();
 		} catch (BOSException e) {
 			e.printStackTrace();
 		}
+		
+		CRMClientHelper.getFootRow(this.kdtEntry, new String[]{"appAmount","actAmount","amount"});
+		
 		
 		setOprtState(this.oprtState);
 		attachListeners();
@@ -201,6 +224,17 @@ public class DepositDealBillEditUI extends AbstractDepositDealBillEditUI
 	public void storeFields()
     {
         super.storeFields();
+        
+        Date now=new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        if(this.cbType.getSelectedItem()!=null){
+        	editData.setName(this.txtCustomer.getText()+" "+((DepositDealTypeEnum)this.cbType.getSelectedItem()).getAlias()+" "+sdf.format(now));
+      		this.txtName.setName(editData.getName());
+        }else{
+        	editData.setName(this.txtCustomer.getText()+" "+sdf.format(now));
+      		this.txtName.setName(editData.getName());
+        }
     }
 	protected void attachListeners() {
 	}
@@ -221,12 +255,14 @@ public class DepositDealBillEditUI extends AbstractDepositDealBillEditUI
 		TenancyBillInfo ten = (TenancyBillInfo) this.getUIContext().get("tenancy");
 		info.setTenancyBill(ten);
 		info.setOrgUnit(ten.getOrgUnit());
+		
 		return info;
 	}
 	public SelectorItemCollection getSelectors() {
 		SelectorItemCollection sels = super.getSelectors();
 		sels.add("state");
 		sels.add("orgUnit.*");
+		sels.add("entry.*");
 		return sels;
 	}
 	public void onLoad() throws Exception {
@@ -247,6 +283,12 @@ public class DepositDealBillEditUI extends AbstractDepositDealBillEditUI
 		this.actionNext.setVisible(false);
 		this.actionFirst.setVisible(false);
 		this.actionLast.setVisible(false);
+		
+		this.txtName.setEnabled(false);
+		
+//		this.cbType.removeItem(DepositDealTypeEnum.NOTQUIT);
+//		this.cbType.removeItem(DepositDealTypeEnum.OFFSET);
+//		this.kDContainer1.setTitle("保证金信息");
 	}
 	
 	public void setOprtState(String oprtType) {
@@ -340,6 +382,31 @@ public class DepositDealBillEditUI extends AbstractDepositDealBillEditUI
 		}
 		FDCClientVerifyHelper.verifyEmpty(this, this.txtName);
 		FDCClientVerifyHelper.verifyEmpty(this, this.cbType);
+		if(this.kdtEntry.getRowCount()==0){
+			FDCMsgBox.showWarning(this,"保证金信息不能为空！");
+			SysUtil.abort();
+		}
+		for(int i=0;i<this.kdtEntry.getRowCount();i++){
+			BigDecimal actAmount=FDCHelper.toBigDecimal(this.kdtEntry.getRow(i).getCell("actAmount").getValue());
+			BigDecimal amount=FDCHelper.toBigDecimal(this.kdtEntry.getRow(i).getCell("amount").getValue());
+			if(amount.compareTo(actAmount)>0){
+				FDCMsgBox.showWarning(this,"申请退押金金额不能大于实收金额！");
+				SysUtil.abort();
+			}
+			BigDecimal subAmount=FDCHelper.ZERO;
+			DepositDealBillEntryInfo entry=(DepositDealBillEntryInfo) this.kdtEntry.getRow(i).getUserObject();
+			if(BOSUuid.read(entry.getSrcId()).getType().equals(new TenancyRoomPayListEntryInfo().getBOSType())){
+				TenancyRoomPayListEntryInfo srcInfo=TenancyRoomPayListEntryFactory.getRemoteInstance().getTenancyRoomPayListEntryInfo(new ObjectUuidPK(entry.getSrcId()));
+				subAmount=FDCHelper.subtract(srcInfo.getActRevAmount(), srcInfo.getHasRefundmentAmount());
+			}else{
+				TenBillOtherPayInfo srcInfo=TenBillOtherPayFactory.getRemoteInstance().getTenBillOtherPayInfo(new ObjectUuidPK(entry.getSrcId()));
+				subAmount=FDCHelper.subtract(srcInfo.getActRevAmount(), srcInfo.getHasRefundmentAmount());
+			}
+			if(amount.compareTo(subAmount)>0){
+				FDCMsgBox.showWarning(this,"申请退押金金额不能大于可退金额！");
+				SysUtil.abort();
+			}
+		}
 		FilterInfo filter = new FilterInfo();
 		
 		filter.getFilterItems().add(new FilterItemInfo("boID" , this.editData.getId().toString()));
@@ -391,6 +458,107 @@ public class DepositDealBillEditUI extends AbstractDepositDealBillEditUI
 			}else if(attcol.size()>1){
 				BoAttchAssoFactory.getRemoteInstance().delete(filter);
 			}
+		}
+	}
+	protected void cbType_itemStateChanged(ItemEvent e) throws Exception {
+		super.cbType_itemStateChanged(e);
+		this.kdtEntry.removeRows();
+		this.kDContainer1.setTitle("");
+		if(this.cbType.getSelectedItem()==null){
+			return;
+		}
+		Set mdType=new HashSet();
+		if(DepositDealTypeEnum.QUITYJ.equals(this.cbType.getSelectedItem())){
+			this.kDContainer1.setTitle("押金信息");
+			MoneyDefineCollection col=MoneyDefineFactory.getRemoteInstance().getMoneyDefineCollection("select * from where moneyType='"+MoneyTypeEnum.DEPOSITAMOUNT_VALUE+"' and sysType='"+MoneySysTypeEnum.TENANCYSYS_VALUE+"'");
+			for(int i=0;i<col.size();i++){
+				mdType.add(col.get(i).getId().toString());
+			}
+		}else if(DepositDealTypeEnum.QUITZJ.equals(this.cbType.getSelectedItem())){
+			this.kDContainer1.setTitle("租金信息");
+			MoneyDefineCollection col=MoneyDefineFactory.getRemoteInstance().getMoneyDefineCollection("select * from where moneyType='"+MoneyTypeEnum.RENTAMOUNT_VALUE+"' and sysType='"+MoneySysTypeEnum.TENANCYSYS_VALUE+"'");
+			for(int i=0;i<col.size();i++){
+				mdType.add(col.get(i).getId().toString());
+			}
+		}else{
+			this.kDContainer1.setTitle("其他款项信息");
+			MoneyDefineCollection col=MoneyDefineFactory.getRemoteInstance().getMoneyDefineCollection("select * from where moneyType!='"+MoneyTypeEnum.DEPOSITAMOUNT_VALUE+"' and moneyType!='"+MoneyTypeEnum.RENTAMOUNT_VALUE+"' and sysType='"+MoneySysTypeEnum.TENANCYSYS_VALUE+"'");
+			for(int i=0;i<col.size();i++){
+				mdType.add(col.get(i).getId().toString());
+			}
+		}
+		
+		SelectorItemCollection sic=new SelectorItemCollection();
+		sic.add("otherPayList.*");
+		sic.add("otherPayList.moneyDefine.*");
+		sic.add("tenancyRoomList.*");
+		sic.add("tenancyRoomList.roomPayList.*");
+		sic.add("tenancyRoomList.roomPayList.moneyDefine.*");
+		DepositDealBillEntryCollection entryCol=new DepositDealBillEntryCollection();
+		try {
+			RevListCollection revCol=new RevListCollection();
+			
+			TenancyBillInfo tenBill = TenancyBillFactory.getRemoteInstance().getTenancyBillInfo(new ObjectUuidPK(this.editData.getTenancyBill().getId()), sic);
+			for (int i = 0; i < tenBill.getOtherPayList().size(); i++) {
+				TenBillOtherPayInfo entry=tenBill.getOtherPayList().get(i);
+				if(mdType.contains(entry.getMoneyDefine().getId().toString())){
+					DepositDealBillEntryCollection deCol=DepositDealBillEntryFactory.getRemoteInstance().getDepositDealBillEntryCollection("select * from where srcId='"+entry.getId().toString()+"' and amount>0");
+					if(deCol.size()>0){
+						continue;
+					}
+					BigDecimal subAmount=FDCHelper.subtract(entry.getActRevAmount(), entry.getHasRefundmentAmount());
+					if(subAmount.compareTo(FDCHelper.ZERO)<=0){
+						continue;
+					}
+					revCol.add(entry);
+				}
+			}
+			if(tenBill.getTenancyRoomList().size()>0){
+				for (int i = 0; i < tenBill.getTenancyRoomList().get(0).getPayList().size(); i++) {
+					TenancyRoomPayListEntryInfo entry = tenBill.getTenancyRoomList().get(0).getRoomPayList().get(i);
+					if(mdType.contains(entry.getMoneyDefine().getId().toString())){
+						DepositDealBillEntryCollection deCol=DepositDealBillEntryFactory.getRemoteInstance().getDepositDealBillEntryCollection("select * from where srcId='"+entry.getId().toString()+"' and amount>0");
+						if(deCol.size()>0){
+							continue;
+						}
+						BigDecimal subAmount=FDCHelper.subtract(entry.getActRevAmount(), entry.getHasRefundmentAmount());
+						if(subAmount.compareTo(FDCHelper.ZERO)<=0){
+							continue;
+						}
+						revCol.add(entry);
+					}
+				}
+			}
+			CRMHelper.sortCollection(revCol, new String[]{"moneyDefine.number","appDate"}, true);
+			for(int i=0;i<revCol.size();i++){
+				IRow row=this.kdtEntry.addRow();
+				DepositDealBillEntryInfo entry=new DepositDealBillEntryInfo();
+				entry.setSrcId(revCol.get(i).getId().toString());
+				row.setUserObject(entry);
+				if(BOSUuid.read(revCol.get(i).getId().toString()).getType().equals(new TenancyRoomPayListEntryInfo().getBOSType())){
+					TenancyRoomPayListEntryInfo srcInfo=(TenancyRoomPayListEntryInfo)revCol.get(i);
+					this.kdtEntry.getRow(i).getCell("moneyDefine").setValue(srcInfo.getMoneyDefine().getName());
+					this.kdtEntry.getRow(i).getCell("startDate").setValue(srcInfo.getStartDate());
+					this.kdtEntry.getRow(i).getCell("endDate").setValue(srcInfo.getEndDate());
+					this.kdtEntry.getRow(i).getCell("appDate").setValue(srcInfo.getAppDate());
+					this.kdtEntry.getRow(i).getCell("appAmount").setValue(srcInfo.getAppAmount());
+					this.kdtEntry.getRow(i).getCell("actAmount").setValue(srcInfo.getActRevAmount());
+					this.kdtEntry.getRow(i).getCell("actDate").setValue(srcInfo.getActRevDate());
+				}else{
+					TenBillOtherPayInfo srcInfo=(TenBillOtherPayInfo)revCol.get(i);
+					this.kdtEntry.getRow(i).getCell("moneyDefine").setValue(srcInfo.getMoneyDefine().getName());
+					this.kdtEntry.getRow(i).getCell("startDate").setValue(srcInfo.getStartDate());
+					this.kdtEntry.getRow(i).getCell("endDate").setValue(srcInfo.getEndDate());
+					this.kdtEntry.getRow(i).getCell("appDate").setValue(srcInfo.getAppDate());
+					this.kdtEntry.getRow(i).getCell("appAmount").setValue(srcInfo.getAppAmount());
+					this.kdtEntry.getRow(i).getCell("actAmount").setValue(srcInfo.getActRevAmount());
+					this.kdtEntry.getRow(i).getCell("actDate").setValue(srcInfo.getActRevDate());
+				}
+			}
+		} catch (EASBizException e1) {
+			e1.printStackTrace();
+		} catch (BOSException e1) {
+			e1.printStackTrace();
 		}
 	}
 }

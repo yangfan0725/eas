@@ -1353,7 +1353,15 @@ public class ChangeAuditEditUI extends AbstractChangeAuditEditUI
 		super.verifyInputForSave();
 		FDCClientVerifyHelper.verifyEmpty(this, prmtCurProject);
 	}
-		
+	protected void verifyInputForSubmint() throws Exception {
+		super.verifyInputForSubmint();
+		checkBeforeSubmit();
+    	verfySuppEntrys();
+    	if (!isCheckCtrlAmountPass()) {
+    		SysUtil.abort();
+		}
+	}
+
 	protected void setFieldsNull(AbstractObjectValue newData) {
 		super.setFieldsNull(newData);
 		ChangeAuditBillInfo info = (ChangeAuditBillInfo)newData;

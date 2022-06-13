@@ -193,9 +193,9 @@ public class RoomSourceReportUI extends AbstractRoomSourceReportUI
 		if(getUIContext().get("RPTFilter") == null){
 			initTree();
 		}else{
-			this.actionQuery.setVisible(false);
 			treeView.setVisible(false);
 		}
+		this.actionQuery.setVisible(false);
 		this.actionPrint.setVisible(false);
 		this.actionPrintPreview.setVisible(false);
 		

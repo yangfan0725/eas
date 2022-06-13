@@ -9,6 +9,13 @@ import com.kingdee.eas.basedata.assistant.*;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.fdc.basedata.*;
 import com.kingdee.eas.fdc.contract.*;
+import com.kingdee.eas.fdc.contract.programming.ProgrammingContractCollection;
+import com.kingdee.eas.fdc.contract.programming.ProgrammingContractFactory;
+import com.kingdee.eas.fdc.contract.programming.ProgrammingContractInfo;
+import com.kingdee.eas.fdc.sellhouse.PurSaleManEntryCollection;
+import com.kingdee.eas.fdc.sellhouse.PurSaleManEntryFactory;
+import com.kingdee.eas.fdc.sellhouse.SignSaleManEntryCollection;
+import com.kingdee.eas.fdc.sellhouse.SignSaleManEntryFactory;
 import com.kingdee.eas.util.app.DbUtil;
 import com.kingdee.jdbc.rowset.IRowSet;
 import java.math.BigDecimal;
@@ -547,11 +554,80 @@ public class ContractFacadeControllerBean extends AbstractContractFacadeControll
         		builder.addBatch(sql.toString());
         		 
         		sql = new StringBuffer();
+        		sql.append("update t_con_contractbill set fsrcAmount=FORIGINALAMOUNT where FORIGINALAMOUNT !=fsrcAmount and FCURRENCYID ='dfd38d11-00fd-1000-e000-1ebdc0a8100dDEB58FDC' and fstate!='4AUDITTED'");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
         		sql.append("update t_con_marketproject a set famount=(select amount from(select fheadid,sum(famount) amount from T_CON_MarketProjectCostEntry group by fheadid )t where t.fheadid=a.fid)where fid in(");
         		sql.append(" select a.fid from t_con_marketproject a left join (select fheadid,sum(famount) amount from T_CON_MarketProjectCostEntry group by fheadid )t on t.fheadid=a.fid where a.famount!=t.amount)");
         		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
+        		sql.append("update T_SHE_CommerceChanceTrack a set FSALEMANID=(select FSALEMANID from T_SHE_CommerceChance t where t.fid=a.FCOMMERCECHANCEID )where FSALEMANID is null");
+        		builder.addBatch(sql.toString());
         				
+        		sql = new StringBuffer();
+        		sql.append("delete from T_SHE_PURSALEMANENTRY where FHEADID not in(select fid from t_she_purchasemanage)");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
+        		sql.append("delete from T_SHE_SIGNSALEMANENTRY where FHEADID not in(select fid from t_she_signmanage)");
+        		builder.addBatch(sql.toString());
+        		
         		builder.executeBatch();
+        		
+        		sql = new StringBuffer();
+        		builder.clear();
+        		builder.appendSql("select distinct FPROGRAMMINGID id from T_CON_Programmingcontract where flongnumber not like '%5001' and FSORTNUMBER =0");
+        		IRowSet rs=builder.executeQuery();
+        		SelectorItemCollection sic=new SelectorItemCollection();
+        		sic.add("sortNumber");
+        		try {
+					while(rs.next()){
+						String id=rs.getString("id");
+						ProgrammingContractCollection col=ProgrammingContractFactory.getLocalInstance(ctx).getProgrammingContractCollection("select * from where programming.id='"+id+"' order by longNumber");
+						int sortNumber=0;
+						for(int i=0;i<col.size();i++){
+							ProgrammingContractInfo info=col.get(i);
+							info.setSortNumber(sortNumber);
+							ProgrammingContractFactory.getLocalInstance(ctx).updatePartial(info, sic);
+							sortNumber=sortNumber+1;
+						}
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				sql = new StringBuffer();
+        		builder.clear();
+        		builder.appendSql("select FHEADID,FUSERID from T_SHE_purSALEMANENTRY group by FHEADID,FUSERID  having count(*)>1");
+        		rs=builder.executeQuery();
+        		try {
+					while(rs.next()){
+						String headid=rs.getString("FHEADID");
+						String userid=rs.getString("FUSERID");
+						PurSaleManEntryCollection col=PurSaleManEntryFactory.getLocalInstance(ctx).getPurSaleManEntryCollection("select * from where head.id='"+headid+"' and user.id='"+userid+"'");
+						PurSaleManEntryFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(col.get(0).getId()));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				sql = new StringBuffer();
+        		builder.clear();
+        		builder.appendSql("select FHEADID,FUSERID from T_SHE_SIGNSALEMANENTRY group by FHEADID,FUSERID  having count(*)>1");
+        		rs=builder.executeQuery();
+        		try {
+					while(rs.next()){
+						String headid=rs.getString("FHEADID");
+						String userid=rs.getString("FUSERID");
+						SignSaleManEntryCollection col=SignSaleManEntryFactory.getLocalInstance(ctx).getSignSaleManEntryCollection("select * from where head.id='"+headid+"' and user.id='"+userid+"'");
+						SignSaleManEntryFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(col.get(0).getId()));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+        		
 			}
 
 			private static Logger logger = Logger.getLogger("com.kingdee.eas.fdc.contract.app.ContractFacadeControllerBean");

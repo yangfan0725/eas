@@ -568,22 +568,22 @@ public class ChangeManageControllerBean extends AbstractChangeManageControllerBe
 			cjo.put("changeDate", df.format(info.getChangeDate()));
 			
 			carr.add(cjo);
-//			try {
-//				String crs=SHEManageHelper.execPost(ctx, "sap_change_mcrm_channel", carr.toJSONString());
-//				JSONObject crso = JSONObject.parseObject(crs);
-//				if(!"SUCCESS".equals(crso.getString("status"))){
-//					throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
-//				}
-//				crs=SHEManageHelper.execPost(ctx, "sap_change_personal_channel", carr.toJSONString());
-//				crso = JSONObject.parseObject(crs);
-//				if(!"SUCCESS".equals(crso.getString("status"))){
-//					throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
+			try {
+				String crs=SHEManageHelper.execPost(ctx, "sap_change_mcrm_channel", carr.toJSONString());
+				JSONObject crso = JSONObject.parseObject(crs);
+				if(!"SUCCESS".equals(crso.getString("status"))){
+					throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+				}
+				crs=SHEManageHelper.execPost(ctx, "sap_change_personal_channel", carr.toJSONString());
+				crso = JSONObject.parseObject(crs);
+				if(!"SUCCESS".equals(crso.getString("status"))){
+					throw new EASBizException(new NumericExceptionSubItem("100",crso.getString("message")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 //		

@@ -1297,6 +1297,7 @@ public class ContractWithoutTextEditUI extends
 		pay.setCompany((CompanyOrgUnitInfo)this.prmtCostedCompany.getValue());
 		pay.setCostCenter((CostCenterOrgUnitInfo) this.prmtCostedDept.getValue());
 		pay.setPayDate(FDCCommonServerHelper.getServerTimeStamp());
+//		pay.setBizDate(FDCCommonServerHelper.getServerTimeStamp());
 		pay.setCurrency((CurrencyInfo) this.prmtcurrency.getValue());
 		
 		return pay;
@@ -1989,7 +1990,10 @@ public class ContractWithoutTextEditUI extends
 					Calendar cal = new GregorianCalendar();
 					cal.setTime(FDCDateHelper.getNextMonth(market.getAuditTime()));
 					cal.set(5, 15);
-					
+					cal.set(11, 0);
+					cal.set(12, 0);
+					cal.set(13, 0);
+					cal.set(14, 0);
 					int day=FDCDateHelper.getDiffDays(cal.getTime(), new Date());
 					if(day>1){
 						FDCMsgBox.showInfo(this,"合同流程必须在立项审批通过后2天内发起；除第三方佣金外的无文本立项，必须在次月15日之前发起无文本合同流程，超时发起流程将按照《宋都集团营销费用管理制度》规定，对责任人进行扣罚。");

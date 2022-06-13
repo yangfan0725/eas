@@ -212,6 +212,17 @@
                 <key name="name" value="FLeaseTime" />
             </mappingField>
         </ownProperty>
+        <linkProperty>
+            <name>entry</name>
+            <alias>entityObject[com.kingdee.eas.fdc.tenancy.app.DepositDealBill].properties.linkProperty[entry].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.tenancy.app.DepositDealBill].properties.linkProperty[entry].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <relationship>
+                <key name="package" value="com.kingdee.eas.fdc.tenancy.app" />
+                <key name="name" value="R_DespositDealBill_DespositDealBillEntry_entry" />
+            </relationship>
+        </linkProperty>
     </properties>
     <logicalKey>
         <name>id</name>
@@ -509,9 +520,9 @@
     <resource>
         <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.DepositDealBill].alias">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="K押金处理申请单" />
-            <lang locale="zh_HK" value="K押金處理申請單" />
-            <lang locale="zh_TW" value="K押金處理申請單" />
+            <lang locale="zh_CN" value="K退款申请单" />
+            <lang locale="zh_HK" value="K退款申請單" />
+            <lang locale="zh_TW" value="K退款申請單" />
         </rs>
         <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.DepositDealBill].defaultView.filterextendedProperty.OrgType">
             <lang locale="en_US" value="Sale" />
@@ -607,9 +618,9 @@
         </rs>
         <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.DepositDealBill].description">
             <lang locale="en_US" value="单据基础模板" />
-            <lang locale="zh_CN" value="K押金处理申请单" />
-            <lang locale="zh_HK" value="K押金處理申請單" />
-            <lang locale="zh_TW" value="K押金處理申請單" />
+            <lang locale="zh_CN" value="K退款申请单" />
+            <lang locale="zh_HK" value="K退款申請單" />
+            <lang locale="zh_TW" value="K退款申請單" />
         </rs>
         <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.DepositDealBill].events.event[antiAuditEvent].alias">
             <lang locale="en_US" value="null" />
@@ -1107,6 +1118,18 @@
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.DepositDealBill].methods.method[getValue].parameters.parameter[selector].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.DepositDealBill].properties.linkProperty[entry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="分录" />
+            <lang locale="zh_HK" value="分錄" />
+            <lang locale="zh_TW" value="分錄" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.tenancy.app.DepositDealBill].properties.linkProperty[entry].description">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />

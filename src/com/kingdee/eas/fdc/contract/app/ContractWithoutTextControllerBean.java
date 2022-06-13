@@ -471,6 +471,9 @@ public class ContractWithoutTextControllerBean extends
 				}
 				
 				JSONObject obj = new JSONObject();
+				
+				obj.put("fd_org", CurProjectFactory.getLocalInstance(ctx).getCurProjectInfo("select fullOrgUnit.name from where id='"+info.getCurProject().getId()+"'").getFullOrgUnit().getName());
+				
 				if(info.getMpCostAccount()!=null&&info.getMarketProject()!=null){
 					obj.put("fd_timeout", info.getIsTimeOut());
 				}

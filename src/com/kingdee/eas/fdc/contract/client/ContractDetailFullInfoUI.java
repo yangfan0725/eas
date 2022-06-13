@@ -21,14 +21,19 @@ import com.kingdee.bos.metadata.entity.FilterItemInfo;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.bos.metadata.entity.SelectorItemInfo;
 import com.kingdee.bos.util.BOSUuid;
+import com.kingdee.eas.base.param.ParamControlFactory;
 import com.kingdee.eas.basedata.org.FullOrgUnitInfo;
 import com.kingdee.eas.common.EASBizException;
+import com.kingdee.eas.common.client.OprtState;
+import com.kingdee.eas.common.client.SysContext;
 import com.kingdee.eas.common.client.UIContext;
 import com.kingdee.eas.fdc.basedata.ContractTypeInfo;
 import com.kingdee.eas.fdc.basedata.CostSplitStateEnum;
+import com.kingdee.eas.fdc.basedata.CurProjectFactory;
 import com.kingdee.eas.fdc.basedata.CurProjectInfo;
 import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
+import com.kingdee.eas.fdc.basedata.TaxInfoEnum;
 import com.kingdee.eas.fdc.basedata.client.FDCClientUtils;
 import com.kingdee.eas.fdc.contract.ConNoCostSplitFactory;
 import com.kingdee.eas.fdc.contract.ConNoCostSplitInfo;
@@ -40,9 +45,11 @@ import com.kingdee.eas.fdc.contract.ContractCostSplitInfo;
 import com.kingdee.eas.fdc.contract.ContractPayItemCollection;
 import com.kingdee.eas.fdc.contract.ContractPayItemFactory;
 import com.kingdee.eas.fdc.contract.ContractPayItemInfo;
+import com.kingdee.eas.fdc.contract.ContractPropertyEnum;
 import com.kingdee.eas.fdc.contract.ContractSettlementBillCollection;
 import com.kingdee.eas.fdc.contract.ContractSettlementBillFactory;
 import com.kingdee.eas.fdc.contract.ContractSettlementBillInfo;
+import com.kingdee.eas.fdc.invite.TenderAccepterResultFactory;
 import com.kingdee.eas.fi.gl.GlUtils;
 import com.kingdee.eas.util.client.EASResource;
 
@@ -261,6 +268,155 @@ public class ContractDetailFullInfoUI extends AbstractContractDetailFullInfoUI {
 		} catch (BOSException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(this.contractPropert.getSelectedItem()!=null){
+			if (this.contractPropert.getSelectedItem() == ContractPropertyEnum.DIRECT) {
+				this.txtamount.setEnabled(true);
+			}else if (this.contractPropert.getSelectedItem() == ContractPropertyEnum.SUPPLY) {
+			}else if (this.contractPropert.getSelectedItem() == ContractPropertyEnum.THREE_PARTY) {
+				this.txtamount.setEnabled(true);
+			}else if (this.contractPropert.getSelectedItem() == ContractPropertyEnum.STRATEGY) {
+				this.txtamount.setEnabled(false);
+			}
+		}
+		
+		if(this.curProject!=null){
+			try {
+				this.curProject=CurProjectFactory.getRemoteInstance().getCurProjectInfo(new ObjectUuidPK(this.curProject.getId()));
+			} catch (EASBizException e) {
+				e.printStackTrace();
+			} catch (BOSException e) {
+				e.printStackTrace();
+			}
+			
+			//如果是简易计征
+//			if(TaxInfoEnum.SIMPLE.equals(curProject.getTaxInfo())){
+//				this.cbTaxerQua.setEnabled(true);
+//				this.txtTaxerNum.setEnabled(true);
+//				this.txtBank.setEnabled(true);
+//				this.txtBankAccount.setEnabled(true);
+//				
+//				this.actionDetailALine.setEnabled(true);
+//				this.actionDetailILine.setEnabled(true);
+//				this.actionDetailRLine.setEnabled(true);
+//			}
+		}
+		try {
+			if(this.editData.getTaEntry()!=null){
+				loadTenderBill(this.editData.getTaEntry().getParent().getId().toString());
+			}
+		} catch (EASBizException e) {
+			e.printStackTrace();
+		} catch (BOSException e) {
+			e.printStackTrace();
+		}
+		if(this.editData.getContractType()!=null){
+			if(this.editData.getContractType().isIsTA()){
+				this.prmtTAEntry.setEnabled(true);
+				this.prmtTAEntry.setRequired(true);
+				this.prmtpartB.setEnabled(false);
+				if(ContractPropertyEnum.SUPPLY.equals(this.editData.getContractPropert())){
+					this.prmtTAEntry.setEnabled(false);
+					this.prmtTAEntry.setRequired(false);
+					this.prmtpartB.setEnabled(false);
+				}else{
+//					this.prmtpartB.setEnabled(true);
+				}
+			}else{
+				this.prmtTAEntry.setEnabled(false);
+				this.prmtTAEntry.setRequired(false);
+				this.prmtTAEntry.setValue(null);
+			}
+			String paramValue="true";
+			try {
+				paramValue = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_MARKETPROJECTCONTRACT");
+			} catch (EASBizException e) {
+				e.printStackTrace();
+			} catch (BOSException e) {
+				e.printStackTrace();
+			}
+			
+			if(this.editData.getContractType().isIsMarket()&&"true".equals(paramValue)){
+				this.prmtMarketProject.setEnabled(true);
+				this.prmtMarketProject.setRequired(true);
+				this.prmtMpCostAccount.setEnabled(true);
+				this.prmtMpCostAccount.setRequired(true);
+				this.cbJzType.setRequired(true);
+				this.pkJzStartDate.setRequired(true);
+				this.pkJzEndDate.setRequired(true);
+				this.actionMALine.setEnabled(true);
+				this.actionMRLine.setEnabled(true);
+			}else{
+				this.prmtMarketProject.setEnabled(false);
+				this.prmtMarketProject.setRequired(false);
+				this.prmtMpCostAccount.setEnabled(false);
+				this.prmtMpCostAccount.setRequired(false);
+				this.cbJzType.setRequired(false);
+				this.pkJzStartDate.setRequired(false);
+				this.pkJzEndDate.setRequired(false);
+				this.actionMALine.setEnabled(false);
+				this.actionMRLine.setEnabled(false);
+			}
+		}else{
+			this.prmtTAEntry.setEnabled(false);
+			this.prmtTAEntry.setRequired(false);
+			this.prmtTAEntry.setValue(null);
+			if(ContractPropertyEnum.SUPPLY.equals(this.editData.getContractPropert())){
+				this.prmtTAEntry.setEnabled(false);
+				this.prmtTAEntry.setRequired(false);
+				this.prmtpartB.setEnabled(false);
+			}else{
+				if(FDCBillStateEnum.SAVED.equals(editData.getState())){
+					this.prmtpartB.setEnabled(true);
+				}
+			}
+			this.prmtMarketProject.setEnabled(false);
+			this.prmtMarketProject.setRequired(false);
+			this.prmtMpCostAccount.setEnabled(false);
+			this.prmtMpCostAccount.setEnabled(false);
+			this.actionMALine.setEnabled(false);
+			this.actionMRLine.setEnabled(false);
+		}
+		if(this.editData.getTaEntry()!=null){
+			try {
+				String	name = TenderAccepterResultFactory.getRemoteInstance().getTenderAccepterResultInfo(new ObjectUuidPK(this.editData.getTaEntry().getParent().getId().toString())).getName();
+				this.prmtTAEntry.setCommitFormat(name);		
+		        this.prmtTAEntry.setDisplayFormat(name);		
+		        this.prmtTAEntry.setEditFormat(name);	
+		        this.prmtTAEntry.setText(name);
+			} catch (EASBizException e) {
+				e.printStackTrace();
+			} catch (BOSException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			boolean isUseYz=false;
+			CurProjectInfo project = CurProjectFactory.getRemoteInstance().getCurProjectInfo(new ObjectUuidPK(this.editData.getCurProject().getId()));
+			if(project.isIsOA()){
+				for(int i=0;i<tblDetail.getRowCount();i++){
+					if(tblDetail.getRow(i).getCell("detail").getValue().toString().equals("是否使用电子章")&&
+							tblDetail.getRow(i).getCell("content").getValue()!=null&&tblDetail.getRow(i).getCell("content").getValue().toString().equals("否")){
+						isUseYz=true;
+					}
+				}
+			}
+			if(this.getOprtState().equals(OprtState.VIEW)){
+				this.actionYZALine.setEnabled(false);
+				this.actionYZRLine.setEnabled(false);
+			}else{
+				if(isUseYz){
+					this.actionYZALine.setEnabled(true);
+					this.actionYZRLine.setEnabled(true);
+				}else{
+					this.actionYZALine.setEnabled(false);
+					this.actionYZRLine.setEnabled(false);
+				}
+			}
+		} catch (EASBizException e) {
+			e.printStackTrace();
+		} catch (BOSException e) {
 			e.printStackTrace();
 		}
 	}

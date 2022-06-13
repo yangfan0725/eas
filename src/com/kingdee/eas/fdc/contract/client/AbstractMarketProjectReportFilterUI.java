@@ -46,12 +46,24 @@ import com.kingdee.bos.appframework.uip.UINavigator;
 public abstract class AbstractMarketProjectReportFilterUI extends com.kingdee.eas.framework.report.client.CommRptBaseConditionUI
 {
     private static final Logger logger = CoreUIObject.getLogger(AbstractMarketProjectReportFilterUI.class);
-    protected com.kingdee.bos.ctrl.swing.KDLabelContainer kDLabelContainer1;
-    protected com.kingdee.bos.ctrl.swing.KDLabelContainer kDLabelContainer2;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contFromDate;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contToDate;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contIsYE;
+    protected com.kingdee.bos.ctrl.swing.KDLabel type;
+    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbContract;
+    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbWithoutContract;
+    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbJZ;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contFromConBizDate;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contToConBizDate;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contFromBizDate;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contToBizDate;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkFromDate;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkToDate;
     protected com.kingdee.bos.ctrl.swing.KDComboBox cbIsYE;
+    protected com.kingdee.bos.ctrl.swing.KDDatePicker pkFromConBizDate;
+    protected com.kingdee.bos.ctrl.swing.KDDatePicker pkToConBizDate;
+    protected com.kingdee.bos.ctrl.swing.KDDatePicker pkFromBizDate;
+    protected com.kingdee.bos.ctrl.swing.KDDatePicker pkToBizDate;
     /**
      * output class constructor
      */
@@ -70,35 +82,87 @@ public abstract class AbstractMarketProjectReportFilterUI extends com.kingdee.ea
     {
         this.resHelper = new ResourceBundleHelper(AbstractMarketProjectReportFilterUI.class.getName());
         this.setUITitle(resHelper.getString("this.title"));
-        this.kDLabelContainer1 = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
-        this.kDLabelContainer2 = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contFromDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contToDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contIsYE = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.type = new com.kingdee.bos.ctrl.swing.KDLabel();
+        this.cbContract = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.cbWithoutContract = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.cbJZ = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.contFromConBizDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contToConBizDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contFromBizDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contToBizDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.pkFromDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.pkToDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.cbIsYE = new com.kingdee.bos.ctrl.swing.KDComboBox();
-        this.kDLabelContainer1.setName("kDLabelContainer1");
-        this.kDLabelContainer2.setName("kDLabelContainer2");
+        this.pkFromConBizDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
+        this.pkToConBizDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
+        this.pkFromBizDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
+        this.pkToBizDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
+        this.contFromDate.setName("contFromDate");
+        this.contToDate.setName("contToDate");
         this.contIsYE.setName("contIsYE");
+        this.type.setName("type");
+        this.cbContract.setName("cbContract");
+        this.cbWithoutContract.setName("cbWithoutContract");
+        this.cbJZ.setName("cbJZ");
+        this.contFromConBizDate.setName("contFromConBizDate");
+        this.contToConBizDate.setName("contToConBizDate");
+        this.contFromBizDate.setName("contFromBizDate");
+        this.contToBizDate.setName("contToBizDate");
         this.pkFromDate.setName("pkFromDate");
         this.pkToDate.setName("pkToDate");
         this.cbIsYE.setName("cbIsYE");
+        this.pkFromConBizDate.setName("pkFromConBizDate");
+        this.pkToConBizDate.setName("pkToConBizDate");
+        this.pkFromBizDate.setName("pkFromBizDate");
+        this.pkToBizDate.setName("pkToBizDate");
         // CustomerQueryPanel
-        // kDLabelContainer1		
-        this.kDLabelContainer1.setBoundLabelText(resHelper.getString("kDLabelContainer1.boundLabelText"));		
-        this.kDLabelContainer1.setBoundLabelLength(100);		
-        this.kDLabelContainer1.setBoundLabelUnderline(true);
-        // kDLabelContainer2		
-        this.kDLabelContainer2.setBoundLabelText(resHelper.getString("kDLabelContainer2.boundLabelText"));		
-        this.kDLabelContainer2.setBoundLabelLength(100);		
-        this.kDLabelContainer2.setBoundLabelUnderline(true);
+        // contFromDate		
+        this.contFromDate.setBoundLabelText(resHelper.getString("contFromDate.boundLabelText"));		
+        this.contFromDate.setBoundLabelLength(100);		
+        this.contFromDate.setBoundLabelUnderline(true);
+        // contToDate		
+        this.contToDate.setBoundLabelText(resHelper.getString("contToDate.boundLabelText"));		
+        this.contToDate.setBoundLabelLength(100);		
+        this.contToDate.setBoundLabelUnderline(true);
         // contIsYE		
         this.contIsYE.setBoundLabelText(resHelper.getString("contIsYE.boundLabelText"));		
         this.contIsYE.setBoundLabelLength(100);		
         this.contIsYE.setBoundLabelUnderline(true);
+        // type		
+        this.type.setText(resHelper.getString("type.text"));
+        // cbContract		
+        this.cbContract.setText(resHelper.getString("cbContract.text"));
+        // cbWithoutContract		
+        this.cbWithoutContract.setText(resHelper.getString("cbWithoutContract.text"));
+        // cbJZ		
+        this.cbJZ.setText(resHelper.getString("cbJZ.text"));
+        // contFromConBizDate		
+        this.contFromConBizDate.setBoundLabelText(resHelper.getString("contFromConBizDate.boundLabelText"));		
+        this.contFromConBizDate.setBoundLabelUnderline(true);		
+        this.contFromConBizDate.setBoundLabelLength(100);
+        // contToConBizDate		
+        this.contToConBizDate.setBoundLabelText(resHelper.getString("contToConBizDate.boundLabelText"));		
+        this.contToConBizDate.setBoundLabelLength(100);		
+        this.contToConBizDate.setBoundLabelUnderline(true);
+        // contFromBizDate		
+        this.contFromBizDate.setBoundLabelText(resHelper.getString("contFromBizDate.boundLabelText"));		
+        this.contFromBizDate.setBoundLabelLength(100);		
+        this.contFromBizDate.setBoundLabelUnderline(true);
+        // contToBizDate		
+        this.contToBizDate.setBoundLabelText(resHelper.getString("contToBizDate.boundLabelText"));		
+        this.contToBizDate.setBoundLabelLength(100);		
+        this.contToBizDate.setBoundLabelUnderline(true);
         // pkFromDate
         // pkToDate
         // cbIsYE		
         this.cbIsYE.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.contract.app.YesOrNoEnum").toArray());
+        // pkFromConBizDate
+        // pkToConBizDate
+        // pkFromBizDate
+        // pkToBizDate
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -125,18 +189,42 @@ public abstract class AbstractMarketProjectReportFilterUI extends com.kingdee.ea
     {
         this.setBounds(new Rectangle(10, 10, 600, 160));
         this.setLayout(null);
-        kDLabelContainer1.setBounds(new Rectangle(25, 59, 270, 19));
-        this.add(kDLabelContainer1, null);
-        kDLabelContainer2.setBounds(new Rectangle(312, 59, 270, 19));
-        this.add(kDLabelContainer2, null);
-        contIsYE.setBounds(new Rectangle(25, 98, 270, 19));
+        contFromDate.setBounds(new Rectangle(25, 67, 270, 19));
+        this.add(contFromDate, null);
+        contToDate.setBounds(new Rectangle(322, 67, 270, 19));
+        this.add(contToDate, null);
+        contIsYE.setBounds(new Rectangle(25, 123, 270, 19));
         this.add(contIsYE, null);
-        //kDLabelContainer1
-        kDLabelContainer1.setBoundEditor(pkFromDate);
-        //kDLabelContainer2
-        kDLabelContainer2.setBoundEditor(pkToDate);
+        type.setBounds(new Rectangle(25, 11, 100, 19));
+        this.add(type, null);
+        cbContract.setBounds(new Rectangle(126, 11, 99, 19));
+        this.add(cbContract, null);
+        cbWithoutContract.setBounds(new Rectangle(276, 11, 99, 19));
+        this.add(cbWithoutContract, null);
+        cbJZ.setBounds(new Rectangle(427, 11, 99, 19));
+        this.add(cbJZ, null);
+        contFromConBizDate.setBounds(new Rectangle(25, 95, 270, 19));
+        this.add(contFromConBizDate, null);
+        contToConBizDate.setBounds(new Rectangle(322, 95, 270, 19));
+        this.add(contToConBizDate, null);
+        contFromBizDate.setBounds(new Rectangle(25, 39, 270, 19));
+        this.add(contFromBizDate, null);
+        contToBizDate.setBounds(new Rectangle(322, 39, 270, 19));
+        this.add(contToBizDate, null);
+        //contFromDate
+        contFromDate.setBoundEditor(pkFromDate);
+        //contToDate
+        contToDate.setBoundEditor(pkToDate);
         //contIsYE
         contIsYE.setBoundEditor(cbIsYE);
+        //contFromConBizDate
+        contFromConBizDate.setBoundEditor(pkFromConBizDate);
+        //contToConBizDate
+        contToConBizDate.setBoundEditor(pkToConBizDate);
+        //contFromBizDate
+        contFromBizDate.setBoundEditor(pkFromBizDate);
+        //contToBizDate
+        contToBizDate.setBoundEditor(pkToBizDate);
 
     }
 

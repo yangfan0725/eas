@@ -2604,7 +2604,9 @@ public class RoomPriceAdjustEditUI extends AbstractRoomPriceAdjustEditUI {
 		row.getCell("roomId").setValue(room.getId());
 //		row.getCell("roomNumber").setValue(room.getNumber());
 		row.getCell("roomNo").setValue(room.getDisplayName());
-		row.getCell("building").setValue(room.getBuilding().getName());
+		if(room.getBuilding()!=null){
+			row.getCell("building").setValue(room.getBuilding().getName());
+		}
 		if(room.getBuildUnit()!=null){
 			row.getCell("buildUnit").setValue(room.getBuildUnit().getName());
 		}
@@ -2738,7 +2740,7 @@ public class RoomPriceAdjustEditUI extends AbstractRoomPriceAdjustEditUI {
 			for (int i = 0; i < priceAdjustEntryCol.size(); i++) {
 				RoomPriceAdjustEntryInfo entry = priceAdjustEntryCol.get(i);
 				RoomInfo room = entry.getRoom();
-				if (room.getBuilding().getId().toString().equals(building.getId().toString())) {
+				if (room.getBuilding()!=null&&room.getBuilding().getId().toString().equals(building.getId().toString())) {
 					entryCol.add(entry);
 				}
 			}

@@ -24,6 +24,8 @@ import com.kingdee.eas.common.client.SysContext;
 import com.kingdee.eas.fdc.basedata.FDCCommonServerHelper;
 import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.MoneyTypeEnum;
+import com.kingdee.eas.fdc.sellhouse.SellProjectCollection;
+import com.kingdee.eas.fdc.sellhouse.SellProjectFactory;
 import com.kingdee.eas.fdc.sellhouse.client.CommerceHelper;
 import com.kingdee.eas.fdc.sellhouse.client.FDCRoomPromptDialog;
 import com.kingdee.eas.fdc.tenancy.TenancyBillStateEnum;
@@ -62,19 +64,34 @@ public class RevDetailVoucherReportFilterUI extends AbstractRevDetailVoucherRepo
 		this.spYear.setModel(new SpinnerNumberModel(year,1,10000,1));
 		this.spMonth.setModel(new SpinnerNumberModel(month,1,12,1));
 		
-		FDCRoomPromptDialog dialog=new FDCRoomPromptDialog(Boolean.TRUE, null, null,
-				MoneySysTypeEnum.TenancySys, null,null);
-		this.prmtRoom.setSelector(dialog);
+//		FDCRoomPromptDialog dialog=new FDCRoomPromptDialog(Boolean.TRUE, null, null,
+//				MoneySysTypeEnum.TenancySys, null,null);
+//		this.prmtRoom.setSelector(dialog);
 		
-		EntityViewInfo vi = new EntityViewInfo();
+		SellProjectCollection sp=SellProjectFactory.getRemoteInstance().getSellProjectCollection("select id from where orgUnit.id='"+SysContext.getSysContext().getCurrentOrgUnit().getId()+"'");
+		Set spSet=new HashSet();
+		for(int i=0;i<sp.size();i++){
+			spSet.add(sp.get(i).getId().toString());
+		}
+		EntityViewInfo view=new EntityViewInfo();
 		FilterInfo filter = new FilterInfo();
+		filter.getFilterItems().add(new FilterItemInfo("isForTen",Boolean.TRUE));
+		filter.getFilterItems().add(new FilterItemInfo("sellProject.id",spSet,CompareType.INCLUDE));
+		view.setFilter(filter);
+		this.prmtRoom.setQueryInfo("com.kingdee.eas.fdc.tenancy.app.F7RoomQuery");		
+	    this.prmtRoom.setDisplayFormat("$name$");		
+	    this.prmtRoom.setEditFormat("$name$");	
+	    this.prmtRoom.setEntityViewInfo(view);
+		
+		view = new EntityViewInfo();
+		filter = new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("tenancyState",TenancyBillStateEnum.AUDITED_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("tenancyState",TenancyBillStateEnum.EXECUTING_VALUE));
 		
 		filter.getFilterItems().add(new FilterItemInfo("orgUnit.longNumber", SysContext.getSysContext().getCurrentOrgUnit().getLongNumber()+"%",CompareType.LIKE));
 		filter.setMaskString("(#0 or #1) and #2");
-		vi.setFilter(filter);
-		this.prmtTanancyBill.setEntityViewInfo(vi);
+		view.setFilter(filter);
+		this.prmtTanancyBill.setEntityViewInfo(view);
 		
 		this.prmtCustomer.setEditable(false);
 		this.prmtCustomer.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.CustomerAllQuery");
@@ -90,7 +107,7 @@ public class RevDetailVoucherReportFilterUI extends AbstractRevDetailVoucherRepo
 		this.prmtMoneyDefine.setEditFormat("$number$");
 		this.prmtMoneyDefine.setCommitFormat("$number$");
 		this.prmtMoneyDefine.setEnabledMultiSelection(true);
-		EntityViewInfo view = new EntityViewInfo();
+		view = new EntityViewInfo();
 		filter = new FilterInfo();
 		Set noInNumber=new HashSet();
 		noInNumber.add("03");
