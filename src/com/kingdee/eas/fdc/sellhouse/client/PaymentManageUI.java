@@ -277,7 +277,12 @@ public class PaymentManageUI extends AbstractPaymentManageUI {
 //        	this.actionDelVoucher.setVisible(false);
 //        }
 		actionQuery.setEnabled(true);
-		if(SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("ppl")){
+		if(SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("900002")||
+				SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("00561")||
+				SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("00799")){
+			
+			this.contRelateBaseTran.setVisible(true);
+			
 			KDWorkButton btnReCal=new KDWorkButton();
 			btnReCal.setText("重新计算");
 			btnReCal.addActionListener(new java.awt.event.ActionListener() {
@@ -293,7 +298,7 @@ public class PaymentManageUI extends AbstractPaymentManageUI {
 		            }
 		        });
 			btnReCal.setBounds(new Rectangle(658, 36, 120, 19));
-	        this.panelRoomAmount.add(btnReCal, new KDLayout.Constraints(658, 19, 120, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+	        this.panelRoomAmount.add(btnReCal, new KDLayout.Constraints(530, 55, 120, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
 		
 	        KDWorkButton btnReAllCal=new KDWorkButton();
 	        btnReAllCal.setText("项目重新计算");
@@ -310,7 +315,7 @@ public class PaymentManageUI extends AbstractPaymentManageUI {
 		            }
 		        });
 	        btnReAllCal.setBounds(new Rectangle(658, 36, 120, 19));
-	        this.panelRoomAmount.add(btnReAllCal, new KDLayout.Constraints(658, 0, 120, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+	        this.panelRoomAmount.add(btnReAllCal, new KDLayout.Constraints(658, 55, 120, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
 		}
 	}
 	protected void btnReCal_actionPerformed(ActionEvent e) throws Exception {

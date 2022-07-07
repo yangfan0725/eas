@@ -3,6 +3,7 @@
  */
 package com.kingdee.eas.fdc.tenancy.client;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,6 +31,7 @@ import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.swing.KDFileChooser;
 import com.kingdee.bos.ctrl.swing.KDTextField;
+import com.kingdee.bos.ctrl.swing.KDWorkButton;
 import com.kingdee.bos.dao.IObjectValue;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.bos.metadata.entity.SelectorItemInfo;
@@ -53,6 +55,7 @@ import com.kingdee.eas.fdc.tenancy.InvoiceBillCollection;
 import com.kingdee.eas.fdc.tenancy.InvoiceBillFactory;
 import com.kingdee.eas.fdc.tenancy.InvoiceBillInfo;
 import com.kingdee.eas.framework.ICoreBase;
+import com.kingdee.eas.util.client.EASResource;
 import com.kingdee.eas.util.client.MsgBox;
 
 /**
@@ -766,7 +769,23 @@ public class InvoiceBatchImportEditUI extends AbstractInvoiceBatchImportEditUI {
 	public void onLoad() throws Exception {
 		// TODO Auto-generated method stub
 		super.onLoad();
-		this.contEntry.addButton(this.btnRemoveLine);
+		
+		this.btnSelectContract.setVisible(false);
+		
+		KDWorkButton btnSelectContract = new KDWorkButton();
+		this.actionSelectContract.putValue("SmallIcon", EASResource.getIcon("imgTbtn_addline"));
+		btnSelectContract = (KDWorkButton) contEntry.add(this.actionSelectContract);
+		btnSelectContract.setText("选择开票款项");
+		btnSelectContract.setSize(new Dimension(140, 19));
+		
+		KDWorkButton btnRemoveLine = new KDWorkButton();
+		this.actionRemoveLine.putValue("SmallIcon", EASResource.getIcon("imgTbtn_addline"));
+		btnRemoveLine = (KDWorkButton) contEntry.add(this.actionRemoveLine);
+		btnRemoveLine.setText("删除行");
+		btnRemoveLine.setSize(new Dimension(140, 19));
+		
+//		this.contEntry.addButton(this.btnRemoveLine);
+		
 		this.actionSave.setVisible(false);
 		this.actionUnAudit.setVisible(false);
 		

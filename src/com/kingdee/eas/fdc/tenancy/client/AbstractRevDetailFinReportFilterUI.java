@@ -51,14 +51,19 @@ public abstract class AbstractRevDetailFinReportFilterUI extends com.kingdee.eas
     protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsAll;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contCustomer;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contMoneyDefine;
-    protected com.kingdee.bos.ctrl.swing.KDLabelContainer kDLabelContainer1;
-    protected com.kingdee.bos.ctrl.swing.KDLabelContainer kDLabelContainer2;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contFromDate;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contToDate;
+    protected com.kingdee.bos.ctrl.swing.KDCheckBox chkIsNeedTotal;
+    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsZero;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contToODDate;
+    protected com.kingdee.bos.ctrl.swing.KDLabel kDLabel1;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtTanancyBill;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtRoom;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtCustomer;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtMoneyDefine;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkFromDate;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkToDate;
+    protected com.kingdee.bos.ctrl.swing.KDDatePicker pkToODDate;
     /**
      * output class constructor
      */
@@ -82,27 +87,37 @@ public abstract class AbstractRevDetailFinReportFilterUI extends com.kingdee.eas
         this.cbIsAll = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.contCustomer = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contMoneyDefine = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
-        this.kDLabelContainer1 = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
-        this.kDLabelContainer2 = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contFromDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contToDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.chkIsNeedTotal = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.cbIsZero = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.contToODDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.kDLabel1 = new com.kingdee.bos.ctrl.swing.KDLabel();
         this.prmtTanancyBill = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.prmtRoom = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.prmtCustomer = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.prmtMoneyDefine = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.pkFromDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.pkToDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
+        this.pkToODDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.contTanancyBill.setName("contTanancyBill");
         this.contRoom.setName("contRoom");
         this.cbIsAll.setName("cbIsAll");
         this.contCustomer.setName("contCustomer");
         this.contMoneyDefine.setName("contMoneyDefine");
-        this.kDLabelContainer1.setName("kDLabelContainer1");
-        this.kDLabelContainer2.setName("kDLabelContainer2");
+        this.contFromDate.setName("contFromDate");
+        this.contToDate.setName("contToDate");
+        this.chkIsNeedTotal.setName("chkIsNeedTotal");
+        this.cbIsZero.setName("cbIsZero");
+        this.contToODDate.setName("contToODDate");
+        this.kDLabel1.setName("kDLabel1");
         this.prmtTanancyBill.setName("prmtTanancyBill");
         this.prmtRoom.setName("prmtRoom");
         this.prmtCustomer.setName("prmtCustomer");
         this.prmtMoneyDefine.setName("prmtMoneyDefine");
         this.pkFromDate.setName("pkFromDate");
         this.pkToDate.setName("pkToDate");
+        this.pkToODDate.setName("pkToODDate");
         // CustomerQueryPanel
         // contTanancyBill		
         this.contTanancyBill.setBoundLabelText(resHelper.getString("contTanancyBill.boundLabelText"));		
@@ -134,14 +149,27 @@ public abstract class AbstractRevDetailFinReportFilterUI extends com.kingdee.eas
         this.contMoneyDefine.setBoundLabelText(resHelper.getString("contMoneyDefine.boundLabelText"));		
         this.contMoneyDefine.setBoundLabelLength(100);		
         this.contMoneyDefine.setBoundLabelUnderline(true);
-        // kDLabelContainer1		
-        this.kDLabelContainer1.setBoundLabelText(resHelper.getString("kDLabelContainer1.boundLabelText"));		
-        this.kDLabelContainer1.setBoundLabelLength(100);		
-        this.kDLabelContainer1.setBoundLabelUnderline(true);
-        // kDLabelContainer2		
-        this.kDLabelContainer2.setBoundLabelText(resHelper.getString("kDLabelContainer2.boundLabelText"));		
-        this.kDLabelContainer2.setBoundLabelLength(100);		
-        this.kDLabelContainer2.setBoundLabelUnderline(true);
+        // contFromDate		
+        this.contFromDate.setBoundLabelText(resHelper.getString("contFromDate.boundLabelText"));		
+        this.contFromDate.setBoundLabelLength(100);		
+        this.contFromDate.setBoundLabelUnderline(true);
+        // contToDate		
+        this.contToDate.setBoundLabelText(resHelper.getString("contToDate.boundLabelText"));		
+        this.contToDate.setBoundLabelLength(100);		
+        this.contToDate.setBoundLabelUnderline(true);
+        // chkIsNeedTotal		
+        this.chkIsNeedTotal.setText(resHelper.getString("chkIsNeedTotal.text"));		
+        this.chkIsNeedTotal.setSelected(true);
+        // cbIsZero		
+        this.cbIsZero.setText(resHelper.getString("cbIsZero.text"));		
+        this.cbIsZero.setSelected(true);
+        // contToODDate		
+        this.contToODDate.setBoundLabelText(resHelper.getString("contToODDate.boundLabelText"));		
+        this.contToODDate.setBoundLabelLength(100);		
+        this.contToODDate.setBoundLabelUnderline(true);
+        // kDLabel1		
+        this.kDLabel1.setText(resHelper.getString("kDLabel1.text"));		
+        this.kDLabel1.setForeground(new java.awt.Color(0,0,255));
         // prmtTanancyBill		
         this.prmtTanancyBill.setCommitFormat("$name$");		
         this.prmtTanancyBill.setEditFormat("$name$");		
@@ -159,6 +187,8 @@ public abstract class AbstractRevDetailFinReportFilterUI extends com.kingdee.eas
         this.pkFromDate.setRequired(true);
         // pkToDate		
         this.pkToDate.setRequired(true);
+        // pkToODDate		
+        this.pkToODDate.setRequired(true);
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -183,22 +213,30 @@ public abstract class AbstractRevDetailFinReportFilterUI extends com.kingdee.eas
      */
     public void initUIContentLayout()
     {
-        this.setBounds(new Rectangle(10, 10, 600, 160));
+        this.setBounds(new Rectangle(10, 10, 600, 180));
         this.setLayout(null);
         contTanancyBill.setBounds(new Rectangle(27, 13, 552, 19));
         this.add(contTanancyBill, null);
         contRoom.setBounds(new Rectangle(27, 35, 552, 19));
         this.add(contRoom, null);
-        cbIsAll.setBounds(new Rectangle(27, 128, 140, 19));
+        cbIsAll.setBounds(new Rectangle(27, 146, 140, 19));
         this.add(cbIsAll, null);
         contCustomer.setBounds(new Rectangle(27, 57, 552, 19));
         this.add(contCustomer, null);
         contMoneyDefine.setBounds(new Rectangle(27, 79, 552, 19));
         this.add(contMoneyDefine, null);
-        kDLabelContainer1.setBounds(new Rectangle(27, 101, 252, 19));
-        this.add(kDLabelContainer1, null);
-        kDLabelContainer2.setBounds(new Rectangle(327, 101, 252, 19));
-        this.add(kDLabelContainer2, null);
+        contFromDate.setBounds(new Rectangle(27, 101, 252, 19));
+        this.add(contFromDate, null);
+        contToDate.setBounds(new Rectangle(327, 101, 252, 19));
+        this.add(contToDate, null);
+        chkIsNeedTotal.setBounds(new Rectangle(186, 146, 122, 19));
+        this.add(chkIsNeedTotal, null);
+        cbIsZero.setBounds(new Rectangle(327, 146, 140, 19));
+        this.add(cbIsZero, null);
+        contToODDate.setBounds(new Rectangle(27, 123, 252, 19));
+        this.add(contToODDate, null);
+        kDLabel1.setBounds(new Rectangle(327, 123, 271, 19));
+        this.add(kDLabel1, null);
         //contTanancyBill
         contTanancyBill.setBoundEditor(prmtTanancyBill);
         //contRoom
@@ -207,10 +245,12 @@ public abstract class AbstractRevDetailFinReportFilterUI extends com.kingdee.eas
         contCustomer.setBoundEditor(prmtCustomer);
         //contMoneyDefine
         contMoneyDefine.setBoundEditor(prmtMoneyDefine);
-        //kDLabelContainer1
-        kDLabelContainer1.setBoundEditor(pkFromDate);
-        //kDLabelContainer2
-        kDLabelContainer2.setBoundEditor(pkToDate);
+        //contFromDate
+        contFromDate.setBoundEditor(pkFromDate);
+        //contToDate
+        contToDate.setBoundEditor(pkToDate);
+        //contToODDate
+        contToODDate.setBoundEditor(pkToODDate);
 
     }
 

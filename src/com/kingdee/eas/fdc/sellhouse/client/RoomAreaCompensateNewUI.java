@@ -761,11 +761,13 @@ public class RoomAreaCompensateNewUI extends AbstractRoomAreaCompensateNewUI {
 		UIContext uiContext = new UIContext(this);
 
 		if (OprtState.ADDNEW.equals(this.getOprtState())) {
+			uiContext.put("headId", this.editData.getId().toString());
 			uiContext.put("isMultiSelect", Boolean.TRUE);
 			uiContext.put("selectSellProject", this.sellProject);
 			uiContext.put("selectBuilding", this.building);
 			uiContext.put("selectUnit", this.unit);
 		} else if (OprtState.EDIT.equals(this.getOprtState())) {
+			uiContext.put("headId", this.editData.getId().toString());
 			uiContext.put("isMultiSelect", Boolean.TRUE);
 			uiContext.put("selectSellProject", this.editData.getSellProject());
 			uiContext.put("selectBuilding", this.editData.getBuilding());
@@ -1034,6 +1036,7 @@ public class RoomAreaCompensateNewUI extends AbstractRoomAreaCompensateNewUI {
 
 	protected IObjectValue createNewData() {
 		RoomAreaCompensateInfo info = new RoomAreaCompensateInfo();
+		info.setId(BOSUuid.create(info.getBOSType()));
 		if (this.getUIContext().get("ByHand") != null) {
 			info.setIsCalcByScheme(false);
 			info.setCompensateType(RoomAreaCompensateTypeEnum.BYHAND);
@@ -1394,7 +1397,7 @@ public class RoomAreaCompensateNewUI extends AbstractRoomAreaCompensateNewUI {
 
 		try {
 			RoomAreaCompensateFactory.getRemoteInstance().auditAndCalcSellAmount(this.editData.getId().toString());
-			MsgBox.showInfo("审批成功!");
+			MsgBox.showInfo(this, "审批成功!");
 			
 			syncDataFromDB();
 			handleOldData();
@@ -1404,7 +1407,9 @@ public class RoomAreaCompensateNewUI extends AbstractRoomAreaCompensateNewUI {
 			this.actionAudit.setVisible(false);
 			this.actionAudit.setEnabled(false);
 		} catch (Exception ex) {
+			MsgBox.showWarning(this, ex.getMessage());
 			logger.error(ex.getMessage());
+			SysUtil.abort();
 		}
 
 	}
@@ -1456,7 +1461,7 @@ public class RoomAreaCompensateNewUI extends AbstractRoomAreaCompensateNewUI {
 		try {
 
 			RoomAreaCompensateFactory.getRemoteInstance().unAuditAndCalcSellAmount(this.editData.getId().toString());
-			MsgBox.showInfo("反审批成功!");
+			MsgBox.showInfo(this, "反审批成功!");
 			syncDataFromDB();
 			handleOldData();
 			this.actionUnAudit.setVisible(false);
@@ -1468,6 +1473,8 @@ public class RoomAreaCompensateNewUI extends AbstractRoomAreaCompensateNewUI {
 			
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
+			MsgBox.showWarning(this, ex.getMessage());
+			SysUtil.abort();
 		}
 	}
 

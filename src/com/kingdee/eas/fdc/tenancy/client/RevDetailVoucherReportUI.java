@@ -27,6 +27,7 @@ import javax.swing.tree.TreeNode;
 import org.apache.log4j.Logger;
 
 import com.kingdee.bos.BOSException;
+import com.kingdee.bos.ctrl.kdf.table.ICell;
 import com.kingdee.bos.ctrl.kdf.table.IColumn;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTDataRequestManager;
@@ -35,6 +36,7 @@ import com.kingdee.bos.ctrl.kdf.table.KDTStyleConstants;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTDataRequestEvent;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent;
+import com.kingdee.bos.ctrl.kdf.table.foot.KDTFootManager;
 import com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment;
 import com.kingdee.bos.ctrl.swing.KDTree;
 import com.kingdee.bos.ctrl.swing.tree.DefaultKingdeeTreeNode;
@@ -163,14 +165,15 @@ public class RevDetailVoucherReportUI extends AbstractRevDetailVoucherReportUI
          	         tblMain.setRowCount(rs.getRowCount());
          	         Map rowMap=new HashMap();
          	         Map totalrowMap=new HashMap();
+         	         Map totalrowMap2=new HashMap();
          	         String conId=null;
          	         while(rs.next()){
-	                   	 if(conId!=null&&!conId.equals(rs.getString("conId"))){
+	                   	 if(params.getBoolean("isNeedTotal")&&  conId!=null&&!conId.equals(rs.getString("conId"))){
 	                   		IRow totalrow=tblMain.addRow();
-	                   		for(int i=0;i<17;i++){
+	                   		for(int i=0;i<20;i++){
 	                   			totalrow.getCell(i).setValue(tblMain.getRow(totalrow.getRowIndex()-1).getCell(i).getValue());
 	                   		}
-	                   		totalrow.getCell(17).setValue("合计");
+	                   		totalrow.getCell(20).setValue("小计");
 	                   		totalrow.getStyleAttributes().setBackground(FDCHelper.KDTABLE_TOTAL_BG_COLOR);
 	                   		totalrowMap.put(conId, totalrow);
 	                   	 }
@@ -182,10 +185,10 @@ public class RevDetailVoucherReportUI extends AbstractRevDetailVoucherReportUI
          	         }
          	         if(tblMain.getRowCount()>0){
         	        	 IRow lastTotalrow=tblMain.addRow();
-	   	           		 for(int i=0;i<17;i++){
+	   	           		 for(int i=0;i<20;i++){
 	   	           			 lastTotalrow.getCell(i).setValue(tblMain.getRow(lastTotalrow.getRowIndex()-1).getCell(i).getValue());
 	   	           		 }
-	   	           		 lastTotalrow.getCell(17).setValue("合计");
+	   	           		 lastTotalrow.getCell(20).setValue("小计");
 	   	           		 lastTotalrow.getStyleAttributes().setBackground(FDCHelper.KDTABLE_TOTAL_BG_COLOR);
 	   	           		 totalrowMap.put(conId, lastTotalrow);
         	         }
@@ -385,13 +388,21 @@ public class RevDetailVoucherReportUI extends AbstractRevDetailVoucherReportUI
         	        		row.getCell(year+"Y"+month+"M"+"totalRateAmount").setValue(FDCHelper.multiply(FDCHelper.divide(row.getCell(year+"Y"+month+"M"+"totalFeeAmount").getValue(), div, 2, BigDecimal.ROUND_HALF_UP), mdiv));
         	        		row.getCell(year+"Y"+month+"M"+"totalAllAmount").setValue(FDCHelper.subtract(row.getCell(year+"Y"+month+"M"+"totalFeeAmount").getValue(), row.getCell(year+"Y"+month+"M"+"totalRateAmount").getValue()));
         	        		
-        	        		if(totalrowMap.containsKey(detailrs.getString("conId"))){
+        	        		if(totalrowMap.containsKey(detailrs.getString("conId"))&& params.getBoolean("isNeedTotal")){
         	        			IRow totalrow=(IRow) totalrowMap.get(detailrs.getString("conId"));
         	        			totalrow.getCell(year+"Y"+month+"M"+"appAmount").setValue(FDCHelper.add(totalrow.getCell(year+"Y"+month+"M"+"appAmount").getValue(), appAmount));
-        	        			totalrow.getCell(year+"Y"+month+"M"+"totalFeeAmount").setValue(FDCHelper.add(totalrow.getCell(year+"Y"+month+"M"+"totalFeeAmount").getValue(), totalFeeAmount));
-        	        			totalrow.getCell(year+"Y"+month+"M"+"totalRateAmount").setValue(FDCHelper.multiply(FDCHelper.divide(totalrow.getCell(year+"Y"+month+"M"+"totalFeeAmount").getValue(), div, 2, BigDecimal.ROUND_HALF_UP), mdiv));
-        	        			totalrow.getCell(year+"Y"+month+"M"+"totalAllAmount").setValue(FDCHelper.subtract(totalrow.getCell(year+"Y"+month+"M"+"totalFeeAmount").getValue(), totalrow.getCell(year+"Y"+month+"M"+"totalRateAmount").getValue()));
-        	        		}
+        	        			if(!totalrowMap2.containsKey(key)){
+        	        				totalrow.getCell(year+"Y"+month+"M"+"feeAmount").setValue(FDCHelper.add(totalrow.getCell(year+"Y"+month+"M"+"feeAmount").getValue(), row.getCell(year+"Y"+month+"M"+"feeAmount").getValue()));
+            	        			totalrow.getCell(year+"Y"+month+"M"+"rateAmount").setValue(FDCHelper.multiply(FDCHelper.divide(totalrow.getCell(year+"Y"+month+"M"+"feeAmount").getValue(), div, 2, BigDecimal.ROUND_HALF_UP), mdiv));
+            	        			totalrow.getCell(year+"Y"+month+"M"+"allAmount").setValue(FDCHelper.subtract(totalrow.getCell(year+"Y"+month+"M"+"feeAmount").getValue(), totalrow.getCell(year+"Y"+month+"M"+"rateAmount").getValue()));
+            	        			totalrow.getCell(year+"Y"+month+"M"+"totalFeeAmount").setValue(FDCHelper.add(totalrow.getCell(year+"Y"+month+"M"+"totalFeeAmount").getValue(), totalFeeAmount));
+            	        			totalrow.getCell(year+"Y"+month+"M"+"totalRateAmount").setValue(FDCHelper.multiply(FDCHelper.divide(totalrow.getCell(year+"Y"+month+"M"+"totalFeeAmount").getValue(), div, 2, BigDecimal.ROUND_HALF_UP), mdiv));
+            	        			totalrow.getCell(year+"Y"+month+"M"+"totalAllAmount").setValue(FDCHelper.subtract(totalrow.getCell(year+"Y"+month+"M"+"totalFeeAmount").getValue(), totalrow.getCell(year+"Y"+month+"M"+"totalRateAmount").getValue()));
+        	        			}
+        	        			totalrowMap2.put(key, totalrow);
+    	        			}
+        	        		getFootRow(tblMain, new String[]{year+"Y"+month+"M"+"appAmount",year+"Y"+month+"M"+"feeAmount",year+"Y"+month+"M"+"rateAmount",year+"Y"+month+"M"+"allAmount",year+"Y"+month+"M"+"totalFeeAmount",year+"Y"+month+"M"+"totalRateAmount",year+"Y"+month+"M"+"totalAllAmount"});
+        	        		
         	        	 }
         	         }
          	         tblMain.setRefresh(true);
@@ -686,4 +697,66 @@ public class RevDetailVoucherReportUI extends AbstractRevDetailVoucherReportUI
 			FDCMsgBox.showWarning(this,"无应收费用汇总记录！");
 		}
 	}
+	public void getFootRow(KDTable tblMain,String[] columnName){
+		IRow footRow = null;
+        KDTFootManager footRowManager = tblMain.getFootManager();
+        if(footRowManager == null)
+        {
+            String total = EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_Total");
+            footRowManager = new KDTFootManager(tblMain);
+            footRowManager.addFootView();
+            tblMain.setFootManager(footRowManager);
+            footRow = footRowManager.addFootRow(0);
+            footRow.getStyleAttributes().setHorizontalAlign(com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment.getAlignment("right"));
+            tblMain.getIndexColumn().setWidthAdjustMode((short)1);
+            tblMain.getIndexColumn().setWidth(30);
+            footRowManager.addIndexText(0, total);
+        } else
+        {
+            footRow = footRowManager.getFootRow(0);
+        }
+        int columnCount = tblMain.getColumnCount();
+        for(int c = 0; c < columnCount; c++)
+        {
+            String fieldName = tblMain.getColumn(c).getKey();
+            for(int i = 0; i < columnName.length; i++)
+            {
+                String colName = (String)columnName[i];
+                if(colName.equalsIgnoreCase(fieldName))
+                {
+                    ICell cell = footRow.getCell(c);
+                    cell.getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
+                    cell.getStyleAttributes().setHorizontalAlign(com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment.getAlignment("right"));
+                    cell.getStyleAttributes().setFontColor(java.awt.Color.BLACK);
+                    cell.setValue(getColumnValueSum(tblMain,colName));
+                }
+            }
+
+        }
+        footRow.getStyleAttributes().setBackground(new java.awt.Color(246, 246, 191));
+	}
+	public BigDecimal getColumnValueSum(KDTable table,String columnName) {
+    	BigDecimal sum = new BigDecimal(0);
+        for(int i=0;i<table.getRowCount();i++){
+        	if(table.getRow(i).getCell(columnName).getValue()!=null ){
+        		if(table.getRow(i).getStyleAttributes().getBackground().equals(FDCHelper.KDTABLE_TOTAL_BG_COLOR)){
+        			continue;
+        		}
+        		if( table.getRow(i).getCell(columnName).getValue() instanceof BigDecimal)
+            		sum = sum.add((BigDecimal)table.getRow(i).getCell(columnName).getValue());
+            	else if(table.getRow(i).getCell(columnName).getValue() instanceof String){
+            		String value = (String)table.getRow(i).getCell(columnName).getValue();
+            		if(value.indexOf("零")==-1 && value.indexOf("[]")==-1){
+            			value = value.replaceAll(",", "");
+                		sum = sum.add(new BigDecimal(value));
+            		}
+            	}
+            	else if(table.getRow(i).getCell(columnName).getValue() instanceof Integer){
+            		String value = table.getRow(i).getCell(columnName).getValue().toString();
+            		sum = sum.add(new BigDecimal(value));
+            	}
+        	}
+        }
+        return sum;
+    }
 }

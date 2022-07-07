@@ -375,27 +375,27 @@ public abstract class AbstractNewSHERevBillEditUI extends com.kingdee.eas.framew
         this.menuRecycle.setName("menuRecycle");
         // CoreUI		
         this.setPreferredSize(new Dimension(1015,629));		
+        this.btnTraceUp.setVisible(false);		
+        this.btnTraceDown.setVisible(false);		
+        this.btnCreateTo.setVisible(true);		
         this.btnAddLine.setVisible(false);		
         this.btnCopyLine.setVisible(false);		
         this.btnInsertLine.setVisible(false);		
         this.btnRemoveLine.setVisible(false);		
-        this.btnTraceUp.setVisible(false);		
-        this.btnTraceDown.setVisible(false);		
         this.btnAuditResult.setVisible(false);		
         this.separator1.setVisible(false);		
+        this.menuItemCreateTo.setVisible(true);		
         this.separator3.setVisible(false);		
         this.menuItemTraceUp.setVisible(false);		
         this.menuItemTraceDown.setVisible(false);		
-        this.menuItemViewSubmitProccess.setVisible(false);		
-        this.menuItemViewDoProccess.setVisible(false);		
-        this.menuItemAuditResult.setVisible(false);		
         this.menuTable1.setVisible(false);		
         this.menuItemAddLine.setVisible(false);		
+        this.menuItemCopyLine.setVisible(false);		
         this.menuItemInsertLine.setVisible(false);		
         this.menuItemRemoveLine.setVisible(false);		
-        this.btnCreateTo.setVisible(true);		
-        this.menuItemCreateTo.setVisible(true);		
-        this.menuItemCopyLine.setVisible(false);
+        this.menuItemViewSubmitProccess.setVisible(false);		
+        this.menuItemViewDoProccess.setVisible(false);		
+        this.menuItemAuditResult.setVisible(false);
         // contCreator		
         this.contCreator.setBoundLabelText(resHelper.getString("contCreator.boundLabelText"));		
         this.contCreator.setBoundLabelLength(100);		
@@ -1044,9 +1044,13 @@ public abstract class AbstractNewSHERevBillEditUI extends com.kingdee.eas.framew
         //menuFile
         menuFile.add(menuItemAddNew);
         menuFile.add(kDSeparator1);
+        menuFile.add(menuItemCloudFeed);
         menuFile.add(menuItemSave);
+        menuFile.add(menuItemCloudScreen);
         menuFile.add(menuItemSubmit);
+        menuFile.add(menuItemCloudShare);
         menuFile.add(menuSubmitOption);
+        menuFile.add(kdSeparatorFWFile1);
         menuFile.add(rMenuItemSubmit);
         menuFile.add(rMenuItemSubmitAndAddNew);
         menuFile.add(rMenuItemSubmitAndPrint);
@@ -1110,6 +1114,7 @@ public abstract class AbstractNewSHERevBillEditUI extends com.kingdee.eas.framew
         menuTool.add(menuItemSendMessage);
         menuTool.add(menuItemMsgFormat);
         menuTool.add(menuItemCalculator);
+        menuTool.add(menuItemToolBarCustom);
         //menuWorkflow
         menuWorkflow.add(menuItemStartWorkFlow);
         menuWorkflow.add(separatorWF1);
@@ -1141,8 +1146,11 @@ public abstract class AbstractNewSHERevBillEditUI extends com.kingdee.eas.framew
     public void initUIToolBarLayout()
     {
         this.toolBar.add(btnAddNew);
+        this.toolBar.add(btnCloud);
         this.toolBar.add(btnEdit);
+        this.toolBar.add(btnXunTong);
         this.toolBar.add(btnSave);
+        this.toolBar.add(kDSeparatorCloud);
         this.toolBar.add(btnSubmit);
         this.toolBar.add(btnSubmitAudit);
         this.toolBar.add(btnReset);
@@ -1166,6 +1174,7 @@ public abstract class AbstractNewSHERevBillEditUI extends com.kingdee.eas.framew
         this.toolBar.add(btnWorkFlowG);
         this.toolBar.add(btnSignature);
         this.toolBar.add(btnViewSignature);
+        this.toolBar.add(btnNumberSign);
         this.toolBar.add(separatorFW4);
         this.toolBar.add(separatorFW7);
         this.toolBar.add(btnCreateFrom);
@@ -1443,47 +1452,178 @@ public abstract class AbstractNewSHERevBillEditUI extends com.kingdee.eas.framew
     public SelectorItemCollection getSelectors()
     {
         SelectorItemCollection sic = new SelectorItemCollection();
-        sic.add(new SelectorItemInfo("creator.*"));
+		String selectorAll = System.getProperty("selector.all");
+		if(StringUtils.isEmpty(selectorAll)){
+			selectorAll = "true";
+		}
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("creator.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("creator.id"));
+        	sic.add(new SelectorItemInfo("creator.number"));
+        	sic.add(new SelectorItemInfo("creator.name"));
+		}
         sic.add(new SelectorItemInfo("createTime"));
-        sic.add(new SelectorItemInfo("lastUpdateUser.*"));
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("lastUpdateUser.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("lastUpdateUser.id"));
+        	sic.add(new SelectorItemInfo("lastUpdateUser.number"));
+        	sic.add(new SelectorItemInfo("lastUpdateUser.name"));
+		}
         sic.add(new SelectorItemInfo("lastUpdateTime"));
         sic.add(new SelectorItemInfo("number"));
         sic.add(new SelectorItemInfo("bizDate"));
         sic.add(new SelectorItemInfo("description"));
-        sic.add(new SelectorItemInfo("auditor.*"));
-        sic.add(new SelectorItemInfo("currency.*"));
-        sic.add(new SelectorItemInfo("sellProject.*"));
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("auditor.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("auditor.id"));
+        	sic.add(new SelectorItemInfo("auditor.number"));
+        	sic.add(new SelectorItemInfo("auditor.name"));
+		}
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("currency.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("currency.id"));
+        	sic.add(new SelectorItemInfo("currency.number"));
+        	sic.add(new SelectorItemInfo("currency.name"));
+		}
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("sellProject.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("sellProject.id"));
+        	sic.add(new SelectorItemInfo("sellProject.number"));
+        	sic.add(new SelectorItemInfo("sellProject.name"));
+		}
         sic.add(new SelectorItemInfo("exchangeRate"));
         sic.add(new SelectorItemInfo("auditTime"));
         sic.add(new SelectorItemInfo("revAmount"));
-        sic.add(new SelectorItemInfo("room.*"));
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("room.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("room.id"));
+        	sic.add(new SelectorItemInfo("room.number"));
+        	sic.add(new SelectorItemInfo("room.name"));
+		}
         sic.add(new SelectorItemInfo("revBillType"));
         sic.add(new SelectorItemInfo("payCustomerName"));
         sic.add(new SelectorItemInfo("receiptNumber"));
         sic.add(new SelectorItemInfo("invoiceNumber"));
-        sic.add(new SelectorItemInfo("relateFromCust.*"));
-        sic.add(new SelectorItemInfo("receipt.*"));
-        sic.add(new SelectorItemInfo("invoice.*"));
-    sic.add(new SelectorItemInfo("entrys.id"));
-        sic.add(new SelectorItemInfo("entrys.*"));
-//        sic.add(new SelectorItemInfo("entrys.number"));
-    sic.add(new SelectorItemInfo("entrys.revAmount"));
-        sic.add(new SelectorItemInfo("entrys.moneyDefine.*"));
-//        sic.add(new SelectorItemInfo("entrys.moneyDefine.number"));
-        sic.add(new SelectorItemInfo("entrys.settlementType.*"));
-//        sic.add(new SelectorItemInfo("entrys.settlementType.number"));
-    sic.add(new SelectorItemInfo("entrys.settlementNumber"));
-        sic.add(new SelectorItemInfo("entrys.revAccountBank.*"));
-//        sic.add(new SelectorItemInfo("entrys.revAccountBank.number"));
-    sic.add(new SelectorItemInfo("entrys.customerBankNumber"));
-    sic.add(new SelectorItemInfo("entrys.receiptNumber"));
-    sic.add(new SelectorItemInfo("entrys.invoiceNumber"));
-    sic.add(new SelectorItemInfo("entrys.amount"));
-    sic.add(new SelectorItemInfo("entrys.invoiceType"));
-        sic.add(new SelectorItemInfo("accountBank.*"));
-        sic.add(new SelectorItemInfo("revAccount.*"));
-        sic.add(new SelectorItemInfo("bank.*"));
-        sic.add(new SelectorItemInfo("settlementType.*"));
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("relateFromCust.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("relateFromCust.id"));
+        	sic.add(new SelectorItemInfo("relateFromCust.number"));
+        	sic.add(new SelectorItemInfo("relateFromCust.name"));
+		}
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("receipt.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("receipt.id"));
+        	sic.add(new SelectorItemInfo("receipt.number"));
+		}
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("invoice.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("invoice.id"));
+        	sic.add(new SelectorItemInfo("invoice.number"));
+		}
+    	sic.add(new SelectorItemInfo("entrys.id"));
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("entrys.*"));
+		}
+		else{
+		}
+    	sic.add(new SelectorItemInfo("entrys.revAmount"));
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("entrys.moneyDefine.*"));
+		}
+		else{
+	    	sic.add(new SelectorItemInfo("entrys.moneyDefine.id"));
+			sic.add(new SelectorItemInfo("entrys.moneyDefine.name"));
+        	sic.add(new SelectorItemInfo("entrys.moneyDefine.number"));
+		}
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("entrys.settlementType.*"));
+		}
+		else{
+	    	sic.add(new SelectorItemInfo("entrys.settlementType.id"));
+			sic.add(new SelectorItemInfo("entrys.settlementType.name"));
+        	sic.add(new SelectorItemInfo("entrys.settlementType.number"));
+		}
+    	sic.add(new SelectorItemInfo("entrys.settlementNumber"));
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("entrys.revAccountBank.*"));
+		}
+		else{
+	    	sic.add(new SelectorItemInfo("entrys.revAccountBank.id"));
+			sic.add(new SelectorItemInfo("entrys.revAccountBank.name"));
+        	sic.add(new SelectorItemInfo("entrys.revAccountBank.number"));
+		}
+    	sic.add(new SelectorItemInfo("entrys.customerBankNumber"));
+    	sic.add(new SelectorItemInfo("entrys.receiptNumber"));
+    	sic.add(new SelectorItemInfo("entrys.invoiceNumber"));
+    	sic.add(new SelectorItemInfo("entrys.amount"));
+    	sic.add(new SelectorItemInfo("entrys.invoiceType"));
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("accountBank.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("accountBank.id"));
+        	sic.add(new SelectorItemInfo("accountBank.number"));
+        	sic.add(new SelectorItemInfo("accountBank.name"));
+		}
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("revAccount.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("revAccount.id"));
+        	sic.add(new SelectorItemInfo("revAccount.number"));
+        	sic.add(new SelectorItemInfo("revAccount.name"));
+		}
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("bank.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("bank.id"));
+        	sic.add(new SelectorItemInfo("bank.number"));
+        	sic.add(new SelectorItemInfo("bank.name"));
+		}
+		if(selectorAll.equalsIgnoreCase("true"))
+		{
+			sic.add(new SelectorItemInfo("settlementType.*"));
+		}
+		else{
+        	sic.add(new SelectorItemInfo("settlementType.id"));
+        	sic.add(new SelectorItemInfo("settlementType.number"));
+        	sic.add(new SelectorItemInfo("settlementType.name"));
+		}
         sic.add(new SelectorItemInfo("settlementNumber"));
         return sic;
     }        

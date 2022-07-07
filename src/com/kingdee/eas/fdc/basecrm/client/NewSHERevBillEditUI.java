@@ -943,7 +943,9 @@ public class NewSHERevBillEditUI extends AbstractNewSHERevBillEditUI
 		SHEManageHelper.handleCodingRule(this.txtNumber, this.oprtState, editData, this.getBizInterface(),null);
     	initControl();
     	
-    	if(SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("ppl")){
+    	if(SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("900002")||
+				SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("00561")||
+				SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("00799")){
     		this.kdtEntrys.setEditable(true);
     		this.kdtEntrys.getColumn("moneyDefine").getStyleAttributes().setLocked(false);
 			KDWorkButton btnReCal=new KDWorkButton();
@@ -2446,4 +2448,5 @@ public class NewSHERevBillEditUI extends AbstractNewSHERevBillEditUI
 	protected KDTextField getNumberCtrl(){
 		return this.txtNumber;
 	}
+
 }

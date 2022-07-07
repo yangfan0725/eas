@@ -51,6 +51,10 @@ public class AccountReportFacadeControllerBean extends AbstractAccountReportFaca
 	    col.setWidth(100);
 	    col.setHided(true);
 	    header.addColumn(col);
+	    col = new RptTableColumn("state");//状态
+	    col.setWidth(100);
+	    col.setHided(true);
+	    header.addColumn(col);
 	    col = new RptTableColumn("projectID");//销售项目id
 	    col.setWidth(100);
 	    col.setHided(true);
@@ -64,12 +68,15 @@ public class AccountReportFacadeControllerBean extends AbstractAccountReportFaca
 	    col.setHided(true);
 	    header.addColumn(col);
 	    col = new RptTableColumn("roomName");//楼号/区号
-	    col.setWidth(150);
+	    col.setWidth(220);
 	    header.addColumn(col);
 	    col = new RptTableColumn("customerNames");//客户
 	    col.setWidth(100);
 	    header.addColumn(col);
 	    col = new RptTableColumn("contractTotal");//合同总价
+	    col.setWidth(100);
+	    header.addColumn(col);
+	    col = new RptTableColumn("revTotal");//收款总额
 	    col.setWidth(100);
 	    header.addColumn(col);
 	    col = new RptTableColumn("bizDate");//签约日期
@@ -137,12 +144,14 @@ public class AccountReportFacadeControllerBean extends AbstractAccountReportFaca
 	    		{
 	    			"付款明细ID",
 	    			"签约ID",
+	    			"状态",
 	    			"销售项目ID",
 	    			"房间号ID",
 	    		 	"款项ID",
 	    		 	"房间",
 	    		 	"客户",
 	    		 	"合同总价",
+	    		 	"收款总额",
 	    		 	"签约日期",
 	    		 	"合同款",
 	    		 	"合同款",
@@ -168,12 +177,14 @@ public class AccountReportFacadeControllerBean extends AbstractAccountReportFaca
 	    		{
 	    			"付款明细ID",
 	    			"签约ID",
+	    			"状态",
 	    			"销售项目ID",
 	    			"房间号ID",
 	    			"款项ID",
 	    		 	"房间",
 	    		 	"客户",
 	    		 	"合同总价",
+	    		 	"收款总额",
 	    		 	"签约日期",
 	    		 	"款项名称",
 	    			"合同金额",
@@ -289,11 +300,12 @@ public class AccountReportFacadeControllerBean extends AbstractAccountReportFaca
 		if(toRevDate!=null){
 			sum=sum+" and revbill.fbizDate<{ts '"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(toRevDate))+ "'}";
 		}
+    	boolean isQuit=params.getBoolean("isQuit");
     	
     	StringBuffer sb = new StringBuffer();
-		sb.append(" select ov.FID as id, t.FBillId as 最新ID,");
+		sb.append(" select ov.FID as id, t.FBillId as 最新ID,sm.fbizState as 状态,");
 		sb.append(" sm.FSellProjectID as 销售项目ID,sm.FRoomID as 房间ID,ov.FMoneyDefineID as 款项ID,room.FName_l2 as 楼号,");
-		sb.append(" sm.FCustomerNames as 客户,sm.FContractTotalAmount as 合同总价,");
+		sb.append(" sm.FCustomerNames as 客户,sm.FContractTotalAmount as 合同总价,t.amount as 收款总额,");
 		sb.append(" sm.fbizDate as 签约日期, ov.FBusinessName as 款项名称,ov.FAppAmount as 应收款,ov.FAppDate as 应收日期, ");
 		sb.append(" sherevbill.actRevAmount as 已收款, sherevbill.revDate as 收款日期,case when ov.FAppAmount =0 then 0 else (isnull(sumSherevbill.sumActRevAmount,0)/ov.FAppAmount)*100  end as 收款比例,");
 		sb.append(" ov.FAppAmount-isnull(sumSherevbill.sumActRevAmount,0) as 未收款,case when ov.FAppAmount =0 or ov.FAppAmount is null then 0 else ((ov.FAppAmount-isnull(sumSherevbill.sumActRevAmount,0))/ov.FAppAmount)*100 end as 未收款比例,DATEDIFF(day,  ov.FAppDate, getdate()) as 违约天数,");
@@ -327,8 +339,13 @@ public class AccountReportFacadeControllerBean extends AbstractAccountReportFaca
 	    sb.append(" left  JOIN T_BD_Bank LN   ON  OD.FLoanBankID = LN.FID");
 	    sb.append(" where OD.FCREATETIME = (select max(FCREATETIME) from T_SHE_OverdueDescribe od2 where od2.FTransOviewId = od.FTransOviewId)");
 	    sb.append(" ) yqyy on yqyy.fid= ov.fid");
-		sb.append(" WHERE sm.fBizState in('SignApple','SignAudit') and ov.ftype='Pay' and md.fmoneyType in('FisrtAmount','HouseAmount','LoanAmount','AccFundAmount') and ov.fBusinessName!='违约金' ");
-		
+	    sb.append(" left join (select sum(isnull(entry.fAmount,0)+isnull(entry.frevAmount,0)) amount,revBill.frelateTransId tranId from T_BDC_SHERevBillEntry entry left join T_BDC_SHERevBill revBill on revBill.fid=entry.fparentid left join t_she_moneyDefine md on md.fid=entry.fmoneyDefineId where revBill.fstate in('2SUBMITTED','4AUDITTED') and md.fnumber!=16 and md.fmoneyType in('FisrtAmount','HouseAmount','LoanAmount','AccFundAmount') group by revBill.frelateTransId) t on t.tranId=sm.FTransactionID");
+		sb.append(" WHERE ov.ftype='Pay' and md.fmoneyType in('FisrtAmount','HouseAmount','LoanAmount','AccFundAmount') and ov.fBusinessName!='违约金' ");
+		if(isQuit){
+			sb.append(" and sm.fBizState in('SignApple','SignAudit','QRNullify')");
+		}else{
+			sb.append(" and sm.fBizState in('SignApple','SignAudit') ");
+		}
 		if(userSql!=null){
 			sb.append(" and sm.fid in (select distinct fheadid from T_SHE_SignSaleManEntry where fuserid in ("+userSql+") )");
 		}

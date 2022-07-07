@@ -226,7 +226,7 @@ public class DepositDealBillEditUI extends AbstractDepositDealBillEditUI
         super.storeFields();
         
         Date now=new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:sss");
 
         if(this.cbType.getSelectedItem()!=null){
         	editData.setName(this.txtCustomer.getText()+" "+((DepositDealTypeEnum)this.cbType.getSelectedItem()).getAlias()+" "+sdf.format(now));
@@ -555,10 +555,18 @@ public class DepositDealBillEditUI extends AbstractDepositDealBillEditUI
 					this.kdtEntry.getRow(i).getCell("actDate").setValue(srcInfo.getActRevDate());
 				}
 			}
+			CRMClientHelper.getFootRow(this.kdtEntry, new String[]{"appAmount","actAmount","amount"});
 		} catch (EASBizException e1) {
 			e1.printStackTrace();
 		} catch (BOSException e1) {
 			e1.printStackTrace();
 		}
 	}
+	@Override
+	protected void kdtEntry_editStopped(KDTEditEvent e) throws Exception {
+		// TODO Auto-generated method stub
+		super.kdtEntry_editStopped(e);
+		CRMClientHelper.getFootRow(this.kdtEntry, new String[]{"amount"});
+	}
+	
 }

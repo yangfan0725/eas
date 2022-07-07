@@ -50,6 +50,10 @@ public abstract class AbstractDepositAmountReportUI extends com.kingdee.eas.fram
     protected com.kingdee.bos.ctrl.swing.KDTreeView treeView;
     protected com.kingdee.bos.ctrl.kdf.table.KDTable tblMain;
     protected com.kingdee.bos.ctrl.swing.KDTree treeMain;
+    protected com.kingdee.bos.ctrl.swing.KDWorkButton btnGen;
+    protected com.kingdee.bos.ctrl.swing.KDWorkButton btnView;
+    protected ActionGen actionGen = null;
+    protected ActionView actionView = null;
     /**
      * output class constructor
      */
@@ -68,14 +72,26 @@ public abstract class AbstractDepositAmountReportUI extends com.kingdee.eas.fram
     {
         this.resHelper = new ResourceBundleHelper(AbstractDepositAmountReportUI.class.getName());
         this.setUITitle(resHelper.getString("this.title"));
+        //actionGen
+        this.actionGen = new ActionGen(this);
+        getActionManager().registerAction("actionGen", actionGen);
+         this.actionGen.addService(new com.kingdee.eas.framework.client.service.PermissionService());
+        //actionView
+        this.actionView = new ActionView(this);
+        getActionManager().registerAction("actionView", actionView);
+         this.actionView.addService(new com.kingdee.eas.framework.client.service.PermissionService());
         this.kDSplitPane1 = new com.kingdee.bos.ctrl.swing.KDSplitPane();
         this.treeView = new com.kingdee.bos.ctrl.swing.KDTreeView();
         this.tblMain = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.treeMain = new com.kingdee.bos.ctrl.swing.KDTree();
+        this.btnGen = new com.kingdee.bos.ctrl.swing.KDWorkButton();
+        this.btnView = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.kDSplitPane1.setName("kDSplitPane1");
         this.treeView.setName("treeView");
         this.tblMain.setName("tblMain");
         this.treeMain.setName("treeMain");
+        this.btnGen.setName("btnGen");
+        this.btnView.setName("btnView");
         // CoreUI
         // kDSplitPane1		
         this.kDSplitPane1.setDividerLocation(200);
@@ -105,6 +121,12 @@ public abstract class AbstractDepositAmountReportUI extends com.kingdee.eas.fram
                 }
             }
         });
+        // btnGen
+        this.btnGen.setAction((IItemAction)ActionProxyFactory.getProxy(actionGen, new Class[] { IItemAction.class }, getServiceContext()));		
+        this.btnGen.setText(resHelper.getString("btnGen.text"));
+        // btnView
+        this.btnView.setAction((IItemAction)ActionProxyFactory.getProxy(actionView, new Class[] { IItemAction.class }, getServiceContext()));		
+        this.btnView.setText(resHelper.getString("btnView.text"));
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -205,6 +227,8 @@ public abstract class AbstractDepositAmountReportUI extends com.kingdee.eas.fram
         this.toolBar.add(btnPrintPreview);
         this.toolBar.add(separator2);
         this.toolBar.add(btnChart);
+        this.toolBar.add(btnGen);
+        this.toolBar.add(btnView);
 
 
     }
@@ -295,6 +319,104 @@ public abstract class AbstractDepositAmountReportUI extends com.kingdee.eas.fram
     {
     }
 
+    	
+
+    /**
+     * output actionGen_actionPerformed method
+     */
+    public void actionGen_actionPerformed(ActionEvent e) throws Exception
+    {
+    }
+    	
+
+    /**
+     * output actionView_actionPerformed method
+     */
+    public void actionView_actionPerformed(ActionEvent e) throws Exception
+    {
+    }
+	public RequestContext prepareActionGen(IItemAction itemAction) throws Exception {
+			RequestContext request = new RequestContext();		
+		if (request != null) {
+    		request.setClassName(getUIHandlerClassName());
+		}
+		return request;
+    }
+	
+	public boolean isPrepareActionGen() {
+    	return false;
+    }
+	public RequestContext prepareActionView(IItemAction itemAction) throws Exception {
+			RequestContext request = new RequestContext();		
+		if (request != null) {
+    		request.setClassName(getUIHandlerClassName());
+		}
+		return request;
+    }
+	
+	public boolean isPrepareActionView() {
+    	return false;
+    }
+
+    /**
+     * output ActionGen class
+     */     
+    protected class ActionGen extends ItemAction {     
+    
+        public ActionGen()
+        {
+            this(null);
+        }
+
+        public ActionGen(IUIObject uiObject)
+        {     
+		super(uiObject);     
+        
+            String _tempStr = null;
+            _tempStr = resHelper.getString("ActionGen.SHORT_DESCRIPTION");
+            this.putValue(ItemAction.SHORT_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionGen.LONG_DESCRIPTION");
+            this.putValue(ItemAction.LONG_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionGen.NAME");
+            this.putValue(ItemAction.NAME, _tempStr);
+        }
+
+        public void actionPerformed(ActionEvent e)
+        {
+        	getUIContext().put("ORG.PK", getOrgPK(this));
+            innerActionPerformed("eas", AbstractDepositAmountReportUI.this, "ActionGen", "actionGen_actionPerformed", e);
+        }
+    }
+
+    /**
+     * output ActionView class
+     */     
+    protected class ActionView extends ItemAction {     
+    
+        public ActionView()
+        {
+            this(null);
+        }
+
+        public ActionView(IUIObject uiObject)
+        {     
+		super(uiObject);     
+        
+            String _tempStr = null;
+            _tempStr = resHelper.getString("ActionView.SHORT_DESCRIPTION");
+            this.putValue(ItemAction.SHORT_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionView.LONG_DESCRIPTION");
+            this.putValue(ItemAction.LONG_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionView.NAME");
+            this.putValue(ItemAction.NAME, _tempStr);
+        }
+
+        public void actionPerformed(ActionEvent e)
+        {
+        	getUIContext().put("ORG.PK", getOrgPK(this));
+            innerActionPerformed("eas", AbstractDepositAmountReportUI.this, "ActionView", "actionView_actionPerformed", e);
+        }
+    }
 
     /**
      * output getMetaDataPK method

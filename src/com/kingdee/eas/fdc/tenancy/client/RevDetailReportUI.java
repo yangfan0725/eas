@@ -173,10 +173,10 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
          	         while(rs.next()){
 	                   	 if(params.getBoolean("isNeedTotal")&&  conId!=null&&!conId.equals(rs.getString("conId")) ){
 	                   		IRow totalrow=tblMain.addRow();
-	                   		for(int i=0;i<17;i++){
+	                   		for(int i=0;i<18;i++){
 	                   			totalrow.getCell(i).setValue(tblMain.getRow(totalrow.getRowIndex()-1).getCell(i).getValue());
 	                   		}
-	                   		totalrow.getCell(17).setValue("合计");
+	                   		totalrow.getCell(18).setValue("小计");
 	                   		totalrow.getStyleAttributes().setBackground(FDCHelper.KDTABLE_TOTAL_BG_COLOR);
 	                   		totalrowMap.put(conId, totalrow);
 	                   	 }
@@ -191,10 +191,10 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
          	         }
          	         if(tblMain.getRowCount()>0 ){
          	        	 IRow lastTotalrow=tblMain.addRow();
-	   	           		 for(int i=0;i<17;i++){
+	   	           		 for(int i=0;i<18;i++){
 	   	           			 lastTotalrow.getCell(i).setValue(tblMain.getRow(lastTotalrow.getRowIndex()-1).getCell(i).getValue());
 	   	           		 }
-	   	           		 lastTotalrow.getCell(17).setValue("合计");
+	   	           		 lastTotalrow.getCell(18).setValue("小计");
 	   	           		 lastTotalrow.getStyleAttributes().setBackground(FDCHelper.KDTABLE_TOTAL_BG_COLOR);
 	   	           		 totalrowMap.put(conId, lastTotalrow);
          	         }
@@ -226,7 +226,7 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
             	        	 
             	        	 tblMain.getHeadRow(0).getCell(column.getKey()).setValue(year+"-"+month);
             	        	 tblMain.getHeadRow(1).getCell(column.getKey()).setValue("应收日期");
-            	        	 CRMClientHelper.fmtDate(tblMain, new String[]{year+"Y"+month+"M"+"appDate"});
+            	        	 CRMClientHelper.fmtDate(tblMain,column.getKey());
             	        	 
             	        	 column=tblMain.addColumn();
             	        	 column.setKey(year+"Y"+month+"M"+"isUnPay");
@@ -259,6 +259,14 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
             	        	 tblMain.getHeadRow(0).getCell(column.getKey()).setValue(year+"-"+month);
             	        	 tblMain.getHeadRow(1).getCell(column.getKey()).setValue("实收金额");
             	        	 CRMClientHelper.changeTableNumberFormat(tblMain, column.getKey());
+            	        	 
+            	        	 column=tblMain.addColumn();
+            	        	 column.setKey(year+"Y"+month+"M"+"revDate");
+            	        	 column.setWidth(70);
+            	        	
+            	        	 tblMain.getHeadRow(0).getCell(column.getKey()).setValue(year+"-"+month);
+            	        	 tblMain.getHeadRow(1).getCell(column.getKey()).setValue("收款日期");
+            	        	 CRMClientHelper.fmtDate(tblMain,column.getKey());
             	        	 
             	        	 column=tblMain.addColumn();
             	        	 column.setKey(year+"Y"+month+"M"+"unRevAmount");
@@ -297,7 +305,7 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
             	     		 });
             	     		 tblMain.getColumn(column.getKey()).setRenderer(render_scale);
             	        	 
-            	        	 tblMain.getHeadMergeManager().mergeBlock(0, merge, 0, merge+7);
+            	        	 tblMain.getHeadMergeManager().mergeBlock(0, merge, 0, merge+8);
             	         }
          	         }
          	         
@@ -316,6 +324,7 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
         	        		row.getCell(year+"Y"+month+"M"+"appAmount").setValue(detailrs.getBigDecimal("appAmount"));
         	        		row.getCell(year+"Y"+month+"M"+"invoiceAmount").setValue(detailrs.getBigDecimal("invoiceAmount"));
         	        		row.getCell(year+"Y"+month+"M"+"actRevAmount").setValue(detailrs.getBigDecimal("actRevAmount"));
+        	        		row.getCell(year+"Y"+month+"M"+"revDate").setValue(detailrs.getObject("revDate"));
         	        		BigDecimal unRevAmount=FDCHelper.subtract(detailrs.getBigDecimal("appAmount"),detailrs.getBigDecimal("actRevAmount"));
         	        		row.getCell(year+"Y"+month+"M"+"unRevAmount").setValue(unRevAmount);
         	        		row.getCell(year+"Y"+month+"M"+"overdueDays").setValue(detailrs.getBigDecimal("overdueDays"));
@@ -364,6 +373,7 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
         	        			row.getCell(year+"Y"+month+"M"+"appAmount").getStyleAttributes().setBackground(Color.GREEN);
         	        			row.getCell(year+"Y"+month+"M"+"invoiceAmount").getStyleAttributes().setBackground(Color.GREEN);
         	        			row.getCell(year+"Y"+month+"M"+"actRevAmount").getStyleAttributes().setBackground(Color.GREEN);
+        	        			row.getCell(year+"Y"+month+"M"+"revDate").getStyleAttributes().setBackground(Color.GREEN);
         	        			row.getCell(year+"Y"+month+"M"+"unRevAmount").getStyleAttributes().setBackground(Color.GREEN);
         	        			row.getCell(year+"Y"+month+"M"+"overdueDays").getStyleAttributes().setBackground(Color.GREEN);
         	        			row.getCell(year+"Y"+month+"M"+"accountRate").getStyleAttributes().setBackground(Color.GREEN);
@@ -373,6 +383,7 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
         	        			row.getCell(year+"Y"+month+"M"+"appAmount").getStyleAttributes().setBackground(Color.YELLOW);
         	        			row.getCell(year+"Y"+month+"M"+"invoiceAmount").getStyleAttributes().setBackground(Color.YELLOW);
         	        			row.getCell(year+"Y"+month+"M"+"actRevAmount").getStyleAttributes().setBackground(Color.YELLOW);
+        	        			row.getCell(year+"Y"+month+"M"+"revDate").getStyleAttributes().setBackground(Color.YELLOW);
         	        			row.getCell(year+"Y"+month+"M"+"unRevAmount").getStyleAttributes().setBackground(Color.YELLOW);
         	        			row.getCell(year+"Y"+month+"M"+"overdueDays").getStyleAttributes().setBackground(Color.YELLOW);
         	        			row.getCell(year+"Y"+month+"M"+"accountRate").getStyleAttributes().setBackground(Color.YELLOW);
@@ -396,6 +407,7 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
         	        			row.getCell(year+"Y"+month+"M"+"appAmount").getStyleAttributes().setBackground(Color.RED);
         	        			row.getCell(year+"Y"+month+"M"+"invoiceAmount").getStyleAttributes().setBackground(Color.RED);
         	        			row.getCell(year+"Y"+month+"M"+"actRevAmount").getStyleAttributes().setBackground(Color.RED);
+        	        			row.getCell(year+"Y"+month+"M"+"revDate").getStyleAttributes().setBackground(Color.RED);
         	        			row.getCell(year+"Y"+month+"M"+"unRevAmount").getStyleAttributes().setBackground(Color.RED);
         	        			row.getCell(year+"Y"+month+"M"+"overdueDays").getStyleAttributes().setBackground(Color.RED);
         	        			row.getCell(year+"Y"+month+"M"+"accountRate").getStyleAttributes().setBackground(Color.RED);
@@ -406,6 +418,7 @@ public class RevDetailReportUI extends AbstractRevDetailReportUI
         	        			row.getCell(year+"Y"+month+"M"+"appAmount").getStyleAttributes().setBackground(Color.CYAN);
         	        			row.getCell(year+"Y"+month+"M"+"invoiceAmount").getStyleAttributes().setBackground(Color.CYAN);
         	        			row.getCell(year+"Y"+month+"M"+"actRevAmount").getStyleAttributes().setBackground(Color.CYAN);
+        	        			row.getCell(year+"Y"+month+"M"+"revDate").getStyleAttributes().setBackground(Color.CYAN);
         	        			row.getCell(year+"Y"+month+"M"+"unRevAmount").getStyleAttributes().setBackground(Color.CYAN);
         	        			row.getCell(year+"Y"+month+"M"+"overdueDays").getStyleAttributes().setBackground(Color.CYAN);
         	        			row.getCell(year+"Y"+month+"M"+"accountRate").getStyleAttributes().setBackground(Color.CYAN);

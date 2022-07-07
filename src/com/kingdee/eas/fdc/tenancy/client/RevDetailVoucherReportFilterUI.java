@@ -17,6 +17,8 @@ import com.kingdee.bos.BOSException;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
+import com.kingdee.bos.metadata.entity.SorterItemCollection;
+import com.kingdee.bos.metadata.entity.SorterItemInfo;
 import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.dao.IObjectValue;
@@ -99,8 +101,10 @@ public class RevDetailVoucherReportFilterUI extends AbstractRevDetailVoucherRepo
 		this.prmtCustomer.setEditFormat("$number$");
 		this.prmtCustomer.setCommitFormat("$number$");
 		this.prmtCustomer.setEnabledMultiSelection(true);
-		this.prmtCustomer.setEntityViewInfo(CommerceHelper.getPermitCustomerView(null,SysContext.getSysContext().getCurrentUserInfo()));
-	
+		view=CommerceHelper.getPermitCustomerView(null,SysContext.getSysContext().getCurrentUserInfo());
+		view.getFilter().getFilterItems().add(new FilterItemInfo("project.id",spSet,CompareType.INCLUDE));
+		this.prmtCustomer.setEntityViewInfo(view);
+		
 		this.prmtMoneyDefine.setEditable(false);
 		this.prmtMoneyDefine.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.MoneyDefineQuery");
 		this.prmtMoneyDefine.setDisplayFormat("$name$");
@@ -109,19 +113,18 @@ public class RevDetailVoucherReportFilterUI extends AbstractRevDetailVoucherRepo
 		this.prmtMoneyDefine.setEnabledMultiSelection(true);
 		view = new EntityViewInfo();
 		filter = new FilterInfo();
-		Set noInNumber=new HashSet();
-		noInNumber.add("03");
-		noInNumber.add("04");
-		noInNumber.add("08");
-		noInNumber.add("10");
-		noInNumber.add("12");
-		noInNumber.add("13");
-		noInNumber.add("14");
-		noInNumber.add("15");
-		noInNumber.add("16");
 		filter.getFilterItems().add(new FilterItemInfo("sysType", MoneySysTypeEnum.TENANCYSYS_VALUE));
-		filter.getFilterItems().add(new FilterItemInfo("number", noInNumber,CompareType.NOTINCLUDE));
+		filter.getFilterItems().add(new FilterItemInfo("name", "%×÷·Ï%",CompareType.NOTLIKE));
+		filter.getFilterItems().add(new FilterItemInfo("moneyType", MoneyTypeEnum.RENTAMOUNT_VALUE));
+		filter.getFilterItems().add(new FilterItemInfo("moneyType", MoneyTypeEnum.ELSEAMOUNT_VALUE));
+		filter.getFilterItems().add(new FilterItemInfo("moneyType", MoneyTypeEnum.PERIODICITYAMOUNT_VALUE));
 		view.setFilter(filter);
+		
+		filter.setMaskString("#0 and #1 and (#2 or #3 or #4)");
+		view.setFilter(filter);
+		SorterItemCollection sort=new SorterItemCollection();
+		sort.add(new SorterItemInfo("number"));
+		view.setSorter(sort);
 		this.prmtMoneyDefine.setEntityViewInfo(view);
 	
     }
@@ -154,7 +157,8 @@ public class RevDetailVoucherReportFilterUI extends AbstractRevDetailVoucherRepo
          pp.setObject("year", this.spYear.getIntegerVlaue());
          pp.setObject("month", this.spMonth.getIntegerVlaue());
 		 pp.setObject("isAll", this.cbIsAll.isSelected());
-		 pp.setObject("isZero", this.cbIsZero.isSelected());
+		 pp.setObject("isNeedTotal", this.chkIsNeedTotal.isSelected());
+         pp.setObject("isZero", this.cbIsZero.isSelected());
 		 return pp;
 	}
 	public void onInit(RptParams params) throws Exception {
@@ -164,6 +168,7 @@ public class RevDetailVoucherReportFilterUI extends AbstractRevDetailVoucherRepo
 		this.prmtRoom.setValue(params.getObject("room"));
 		this.prmtTanancyBill.setValue(params.getObject("tenancyBill"));
 		this.cbIsAll.setSelected(params.getBoolean("isAll"));
+		this.chkIsNeedTotal.setSelected(params.getBoolean("isNeedTotal"));
 		this.cbIsZero.setSelected(params.getBoolean("isZero"));
 		this.prmtCustomer.setValue(params.getObject("customer"));
 		this.prmtMoneyDefine.setValue(params.getObject("moneyDefine"));

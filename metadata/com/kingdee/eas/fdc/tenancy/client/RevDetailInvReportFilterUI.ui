@@ -472,12 +472,12 @@
             </parent>
         </component>
         <component>
-            <name>cbIsNotHasZero</name>
-            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[cbIsNotHasZero].alias</alias>
+            <name>cbIsZero</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[cbIsZero].alias</alias>
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
             <isContainer>false</isContainer>
-            <constraints>308,124,140,19</constraints>
+            <constraints>291,124,140,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -490,8 +490,50 @@
                 <property>
                     <name>text</name>
                     <type>java.lang.String</type>
-                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[cbIsNotHasZero].properties.property[text].value</value>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[cbIsZero].properties.property[text].value</value>
                     <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>selected</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[cbIsZero].properties.property[selected].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>chkIsNeedTotal</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[chkIsNeedTotal].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>168,124,122,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[chkIsNeedTotal].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>selected</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[chkIsNeedTotal].properties.property[selected].value</value>
+                    <isMultiLan>false</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
             </properties>
@@ -706,17 +748,41 @@
             <lang locale="zh_HK" value="包含已終止合同" />
             <lang locale="zh_TW" value="包含已終止合同" />
         </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[cbIsNotHasZero].alias">
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[cbIsZero].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[cbIsNotHasZero].properties.property[text].value">
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[cbIsZero].properties.property[selected].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[cbIsZero].properties.property[text].value">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="过滤为0应收金额" />
-            <lang locale="zh_HK" value="過濾為0應收金額" />
-            <lang locale="zh_TW" value="過濾為0應收金額" />
+            <lang locale="zh_CN" value="应收为0不显示" />
+            <lang locale="zh_HK" value="應收為0不顯示" />
+            <lang locale="zh_TW" value="應收為0不顯示" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[chkIsNeedTotal].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[chkIsNeedTotal].properties.property[selected].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[chkIsNeedTotal].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="是否需要小计" />
+            <lang locale="zh_HK" value="是否需要小計" />
+            <lang locale="zh_TW" value="是否需要小計" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailInvReportFilterUI].components.component[contCustomer].alias">
             <lang locale="en_US" value="null" />

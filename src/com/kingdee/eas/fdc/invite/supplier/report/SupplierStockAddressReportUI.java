@@ -336,9 +336,9 @@ public class SupplierStockAddressReportUI extends
 
 		this.refresh();
 
-	Context ctx=null;
-//	_sendToDo(ctx);
-	mkdangan(ctx);
+//	Context ctx=null;
+////	_sendToDo(ctx);
+//	mkdangan(ctx);
 	
 	}
 

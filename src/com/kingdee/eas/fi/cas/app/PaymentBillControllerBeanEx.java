@@ -337,10 +337,22 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 		}
 	}
 	protected Map _cancelPaySilent(Context ctx, Set idSet) throws BOSException, EASBizException {
-		Map map = helper.getPayValidMapByAction(ctx, idSet, 70);
-		PaymentBillCollection coll = (PaymentBillCollection)map.get("validColl");
+		PaymentBillCollection coll = helper.getPayColl(ctx, idSet);
 		PaymentBillInfo info = null;
-        int i = 0;
+		int i=0;
+		for(int size = coll.size(); i < size; i++){
+            info = coll.get(i);
+            if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
+            	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
+                builder.appendSql("update T_CAS_PaymentBill set fbillstatus=? where fid=? ");
+                builder.addParam(12);
+                builder.addParam(info.getSourceBillId());
+                builder.executeUpdate();
+            }
+        }
+		Map map = helper.getPayValidMapByAction(ctx, idSet, 70);
+		coll = (PaymentBillCollection)map.get("validColl");
+        i = 0;
 		Map reMap=super._cancelPaySilent(ctx, idSet);
 		for(int size = coll.size(); i < size; i++){
 			info = coll.get(i);
@@ -374,13 +386,6 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
                 			PayRequestBillBgEntryFactory.getLocalInstance(ctx).updatePartial(bgEntry, sic);
         				}
         			}
-            		if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
-                     	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
-                        builder.appendSql("update T_CAS_PaymentBill set fbillstatus=? where fid=? ");
-                        builder.addParam(12);
-                        builder.addParam(info.getSourceBillId());
-                        builder.executeUpdate();
-                    }
             		FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
             		builder.appendSql("select sum(factualPayAmount) payAmount,max(fbizDate) payDate from t_cas_paymentbill where fbillstatus=15 and fFdcPayReqID=? and fsourceBillId is null");
                     builder.addParam(payRequest.getId().toString());
@@ -416,10 +421,22 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 		return reMap;
 	}
 	protected void _cancelPay(Context ctx, Set idSet) throws BOSException, EASBizException {
-		Map map = helper.getPayValidMapByAction(ctx, idSet, 70);
-		PaymentBillCollection coll = (PaymentBillCollection)map.get("validColl");
+		PaymentBillCollection coll = helper.getPayColl(ctx, idSet);
 		PaymentBillInfo info = null;
-        int i = 0;
+		int i=0;
+		for(int size = coll.size(); i < size; i++){
+            info = coll.get(i);
+            if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
+            	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
+                builder.appendSql("update T_CAS_PaymentBill set fbillstatus=? where fid=? ");
+                builder.addParam(12);
+                builder.addParam(info.getSourceBillId());
+                builder.executeUpdate();
+            }
+        }
+		Map map = helper.getPayValidMapByAction(ctx, idSet, 70);
+		coll = (PaymentBillCollection)map.get("validColl");
+        i = 0;
 		super._cancelPay(ctx, idSet);
         for(int size = coll.size(); i < size; i++){
             info = coll.get(i);
@@ -453,13 +470,6 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
                 			PayRequestBillBgEntryFactory.getLocalInstance(ctx).updatePartial(bgEntry, sic);
         				}
         			}
-        			if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
-                    	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
-                        builder.appendSql("update T_CAS_PaymentBill set fbillstatus=? where fid=? ");
-                        builder.addParam(12);
-                        builder.addParam(info.getSourceBillId());
-                        builder.executeUpdate();
-                    }
             		FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
             		builder.appendSql("select sum(factualPayAmount) payAmount,max(fbizDate) payDate from t_cas_paymentbill where fbillstatus=15 and fFdcPayReqID=? and fsourceBillId is null");
                     builder.addParam(payRequest.getId().toString());

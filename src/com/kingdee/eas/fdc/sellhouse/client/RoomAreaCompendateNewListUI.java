@@ -670,9 +670,11 @@ public class RoomAreaCompendateNewListUI extends
 			try {
 				RoomAreaCompensateFactory.getRemoteInstance()
 						.auditAndCalcSellAmount(id);
-				MsgBox.showInfo("审批成功!");
+				MsgBox.showInfo(this, "审批成功!");
 			} catch (Exception ex) {
+				MsgBox.showWarning(this, ex.getMessage());
 				logger.error(ex.getMessage());
+				SysUtil.abort();
 			}
 		} else {
 			FDCMsgBox.showWarning(this, "请先选择记录!");
@@ -702,14 +704,11 @@ public class RoomAreaCompendateNewListUI extends
 			try {
 				RoomAreaCompensateFactory.getRemoteInstance()
 						.unAuditAndCalcSellAmount(id);
-				MsgBox.showInfo("反审批成功!");
+				MsgBox.showInfo(this, "反审批成功!");
 			} catch (Exception ex) {
 				logger.error(ex.getMessage());
-				if (ex instanceof BOSException
-						&& ex.getMessage().startsWith("roomAreaCompensate")) {
-					MsgBox.showWarning(this, "已收补差款，不能反审批!");
-					SysUtil.abort();
-				}
+				MsgBox.showWarning(this, ex.getMessage());
+				SysUtil.abort();
 			}
 		} else {
 			FDCMsgBox.showWarning(this, "请先选择记录!");

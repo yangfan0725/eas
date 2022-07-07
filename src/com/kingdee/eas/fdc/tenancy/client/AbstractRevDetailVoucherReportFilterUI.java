@@ -55,6 +55,7 @@ public abstract class AbstractRevDetailVoucherReportFilterUI extends com.kingdee
     protected com.kingdee.bos.ctrl.swing.KDLabel kDLabel1;
     protected com.kingdee.bos.ctrl.swing.KDSpinner spMonth;
     protected com.kingdee.bos.ctrl.swing.KDLabel kDLabel2;
+    protected com.kingdee.bos.ctrl.swing.KDCheckBox chkIsNeedTotal;
     protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsZero;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtTanancyBill;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtRoom;
@@ -88,6 +89,7 @@ public abstract class AbstractRevDetailVoucherReportFilterUI extends com.kingdee
         this.kDLabel1 = new com.kingdee.bos.ctrl.swing.KDLabel();
         this.spMonth = new com.kingdee.bos.ctrl.swing.KDSpinner();
         this.kDLabel2 = new com.kingdee.bos.ctrl.swing.KDLabel();
+        this.chkIsNeedTotal = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.cbIsZero = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.prmtTanancyBill = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.prmtRoom = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
@@ -103,6 +105,7 @@ public abstract class AbstractRevDetailVoucherReportFilterUI extends com.kingdee
         this.kDLabel1.setName("kDLabel1");
         this.spMonth.setName("spMonth");
         this.kDLabel2.setName("kDLabel2");
+        this.chkIsNeedTotal.setName("chkIsNeedTotal");
         this.cbIsZero.setName("cbIsZero");
         this.prmtTanancyBill.setName("prmtTanancyBill");
         this.prmtRoom.setName("prmtRoom");
@@ -149,8 +152,12 @@ public abstract class AbstractRevDetailVoucherReportFilterUI extends com.kingdee
         // spMonth
         // kDLabel2		
         this.kDLabel2.setText(resHelper.getString("kDLabel2.text"));
+        // chkIsNeedTotal		
+        this.chkIsNeedTotal.setText(resHelper.getString("chkIsNeedTotal.text"));		
+        this.chkIsNeedTotal.setSelected(true);
         // cbIsZero		
-        this.cbIsZero.setText(resHelper.getString("cbIsZero.text"));
+        this.cbIsZero.setText(resHelper.getString("cbIsZero.text"));		
+        this.cbIsZero.setSelected(true);
         // prmtTanancyBill		
         this.prmtTanancyBill.setCommitFormat("$name$");		
         this.prmtTanancyBill.setEditFormat("$name$");		
@@ -209,7 +216,9 @@ public abstract class AbstractRevDetailVoucherReportFilterUI extends com.kingdee
         this.add(spMonth, null);
         kDLabel2.setBounds(new Rectangle(285, 101, 15, 19));
         this.add(kDLabel2, null);
-        cbIsZero.setBounds(new Rectangle(241, 128, 140, 19));
+        chkIsNeedTotal.setBounds(new Rectangle(173, 128, 122, 19));
+        this.add(chkIsNeedTotal, null);
+        cbIsZero.setBounds(new Rectangle(301, 128, 140, 19));
         this.add(cbIsZero, null);
         //contTanancyBill
         contTanancyBill.setBoundEditor(prmtTanancyBill);

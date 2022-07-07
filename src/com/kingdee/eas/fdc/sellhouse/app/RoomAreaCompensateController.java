@@ -25,7 +25,6 @@ import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.eas.fdc.sellhouse.RoomAreaCompensateInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomAreaCompensateCollection;
 import java.util.List;
-import com.kingdee.eas.fdc.sellhouse.SignManageCollection;
 
 import java.rmi.RemoteException;
 import com.kingdee.bos.framework.ejb.BizController;
@@ -51,7 +50,7 @@ public interface RoomAreaCompensateController extends FDCBillController
     public void setSubmit(Context ctx, BOSUuid billId) throws BOSException, EASBizException, RemoteException;
     public void deleteCompensateInfo(Context ctx, BOSUuid billId) throws BOSException, EASBizException, RemoteException;
     public void createBillForSign(Context ctx, CompensateRoomListCollection compColl) throws BOSException, EASBizException, RemoteException;
-    public void deleteBillFromSign(Context ctx, String roomId, SignManageCollection comColl) throws BOSException, EASBizException, RemoteException;
+    public void deleteBillFromSign(Context ctx, CompensateRoomListCollection compColl) throws BOSException, EASBizException, RemoteException;
     public void createRoomCompensateForView(Context ctx, List roomIdList, String compId) throws BOSException, EASBizException, RemoteException;
     public void deleteRoomCompensateForView(Context ctx, List roomIdList, String comId) throws BOSException, EASBizException, RemoteException;
 }

@@ -199,10 +199,13 @@ public class RevDetailVoucherReportFacadeControllerBean extends AbstractRevDetai
     	if(endDate!=null){
     		sb.append(" and con.fendDate>{ts '"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+ "'}");
     	}
+    	sb.append(" group by md.frate,md.fnumber,md.fid,con.fid,sp.fid,room.fid,customerEntry.ffdcCustomerId,sp.fname_l2,build.fname_l2,con.ftenRoomsDes,room.FBuildingArea,roomEntry.fbuildingArea,");
+    	sb.append(" con.fnumber,con.ftenancyName,con.ftencustomerDes,con.fstartDate,con.fendDate,datediff(day,rent.ffreeStartDate,rent.ffreeEndDate)+1,con.fdealTotalRent+isnull(other.amount,0),");
+    	sb.append(" roomEntry.fdealRoomRentPrice,roomEntry.fdealRoomRentPrice/roomEntry.fbuildingArea,md.fname_l2");
     	if(isZero){
-    		sb.append(" and pay.fappAmount>0");
+    		sb.append(" having sum(pay.fappAmount)>0");
     	}
-    	sb.append(" union all select  md.frate rate, md.fnumber mdNumber,md.fid mdId,con.fid conId,sp.fid spId,room.fid roomId,customerEntry.ffdcCustomerId customerId,sp.fname_l2 sellProject,build.fname_l2 build,con.ftenRoomsDes room,room.FBuildingArea buildArea,roomEntry.fbuildingArea tenancyArea,");
+    	sb.append(" union all select md.frate rate, md.fnumber mdNumber,md.fid mdId,con.fid conId,sp.fid spId,room.fid roomId,customerEntry.ffdcCustomerId customerId,sp.fname_l2 sellProject,build.fname_l2 build,con.ftenRoomsDes room,room.FBuildingArea buildArea,roomEntry.fbuildingArea tenancyArea,");
     	sb.append(" con.fnumber conNumber,con.ftenancyName conName,con.ftencustomerDes customer,con.fstartDate startDate,con.fendDate endDate,datediff(day,rent.ffreeStartDate,rent.ffreeEndDate)+1 freeDays,con.fdealTotalRent+isnull(other.amount,0) dealTotal,");
     	sb.append(" roomEntry.fdealRoomRentPrice dealPrice,roomEntry.fdealRoomRentPrice/roomEntry.fbuildingArea roomPrice,md.fname_l2 moneyDefine from T_TEN_TenancyBill con left join T_TEN_TenancyRoomEntry roomEntry on con.fid=roomEntry.ftenancyId left join T_TEN_TenancyCustomerEntry customerEntry on con.fid=customerEntry.ftenancyBillId"); 
     	sb.append(" left join t_she_room room on room.fid=roomEntry.froomId left join t_she_building build on build.fid=room.fbuildingId left join t_she_sellProject sp on sp.fid=con.fsellProjectid");
@@ -237,8 +240,11 @@ public class RevDetailVoucherReportFacadeControllerBean extends AbstractRevDetai
     	if(endDate!=null){
     		sb.append(" and pay.fendDate>{ts '"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+ "'}");
     	}
+    	sb.append(" group by md.frate,md.fnumber,md.fid,con.fid,sp.fid,room.fid,customerEntry.ffdcCustomerId,sp.fname_l2,build.fname_l2,con.ftenRoomsDes,room.FBuildingArea,roomEntry.fbuildingArea,");
+    	sb.append(" con.fnumber,con.ftenancyName,con.ftencustomerDes,con.fstartDate,con.fendDate,datediff(day,rent.ffreeStartDate,rent.ffreeEndDate)+1,con.fdealTotalRent+isnull(other.amount,0),");
+    	sb.append(" roomEntry.fdealRoomRentPrice,roomEntry.fdealRoomRentPrice/roomEntry.fbuildingArea,md.fname_l2");
     	if(isZero){
-    		sb.append(" and pay.fappAmount>0");
+    		sb.append(" having sum(pay.fappAmount)>0");
     	}
     	sb.append(" )t )t order by t.conNumber,mdNumber");
     	
@@ -266,11 +272,14 @@ public class RevDetailVoucherReportFacadeControllerBean extends AbstractRevDetai
     	sb.append(" from T_TEN_TenancyRoomPayListEntry pay left join T_TEN_TenancyRoomEntry roomEntry on pay.ftenRoomId=roomEntry.fid left join T_TEN_TenancyBill con on con.fid=roomEntry.ftenancyId left join t_she_moneyDefine md on md.fid=pay.fmoneyDefineId");
     	sb.append(" left join T_TEN_TenancyRoomEntry roomEntry1 on con.fid=roomEntry1.ftenancyId left join t_she_room room on room.fid=roomEntry.froomId left join t_she_sellProject sp on sp.fid=con.fsellProjectid");
     	sb.append(" left join (select feeEntry.ftenancyBillId conId,feeEntry.fmoneyDefineId mdId,sum(feeEntry.fappAmount) totalFeeAmount from T_TEN_FeesWarrantEntrys feeEntry group by ftenancyBillId,fmoneyDefineId) feeEntry on feeEntry.conId=con.fid and feeEntry.mdId=md.fid");
-    	sb.append(" where md.fid is not null and md.fnumber  in(select fnumber from t_she_moneydefine m where m.fdescription_l2 ='收入确认') and pay.fappAmount>0 ");
+    	sb.append(" where md.fid is not null and md.fnumber  in(select fnumber from t_she_moneydefine m where m.fdescription_l2 ='收入确认')");
     	if(isAll){
     		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying','Expiration')");
     	}else{
     		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying')");
+    	}
+    	if(isZero){
+    		sb.append(" and isnull(pay.fappAmount,0)>0");
     	}
     	if(sellProject!=null&&!"".equals(sellProject)){
     		sb.append(" and sp.fid in("+sellProject+")");
@@ -323,7 +332,7 @@ public class RevDetailVoucherReportFacadeControllerBean extends AbstractRevDetai
     	}
     	sb.append(" left outer join t_ten_otherbill ob on ob.fid = pay.fotherbillid  left join T_TEN_TenancyBill con on con.fid = pay.fheadId   left join t_she_moneyDefine md  on md.fid = pay.fmoneyDefineId and md.fdescription_l2='收入确认' ");
     	sb.append(" left join T_TEN_TenancyRoomEntry roomEntry on con.fid = roomEntry.ftenancyId    left join t_she_room room  on room.fid = roomEntry.froomId  left join t_she_sellProject sp  on sp.fid = con.fsellProjectid ");
-    	sb.append(" where md.fid is not null  and pay.fappAmount > 0 ");
+    	sb.append(" where md.fid is not null");
     	
     	 
     	 
@@ -342,6 +351,9 @@ public class RevDetailVoucherReportFacadeControllerBean extends AbstractRevDetai
     		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying','Expiration')");
     	}else{
     		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying')");
+    	}
+    	if(isZero){
+    		sb.append(" and isnull(pay.fappAmount,0)>0");
     	}
     	if(sellProject!=null&&!"".equals(sellProject)){
     		sb.append(" and sp.fid in("+sellProject+")");

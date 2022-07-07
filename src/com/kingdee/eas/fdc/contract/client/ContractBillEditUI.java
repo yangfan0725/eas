@@ -8143,21 +8143,21 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 	protected void prmtpartB_dataChanged(DataChangeEvent e) throws Exception {
 		SupplierInfo supplier=(SupplierInfo) this.prmtpartB.getValue();
 		if(supplier!=null){
-			EntityViewInfo view=new EntityViewInfo();
-			FilterInfo filter=new FilterInfo();
-			filter.getFilterItems().add(new FilterItemInfo("supplier.id",supplier.getId().toString()));
-			view.setFilter(filter);
-			SelectorItemCollection sic = super.getSelectors();
-			sic.add(new SelectorItemInfo("supplierBank.*"));
-			view.setSelector(sic);
-			SupplierCompanyInfoCollection col=SupplierCompanyInfoFactory.getRemoteInstance().getSupplierCompanyInfoCollection(view);
-			if(col.size()>0&&col.get(0).getSupplierBank().size()>0){
-				this.txtBank.setText(col.get(0).getSupplierBank().get(0).getBank());
-//				this.txtBankAccount.setText(col.get(0).getSupplierBank().get(0).getBankAccount());
-			}
+//			EntityViewInfo view=new EntityViewInfo();
+//			FilterInfo filter=new FilterInfo();
+//			filter.getFilterItems().add(new FilterItemInfo("supplier.id",supplier.getId().toString()));
+//			view.setFilter(filter);
+//			SelectorItemCollection sic = super.getSelectors();
+//			sic.add(new SelectorItemInfo("supplierBank.*"));
+//			view.setSelector(sic);
+//			SupplierCompanyInfoCollection col=SupplierCompanyInfoFactory.getRemoteInstance().getSupplierCompanyInfoCollection(view);
+//			if(col.size()>0&&col.get(0).getSupplierBank().size()>0){
+//				this.txtBank.setText(col.get(0).getSupplierBank().get(0).getBank());
+////				this.txtBankAccount.setText(col.get(0).getSupplierBank().get(0).getBankAccount());
+//			}
 			this.txtTaxerNum.setText(supplier.getTaxRegisterNo());
 		}else{
-			this.txtBank.setText(null);
+//			this.txtBank.setText(null);
 //			this.txtBankAccount.setText(null);
 			this.txtTaxerNum.setText(null);
 		}

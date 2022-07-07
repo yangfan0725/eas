@@ -166,6 +166,7 @@ import com.kingdee.eas.fdc.tenancy.BrandInfo;
 import com.kingdee.eas.fdc.tenancy.ChargeDateTypeEnum;
 import com.kingdee.eas.fdc.tenancy.CommisionStandardEnum;
 import com.kingdee.eas.fdc.tenancy.ConRentTypeEnum;
+import com.kingdee.eas.fdc.tenancy.ContractTypeEnum;
 import com.kingdee.eas.fdc.tenancy.CustomerEntryBrandCollection;
 import com.kingdee.eas.fdc.tenancy.CustomerEntryBrandFactory;
 import com.kingdee.eas.fdc.tenancy.CustomerEntryBrandInfo;
@@ -7119,6 +7120,8 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 		tenancyBill.setFristRevDate(new Date());
 		tenancyBill.setMoreRoomsType(MoreRoomsTypeEnum.RoomRentSetting);
 		tenancyBill.setIsFreeContract(false);
+		
+		tenancyBill.setContractType(ContractTypeEnum.FFZ);
 		// tenancyBill.setRentCountType(item);
 		// tenancyBill.setRentStartType(item);
 
@@ -7481,6 +7484,10 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 	}
 
 	private void checkPayList() {
+		if(tblPayList.getRowCount()==0){
+			MsgBox.showInfo("收款明细不能为空");
+			this.abort();
+		}
 		IRow row = tblPayList.getRow(0);
 		Date startDate = (Date) row.getCell(C_PAYS_START_DATE).getValue();
 		startDate = FDCDateHelper.getDayBegin(startDate);

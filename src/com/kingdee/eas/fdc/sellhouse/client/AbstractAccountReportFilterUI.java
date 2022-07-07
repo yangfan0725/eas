@@ -57,6 +57,7 @@ public abstract class AbstractAccountReportFilterUI extends com.kingdee.eas.fram
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contToNotproPortion;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contFromRevDate;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contToRevDate;
+    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsQuit;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtRoom;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtMoneyDefine;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtProject;
@@ -97,6 +98,7 @@ public abstract class AbstractAccountReportFilterUI extends com.kingdee.eas.fram
         this.contToNotproPortion = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contFromRevDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contToRevDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.cbIsQuit = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.prmtRoom = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.prmtMoneyDefine = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.prmtProject = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
@@ -119,6 +121,7 @@ public abstract class AbstractAccountReportFilterUI extends com.kingdee.eas.fram
         this.contToNotproPortion.setName("contToNotproPortion");
         this.contFromRevDate.setName("contFromRevDate");
         this.contToRevDate.setName("contToRevDate");
+        this.cbIsQuit.setName("cbIsQuit");
         this.prmtRoom.setName("prmtRoom");
         this.prmtMoneyDefine.setName("prmtMoneyDefine");
         this.prmtProject.setName("prmtProject");
@@ -175,6 +178,8 @@ public abstract class AbstractAccountReportFilterUI extends com.kingdee.eas.fram
         this.contToRevDate.setBoundLabelText(resHelper.getString("contToRevDate.boundLabelText"));		
         this.contToRevDate.setBoundLabelLength(100);		
         this.contToRevDate.setBoundLabelUnderline(true);
+        // cbIsQuit		
+        this.cbIsQuit.setText(resHelper.getString("cbIsQuit.text"));
         // prmtRoom		
         this.prmtRoom.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.RoomFilterQuery");		
         this.prmtRoom.setEnabledMultiSelection(true);		
@@ -283,6 +288,8 @@ public abstract class AbstractAccountReportFilterUI extends com.kingdee.eas.fram
         this.add(contFromRevDate, null);
         contToRevDate.setBounds(new Rectangle(323, 97, 270, 19));
         this.add(contToRevDate, null);
+        cbIsQuit.setBounds(new Rectangle(30, 166, 140, 19));
+        this.add(cbIsQuit, null);
         //contRoom
         contRoom.setBoundEditor(prmtRoom);
         //contMoneyDefine

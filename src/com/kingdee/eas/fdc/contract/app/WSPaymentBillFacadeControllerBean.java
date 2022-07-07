@@ -90,7 +90,7 @@ public class WSPaymentBillFacadeControllerBean extends AbstractWSPaymentBillFaca
 		pay.setFdcPayReqNumber("MK-"+number.split(",")[0]+"-"+type);
 		
 		try{
-			BankNumCollection bankNum=BankNumFactory.getLocalInstance(ctx).getBankNumCollection("select number from where number='"+lxNumber+"'");
+			BankNumCollection bankNum=BankNumFactory.getLocalInstance(ctx).getBankNumCollection("select * from where number='"+lxNumber+"'");
 			if(bankNum.size()>0){
 				pay.setPayeeBank(bankNum.get(0).getName());
 			}else{

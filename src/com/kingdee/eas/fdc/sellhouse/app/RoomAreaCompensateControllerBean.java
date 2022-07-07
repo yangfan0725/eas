@@ -6,8 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -1184,42 +1186,6 @@ public class RoomAreaCompensateControllerBean extends
 
 	protected void _unAuditAndCalcSellAmount(Context ctx, String id)
 			throws BOSException, EASBizException {
-
-		// 计算
-		CompensateRoomListCollection coll = CompensateRoomListFactory
-		.getLocalInstance(ctx).getCompensateRoomListCollection(
-				"select id,room.id,room.number,room.name,actAmount,lastAmount,head.appDate where head.id='"
-						+ id + "'");
-		// 得到房间id的字符串
-		StringBuffer roomId = new StringBuffer();
-		List roomIdList = new ArrayList();
-		for (int i = 0; i < coll.size(); i++) {
-			CompensateRoomListInfo info = coll.get(i);
-			if (info != null && info.getRoom() != null) {
-				roomIdList.add(info.getRoom());
-				roomId.append(info.getRoom().getId().toString());
-				if (i != coll.size() - 1) {
-					roomId.append(",");
-				}
-			}
-		}
-
-		EntityViewInfo view = new EntityViewInfo();
-		FilterInfo roomFilter = new FilterInfo();
-		roomFilter.getFilterItems().add(new FilterItemInfo("room.id", roomId.toString(),CompareType.INCLUDE));
-		roomFilter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.SIGNAUDIT_VALUE,CompareType.EQUALS));
-		view.setFilter(roomFilter);
-		SelectorItemCollection roomColl = new SelectorItemCollection();
-		roomColl.add(new SelectorItemInfo("id"));
-		roomColl.add(new SelectorItemInfo("room.id"));
-		roomColl.add(new SelectorItemInfo("signPayListEntry.*"));
-		roomColl.add(new SelectorItemInfo("signPayListEntry.moneyDefine.*"));
-		view.setSelector(roomColl);
-		SignManageCollection signColl = SignManageFactory.getLocalInstance(ctx).getSignManageCollection(view);
-
-//		// 价差签约单中的补差款明细是否已经收过款了！
-//		checkIsDelete(ctx, roomId.toString(), signColl);
-
 		SelectorItemCollection selector = new SelectorItemCollection();
 		selector.add(new SelectorItemInfo("compensateState"));
 		selector.add(new SelectorItemInfo("auditor"));
@@ -1230,21 +1196,28 @@ public class RoomAreaCompensateControllerBean extends
 		model.setAuditTime(null);
 		model.setCompensateState(RoomCompensateStateEnum.COMSUBMIT);
 		RoomAreaCompensateFactory.getLocalInstance(ctx).updatePartial(model,selector);
-
+		
+		// 计算
+		CompensateRoomListCollection coll = CompensateRoomListFactory
+		.getLocalInstance(ctx).getCompensateRoomListCollection(
+				"select id,room.id,room.number,room.name,actAmount,lastAmount,head.appDate,sign.id where head.id='"
+						+ id + "'");
 		List roomList = new ArrayList();
+//		List roomIdList = new ArrayList();
 		for (int i = 0; i < coll.size(); i++) {
 			CompensateRoomListInfo info = coll.get(i);
 			if (info != null) {
 				RoomSignCompensateInfo signInfo = new RoomSignCompensateInfo();
-				signInfo.setRoomId(info.getRoom().getId().toString());
+				signInfo.setSignId(info.getSign().getId().toString());
 				signInfo.setActAmount(info.getActAmount());
 				signInfo.setSellTotal(info.getLastAmount());
 				roomList.add(signInfo);
+//				roomIdList.add(info.getRoom());
 			}
 		}
 		if (roomList.size() > 0) {
 			try {
-				String sql = "update T_SHE_SignManage set FSellAmount=?,FAreaCompensate=? where FRoomID=? and fbizState ='SignAudit'";
+				String sql = "update T_SHE_SignManage set FSellAmount=?,FAreaCompensate=? where Fid=? ";
 				FDCSQLBuilder sqlBuilder = new FDCSQLBuilder(ctx);
 				sqlBuilder.setPrepareStatementSql(sql);
 				sqlBuilder.setBatchType(FDCSQLBuilder.PREPARESTATEMENT_TYPE);
@@ -1253,7 +1226,7 @@ public class RoomAreaCompensateControllerBean extends
 					RoomSignCompensateInfo info = (RoomSignCompensateInfo) roomList.get(i);
 					sqlBuilder.addParam(FDCHelper.subtract(info.getSellTotal(),info.getActAmount()));
 					sqlBuilder.addParam(null);
-					sqlBuilder.addParam(info.getRoomId());
+					sqlBuilder.addParam(info.getSignId());
 					sqlBuilder.addBatch();
 				}
 				sqlBuilder.executeBatch();
@@ -1262,8 +1235,8 @@ public class RoomAreaCompensateControllerBean extends
 				throw new BOSException(ex.getMessage() + "更新房间信息失败!");
 			}
 		}
-		_deleteBillFromSign(ctx, roomId.toString(), signColl);
-		_deleteRoomCompensateForView(ctx, roomIdList,id);
+		_deleteBillFromSign(ctx, coll);
+//		_deleteRoomCompensateForView(ctx, roomIdList,id);
 	}
 
 	protected void _setAuditing(Context ctx, BOSUuid billId)
@@ -1289,16 +1262,16 @@ public class RoomAreaCompensateControllerBean extends
 	}
 
 	class RoomSignCompensateInfo {
-		private String roomId;
+		private String signId;
 		private BigDecimal actAmount;
 		private BigDecimal sellTotal;
 
-		public String getRoomId() {
-			return roomId;
+		public String getSignId() {
+			return signId;
 		}
 
-		public void setRoomId(String roomId) {
-			this.roomId = roomId;
+		public void setSignId(String signId) {
+			this.signId = signId;
 		}
 
 		public BigDecimal getActAmount() {
@@ -1338,26 +1311,26 @@ public class RoomAreaCompensateControllerBean extends
 		// 计算
 		CompensateRoomListCollection coll = CompensateRoomListFactory
 				.getLocalInstance(ctx).getCompensateRoomListCollection(
-						"select id,room.id,room.number,room.name,actAmount,lastAmount,head.appDate where head.id='"
+						"select id,room.id,room.number,room.name,actAmount,lastAmount,head.appDate,sign.id where head.id='"
 								+ id + "'");
 
 		List roomList = new ArrayList();
-		List roomIdList = new ArrayList();
+//		List roomIdList = new ArrayList();
 		for (int i = 0; i < coll.size(); i++) {
 			CompensateRoomListInfo info = coll.get(i);
 			if (info != null) {
 				RoomSignCompensateInfo signInfo = new RoomSignCompensateInfo();
-				signInfo.setRoomId(info.getRoom().getId().toString());
+				signInfo.setSignId(info.getSign().getId().toString());
 				signInfo.setActAmount(info.getActAmount());
 				signInfo.setSellTotal(info.getLastAmount());
 				roomList.add(signInfo);
-				roomIdList.add(info.getRoom());
+//				roomIdList.add(info.getRoom());
 			}
 		}
 
 		if (roomList.size() > 0) {
 			try {
-				String sql = "update T_SHE_SignManage set FSellAmount=?,FAreaCompensate=? where FRoomID=? and fbizState ='SignAudit'";
+				String sql = "update T_SHE_SignManage set FSellAmount=?,FAreaCompensate=? where FId=? ";
 				FDCSQLBuilder sqlBuilder = new FDCSQLBuilder(ctx);
 				sqlBuilder.setPrepareStatementSql(sql);
 				sqlBuilder.setBatchType(FDCSQLBuilder.PREPARESTATEMENT_TYPE);
@@ -1366,7 +1339,7 @@ public class RoomAreaCompensateControllerBean extends
 					RoomSignCompensateInfo info = (RoomSignCompensateInfo) roomList.get(i);
 					sqlBuilder.addParam(info.getSellTotal());
 					sqlBuilder.addParam(info.getActAmount());
-					sqlBuilder.addParam(info.getRoomId());
+					sqlBuilder.addParam(info.getSignId());
 					sqlBuilder.addBatch();
 				}
 				sqlBuilder.executeBatch();
@@ -1378,7 +1351,7 @@ public class RoomAreaCompensateControllerBean extends
 		}
 		// 在签约单的收款单明细中生成一条收款明细
 		_createBillForSign(ctx, coll);
-		_createRoomCompensateForView(ctx, roomIdList, id);
+//		_createRoomCompensateForView(ctx, roomIdList, id);
 	}
 
 	private String getDateString() {
@@ -1539,28 +1512,33 @@ public class RoomAreaCompensateControllerBean extends
 			moneyInfo = moneyColl.get(i);
 			break;
 		}
-		StringBuffer roomId = new StringBuffer();
+//		StringBuffer roomId = new StringBuffer();
+		Set signId=new HashSet();
 		Date appDate=null;
 		for (int i = 0; i < compColl.size(); i++) {
 			CompensateRoomListInfo info = compColl.get(i);
-			if (info != null && info.getRoom() != null) {
-				roomId.append(info.getRoom().getId().toString());
-				roomPrice.put(info.getRoom().getId().toString(), info.getActAmount());
-				if (i != compColl.size() - 1) {
-					roomId.append(",");
-				}
+			if (info != null && info.getSign() != null) {
+//				roomId.append(info.getRoom().getId().toString());
+//				roomPrice.put(info.getRoom().getId().toString(), info.getActAmount());
+//				if (i != compColl.size() - 1) {
+//					roomId.append(",");
+//				}
+				roomPrice.put(info.getSign().getId().toString(), info.getActAmount());
+				signId.add(info.getSign().getId().toString());
 			}
 			appDate=info.getHead().getAppDate();
 		}
 
 		EntityViewInfo view = new EntityViewInfo();
 		FilterInfo roomFilter = new FilterInfo();
-		roomFilter.getFilterItems().add(new FilterItemInfo("room.id", roomId.toString(),CompareType.INCLUDE));
-		roomFilter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.SIGNAUDIT_VALUE,CompareType.EQUALS));
+		roomFilter.getFilterItems().add(new FilterItemInfo("id", signId,CompareType.INCLUDE));
+//		roomFilter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.SIGNAUDIT_VALUE,CompareType.EQUALS));
 		view.setFilter(roomFilter);
 		SelectorItemCollection roomColl = new SelectorItemCollection();
+		roomColl.add(new SelectorItemInfo("bizState"));
 		roomColl.add(new SelectorItemInfo("transactionID"));
 		roomColl.add(new SelectorItemInfo("id"));
+		roomColl.add(new SelectorItemInfo("room.name"));
 		roomColl.add(new SelectorItemInfo("room.id"));
 		roomColl.add(new SelectorItemInfo("transactionID"));
 		roomColl.add(new SelectorItemInfo("signPayListEntry.moneyDefine.*"));
@@ -1572,6 +1550,9 @@ public class RoomAreaCompensateControllerBean extends
 			SignManageInfo sign = signColl.get(i);
 			boolean isAddnew=true;
 			if (sign != null) {
+				if(!sign.getBizState().equals(TransactionStateEnum.SIGNAUDIT)){
+					throw new EASBizException(new NumericExceptionSubItem("100","房间:"+sign.getRoom().getName()+"\n 签约单:"+sign.getNumber()+"\n不为审批状态，不能进行审批操作！"));
+				}
 				if (sign.getTransactionID() == null)continue;
 				
 				SignPayListEntryInfo entry=null;
@@ -1594,7 +1575,7 @@ public class RoomAreaCompensateControllerBean extends
 						tran.setCurrency(currency);
 					}
 					if (!roomPrice.isEmpty()) {
-						actAmount = (BigDecimal) roomPrice.get(sign.getRoom().getId().toString());
+						actAmount = (BigDecimal) roomPrice.get(sign.getId().toString());
 						tran.setAppAmount(actAmount);
 					}
 					tran.setDescription("该记录来自面积补差收款!");
@@ -1618,7 +1599,7 @@ public class RoomAreaCompensateControllerBean extends
 					sel.add("appDate");
 					
 					if (!roomPrice.isEmpty()) {
-						actAmount = (BigDecimal) roomPrice.get(sign.getRoom().getId().toString());
+						actAmount = (BigDecimal) roomPrice.get(sign.getId().toString());
 						entry.setAppAmount(actAmount);
 						entry.setAppDate(appDate);
 						SignPayListEntryFactory.getLocalInstance(ctx).updatePartial(entry, sel);
@@ -1630,6 +1611,9 @@ public class RoomAreaCompensateControllerBean extends
 						TranBusinessOverViewFactory.getLocalInstance(ctx).updatePartial(tran, sel);
 					}
 				}
+				updateTransactionOverView(ctx, sign.getTransactionID().toString(),
+						SHEManageHelper.AREACOMPENSATE,appDate,FDCSQLFacadeFactory.getLocalInstance(ctx)
+						.getServerTime());
 			}
 		}
 	}
@@ -1660,71 +1644,133 @@ public class RoomAreaCompensateControllerBean extends
 		return number;
 	}
 
-	protected void _deleteBillFromSign(Context ctx, String roomId,SignManageCollection signColl) throws BOSException, EASBizException {
+	protected void _deleteBillFromSign(Context ctx,CompensateRoomListCollection compColl) throws BOSException, EASBizException {
 		MoneyDefineInfo moneyInfo = null;
 		FilterInfo filter = new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("name", "面积补差款"));
+		// 如果在款项类别中不存在补差款类型，则新生成一项
 		if (!MoneyDefineFactory.getLocalInstance(ctx).exists(filter)) {
-			return;
+			MoneyDefineInfo model = new MoneyDefineInfo();
+			model.setName("面积补差款");
+			model.setNumber(getDateString());
+			model.setMoneyType(MoneyTypeEnum.HouseAmount);
+			model.setSysType(MoneySysTypeEnum.SalehouseSys);
+			model.setIsGroup(false);
+			CtrlUnitInfo ctrlUnit = new CtrlUnitInfo();
+			ctrlUnit.setId(BOSUuid.read(OrgConstants.DEF_CU_ID));
+			model.setCU(ctrlUnit);
+			MoneyDefineFactory.getLocalInstance(ctx).addnew(model);
 		}
+
 		MoneyDefineCollection moneyColl = MoneyDefineFactory.getLocalInstance(ctx).getMoneyDefineCollection("select id,name,number where name='面积补差款'");
 
 		for (int i = 0; i < moneyColl.size(); i++) {
 			moneyInfo = moneyColl.get(i);
 			break;
 		}
+//		StringBuffer roomId = new StringBuffer();
+		Set signId=new HashSet();
+		Date appDate=null;
+		for (int i = 0; i < compColl.size(); i++) {
+			CompensateRoomListInfo info = compColl.get(i);
+			if (info != null && info.getSign() != null) {
+//				roomId.append(info.getRoom().getId().toString());
+//				roomPrice.put(info.getRoom().getId().toString(), info.getActAmount());
+//				if (i != compColl.size() - 1) {
+//					roomId.append(",");
+//				}
+				signId.add(info.getSign().getId().toString());
+			}
+			appDate=info.getHead().getAppDate();
+		}
+
+		EntityViewInfo view = new EntityViewInfo();
+		FilterInfo roomFilter = new FilterInfo();
+		roomFilter.getFilterItems().add(new FilterItemInfo("id", signId,CompareType.INCLUDE));
+//		roomFilter.getFilterItems().add(new FilterItemInfo("bizState",TransactionStateEnum.SIGNAUDIT_VALUE,CompareType.EQUALS));
+		view.setFilter(roomFilter);
+		SelectorItemCollection roomColl = new SelectorItemCollection();
+		roomColl.add(new SelectorItemInfo("bizState"));
+		roomColl.add(new SelectorItemInfo("transactionID"));
+		roomColl.add(new SelectorItemInfo("id"));
+		roomColl.add(new SelectorItemInfo("number"));
+		roomColl.add(new SelectorItemInfo("room.name"));
+		roomColl.add(new SelectorItemInfo("room.id"));
+		roomColl.add(new SelectorItemInfo("transactionID"));
+		roomColl.add(new SelectorItemInfo("signPayListEntry.moneyDefine.*"));
+		roomColl.add(new SelectorItemInfo("signPayListEntry.*"));
+		view.setSelector(roomColl);
+		SignManageCollection signColl = SignManageFactory.getLocalInstance(ctx).getSignManageCollection(view);
 		for (int i = 0; i < signColl.size(); i++) {
 			SignManageInfo sign = signColl.get(i);
 			if (sign != null) {
 				if (sign.getTransactionID() == null)continue;
 				
+				if(!sign.getBizState().equals(TransactionStateEnum.SIGNAUDIT)){
+					throw new EASBizException(new NumericExceptionSubItem("100","房间:"+sign.getRoom().getName()+"\n 签约单:"+sign.getNumber()+"\n不为审批状态，不能进行反审批操作！"));
+				}
 				for(int j=0;j<sign.getSignPayListEntry().size();j++){
 					if(sign.getSignPayListEntry().get(j).getMoneyDefine()!=null
 							&&sign.getSignPayListEntry().get(j).getMoneyDefine().getId().toString().equals(moneyInfo.getId().toString())){
 						SignPayListEntryInfo entry=sign.getSignPayListEntry().get(j);
+						
 						SelectorItemCollection sel = new SelectorItemCollection();
 						sel.add("appAmount");
 						entry.setAppAmount(FDCHelper.ZERO);
 						SignPayListEntryFactory.getLocalInstance(ctx).updatePartial(entry, sel);
 						if(entry.getTanPayListEntryId()!=null){
 							TranBusinessOverViewInfo tran=TranBusinessOverViewFactory.getLocalInstance(ctx).getTranBusinessOverViewInfo(new ObjectUuidPK(entry.getTanPayListEntryId()));
+							
+							if (tran.getActRevAmount() != null
+									&& tran.getActRevAmount().compareTo(
+											FDCHelper.ZERO) != 0) {
+								throw new EASBizException(new NumericExceptionSubItem("100","房间:"+sign.getRoom().getName()+"\n 签约单:"+sign.getNumber()+"\n面积补差已收款，不能进行反审批操作！"));
+							}
 							tran.setAppAmount(FDCHelper.ZERO);
 							TranBusinessOverViewFactory.getLocalInstance(ctx).updatePartial(tran, sel);
 						}
 					}
 				}
+				updateTransactionOverView(ctx, sign.getTransactionID().toString(),
+						SHEManageHelper.AREACOMPENSATE, null, null);
 			}
 		}
 	}
 	private void checkIsDelete(Context ctx, String roomId,
 			SignManageCollection signColl) throws BOSException, EASBizException {
-		String msg = "";
-		for (int i = 0; i < signColl.size(); i++) {
-			SignManageInfo sign = signColl.get(i);
-			if (sign != null && sign.getSignPayListEntry() != null) {
-				for (int j = 0; j < sign.getSignPayListEntry().size(); j++) {
-					SignPayListEntryInfo entryInfo = sign.getSignPayListEntry()
-							.get(j);
-					if (entryInfo != null) {
-						if (entryInfo.getMoneyDefine().getMoneyType() != null
-								&& entryInfo.getMoneyDefine().getMoneyType()
-										.equals(MoneyTypeEnum.CompensateAmount)) {
-							if (entryInfo.getActRevAmount() != null
-									&& entryInfo.getActRevAmount().compareTo(
-											FDCHelper.ZERO) > 0) {
-								msg = msg + "id:'"
-										+ entryInfo.getId().toString()
-										+ "'roomAreaCompensate has receviced!";
-							}
-						}
-					}
-				}
-			}
-		}
-
-		if (!"".equals(msg) && msg.length() > 0) {
-			throw new BOSException("roomAreaCompensate is error!");
-		}
+//		MoneyDefineInfo moneyInfo = null;
+//		FilterInfo filter = new FilterInfo();
+//		filter.getFilterItems().add(new FilterItemInfo("name", "面积补差款"));
+//		if (!MoneyDefineFactory.getLocalInstance(ctx).exists(filter)) {
+//			return;
+//		}
+//		MoneyDefineCollection moneyColl = MoneyDefineFactory.getLocalInstance(ctx).getMoneyDefineCollection("select id,name,number where name='面积补差款'");
+//
+//		for (int i = 0; i < moneyColl.size(); i++) {
+//			moneyInfo = moneyColl.get(i);
+//			break;
+//		}
+//		String msg = "";
+//		for (int i = 0; i < signColl.size(); i++) {
+//			SignManageInfo sign = signColl.get(i);
+//			if (sign != null && sign.getSignPayListEntry() != null) {
+//				for (int j = 0; j < sign.getSignPayListEntry().size(); j++) {
+//					SignPayListEntryInfo entryInfo = sign.getSignPayListEntry()
+//							.get(j);
+//					if (sign.getSignPayListEntry().get(j).getMoneyDefine()!=null
+//							&&sign.getSignPayListEntry().get(j).getMoneyDefine().getId().toString().equals(moneyInfo.getId().toString())) {
+//						if(sign.getSignPayListEntry().get(j).getTanPayListEntryId()!=null){
+//							TranBusinessOverViewInfo tran=TranBusinessOverViewFactory.getLocalInstance(ctx).getTranBusinessOverViewInfo(new ObjectUuidPK(sign.getSignPayListEntry().get(j).getTanPayListEntryId()));
+//							if (tran.getActRevAmount() != null
+//									&& tran.getActRevAmount().compareTo(
+//											FDCHelper.ZERO) != 0) {
+//								throw new EASBizException(new NumericExceptionSubItem("100","房间:"+sign.getRoom().getName()+" 面积补差已收款，不能进行反审批操作！"));
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
 	}
 
 	/**
@@ -1733,42 +1779,42 @@ public class RoomAreaCompensateControllerBean extends
 	protected void _createRoomCompensateForView(Context ctx, List roomIdList,
 			String compId) throws BOSException, EASBizException {
 
-		if (roomIdList != null && roomIdList.size() > 0) {
-			RoomAreaCompensateInfo info = RoomAreaCompensateFactory
-					.getLocalInstance(ctx).getRoomAreaCompensateInfo(
-							"select id,appDate where id='" + compId + "'");
-			for (int i = 0; i < roomIdList.size(); i++) {
-				RoomInfo room = (RoomInfo) roomIdList.get(i);
-				if (room != null) {
-					if (info != null && info.getAppDate() != null) {
-						updateTransactionOverView(ctx, room,
-								SHEManageHelper.AREACOMPENSATE,info
-								.getAppDate(),FDCSQLFacadeFactory.getLocalInstance(ctx)
-								.getServerTime());
-					}
-				}
-			}
-		}
+//		if (roomIdList != null && roomIdList.size() > 0) {
+//			RoomAreaCompensateInfo info = RoomAreaCompensateFactory
+//					.getLocalInstance(ctx).getRoomAreaCompensateInfo(
+//							"select id,appDate where id='" + compId + "'");
+//			for (int i = 0; i < roomIdList.size(); i++) {
+//				RoomInfo room = (RoomInfo) roomIdList.get(i);
+//				if (room != null) {
+//					if (info != null && info.getAppDate() != null) {
+//						updateTransactionOverView(ctx, room,
+//								SHEManageHelper.AREACOMPENSATE,info
+//								.getAppDate(),FDCSQLFacadeFactory.getLocalInstance(ctx)
+//								.getServerTime());
+//					}
+//				}
+//			}
+//		}
 
 	}
 
 	protected void _deleteRoomCompensateForView(Context ctx, List roomIdList,
 			String compId) throws BOSException, EASBizException {
-		if (roomIdList != null && roomIdList.size() > 0) {
-			for (int i = 0; i < roomIdList.size(); i++) {
-				RoomInfo room = (RoomInfo) roomIdList.get(i);
-				if (room != null) {
-					updateTransactionOverView(ctx, room,
-							SHEManageHelper.AREACOMPENSATE, null, null);
-				}
-			}
-		}
+//		if (roomIdList != null && roomIdList.size() > 0) {
+//			for (int i = 0; i < roomIdList.size(); i++) {
+//				RoomInfo room = (RoomInfo) roomIdList.get(i);
+//				if (room != null) {
+//					updateTransactionOverView(ctx, room,
+//							SHEManageHelper.AREACOMPENSATE, null, null);
+//				}
+//			}
+//		}
 	}
 
-	private void updateTransactionOverView(Context ctx, RoomInfo room,
+	private void updateTransactionOverView(Context ctx, String id,
 			String serviceType, Date promiseFinishDate, Date actualFinishDate) {
 		try {
-			TransactionInfo transactionInfo = getTransactionInfo(ctx, room);
+			TransactionInfo transactionInfo = getTransactionInfo(ctx, id);
 			TranBusinessOverViewCollection overViewCol = transactionInfo
 					.getTranBusinessOverView();
 			if (overViewCol != null && !overViewCol.isEmpty()) {
@@ -1805,7 +1851,7 @@ public class RoomAreaCompensateControllerBean extends
 		}
 	}
 
-	public static TransactionInfo getTransactionInfo(Context ctx, RoomInfo room)
+	public static TransactionInfo getTransactionInfo(Context ctx, String id)
 			throws BOSException {
 		EntityViewInfo view = new EntityViewInfo();
 		view.getSelector().add("id");
@@ -1817,9 +1863,9 @@ public class RoomAreaCompensateControllerBean extends
 
 		FilterInfo filter = new FilterInfo();
 		filter.getFilterItems().add(
-				new FilterItemInfo("room.id", room.getId().toString()));
-		filter.getFilterItems().add(
-				new FilterItemInfo("isValid", new Boolean(false)));
+				new FilterItemInfo("id", id));
+//		filter.getFilterItems().add(
+//				new FilterItemInfo("isValid", new Boolean(false)));
 
 		view.setFilter(filter);
 		TransactionCollection transactionCol = null;

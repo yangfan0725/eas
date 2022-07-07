@@ -18,6 +18,8 @@ import com.kingdee.bos.BOSException;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
+import com.kingdee.bos.metadata.entity.SorterItemCollection;
+import com.kingdee.bos.metadata.entity.SorterItemInfo;
 import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.ctrl.extendcontrols.ext.IFilterInfoProducer;
@@ -78,7 +80,9 @@ public class DepositAmountReportFilterUI extends AbstractDepositAmountReportFilt
 		this.prmtCustomer.setEditFormat("$number$");
 		this.prmtCustomer.setCommitFormat("$number$");
 		this.prmtCustomer.setEnabledMultiSelection(true);
-		this.prmtCustomer.setEntityViewInfo(CommerceHelper.getPermitCustomerView(null,SysContext.getSysContext().getCurrentUserInfo()));
+		view=CommerceHelper.getPermitCustomerView(null,SysContext.getSysContext().getCurrentUserInfo());
+		view.getFilter().getFilterItems().add(new FilterItemInfo("project.id",spSet,CompareType.INCLUDE));
+		this.prmtCustomer.setEntityViewInfo(view);
 	
 		this.prmtMoneyDefine.setEditable(false);
 		this.prmtMoneyDefine.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.MoneyDefineQuery");
@@ -92,6 +96,9 @@ public class DepositAmountReportFilterUI extends AbstractDepositAmountReportFilt
 		filter.getFilterItems().add(new FilterItemInfo("moneyType", MoneyTypeEnum.DEPOSITAMOUNT_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("name", "%×÷·Ï%",CompareType.NOTLIKE));
 		view.setFilter(filter);
+		SorterItemCollection sort=new SorterItemCollection();
+		sort.add(new SorterItemInfo("number"));
+		view.setSorter(sort);
 		this.prmtMoneyDefine.setEntityViewInfo(view);
 	
     }

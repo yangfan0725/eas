@@ -400,10 +400,25 @@ public class TenancyBillControllerBean extends AbstractTenancyBillControllerBean
     	TenAttachResourceEntryCollection oldTenAttachs = oldTenBill.getTenAttachResourceList();
     	BigDecimal oldTenRemainDepositAmount = oldTenBill.getRemainDepositAmount()==null ? FDCHelper.ZERO : oldTenBill.getRemainDepositAmount();
     	
+    	boolean isCheck=true;
+    	for(int i=0; i<oldTenRooms.size(); i++){
+    		ITenancyEntryInfo tenObj = (ITenancyEntryInfo) oldTenRooms.getObject(i);
+    		
+    		IObjectCollection payList = tenObj.getPayList();
+    		
+    		for(int j=0; j<payList.size(); j++){
+    			TenancyRoomPayListEntryInfo pay = (TenancyRoomPayListEntryInfo) payList.getObject(j);
+    			MoneyDefineInfo moneyName = pay.getMoneyDefine();
+    			//押金不用计算应付
+    			if(MoneyTypeEnum.DepositAmount.equals(moneyName.getMoneyType())&&pay.isIsUnPay()){
+    				isCheck=false;
+    			}    			
+    		}
+    	}
     	oldTenToPayAmount = addToPayAmount(oldTenRooms, oldTenToPayAmount);
     	oldTenToPayAmount = addToPayAmount(oldTenAttachs, oldTenToPayAmount);
     	
-    	if(oldTenRemainDepositAmount.compareTo(oldTenToPayAmount) < 0){//原合同押金不够结算未交租金和扣款,则不允许审批/提交
+    	if(isCheck&&oldTenRemainDepositAmount.compareTo(oldTenToPayAmount) < 0){//原合同押金不够结算未交租金和扣款,则不允许审批/提交
     		throw new TenancyException(TenancyException.DEPOSIT_NOT_ENOUGH);
     	}
 	}

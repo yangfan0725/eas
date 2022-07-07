@@ -38,7 +38,6 @@ import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.eas.fdc.sellhouse.RoomAreaCompensateInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomAreaCompensateCollection;
 import java.util.List;
-import com.kingdee.eas.fdc.sellhouse.SignManageCollection;
 
 
 
@@ -58,10 +57,13 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("75befe4c-0117-1000-e000-0012c0a812cc"), new Object[]{ctx, pk});
             invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
             RoomAreaCompensateInfo retValue = (RoomAreaCompensateInfo)_getValue(ctx, pk);
             svcCtx.setMethodReturnValue(retValue);
+            }
             invokeServiceAfter(svcCtx);
-            return retValue;
+        
+          return (RoomAreaCompensateInfo)svcCtx.getMethodReturnValue();
         } catch (BOSException ex) {
             throw ex;
         } catch (EASBizException ex0) {
@@ -80,10 +82,13 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("75befe4c-0117-1000-e000-0013c0a812cc"), new Object[]{ctx, pk, selector});
             invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
             RoomAreaCompensateInfo retValue = (RoomAreaCompensateInfo)_getValue(ctx, pk, selector);
             svcCtx.setMethodReturnValue(retValue);
+            }
             invokeServiceAfter(svcCtx);
-            return retValue;
+        
+          return (RoomAreaCompensateInfo)svcCtx.getMethodReturnValue();
         } catch (BOSException ex) {
             throw ex;
         } catch (EASBizException ex0) {
@@ -102,10 +107,13 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("75befe4c-0117-1000-e000-0014c0a812cc"), new Object[]{ctx, oql});
             invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
             RoomAreaCompensateInfo retValue = (RoomAreaCompensateInfo)_getValue(ctx, oql);
             svcCtx.setMethodReturnValue(retValue);
+            }
             invokeServiceAfter(svcCtx);
-            return retValue;
+        
+          return (RoomAreaCompensateInfo)svcCtx.getMethodReturnValue();
         } catch (BOSException ex) {
             throw ex;
         } catch (EASBizException ex0) {
@@ -124,10 +132,13 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("75befe4c-0117-1000-e000-0015c0a812cc"), new Object[]{ctx, view});
             invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
             RoomAreaCompensateCollection retValue = (RoomAreaCompensateCollection)_getCollection(ctx, svcCtx, view);
             svcCtx.setMethodReturnValue(retValue);
+            }
             invokeServiceAfter(svcCtx);
-            return retValue;
+        
+          return (RoomAreaCompensateCollection)svcCtx.getMethodReturnValue();
         } catch (BOSException ex) {
             throw ex;
         } finally {
@@ -144,10 +155,13 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("75befe4c-0117-1000-e000-0016c0a812cc"), new Object[]{ctx});
             invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
             RoomAreaCompensateCollection retValue = (RoomAreaCompensateCollection)_getCollection(ctx, svcCtx);
             svcCtx.setMethodReturnValue(retValue);
+            }
             invokeServiceAfter(svcCtx);
-            return retValue;
+        
+          return (RoomAreaCompensateCollection)svcCtx.getMethodReturnValue();
         } catch (BOSException ex) {
             throw ex;
         } finally {
@@ -164,10 +178,13 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("75befe4c-0117-1000-e000-0017c0a812cc"), new Object[]{ctx, oql});
             invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
             RoomAreaCompensateCollection retValue = (RoomAreaCompensateCollection)_getCollection(ctx, svcCtx, oql);
             svcCtx.setMethodReturnValue(retValue);
+            }
             invokeServiceAfter(svcCtx);
-            return retValue;
+        
+          return (RoomAreaCompensateCollection)svcCtx.getMethodReturnValue();
         } catch (BOSException ex) {
             throw ex;
         } finally {
@@ -184,7 +201,9 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("e0d79961-0119-1000-e000-0007c0a812a1"), new Object[]{ctx, idList, valueMap});
             invokeServiceBefore(svcCtx);
+              if(!svcCtx.invokeBreak()) {
             _batchSave(ctx, idList, valueMap);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -196,17 +215,22 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _batchSave(Context ctx, List idList, Map valueMap) throws BOSException, EASBizException;
+    protected void _batchSave(Context ctx, List idList, Map valueMap) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
     public Map calcAmount(Context ctx, List idList, String schemeId) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("3843a9f0-011a-1000-e000-0001c0a812a1"), new Object[]{ctx, idList, schemeId});
             invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
             Map retValue = (Map)_calcAmount(ctx, idList, schemeId);
             svcCtx.setMethodReturnValue(retValue);
+            }
             invokeServiceAfter(svcCtx);
-            return retValue;
+            return (Map)svcCtx.getMethodReturnValue();
         } catch (BOSException ex) {
             this.setRollbackOnly();
             throw ex;
@@ -217,14 +241,19 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract Map _calcAmount(Context ctx, List idList, String schemeId) throws BOSException, EASBizException;
+    protected Map _calcAmount(Context ctx, List idList, String schemeId) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
 
     public void submitToWorkFlow(Context ctx, String buildingId) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("7a5a2a00-011a-1000-e000-0001c0a812a1"), new Object[]{ctx, buildingId});
             invokeServiceBefore(svcCtx);
+              if(!svcCtx.invokeBreak()) {
             _submitToWorkFlow(ctx, buildingId);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -236,17 +265,22 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _submitToWorkFlow(Context ctx, String buildingId) throws BOSException, EASBizException;
+    protected void _submitToWorkFlow(Context ctx, String buildingId) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
     public IRowSet getRoomInfoList(Context ctx, String filterStr) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("d24e19a4-43af-4eaa-9c72-0517e32d3493"), new Object[]{ctx, filterStr});
             invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
             IRowSet retValue = (IRowSet)_getRoomInfoList(ctx, filterStr);
             svcCtx.setMethodReturnValue(retValue);
+            }
             invokeServiceAfter(svcCtx);
-            return retValue;
+            return (IRowSet)svcCtx.getMethodReturnValue();
         } catch (BOSException ex) {
             this.setRollbackOnly();
             throw ex;
@@ -257,17 +291,22 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract IRowSet _getRoomInfoList(Context ctx, String filterStr) throws BOSException, EASBizException;
+    protected IRowSet _getRoomInfoList(Context ctx, String filterStr) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
 
     public IRowSet getCompenstateRoomInfo(Context ctx, String roomId) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("687958cc-df0a-411f-ad06-4e9b9a706858"), new Object[]{ctx, roomId});
             invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
             IRowSet retValue = (IRowSet)_getCompenstateRoomInfo(ctx, roomId);
             svcCtx.setMethodReturnValue(retValue);
+            }
             invokeServiceAfter(svcCtx);
-            return retValue;
+            return (IRowSet)svcCtx.getMethodReturnValue();
         } catch (BOSException ex) {
             this.setRollbackOnly();
             throw ex;
@@ -278,14 +317,19 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract IRowSet _getCompenstateRoomInfo(Context ctx, String roomId) throws BOSException, EASBizException;
+    protected IRowSet _getCompenstateRoomInfo(Context ctx, String roomId) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
 
     public void setNullify(Context ctx, String idList) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("499959fb-1dda-4cf3-b542-bb6e0aab5dc4"), new Object[]{ctx, idList});
             invokeServiceBefore(svcCtx);
+              if(!svcCtx.invokeBreak()) {
             _setNullify(ctx, idList);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -297,17 +341,22 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _setNullify(Context ctx, String idList) throws BOSException, EASBizException;
+    protected void _setNullify(Context ctx, String idList) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
     public Map calcAmountForSHE(Context ctx, List roomList, String schemeId) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("a0d1ace9-3025-4060-bb72-d90725ad326a"), new Object[]{ctx, roomList, schemeId});
             invokeServiceBefore(svcCtx);
+            if(!svcCtx.invokeBreak()) {
             Map retValue = (Map)_calcAmountForSHE(ctx, roomList, schemeId);
             svcCtx.setMethodReturnValue(retValue);
+            }
             invokeServiceAfter(svcCtx);
-            return retValue;
+            return (Map)svcCtx.getMethodReturnValue();
         } catch (BOSException ex) {
             this.setRollbackOnly();
             throw ex;
@@ -318,14 +367,19 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract Map _calcAmountForSHE(Context ctx, List roomList, String schemeId) throws BOSException, EASBizException;
+    protected Map _calcAmountForSHE(Context ctx, List roomList, String schemeId) throws BOSException, EASBizException
+    {    	
+        return null;
+    }
 
     public void auditAndCalcSellAmount(Context ctx, String id) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("969a12e3-3e41-47bc-9d2b-9753f097ac67"), new Object[]{ctx, id});
             invokeServiceBefore(svcCtx);
+              if(!svcCtx.invokeBreak()) {
             _auditAndCalcSellAmount(ctx, id);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -337,14 +391,19 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _auditAndCalcSellAmount(Context ctx, String id) throws BOSException, EASBizException;
+    protected void _auditAndCalcSellAmount(Context ctx, String id) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
     public void unAuditAndCalcSellAmount(Context ctx, String id) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("f3787e83-015d-44c7-afb3-37f07135d615"), new Object[]{ctx, id});
             invokeServiceBefore(svcCtx);
+              if(!svcCtx.invokeBreak()) {
             _unAuditAndCalcSellAmount(ctx, id);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -356,14 +415,19 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _unAuditAndCalcSellAmount(Context ctx, String id) throws BOSException, EASBizException;
+    protected void _unAuditAndCalcSellAmount(Context ctx, String id) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
     public void setAuditing(Context ctx, BOSUuid billId) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("e8e99097-17b0-4468-8c52-094c738aa65b"), new Object[]{ctx, billId});
             invokeServiceBefore(svcCtx);
+              if(!svcCtx.invokeBreak()) {
             _setAuditing(ctx, billId);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -375,14 +439,19 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _setAuditing(Context ctx, BOSUuid billId) throws BOSException, EASBizException;
+    protected void _setAuditing(Context ctx, BOSUuid billId) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
     public void setSubmit(Context ctx, BOSUuid billId) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("7f33e582-97d1-4a33-b726-09ac8fb219db"), new Object[]{ctx, billId});
             invokeServiceBefore(svcCtx);
+              if(!svcCtx.invokeBreak()) {
             _setSubmit(ctx, billId);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -394,14 +463,19 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _setSubmit(Context ctx, BOSUuid billId) throws BOSException, EASBizException;
+    protected void _setSubmit(Context ctx, BOSUuid billId) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
     public void deleteCompensateInfo(Context ctx, BOSUuid billId) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("3fb1f2b9-9668-4395-a1ef-66eb863cad09"), new Object[]{ctx, billId});
             invokeServiceBefore(svcCtx);
+              if(!svcCtx.invokeBreak()) {
             _deleteCompensateInfo(ctx, billId);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -413,14 +487,19 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _deleteCompensateInfo(Context ctx, BOSUuid billId) throws BOSException, EASBizException;
+    protected void _deleteCompensateInfo(Context ctx, BOSUuid billId) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
     public void createBillForSign(Context ctx, CompensateRoomListCollection compColl) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("7ece681f-0eb9-45fd-840f-52e73f9f34ad"), new Object[]{ctx, compColl});
             invokeServiceBefore(svcCtx);
+              if(!svcCtx.invokeBreak()) {
             _createBillForSign(ctx, compColl);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -432,14 +511,19 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _createBillForSign(Context ctx, CompensateRoomListCollection compColl) throws BOSException, EASBizException;
+    protected void _createBillForSign(Context ctx, CompensateRoomListCollection compColl) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
-    public void deleteBillFromSign(Context ctx, String roomId, SignManageCollection comColl) throws BOSException, EASBizException
+    public void deleteBillFromSign(Context ctx, CompensateRoomListCollection compColl) throws BOSException, EASBizException
     {
         try {
-            ServiceContext svcCtx = createServiceContext(new MetaDataPK("d171de7e-467b-4c67-9b0e-703e8022da05"), new Object[]{ctx, roomId, comColl});
+            ServiceContext svcCtx = createServiceContext(new MetaDataPK("d171de7e-467b-4c67-9b0e-703e8022da05"), new Object[]{ctx, compColl});
             invokeServiceBefore(svcCtx);
-            _deleteBillFromSign(ctx, roomId, comColl);
+              if(!svcCtx.invokeBreak()) {
+            _deleteBillFromSign(ctx, compColl);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -451,14 +535,19 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _deleteBillFromSign(Context ctx, String roomId, SignManageCollection comColl) throws BOSException, EASBizException;
+    protected void _deleteBillFromSign(Context ctx, CompensateRoomListCollection compColl) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
     public void createRoomCompensateForView(Context ctx, List roomIdList, String compId) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("ffe93a62-9f33-4e97-ac65-fcb84d54ba1b"), new Object[]{ctx, roomIdList, compId});
             invokeServiceBefore(svcCtx);
+              if(!svcCtx.invokeBreak()) {
             _createRoomCompensateForView(ctx, roomIdList, compId);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -470,14 +559,19 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _createRoomCompensateForView(Context ctx, List roomIdList, String compId) throws BOSException, EASBizException;
+    protected void _createRoomCompensateForView(Context ctx, List roomIdList, String compId) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
     public void deleteRoomCompensateForView(Context ctx, List roomIdList, String comId) throws BOSException, EASBizException
     {
         try {
             ServiceContext svcCtx = createServiceContext(new MetaDataPK("d24cd70a-96a7-4b61-a16e-338ecc6df88c"), new Object[]{ctx, roomIdList, comId});
             invokeServiceBefore(svcCtx);
+              if(!svcCtx.invokeBreak()) {
             _deleteRoomCompensateForView(ctx, roomIdList, comId);
+            }
             invokeServiceAfter(svcCtx);
         } catch (BOSException ex) {
             this.setRollbackOnly();
@@ -489,7 +583,10 @@ public abstract class AbstractRoomAreaCompensateControllerBean extends FDCBillCo
             super.cleanUpServiceState();
         }
     }
-    protected abstract void _deleteRoomCompensateForView(Context ctx, List roomIdList, String comId) throws BOSException, EASBizException;
+    protected void _deleteRoomCompensateForView(Context ctx, List roomIdList, String comId) throws BOSException, EASBizException
+    {    	
+        return;
+    }
 
     public FDCBillCollection getFDCBillCollection (Context ctx) throws BOSException
     {

@@ -4,11 +4,16 @@
 package com.kingdee.eas.fdc.sellhouse.client;
 
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import com.kingdee.bos.BOSException;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectManager;
 import com.kingdee.bos.ctrl.kdf.table.util.KDTableUtil;
@@ -23,19 +28,32 @@ import com.kingdee.bos.metadata.entity.FilterItemInfo;
 import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.util.BOSUuid;
+import com.kingdee.eas.basedata.org.CtrlUnitInfo;
+import com.kingdee.eas.basedata.org.OrgConstants;
 import com.kingdee.eas.basedata.org.OrgStructureInfo;
+import com.kingdee.eas.common.EASBizException;
+import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.merch.common.KDTableHelper;
 import com.kingdee.eas.fdc.sellhouse.BuildingInfo;
 import com.kingdee.eas.fdc.sellhouse.BuildingUnitInfo;
+import com.kingdee.eas.fdc.sellhouse.CompensateRoomListCollection;
+import com.kingdee.eas.fdc.sellhouse.CompensateRoomListFactory;
+import com.kingdee.eas.fdc.sellhouse.MoneyDefineCollection;
+import com.kingdee.eas.fdc.sellhouse.MoneyDefineFactory;
+import com.kingdee.eas.fdc.sellhouse.MoneyDefineInfo;
+import com.kingdee.eas.fdc.sellhouse.MoneyTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.RoomAreaCompensateTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.RoomCompensateStateEnum;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
 import com.kingdee.eas.fdc.sellhouse.SellTypeEnum;
+import com.kingdee.eas.fdc.sellhouse.SignPayListEntryCollection;
+import com.kingdee.eas.fdc.sellhouse.SignPayListEntryFactory;
 import com.kingdee.eas.fdc.sellhouse.SubareaInfo;
 import com.kingdee.eas.fdc.sellhouse.TransactionStateEnum;
 import com.kingdee.eas.framework.ICoreBase;
 import com.kingdee.eas.util.SysUtil;
+import com.kingdee.util.UuidException;
 
 /**
  * output class name
@@ -138,11 +156,24 @@ public class CompensateSeletRoomUI extends AbstractCompensateSeletRoomUI {
 		filter.getFilterItems().add(
 				new FilterItemInfo("signManage.bizState",TransactionStateEnum.SIGNAUDIT_VALUE, CompareType.EQUALS));
 		
+		Set signId=new HashSet();
 		if (this.getUIContext().get("selectSellProject") != null) {
-			SellProjectInfo  sellProject = (SellProjectInfo)this.getUIContext().get("selectSellProject");
-			filter.getFilterItems().add(
-					new FilterItemInfo("sellProject.id",
-							sellProject.getId().toString(), CompareType.EQUALS));
+			try {
+				SellProjectInfo  sellProject = (SellProjectInfo)this.getUIContext().get("selectSellProject");
+				filter.getFilterItems().add(
+						new FilterItemInfo("sellProject.id",
+								sellProject.getId().toString(), CompareType.EQUALS));
+				CompensateRoomListCollection crCol=CompensateRoomListFactory.getRemoteInstance().getCompensateRoomListCollection("select sign.id from where head.sellProject.id='"+sellProject.getId().toString()+"' and head.id!='"+this.getUIContext().get("headId").toString()+"'");
+				for(int i=0;i<crCol.size();i++){
+					signId.add(crCol.get(i).getSign().getId().toString());
+				}
+			} catch (BOSException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UuidException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		if (this.getUIContext().get("selectBuilding") != null) {
 			BuildingInfo build = (BuildingInfo)this.getUIContext().get("selectBuilding");
@@ -153,7 +184,9 @@ public class CompensateSeletRoomUI extends AbstractCompensateSeletRoomUI {
 			filter.getFilterItems().add(new FilterItemInfo("unit.id", unit.getId().toString(),CompareType.EQUALS));
 		}
 		filter.getFilterItems().add(new FilterItemInfo("isActualAreaAudited", Boolean.TRUE));
-		filter.getFilterItems().add(new FilterItemInfo("roomArea.compensateState", null,CompareType.EQUALS));
+//		filter.getFilterItems().add(new FilterItemInfo("roomArea.compensateState", null,CompareType.EQUALS));
+		
+		filter.getFilterItems().add(new FilterItemInfo("signManage.id", signId,CompareType.NOTINCLUDE));
 	
 		// 合并查询条件
 		viewInfo = (EntityViewInfo) mainQuery.clone();
@@ -169,7 +202,13 @@ public class CompensateSeletRoomUI extends AbstractCompensateSeletRoomUI {
 
 		return super.getQueryExecutor(queryPK, viewInfo);
 	}
-
+	private String getDateString() {
+		String temp = "";
+		Date date = new Date();
+		SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
+		temp = sf.format(date);
+		return temp;
+	}
 	protected void btnOK_actionPerformed(ActionEvent e) throws Exception {
 		super.btnOK_actionPerformed(e);
 		int[] selectRows = KDTableUtil.getSelectedRows(this.tblMain);

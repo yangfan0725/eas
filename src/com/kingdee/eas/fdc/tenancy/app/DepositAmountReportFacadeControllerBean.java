@@ -71,6 +71,8 @@ public class DepositAmountReportFacadeControllerBean extends AbstractDepositAmou
 	    initColoum(header,col,"endDate",75,false);
 	    initColoum(header,col,"dealTotal",80,false);
 	    initColoum(header,col,"moneyDefine",100,false);
+	    initColoum(header,col,"isGen",120,false);
+	    initColoum(header,col,"depositBillId",100,true);
 	    initColoum(header,col,"appAmount",80,false);
 	    initColoum(header,col,"actAmount",80,false);
 	    initColoum(header,col,"revDate",80,false);
@@ -79,11 +81,11 @@ public class DepositAmountReportFacadeControllerBean extends AbstractDepositAmou
 	    initColoum(header,col,"sub",80,false);
 	    header.setLabels(new Object[][]{ 
 	    		{
-	    			"spNumber","buNumber","roomNumber","mdNumber","id","conId","客户名称","项目分期","楼栋","房间","合同编码","合同状态","合同名称","合同起始日","合同终止日","租金总额","款项类别","应收金额","收款金额","收款日期","退款金额","退款日期","余额"
+	    			"spNumber","buNumber","roomNumber","mdNumber","id","conId","客户名称","项目分期","楼栋","房间","合同编码","合同状态","合同名称","合同起始日","合同终止日","租金总额","款项类别","是否生成退款申请单","depositBillId","应收金额","收款金额","收款日期","退款金额","退款日期","余额"
 		    	}
 	    		,
 	    		{
-	    			"spNumber","buNumber","roomNumber","mdNumber","id","conId","客户名称","项目分期","楼栋","房间","合同编码","合同状态","合同名称","合同起始日","合同终止日","租金总额","款项类别","应收金额","收款金额","收款日期","退款金额","退款日期","余额"
+	    			"spNumber","buNumber","roomNumber","mdNumber","id","conId","客户名称","项目分期","楼栋","房间","合同编码","合同状态","合同名称","合同起始日","合同终止日","租金总额","款项类别","是否生成退款申请单","depositBillId","应收金额","收款金额","收款日期","退款金额","退款日期","余额"
 		    	}
 	    },true);
 	    params.setObject("header", header);
@@ -206,15 +208,16 @@ public class DepositAmountReportFacadeControllerBean extends AbstractDepositAmou
     	StringBuffer sb=new StringBuffer();
     	sb.append(" select * from (select distinct t.spNumber,t.buNumber,t.roomNumber,t.mNumber,t.id,t.conId,t.customer,t.sellProject,t.build,t.room,");
     	sb.append(" t.conNumber,t.state,t.conName,t.startDate,t.endDate,t.dealTotal,");
-    	sb.append(" t.moneyDefine,t.appAmount,t.actAmount,t.revDate,t.quitAmount,t.quitDate,t.sub from ("); 
+    	sb.append(" t.moneyDefine,t.isGen,t.depositBillId,t.appAmount,t.actAmount,t.revDate,t.quitAmount,t.quitDate,t.sub from ("); 
     	sb.append(" select sp.fnumber spNumber,build.fnumber buNumber,room.fnumber roomNumber,revBill.revDate,quitBill.quitDate,pay.fappAmount appAmount,md.fnumber mNumber,con.ftenancyState state,pay.factrevAmount actAmount,pay.fhasRefundmentamount quitAmount,isnull(pay.factrevAmount,0)-isnull(pay.fhasRefundmentamount,0) sub,pay.fid id,md.fnumber mdNumber,md.fid mdId,con.fid conId,con.fquitRoomDate quitRoomDate,sp.fname_l2 sellProject,build.fname_l2 build,con.ftenRoomsDes room,room.FBuildingArea buildArea,roomEntry.fbuildingArea tenancyArea,");
     	sb.append(" con.fnumber conNumber,con.ftenancyName conName,con.ftencustomerDes customer,con.fstartDate startDate,con.fendDate endDate,datediff(day,rent.ffreeStartDate,rent.ffreeEndDate)+1 freeDays,con.fdealTotalRent dealTotal,");
-    	sb.append(" roomEntry.fdealRoomRentPrice dealPrice,roomEntry.fdealRoomRentPrice/roomEntry.fbuildingArea roomPrice,md.fname_l2 moneyDefine from T_TEN_TenancyBill con left join T_TEN_TenancyRoomEntry roomEntry on con.fid=roomEntry.ftenancyId left join T_TEN_TenancyCustomerEntry customerEntry on con.fid=customerEntry.ftenancyBillId"); 
+    	sb.append(" roomEntry.fdealRoomRentPrice dealPrice,roomEntry.fdealRoomRentPrice/roomEntry.fbuildingArea roomPrice,md.fname_l2 moneyDefine,case when dealEntry.fid is not null then 1 else 0 end isGen,dealEntry.fheadId depositBillId from T_TEN_TenancyBill con left join T_TEN_TenancyRoomEntry roomEntry on con.fid=roomEntry.ftenancyId left join T_TEN_TenancyCustomerEntry customerEntry on con.fid=customerEntry.ftenancyBillId"); 
     	sb.append(" left join t_she_room room on room.fid=roomEntry.froomId left join t_she_building build on build.fid=room.fbuildingId left join t_she_sellProject sp on sp.fid=con.fsellProjectid");
     	sb.append(" left join T_TEN_TenancyRoomPayListEntry pay on pay.ftenRoomId=roomEntry.fid left join t_she_moneyDefine md on md.fid=pay.fmoneyDefineId left join T_TEN_RentFreeEntry rent on rent.ftenancyId=con.fid");
     	sb.append(" left join (select max(rev.fcreatetime) revDate,entry.FREVLISTID from T_BDC_FDCReceivingBill rev left join T_BDC_FDCReceivingBillentry entry on entry.FHEADID =rev.fid where rev.FREVBILLTYPE ='gathering' group by entry.FREVLISTID)revBill on revBill.FREVLISTID=pay.fid");
     	sb.append(" left join (select max(rev.fcreatetime) quitDate,entry.FREVLISTID from T_BDC_FDCReceivingBill rev left join T_BDC_FDCReceivingBillentry entry on entry.FHEADID =rev.fid where rev.FREVBILLTYPE ='refundment' group by entry.FREVLISTID)quitBill on quitBill.FREVLISTID=pay.fid");
-//    	sb.append(" left join (select sum(fappAmount) amount,bill.FTenancyBillId conId from T_TEN_OtherBill bill left join  T_TEN_TenBillOtherPay entry on bill.fid=entry.FOtherBillId group by bill.FTenancyBillId) other on other.conId=con.fid");
+    	sb.append(" left join T_TEN_DepositDealBillEntry dealEntry on dealEntry.FsrcId =pay.fid");
+    	//    	sb.append(" left join (select sum(fappAmount) amount,bill.FTenancyBillId conId from T_TEN_OtherBill bill left join  T_TEN_TenBillOtherPay entry on bill.fid=entry.FOtherBillId group by bill.FTenancyBillId) other on other.conId=con.fid");
     	sb.append(" where con.ftenancystate in("+paramStr+" ) and md.fid is not null and md.FMoneyType='DepositAmount'");
 //    	if(isAll){
 //    		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying','Expiration')");
@@ -254,12 +257,13 @@ public class DepositAmountReportFacadeControllerBean extends AbstractDepositAmou
 //		}
     	sb.append(" union all select sp.fnumber spNumber,build.fnumber buNumber,room.fnumber roomNumber,revBill.revDate,quitBill.quitDate,pay.fappAmount appAmount,md.fnumber mNumber,con.ftenancyState state,pay.factrevAmount actAmount,pay.fhasRefundmentamount quitAmount,isnull(pay.factrevAmount,0)-isnull(pay.fhasRefundmentamount,0) sub,pay.fid id,md.fnumber mdNumber,md.fid mdId,con.fid conId,con.fquitRoomDate quitRoomDate,sp.fname_l2 sellProject,build.fname_l2 build,con.ftenRoomsDes room,room.FBuildingArea buildArea,roomEntry.fbuildingArea tenancyArea,");
     	sb.append(" con.fnumber conNumber,con.ftenancyName conName,con.ftencustomerDes customer,con.fstartDate startDate,con.fendDate endDate,datediff(day,rent.ffreeStartDate,rent.ffreeEndDate)+1 freeDays,con.fdealTotalRent dealTotal,");
-    	sb.append(" roomEntry.fdealRoomRentPrice dealPrice,roomEntry.fdealRoomRentPrice/roomEntry.fbuildingArea roomPrice,md.fname_l2 moneyDefine from T_TEN_TenancyBill con left join T_TEN_TenancyRoomEntry roomEntry on con.fid=roomEntry.ftenancyId left join T_TEN_TenancyCustomerEntry customerEntry on con.fid=customerEntry.ftenancyBillId"); 
+    	sb.append(" roomEntry.fdealRoomRentPrice dealPrice,roomEntry.fdealRoomRentPrice/roomEntry.fbuildingArea roomPrice,md.fname_l2 moneyDefine,case when dealEntry.fid is not null then 1 else 0 end isGen,dealEntry.fheadId depositBillId from T_TEN_TenancyBill con left join T_TEN_TenancyRoomEntry roomEntry on con.fid=roomEntry.ftenancyId left join T_TEN_TenancyCustomerEntry customerEntry on con.fid=customerEntry.ftenancyBillId"); 
     	sb.append(" left join t_she_room room on room.fid=roomEntry.froomId left join t_she_building build on build.fid=room.fbuildingId left join t_she_sellProject sp on sp.fid=con.fsellProjectid");
     	sb.append(" left join T_TEN_TenBillOtherPay pay on pay.fheadId=con.fid left join t_she_moneyDefine md on md.fid=pay.fmoneyDefineId left join T_TEN_RentFreeEntry rent on rent.ftenancyId=con.fid");
     	sb.append(" left join (select max(rev.fcreatetime) revDate,entry.FREVLISTID from T_BDC_FDCReceivingBill rev left join T_BDC_FDCReceivingBillentry entry on entry.FHEADID =rev.fid where rev.FREVBILLTYPE ='gathering' group by entry.FREVLISTID)revBill on revBill.FREVLISTID=pay.fid");
     	sb.append(" left join (select max(rev.fcreatetime) quitDate,entry.FREVLISTID from T_BDC_FDCReceivingBill rev left join T_BDC_FDCReceivingBillentry entry on entry.FHEADID =rev.fid where rev.FREVBILLTYPE ='refundment' group by entry.FREVLISTID)quitBill on quitBill.FREVLISTID=pay.fid");
-//    	sb.append(" left join (select sum(fappAmount) amount,bill.FTenancyBillId conId from T_TEN_OtherBill bill left join  T_TEN_TenBillOtherPay entry on bill.fid=entry.FOtherBillId group by bill.FTenancyBillId) other on other.conId=con.fid");
+    	sb.append(" left join T_TEN_DepositDealBillEntry dealEntry on dealEntry.FsrcId =pay.fid");
+    	//    	sb.append(" left join (select sum(fappAmount) amount,bill.FTenancyBillId conId from T_TEN_OtherBill bill left join  T_TEN_TenBillOtherPay entry on bill.fid=entry.FOtherBillId group by bill.FTenancyBillId) other on other.conId=con.fid");
     	sb.append(" where con.ftenancystate in("+paramStr+" ) and md.fid is not null and md.FMoneyType='DepositAmount'");
 //    	if(isAll){
 //    		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying','Expiration')");

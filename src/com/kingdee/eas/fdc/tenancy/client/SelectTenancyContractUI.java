@@ -27,8 +27,12 @@ import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseListener;
 import com.kingdee.bos.ctrl.kdf.util.editor.ICellEditor;
 import com.kingdee.bos.ctrl.kdf.util.style.Style;
 import com.kingdee.bos.ctrl.swing.KDCheckBox;
+import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
+import com.kingdee.bos.metadata.entity.SorterItemCollection;
+import com.kingdee.bos.metadata.entity.SorterItemInfo;
+import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.eas.basedata.org.CtrlUnitInfo;
 import com.kingdee.eas.basedata.org.OrgType;
@@ -39,6 +43,8 @@ import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.sellhouse.MoneyDefineInfo;
+import com.kingdee.eas.fdc.sellhouse.MoneyTypeEnum;
+import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
 import com.kingdee.eas.fdc.sellhouse.client.CommerceHelper;
 import com.kingdee.eas.fdc.tenancy.InvoiceBatchImportEntryCollection;
 import com.kingdee.eas.fdc.tenancy.InvoiceBatchImportEntryInfo;
@@ -65,29 +71,42 @@ public class SelectTenancyContractUI extends AbstractSelectTenancyContractUI {
 		this.prmtCustomer.setEditFormat("$number$");
 		this.prmtCustomer.setCommitFormat("$number$");
 		this.prmtCustomer.setEnabledMultiSelection(true);
-		this.prmtCustomer.setEntityViewInfo(CommerceHelper.getPermitCustomerView(null,SysContext.getSysContext().getCurrentUserInfo()));
+		this.prmtCustomer.setEntityViewInfo(CommerceHelper.getPermitCustomerView((SellProjectInfo) getUIContext().get("sellProject"),SysContext.getSysContext().getCurrentUserInfo()));
 		
 		this.prmtMoneyDefine.setDisplayFormat("$name$");		
         this.prmtMoneyDefine.setEditFormat("$name$");		
         this.prmtMoneyDefine.setCommitFormat("$name$");	
 		prmtMoneyDefine.setEnabledMultiSelection(true);
-		prmtMoneyDefine.setFilterInfoProducer(new IFilterInfoProducer(){
-
-			public FilterInfo getFilterInfo() {
-				FilterInfo filter = new FilterInfo();
-				filter.getFilterItems().add(new FilterItemInfo("sysType",MoneySysTypeEnum.TENANCYSYS_VALUE));
-				return filter;
-			}
-
-			public void setCurrentCtrlUnit(CtrlUnitInfo arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void setCurrentMainBizOrgUnit(OrgUnitInfo arg0, OrgType arg1) {
-				// TODO Auto-generated method stub
-				
-			}});
+		
+		EntityViewInfo view = new EntityViewInfo();
+		FilterInfo filter = new FilterInfo();
+		filter.getFilterItems().add(new FilterItemInfo("sysType", MoneySysTypeEnum.TENANCYSYS_VALUE));
+		filter.getFilterItems().add(new FilterItemInfo("moneyType", MoneyTypeEnum.DEPOSITAMOUNT_VALUE,CompareType.NOTEQUALS));
+		filter.getFilterItems().add(new FilterItemInfo("name", "%×÷·Ï%",CompareType.NOTLIKE));
+		filter.setMaskString("#0 and #1 and #2");
+		view.setFilter(filter);
+		SorterItemCollection sort=new SorterItemCollection();
+		sort.add(new SorterItemInfo("number"));
+		view.setSorter(sort);
+		prmtMoneyDefine.setEntityViewInfo(view);
+		
+//		prmtMoneyDefine.setFilterInfoProducer(new IFilterInfoProducer(){
+//
+//			public FilterInfo getFilterInfo() {
+//				FilterInfo filter = new FilterInfo();
+//				filter.getFilterItems().add(new FilterItemInfo("sysType",MoneySysTypeEnum.TENANCYSYS_VALUE));
+//				return filter;
+//			}
+//
+//			public void setCurrentCtrlUnit(CtrlUnitInfo arg0) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			public void setCurrentMainBizOrgUnit(OrgUnitInfo arg0, OrgType arg1) {
+//				// TODO Auto-generated method stub
+//				
+//			}});
 		
 		Calendar c = Calendar.getInstance();
 		this.kdpEndDate.setValue(c.getTime());

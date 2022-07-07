@@ -726,6 +726,7 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 		selector.add("payBillType.*");
 		selector.add("person.*");
 		selector.add("costedDept.*");
+		
 		PayRequestBillInfo payRequestBillInfo = PayRequestBillFactory.getLocalInstance(ctx)
 			.getPayRequestBillInfo(new ObjectUuidPK(billId),selector);
 		//payRequestBillInfo.getRealSupplier().getName();
@@ -3187,7 +3188,7 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 		long lt = ts.getTime();
 		try {
 			FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
-			builder.appendSql("select * from dl_mk where type = 'bx' ");
+			builder.appendSql("select * from dl_mk where ftype = 'bx' ");
 			IRowSet rs=builder.executeQuery();
 			while(rs.next()){
 				mturl=rs.getString("url");
@@ -3268,7 +3269,7 @@ public class PayRequestBillControllerBean extends AbstractPayRequestBillControll
 	     long lt = ts.getTime();
 	     try {
 	         FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
-	         builder.appendSql("select * from dl_mk where type='da'");
+	         builder.appendSql("select * from dl_mk where ftype='da'");
 	         IRowSet rs=builder.executeQuery();
 	         while(rs.next()){
 	             mturl=rs.getString("url");

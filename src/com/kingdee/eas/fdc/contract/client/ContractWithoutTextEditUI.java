@@ -101,6 +101,8 @@ import com.kingdee.eas.basedata.assistant.ExchangeRateInfo;
 import com.kingdee.eas.basedata.assistant.SettlementTypeInfo;
 import com.kingdee.eas.basedata.master.account.AccountViewInfo;
 import com.kingdee.eas.basedata.master.account.client.AccountPromptBox;
+import com.kingdee.eas.basedata.master.cssp.SupplierCompanyInfoCollection;
+import com.kingdee.eas.basedata.master.cssp.SupplierCompanyInfoFactory;
 import com.kingdee.eas.basedata.master.cssp.SupplierCompanyInfoInfo;
 import com.kingdee.eas.basedata.master.cssp.SupplierFactory;
 import com.kingdee.eas.basedata.master.cssp.SupplierInfo;
@@ -2323,16 +2325,35 @@ public class ContractWithoutTextEditUI extends
 			}
 //			e.setOldValue(newValue);
 			SupplierInfo supplier = (SupplierInfo) newValue;
-			BOSUuid supplierid = supplier.getId();
-			BOSUuid FIid = SysContext.getSysContext().getCurrentFIUnit().getId();
-			SupplierCompanyInfoInfo companyInfo = SupplierFactory.getRemoteInstance().getCompanyInfo(new ObjectUuidPK(supplierid), new ObjectUuidPK(FIid));
-			if (companyInfo != null)
-			{
-//				txtBankAcct.setText(companyInfo.getBankAccount());
-				txtBank.setText(companyInfo.getBankName());
-			} else
-			{
-//				logger.info(getRes("canntGetFiOrg"));
+//			BOSUuid supplierid = supplier.getId();
+//			BOSUuid FIid = SysContext.getSysContext().getCurrentFIUnit().getId();
+//			SupplierCompanyInfoInfo companyInfo = SupplierFactory.getRemoteInstance().getCompanyInfo(new ObjectUuidPK(supplierid), new ObjectUuidPK(FIid));
+//			if (companyInfo != null)
+//			{
+////				txtBankAcct.setText(companyInfo.getBankAccount());
+//				txtBank.setText(companyInfo.getBankName());
+//			} else
+//			{
+////				logger.info(getRes("canntGetFiOrg"));
+//			}
+			if(supplier!=null){
+//				EntityViewInfo view=new EntityViewInfo();
+//				FilterInfo filter=new FilterInfo();
+//				filter.getFilterItems().add(new FilterItemInfo("supplier.id",supplier.getId().toString()));
+//				view.setFilter(filter);
+//				SelectorItemCollection sic = super.getSelectors();
+//				sic.add(new SelectorItemInfo("supplierBank.*"));
+//				view.setSelector(sic);
+//				SupplierCompanyInfoCollection col=SupplierCompanyInfoFactory.getRemoteInstance().getSupplierCompanyInfoCollection(view);
+//				if(col.size()>0&&col.get(0).getSupplierBank().size()>0){
+//					this.txtBank.setText(col.get(0).getSupplierBank().get(0).getBank());
+////					this.txtBankAccount.setText(col.get(0).getSupplierBank().get(0).getBankAccount());
+//				}
+				this.txtTaxerNum.setText(supplier.getTaxRegisterNo());
+			}else{
+//				this.txtBank.setText(null);
+//				this.txtBankAccount.setText(null);
+				this.txtTaxerNum.setText(null);
 			}
 
 		}

@@ -44,7 +44,7 @@ public interface IRoomAreaCompensate extends IFDCBill
     public void setSubmit(BOSUuid billId) throws BOSException, EASBizException;
     public void deleteCompensateInfo(BOSUuid billId) throws BOSException, EASBizException;
     public void createBillForSign(CompensateRoomListCollection compColl) throws BOSException, EASBizException;
-    public void deleteBillFromSign(String roomId, SignManageCollection comColl) throws BOSException, EASBizException;
+    public void deleteBillFromSign(CompensateRoomListCollection compColl) throws BOSException, EASBizException;
     public void createRoomCompensateForView(List roomIdList, String compId) throws BOSException, EASBizException;
     public void deleteRoomCompensateForView(List roomIdList, String comId) throws BOSException, EASBizException;
 }

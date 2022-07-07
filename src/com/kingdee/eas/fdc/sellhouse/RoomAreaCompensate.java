@@ -307,13 +307,12 @@ public class RoomAreaCompensate extends FDCBill implements IRoomAreaCompensate
     }
     /**
      *删除签约明细中的补差款明细-User defined method
-     *@param roomId roomId
-     *@param comColl comColl
+     *@param compColl compColl
      */
-    public void deleteBillFromSign(String roomId, SignManageCollection comColl) throws BOSException, EASBizException
+    public void deleteBillFromSign(CompensateRoomListCollection compColl) throws BOSException, EASBizException
     {
         try {
-            getController().deleteBillFromSign(getContext(), roomId, comColl);
+            getController().deleteBillFromSign(getContext(), compColl);
         }
         catch(RemoteException err) {
             throw new EJBRemoteException(err);

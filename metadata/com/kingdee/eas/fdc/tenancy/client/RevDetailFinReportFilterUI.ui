@@ -22,7 +22,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDPanel</classType>
             <isContainer>true</isContainer>
-            <constraints>10,10,600,160</constraints>
+            <constraints>10,10,600,180</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -117,7 +117,7 @@
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
             <isContainer>false</isContainer>
-            <constraints>27,128,140,19</constraints>
+            <constraints>27,146,140,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -238,8 +238,8 @@
             </parent>
         </component>
         <component>
-            <name>kDLabelContainer1</name>
-            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer1].alias</alias>
+            <name>contFromDate</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contFromDate].alias</alias>
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
             <isContainer>true</isContainer>
@@ -256,21 +256,21 @@
                 <property>
                     <name>boundLabelText</name>
                     <type>java.lang.String</type>
-                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelText].value</value>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contFromDate].properties.property[boundLabelText].value</value>
                     <isMultiLan>true</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
                 <property>
                     <name>boundLabelLength</name>
                     <type>int</type>
-                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelLength].value</value>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contFromDate].properties.property[boundLabelLength].value</value>
                     <isMultiLan>false</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
                 <property>
                     <name>boundLabelUnderline</name>
                     <type>boolean</type>
-                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelUnderline].value</value>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contFromDate].properties.property[boundLabelUnderline].value</value>
                     <isMultiLan>false</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
@@ -280,8 +280,8 @@
             </parent>
         </component>
         <component>
-            <name>kDLabelContainer2</name>
-            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer2].alias</alias>
+            <name>contToDate</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToDate].alias</alias>
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
             <isContainer>true</isContainer>
@@ -298,21 +298,168 @@
                 <property>
                     <name>boundLabelText</name>
                     <type>java.lang.String</type>
-                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer2].properties.property[boundLabelText].value</value>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToDate].properties.property[boundLabelText].value</value>
                     <isMultiLan>true</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
                 <property>
                     <name>boundLabelLength</name>
                     <type>int</type>
-                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer2].properties.property[boundLabelLength].value</value>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToDate].properties.property[boundLabelLength].value</value>
                     <isMultiLan>false</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
                 <property>
                     <name>boundLabelUnderline</name>
                     <type>boolean</type>
-                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer2].properties.property[boundLabelUnderline].value</value>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToDate].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>chkIsNeedTotal</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[chkIsNeedTotal].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>186,146,122,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[chkIsNeedTotal].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>selected</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[chkIsNeedTotal].properties.property[selected].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>cbIsZero</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[cbIsZero].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>327,146,140,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[cbIsZero].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>selected</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[cbIsZero].properties.property[selected].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>contToODDate</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToODDate].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>27,123,252,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToODDate].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToODDate].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToODDate].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>kDLabel1</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabel1].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabel</classType>
+            <isContainer>false</isContainer>
+            <constraints>327,123,271,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabel1].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>foreground</name>
+                    <type>java.awt.Color</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabel1].properties.property[foreground].value</value>
                     <isMultiLan>false</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
@@ -489,7 +636,7 @@
                 </property>
             </properties>
             <parent>
-                <key name="name" value="kDLabelContainer1" />
+                <key name="name" value="contFromDate" />
             </parent>
         </component>
         <component>
@@ -517,7 +664,35 @@
                 </property>
             </properties>
             <parent>
-                <key name="name" value="kDLabelContainer2" />
+                <key name="name" value="contToDate" />
+            </parent>
+        </component>
+        <component>
+            <name>pkToODDate</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[pkToODDate].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDDatePicker</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>required</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[pkToODDate].properties.property[required].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="contToODDate" />
             </parent>
         </component>
     </components>
@@ -546,6 +721,42 @@
             <lang locale="zh_HK" value="包含已終止合同" />
             <lang locale="zh_TW" value="包含已終止合同" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[cbIsZero].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[cbIsZero].properties.property[selected].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[cbIsZero].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="应收为0不显示" />
+            <lang locale="zh_HK" value="應收為0不顯示" />
+            <lang locale="zh_TW" value="應收為0不顯示" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[chkIsNeedTotal].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[chkIsNeedTotal].properties.property[selected].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[chkIsNeedTotal].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="是否需要小计" />
+            <lang locale="zh_HK" value="是否需要小計" />
+            <lang locale="zh_TW" value="是否需要小計" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contCustomer].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -565,6 +776,30 @@
             <lang locale="zh_TW" value="客戶" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contCustomer].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contFromDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contFromDate].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contFromDate].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="创建时间" />
+            <lang locale="zh_CN" value="应收日期" />
+            <lang locale="zh_HK" value="應收日期" />
+            <lang locale="zh_TW" value="應收日期" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contFromDate].properties.property[boundLabelUnderline].value">
             <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_HK" value="true" />
@@ -642,53 +877,71 @@
             <lang locale="zh_HK" value="true" />
             <lang locale="zh_TW" value="true" />
         </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer1].alias">
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToDate].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelLength].value">
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToDate].properties.property[boundLabelLength].value">
             <lang locale="en_US" value="100" />
             <lang locale="zh_CN" value="100" />
             <lang locale="zh_HK" value="100" />
             <lang locale="zh_TW" value="100" />
         </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelText].value">
-            <lang locale="en_US" value="创建时间" />
-            <lang locale="zh_CN" value="应收日期" />
-            <lang locale="zh_HK" value="應收日期" />
-            <lang locale="zh_TW" value="應收日期" />
-        </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelUnderline].value">
-            <lang locale="en_US" value="true" />
-            <lang locale="zh_CN" value="true" />
-            <lang locale="zh_HK" value="true" />
-            <lang locale="zh_TW" value="true" />
-        </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer2].alias">
-            <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="null" />
-            <lang locale="zh_HK" value="null" />
-            <lang locale="zh_TW" value="null" />
-        </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer2].properties.property[boundLabelLength].value">
-            <lang locale="en_US" value="100" />
-            <lang locale="zh_CN" value="100" />
-            <lang locale="zh_HK" value="100" />
-            <lang locale="zh_TW" value="100" />
-        </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer2].properties.property[boundLabelText].value">
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToDate].properties.property[boundLabelText].value">
             <lang locale="en_US" value="创建时间" />
             <lang locale="zh_CN" value="至" />
             <lang locale="zh_HK" value="至" />
             <lang locale="zh_TW" value="至" />
         </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabelContainer2].properties.property[boundLabelUnderline].value">
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToDate].properties.property[boundLabelUnderline].value">
             <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_HK" value="true" />
             <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToODDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToODDate].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToODDate].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="账龄截止日期" />
+            <lang locale="zh_HK" value="賬齡截止日期" />
+            <lang locale="zh_TW" value="賬齡截止日期" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[contToODDate].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabel1].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabel1].properties.property[foreground].value">
+            <lang locale="en_US" value="r=0,g=0,b=255" />
+            <lang locale="zh_CN" value="r=0,g=0,b=255" />
+            <lang locale="zh_HK" value="r=0,g=0,b=255" />
+            <lang locale="zh_TW" value="r=0,g=0,b=255" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[kDLabel1].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="该过滤日期计算报表中所有账龄" />
+            <lang locale="zh_HK" value="該過濾日期計算報表中所有賬齡" />
+            <lang locale="zh_TW" value="該過濾日期計算報表中所有賬齡" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[pkFromDate].alias">
             <lang locale="en_US" value="null" />
@@ -709,6 +962,18 @@
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[pkToDate].properties.property[required].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[pkToODDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailFinReportFilterUI].components.component[pkToODDate].properties.property[required].value">
             <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_HK" value="true" />

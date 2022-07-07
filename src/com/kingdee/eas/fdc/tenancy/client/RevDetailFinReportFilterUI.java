@@ -17,11 +17,14 @@ import com.kingdee.bos.BOSException;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
+import com.kingdee.bos.metadata.entity.SorterItemCollection;
+import com.kingdee.bos.metadata.entity.SorterItemInfo;
 import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.dao.IObjectValue;
 import com.kingdee.eas.common.client.SysContext;
 import com.kingdee.eas.fdc.basedata.FDCCommonServerHelper;
+import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.sellhouse.SellProjectCollection;
@@ -59,8 +62,8 @@ public class RevDetailFinReportFilterUI extends AbstractRevDetailFinReportFilter
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(now);
 		
-		this.pkFromDate.setValue(now);
-		this.pkToDate.setValue(now);
+		this.pkFromDate.setValue(FDCDateHelper.getFirstDayOfMonth(now));
+		this.pkToDate.setValue(FDCDateHelper.getLastDayOfMonth(now));
 		
 //		FDCRoomPromptDialog dialog=new FDCRoomPromptDialog(Boolean.TRUE, null, null,
 //				MoneySysTypeEnum.TenancySys, null,null);
@@ -97,8 +100,10 @@ public class RevDetailFinReportFilterUI extends AbstractRevDetailFinReportFilter
 		this.prmtCustomer.setEditFormat("$number$");
 		this.prmtCustomer.setCommitFormat("$number$");
 		this.prmtCustomer.setEnabledMultiSelection(true);
-		this.prmtCustomer.setEntityViewInfo(CommerceHelper.getPermitCustomerView(null,SysContext.getSysContext().getCurrentUserInfo()));
-	
+		view=CommerceHelper.getPermitCustomerView(null,SysContext.getSysContext().getCurrentUserInfo());
+		view.getFilter().getFilterItems().add(new FilterItemInfo("project.id",spSet,CompareType.INCLUDE));
+		this.prmtCustomer.setEntityViewInfo(view);
+		
 		this.prmtMoneyDefine.setEditable(false);
 		this.prmtMoneyDefine.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.MoneyDefineQuery");
 		this.prmtMoneyDefine.setDisplayFormat("$name$");
@@ -110,6 +115,9 @@ public class RevDetailFinReportFilterUI extends AbstractRevDetailFinReportFilter
 		filter.getFilterItems().add(new FilterItemInfo("sysType", MoneySysTypeEnum.TENANCYSYS_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("name", "%作废%",CompareType.NOTLIKE));
 		view.setFilter(filter);
+		SorterItemCollection sort=new SorterItemCollection();
+		sort.add(new SorterItemInfo("number"));
+		view.setSorter(sort);
 		this.prmtMoneyDefine.setEntityViewInfo(view);
 	
     }
@@ -121,6 +129,10 @@ public class RevDetailFinReportFilterUI extends AbstractRevDetailFinReportFilter
     	}
     	if(this.pkToDate.getValue()==null){
     		FDCMsgBox.showWarning(this,"结束日期不能为空！");
+    		return false;
+    	}
+    	if(this.pkToODDate.getValue()==null){
+    		FDCMsgBox.showWarning(this,"账龄截止日期不能为空！");
     		return false;
     	}
         return true;
@@ -150,6 +162,9 @@ public class RevDetailFinReportFilterUI extends AbstractRevDetailFinReportFilter
          pp.setObject("fromDate", this.pkFromDate.getValue());
          pp.setObject("toDate", this.pkToDate.getValue());
 		 pp.setObject("isAll", this.cbIsAll.isSelected());
+		 pp.setObject("isNeedTotal", this.chkIsNeedTotal.isSelected());
+         pp.setObject("isZero", this.cbIsZero.isSelected());
+         pp.setObject("toODDate", this.pkToODDate.getValue());
 		 return pp;
 	}
 	public void onInit(RptParams params) throws Exception {
@@ -163,6 +178,9 @@ public class RevDetailFinReportFilterUI extends AbstractRevDetailFinReportFilter
 		this.prmtMoneyDefine.setValue(params.getObject("moneyDefine"));
 		this.pkFromDate.setValue(params.getObject("fromDate"));
 		this.pkToDate.setValue(params.getObject("toDate"));
+		this.chkIsNeedTotal.setSelected(params.getBoolean("isNeedTotal"));
+		this.cbIsZero.setSelected(params.getBoolean("isZero"));
+		this.pkToODDate.setValue(params.getObject("toODDate"));
 	}
 	protected void cbIsAll_actionPerformed(ActionEvent e) throws Exception {
 		EntityViewInfo vi = new EntityViewInfo();

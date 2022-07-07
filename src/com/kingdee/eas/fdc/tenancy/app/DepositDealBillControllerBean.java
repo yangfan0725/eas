@@ -47,6 +47,8 @@ import com.kingdee.eas.fdc.basecrm.RevBillTypeEnum;
 import com.kingdee.eas.fdc.basecrm.RevBizTypeEnum;
 import com.kingdee.eas.fdc.basecrm.RevListTypeEnum;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
+import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
+import com.kingdee.eas.fdc.tenancy.DepositDealBillEntryInfo;
 import com.kingdee.eas.fdc.tenancy.DepositDealBillFactory;
 import com.kingdee.eas.fdc.tenancy.DepositDealBillInfo;
 import com.kingdee.eas.fdc.tenancy.DepositDealBillCollection;
@@ -59,6 +61,7 @@ import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryInfo;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.eas.framework.CoreBaseCollection;
 import com.kingdee.eas.fdc.tenancy.TenBillBaseCollection;
+import com.kingdee.eas.util.SysUtil;
 import com.kingdee.eas.util.app.ContextUtil;
 import com.kingdee.util.NumericExceptionSubItem;
 
@@ -91,7 +94,7 @@ public class DepositDealBillControllerBean extends AbstractDepositDealBillContro
 		revInfo.setSourceBillId(info.getId().toString());
 		revInfo.setSellProject(ten.getSellProject());
 		revInfo.setTenancyObj(ten);
-		CompanyOrgUnitCollection coCol=CompanyOrgUnitFactory.getLocalInstance(ctx).getCompanyOrgUnitCollection("select * from where id='"+info.getOrgUnit().getId()+"'");
+		CompanyOrgUnitCollection coCol=CompanyOrgUnitFactory.getLocalInstance(ctx).getCompanyOrgUnitCollection("select *,accountTable.* from where id='"+info.getOrgUnit().getId()+"'");
 		if(coCol.size()>0){
 			revInfo.setCompany(coCol.get(0));
 		}else{
@@ -116,18 +119,30 @@ public class DepositDealBillControllerBean extends AbstractDepositDealBillContro
 			if(info.getEntry().get(i).getAmount()==null||info.getEntry().get(i).getAmount().compareTo(FDCHelper.ZERO)<=0){
 				continue;
 			}
+			
+			BigDecimal subAmount=FDCHelper.ZERO;
+			
 			FDCReceivingBillEntryInfo revEntry=new FDCReceivingBillEntryInfo();
 			if(BOSUuid.read(info.getEntry().get(i).getSrcId()).getType().equals(new TenancyRoomPayListEntryInfo().getBOSType())){
 				revEntry.setRevListType(RevListTypeEnum.tenRoomRev);
 				
 				TenancyRoomPayListEntryInfo srcInfo= TenancyRoomPayListEntryFactory.getLocalInstance(ctx).getTenancyRoomPayListEntryInfo(new ObjectUuidPK(info.getEntry().get(i).getSrcId()),sic);
+				subAmount=FDCHelper.subtract(srcInfo.getActRevAmount(), srcInfo.getHasRefundmentAmount());
+				
 				revEntry.setMoneyDefine(srcInfo.getMoneyDefine());
 			}else{
 				revEntry.setRevListType(RevListTypeEnum.tenOtherRev);
 				
 				TenBillOtherPayInfo srcInfo=TenBillOtherPayFactory.getLocalInstance(ctx).getTenBillOtherPayInfo(new ObjectUuidPK(info.getEntry().get(i).getSrcId()),sic);
+				subAmount=FDCHelper.subtract(srcInfo.getActRevAmount(), srcInfo.getHasRefundmentAmount());
+				
 				revEntry.setMoneyDefine(srcInfo.getMoneyDefine());
 			}
+			
+			if(info.getEntry().get(i).getAmount().compareTo(subAmount)>0){
+				throw new EASBizException(new NumericExceptionSubItem("100","申请退押金金额不能大于可退金额！"));
+			}
+			
 			revEntry.setRevListId(info.getEntry().get(i).getSrcId());
 			revEntry.setRoom(ten.getTenancyRoomList().get(0).getRoom());
 			revEntry.setRevAmount(info.getEntry().get(i).getAmount().negate());
@@ -139,7 +154,7 @@ public class DepositDealBillControllerBean extends AbstractDepositDealBillContro
 		revInfo.setBillStatus(RevBillStatusEnum.SUBMIT);
 		revInfo.setAmount(amount);
 		revInfo.setOriginalAmount(amount);
-		AccountViewCollection acCol=AccountViewFactory.getLocalInstance(ctx).getAccountViewCollection("select * from where number='1001.01' and companyID.id='"+revInfo.getCompany().getId()+"'");
+		AccountViewCollection acCol=AccountViewFactory.getLocalInstance(ctx).getAccountViewCollection("select * from where number='1001.01' and companyID.id='"+revInfo.getCompany().getId()+"' and accountTableID.id='"+revInfo.getCompany().getAccountTable().getId()+"'");
 		if(acCol.size()>0){
 			revInfo.setRevAccount(acCol.get(0));
 		}

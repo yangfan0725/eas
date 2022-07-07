@@ -2953,8 +2953,8 @@ kDContainer5.getContentPane().setLayout(new BorderLayout(0, 0));        kDContai
         kDPanel3.add(btnViewCustInfo, new KDLayout.Constraints(539, 679, 111, 19, 0));
         contConRentType.setBounds(new Rectangle(760, 4, 236, 19));
         kDPanel3.add(contConRentType, new KDLayout.Constraints(760, 4, 236, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
-        contTenPrice.setBounds(new Rectangle(760, 35, 270, 19));
-        kDPanel3.add(contTenPrice, new KDLayout.Constraints(760, 35, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contTenPrice.setBounds(new Rectangle(760, 35, 236, 19));
+        kDPanel3.add(contTenPrice, new KDLayout.Constraints(760, 35, 236, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         contContractType.setBounds(new Rectangle(261, 65, 236, 19));
         kDPanel3.add(contContractType, new KDLayout.Constraints(261, 65, 236, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contTenancyBillType.setBounds(new Rectangle(513, 65, 236, 19));

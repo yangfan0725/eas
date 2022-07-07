@@ -17,6 +17,8 @@ import com.kingdee.bos.BOSException;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
+import com.kingdee.bos.metadata.entity.SorterItemCollection;
+import com.kingdee.bos.metadata.entity.SorterItemInfo;
 import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.dao.IObjectValue;
@@ -102,8 +104,10 @@ public class RevDetailInvReportFilterUI extends AbstractRevDetailInvReportFilter
 		this.prmtCustomer.setEditFormat("$number$");
 		this.prmtCustomer.setCommitFormat("$number$");
 		this.prmtCustomer.setEnabledMultiSelection(true);
-		this.prmtCustomer.setEntityViewInfo(CommerceHelper.getPermitCustomerView(null,SysContext.getSysContext().getCurrentUserInfo()));
-	
+		view=CommerceHelper.getPermitCustomerView(null,SysContext.getSysContext().getCurrentUserInfo());
+		view.getFilter().getFilterItems().add(new FilterItemInfo("project.id",spSet,CompareType.INCLUDE));
+		this.prmtCustomer.setEntityViewInfo(view);
+		
 		this.prmtMoneyDefine.setEditable(false);
 		this.prmtMoneyDefine.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.MoneyDefineQuery");
 		this.prmtMoneyDefine.setDisplayFormat("$name$");
@@ -113,7 +117,11 @@ public class RevDetailInvReportFilterUI extends AbstractRevDetailInvReportFilter
 		view = new EntityViewInfo();
 		filter = new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("sysType", MoneySysTypeEnum.TENANCYSYS_VALUE));
+		filter.getFilterItems().add(new FilterItemInfo("name", "%×÷·Ï%",CompareType.NOTLIKE));
 		view.setFilter(filter);
+		SorterItemCollection sort=new SorterItemCollection();
+		sort.add(new SorterItemInfo("number"));
+		view.setSorter(sort);
 		this.prmtMoneyDefine.setEntityViewInfo(view);
 	
     }
@@ -148,7 +156,8 @@ public class RevDetailInvReportFilterUI extends AbstractRevDetailInvReportFilter
          pp.setObject("eyear", this.spEYear.getIntegerVlaue());
          pp.setObject("emonth", this.spEMonth.getIntegerVlaue());
 		 pp.setObject("isAll", this.cbIsAll.isSelected());
-		 pp.setObject("isNotHasZero", this.cbIsNotHasZero.isSelected());
+		 pp.setObject("isNeedTotal", this.chkIsNeedTotal.isSelected());
+         pp.setObject("isZero", this.cbIsZero.isSelected());
 		 return pp;
 	}
 	public void onInit(RptParams params) throws Exception {
@@ -158,13 +167,14 @@ public class RevDetailInvReportFilterUI extends AbstractRevDetailInvReportFilter
 		this.prmtRoom.setValue(params.getObject("room"));
 		this.prmtTanancyBill.setValue(params.getObject("tenancyBill"));
 		this.cbIsAll.setSelected(params.getBoolean("isAll"));
-		this.cbIsNotHasZero.setSelected(params.getBoolean("isNotHasZero"));
 		this.prmtCustomer.setValue(params.getObject("customer"));
 		this.prmtMoneyDefine.setValue(params.getObject("moneyDefine"));
 		this.spSYear.setValue(params.getObject("syear"));
 		this.spSMonth.setValue(params.getObject("smonth"));
 		this.spEYear.setValue(params.getObject("eyear"));
 		this.spEMonth.setValue(params.getObject("emonth"));
+		this.chkIsNeedTotal.setSelected(params.getBoolean("isNeedTotal"));
+		this.cbIsZero.setSelected(params.getBoolean("isZero"));
 	}
 	protected void cbIsAll_actionPerformed(ActionEvent e) throws Exception {
 		EntityViewInfo vi = new EntityViewInfo();

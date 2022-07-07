@@ -355,12 +355,47 @@
             </parent>
         </component>
         <component>
+            <name>chkIsNeedTotal</name>
+            <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[chkIsNeedTotal].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>173,128,122,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[chkIsNeedTotal].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>selected</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[chkIsNeedTotal].properties.property[selected].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
             <name>cbIsZero</name>
             <alias>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[cbIsZero].alias</alias>
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
             <isContainer>false</isContainer>
-            <constraints>241,128,140,19</constraints>
+            <constraints>301,128,140,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -375,6 +410,13 @@
                     <type>java.lang.String</type>
                     <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[cbIsZero].properties.property[text].value</value>
                     <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>selected</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[cbIsZero].properties.property[selected].value</value>
+                    <isMultiLan>false</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
             </properties>
@@ -576,11 +618,35 @@
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[cbIsZero].properties.property[selected].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[cbIsZero].properties.property[text].value">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="应收金额为0不显示" />
-            <lang locale="zh_HK" value="應收金額為0不顯示" />
-            <lang locale="zh_TW" value="應收金額為0不顯示" />
+            <lang locale="zh_CN" value="应收为0不显示" />
+            <lang locale="zh_HK" value="應收為0不顯示" />
+            <lang locale="zh_TW" value="應收為0不顯示" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[chkIsNeedTotal].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[chkIsNeedTotal].properties.property[selected].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[chkIsNeedTotal].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="是否需要小计" />
+            <lang locale="zh_HK" value="是否需要小計" />
+            <lang locale="zh_TW" value="是否需要小計" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.tenancy.client.RevDetailVoucherReportFilterUI].components.component[contCustomer].alias">
             <lang locale="en_US" value="null" />

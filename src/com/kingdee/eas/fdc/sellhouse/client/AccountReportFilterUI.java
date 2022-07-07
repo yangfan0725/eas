@@ -63,6 +63,8 @@ public class AccountReportFilterUI extends AbstractAccountReportFilterUI
 		FilterInfo filter = new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("building.sellProject.id", NewCommerceHelper.getPermitProjectIdSql(SysContext.getSysContext().getCurrentUserInfo()),CompareType.INNER));
 		filter.getFilterItems().add(new FilterItemInfo("sellState", RoomSellStateEnum.SIGN_VALUE));
+		filter.getFilterItems().add(new FilterItemInfo("sellState", RoomSellStateEnum.ONSHOW_VALUE));
+		filter.setMaskString("#0 and (#1 or #2)");
 		view.setFilter(filter);
 		prmtRoom.setEntityViewInfo(view);
 	}
@@ -127,6 +129,7 @@ public class AccountReportFilterUI extends AbstractAccountReportFilterUI
          }else{
         	 pp.setBigDecimal("toNotproPortion", null);
          }
+         pp.setBoolean("isQuit", this.cbIsQuit.isSelected());
 		 return pp;
 	}
 	public void onInit(RptParams params) throws Exception {
@@ -143,6 +146,7 @@ public class AccountReportFilterUI extends AbstractAccountReportFilterUI
 		this.txtToDays.setValue(params.getObject("toDays"));
 		this.txtFromNotproPortion.setValue(params.getBigDecimal("fromNotproPortion"));
 		this.txtToNotproPortion.setValue(params.getBigDecimal("toNotproPortion"));
+		this.cbIsQuit.setSelected(params.getBoolean("isQuit"));
 	}
 	protected void prmtProject_dataChanged(DataChangeEvent e) throws Exception {
 //		EntityViewInfo view = new EntityViewInfo();

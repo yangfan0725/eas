@@ -9,10 +9,13 @@ import java.awt.Frame;
 import java.awt.Window;
 import java.awt.event.*;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeSelectionEvent;
@@ -21,9 +24,11 @@ import javax.swing.tree.TreeNode;
 import org.apache.log4j.Logger;
 
 import com.kingdee.bos.BOSException;
+import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.ui.face.IUIWindow;
 import com.kingdee.bos.ui.face.UIFactory;
+import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.bos.ctrl.extendcontrols.IDataFormat;
 import com.kingdee.bos.ctrl.kdf.table.ICell;
 import com.kingdee.bos.ctrl.kdf.table.IColumn;
@@ -39,9 +44,14 @@ import com.kingdee.bos.ctrl.kdf.util.render.ObjectValueRender;
 import com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment;
 import com.kingdee.bos.ctrl.swing.KDTree;
 import com.kingdee.bos.ctrl.swing.tree.DefaultKingdeeTreeNode;
+import com.kingdee.bos.dao.IObjectPK;
 import com.kingdee.bos.dao.IObjectValue;
+import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
+import com.kingdee.eas.base.codingrule.CodingRuleManagerFactory;
+import com.kingdee.eas.base.codingrule.ICodingRuleManager;
 import com.kingdee.eas.base.permission.client.longtime.ILongTimeTask;
 import com.kingdee.eas.common.client.OprtState;
+import com.kingdee.eas.common.client.SysContext;
 import com.kingdee.eas.common.client.UIContext;
 import com.kingdee.eas.common.client.UIFactoryName;
 import com.kingdee.eas.fdc.basecrm.client.CRMClientHelper;
@@ -49,13 +59,24 @@ import com.kingdee.eas.fdc.basedata.FDCCommonServerHelper;
 import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
+import com.kingdee.eas.fdc.basedata.client.FDCClientUtils;
+import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.sellhouse.TransactionStateEnum;
 import com.kingdee.eas.fdc.sellhouse.client.FDCTreeHelper;
 import com.kingdee.eas.fdc.sellhouse.client.SHEHelper;
 import com.kingdee.eas.fdc.tenancy.DepositAmountReportFacadeFactory;
+import com.kingdee.eas.fdc.tenancy.DepositDealBillCollection;
+import com.kingdee.eas.fdc.tenancy.DepositDealBillEntryInfo;
+import com.kingdee.eas.fdc.tenancy.DepositDealBillFactory;
+import com.kingdee.eas.fdc.tenancy.DepositDealBillInfo;
+import com.kingdee.eas.fdc.tenancy.DepositDealTypeEnum;
+import com.kingdee.eas.fdc.tenancy.IDepositDealBill;
 import com.kingdee.eas.fdc.tenancy.RevDetailReportFacadeFactory;
+import com.kingdee.eas.fdc.tenancy.TenancyBillFactory;
+import com.kingdee.eas.fdc.tenancy.TenancyBillInfo;
 import com.kingdee.eas.fdc.tenancy.TenancyBillStateEnum;
 import com.kingdee.eas.framework.*;
+import com.kingdee.eas.framework.client.FrameWorkClientUtils;
 import com.kingdee.eas.framework.report.ICommRptBase;
 import com.kingdee.eas.framework.report.client.CommRptBaseConditionUI;
 import com.kingdee.eas.framework.report.util.DefaultKDTableInsertHandler;
@@ -189,6 +210,14 @@ public class DepositAmountReportUI extends AbstractDepositAmountReportUI
 	                   	 if(rs.getString("state").equals("Executing")){
 	                   		 row.getStyleAttributes().setBackground(new Color(130,240,130));
 	                   	 }
+	                   	if(rs.getBigDecimal("isGen").compareTo(new BigDecimal(1))==0){
+	                   		row.getCell("isGen").setValue(Boolean.TRUE);
+	                   	}else{
+	                   		row.getCell("isGen").setValue(Boolean.FALSE);
+	                   	}
+	                   	if(!SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("900002")){
+	                   		tblMain.getColumn("isGen").getStyleAttributes().setHided(true);
+	                   	}
 //	                   	 int remainingDays=(int) FDCDateHelper.dateDiff("d", (Date) params.getObject("toRDDate"), (Date)row.getCell("endDate").getValue());
 //	                   	 row.getCell("remainingDays").setValue(remainingDays<0?0:remainingDays);
 //	                   	 rowMap.put(rs.getString("conId")+rs.getString("mdId"), row);
@@ -296,7 +325,7 @@ public class DepositAmountReportUI extends AbstractDepositAmountReportUI
 //            	        	 tblMain.getHeadMergeManager().mergeBlock(0, merge, 0, merge+6);
 //            	         }
 //         	         }
-         	         
+         	         getFootRow(tblMain, new String[]{"dealTotal","appAmount","actAmount","quitAmount","sub"});
         	         
          	         tblMain.setRefresh(true);
          	         if(rs.getRowCount() > 0){
@@ -404,6 +433,12 @@ public class DepositAmountReportUI extends AbstractDepositAmountReportUI
 		tblMain.getSelectManager().setSelectMode(KDTSelectManager.MULTIPLE_CELL_SELECT);
 		this.actionPrint.setVisible(false);
 		this.actionPrintPreview.setVisible(false);
+		this.btnGen.setIcon(EASResource.getIcon("imgTbtn_createcredence"));
+		this.btnView.setIcon(EASResource.getIcon("imgTbtn_view"));
+		if(!SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("900002")){
+			this.actionGen.setVisible(false);
+			this.actionView.setVisible(false);
+		}
 		buildTree();
 		isOnLoad=false;
 		this.refresh();
@@ -481,5 +516,88 @@ public class DepositAmountReportUI extends AbstractDepositAmountReportUI
         }
         return sum;
     }
+
+	public void actionGen_actionPerformed(ActionEvent e) throws Exception {
+		int[] selectRows = KDTableUtil.getSelectedRows(this.tblMain);
+		if(selectRows==null || selectRows.length==0){
+			FDCMsgBox.showWarning(this, EASResource.getString(FrameWorkClientUtils.strResource + "Msg_MustSelected"));
+			return;
+		}
+		Map billMap=new HashMap();
+		SelectorItemCollection sic=new SelectorItemCollection();
+		sic.add("*");
+		sic.add("orgUnit.*");
+		
+		for (int i = 0; i < selectRows.length; i++) {
+			IRow row = this.tblMain.getRow(selectRows[i]);
+			BigDecimal sub=(BigDecimal) row.getCell("sub").getValue();
+			Boolean isGen=(Boolean) row.getCell("isGen").getValue();
+			if(sub.compareTo(FDCHelper.ZERO)<=0||isGen)continue;
+			String conId=row.getCell("conId").getValue().toString();
+			String srcId=row.getCell("id").getValue().toString();
+			DepositDealBillInfo info=null;
+			if(billMap.containsKey(conId)){
+				info=(DepositDealBillInfo) billMap.get(conId);
+			}else{
+				info=new DepositDealBillInfo();
+				info.setType(DepositDealTypeEnum.QUITYJ);
+				
+				TenancyBillInfo ten=TenancyBillFactory.getRemoteInstance().getTenancyBillInfo(new ObjectUuidPK(conId),sic);
+				info.setTenancyBill(ten);
+				info.setOrgUnit(ten.getOrgUnit());
+				
+				Date now=new Date();
+		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:sss");
+		        
+				ICodingRuleManager iCodingRuleManager = CodingRuleManagerFactory.getRemoteInstance();
+				info.setNumber(iCodingRuleManager.getNumber(info, info.getOrgUnit().getId().toString()));
+				info.setName(ten.getTenCustomerDes()+" "+DepositDealTypeEnum.QUITYJ.getAlias()+" "+sdf.format(now));
+	      		
+				billMap.put(conId, info);
+			}
+			
+			DepositDealBillEntryInfo entryInfo=new DepositDealBillEntryInfo();
+			entryInfo.setSrcId(srcId);
+			entryInfo.setAmount(sub);
+			
+			info.getEntry().add(entryInfo);
+		}
+		if(billMap.size()==0){
+			FDCMsgBox.showInfo(this,"无退款申请单生成！");
+			return;
+		}
+		Set set=billMap.keySet();
+		Iterator iterator=set.iterator();
+		IDepositDealBill iDepositDealBill=DepositDealBillFactory.getRemoteInstance();
+		while(iterator.hasNext()){
+			DepositDealBillInfo info=(DepositDealBillInfo) billMap.get(iterator.next());
+			IObjectPK pk=iDepositDealBill.submit(info);
+			iDepositDealBill.audit(BOSUuid.read(pk.toString()));
+		}
+		FDCClientUtils.showOprtOK(this);
+		this.query();
+	}
+
+	IUIWindow uiWindow=null;
+	public void actionView_actionPerformed(ActionEvent e) throws Exception {
+		int[] selectRows = KDTableUtil.getSelectedRows(this.tblMain);
+		if(selectRows==null || selectRows.length==0){
+			FDCMsgBox.showWarning(this, EASResource.getString(FrameWorkClientUtils.strResource + "Msg_MustSelected"));
+			return;
+		}
+		int rowIndex = this.tblMain.getSelectManager().getActiveRowIndex();
+		IRow row = this.tblMain.getRow(rowIndex);
+		String id = (String) row.getCell("depositBillId").getValue();
+		if(id==null){
+			FDCMsgBox.showInfo(this,"无退款申请单！");
+			return;
+		}
+		if(uiWindow!=null)uiWindow.close();
+		UIContext uiContext = new UIContext(this);
+		uiContext.put(UIContext.OWNER, this);
+		uiContext.put("ID", id);
+		uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(DepositDealBillEditUI.class.getName(), uiContext, null, OprtState.VIEW);
+		uiWindow.show();
+	}
 
 }

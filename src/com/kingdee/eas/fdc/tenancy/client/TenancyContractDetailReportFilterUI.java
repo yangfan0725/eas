@@ -122,8 +122,13 @@ public class TenancyContractDetailReportFilterUI extends AbstractTenancyContract
 		this.prmtCustomer.setEditFormat("$number$");
 		this.prmtCustomer.setCommitFormat("$number$");
 		this.prmtCustomer.setEnabledMultiSelection(true);
-		this.prmtCustomer.setEntityViewInfo(CommerceHelper.getPermitCustomerView(null,SysContext.getSysContext().getCurrentUserInfo()));
-	
+		if(TenancyContractDetailReportFilterUI.this.getUIContext().get("sellProject")!=null){
+			SellProjectInfo sellProject = (SellProjectInfo)TenancyContractDetailReportFilterUI.this.getUIContext().get("sellProject");
+			this.prmtCustomer.setEntityViewInfo(CommerceHelper.getPermitCustomerView(sellProject,SysContext.getSysContext().getCurrentUserInfo()));
+		}else{
+			this.prmtCustomer.setEntityViewInfo(CommerceHelper.getPermitCustomerView(null,SysContext.getSysContext().getCurrentUserInfo()));
+		}
+		
 		this.prmtMoneyDefine.setEditable(false);
 		this.prmtMoneyDefine.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.MoneyDefineQuery");
 		this.prmtMoneyDefine.setDisplayFormat("$name$");

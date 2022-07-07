@@ -222,8 +222,8 @@ public class AccountReportUI extends AbstractAccountReportUI
 			});
 			getRowSum();
 			
-			CRMClientHelper.changeTableNumberFormat(tblMain, new String[]{"contractTotal","alreadyAmount","actevAmount","notAccept","defaultAmount","notAccept","notproPortion","proPortion"});
-			EnterprisePlanEditUI.mergerTable(this.tblMain, new String[]{"newID"},new String[]{"roomName","customerNames","contractTotal","busAdscriptionDate"});
+			CRMClientHelper.changeTableNumberFormat(tblMain, new String[]{"contractTotal","revTotal","alreadyAmount","actevAmount","notAccept","defaultAmount","notAccept","notproPortion","proPortion"});
+			EnterprisePlanEditUI.mergerTable(this.tblMain, new String[]{"newID"},new String[]{"roomName","customerNames","contractTotal","revTotal","busAdscriptionDate"});
 			CRMClientHelper.fmtDate(tblMain, new String[]{"revDate","bizDate","lastTime","applyDate","defCalDate"});
 			
 			tblMain.getColumn("roomName").getStyleAttributes().setFontColor(Color.BLUE);
@@ -301,6 +301,18 @@ public class AccountReportUI extends AbstractAccountReportUI
             						}
             					}
             				}
+            			}
+            			BigDecimal contractTotal=(BigDecimal)addRow.getCell("contractTotal").getValue();
+            			BigDecimal revTotal=(BigDecimal)addRow.getCell("revTotal").getValue();
+            			if(contractTotal.compareTo(FDCHelper.toBigDecimal(revTotal))==0){
+            				addRow.getCell("contractTotal").getStyleAttributes().setBackground(Color.GREEN);
+            				addRow.getCell("revTotal").getStyleAttributes().setBackground(Color.GREEN);
+            			}else{
+            				addRow.getCell("contractTotal").getStyleAttributes().setBackground(Color.PINK);
+            				addRow.getCell("revTotal").getStyleAttributes().setBackground(Color.PINK);
+            			}
+            			if(addRow.getCell("state").getValue().toString().equals("QRNullify")){
+            				addRow.getCell("roomName").getStyleAttributes().setBackground(Color.GRAY);
             			}
         	        }
         	        if(rs.getRowCount() > 0){
