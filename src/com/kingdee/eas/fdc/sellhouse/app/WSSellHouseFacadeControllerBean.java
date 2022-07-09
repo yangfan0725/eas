@@ -52,6 +52,7 @@ import com.kingdee.eas.fdc.sellhouse.SexEnum;
 import com.kingdee.eas.fdc.sellhouse.SignManageCollection;
 import com.kingdee.eas.fdc.sellhouse.SignManageFactory;
 import com.kingdee.eas.fdc.sellhouse.SignManageInfo;
+import com.kingdee.eas.util.app.DbUtil;
 import com.kingdee.jdbc.rowset.IRowSet;
 
 public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeControllerBean
@@ -218,19 +219,19 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 //		sql.execute();
 //		return rs.toString();
 		
-		JSONArray arr = JSONArray.fromObject(str);
 		JSONArray arrrs = new JSONArray();
 		JSONObject rs = new JSONObject();
-		try {
-			
-			for(int i=0;i<arr.size();i++){
-				rs = new JSONObject();
-				JSONObject obj=arr.getJSONObject(i);
+		JSONArray arr = JSONArray.fromObject(str);
+		for(int i=0;i<arr.size();i++){
+			rs = new JSONObject();
+			JSONObject obj=arr.getJSONObject(i);
+			try {
 				if(obj.get("number")==null||"".equals(obj.getString("number").trim())){
 					rs.put("state", "0");
 					rs.put("msg", "编码不能为空！");
 					arrrs.add(rs);
 					
+					insertLog(ctx,"客户同步接口","失败",obj,rs);
 					continue;
 				}
 				if(obj.get("id")==null||"".equals(obj.getString("id").trim())){
@@ -239,10 +240,7 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 					rs.put("msg", "id不能为空！");
 					arrrs.add(rs);
 					
-					FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-					sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
-					sql.execute();
-					
+					insertLog(ctx,"客户同步接口","失败",obj,rs);
 					continue;
 				}
 				if(obj.get("name")==null||"".equals(obj.getString("name").trim())){
@@ -251,10 +249,7 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 					rs.put("msg", "名称不能为空！");
 					arrrs.add(rs);
 					
-					FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-					sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
-					sql.execute();
-					
+					insertLog(ctx,"客户同步接口","失败",obj,rs);
 					continue;
 				}
 				SHECustomerInfo cus=null;
@@ -276,10 +271,7 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 					rs.put("msg", "项目不存在或者不为根项目！");
 					arrrs.add(rs);
 					
-					FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-					sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
-					sql.execute();
-					
+					insertLog(ctx,"客户同步接口","失败",obj,rs);
 					continue;
 				}
 				cus.setSimpleName(obj.getString("id"));
@@ -326,10 +318,7 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 						rs.put("msg", "证件类型不存在！");
 						arrrs.add(rs);
 						
-						FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-						sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
-						sql.execute();
-						
+						insertLog(ctx,"客户同步接口","失败",obj,rs);
 						continue;
 					}
 					cus.setCertificateNumber(obj.getString("certificateNumber"));
@@ -350,10 +339,7 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 					rs.put("msg", "置业顾问不存在！");
 					arrrs.add(rs);
 					
-					FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-					sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
-					sql.execute();
-					
+					insertLog(ctx,"客户同步接口","失败",obj,rs);
 					continue;
 				}
 				if(obj.get("firstDate")!=null&&!"".equals(obj.getString("firstDate").trim())){
@@ -379,40 +365,73 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 				}
 				SHECustomerFactory.getLocalInstance(ctx).submit(cus);
 				
-				FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-				sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步接口','"+obj+"','"+obj.get("number")+"',now(),'成功','')");
-				sql.execute();
-				
 				rs.put("number", obj.getString("number"));
 				rs.put("state", "1");
 				rs.put("msg", "同步成功！");
 				arrrs.add(rs);
+				
+				insertLog(ctx,"客户同步接口","成功",obj,rs);
+			}catch (Exception e) {
+				rs.put("number", obj.getString("number"));
+				rs.put("state", "0");
+				rs.put("msg", e.getMessage());
+				arrrs.add(rs);
+				
+				insertLog(ctx,"客户同步接口","失败",obj,rs);
 			}
-		} catch (Exception e) {
-			rs.put("state", "0");
-			rs.put("msg", e.getMessage());
-			arrrs.add(rs);
-			
-			return arrrs.toString();
-		}
+		} 
 		return arrrs.toString();
+	}
+	public void insertLog(Context ctx,String name,String result,JSONObject obj,JSONObject rs) throws BOSException{
+		String number="";
+		if(obj.get("number")!=null){
+			number=obj.getString("number");
+		}
+		String logStr="insert into t_log (name,context,number,createtime,state,msg) values('"+name+"',?,'"+number+"',now(),'"+result+"','"+rs.getString("msg")+"')";
+		Object[] params = new Object[]{obj.toString()};
+		DbUtil.execute(ctx,logStr,params);
 	}
 	protected String _sysCustomerValid(Context ctx, String str)
 			throws BOSException, EASBizException {
-		JSONArray arr = JSONArray.fromObject(str);
 		JSONArray arrrs = new JSONArray();
-		
 		JSONObject rs = new JSONObject();
-		try {
-			for(int i=0;i<arr.size();i++){
-				rs = new JSONObject();
-				JSONObject obj=arr.getJSONObject(i);
+		JSONArray arr = JSONArray.fromObject(str);
+		for(int i=0;i<arr.size();i++){
+			rs = new JSONObject();
+			JSONObject obj=arr.getJSONObject(i);
+			try {
+				if(obj.get("number")==null||"".equals(obj.getString("number").trim())){
+					rs.put("state", "0");
+					rs.put("msg", "编码不能为空！");
+					arrrs.add(rs);
+					
+					insertLog(ctx,"客户同步状态接口","失败",obj,rs);
+					continue;
+				}
+				if(obj.get("valid")==null||"".equals(obj.getString("valid").trim())){
+					rs.put("number", obj.getString("number"));
+					rs.put("state", "0");
+					rs.put("msg", "valid不能为空！");
+					arrrs.add(rs);
+					
+					insertLog(ctx,"客户同步状态接口","失败",obj,rs);
+					continue;
+				}
 				SHECustomerCollection sc=SHECustomerFactory.getLocalInstance(ctx).getSHECustomerCollection("select * from where number='"+obj.getString("number")+"'");
 				if(sc.size()>0){
 					SHECustomerInfo info=sc.get(0);
 					
 					String valid=obj.getString("valid");
 					if("1".equals(valid)){
+						if(obj.get("saleMan")==null||"".equals(obj.getString("saleMan").trim())){
+							rs.put("number", obj.getString("number"));
+							rs.put("state", "0");
+							rs.put("msg", "置业顾问不能为空！");
+							arrrs.add(rs);
+							
+							insertLog(ctx,"客户同步状态接口","失败",obj,rs);
+							continue;
+						}
 						UserCollection user=UserFactory.getLocalInstance(ctx).getUserCollection("select * from where number='"+obj.getString("saleMan")+"'");
 						if(user.size()>0){
 							SelectorItemCollection collection = new SelectorItemCollection();
@@ -430,18 +449,14 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 							rs.put("msg", "同步成功！");
 							arrrs.add(rs);
 							
-							FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-							sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步状态接口','"+obj+"','"+obj.get("number")+"',now(),'成功','')");
-							sql.execute();
+							insertLog(ctx,"客户同步状态接口","成功",obj,rs);
 						}else{
 							rs.put("number", obj.getString("number"));
 							rs.put("state", "0");
 							rs.put("msg", "置业顾问不存在！");
 							arrrs.add(rs);
 							
-							FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-							sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步状态接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
-							sql.execute();
+							insertLog(ctx,"客户同步状态接口","失败",obj,rs);
 						}
 					}else if("0".equals(valid)){
 						SelectorItemCollection sic=new SelectorItemCollection();
@@ -454,9 +469,7 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 						rs.put("msg", "同步成功！");
 						arrrs.add(rs);
 						
-						FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-						sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步状态接口','"+obj+"','"+obj.get("number")+"',now(),'成功','')");
-						sql.execute();
+						insertLog(ctx,"客户同步状态接口","成功",obj,rs);
 					}else if("3".equals(valid)){
 						SelectorItemCollection sic=new SelectorItemCollection();
 						sic.add("isPublic");
@@ -468,9 +481,7 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 						rs.put("msg", "同步成功！");
 						arrrs.add(rs);
 						
-						FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-						sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步状态接口','"+obj+"','"+obj.get("number")+"',now(),'成功','')");
-						sql.execute();
+						insertLog(ctx,"客户同步状态接口","成功",obj,rs);
 					}else if("2".equals(valid)){
 						SelectorItemCollection sic=new SelectorItemCollection();
 						sic.add("oneQd");
@@ -492,9 +503,7 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 						rs.put("msg", "同步成功！");
 						arrrs.add(rs);
 						
-						FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-						sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步状态接口','"+obj+"','"+obj.get("number")+"',now(),'成功','')");
-						sql.execute();
+						insertLog(ctx,"客户同步状态接口","成功",obj,rs);
 					}
 				}else{
 					rs.put("number", obj.getString("number"));
@@ -502,128 +511,131 @@ public class WSSellHouseFacadeControllerBean extends AbstractWSSellHouseFacadeCo
 					rs.put("msg", "客户不存在！");
 					arrrs.add(rs);
 					
-					FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-					sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户同步状态接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
-					sql.execute();
+					insertLog(ctx,"客户同步状态接口","失败",obj,rs);
 				}
+			}catch (Exception e) {
+				rs.put("number", obj.getString("number"));
+				rs.put("state", "0");
+				rs.put("msg", e.getMessage());
+				arrrs.add(rs);
+				
+				insertLog(ctx,"客户同步状态接口","失败",obj,rs);
 			}
-		} catch (Exception e) {
-			rs.put("state", "0");
-			rs.put("msg", e.getMessage());
-			arrrs.add(rs);
-			return rs.toString();
-		}
+		} 
 		return arrrs.toString();
 	}
 	@Override
 	protected String _isOldCustomer(Context ctx, String str)
 			throws BOSException, EASBizException {
-		JSONObject obj = JSONObject.fromObject(str);
-		
 		JSONObject rs = new JSONObject();
-		if(obj.get("certificateNumber")==null||"".equals(obj.getString("certificateNumber").trim())){
-			rs.put("isOld", "0");
-			rs.put("msg", "证件号码不能为空！");
-			
-			FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-			sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户老业主接口','"+obj+"','',now(),'失败','"+rs.getString("msg")+"')");
-			sql.execute();
-		}
-		FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-		sql.appendSql("select * from t_she_signmanage s left join T_SHE_SignCustomerEntry e on e.fheadid=s.fid where s.fbizstate in('SignApple','SignAudit') and e.fcertificateNumber='"+obj.getString("certificateNumber")+"'");
-		IRowSet rowset=sql.executeQuery();
+		JSONObject obj = JSONObject.fromObject(str);
 		try {
+			if(obj.get("certificateNumber")==null||"".equals(obj.getString("certificateNumber").trim())){
+				rs.put("isOld", "0");
+				rs.put("state", "0");
+				rs.put("msg", "证件号码不能为空！");
+				
+				insertLog(ctx,"客户老业主接口","失败",obj,rs);
+				return rs.toString();
+			}
+			FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
+			sql.appendSql("select * from t_she_signmanage s left join T_SHE_SignCustomerEntry e on e.fheadid=s.fid where s.fbizstate in('SignApple','SignAudit') and e.fcertificateNumber='"+obj.getString("certificateNumber")+"'");
+			IRowSet rowset=sql.executeQuery();
+	
 			if(rowset.next()){
 				rs.put("isOld", "1");
 			}else{
 				rs.put("isOld", "0");
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		
+			rs.put("state", "1");
+			rs.put("msg", "查询成功！");
+			
+			obj.put("number", obj.getString("certificateNumber"));
+			insertLog(ctx,"客户老业主接口","成功",obj,rs);
+			
+		} catch (Exception e) {
+			rs.put("state", "0");
+			rs.put("msg", e.getMessage());
+			
+			insertLog(ctx,"客户老业主接口","失败",obj,rs);
+			return rs.toString();
 		}
-		sql = new FDCSQLBuilder(ctx);
-		sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('客户老业主接口','"+obj+"','"+obj.get("certificateNumber")+"',now(),'成功','')");
-		sql.execute();
 		return rs.toString();
 	}
 	@Override
 	protected String _synTransaction(Context ctx, String str)
 			throws BOSException, EASBizException {
-		JSONObject obj = JSONObject.fromObject(str);
-		
 		JSONObject rs = new JSONObject();
-		if(obj.get("number")==null||"".equals(obj.getString("number").trim())){
-			rs.put("state", "0");
-			rs.put("msg", "单据编号不能为空！");
-			
-			FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-			sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','',now(),'失败','"+rs.getString("msg")+"')");
-			sql.execute();
-		}
-		if(obj.get("type")==null||"".equals(obj.getString("type").trim())){
-			rs.put("state", "0");
-			rs.put("msg", "单据类型不能为空！");
-			
-			FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-			sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
-			sql.execute();
-		}
-		SelectorItemCollection sic=new SelectorItemCollection();
-		sic.add("oneQd");
-		sic.add("twoQd");
-		if(obj.getString("type").equals("SIGN")){
-			SignManageCollection signCol=SignManageFactory.getLocalInstance(ctx).getSignManageCollection("select * from where number='"+obj.getString("number")+"'");
-			if(signCol.size()>0){
-				SignManageInfo sign=signCol.get(0);
-				sign.setOneQd(obj.getString("oneQd"));
-				sign.setTwoQd(obj.getString("twoQd"));
+		JSONObject obj = JSONObject.fromObject(str);
+		try {
+			if(obj.get("number")==null||"".equals(obj.getString("number").trim())){
+				rs.put("state", "0");
+				rs.put("msg", "单据编号不能为空！");
 				
-				SignManageFactory.getLocalInstance(ctx).updatePartial(sign, sic);
+				insertLog(ctx,"认购签约更新渠道接口","失败",obj,rs);
+				return rs.toString();
+			}
+			if(obj.get("type")==null||"".equals(obj.getString("type").trim())){
+				rs.put("state", "0");
+				rs.put("msg", "单据类型不能为空！");
 				
-				rs.put("state", "1");
-				rs.put("msg", "同步成功！");
-				
-				FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-				sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'成功','')");
-				sql.execute();
+				insertLog(ctx,"认购签约更新渠道接口","失败",obj,rs);
+				return rs.toString();
+			}
+			SelectorItemCollection sic=new SelectorItemCollection();
+			sic.add("oneQd");
+			sic.add("twoQd");
+			if(obj.getString("type").equals("SIGN")){
+				SignManageCollection signCol=SignManageFactory.getLocalInstance(ctx).getSignManageCollection("select * from where number='"+obj.getString("number")+"'");
+				if(signCol.size()>0){
+					SignManageInfo sign=signCol.get(0);
+					sign.setOneQd(obj.getString("oneQd"));
+					sign.setTwoQd(obj.getString("twoQd"));
+					
+					SignManageFactory.getLocalInstance(ctx).updatePartial(sign, sic);
+					
+					rs.put("state", "1");
+					rs.put("msg", "同步成功！");
+					
+					insertLog(ctx,"认购签约更新渠道接口","成功",obj,rs);
+				}else{
+					rs.put("state", "0");
+					rs.put("msg", "签约单不存在！");
+					
+					insertLog(ctx,"认购签约更新渠道接口","失败",obj,rs);
+				}
+			}else if(obj.getString("type").equals("PUR")){
+				PurchaseManageCollection purCol=PurchaseManageFactory.getLocalInstance(ctx).getPurchaseManageCollection("select * from where number='"+obj.getString("number")+"'");
+				if(purCol.size()>0){
+					PurchaseManageInfo pur=purCol.get(0);
+					pur.setOneQd(obj.getString("oneQd"));
+					pur.setTwoQd(obj.getString("twoQd"));
+					
+					PurchaseManageFactory.getLocalInstance(ctx).updatePartial(pur, sic);
+					
+					rs.put("state", "1");
+					rs.put("msg", "同步成功！");
+					
+					insertLog(ctx,"认购签约更新渠道接口","成功",obj,rs);
+				}else{
+					rs.put("state", "0");
+					rs.put("msg", "认购单不存在！");
+					
+					insertLog(ctx,"认购签约更新渠道接口","失败",obj,rs);
+				}
 			}else{
 				rs.put("state", "0");
-				rs.put("msg", "签约单不存在！");
+				rs.put("msg", "类型错误！");
 				
-				FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-				sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
-				sql.execute();
+				insertLog(ctx,"认购签约更新渠道接口","失败",obj,rs);
 			}
-		}else if(obj.getString("type").equals("PUR")){
-			PurchaseManageCollection purCol=PurchaseManageFactory.getLocalInstance(ctx).getPurchaseManageCollection("select * from where number='"+obj.getString("number")+"'");
-			if(purCol.size()>0){
-				PurchaseManageInfo pur=purCol.get(0);
-				pur.setOneQd(obj.getString("oneQd"));
-				pur.setTwoQd(obj.getString("twoQd"));
-				
-				PurchaseManageFactory.getLocalInstance(ctx).updatePartial(pur, sic);
-				
-				rs.put("state", "1");
-				rs.put("msg", "同步成功！");
-				
-				FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-				sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'成功','')");
-				sql.execute();
-			}else{
-				rs.put("state", "0");
-				rs.put("msg", "认购单不存在！");
-				
-				FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-				sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
-				sql.execute();
-			}
-		}else{
+		} catch (Exception e) {
 			rs.put("state", "0");
-			rs.put("msg", "类型错误！");
+			rs.put("msg", e.getMessage());
 			
-			FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-			sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('认购签约更新渠道接口','"+obj+"','"+obj.get("number")+"',now(),'失败','"+rs.getString("msg")+"')");
-			sql.execute();
+			insertLog(ctx,"认购签约更新渠道接口","失败",obj,rs);
+			return rs.toString();
 		}
 		return rs.toString();
 	}

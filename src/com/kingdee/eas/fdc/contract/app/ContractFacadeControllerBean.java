@@ -574,6 +574,14 @@ public class ContractFacadeControllerBean extends AbstractContractFacadeControll
         		sql.append("delete from T_SHE_SIGNSALEMANENTRY where FHEADID not in(select fid from t_she_signmanage)");
         		builder.addBatch(sql.toString());
         		
+        		sql = new StringBuffer();
+        		sql.append("update t_she_purchasemanage a set FSALEMANNAMES =(select fname_l2 from t_pm_user b where a.FSALESMANID=b.fid ) where a.fid in(select a.fid from t_she_purchasemanage a left join t_pm_user b on a.FSALESMANID =b.fid left join T_SHE_PURSALEMANENTRY c on a.fid=c.fheadid where a.FSALEMANNAMES !=b.fname_l2 and a.FSALESMANID=c.fuserid)");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
+        		sql.append("update t_she_signmanage a set FSALEMANNAMES =(select fname_l2 from t_pm_user b where a.FSALESMANID=b.fid ) where a.fid in(select a.fid from t_she_signmanage a left join t_pm_user b on a.FSALESMANID =b.fid left join T_SHE_SIGNSALEMANENTRY c on a.fid=c.fheadid where a.FSALEMANNAMES !=b.fname_l2 and a.FSALESMANID=c.fuserid)");
+        		builder.addBatch(sql.toString());
+        		
         		builder.executeBatch();
         		
         		sql = new StringBuffer();

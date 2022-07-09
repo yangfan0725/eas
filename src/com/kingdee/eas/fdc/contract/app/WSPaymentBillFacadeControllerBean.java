@@ -52,6 +52,7 @@ import com.kingdee.eas.fi.cas.SourceTypeEnum;
 import com.kingdee.eas.ma.budget.BgItemCollection;
 import com.kingdee.eas.ma.budget.BgItemFactory;
 import com.kingdee.eas.ma.budget.BgItemInfo;
+import com.kingdee.eas.util.app.DbUtil;
 
 public class WSPaymentBillFacadeControllerBean extends AbstractWSPaymentBillFacadeControllerBean
 {
@@ -60,43 +61,116 @@ public class WSPaymentBillFacadeControllerBean extends AbstractWSPaymentBillFaca
 
 	@Override
 	protected String _synPaymentBill(Context ctx, String str)throws BOSException, EASBizException {
-		JSONObject obj = JSONObject.fromObject(str);
-		String number=obj.getString("number");
-		String company=obj.getString("company");
-		String bizDate=obj.getString("bizDate");
-		String payeeNumber=obj.getString("payeeNumber");
-		String payeeName=obj.getString("payeeName");
-		String payeeBank=obj.getString("payeeBank");
-		String payeeAccountBank=obj.getString("payeeAccountBank");
-		String type=obj.getString("type");
-		
-		JSONObject rs = new JSONObject();
-		
-		if(obj.get("lxNumber")==null||"".equals(obj.getString("lxNumber").trim())){
-			rs.put("state", "0");
-			rs.put("msg", "联行号为空！");
-			
-			return rs.toString();
+		JSONObject rs=genPaymentBill(ctx,str);
+		String result="成功";
+		if(rs.getString("state").equals("0")){
+			result="失败";
 		}
-		String lxNumber=obj.getString("lxNumber");
-		
-		JSONArray entryjs=obj.getJSONArray("entry");
-		
-		PaymentBillInfo pay=new PaymentBillInfo();
-		pay.setSourceSysType(SourceTypeEnum.CASH);
-		pay.setSourceType(SourceTypeEnum.CASH);
-		pay.setBizDate(FDCDateHelper.stringToDate(bizDate));
-		pay.setDescription(number);
-		pay.setFdcPayReqNumber("MK-"+number.split(",")[0]+"-"+type);
-		
+		String logStr="insert into t_log (name,context,number,createtime,state,msg) values('每刻付款单同步接口',?,'"+rs.get("number")+"',now(),'"+result+"','"+rs.get("msg")+"')";
+	    Object[] params = new Object[]{str};
+	    DbUtil.execute(ctx,logStr,params);
+	    
+		return rs.toString();
+	}
+	public JSONObject genPaymentBill(Context ctx,String str){
+		JSONObject rs = new JSONObject();
+		String rsNumber=null;
 		try{
+			JSONObject obj = JSONObject.fromObject(str);
+			if(obj.get("number")==null||"".equals(obj.getString("number").trim())){
+				rs.put("state", "0");
+				rs.put("msg", "编码number为空！");
+				
+				return rs;
+			}else{
+				rsNumber=obj.getString("number").split(",")[0];
+			}
+			if(obj.get("company")==null||"".equals(obj.getString("company").trim())){
+				rs.put("number", rsNumber);
+				rs.put("state", "0");
+				rs.put("msg", "公司company为空！");
+				
+				return rs;
+			}
+			if(obj.get("bizDate")==null||"".equals(obj.getString("bizDate").trim())){
+				rs.put("number", rsNumber);
+				rs.put("state", "0");
+				rs.put("msg", "业务日期bizDate为空！");
+				
+				return rs;
+			}
+			if(obj.get("payeeName")==null||"".equals(obj.getString("payeeName").trim())){
+				rs.put("number", rsNumber);
+				rs.put("state", "0");
+				rs.put("msg", "收款人名称payeeName为空！");
+				
+				return rs;
+			}
+			if(obj.get("payeeAccountBank")==null||"".equals(obj.getString("payeeAccountBank").trim())){
+				rs.put("number", rsNumber);
+				rs.put("state", "0");
+				rs.put("msg", "收款账号payeeAccountBank为空！");
+				
+				return rs;
+			}
+			if(obj.get("type")==null||"".equals(obj.getString("type").trim())){
+				rs.put("number", rsNumber);
+				rs.put("state", "0");
+				rs.put("msg", "类型type为空！");
+				
+				return rs;
+			}
+			if(obj.get("lxNumber")==null||"".equals(obj.getString("lxNumber").trim())){
+				rs.put("number", rsNumber);
+				rs.put("state", "0");
+				rs.put("msg", "联行号lxNumber为空！");
+				
+				return rs;
+			}
+			if(obj.get("entry")==null){
+				rs.put("number", rsNumber);
+				rs.put("state", "0");
+				rs.put("msg", "明细entry为空！");
+				
+				return rs;
+			}
+			String number=obj.getString("number");
+			String company=obj.getString("company");
+			String bizDate=obj.getString("bizDate");
+			String payeeNumber=null;
+			if(obj.get("payeeNumber")!=null){
+				payeeNumber=obj.getString("payeeNumber");
+			}
+			String payeeName=obj.getString("payeeName");
+			String payeeAccountBank=obj.getString("payeeAccountBank");
+			String type=obj.getString("type");
+			String lxNumber=obj.getString("lxNumber");
+			
+			JSONArray entryjs=obj.getJSONArray("entry");
+			
+			if(entryjs.size()==0){
+				rs.put("number", rsNumber);
+				rs.put("state", "0");
+				rs.put("msg", "明细entry为空！");
+				
+				return rs;
+			}
+			PaymentBillInfo pay=new PaymentBillInfo();
+			pay.setSourceSysType(SourceTypeEnum.CASH);
+			pay.setSourceType(SourceTypeEnum.CASH);
+			pay.setBizDate(FDCDateHelper.stringToDate(bizDate));
+			pay.setDescription(number);
+			pay.setFdcPayReqNumber("MK-"+number.split(",")[0]+"-"+type);
+		
 			BankNumCollection bankNum=BankNumFactory.getLocalInstance(ctx).getBankNumCollection("select * from where number='"+lxNumber+"'");
 			if(bankNum.size()>0){
 				pay.setPayeeBank(bankNum.get(0).getName());
 			}else{
+				rs.put("number", rsNumber);
 				rs.put("state", "0");
 				rs.put("msg", "联行号不存在！");
-				return rs.toString();
+				
+				return rs;
 			}
 			pay.setBankNumber(lxNumber);
 			
@@ -104,9 +178,11 @@ public class WSPaymentBillFacadeControllerBean extends AbstractWSPaymentBillFaca
 			if(companyCol.size()>0){
 				pay.setCompany(companyCol.get(0));
 			}else{
+				rs.put("number", rsNumber);
 				rs.put("state", "0");
 				rs.put("msg", "公司不存在！");
-				return rs.toString();
+				
+				return rs;
 			}
 			pay.setCurrency(CurrencyFactory.getLocalInstance(ctx).getCurrencyCollection("select * from where number='RMB'").get(0));
 			pay.setExchangeRate(new BigDecimal(1));
@@ -114,16 +190,39 @@ public class WSPaymentBillFacadeControllerBean extends AbstractWSPaymentBillFaca
 			
 			pay.setPayeeNumber(payeeNumber);
 			pay.setPayeeName(payeeName);
-			
 			pay.setPayeeAccountBank(payeeAccountBank);
 			
 			BigDecimal total=new BigDecimal(0);
 			for(int i=0;i<entryjs.size();i++){
+				if(entryjs.getJSONObject(i).get("bgItem")==null||"".equals(entryjs.getJSONObject(i).getString("bgItem").trim())){
+					rs.put("number", rsNumber);
+					rs.put("state", "0");
+					rs.put("msg", "费用类型bgItem为空！");
+					
+					return rs;
+				}
+				if(entryjs.getJSONObject(i).get("amount")==null||"".equals(entryjs.getJSONObject(i).getString("amount").trim())){
+					rs.put("number", rsNumber);
+					rs.put("state", "0");
+					rs.put("msg", "金额amount为空！");
+					
+					return rs;
+				}
+				if(entryjs.getJSONObject(i).get("costCenter")==null||"".equals(entryjs.getJSONObject(i).getString("costCenter").trim())){
+					rs.put("number", rsNumber);
+					rs.put("state", "0");
+					rs.put("msg", "成本中心costCenter为空！");
+					
+					return rs;
+				}
 				String bgItem=entryjs.getJSONObject(i).getString("bgItem");
 				String amount=entryjs.getJSONObject(i).getString("amount");
 				String costCenter=entryjs.getJSONObject(i).getString("costCenter");
 //				String oppAccount=entryjs.getJSONObject(i).getString("oppAccount");
-				String remark=entryjs.getJSONObject(i).getString("remark");
+				String remark=null;
+				if(entryjs.getJSONObject(i).get("remark")!=null){
+					remark=entryjs.getJSONObject(i).getString("remark");
+				}
 				
 				PaymentBillEntryInfo entry=new PaymentBillEntryInfo();
 				entry.setAmount(new BigDecimal(amount));
@@ -135,9 +234,11 @@ public class WSPaymentBillFacadeControllerBean extends AbstractWSPaymentBillFaca
 				if(etCol.size()>0){
 					entry.setExpenseType(etCol.get(0));
 				}else{
+					rs.put("number", rsNumber);
 					rs.put("state", "0");
 					rs.put("msg", "费用类型不存在！");
-					return rs.toString();
+					
+					return rs;
 				}
 				
 //				AccountViewCollection accountCol=AccountViewFactory.getLocalInstance(ctx).getAccountViewCollection("select * from where number='"+oppAccount+"'");
@@ -146,7 +247,7 @@ public class WSPaymentBillFacadeControllerBean extends AbstractWSPaymentBillFaca
 //				}else{
 //					rs.put("state", "0");
 //					rs.put("msg", "对方科目不存在！");
-//					return rs.toString();
+//					return rs;
 //				}
 				
 				EntityViewInfo view=new EntityViewInfo();
@@ -157,9 +258,11 @@ public class WSPaymentBillFacadeControllerBean extends AbstractWSPaymentBillFaca
 				if(costOrg.size()>0){
 					entry.setCostCenter(costOrg.get(0));
 				}else{
+					rs.put("number", rsNumber);
 					rs.put("state", "0");
 					rs.put("msg", "成本中心不存在！");
-					return rs.toString();
+					
+					return rs;
 				}
 				
 				total=total.add(new BigDecimal(amount));
@@ -172,16 +275,15 @@ public class WSPaymentBillFacadeControllerBean extends AbstractWSPaymentBillFaca
 			
 			PaymentBillFactory.getLocalInstance(ctx).save(pay);
 		}catch (Exception e) {
+			rs.put("number", rsNumber);
 			rs.put("state", "0");
 			rs.put("msg", e.getMessage());
-			return rs.toString();
+			return rs;
 		}
+		rs.put("number", rsNumber);
     	rs.put("state", "1");
 		rs.put("msg", "同步成功！");
 		
-		return rs.toString();
+		return rs;
 	}
-    
-    
-    
 }

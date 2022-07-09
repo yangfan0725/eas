@@ -23,6 +23,8 @@ import com.kingdee.eas.fdc.contract.ChangeWFTypeFactory;
 import com.kingdee.eas.fdc.contract.ChangeWFTypeInfo;
 import com.kingdee.eas.fdc.contract.MarketProjectFactory;
 import com.kingdee.eas.fdc.contract.MarketProjectInfo;
+import com.kingdee.eas.fdc.contract.OAContractFacadeFactory;
+import com.kingdee.eas.fdc.contract.WSPaymentBillFacadeFactory;
 import com.kingdee.eas.fdc.sellhouse.WSSellHouseFacadeFactory;
 import com.kingdee.eas.framework.*;
 import javax.xml.namespace.QName;
@@ -48,6 +50,8 @@ public class BankNumListUI extends AbstractBankNumListUI
     public BankNumListUI() throws Exception
     {
         super();
+//        String str="{'result':'03','easid':'AZ2aL1tSRmOC2+f6bVORgQ1t0fQ=','type':'01'}";
+//        String rs=OAContractFacadeFactory.getRemoteInstance().acceptHandle(str);
 //        MarketProjectInfo info=MarketProjectFactory.getRemoteInstance().getMarketProjectInfo(new ObjectUuidPK("Hx3iBxzFQqSduDVCdlkiQoLoiOI="));
 //        Calendar cal = new GregorianCalendar();
 //		cal.setTime(FDCDateHelper.getNextMonth(info.getAuditTime()));

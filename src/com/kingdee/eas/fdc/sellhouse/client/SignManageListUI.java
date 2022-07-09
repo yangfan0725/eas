@@ -125,7 +125,7 @@ public class SignManageListUI extends AbstractSignManageListUI
 		}
 		this.actionInvalid.setVisible(false);
 		this.btnInvalid.setVisible(false);
-		tblMain.getColumn("saleManNames").getStyleAttributes().setHided(true);
+		
 		tblMain.getHeadRow(0).getCell("salesman.name").setValue("÷√“µπÀŒ ");
 		
 		this.btnToMT.setIcon(EASResource.getIcon("imgTbtn_input"));

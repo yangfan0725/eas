@@ -189,7 +189,6 @@ public abstract class BaseTransactionListUI extends AbstractBaseTransactionListU
 		initControl();
 		
 		actionQuery.setEnabled(true);
-		
 	}
     protected void initControl(){
     	this.tblMain.getDataRequestManager().setDataRequestMode(KDTDataRequestManager.REAL_MODE);
@@ -579,7 +578,9 @@ public abstract class BaseTransactionListUI extends AbstractBaseTransactionListU
 		{
 			handleException(e);
 		}
-		
+		if(IAMSIGN.equals(whoAmI())){
+			tblMain.getColumn("saleManNames").getStyleAttributes().setHided(true);
+		}
 		return super.getQueryExecutor(queryPK, viewInfo);
 	}
 	protected boolean isIgnoreCUFilter() {
@@ -898,27 +899,20 @@ public abstract class BaseTransactionListUI extends AbstractBaseTransactionListU
 		int rowIndex = this.tblMain.getSelectManager().getActiveRowIndex();
 		IRow row = this.tblMain.getRow(rowIndex);
 		String id = (String) row.getCell(this.getKeyFieldName()).getValue();
+		
+		String	param="false";
+		String	paramValue="true";
+		try {
+			param = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_WF");
+			paramValue = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_QD");
+		} catch (EASBizException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (BOSException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if(IAMPURCHASE.equals(whoAmI())){
-			_builder.addBatch(" update t_she_purchaseManage t set fqdperson=(select t2.FQdPersontxt from t_she_purcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fid) where fid='"+id+"'");
-			_builder.addBatch(" update t_she_purchaseManage t set CFRecommended=(select t2.CFRecommended from t_she_purcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fid) where fid='"+id+"'");
-			_builder.addBatch(" update t_she_pursalemanentry t set FUserId=(select t2.FPropertyConsultantID from t_she_purcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fheadid) where fheadid='"+id+"'");
-			_builder.addBatch(" update t_she_purchaseManage t set fsalesmanid=(select t2.FPropertyConsultantID from t_she_purcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fid),FSALEMANNAMES=(select t3.fname_l2 from t_she_purcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid left join t_pm_user t3 on t3.fid=t2.FPropertyConsultantID where t1.fismain=1 and t1.fheadid=t.fid) where fid='"+id+"'");
-			
-			_builder.executeBatch();
-			
-			String	paramValue="true";
-			try {
-				paramValue = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_QD");
-			} catch (EASBizException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (BOSException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			JSONArray carr=new JSONArray();
-			 
-
 			SelectorItemCollection sic=new SelectorItemCollection();
 			sic.add("*");
 			sic.add("sellProject.number");
@@ -932,148 +926,128 @@ public abstract class BaseTransactionListUI extends AbstractBaseTransactionListU
 			sic.add("purSaleManEntry.*");
 			sic.add("purSaleManEntry.user.number");
 			
-			 PurchaseManageInfo info=PurchaseManageFactory.getRemoteInstance().getPurchaseManageInfo(new ObjectUuidPK(id),sic);
-			 if(!info.getBizState().equals(TransactionStateEnum.PURAUDIT)&&!info.getBizState().equals(TransactionStateEnum.PURAPPLE)&&!info.getBizState().equals(TransactionStateEnum.TOSIGN)){
-				 return;
-			 }
-			 JSONObject cjo=new JSONObject();
-			cjo.put("id", info.getNumber().toString());
-			cjo.put("type", "2");
-			cjo.put("projectId",info.getSellProject().getNumber());
-			String customerId="";
-			SHECustomerInfo quc=null;
-			Timestamp qudate=null;
-			
-			
-			for(int i=0;i<info.getPurCustomerEntry().size();i++){
-				if(i==0){
-					customerId=info.getPurCustomerEntry().get(i).getCustomer().getNumber();
-				}else{
-					customerId=customerId+"@"+info.getPurCustomerEntry().get(i).getCustomer().getNumber();
-				}
-				if("true".equals(paramValue)){
-					if(info.getPurCustomerEntry().get(i).isIsMain()){
-						quc=info.getPurCustomerEntry().get(i).getCustomer();
-					}
-				}else{
-					if(info.getPurCustomerEntry().get(i).getCustomer().getFirstDate()==null&&info.getPurCustomerEntry().get(i).getCustomer().getReportDate()==null){
-						MsgBox.showWarning("客户报备日期和首访日期都为空！");
-						return;
-					}
-					if(qudate==null){
-						if(info.getPurCustomerEntry().get(i).getCustomer().getReportDate()!=null){
-							qudate=info.getPurCustomerEntry().get(i).getCustomer().getReportDate();
-						}else{
-							qudate=info.getPurCustomerEntry().get(i).getCustomer().getFirstDate();
-						}
-						quc=info.getPurCustomerEntry().get(i).getCustomer();
+			PurchaseManageInfo info=PurchaseManageFactory.getRemoteInstance().getPurchaseManageInfo(new ObjectUuidPK(id),sic);
+			if(!info.getBizState().equals(TransactionStateEnum.PURAUDIT)&&!info.getBizState().equals(TransactionStateEnum.PURAPPLE)&&!info.getBizState().equals(TransactionStateEnum.TOSIGN)){
+				MsgBox.showWarning("状态不是提交、审批、转签约状态！");
+				return;
+			}
+			if("true".equals(param)){
+				JSONArray carr=new JSONArray();
+				JSONObject cjo=new JSONObject();
+				cjo.put("id", info.getNumber().toString());
+				cjo.put("type", "2");
+				cjo.put("projectId",info.getSellProject().getNumber());
+				String customerId="";
+				SHECustomerInfo quc=null;
+				Timestamp qudate=null;
+				
+				for(int i=0;i<info.getPurCustomerEntry().size();i++){
+					if(i==0){
+						customerId=info.getPurCustomerEntry().get(i).getCustomer().getNumber();
 					}else{
-						Timestamp comdate=null;
-						if(info.getPurCustomerEntry().get(i).getCustomer().getReportDate()!=null){
-							comdate=info.getPurCustomerEntry().get(i).getCustomer().getReportDate();
-						}else{
-							comdate=info.getPurCustomerEntry().get(i).getCustomer().getFirstDate();
-						}
-						if(qudate.after(comdate)){
-							qudate=comdate;
+						customerId=customerId+"@"+info.getPurCustomerEntry().get(i).getCustomer().getNumber();
+					}
+					if("true".equals(paramValue)){
+						if(info.getPurCustomerEntry().get(i).isIsMain()){
 							quc=info.getPurCustomerEntry().get(i).getCustomer();
 						}
+					}else{
+						if(info.getPurCustomerEntry().get(i).getCustomer().getFirstDate()==null&&info.getPurCustomerEntry().get(i).getCustomer().getReportDate()==null){
+							MsgBox.showWarning("客户报备日期和首访日期都为空！");
+							return;
+						}
+						if(qudate==null){
+							if(info.getPurCustomerEntry().get(i).getCustomer().getReportDate()!=null){
+								qudate=info.getPurCustomerEntry().get(i).getCustomer().getReportDate();
+							}else{
+								qudate=info.getPurCustomerEntry().get(i).getCustomer().getFirstDate();
+							}
+							quc=info.getPurCustomerEntry().get(i).getCustomer();
+						}else{
+							Timestamp comdate=null;
+							if(info.getPurCustomerEntry().get(i).getCustomer().getReportDate()!=null){
+								comdate=info.getPurCustomerEntry().get(i).getCustomer().getReportDate();
+							}else{
+								comdate=info.getPurCustomerEntry().get(i).getCustomer().getFirstDate();
+							}
+							if(qudate.after(comdate)){
+								qudate=comdate;
+								quc=info.getPurCustomerEntry().get(i).getCustomer();
+							}
+						}
 					}
 				}
-			}
-			cjo.put("qdCustId",quc.getNumber());
-			cjo.put("customerId", customerId);
-			if(info.getRoom()!=null){
-				cjo.put("roomId", info.getRoom().getNumber());
-				cjo.put("rcYT", info.getRoom().getProductType().getName());
-			}
-			cjo.put("roomStatus", "认购");
-			cjo.put("userId", quc.getPropertyConsultant().getNumber());
-			
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			cjo.put("tradeDate", df.format(info.getBizDate()));
-			cjo.put("tradeAmount", info.getDealTotalAmount());
-			cjo.put("payType", info.getPayType().getName());
-			cjo.put("expectDate", df.format(info.getPlanSignDate()));
-			cjo.put("price", info.getDealBuildPrice());
-			cjo.put("area",info.getBulidingArea());
-			cjo.put("contractNo", info.getNumber());
-			cjo.put("rengouId", "");
-			cjo.put("remark", "");
-			cjo.put("orderType", "");
-			cjo.put("saleType", "");
-			
-			if(PurChangeStateEnum.CHANGE.equals(info.getChangeState())){
-				cjo.put("isChangeRoomNew", "1");
-			}else{
-				cjo.put("isChangeRoomNew", "0");
-			}
-			
-			sic=new SelectorItemCollection();
-			sic.add("number");
-			if(info.getSrcId()!=null){
-				SincerityPurchaseInfo src=SincerityPurchaseFactory.getRemoteInstance().getSincerityPurchaseInfo(new ObjectUuidPK(info.getSrcId()),sic);
-				cjo.put("rcId", src.getNumber());
-			}
-			cjo.put("salesStatisticsDate", "");
-			cjo.put("fyyt", info.getRoom().getProductType().getName());
-			
-			carr.add(cjo);
-  		
-			try {
-				String rs=SHEManageHelper.execPost(null, "sap_transaction_mcrm_channel", carr.toJSONString());
-				JSONObject rso = JSONObject.parseObject(rs);
-				if(!"SUCCESS".equals(rso.getString("status"))){
-					MsgBox.showWarning(rso.getString("message"));
+				cjo.put("qdCustId",quc.getNumber());
+				cjo.put("customerId", customerId);
+				if(info.getRoom()!=null){
+					cjo.put("roomId", info.getRoom().getNumber());
+					cjo.put("rcYT", info.getRoom().getProductType().getName());
+				}
+				cjo.put("roomStatus", "认购");
+				cjo.put("userId", quc.getPropertyConsultant().getNumber());
+				
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				cjo.put("tradeDate", df.format(info.getBizDate()));
+				cjo.put("tradeAmount", info.getDealTotalAmount());
+				cjo.put("payType", info.getPayType().getName());
+				cjo.put("expectDate", df.format(info.getPlanSignDate()));
+				cjo.put("price", info.getDealBuildPrice());
+				cjo.put("area",info.getBulidingArea());
+				cjo.put("contractNo", info.getNumber());
+				cjo.put("rengouId", "");
+				cjo.put("remark", "");
+				cjo.put("orderType", "");
+				cjo.put("saleType", "");
+				
+				if(PurChangeStateEnum.CHANGE.equals(info.getChangeState())){
+					cjo.put("isChangeRoomNew", "1");
+				}else{
+					cjo.put("isChangeRoomNew", "0");
+				}
+				
+				sic=new SelectorItemCollection();
+				sic.add("number");
+				if(info.getSrcId()!=null){
+					SincerityPurchaseInfo src=SincerityPurchaseFactory.getRemoteInstance().getSincerityPurchaseInfo(new ObjectUuidPK(info.getSrcId()),sic);
+					cjo.put("rcId", src.getNumber());
+				}
+				cjo.put("salesStatisticsDate", "");
+				cjo.put("fyyt", info.getRoom().getProductType().getName());
+				
+				carr.add(cjo);
+	  		
+				try {
+					String rs=SHEManageHelper.execPost(null, "sap_transaction_mcrm_channel", carr.toJSONString());
+					JSONObject rso = JSONObject.parseObject(rs);
+					if(!"SUCCESS".equals(rso.getString("status"))){
+						MsgBox.showWarning(rso.getString("message"));
+						return;
+					}
+					rs=SHEManageHelper.execPost(null, "sap_transaction_organ_personal_channel", carr.toJSONString());
+					rso = JSONObject.parseObject(rs);
+					if(!"SUCCESS".equals(rso.getString("status"))){
+						MsgBox.showWarning(rso.getString("message"));
+						return;
+					}else{
+						MsgBox.showInfo("同步成功！");
+					}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+					MsgBox.showWarning(e1.getMessage());
+					return;
+				} catch (IOException e1) {
+					MsgBox.showWarning(e1.getMessage());
 					return;
 				}
-				rs=SHEManageHelper.execPost(null, "sap_transaction_organ_personal_channel", carr.toJSONString());
-				rso = JSONObject.parseObject(rs);
-				if(!"SUCCESS".equals(rso.getString("status"))){
-					MsgBox.showWarning(rso.getString("message"));
-				}else{
-					
-					info.setRecommended(quc.getRecommended());
-					info.setQdPerson(quc.getQdPersontxt());
-					info.setSalesman(quc.getPropertyConsultant());
-					
-					SelectorItemCollection u=new SelectorItemCollection();
-					u.add("recommended");
-					u.add("qdPerson");
-					u.add("salesman");
-					PurchaseManageFactory.getRemoteInstance().updatePartial(info, u);
-					
-					SelectorItemCollection eu=new SelectorItemCollection();
-					eu.add("user");
-					
-					for(int i=0;i<info.getPurSaleManEntry().size();i++){
-						PurSaleManEntryInfo entry=info.getPurSaleManEntry().get(i);
-						entry.setUser(quc.getPropertyConsultant());
-						PurSaleManEntryFactory.getRemoteInstance().updatePartial(entry, eu);
-					}
-					
-					MsgBox.showInfo("同步成功！");
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
 			}
+			_builder.addBatch(" update t_she_purchaseManage t set fqdperson=(select t2.FQdPersontxt from t_she_purcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fid) where fid='"+id+"'");
+			_builder.addBatch(" update t_she_purchaseManage t set CFRecommended=(select t2.CFRecommended from t_she_purcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fid) where fid='"+id+"'");
+			_builder.addBatch(" update t_she_pursalemanentry t set FUserId=(select t2.FPropertyConsultantID from t_she_purcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fheadid) where fheadid='"+id+"'");
+			_builder.addBatch(" update t_she_purchaseManage t set fsalesmanid=(select t2.FPropertyConsultantID from t_she_purcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fid),FSALEMANNAMES=(select t3.fname_l2 from t_she_purcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid left join t_pm_user t3 on t3.fid=t2.FPropertyConsultantID where t1.fismain=1 and t1.fheadid=t.fid) where fid='"+id+"'");
+			
+			_builder.executeBatch();
 	    }else if(IAMSIGN.equals(whoAmI())){
-	    	JSONArray carr=new JSONArray();
-			 
-			String	paramValue="true";
-			try {
-				paramValue = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_QD");
-			} catch (EASBizException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (BOSException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			SelectorItemCollection sic=new SelectorItemCollection();
+	    	SelectorItemCollection sic=new SelectorItemCollection();
 			sic.add("*");
 			sic.add("sellProject.number");
 			sic.add("room.number");
@@ -1086,141 +1060,134 @@ public abstract class BaseTransactionListUI extends AbstractBaseTransactionListU
 			sic.add("signSaleManEntry.user.number");
 			sic.add("signSaleManEntry.*");
 			
-			 SignManageInfo info=SignManageFactory.getRemoteInstance().getSignManageInfo(new ObjectUuidPK(id),sic);
-			 if(!info.getBizState().equals(TransactionStateEnum.SIGNAUDIT)&&!info.getBizState().equals(TransactionStateEnum.SIGNAPPLE)){
-				 return;
-			 }
-			 JSONObject cjo=new JSONObject();
-			cjo.put("id", info.getNumber());
-			cjo.put("type", "3");
-			cjo.put("projectId",info.getSellProject().getNumber());
-			String customerId="";
-			SHECustomerInfo quc=null;
-			Timestamp qudate=null;
-			for(int i=0;i<info.getSignCustomerEntry().size();i++){
-				if(i==0){
-					customerId=info.getSignCustomerEntry().get(i).getCustomer().getNumber();
-				}else{
-					customerId=customerId+"@"+info.getSignCustomerEntry().get(i).getCustomer().getNumber();
-				}
-				if("true".equals(paramValue)){
-					if(info.getSignCustomerEntry().get(i).isIsMain()){
-						quc=info.getSignCustomerEntry().get(i).getCustomer();
-					}
-				}else{
-					if(info.getSignCustomerEntry().get(i).getCustomer().getFirstDate()==null&&info.getSignCustomerEntry().get(i).getCustomer().getReportDate()==null){
-						MsgBox.showWarning("客户报备日期和首访日期都为空！");
-						return;
-					}
-					if(qudate==null){
-						if(info.getSignCustomerEntry().get(i).getCustomer().getReportDate()!=null){
-							qudate=info.getSignCustomerEntry().get(i).getCustomer().getReportDate();
-						}else{
-							qudate=info.getSignCustomerEntry().get(i).getCustomer().getFirstDate();
-						}
-						quc=info.getSignCustomerEntry().get(i).getCustomer();
+			SignManageInfo info=SignManageFactory.getRemoteInstance().getSignManageInfo(new ObjectUuidPK(id),sic);
+			if(!info.getBizState().equals(TransactionStateEnum.SIGNAUDIT)&&!info.getBizState().equals(TransactionStateEnum.SIGNAPPLE)){
+				MsgBox.showWarning("状态不是提交、审批状态！");
+				return;
+			}
+			if("true".equals(param)){
+				JSONArray carr=new JSONArray();
+				JSONObject cjo=new JSONObject();
+				cjo.put("id", info.getNumber());
+				cjo.put("type", "3");
+				cjo.put("projectId",info.getSellProject().getNumber());
+				String customerId="";
+				SHECustomerInfo quc=null;
+				Timestamp qudate=null;
+				for(int i=0;i<info.getSignCustomerEntry().size();i++){
+					if(i==0){
+						customerId=info.getSignCustomerEntry().get(i).getCustomer().getNumber();
 					}else{
-						Timestamp comdate=null;
-						if(info.getSignCustomerEntry().get(i).getCustomer().getReportDate()!=null){
-							comdate=info.getSignCustomerEntry().get(i).getCustomer().getReportDate();
-						}else{
-							comdate=info.getSignCustomerEntry().get(i).getCustomer().getFirstDate();
-						}
-						if(qudate.after(comdate)){
-							qudate=comdate;
+						customerId=customerId+"@"+info.getSignCustomerEntry().get(i).getCustomer().getNumber();
+					}
+					if("true".equals(paramValue)){
+						if(info.getSignCustomerEntry().get(i).isIsMain()){
 							quc=info.getSignCustomerEntry().get(i).getCustomer();
 						}
+					}else{
+						if(info.getSignCustomerEntry().get(i).getCustomer().getFirstDate()==null&&info.getSignCustomerEntry().get(i).getCustomer().getReportDate()==null){
+							MsgBox.showWarning("客户报备日期和首访日期都为空！");
+							return;
+						}
+						if(qudate==null){
+							if(info.getSignCustomerEntry().get(i).getCustomer().getReportDate()!=null){
+								qudate=info.getSignCustomerEntry().get(i).getCustomer().getReportDate();
+							}else{
+								qudate=info.getSignCustomerEntry().get(i).getCustomer().getFirstDate();
+							}
+							quc=info.getSignCustomerEntry().get(i).getCustomer();
+						}else{
+							Timestamp comdate=null;
+							if(info.getSignCustomerEntry().get(i).getCustomer().getReportDate()!=null){
+								comdate=info.getSignCustomerEntry().get(i).getCustomer().getReportDate();
+							}else{
+								comdate=info.getSignCustomerEntry().get(i).getCustomer().getFirstDate();
+							}
+							if(qudate.after(comdate)){
+								qudate=comdate;
+								quc=info.getSignCustomerEntry().get(i).getCustomer();
+							}
+						}
 					}
 				}
-			}
-			cjo.put("qdCustId",quc.getNumber());
-			cjo.put("cstName",quc.getName());
-			cjo.put("cstPhone",quc.getPhone());
-			cjo.put("cstCardId",quc.getCertificateNumber());
-			if(quc.getCertificateType()!=null)
-				cjo.put("cstCardIdType",quc.getCertificateType().getName());
-			
-			cjo.put("customerId", customerId);
-			if(info.getRoom()!=null){
-				cjo.put("roomId", info.getRoom().getNumber());
-				cjo.put("rcYT", info.getRoom().getProductType().getName());
-			}
-			cjo.put("roomStatus", "签约");
-			cjo.put("userId", quc.getPropertyConsultant().getNumber());
-			
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			cjo.put("tradeDate", df.format(info.getBizDate()));
-			cjo.put("tradeAmount", info.getDealTotalAmount());
-			cjo.put("payType", info.getPayType().getName());
-			cjo.put("expectDate", "");
-			cjo.put("price", info.getDealBuildPrice());
-			cjo.put("area",info.getBulidingArea());
-			cjo.put("contractNo", info.getNumber());
-			cjo.put("remark", "");
-			cjo.put("orderType", "");
-			cjo.put("saleType", "");
-			
-			if(SignChangeStateEnum.CHANGE.equals(info.getChangeState())){
-				cjo.put("isChangeRoomNew", "1");
-			}else{
-				cjo.put("isChangeRoomNew", "0");
-			}
-			
-			sic=new SelectorItemCollection();
-			sic.add("number");
-			if(info.getSrcId()!=null){
-				if(info.getSrcId().getType().equals(new PurchaseManageInfo().getBOSType())){
-					PurchaseManageInfo src=PurchaseManageFactory.getRemoteInstance().getPurchaseManageInfo(new ObjectUuidPK(info.getSrcId()),sic);
-					cjo.put("rengouId", src.getNumber());
-				}else{
-					SincerityPurchaseInfo src=SincerityPurchaseFactory.getRemoteInstance().getSincerityPurchaseInfo(new ObjectUuidPK(info.getSrcId()),sic);
-					cjo.put("rcId",src.getNumber());
+				cjo.put("qdCustId",quc.getNumber());
+				cjo.put("cstName",quc.getName());
+				cjo.put("cstPhone",quc.getPhone());
+				cjo.put("cstCardId",quc.getCertificateNumber());
+				if(quc.getCertificateType()!=null)
+					cjo.put("cstCardIdType",quc.getCertificateType().getName());
+				
+				cjo.put("customerId", customerId);
+				if(info.getRoom()!=null){
+					cjo.put("roomId", info.getRoom().getNumber());
+					cjo.put("rcYT", info.getRoom().getProductType().getName());
 				}
-			}
-			
-			cjo.put("salesStatisticsDate", df.format(info.getBizDate()));
-			cjo.put("fyyt", info.getRoom().getProductType().getName());
-			
-			carr.add(cjo);
-  		
-			try {
-				String rs=SHEManageHelper.execPost(null, "sap_transaction_mcrm_channel", carr.toJSONString());
-				JSONObject rso = JSONObject.parseObject(rs);
-				if(!"SUCCESS".equals(rso.getString("status"))){
-					MsgBox.showWarning(rso.getString("message"));
+				cjo.put("roomStatus", "签约");
+				cjo.put("userId", quc.getPropertyConsultant().getNumber());
+				
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				cjo.put("tradeDate", df.format(info.getBizDate()));
+				cjo.put("tradeAmount", info.getDealTotalAmount());
+				cjo.put("payType", info.getPayType().getName());
+				cjo.put("expectDate", "");
+				cjo.put("price", info.getDealBuildPrice());
+				cjo.put("area",info.getBulidingArea());
+				cjo.put("contractNo", info.getNumber());
+				cjo.put("remark", "");
+				cjo.put("orderType", "");
+				cjo.put("saleType", "");
+				
+				if(SignChangeStateEnum.CHANGE.equals(info.getChangeState())){
+					cjo.put("isChangeRoomNew", "1");
+				}else{
+					cjo.put("isChangeRoomNew", "0");
+				}
+				
+				sic=new SelectorItemCollection();
+				sic.add("number");
+				if(info.getSrcId()!=null){
+					if(info.getSrcId().getType().equals(new PurchaseManageInfo().getBOSType())){
+						PurchaseManageInfo src=PurchaseManageFactory.getRemoteInstance().getPurchaseManageInfo(new ObjectUuidPK(info.getSrcId()),sic);
+						cjo.put("rengouId", src.getNumber());
+					}else{
+						SincerityPurchaseInfo src=SincerityPurchaseFactory.getRemoteInstance().getSincerityPurchaseInfo(new ObjectUuidPK(info.getSrcId()),sic);
+						cjo.put("rcId",src.getNumber());
+					}
+				}
+				
+				cjo.put("salesStatisticsDate", df.format(info.getBizDate()));
+				cjo.put("fyyt", info.getRoom().getProductType().getName());
+				
+				carr.add(cjo);
+	  		
+				try {
+					String rs=SHEManageHelper.execPost(null, "sap_transaction_mcrm_channel", carr.toJSONString());
+					JSONObject rso = JSONObject.parseObject(rs);
+					if(!"SUCCESS".equals(rso.getString("status"))){
+						MsgBox.showWarning(rso.getString("message"));
+						return;
+					}
+					rs=SHEManageHelper.execPost(null, "sap_transaction_organ_personal_channel", carr.toJSONString());
+					rso = JSONObject.parseObject(rs);
+					if(!"SUCCESS".equals(rso.getString("status"))){
+						MsgBox.showWarning(rso.getString("message"));
+					}else{
+						MsgBox.showInfo("同步成功！");
+					}
+				} catch (SQLException e1) {
+					MsgBox.showWarning(e1.getMessage());
+					return;
+				} catch (IOException e1) {
+					MsgBox.showWarning(e1.getMessage());
 					return;
 				}
-				rs=SHEManageHelper.execPost(null, "sap_transaction_organ_personal_channel", carr.toJSONString());
-				rso = JSONObject.parseObject(rs);
-				if(!"SUCCESS".equals(rso.getString("status"))){
-					MsgBox.showWarning(rso.getString("message"));
-				}else{
-					info.setRecommended(quc.getRecommended());
-					info.setQdPerson(quc.getQdPersontxt());
-					info.setSalesman(quc.getPropertyConsultant());
-					
-					SelectorItemCollection u=new SelectorItemCollection();
-					u.add("recommended");
-					u.add("qdPerson");
-					u.add("salesman");
-					SignManageFactory.getRemoteInstance().updatePartial(info, u);
-					
-					SelectorItemCollection eu=new SelectorItemCollection();
-					eu.add("user");
-					
-					for(int i=0;i<info.getSignSaleManEntry().size();i++){
-						SignSaleManEntryInfo entry=info.getSignSaleManEntry().get(i);
-						entry.setUser(quc.getPropertyConsultant());
-						SignSaleManEntryFactory.getRemoteInstance().updatePartial(entry, eu);
-					}
-					
-					MsgBox.showInfo("同步成功！");
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
 			}
+			_builder.addBatch(" update t_she_signManage t set fqdperson=(select t2.FQdPersontxt from t_she_signcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fid) where fid='"+id+"'");
+			_builder.addBatch(" update t_she_signManage t set CFRecommended=(select t2.CFRecommended from t_she_signcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fid) where fid='"+id+"'");
+			_builder.addBatch(" update t_she_signsalemanentry t set FUserId=(select t2.FPropertyConsultantID from t_she_signcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fheadid) where fheadid='"+id+"'");
+			_builder.addBatch(" update t_she_signManage t set fsalesmanid=(select t2.FPropertyConsultantID from t_she_signcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid where t1.fismain=1 and t1.fheadid=t.fid),FSALEMANNAMES=(select t3.fname_l2 from t_she_signcustomerentry t1 left join t_she_shecustomer t2 on t2.fid=t1.fcustomerid left join t_pm_user t3 on t3.fid=t2.FPropertyConsultantID where t1.fismain=1 and t1.fheadid=t.fid) where fid='"+id+"'");
+			
+			_builder.executeBatch();
 	    }
 		FDCMsgBox.showInfo("更新成功！");
 	}

@@ -1544,9 +1544,8 @@ public class OAContractFacadeControllerBean extends AbstractOAContractFacadeCont
             obj.put("msg", "fault");
             obj.put("content", e.getMessage());
             
-            FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-    		sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('OA回调接口','"+data+"','"+easid+"',now(),'失败','"+e.getMessage()+"')");
-    		sql.execute();
+            String logStr="insert into t_log (name,context,number,createtime,state,msg) values('OA回调接口','"+data+"','"+easid+"',now(),'失败','"+e.getMessage()+"')";
+    		DbUtil.execute(ctx,logStr);
             return obj.toString();
 		} catch (UuidException e) {
 			e.printStackTrace();
@@ -1554,15 +1553,13 @@ public class OAContractFacadeControllerBean extends AbstractOAContractFacadeCont
             obj.put("msg", "fault");
             obj.put("content", e.getMessage());
             
-            FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-    		sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('OA回调接口','"+data+"','"+easid+"',now(),'失败','"+e.getMessage()+"')");
-    		sql.execute();
+            String logStr="insert into t_log (name,context,number,createtime,state,msg) values('OA回调接口','"+data+"','"+easid+"',now(),'失败','"+e.getMessage()+"')";
+            DbUtil.execute(ctx,logStr);
             return obj.toString();
 		}
 		
-		FDCSQLBuilder sql = new FDCSQLBuilder(ctx);
-		sql.appendSql("insert into t_log (name,context,number,createtime,state,msg) values('OA回调接口','"+data+"','"+easid+"',now(),'成功','')");
-		sql.execute();
+		String logStr="insert into t_log (name,context,number,createtime,state,msg) values('OA回调接口','"+data+"','"+easid+"',now(),'成功','')";
+		DbUtil.execute(ctx,logStr);
 		
 		obj.put("code", "1");
         obj.put("msg", "success");
