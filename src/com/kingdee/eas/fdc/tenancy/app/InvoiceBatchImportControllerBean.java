@@ -30,6 +30,7 @@ import com.kingdee.eas.fdc.contract.ContractException;
 import com.kingdee.eas.fdc.sellhouse.ChequeTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.FDCCustomerInfo;
 import com.kingdee.eas.fdc.sellhouse.MoneyDefineInfo;
+import com.kingdee.eas.fdc.sellhouse.MoneyTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
 import com.kingdee.eas.fdc.tenancy.IInvoiceBill;
 import com.kingdee.eas.fdc.tenancy.InvoiceBatchImportEntryCollection;
@@ -78,7 +79,7 @@ public class InvoiceBatchImportControllerBean extends AbstractInvoiceBatchImport
     	String sql = " select * from (select pentry.fid            revId,                          "+
     	"        '"+RevListTypeEnum.tenRoomRev.getValue()+"' revType,               "+
     	"        pentry.fmoneydefineid moneyId,                                     "+
-    	"        m.fname_l2 moneyName         ,                                     "+
+    	"        m.fname_l2 moneyName         ,m.FMoneyType  moneyType,                            "+
     	"        tb.fid    contractId,                                              "+
     	"        tb.fname              contractName,                                "+
     	"        tb.fnumber            contractNumber,                              "+
@@ -125,7 +126,7 @@ public class InvoiceBatchImportControllerBean extends AbstractInvoiceBatchImport
     	"        oentry.fid            revId,                                       "+
     	"        '"+RevListTypeEnum.tenOtherRev.getValue()+"' revType,              "+
     	"        oentry.fmoneydefineid moneyId,                                     "+
-    	"        m.fname_l2 moneyName         ,                                     "+
+    	"        m.fname_l2 moneyName         ,m.FMoneyType  moneyType,                     "+
     	"        tb.fid contractId,                                                 "+
     	"        tb.fname              contractName,                                "+
     	"        tb.fnumber            contractNumber,                              "+
@@ -203,7 +204,11 @@ public class InvoiceBatchImportControllerBean extends AbstractInvoiceBatchImport
 				entry.setAddAndPhone(rs.getString("addAndPhone"));
 				entry.setInvoiceName(rs.getString("invoiceName"));
 				entry.setBankAndAccount(rs.getString("bankAndAccount"));
-				entry.setInvoiceType(rs.getString("invoiceType")!=null?ChequeTypeEnum.getEnum(rs.getString("invoiceType")):ChequeTypeEnum.normal);
+				if(rs.getString("moneyType").equals(MoneyTypeEnum.DEPOSITAMOUNT_VALUE)){
+					entry.setInvoiceType(ChequeTypeEnum.receipt);
+				}else{
+					entry.setInvoiceType(rs.getString("invoiceType")!=null?ChequeTypeEnum.getEnum(rs.getString("invoiceType")):ChequeTypeEnum.normal);
+				}
 				entry.setAmount(rs.getBigDecimal("amount"));
 				cols.add(entry);
 			}

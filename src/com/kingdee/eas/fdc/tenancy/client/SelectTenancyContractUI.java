@@ -81,9 +81,7 @@ public class SelectTenancyContractUI extends AbstractSelectTenancyContractUI {
 		EntityViewInfo view = new EntityViewInfo();
 		FilterInfo filter = new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("sysType", MoneySysTypeEnum.TENANCYSYS_VALUE));
-		filter.getFilterItems().add(new FilterItemInfo("moneyType", MoneyTypeEnum.DEPOSITAMOUNT_VALUE,CompareType.NOTEQUALS));
 		filter.getFilterItems().add(new FilterItemInfo("name", "%×÷·Ï%",CompareType.NOTLIKE));
-		filter.setMaskString("#0 and #1 and #2");
 		view.setFilter(filter);
 		SorterItemCollection sort=new SorterItemCollection();
 		sort.add(new SorterItemInfo("number"));
