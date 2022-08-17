@@ -127,7 +127,7 @@ public class SignManageListUI extends AbstractSignManageListUI
 		this.btnInvalid.setVisible(false);
 		
 		tblMain.getHeadRow(0).getCell("salesman.name").setValue("置业顾问");
-		
+		this.btnToMT.setText("同步盟拓");
 		this.btnToMT.setIcon(EASResource.getIcon("imgTbtn_input"));
     }
 	public void actionRelatePrePurchase_actionPerformed(ActionEvent e) throws Exception {

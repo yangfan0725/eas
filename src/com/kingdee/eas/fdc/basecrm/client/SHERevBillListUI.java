@@ -269,6 +269,7 @@ public class SHERevBillListUI extends AbstractSHERevBillListUI
 	        });
 			this.toolBar.add(update);
 		}
+		this.btnToMT.setText("Õ¨≤Ω√ÀÕÿ");
 		this.btnToMT.setIcon(EASResource.getIcon("imgTbtn_input"));
     }
     

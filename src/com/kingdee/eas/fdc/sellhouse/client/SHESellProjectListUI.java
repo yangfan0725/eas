@@ -409,8 +409,9 @@ public class SHESellProjectListUI extends AbstractSHESellProjectListUI {
 			this.actionRemove.setEnabled(false);
 		}
 		this.btnEditEndDate.setIcon(EASResource.getIcon("imgTbtn_rename"));
-		
+		this.btnToMT.setText("Õ¨≤Ω√ÀÕÿ");
 		this.btnToMT.setIcon(EASResource.getIcon("imgTbtn_input"));
+		this.btnToYB.setIcon(EASResource.getIcon("imgTbtn_input"));
 	}
 	
 	private boolean isSellOrg() {

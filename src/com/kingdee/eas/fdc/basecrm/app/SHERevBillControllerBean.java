@@ -484,9 +484,9 @@ public class SHERevBillControllerBean extends AbstractSHERevBillControllerBean
 										String cstId= quc.getId().toString();
 										ybcjson.put("cstname",quc.getName().replaceAll("\\s", ""));	
 										String cstName=quc.getName().replaceAll("\\s", "");
-										if(srcInfo.getSignCustomerEntry().get(i1).getCustomer().getFirstDate()==null&&srcInfo.getSignCustomerEntry().get(i1).getCustomer().getReportDate()==null){
-											throw new EASBizException(new NumericExceptionSubItem("100","客户报备日期和首访日期都为空！"));
-										}
+//										if(srcInfo.getSignCustomerEntry().get(i1).getCustomer().getFirstDate()==null&&srcInfo.getSignCustomerEntry().get(i1).getCustomer().getReportDate()==null){
+//											throw new EASBizException(new NumericExceptionSubItem("100","客户报备日期和首访日期都为空！"));
+//										}
 										if(quc.getSex()!=null&&!"".equals(String.valueOf(quc.getSex()))){
 											ybcjson.put("Gender",quc.getSex().getAlias().replaceAll("\\s", ""));
 										}

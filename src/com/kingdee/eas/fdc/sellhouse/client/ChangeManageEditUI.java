@@ -35,18 +35,22 @@ import org.apache.log4j.Logger;
 import com.kingdee.bos.BOSException;
 import com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox;
 import com.kingdee.bos.ctrl.extendcontrols.KDCommonPromptDialog;
+import com.kingdee.bos.ctrl.kdf.servertable.KDTStyleConstants;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTDefaultCellEditor;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectBlock;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTEditEvent;
+import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent;
 import com.kingdee.bos.ctrl.kdf.util.render.ObjectValueRender;
 import com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment;
 import com.kingdee.bos.ctrl.swing.IKDTextComponent;
 import com.kingdee.bos.ctrl.swing.KDCheckBox;
+import com.kingdee.bos.ctrl.swing.KDComboBox;
 import com.kingdee.bos.ctrl.swing.KDComboBoxMultiColumnItem;
 import com.kingdee.bos.ctrl.swing.KDDatePicker;
+import com.kingdee.bos.ctrl.swing.KDOptionPane;
 import com.kingdee.bos.ctrl.swing.KDScrollPane;
 import com.kingdee.bos.ctrl.swing.KDTextField;
 import com.kingdee.bos.ctrl.swing.event.DataChangeEvent;
@@ -69,11 +73,17 @@ import com.kingdee.bos.ui.UIFocusTraversalPolicy;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.ui.face.UIException;
 import com.kingdee.bos.util.BOSUuid;
+import com.kingdee.eas.base.attachment.AttachmentFactory;
+import com.kingdee.eas.base.attachment.BizobjectFacadeFactory;
+import com.kingdee.eas.base.attachment.BoAttchAssoCollection;
+import com.kingdee.eas.base.attachment.BoAttchAssoFactory;
+import com.kingdee.eas.base.attachment.client.AttachmentUIContextInfo;
 import com.kingdee.eas.base.attachment.common.AttachmentClientManager;
 import com.kingdee.eas.base.attachment.common.AttachmentManagerFactory;
 import com.kingdee.eas.base.codingrule.CodingRuleException;
 import com.kingdee.eas.base.codingrule.CodingRuleManagerFactory;
 import com.kingdee.eas.base.codingrule.ICodingRuleManager;
+import com.kingdee.eas.base.param.ParamControlFactory;
 import com.kingdee.eas.base.uiframe.client.UIFactoryHelper;
 import com.kingdee.eas.basedata.assistant.CurrencyInfo;
 import com.kingdee.eas.basedata.org.FullOrgUnitInfo;
@@ -92,10 +102,13 @@ import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
 import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
+import com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum;
 import com.kingdee.eas.fdc.basedata.client.FDCClientHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCClientUtils;
 import com.kingdee.eas.fdc.basedata.client.FDCClientVerifyHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
+import com.kingdee.eas.fdc.invite.supplier.SupplierAttachListEntryFactory;
+import com.kingdee.eas.fdc.invite.supplier.SupplierStateEnum;
 import com.kingdee.eas.fdc.sellhouse.AgioBillFactory;
 import com.kingdee.eas.fdc.sellhouse.AgioBillInfo;
 import com.kingdee.eas.fdc.sellhouse.AgioCalTypeEnum;
@@ -118,6 +131,8 @@ import com.kingdee.eas.fdc.sellhouse.ChangeAgioEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.ChangeBizTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.ChangeCustomerEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.ChangeCustomerEntryInfo;
+import com.kingdee.eas.fdc.sellhouse.ChangeManageAttachEntryFactory;
+import com.kingdee.eas.fdc.sellhouse.ChangeManageAttachEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.ChangeManageFactory;
 import com.kingdee.eas.fdc.sellhouse.ChangeManageInfo;
 import com.kingdee.eas.fdc.sellhouse.ChangePayListEntryCollection;
@@ -141,6 +156,7 @@ import com.kingdee.eas.fdc.sellhouse.PrePurchaseRoomAttachmentEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.PrePurchaseRoomAttachmentEntryFactory;
 import com.kingdee.eas.fdc.sellhouse.PrePurchaseSaleManEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.PriceAccountTypeEnum;
+import com.kingdee.eas.fdc.sellhouse.PropertyEnum;
 import com.kingdee.eas.fdc.sellhouse.PurAgioEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.PurCustomerEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.PurPayListEntryCollection;
@@ -153,12 +169,19 @@ import com.kingdee.eas.fdc.sellhouse.RoomDisplaySetting;
 import com.kingdee.eas.fdc.sellhouse.RoomFactory;
 import com.kingdee.eas.fdc.sellhouse.RoomInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomSellStateEnum;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillEntryInfo;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillFactory;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachListCollection;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachListEntryInfo;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachListFactory;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachListInfo;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerInfo;
 import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
 import com.kingdee.eas.fdc.sellhouse.SHEParamConstant;
 import com.kingdee.eas.fdc.sellhouse.SHEPayTypeBizTimeEnum;
 import com.kingdee.eas.fdc.sellhouse.SHEPayTypeInfo;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
+import com.kingdee.eas.fdc.sellhouse.SellStageEnum;
 import com.kingdee.eas.fdc.sellhouse.SellTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.SignAgioEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.SignCustomerEntryCollection;
@@ -173,6 +196,7 @@ import com.kingdee.eas.fdc.sellhouse.TranPayListEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.TransactionStateEnum;
 import com.kingdee.eas.framework.CoreBillBaseInfo;
 import com.kingdee.eas.framework.ICoreBase;
+import com.kingdee.eas.framework.IFWEntityStruct;
 import com.kingdee.eas.framework.client.FrameWorkClientUtils;
 import com.kingdee.eas.util.SysUtil;
 import com.kingdee.eas.util.client.EASResource;
@@ -446,6 +470,42 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 "4、本次退房/退认购，申请免收取违约金/申请给予退还定金XXX元。\n");
 				}
 				
+				ProductTypePropertyEnum productTypeProperty=null;
+				if(room!=null){
+					room=RoomFactory.getRemoteInstance().getRoomInfo("select productType.property from where id='"+room.getId()+"'");
+					productTypeProperty=room.getProductType().getProperty();
+				}
+				SellStageEnum sellStage=null;
+				SellTypeEnum sellType=null;
+				if(objectValue instanceof PurchaseManageInfo){
+					sellStage=SellStageEnum.RGBG;
+					sellType=((PurchaseManageInfo)objectValue).getSellType();
+				}else if(objectValue instanceof SignManageInfo){
+					sellStage=SellStageEnum.QYBG;
+					sellType=((SignManageInfo)objectValue).getSellType();
+				}
+				
+				EntityViewInfo view=new EntityViewInfo();
+	       	 	FilterInfo filter = new FilterInfo();
+	       	 	filter.getFilterItems().add(new FilterItemInfo("isEnabled" , Boolean.TRUE));
+		 		filter.getFilterItems().add(new FilterItemInfo("productTypeProperty", productTypeProperty.getValue()));
+		 		filter.getFilterItems().add(new FilterItemInfo("sellStage", sellStage.getValue()));
+		 		filter.getFilterItems().add(new FilterItemInfo("sellType", sellType.getValue()));
+		 		filter.getFilterItems().add(new FilterItemInfo("room.id", null,CompareType.EQUALS));
+		 		view.setFilter(filter);
+		        SHEAttachListCollection col=SHEAttachListFactory.getRemoteInstance().getSHEAttachListCollection(view);
+		        for(int i=0;i<col.size();i++){
+		        	SHEAttachListInfo sp=col.get(i);
+		        	for(int j=0;j<sp.getEntry().size();j++){
+		        		 IRow row=this.kdtAttachEntry.addRow();
+		        		 ChangeManageAttachEntryInfo entryinfo=new ChangeManageAttachEntryInfo();
+		        		 entryinfo.setId(BOSUuid.create(entryinfo.getBOSType()));
+			        	 entryinfo.setProperty(sp.getEntry().get(j).getProperty());
+			        	 entryinfo.setContext(sp.getEntry().get(j).getContext());
+			        	 
+			        	 info.getAttachEntry().add(entryinfo);
+		        	}
+		         }
 			} catch (BOSException e) {
 				logger.error(e.getMessage());
 			} catch (EASBizException e) {
@@ -589,6 +649,20 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 			this.tabInformation.add(panelSourceBill);
 		}
 		
+		for(int i=0;i<this.kdtAttachEntry.getRowCount();i++){
+			ChangeManageAttachEntryInfo entry=(ChangeManageAttachEntryInfo) this.kdtAttachEntry.getRow(i).getUserObject();
+			try {
+				if(entry.getId()!=null){
+					this.kdtAttachEntry.getRow(i).getCell("attach").setValue(loadAttachment(entry.getId().toString()));
+				}
+			} catch (BOSException e) {
+				e.printStackTrace();
+			}
+			PropertyEnum property = (PropertyEnum) this.kdtAttachEntry.getRow(i).getCell("property").getValue();
+			 if(property.equals(PropertyEnum.BY)){
+				 this.kdtAttachEntry.getRow(i).getCell("attach").getStyleAttributes().setBackground(FDCClientHelper.KDTABLE_COMMON_BG_COLOR);
+        	 }
+		}
 		attachListeners();
 	}
 	private void loadArea(BaseTransactionInfo info){
@@ -606,7 +680,16 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 			txtRoomArea.setValue(FDCHelper.ZERO);
 		}
 	}
+	private String param="false";
 	public void onLoad() throws Exception {
+		
+		try {
+			param = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_AT");
+		} catch (EASBizException e1) {
+			e1.printStackTrace();
+		} catch (BOSException e1) {
+			e1.printStackTrace();
+		}
 		initTblAttachProperty();
 		initTblPayList(this.tblPayList);
 		initTblPayList(this.tblQRPayList);
@@ -632,6 +715,22 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 		
 		this.comboBizType.removeItem(ChangeBizTypeEnum.PRICECHANGE);
 		this.comboBizType.removeItem(ChangeBizTypeEnum.CHANGEROOM);
+		
+		this.kdtAttachEntry.checkParsed();
+		this.kdtAttachEntry.setEnabled(false);
+		KDComboBox combo = new KDComboBox();
+        for(int i = 0; i < PropertyEnum.getEnumList().size(); i++){
+        	combo.addItem(PropertyEnum.getEnumList().get(i));
+        }
+        KDTDefaultCellEditor comboEditor = new KDTDefaultCellEditor(combo);
+		this.kdtAttachEntry.getColumn("property").setEditor(comboEditor);
+//		this.kdtEntry.getColumn("property").setRequired(true);
+//		this.kdtEntry.getColumn("context").setRequired(true);
+		this.kdtAttachEntry.getColumn("attach").getStyleAttributes().setFontColor(Color.BLUE);
+		
+		if("true".equals(param)){
+			this.actionAttachment.setVisible(false);
+		}
 	}
 	private void initCustomer() {
 		this.labCustomer1.setForeground(Color.BLUE);
@@ -1656,10 +1755,67 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 		}
 		oldObjectValue=objectValue;
 		
+		ProductTypePropertyEnum productTypeProperty=null;
 		if(room!=null){
-			room=RoomFactory.getRemoteInstance().getRoomInfo("select building.sellProject.* from where id='"+room.getId()+"'");
+			room=RoomFactory.getRemoteInstance().getRoomInfo("select productType.property,building.sellProject.* from where id='"+room.getId()+"'");
 			((BaseTransactionInfo)editData).setSellProject(room.getBuilding().getSellProject());
+			productTypeProperty=room.getProductType().getProperty();
 		}
+		
+		boolean isShowWarn=false;
+		boolean isUpdate=false;
+		SellStageEnum sellStage=null;
+		SellTypeEnum sellType=null;
+		if(objectValue instanceof PurchaseManageInfo){
+			sellStage=SellStageEnum.RGBG;
+			sellType=((PurchaseManageInfo)objectValue).getSellType();
+		}else if(objectValue instanceof SignManageInfo){
+			sellStage=SellStageEnum.QYBG;
+			sellType=((SignManageInfo)objectValue).getSellType();
+		}
+		if(sellStage==null||productTypeProperty==null||sellType==null){
+			return;
+		}
+		if(this.kdtAttachEntry.getRowCount()>0){
+			isShowWarn=true;
+        }
+        if(isShowWarn){
+        	if(FDCMsgBox.showConfirm2(this, "是否覆盖附件清单数据？")== FDCMsgBox.YES){
+        		isUpdate=true;
+            }
+        }else{
+        	isUpdate=true;
+        }
+        if(isUpdate){
+        	for(int i=0;i<this.kdtAttachEntry.getRowCount();i++){
+        		this.deleteAttachment(((ChangeManageAttachEntryInfo)this.kdtAttachEntry.getRow(i).getUserObject()).getId().toString());
+        	}
+       	 	this.kdtAttachEntry.removeRows();
+       	 	
+       	 	EntityViewInfo view=new EntityViewInfo();
+       	 	FilterInfo filter = new FilterInfo();
+       	 	filter.getFilterItems().add(new FilterItemInfo("isEnabled" , Boolean.TRUE));
+	 		filter.getFilterItems().add(new FilterItemInfo("productTypeProperty", productTypeProperty.getValue()));
+	 		filter.getFilterItems().add(new FilterItemInfo("sellStage", sellStage.getValue()));
+	 		filter.getFilterItems().add(new FilterItemInfo("sellType", sellType.getValue()));
+	 		filter.getFilterItems().add(new FilterItemInfo("room.id", null,CompareType.EQUALS));
+	 		view.setFilter(filter);
+	        SHEAttachListCollection col=SHEAttachListFactory.getRemoteInstance().getSHEAttachListCollection(view);
+	        for(int i=0;i<col.size();i++){
+	        	SHEAttachListInfo sp=col.get(i);
+	        	for(int j=0;j<sp.getEntry().size();j++){
+	        		 IRow row=this.kdtAttachEntry.addRow();
+	        		 ChangeManageAttachEntryInfo info=new ChangeManageAttachEntryInfo();
+		        	 info.setId(BOSUuid.create(info.getBOSType()));
+		        	 row.setUserObject(info);
+		        	 row.getCell("property").setValue(sp.getEntry().get(j).getProperty());
+		        	 row.getCell("context").setValue(sp.getEntry().get(j).getContext());
+		        	 if(sp.getEntry().get(j).getProperty().equals(PropertyEnum.BY)){
+		        		 row.getCell("attach").getStyleAttributes().setBackground(FDCClientHelper.KDTABLE_COMMON_BG_COLOR);
+		        	 }
+	        	}
+	         }
+        }
 	}
 	protected void f7AgioScheme_dataChanged(DataChangeEvent e) throws Exception {
 		if(this.f7AgioScheme.getValue()!=null){
@@ -1982,6 +2138,9 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 		if(ChangeBizTypeEnum.PRICECHANGE.equals(bizType)){
 			panelPriceChange.setName(PRICECHANGE);
 			tabInformation.add(panelPriceChange);
+		}
+		if("true".equals(param)){
+			tabInformation.add(this.kdtAttachEntry,"附件清单");
 		}
 		panelSourceBill.setName(SOURCEBILL);
 		tabInformation.add(panelSourceBill);
@@ -3420,5 +3579,161 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 			}
 		}
 	}
+	protected String loadAttachment(String id) throws BOSException{
+		Map att=new HashMap();
+		EntityViewInfo view = new EntityViewInfo();
+		FilterInfo filter = new FilterInfo();
+		filter.getFilterItems().add(new FilterItemInfo("boID", id));
+		view.setFilter(filter);
+		SelectorItemCollection sels = new SelectorItemCollection();
+		sels.add("attachment.name");
+		sels.add("attachment.size");
+		view.setSelector(sels);
+		BoAttchAssoCollection col = BoAttchAssoFactory.getRemoteInstance().getBoAttchAssoCollection(view);
+		String name="";
+		for(int i=0;i<col.size();i++){
+			name=name+col.get(i).getAttachment().getName()+"("+col.get(i).getAttachment().getSize()+");";
+		}
+		return name;
+	}
+	public boolean checkBeforeWindowClosing(){
+		if (hasWorkThreadRunning()) {
+			return false;
+		}
+		if(getTableForPrintSetting()!=null){
+			this.savePrintSetting(this.getTableForPrintSetting());
+		}
+		boolean b = true;
+		if (!b) {
+			return b;
+		} else {
+			if (isModify()) {
+				int result = MsgBox.showConfirm3(this, EASResource.getString(FrameWorkClientUtils.strResource+ "Confirm_Save_Exit"));
+				if (result == KDOptionPane.YES_OPTION) {
+					try {
+						if (editData.getState() == null|| editData.getState() == FDCBillStateEnum.SAVED) {
+							actionSave.setDaemonRun(false);
+							ActionEvent event = new ActionEvent(btnSave,ActionEvent.ACTION_PERFORMED, btnSave.getActionCommand());
+							actionSave.actionPerformed(event);
+							return !actionSave.isInvokeFailed();
+						} else {
+							actionSubmit.setDaemonRun(false);
+							ActionEvent event = new ActionEvent(btnSubmit,ActionEvent.ACTION_PERFORMED, btnSubmit.getActionCommand());
+							actionSubmit.actionPerformed(event);
+							return !actionSubmit.isInvokeFailed();
+						}
+					} catch (Exception exc) {
+						return false;
+					}
+				} else if (result == KDOptionPane.NO_OPTION) {
+					if(editData!=null){
+						for(int i=0;i<this.editData.getAttachEntry().size();i++){
+							if(this.editData.getAttachEntry().get(i).getId()==null) continue;
+							try {
+								if(!ChangeManageAttachEntryFactory.getRemoteInstance().exists(new ObjectUuidPK(this.editData.getAttachEntry().get(i).getId().toString()))){
+									this.deleteAttachment(this.editData.getAttachEntry().get(i).getId().toString());
+								}
+							} catch (EASBizException e) {
+								e.printStackTrace();
+							} catch (BOSException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return true;
+			}
+		}
+	}
+	protected void deleteAttachment(String id) throws BOSException, EASBizException{
+		EntityViewInfo view=new EntityViewInfo();
+		FilterInfo filter = new FilterInfo();
+		
+		filter.getFilterItems().add(new FilterItemInfo("boID" , id));
+		view.setFilter(filter);
+		BoAttchAssoCollection col=BoAttchAssoFactory.getRemoteInstance().getBoAttchAssoCollection(view);
+		if(col.size()>0){
+			for(int i=0;i<col.size();i++){
+				EntityViewInfo attview=new EntityViewInfo();
+				FilterInfo attfilter = new FilterInfo();
+				
+				attfilter.getFilterItems().add(new FilterItemInfo("attachment.id" , col.get(i).getAttachment().getId().toString()));
+				attview.setFilter(attfilter);
+				BoAttchAssoCollection attcol=BoAttchAssoFactory.getRemoteInstance().getBoAttchAssoCollection(attview);
+				if(attcol.size()==1){
+					AttachmentFactory.getRemoteInstance().delete(new ObjectUuidPK(col.get(i).getAttachment().getId().toString()));
+					BizobjectFacadeFactory.getRemoteInstance().delTempAttachment(id);
+				}else if(attcol.size()>1){
+					BoAttchAssoFactory.getRemoteInstance().delete(filter);
+				}
+			}
+		}
+	}
+	protected void kdtAttachEntry_tableClicked(KDTMouseEvent e) throws Exception {
+		if (e.getType() == KDTStyleConstants.BODY_ROW && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2&&
+				this.kdtAttachEntry.getColumnKey(e.getColIndex()).equals("attach")) {
+			String id=((ChangeManageAttachEntryInfo)this.kdtAttachEntry.getRow(e.getRowIndex()).getUserObject()).getId().toString();
+			AttachmentClientManager acm = AttachmentManagerFactory.getClientManager();
+	        boolean isEdit = false;
+	        if(OprtState.EDIT.equals(getOprtState()) || OprtState.ADDNEW.equals(getOprtState()))
+	            isEdit = true;
+	        AttachmentUIContextInfo info = new AttachmentUIContextInfo();
+	        info.setBoID(id);
+	        info.setEdit(isEdit);
+	        SelectorItemCollection sic=new SelectorItemCollection();
+	        sic.add("name");
+	        sic.add("building.sellProject.name");
+	        sic.add("building.sellProject.orgUnit.name");
+	        sic.add("building.number");
+	        sic.add("building.name");
+	        RoomInfo roomInfo=RoomFactory.getRemoteInstance().getRoomInfo(new ObjectUuidPK(((RoomInfo) this.f7Room.getValue()).getId()),sic);
+	        String context=this.kdtAttachEntry.getRow(e.getRowIndex()).getCell("context").getValue().toString();
+	        info.setBeizhu(roomInfo.getBuilding().getSellProject().getOrgUnit().getName()+"/"+roomInfo.getBuilding().getSellProject().getName()+"/"+roomInfo.getBuilding().getNumber()+"-"+roomInfo.getBuilding().getName()+"/"+roomInfo.getName()+"/"+context);
+	        String multi = (String)getUIContext().get("MultiapproveAttachment");
+	        if(multi != null && multi.equals("true")){
+	        	acm.showAttachmentListUIByBoIDNoAlready(this, info);
+	        }else{
+	        	acm.showAttachmentListUIByBoID(this, info);
+	        }
+	        this.kdtAttachEntry.getRow(e.getRowIndex()).getCell("attach").setValue(loadAttachment(id));
+		}
+	}
 	
+	protected void verifyInput(ActionEvent e) throws Exception {
+		super.verifyInput(e);
+		if("true".equals(param)){
+			if(this.kdtAttachEntry.getRowCount()==0){
+				FDCMsgBox.showWarning(this,"附件清单不能为空！");
+				SysUtil.abort();
+			}
+			for (int i = 0; i < this.kdtAttachEntry.getRowCount(); i++) {
+				IRow row = this.kdtAttachEntry.getRow(i);
+					
+				PropertyEnum property = (PropertyEnum) row.getCell("property").getValue();
+				if (property == null) {
+					FDCMsgBox.showWarning(this,"性质不能为空！");
+					this.kdtAttachEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtAttachEntry.getColumnIndex("property"));
+					SysUtil.abort();
+				} 
+				String context = (String)row.getCell("context").getValue();
+				if (context==null||"".equals(context.trim())){
+					FDCMsgBox.showWarning(this,"内容不能为空！");
+					this.kdtAttachEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtAttachEntry.getColumnIndex("context"));
+					SysUtil.abort();
+				}
+				if(property.equals(PropertyEnum.BY)){
+					String attach=(String)row.getCell("attach").getValue();
+					if (attach==null||"".equals(attach.trim())){
+						FDCMsgBox.showWarning(this,"附件不能为空！");
+						this.kdtAttachEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtAttachEntry.getColumnIndex("attach"));
+						SysUtil.abort();
+					}
+				}
+			}
+		}
+	}
 }

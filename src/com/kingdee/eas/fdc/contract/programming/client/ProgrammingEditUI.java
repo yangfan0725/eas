@@ -644,6 +644,14 @@ public class ProgrammingEditUI extends AbstractProgrammingEditUI
 			this.actionComInsertRow.setEnabled(true);
 			this.actionComRemoveRow.setEnabled(true);
 			this.actionViewAmount.setEnabled(false);
+			
+			this.kdtEntries.checkParsed();
+			this.kdtEntries.getColumn("amount").getStyleAttributes().setHided(false);
+			
+			this.kdtCostAccount.checkParsed();
+			this.kdtCostAccount.getColumn("aimCost").getStyleAttributes().setHided(false);
+			this.kdtCostAccount.getColumn("assigned").getStyleAttributes().setHided(false);
+			this.kdtCostAccount.getColumn("assigning").getStyleAttributes().setHided(false);
 		} else if (STATUS_EDIT.equals(this.oprtState)) {
 			this.actionCompare.setEnabled(true);
 			this.actionComAddRow.setEnabled(true);
@@ -652,6 +660,14 @@ public class ProgrammingEditUI extends AbstractProgrammingEditUI
 			changeActoinState(false);
 			actionImport.setEnabled(true);
 			this.actionViewAmount.setEnabled(false);
+			
+			this.kdtEntries.checkParsed();
+			this.kdtEntries.getColumn("amount").getStyleAttributes().setHided(false);
+			
+			this.kdtCostAccount.checkParsed();
+			this.kdtCostAccount.getColumn("aimCost").getStyleAttributes().setHided(false);
+			this.kdtCostAccount.getColumn("assigned").getStyleAttributes().setHided(false);
+			this.kdtCostAccount.getColumn("assigning").getStyleAttributes().setHided(false);
 		} else if (STATUS_VIEW.equals(this.oprtState)) {
 			this.actionCompare.setEnabled(false);
 			this.actionComAddRow.setEnabled(false);
@@ -659,12 +675,28 @@ public class ProgrammingEditUI extends AbstractProgrammingEditUI
 			this.actionComRemoveRow.setEnabled(false);
 			changeActoinState(false);
 			this.actionViewAmount.setEnabled(true);
+			
+			this.kdtEntries.checkParsed();
+			this.kdtEntries.getColumn("amount").getStyleAttributes().setHided(true);
+			
+			this.kdtCostAccount.checkParsed();
+			this.kdtCostAccount.getColumn("aimCost").getStyleAttributes().setHided(true);
+			this.kdtCostAccount.getColumn("assigned").getStyleAttributes().setHided(true);
+			this.kdtCostAccount.getColumn("assigning").getStyleAttributes().setHided(true);
 		} else if (STATUS_FINDVIEW.equals(this.oprtState)) {
 			this.actionCompare.setEnabled(false);
 			this.actionComAddRow.setEnabled(false);
 			this.actionComInsertRow.setEnabled(false);
 			this.actionComRemoveRow.setEnabled(false);
 			this.actionViewAmount.setEnabled(true);
+			
+			this.kdtEntries.checkParsed();
+			this.kdtEntries.getColumn("amount").getStyleAttributes().setHided(true);
+			
+			this.kdtCostAccount.checkParsed();
+			this.kdtCostAccount.getColumn("aimCost").getStyleAttributes().setHided(true);
+			this.kdtCostAccount.getColumn("assigned").getStyleAttributes().setHided(true);
+			this.kdtCostAccount.getColumn("assigning").getStyleAttributes().setHided(true);
 		}
 	}
 	/**

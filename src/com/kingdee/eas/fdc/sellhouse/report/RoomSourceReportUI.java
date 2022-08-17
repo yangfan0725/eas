@@ -25,11 +25,14 @@ import org.apache.log4j.Logger;
 
 import com.kingdee.bos.BOSException;
 import com.kingdee.bos.ui.face.CoreUIObject;
+import com.kingdee.bos.ctrl.kdf.table.IColumn;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTDataRequestManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectManager;
+import com.kingdee.bos.ctrl.kdf.table.KDTSortManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTStyleConstants;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
+import com.kingdee.bos.ctrl.kdf.table.KDTableHelper;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTDataRequestEvent;
 import com.kingdee.bos.ctrl.swing.tree.DefaultKingdeeTreeNode;
 import com.kingdee.bos.dao.IObjectValue;
@@ -40,10 +43,10 @@ import com.kingdee.eas.fdc.basecrm.client.CRMTreeHelper;
 import com.kingdee.eas.fdc.basecrm.client.FDCSysContext;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.ProductTypeInfo;
-import com.kingdee.eas.fdc.merch.common.KDTableHelper;
 import com.kingdee.eas.fdc.sellhouse.BuildingInfo;
 import com.kingdee.eas.fdc.sellhouse.BuildingUnitInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomSellStateEnum;
+import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
 import com.kingdee.eas.fdc.sellhouse.client.FDCTreeHelper;
 import com.kingdee.eas.framework.*;
@@ -174,6 +177,9 @@ public class RoomSourceReportUI extends AbstractRoomSourceReportUI
 				}
 				tblMain.setRowCount(list.size());
 				CRMClientHelper.getFootRow(tblMain, new String[]{"projectStandardPrice","backAmount","quitBackAmount","buildingArea","roomArea","ibasement","ibaInnside","standardTotalAmount","dealTotalAmount","actualBuildingArea","actualRoomArea","sellAmount","baseStandardPrice"});
+				for(int i=0;i<tblMain.getColumnCount();i++){
+		    		KDTableHelper.autoFitColumnWidth(tblMain, i);
+		    	}
             }
         } );
         dialog.show();
@@ -224,11 +230,18 @@ public class RoomSourceReportUI extends AbstractRoomSourceReportUI
 		for(int i=0;i<tblMain.getColumnCount();i++){
 			fields[i]=tblMain.getColumnKey(i);
 		}
-		KDTableHelper.setSortedColumn(tblMain,fields);
+		KDTSortManager sortManager = new KDTSortManager(tblMain);
+		 sortManager.setSortAuto(true);
+		 sortManager.setClickCount(1);
+		 for(int i = 0; i < fields.length; i++){
+			 IColumn column = tblMain.getColumn(fields[i]);
+			 if(column != null)
+				 column.setSortable(true);
+        }
 	}
 	protected void initTree() throws Exception{
 		this.treeMain.setModel(CRMTreeHelper.getBuildingTree(actionOnLoad,true));
-		this.treeMain.expandAllNodes(true, (TreeNode) this.treeMain.getModel().getRoot());
+		SHEManageHelper.expandAllNodesByBuilding(treeMain, (DefaultKingdeeTreeNode) this.treeMain.getModel().getRoot());
 		this.tblMain.getDataRequestManager().setDataRequestMode(
 				KDTDataRequestManager.REAL_MODE);
 	}

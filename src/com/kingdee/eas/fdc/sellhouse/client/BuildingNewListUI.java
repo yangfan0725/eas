@@ -243,7 +243,9 @@ public class BuildingNewListUI extends AbstractBuildingNewListUI {
 		            }
 		        });
 		}
+		this.btnToMT.setText("同步盟拓");
 		this.btnToMT.setIcon(EASResource.getIcon("imgTbtn_input"));
+		this.btnToYB.setIcon(EASResource.getIcon("imgTbtn_input"));
 	}
 	protected void btnUpdate_actionPerformed(ActionEvent e) throws Exception {
 		if (FDCMsgBox.showConfirm2(this,"是否数据升级？") != MsgBox.OK) {

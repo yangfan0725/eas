@@ -38,6 +38,11 @@ import java.io.ObjectInputStream;
 import java.lang.String;
 import java.math.BigDecimal;
 
+import com.kingdee.eas.base.attachment.AttachmentFactory;
+import com.kingdee.eas.base.attachment.BizobjectFacadeFactory;
+import com.kingdee.eas.base.attachment.BoAttchAssoCollection;
+import com.kingdee.eas.base.attachment.BoAttchAssoFactory;
+import com.kingdee.eas.base.attachment.BoAttchAssoInfo;
 import com.kingdee.eas.base.codingrule.CodingRuleManagerFactory;
 import com.kingdee.eas.base.codingrule.ICodingRuleManager;
 import com.kingdee.eas.base.param.ParamControlFactory;
@@ -72,6 +77,7 @@ import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
 import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
+import com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum;
 import com.kingdee.eas.framework.ObjectBaseCollection;
 import com.kingdee.eas.fdc.sellhouse.AFMortgagedStateEnum;
 import com.kingdee.eas.fdc.sellhouse.AfterServiceInfo;
@@ -123,9 +129,15 @@ import com.kingdee.eas.fdc.sellhouse.RoomLoanFactory;
 import com.kingdee.eas.fdc.sellhouse.RoomPropertyBookCollection;
 import com.kingdee.eas.fdc.sellhouse.RoomPropertyBookFactory;
 import com.kingdee.eas.fdc.sellhouse.RoomSellStateEnum;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillCollection;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillEntryInfo;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillFactory;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillInfo;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerFactory;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerInfo;
 import com.kingdee.eas.fdc.sellhouse.SHEParamConstant;
+import com.kingdee.eas.fdc.sellhouse.SellStageEnum;
+import com.kingdee.eas.fdc.sellhouse.SellTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.SignAgioEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.SignCustomerEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.SignManageFactory;
@@ -163,10 +175,20 @@ public class ChangeManageControllerBean extends AbstractChangeManageControllerBe
 	}
     protected void _audit(Context ctx, BOSUuid billId) throws BOSException, EASBizException {
 		ChangeManageInfo info=getChangeManageInfo(ctx, new ObjectUuidPK(billId));
+		
+		SellStageEnum sellStage=null;
+		SellTypeEnum sellType=null;
 		if(info.getSrcId()!=null){
 			ObjectUuidPK pk=new ObjectUuidPK(info.getSrcId());
 			IObjectValue objectValue=DynamicObjectFactory.getLocalInstance(ctx).getValue(pk.getObjectType(),pk);
 			
+			if(objectValue instanceof PurchaseManageInfo){
+				sellStage=SellStageEnum.RGBG;
+				sellType=((PurchaseManageInfo)objectValue).getSellType();
+			}else if(objectValue instanceof SignManageInfo){
+				sellStage=SellStageEnum.QYBG;
+				sellType=((SignManageInfo)objectValue).getSellType();
+			}
 			if(ChangeBizTypeEnum.QUITROOM.equals(info.getBizType())||ChangeBizTypeEnum.CHANGEROOM.equals(info.getBizType())){
 				SHEManageHelper.updateRoomState(ctx,((BaseTransactionInfo)objectValue).getRoom(),RoomSellStateEnum.OnShow);
 				SHEManageHelper.validTransaction(ctx,info.getTransactionID(),true);
@@ -258,6 +280,51 @@ public class ChangeManageControllerBean extends AbstractChangeManageControllerBe
 		}
 		_updatePartial(ctx, billInfo, selector);
 		
+		SHEAttachBillInfo attInfo=new SHEAttachBillInfo();
+		attInfo.setId(BOSUuid.create(attInfo.getBOSType()));
+		attInfo.setSourceBillId(billId.toString());
+		attInfo.setRoom(info.getSrcRoom());
+		attInfo.setCustomer(info.getSrcCustomerNames());
+		
+		ProductTypePropertyEnum productTypeProperty=null;
+		RoomInfo roomInfo=info.getSrcRoom();
+		if(roomInfo!=null){
+			roomInfo=RoomFactory.getLocalInstance(ctx).getRoomInfo("select productType.property from where id='"+roomInfo.getId()+"'");
+			productTypeProperty=roomInfo.getProductType().getProperty();
+		}
+		attInfo.setSellStage(sellStage);
+		attInfo.setSellType(sellType);
+		attInfo.setProductTypeProperty(productTypeProperty);
+		attInfo.setNumber(info.getTransactionID().toString());
+		attInfo.setName(info.getTransactionID().toString());
+		
+		for(int i=0;i<info.getAttachEntry().size();i++){
+			SHEAttachBillEntryInfo attEntryInfo=new SHEAttachBillEntryInfo();
+			attEntryInfo.setId(BOSUuid.create(attEntryInfo.getBOSType()));
+			attEntryInfo.setProperty(info.getAttachEntry().get(i).getProperty());
+			attEntryInfo.setContext(info.getAttachEntry().get(i).getContext());
+			
+			EntityViewInfo view=new EntityViewInfo();
+			FilterInfo filter = new FilterInfo();
+			
+			filter.getFilterItems().add(new FilterItemInfo("boID" , info.getAttachEntry().get(i).getId().toString()));
+			view.setFilter(filter);
+			BoAttchAssoCollection col=BoAttchAssoFactory.getLocalInstance(ctx).getBoAttchAssoCollection(view);
+			if(col.size()>0){
+				for(int k=0;k<col.size();k++){
+					BoAttchAssoInfo boInfo=new BoAttchAssoInfo();
+					boInfo.setBoID(attEntryInfo.getId().toString());
+					boInfo.setAttachment(col.get(k).getAttachment());
+					
+					BoAttchAssoFactory.getLocalInstance(ctx).addnew(boInfo);
+				}
+			}
+			attInfo.getEntry().add(attEntryInfo);
+		}
+		if(info.getAttachEntry().size()>0){
+			SHEAttachBillFactory.getLocalInstance(ctx).addnew(attInfo);
+			SHEAttachBillFactory.getLocalInstance(ctx).audit(attInfo.getId());
+		}
 //		if(ChangeBizTypeEnum.QUITROOM.equals(info.getBizType())){
 //			JSONArray arr=new JSONArray();
 //			JSONObject jo=new JSONObject();
@@ -837,9 +904,9 @@ public class ChangeManageControllerBean extends AbstractChangeManageControllerBe
 														JSONObject ybcjson=new JSONObject();
 															ybcjson.put("cstguid", quc.getId().toString());							
 															ybcjson.put("cstname",quc.getName().replaceAll("\\s", ""));	
-															if(srcInfo.getSignCustomerEntry().get(i1).getCustomer().getFirstDate()==null&&srcInfo.getSignCustomerEntry().get(i1).getCustomer().getReportDate()==null){
-																throw new EASBizException(new NumericExceptionSubItem("100","客户报备日期和首访日期都为空！"));
-															}
+//															if(srcInfo.getSignCustomerEntry().get(i1).getCustomer().getFirstDate()==null&&srcInfo.getSignCustomerEntry().get(i1).getCustomer().getReportDate()==null){
+//																throw new EASBizException(new NumericExceptionSubItem("100","客户报备日期和首访日期都为空！"));
+//															}
 															if(quc.getSex()!=null&&!"".equals(String.valueOf(quc.getSex()))){
 																ybcjson.put("Gender",quc.getSex().getAlias().replaceAll("\\s", ""));
 															}
@@ -1126,6 +1193,11 @@ public class ChangeManageControllerBean extends AbstractChangeManageControllerBe
 		selector.add("auditTime");
 		selector.add("sheRevBill");
 		_updatePartial(ctx, billInfo, selector);
+		
+		SHEAttachBillCollection attCol=SHEAttachBillFactory.getLocalInstance(ctx).getSHEAttachBillCollection("select id from where sourceBillId='"+info.getId()+"'");
+		for(int i=0;i<attCol.size();i++){
+			SHEAttachBillFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(attCol.get(i).getId()));
+		}
 	}
 	private void submitAction(Context ctx,IObjectValue model) throws BOSException, EASBizException{
 		ChangeManageInfo info=(ChangeManageInfo)model;
@@ -1223,6 +1295,9 @@ public class ChangeManageControllerBean extends AbstractChangeManageControllerBe
 					SHEManageHelper.getBizInterface(ctx, srcInfo).delete(new ObjectUuidPK(info.getNewId()));
 				}
 			}
+		}
+		for(int i=0;i<info.getAttachEntry().size();i++){
+			deleteAttachment(ctx,info.getAttachEntry().get(i).getId().toString());
 		}
 		super._delete(ctx, pk);
 	}
@@ -2353,4 +2428,28 @@ public class ChangeManageControllerBean extends AbstractChangeManageControllerBe
 			_updatePartial(ctx, info, sels);
 		}
 	}
+	 protected void deleteAttachment(Context ctx,String id) throws BOSException, EASBizException{
+			EntityViewInfo view=new EntityViewInfo();
+			FilterInfo filter = new FilterInfo();
+			
+			filter.getFilterItems().add(new FilterItemInfo("boID" , id));
+			view.setFilter(filter);
+			BoAttchAssoCollection col=BoAttchAssoFactory.getLocalInstance(ctx).getBoAttchAssoCollection(view);
+			if(col.size()>0){
+				for(int i=0;i<col.size();i++){
+					EntityViewInfo attview=new EntityViewInfo();
+					FilterInfo attfilter = new FilterInfo();
+					
+					attfilter.getFilterItems().add(new FilterItemInfo("attachment.id" , col.get(i).getAttachment().getId().toString()));
+					attview.setFilter(attfilter);
+					BoAttchAssoCollection attcol=BoAttchAssoFactory.getLocalInstance(ctx).getBoAttchAssoCollection(attview);
+					if(attcol.size()==1){
+						AttachmentFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(col.get(i).getAttachment().getId().toString()));
+						BizobjectFacadeFactory.getLocalInstance(ctx).delTempAttachment(id);
+					}else if(attcol.size()>1){
+						BoAttchAssoFactory.getLocalInstance(ctx).delete(filter);
+					}
+				}
+			}
+		}
 }

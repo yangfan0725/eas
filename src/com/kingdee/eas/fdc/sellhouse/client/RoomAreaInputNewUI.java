@@ -53,6 +53,7 @@ import com.kingdee.eas.fdc.basecrm.FDCOrgStructureFactory;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
 import com.kingdee.eas.fdc.basedata.client.FDCClientHelper;
+import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.market.client.TableUtils;
 import com.kingdee.eas.fdc.merch.common.KDTableHelper;
 import com.kingdee.eas.fdc.sellhouse.BuildingInfo;
@@ -912,6 +913,7 @@ public class RoomAreaInputNewUI extends AbstractRoomAreaInputNewUI {
 			RoomFactory.getRemoteInstance().actAudit(roomList);
 			MsgBox.showInfo(" µ≤‚∏¥∫À≥…π¶!");
 		} catch (Exception ex) {
+			FDCMsgBox.showWarning(this,ex.getMessage());
 			logger.error(ex.getMessage() + " µ≤‚∏¥∫À ß∞‹!");
 		}
 		this.execQuery();

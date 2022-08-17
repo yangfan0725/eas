@@ -31,6 +31,8 @@ import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.dao.IObjectPK;
 import com.kingdee.bos.dao.IObjectValue;
 import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
+import com.kingdee.bos.metadata.bot.BOTRelationFactory;
+import com.kingdee.bos.metadata.bot.IBOTRelation;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
@@ -947,128 +949,4 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 		}
 		return pk;
 	}
-	private void audit4zj(Context ctx,String id) throws EASBizException{
-//		try {
-//			FDCSQLBuilder builder=new FDCSQLBuilder(ctx);
-//			builder.appendSql("select furl from t_zjsc");
-//			IRowSet rs=builder.executeQuery();
-//			String url=null;
-//	        while(rs.next()){
-//	        	url=rs.getString("furl");
-//	        }
-//	        if(url!=null){
-//	        	SelectorItemCollection sel = new SelectorItemCollection();
-//				sel.add("*");
-//				sel.add("company.*");
-//				sel.add("payerAccountBank.*");
-//				sel.add("payerAccountBank.property.*");
-//				sel.add("payeeType.*");
-//				sel.add("feeType.*");
-//				
-//				PaymentBillInfo pay=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillInfo(new ObjectUuidPK(id), sel);
-//				if(pay.getPayerAccountBank()==null){
-//					throw new EASBizException(new NumericExceptionSubItem("100","付款账号不能为空！"));
-//				}
-////				if(pay.getPayerAccountBank().getBankAccountNumber().equals(pay.getPayeeAccountBank())){
-////					return;
-////				}
-//				if(!"已开通银企".equals(pay.getPayerAccountBank().getDescription())){
-//					return;
-//				}
-//				JSONObject json=new JSONObject();
-//				String srcId=null;
-//				if(pay.getSourceFunction()==null){
-//					srcId=pay.getId()+"-1";
-//					json.put("SERIAL_NO_ERP", srcId);
-//				}else{
-//					srcId=pay.getSourceFunction().split("-")[0]+"-"+(Integer.parseInt(pay.getSourceFunction().split("-")[1])+1);
-//					json.put("SERIAL_NO_ERP", srcId);
-//				}
-//				json.put("VOUCHER_NO_ERP", pay.getNumber());
-//				json.put("CORP_CODE", pay.getCompany().getNumber());
-//				if(pay.getPayerAccountBank()!=null){
-//					json.put("PAYER_ACC_NO", pay.getPayerAccountBank().getBankAccountNumber());
-//				}
-//				json.put("AMT", pay.getAmount());
-//				
-//				json.put("PAYEE_CORP_CODE", pay.getPayeeNumber());
-//				json.put("PAYEE_ACC_NO", pay.getPayeeAccountBank());
-//				json.put("PAYEE_NAME", pay.getPayeeName());
-//				
-//				if(pay.getBankNumber()!=null&&!"".equals(pay.getBankNumber().trim())){
-//					json.put("PAYEE_CODE", pay.getBankNumber());
-//				}else{
-//					BankNumCollection bankNum=BankNumFactory.getLocalInstance(ctx).getBankNumCollection("select number from where name='"+pay.getPayeeBank()+"'");
-//					if(bankNum.size()>0){
-//						json.put("PAYEE_CODE", bankNum.get(0).getNumber());
-//					}
-//				}
-//				json.put("VOUCHER_TYPE", "34");
-//				
-//				json.put("ABS", "EAS系统支付");
-//				json.put("DATA_SOURCE", ctx.getAIS());
-//				
-//				if(pay.getPayeeName().length()>4){
-//					json.put("ISFORINDIVIDUAL", "0");
-//				}else{
-//					json.put("ISFORINDIVIDUAL", "1");
-//				}
-//				Service s=new Service();
-//				Call call=(Call)s.createCall();
-//				if(pay.getPayeeType()!=null&&pay.getPayeeType().getName().equals("公司")){
-//					 call.setOperationName(new QName("http://server.webservice.sdkg.erp.hibernate.byttersoft.com","erpAllocationJsonData	"));
-//					 call.setTargetEndpointAddress(url+"/erp/services/sdkgAllocationWebService?wsdl");
-//					 call.setReturnQName(new QName("http://server.webservice.sdkg.erp.hibernate.byttersoft.com","erpAllocationJsonDataResponse"));
-//					 
-//					 if(pay.getFeeType()!=null)
-//						 json.put("BIS_TYPE", pay.getFeeType().getNumber());
-//				}else{
-//					 call.setOperationName(new QName("http://server.webservice.sdkg.erp.hibernate.byttersoft.com","erpPaymentJsonData"));
-//					 call.setTargetEndpointAddress(url+"/erp/services/sdkgPaymentWebService?wsdl");
-//					 call.setReturnQName(new QName("http://server.webservice.sdkg.erp.hibernate.byttersoft.com","erpPaymentJsonDataResponse"));
-//				}
-//				call.setTimeout(Integer.valueOf(1000*600000*60));
-//		        call.setMaintainSession(true);
-//		        
-//		        
-//		        JSONArray arr=new JSONArray();
-//	        	arr.add(json);
-//	        	
-//		        String result=(String)call.invoke(new Object[]{arr.toString()} );
-//		         
-//		        JSONArray rso = JSONArray.fromObject(result);
-//				if(rso.getJSONObject(0).get("STATUS").equals("2")){
-//					SelectorItemCollection sic = new SelectorItemCollection();
-//					sic.add("sourceFunction");
-//					pay.setSourceFunction(srcId);
-//					PaymentBillFactory.getLocalInstance(ctx).updatePartial(pay, sic);
-//				}else{
-//					throw new EASBizException(new NumericExceptionSubItem("100",rso.getJSONObject(0).getString("MESSAGE")));
-//				}
-//	        }
-//		} catch (RemoteException e) {
-//			throw new EASBizException(new NumericExceptionSubItem("100",e.getMessage()));
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} catch (ServiceException e) {
-//			e.printStackTrace();
-//		} catch (BOSException e) {
-//			e.printStackTrace();
-//		}
-	}
-	protected boolean _audit4FDC(Context ctx, List idList) throws BOSException,
-			EASBizException {
-		Boolean bol= super._audit4FDC(ctx, idList);
-//		for(int i=0;i<idList.size();i++){
-//			audit4zj(ctx,idList.get(0).toString());
-//		}
-		return bol;
-	}
-	protected void _audit(Context ctx, Set idSet)throws BOSException, EASBizException {
-		 super._audit(ctx, idSet);
-//		 Iterator it = idSet.iterator();
-//		 while (it.hasNext()) {
-//			 audit4zj(ctx,it.next().toString());
-//		 }
-	 }
 }

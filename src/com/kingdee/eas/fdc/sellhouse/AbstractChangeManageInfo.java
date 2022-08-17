@@ -16,6 +16,7 @@ public class AbstractChangeManageInfo extends com.kingdee.eas.fdc.sellhouse.Base
     protected AbstractChangeManageInfo(String pkField)
     {
         super(pkField);
+        put("attachEntry", new com.kingdee.eas.fdc.sellhouse.ChangeManageAttachEntryCollection());
         put("customerEntry", new com.kingdee.eas.fdc.sellhouse.ChangeCustomerEntryCollection());
         put("payListEntry", new com.kingdee.eas.fdc.sellhouse.ChangePayListEntryCollection());
         put("roomAttachEntry", new com.kingdee.eas.fdc.sellhouse.ChangeRoomAttachEntryCollection());
@@ -318,6 +319,13 @@ public class AbstractChangeManageInfo extends com.kingdee.eas.fdc.sellhouse.Base
 		if (item != null) {
         setString("changeType", item.getValue());
 		}
+    }
+    /**
+     * Object: 变更管理 's 附件 property 
+     */
+    public com.kingdee.eas.fdc.sellhouse.ChangeManageAttachEntryCollection getAttachEntry()
+    {
+        return (com.kingdee.eas.fdc.sellhouse.ChangeManageAttachEntryCollection)get("attachEntry");
     }
     public BOSObjectType getBOSType()
     {

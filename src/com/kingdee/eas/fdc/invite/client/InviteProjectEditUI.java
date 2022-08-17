@@ -371,7 +371,7 @@ public class InviteProjectEditUI extends AbstractInviteProjectEditUI
 		}
 		InvitePurchaseModeInfo modeInfo = (InvitePurchaseModeInfo) this.prmtPurchaseMode.getValue();
 		if(modeInfo.getType()!=InvitePurchaseModeEnum.STRATEGY&&prjTable.getRowCount()==0){
-			MsgBox.showWarning("分录不能为空！");
+			MsgBox.showWarning("所属项目不能为空！");
 			SysUtil.abort();
 		}
 		checkPrjTableRequired();

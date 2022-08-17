@@ -136,6 +136,7 @@ public class SincerityPurchaseListUI extends AbstractSincerityPurchaseListUI {
 		this.btnChangeRecord.setIcon(EASResource.getIcon("imgTbtn_seeevaluateobject"));
 		
 		this.actionRevAmount.setVisible(false);
+		this.btnToMT.setText("Õ¨≤Ω√ÀÕÿ");
 		this.btnToMT.setIcon(EASResource.getIcon("imgTbtn_input"));
 	}
 	protected void initControl(){

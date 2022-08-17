@@ -188,40 +188,42 @@ public class DepositAmountReportUI extends AbstractDepositAmountReportUI
                      KDTableUtil.setHeader(header, tblMain);
                      
                      RptRowSet rs = (RptRowSet)((RptParams)result).getObject("rs");
-         	         tblMain.setRowCount(rs.getRowCount());
-         	         Map rowMap=new HashMap();
-         	         Map totalrowMap=new HashMap();
-         	         String conId=null;
-         	         Date now=FDCCommonServerHelper.getServerTimeStamp();
-         	         while(rs.next()){
-//	                   	 if(params.getBoolean("isNeedTotal")&&  conId!=null&&!conId.equals(rs.getString("conId")) ){
-//	                   		IRow totalrow=tblMain.addRow();
-//	                   		for(int i=0;i<17;i++){
-//	                   			totalrow.getCell(i).setValue(tblMain.getRow(totalrow.getRowIndex()-1).getCell(i).getValue());
-//	                   		}
-//	                   		totalrow.getCell(17).setValue("合计");
-//	                   		totalrow.getStyleAttributes().setBackground(FDCHelper.KDTABLE_TOTAL_BG_COLOR);
-//	                   		totalrowMap.put(conId, totalrow);
-//	                   	 }
-//	                   	 conId=rs.getString("conId");
-	                   	 
-	                   	 IRow row=tblMain.addRow();
-	                   	 ((KDTableInsertHandler)(new DefaultKDTableInsertHandler(rs))).setTableRowData(row, rs.toRowArray());
-	                   	 if(rs.getString("state").equals("Executing")){
-	                   		 row.getStyleAttributes().setBackground(new Color(130,240,130));
-	                   	 }
-	                   	if(rs.getBigDecimal("isGen").compareTo(new BigDecimal(1))==0){
-	                   		row.getCell("isGen").setValue(Boolean.TRUE);
-	                   	}else{
-	                   		row.getCell("isGen").setValue(Boolean.FALSE);
-	                   	}
-	                   	if(!SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("900002")){
-	                   		tblMain.getColumn("isGen").getStyleAttributes().setHided(true);
-	                   	}
-//	                   	 int remainingDays=(int) FDCDateHelper.dateDiff("d", (Date) params.getObject("toRDDate"), (Date)row.getCell("endDate").getValue());
-//	                   	 row.getCell("remainingDays").setValue(remainingDays<0?0:remainingDays);
-//	                   	 rowMap.put(rs.getString("conId")+rs.getString("mdId"), row);
-         	         }
+                     if(rs!=null){
+                    	 tblMain.setRowCount(rs.getRowCount());
+             	         Map rowMap=new HashMap();
+             	         Map totalrowMap=new HashMap();
+             	         String conId=null;
+             	         Date now=FDCCommonServerHelper.getServerTimeStamp();
+             	         while(rs.next()){
+//    	                   	 if(params.getBoolean("isNeedTotal")&&  conId!=null&&!conId.equals(rs.getString("conId")) ){
+//    	                   		IRow totalrow=tblMain.addRow();
+//    	                   		for(int i=0;i<17;i++){
+//    	                   			totalrow.getCell(i).setValue(tblMain.getRow(totalrow.getRowIndex()-1).getCell(i).getValue());
+//    	                   		}
+//    	                   		totalrow.getCell(17).setValue("合计");
+//    	                   		totalrow.getStyleAttributes().setBackground(FDCHelper.KDTABLE_TOTAL_BG_COLOR);
+//    	                   		totalrowMap.put(conId, totalrow);
+//    	                   	 }
+//    	                   	 conId=rs.getString("conId");
+    	                   	 
+    	                   	 IRow row=tblMain.addRow();
+    	                   	 ((KDTableInsertHandler)(new DefaultKDTableInsertHandler(rs))).setTableRowData(row, rs.toRowArray());
+    	                   	 if(rs.getString("state").equals("Executing")){
+    	                   		 row.getStyleAttributes().setBackground(new Color(130,240,130));
+    	                   	 }
+    	                   	if(rs.getBigDecimal("isGen").compareTo(new BigDecimal(1))==0){
+    	                   		row.getCell("isGen").setValue(Boolean.TRUE);
+    	                   	}else{
+    	                   		row.getCell("isGen").setValue(Boolean.FALSE);
+    	                   	}
+    	                   	if(!SysContext.getSysContext().getCurrentUserInfo().getNumber().equals("900002")){
+    	                   		tblMain.getColumn("isGen").getStyleAttributes().setHided(true);
+    	                   	}
+//    	                   	 int remainingDays=(int) FDCDateHelper.dateDiff("d", (Date) params.getObject("toRDDate"), (Date)row.getCell("endDate").getValue());
+//    	                   	 row.getCell("remainingDays").setValue(remainingDays<0?0:remainingDays);
+//    	                   	 rowMap.put(rs.getString("conId")+rs.getString("mdId"), row);
+             	         }
+                     }
 //         	         if(tblMain.getRowCount()>0 ){
 //         	        	 IRow lastTotalrow=tblMain.addRow();
 //	   	           		 for(int i=0;i<17;i++){
@@ -328,7 +330,7 @@ public class DepositAmountReportUI extends AbstractDepositAmountReportUI
          	         getFootRow(tblMain, new String[]{"dealTotal","appAmount","actAmount","quitAmount","sub"});
         	         
          	         tblMain.setRefresh(true);
-         	         if(rs.getRowCount() > 0){
+         	         if(rs!=null&&rs.getRowCount() > 0){
          	        	tblMain.reLayoutAndPaint();
          	         }else{
          	        	tblMain.repaint();

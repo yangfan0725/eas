@@ -403,7 +403,7 @@ public class CommerceChangeNewListUI extends AbstractCommerceChangeNewListUI {
 						if(isShowAll){
 							filter.getFilterItems().add(new FilterItemInfo("commerceSrc", CommerceSrcEnum.TRANSACTION_VALUE));
 							filter.getFilterItems().add(new FilterItemInfo("status", CommerceChangeNewStatusEnum.TRANSACTION_VALUE));
-							filter.getFilterItems().add(new FilterItemInfo("id", "select FCommerceChanceID from T_MAR_QuestionPaperAnswer where FSellProjectID='"+sellProject.getId()+"'",CompareType.NOTINNER));
+							filter.getFilterItems().add(new FilterItemInfo("COMMERCECHANCE.ID", "select FCommerceChanceID from T_MAR_QuestionPaperAnswer where FSellProject='"+sellProject.getId()+"'",CompareType.NOTINNER));
 						}
 					} else if (node.getUserObject() instanceof OrgStructureInfo) {
 						filter.getFilterItems().add(new FilterItemInfo("sellProject.id", "'nullnull'",CompareType.INNER));

@@ -1689,7 +1689,7 @@ public class RoomPriceAdjustEditUI extends AbstractRoomPriceAdjustEditUI {
 		//默认值，保留2位，四舍五入
 		this.paramsArray[0] = 2;
 		this.paramsArray[1] = BigDecimal.ROUND_HALF_UP;
-		this.paramsArray[2] = 2;
+		this.paramsArray[2] = 0;
 		this.paramsArray[3] = BigDecimal.ROUND_HALF_UP;
 		
 		try{

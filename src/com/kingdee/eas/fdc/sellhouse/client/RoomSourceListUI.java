@@ -957,8 +957,9 @@ if (node == null)
 		
 		this.actionBatchModifyRoomPropNo.setVisible(false);
 		this.actionEdit.setVisible(false);
-		
+		this.btnToMT.setText("Õ¨≤Ω√ÀÕÿ");
 		this.btnToMT.setIcon(EASResource.getIcon("imgTbtn_input"));
+		this.btnToYB.setIcon(EASResource.getIcon("imgTbtn_input"));
 	}
 
 	protected void prepareUIContext(UIContext uiContext, ActionEvent e)

@@ -6514,9 +6514,9 @@ public class PaymentBillEditUI extends AbstractPaymentBillEditUI {
 				SysUtil.abort();
 				return;
 			}			
-			
-			PaymentBillFactory.getRemoteInstance().antiAudit4FDC(
-					BOSUuid.read(id));
+			Set idSet = new HashSet();
+			idSet.add(id);
+			PaymentBillFactory.getRemoteInstance().antiAudit(idSet);
 		}
 		FDCClientUtils.showOprtOK(this);
 		super.actionAntiAudit_actionPerformed(e);

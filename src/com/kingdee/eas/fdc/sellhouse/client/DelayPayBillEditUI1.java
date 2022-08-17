@@ -222,6 +222,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 		this.txtNumber.setEnabled(false);
 		
 		this.actionSave.setVisible(false);
+		this.actionAddNew.setVisible(false);
 	}
     protected void handleCodingRule() throws BOSException, CodingRuleException, EASBizException {
 
@@ -611,6 +612,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 		
 		this.kdtEntry.checkParsed();
 		this.kdtEntry.removeRows();
+		CRMHelper.sortCollection(this.editData.getEntry(), new String[]{"seq"}, true);
 		for(int i=0;i<this.editData.getEntry().size();i++){
 			IRow row=this.kdtEntry.addRow();
 			row.getCell("moneyDefine").setValue(this.editData.getEntry().get(i).getMoneyDefine());
@@ -620,6 +622,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 		
 		this.kdtNewEntry.checkParsed();
 		this.kdtNewEntry.removeRows();
+		CRMHelper.sortCollection(this.editData.getNewEntry(), new String[]{"seq"}, true);
 		for(int i=0;i<this.editData.getNewEntry().size();i++){
 			IRow row=this.kdtNewEntry.addRow();
 			if(i==0)row.getStyleAttributes().setLocked(true);
@@ -706,6 +709,11 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 		checkBeforeEditOrRemove(CANTEDIT);
 		super.actionEdit_actionPerformed(arg0);
 		setSaveActionStatus();
+		this.pkBizDate.setEnabled(false);
+		this.pkPurDate.setEnabled(false);
+		this.pkSignDate.setEnabled(false);
+		this.prmtPayType.setEnabled(false);
+		this.txtNumber.setEnabled(false);
 	}
 	public void actionSave_actionPerformed(ActionEvent e) throws Exception {
 		super.actionSave_actionPerformed(e);

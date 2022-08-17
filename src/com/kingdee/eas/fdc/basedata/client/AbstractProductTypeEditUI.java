@@ -53,10 +53,12 @@ public abstract class AbstractProductTypeEditUI extends com.kingdee.eas.fdc.base
     protected com.kingdee.bos.ctrl.swing.KDLabel kDLabel1;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contGeneralAsstActType;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contBgItem;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contProperty;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangBox bizName;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtNumber;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtGeneralAsstActType;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtBgItem;
+    protected com.kingdee.bos.ctrl.swing.KDComboBox cbProperty;
     protected com.kingdee.eas.fdc.basedata.ProductTypeInfo editData = null;
     /**
      * output class constructor
@@ -413,10 +415,12 @@ public abstract class AbstractProductTypeEditUI extends com.kingdee.eas.fdc.base
         this.kDLabel1 = new com.kingdee.bos.ctrl.swing.KDLabel();
         this.contGeneralAsstActType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contBgItem = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contProperty = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.bizName = new com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangBox();
         this.txtNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.prmtGeneralAsstActType = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.prmtBgItem = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
+        this.cbProperty = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.contName.setName("contName");
         this.contNumber.setName("contNumber");
         this.chkIsEnabled.setName("chkIsEnabled");
@@ -424,10 +428,12 @@ public abstract class AbstractProductTypeEditUI extends com.kingdee.eas.fdc.base
         this.kDLabel1.setName("kDLabel1");
         this.contGeneralAsstActType.setName("contGeneralAsstActType");
         this.contBgItem.setName("contBgItem");
+        this.contProperty.setName("contProperty");
         this.bizName.setName("bizName");
         this.txtNumber.setName("txtNumber");
         this.prmtGeneralAsstActType.setName("prmtGeneralAsstActType");
         this.prmtBgItem.setName("prmtBgItem");
+        this.cbProperty.setName("cbProperty");
         // CoreUI
         this.btnPageSetup.setAction((IItemAction)ActionProxyFactory.getProxy(actionPageSetup, new Class[] { IItemAction.class }, getServiceContext()));		
         this.btnPageSetup.setText(resHelper.getString("btnPageSetup.text"));		
@@ -635,6 +641,10 @@ public abstract class AbstractProductTypeEditUI extends com.kingdee.eas.fdc.base
         this.contBgItem.setBoundLabelText(resHelper.getString("contBgItem.boundLabelText"));		
         this.contBgItem.setBoundLabelUnderline(true);		
         this.contBgItem.setBoundLabelLength(100);
+        // contProperty		
+        this.contProperty.setBoundLabelText(resHelper.getString("contProperty.boundLabelText"));		
+        this.contProperty.setBoundLabelLength(100);		
+        this.contProperty.setBoundLabelUnderline(true);
         // bizName		
         this.bizName.setRequired(true);		
         this.bizName.setMaxLength(80);
@@ -651,6 +661,9 @@ public abstract class AbstractProductTypeEditUI extends com.kingdee.eas.fdc.base
         this.prmtBgItem.setQueryInfo("com.kingdee.eas.ma.budget.BgItemSelectQuery");		
         this.prmtBgItem.setEditFormat("$number$_$name$");		
         this.prmtBgItem.setDisplayFormat("$number$_$name$");
+        // cbProperty		
+        this.cbProperty.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum").toArray());		
+        this.cbProperty.setRequired(true);
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -677,9 +690,9 @@ public abstract class AbstractProductTypeEditUI extends com.kingdee.eas.fdc.base
     {
         this.setBounds(new Rectangle(10, 10, 290, 230));
         this.setLayout(null);
-        contName.setBounds(new Rectangle(10, 40, 270, 19));
+        contName.setBounds(new Rectangle(10, 29, 270, 19));
         this.add(contName, null);
-        contNumber.setBounds(new Rectangle(10, 10, 270, 19));
+        contNumber.setBounds(new Rectangle(10, 7, 270, 19));
         this.add(contNumber, null);
         chkIsEnabled.setBounds(new Rectangle(235, 124, 140, 19));
         this.add(chkIsEnabled, null);
@@ -687,10 +700,12 @@ public abstract class AbstractProductTypeEditUI extends com.kingdee.eas.fdc.base
         this.add(bizDescription, null);
         kDLabel1.setBounds(new Rectangle(10, 122, 100, 19));
         this.add(kDLabel1, null);
-        contGeneralAsstActType.setBounds(new Rectangle(9, 66, 270, 19));
+        contGeneralAsstActType.setBounds(new Rectangle(10, 73, 270, 19));
         this.add(contGeneralAsstActType, null);
-        contBgItem.setBounds(new Rectangle(10, 92, 270, 19));
+        contBgItem.setBounds(new Rectangle(10, 97, 270, 19));
         this.add(contBgItem, null);
+        contProperty.setBounds(new Rectangle(10, 51, 270, 19));
+        this.add(contProperty, null);
         //contName
         contName.setBoundEditor(bizName);
         //contNumber
@@ -699,6 +714,8 @@ public abstract class AbstractProductTypeEditUI extends com.kingdee.eas.fdc.base
         contGeneralAsstActType.setBoundEditor(prmtGeneralAsstActType);
         //contBgItem
         contBgItem.setBoundEditor(prmtBgItem);
+        //contProperty
+        contProperty.setBoundEditor(cbProperty);
 
     }
 
@@ -814,7 +831,8 @@ public abstract class AbstractProductTypeEditUI extends com.kingdee.eas.fdc.base
 		dataBinder.registerBinding("name", String.class, this.bizName, "_multiLangItem");
 		dataBinder.registerBinding("number", String.class, this.txtNumber, "text");
 		dataBinder.registerBinding("generalAsstActType", com.kingdee.eas.basedata.master.auxacct.GeneralAsstActTypeInfo.class, this.prmtGeneralAsstActType, "data");
-		dataBinder.registerBinding("bgItem", com.kingdee.eas.ma.budget.BgItemInfo.class, this.prmtBgItem, "data");		
+		dataBinder.registerBinding("bgItem", com.kingdee.eas.ma.budget.BgItemInfo.class, this.prmtBgItem, "data");
+		dataBinder.registerBinding("property", com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum.class, this.cbProperty, "selectedItem");		
 	}
 	//Regiester UI State
 	private void registerUIState(){					 	        		
@@ -898,7 +916,8 @@ public abstract class AbstractProductTypeEditUI extends com.kingdee.eas.fdc.base
 		getValidateHelper().registerBindProperty("name", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("number", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("generalAsstActType", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("bgItem", ValidateHelper.ON_SAVE);    		
+		getValidateHelper().registerBindProperty("bgItem", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("property", ValidateHelper.ON_SAVE);    		
 	}
 
 
@@ -966,6 +985,7 @@ public abstract class AbstractProductTypeEditUI extends com.kingdee.eas.fdc.base
         	sic.add(new SelectorItemInfo("bgItem.number"));
         	sic.add(new SelectorItemInfo("bgItem.name"));
 		}
+        sic.add(new SelectorItemInfo("property"));
         return sic;
     }        
     	

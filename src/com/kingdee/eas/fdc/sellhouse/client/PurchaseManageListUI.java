@@ -107,6 +107,7 @@ public class PurchaseManageListUI extends AbstractPurchaseManageListUI
 		}
     	this.actionInvalid.setVisible(false);
     	this.btnInvalid.setVisible(false);
+    	this.btnToMT.setText("Õ¨≤Ω√ÀÕÿ");
     	this.btnToMT.setIcon(EASResource.getIcon("imgTbtn_input"));
     }
 	protected void afterTableFillData(KDTDataRequestEvent e) {

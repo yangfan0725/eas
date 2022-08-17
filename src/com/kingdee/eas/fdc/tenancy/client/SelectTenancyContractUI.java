@@ -3,6 +3,7 @@
  */
 package com.kingdee.eas.fdc.tenancy.client;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.math.BigDecimal;
@@ -27,13 +28,16 @@ import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseListener;
 import com.kingdee.bos.ctrl.kdf.util.editor.ICellEditor;
 import com.kingdee.bos.ctrl.kdf.util.style.Style;
 import com.kingdee.bos.ctrl.swing.KDCheckBox;
+import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
+import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.bos.metadata.entity.SorterItemCollection;
 import com.kingdee.bos.metadata.entity.SorterItemInfo;
 import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
+import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.eas.basedata.org.CtrlUnitInfo;
 import com.kingdee.eas.basedata.org.OrgType;
 import com.kingdee.eas.basedata.org.OrgUnitInfo;
@@ -49,6 +53,10 @@ import com.kingdee.eas.fdc.sellhouse.client.CommerceHelper;
 import com.kingdee.eas.fdc.tenancy.InvoiceBatchImportEntryCollection;
 import com.kingdee.eas.fdc.tenancy.InvoiceBatchImportEntryInfo;
 import com.kingdee.eas.fdc.tenancy.InvoiceBatchImportFactory;
+import com.kingdee.eas.fdc.tenancy.TenBillOtherPayFactory;
+import com.kingdee.eas.fdc.tenancy.TenBillOtherPayInfo;
+import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryFactory;
+import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryInfo;
 import com.kingdee.eas.util.SysUtil;
 
 /**
@@ -147,7 +155,9 @@ public class SelectTenancyContractUI extends AbstractSelectTenancyContractUI {
 	        	   IRow r = null;
 	        	   for(int i=0;i<size;i++){
 	        		   r = kDTable1.getRow(i);
-	        		   r.getCell("selected").setValue(selected);
+	        		   if(!r.getCell("selected").getStyleAttributes().isLocked()){
+	        			   r.getCell("selected").setValue(selected);
+	        		   }
 	        	   }
 	           }
 				
@@ -243,8 +253,34 @@ public class SelectTenancyContractUI extends AbstractSelectTenancyContractUI {
 
 	private void fillDataToRow(InvoiceBatchImportEntryInfo entry, IRow r) {
 		
-		
+		SelectorItemCollection sic=new SelectorItemCollection();
+		sic.add("isUnPay");
 		r.setUserObject(entry);
+		if(BOSUuid.read(entry.getRevId()).getType().equals(new TenBillOtherPayInfo().getBOSType())){
+			try {
+				TenBillOtherPayInfo payEntry=TenBillOtherPayFactory.getRemoteInstance().getTenBillOtherPayInfo(new ObjectUuidPK(entry.getRevId()),sic);
+				if(payEntry.isIsUnPay()){
+					r.getStyleAttributes().setBackground(Color.CYAN);
+					r.getCell("selected").getStyleAttributes().setLocked(true);
+				}
+			} catch (EASBizException e) {
+				e.printStackTrace();
+			} catch (BOSException e) {
+				e.printStackTrace();
+			}
+		}else if(BOSUuid.read(entry.getRevId()).getType().equals(new TenancyRoomPayListEntryInfo().getBOSType())){
+			try {
+				TenancyRoomPayListEntryInfo payEntry=TenancyRoomPayListEntryFactory.getRemoteInstance().getTenancyRoomPayListEntryInfo(new ObjectUuidPK(entry.getRevId()),sic);
+				if(payEntry.isIsUnPay()){
+					r.getStyleAttributes().setBackground(Color.CYAN);
+					r.getCell("selected").getStyleAttributes().setLocked(true);
+				}
+			} catch (EASBizException e) {
+				e.printStackTrace();
+			} catch (BOSException e) {
+				e.printStackTrace();
+			}
+		}
 		r.getCell("custName").setValue(entry.getCustomer().getName());
 		r.getCell("contractName").setValue(entry.getTenancybill().getName());
 		r.getCell("roomName").setValue(entry.getRoomName());

@@ -161,7 +161,7 @@ public class SignManageTransmission extends AbstractDataTransmission{
 			HashMap value = ParamControlFactory.getLocalInstance(ctx).getParamHashMap(param);
 			
 			String totalIntegerType=SHEManageHelper.ROUND_HALF_UP;
-			String totalDigit=SHEManageHelper.FEN;
+			String totalDigit=SHEManageHelper.YUAN;
 			String priceIntegerType=SHEManageHelper.ROUND_HALF_UP;
 			String priceDigit=SHEManageHelper.FEN;
 			
@@ -367,6 +367,7 @@ public class SignManageTransmission extends AbstractDataTransmission{
 		pur.setSellAmount(pur.getDealTotalAmount().add(pur.getAreaCompensate()));
 		String customerNames="";
 		String customerPhone="";
+		String customerCertificateNumber="";
 		String recommendeds="";
 		
 		SignCustomerEntryCollection delCol=new SignCustomerEntryCollection();
@@ -463,12 +464,14 @@ public class SignManageTransmission extends AbstractDataTransmission{
 				customerNames=customerNames+sheCI.getName();
 				customerPhone=customerPhone+phone;
 				recommendeds=recommendeds+recommended;
+				customerCertificateNumber=customerCertificateNumber+sheCI.getCertificateNumber();
 			}else{
 				customerNames=customerNames+sheCI.getName()+";";
 				customerPhone=customerPhone+phone+";";
 				if(sheCI.getRecommended()!=null&&!sheCI.getRecommended().trim().equals("")){
 					recommendeds=recommended+";";
 				}
+				customerCertificateNumber=customerCertificateNumber+sheCI.getCertificateNumber()+";";
 			}
 			info.setTel(sheCI.getTel());
 			info.setPhone(sheCI.getPhone());
@@ -480,7 +483,7 @@ public class SignManageTransmission extends AbstractDataTransmission{
 		pur.setCustomerNames(customerNames);
 		pur.setCustomerPhone(customerPhone);
 		pur.setRecommended(recommendeds);
-		
+		pur.setCustomerCertificateNumber(customerCertificateNumber);
 		String saleManNames="";
 		
 		SignSaleManEntryCollection delManCol=new SignSaleManEntryCollection();

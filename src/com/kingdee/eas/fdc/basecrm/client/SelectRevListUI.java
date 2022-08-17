@@ -55,6 +55,7 @@ import com.kingdee.eas.fdc.tenancy.ITenancyPayListInfo;
 import com.kingdee.eas.fdc.tenancy.QuitTenancyFactory;
 import com.kingdee.eas.fdc.tenancy.TenBillOtherPayInfo;
 import com.kingdee.eas.fdc.tenancy.TenancyBillInfo;
+import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryInfo;
 import com.kingdee.eas.util.SysUtil;
 import com.kingdee.eas.util.client.MsgBox;
 /**
@@ -513,6 +514,20 @@ public class SelectRevListUI extends AbstractSelectRevListUI
 			setExpandColsValue(revListInfo, table, row);
 			
 			lockHasSelectedRows(row, revListInfo);
+			
+			if(revListInfo instanceof TenBillOtherPayInfo){
+				if(((TenBillOtherPayInfo)revListInfo).isIsUnPay()){
+					row.getStyleAttributes().setBackground(Color.CYAN);
+//					row.getStyleAttributes().setLocked(true);
+					row.getCell(COL_IS_SELECTED).getStyleAttributes().setLocked(true);
+				}
+			}else if(revListInfo instanceof TenancyRoomPayListEntryInfo){
+				if(((TenancyRoomPayListEntryInfo)revListInfo).isIsUnPay()){
+					row.getStyleAttributes().setBackground(Color.CYAN);
+//					row.getStyleAttributes().setLocked(true);
+					row.getCell(COL_IS_SELECTED).getStyleAttributes().setLocked(true);
+				}
+			}
 		}
 	}
 	

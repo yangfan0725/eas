@@ -1259,17 +1259,17 @@ public class PurchaseManageEditUI extends AbstractPurchaseManageEditUI
 		FDCClientVerifyHelper.verifyEmpty(this, this.f7PayType);
 		FDCClientVerifyHelper.verifyEmpty(this, this.pkPlanSignDate);
 		
-		if(((BaseTransactionInfo)editData).isIsBasePriceSell()){
-			RoomInfo room = (RoomInfo) this.f7Room.getValue();
-			if(room.getBaseStandardPrice()==null){
-				FDCMsgBox.showWarning(this,"已启用强制底价控制参数，该房间底价不存在，请检查！");
-				SysUtil.abort();
-			}
-			if(this.txtDealTotalAmount.getBigDecimalValue().setScale(digit, toIntegerType).compareTo(room.getBaseStandardPrice().setScale(digit, toIntegerType))<0){
-				FDCMsgBox.showWarning(this,"成交总价不能低于房间底价！("+this.txtDealTotalAmount.getBigDecimalValue().setScale(digit, toIntegerType)+"<"+room.getBaseStandardPrice().setScale(digit, toIntegerType)+")");
-				SysUtil.abort();
-			}
-		}
+//		if(((BaseTransactionInfo)editData).isIsBasePriceSell()){
+//			RoomInfo room = (RoomInfo) this.f7Room.getValue();
+//			if(room.getBaseStandardPrice()==null){
+//				FDCMsgBox.showWarning(this,"已启用强制底价控制参数，该房间底价不存在，请检查！");
+//				SysUtil.abort();
+//			}
+//			if(this.txtDealTotalAmount.getBigDecimalValue().setScale(digit, toIntegerType).compareTo(room.getBaseStandardPrice().setScale(digit, toIntegerType))<0){
+//				FDCMsgBox.showWarning(this,"成交总价不能低于房间底价！("+this.txtDealTotalAmount.getBigDecimalValue().setScale(digit, toIntegerType)+"<"+room.getBaseStandardPrice().setScale(digit, toIntegerType)+")");
+//				SysUtil.abort();
+//			}
+//		}
 	}
 	protected boolean veriftExistsSameRoomBill(RoomInfo room) throws EASBizException, BOSException{
 		FilterInfo filter = new FilterInfo();

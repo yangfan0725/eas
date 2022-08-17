@@ -22,14 +22,14 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDPanel</classType>
             <isContainer>true</isContainer>
-            <constraints>10,10,1023,695</constraints>
+            <constraints>10,10,1013,800</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
             <layoutInfo>
-                <name>kDLayout4</name>
-                <type>KDLayout</type>
-                <value />
+                <name>borderLayout1</name>
+                <type>BorderLayout</type>
+                <value>0,0</value>
             </layoutInfo>
             <properties>
                 <property>
@@ -42,12 +42,31 @@
             </properties>
         </component>
         <component>
+            <name>kDScrollPane2</name>
+            <alias>uiObject[com.kingdee.eas.fdc.sellhouse.client.CustomerRptEditUI].components.component[kDScrollPane2].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDScrollPane</classType>
+            <isContainer>true</isContainer>
+            <constraints>Center</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>SameGridLayout</type>
+                <value>1,1,0,0,0,0</value>
+            </layoutInfo>
+            <parent>
+                <key name="name" value="CoreUI" />
+            </parent>
+        </component>
+        <component>
             <name>tblNew</name>
             <alias>uiObject[com.kingdee.eas.fdc.sellhouse.client.CustomerRptEditUI].components.component[tblNew].alias</alias>
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDTabbedPane</classType>
             <isContainer>true</isContainer>
-            <constraints>4,4,1017,688,15</constraints>
+            <constraints>0,0,1013,800</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -56,8 +75,17 @@
                 <type>TabbedPaneLayout</type>
                 <value />
             </layoutInfo>
+            <properties>
+                <property>
+                    <name>preferredSize</name>
+                    <type>java.awt.Dimension</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.CustomerRptEditUI].components.component[tblNew].properties.property[preferredSize].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
             <parent>
-                <key name="name" value="CoreUI" />
+                <key name="name" value="kDScrollPane2" />
             </parent>
             <eventBindings>
                 <eventBinding>
@@ -184,7 +212,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDTabbedPane</classType>
             <isContainer>true</isContainer>
-            <constraints>2,477,1007,176,449</constraints>
+            <constraints>2,477,1007,286,449</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -10263,6 +10291,12 @@
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.CustomerRptEditUI].components.component[kDScrollPane2].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.CustomerRptEditUI].components.component[kdpCustomerDetial].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -11228,6 +11262,12 @@
             <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.CustomerRptEditUI].components.component[tblNew].properties.property[preferredSize].value">
+            <lang locale="en_US" value="1013,800" />
+            <lang locale="zh_CN" value="1013,800" />
+            <lang locale="zh_HK" value="1013,800" />
+            <lang locale="zh_TW" value="1013,800" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.CustomerRptEditUI].components.component[tblPropertyConsultant].alias">
             <lang locale="en_US" value="null" />

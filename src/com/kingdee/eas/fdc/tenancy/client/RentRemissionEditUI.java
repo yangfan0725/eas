@@ -27,6 +27,7 @@ import com.kingdee.bos.ctrl.swing.KDTextField;
 import com.kingdee.bos.ctrl.swing.StringUtils;
 import com.kingdee.bos.ctrl.swing.event.DataChangeEvent;
 import com.kingdee.bos.dao.IObjectValue;
+import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
 import com.kingdee.bos.metadata.IMetaDataPK;
 import com.kingdee.bos.metadata.MetaDataPK;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
@@ -38,6 +39,8 @@ import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.ui.face.IUIWindow;
 import com.kingdee.bos.ui.face.UIException;
 import com.kingdee.bos.ui.face.UIFactory;
+import com.kingdee.bos.util.BOSUuid;
+import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.common.client.OprtState;
 import com.kingdee.eas.common.client.UIContext;
 import com.kingdee.eas.common.client.UIFactoryName;
@@ -66,6 +69,7 @@ import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryInfo;
 import com.kingdee.eas.framework.ICoreBase;
 import com.kingdee.eas.util.client.EASResource;
 import com.kingdee.eas.util.client.MsgBox;
+import com.kingdee.util.UuidException;
 
 
 /**
@@ -504,8 +508,10 @@ public class RentRemissionEditUI extends AbstractRentRemissionEditUI {
 				if (payCol == null) {
 					return;
 				}
-				if (payCol.size() > 0) {
+				if (payCol.size() > 0||otherCol.size()>0) {
 					this.kdtEntry.removeRows();
+				}
+				if (payCol.size() > 0) {
 					for (int a = 0; a < roomCol.size(); a++) {
 						TenancyRoomEntryInfo roomInfo = roomCol.get(a);
 						if (roomInfo != null) {
@@ -542,9 +548,8 @@ public class RentRemissionEditUI extends AbstractRentRemissionEditUI {
 					
 					
 				}
-				if(otherCol != null){
-					int size = otherCol.size();
-					for(int i = 0;i<size;i++){
+				if(otherCol.size()>0){
+					for(int i = 0;i<otherCol.size();i++){
 						TenBillOtherPayInfo payInfo = otherCol.get(i);
 						IRow row = this.kdtEntry.addRow();
 						RentRemissionEntryInfo entryInfo = new RentRemissionEntryInfo();
@@ -565,8 +570,6 @@ public class RentRemissionEditUI extends AbstractRentRemissionEditUI {
 						row.getCell("startDate").setValue(payInfo.getStartDate());
 						row.getCell("endDate").setValue(payInfo.getEndDate());
 						row.getCell("appAmount").setValue(payInfo.getAppAmount());
-						
-						
 					}
 					
 				}
@@ -641,12 +644,40 @@ public class RentRemissionEditUI extends AbstractRentRemissionEditUI {
 	 * 对所填的减免金额做空的效验
 	 */
 	private void veryfyRemission() {
+		if(this.kdtEntry.getRowCount()==0){
+			MsgBox.showInfo("明细不能为空！");
+			this.abort();
+		}
 		IRow row =null;
 		for(int i =0;i<this.kdtEntry.getRowCount();i++){
 			row = kdtEntry.getRow(i);
 			if(RemissionTypeEnum.ZZJM.equals(cbType.getSelectedItem())&&row.getCell("remisionAmount").getValue()==null){
-				MsgBox.showInfo("第"+(i+1)+"行的减免金额不能为空");
+				MsgBox.showInfo("第"+(i+1)+"行的减免金额不能为空！");
 				this.abort();
+			}
+			if(RemissionTypeEnum.WXSK.equals(cbType.getSelectedItem())){
+				RentRemissionEntryInfo entry=(RentRemissionEntryInfo) row.getUserObject();
+				if(entry.getRentRemissionRoom()!=null&&entry.getRentRemissionRoom().getAllRemainAmount().compareTo(FDCHelper.ZERO)>0){
+					MsgBox.showInfo("第"+(i+1)+"行实收金额大于0！");
+					this.abort();
+				}else if(entry.getOtherPayListID()!=null){
+					try {
+						TenBillOtherPayInfo oPayInfo = TenBillOtherPayFactory.getRemoteInstance().getTenBillOtherPayInfo(new ObjectUuidPK(BOSUuid.read(entry.getOtherPayListID())));
+						if(oPayInfo.getAllRemainAmount().compareTo(FDCHelper.ZERO)>0){
+							MsgBox.showInfo("第"+(i+1)+"行实收金额大于0！");
+							this.abort();
+		        		}
+					} catch (EASBizException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (BOSException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (UuidException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 	}

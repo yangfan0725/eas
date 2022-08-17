@@ -69,7 +69,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
             <isContainer>true</isContainer>
-            <constraints>10,40,270,19</constraints>
+            <constraints>10,29,270,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -111,7 +111,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
             <isContainer>true</isContainer>
-            <constraints>10,10,270,19</constraints>
+            <constraints>10,7,270,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -270,7 +270,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
             <isContainer>true</isContainer>
-            <constraints>9,66,270,19</constraints>
+            <constraints>10,73,270,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -312,7 +312,7 @@
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
             <isContainer>true</isContainer>
-            <constraints>10,92,270,19</constraints>
+            <constraints>10,97,270,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -340,6 +340,48 @@
                     <name>boundLabelLength</name>
                     <type>int</type>
                     <value>uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[contBgItem].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CoreUI" />
+            </parent>
+        </component>
+        <component>
+            <name>contProperty</name>
+            <alias>uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[contProperty].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>10,51,270,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[contProperty].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[contProperty].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[contProperty].properties.property[boundLabelUnderline].value</value>
                     <isMultiLan>false</isMultiLan>
                     <userDefined>true</userDefined>
                 </property>
@@ -575,6 +617,54 @@
                     <bindingObject>editData</bindingObject>
                     <bindingField>bgItem</bindingField>
                     <fieldType>com.kingdee.eas.ma.budget.BgItemInfo</fieldType>
+                    <accessType />
+                    <autoMode>false</autoMode>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </propertyBinding>
+            </propertyBindings>
+        </component>
+        <component>
+            <name>cbProperty</name>
+            <alias>uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[cbProperty].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDComboBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>items</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[cbProperty].properties.property[items].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>required</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[cbProperty].properties.property[required].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="contProperty" />
+            </parent>
+            <propertyBindings>
+                <propertyBinding>
+                    <propertyName>selectedItem</propertyName>
+                    <propertyType>java.lang.Object</propertyType>
+                    <bindingObject>editData</bindingObject>
+                    <bindingField>property</bindingField>
+                    <fieldType>com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum</fieldType>
                     <accessType />
                     <autoMode>false</autoMode>
                     <herited>false</herited>
@@ -4849,6 +4939,24 @@
             <lang locale="zh_HK" value="保存" />
             <lang locale="zh_TW" value="保存" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[cbProperty].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[cbProperty].properties.property[items].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="[Enum]com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum" />
+            <lang locale="zh_HK" value="[Enum]com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum" />
+            <lang locale="zh_TW" value="[Enum]com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[cbProperty].properties.property[required].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[chkIsEnabled].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -4994,6 +5102,30 @@
             <lang locale="zh_TW" value="編碼" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[contNumber].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[contProperty].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[contProperty].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[contProperty].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="属性" />
+            <lang locale="zh_HK" value="屬性" />
+            <lang locale="zh_TW" value="屬性" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ProductTypeEditUI].components.component[contProperty].properties.property[boundLabelUnderline].value">
             <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_HK" value="true" />

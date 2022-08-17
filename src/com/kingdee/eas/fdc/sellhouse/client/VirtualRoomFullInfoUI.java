@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
@@ -22,9 +24,11 @@ import org.apache.log4j.Logger;
 
 import com.kingdee.bos.BOSException;
 import com.kingdee.bos.ctrl.kdf.servertable.KDTStyleConstants;
+import com.kingdee.bos.ctrl.kdf.table.IColumn;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
+import com.kingdee.bos.ctrl.kdf.table.KDTableHelper;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent;
 import com.kingdee.bos.ctrl.kdf.table.util.KDTableUtil;
 import com.kingdee.bos.ctrl.swing.KDFormattedTextField;
@@ -37,11 +41,17 @@ import com.kingdee.bos.metadata.entity.FilterItemInfo;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.bos.metadata.entity.SorterItemCollection;
 import com.kingdee.bos.metadata.entity.SorterItemInfo;
+import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.ui.face.IUIWindow;
 import com.kingdee.bos.ui.face.UIException;
 import com.kingdee.bos.ui.face.UIFactory;
 import com.kingdee.bos.util.BOSUuid;
+import com.kingdee.eas.base.attachment.BoAttchAssoCollection;
+import com.kingdee.eas.base.attachment.BoAttchAssoFactory;
+import com.kingdee.eas.base.attachment.client.AttachmentUIContextInfo;
+import com.kingdee.eas.base.attachment.common.AttachmentClientManager;
+import com.kingdee.eas.base.attachment.common.AttachmentManagerFactory;
 import com.kingdee.eas.base.uiframe.client.UIFactoryHelper;
 import com.kingdee.eas.basedata.master.cssp.CustomerCompanyInfoFactory;
 import com.kingdee.eas.basedata.master.cssp.CustomerFactory;
@@ -53,6 +63,7 @@ import com.kingdee.eas.common.client.UIFactoryName;
 import com.kingdee.eas.fdc.basecrm.CRMHelper;
 import com.kingdee.eas.fdc.basecrm.FDCMainCustomerFactory;
 import com.kingdee.eas.fdc.basecrm.SHERevBillFactory;
+import com.kingdee.eas.fdc.basecrm.client.CRMClientHelper;
 import com.kingdee.eas.fdc.basecrm.client.NewCommerceHelper;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
@@ -106,6 +117,9 @@ import com.kingdee.eas.fdc.sellhouse.RoomPropertyBookFactory;
 import com.kingdee.eas.fdc.sellhouse.RoomPropertyBookInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomSellStateEnum;
 import com.kingdee.eas.fdc.sellhouse.RoomSignContractInfo;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillCollection;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillEntryInfo;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillFactory;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerCollection;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerInfo;
 import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
@@ -275,16 +289,16 @@ public class VirtualRoomFullInfoUI extends AbstractVirtualRoomFullInfoUI
 		} else if (state.equals(RoomSellStateEnum.OnShow)) {
 			tabBizInfo.removeAll();
 			try {
-				initBuyRoomPlan();
+//				initBuyRoomPlan();
 			} catch (Exception e1) {
 				logger.warn(e1);
 				logger.debug("", e1);
 			}
-			tabBizInfo.add("置业计划", buyRoomPlanPane);
+//			tabBizInfo.add("置业计划", buyRoomPlanPane);
 			//待售没有必要要预留页签了，要和需求确认
 //			showKeepDownInfo();
 //			tabBizInfo.add("预留",keepDown);
-			tabBizInfo.setSelectedIndex(0);
+//			tabBizInfo.setSelectedIndex(0);
 		} else if (state.equals(RoomSellStateEnum.KeepDown)) {
 			tabBizInfo.removeAll();
 			showKeepDownInfo();
@@ -341,6 +355,12 @@ public class VirtualRoomFullInfoUI extends AbstractVirtualRoomFullInfoUI
 			
 		});
 		this.getUIContext().put("sincerityPurchaseTable", sincerityPurchaseTable);
+		
+		try {
+			this.queryAttachList();
+		} catch (BOSException e1) {
+			e1.printStackTrace();
+		}
 		
 	}
 	
@@ -1788,6 +1808,253 @@ public class VirtualRoomFullInfoUI extends AbstractVirtualRoomFullInfoUI
 		this.labelCustomer4.setForeground(Color.BLUE);
 		this.labelCustomer5.setForeground(Color.BLUE);
 		kDLabel1.setForeground(Color.RED);
+		
+		tblAttach.getStyleAttributes().setLocked(true);
+		tblAttach.checkParsed();
+		addCommonMenusToTable(tblAttach);
+		this.tblAttach.getColumn("attach").getStyleAttributes().setFontColor(Color.BLUE);
+		
+		CRMClientHelper.fmtDate(tblAttach, new String[]{"createTime","auditTime"});
+		tblAttach.getSelectManager().setSelectMode(KDTSelectManager.ROW_SELECT);
+	}
+	protected void queryAttachList() throws BOSException{
+		this.tblAttach.checkParsed();
+		this.tblAttach.removeRows();
+//		kDTabbedPane1.removeAll();
+		
+		if(editData==null ){
+			return;
+		}
+		String roomId=editData.getId().toString();
+		
+		String tranId=null;
+		EntityViewInfo view=new EntityViewInfo();
+		FilterInfo filter = new FilterInfo();
+		filter.getFilterItems().add(new FilterItemInfo("room.id", roomId));
+		filter.getFilterItems().add(new FilterItemInfo("isValid", new Boolean(false)));
+		view.setFilter(filter);
+		
+		TransactionCollection trancol=TransactionFactory.getRemoteInstance().getTransactionCollection(view);
+		if(trancol.size()>0){
+			tranId=trancol.get(0).getId().toString();
+		}
+		if(tranId!=null){
+			SorterItemCollection sort=new SorterItemCollection();
+			sort.add(new SorterItemInfo("sellStage"));
+			sort.add(new SorterItemInfo("entry.seq"));
+			SelectorItemCollection sic=new SelectorItemCollection();
+			sic.add("*");
+			sic.add("room.name");
+			sic.add("entry.*");
+			sic.add("creator.name");
+			sic.add("auditor.name");
+			view=new EntityViewInfo();
+			filter = new FilterInfo();
+			filter.getFilterItems().add(new FilterItemInfo("room.id", roomId));
+			filter.getFilterItems().add(new FilterItemInfo("number", tranId));
+			view.setFilter(filter);
+			view.setSelector(sic);
+			view.setSorter(sort);
+			SHEAttachBillCollection col=SHEAttachBillFactory.getRemoteInstance().getSHEAttachBillCollection(view);
+			if(col.size()>0){
+				for(int i=0;i<col.size();i++){
+					for(int j=0;j<col.get(i).getEntry().size();j++){
+						SHEAttachBillEntryInfo entry=col.get(i).getEntry().get(j);
+						IRow addrow=this.tblAttach.addRow();
+						addrow.setUserObject(entry);
+						addrow.getCell("room").setValue(col.get(i).getRoom().getName());
+						addrow.getCell("customer").setValue(col.get(i).getCustomer());
+						addrow.getCell("productTypeProperty").setValue(col.get(i).getProductTypeProperty().getAlias());
+						addrow.getCell("sellType").setValue(col.get(i).getSellType().getAlias());
+						addrow.getCell("sellStage").setValue(col.get(i).getSellStage().getAlias());
+						addrow.getCell("property").setValue(entry.getProperty().getAlias());
+						addrow.getCell("context").setValue(entry.getContext());
+						addrow.getCell("attach").setValue(loadAttachment(entry.getId().toString()));
+						addrow.getCell("id").setValue(col.get(i).getId().toString());
+						addrow.getCell("state").setValue(col.get(i).getState().getAlias());
+						addrow.getCell("creator").setValue(col.get(i).getCreator().getName());
+						if(col.get(i).getAuditor()!=null)
+							addrow.getCell("auditor").setValue(col.get(i).getAuditor().getName());
+						addrow.getCell("createTime").setValue(col.get(i).getCreateTime());
+						addrow.getCell("auditTime").setValue(col.get(i).getAuditTime());
+					}
+				}
+				mergerTable(tblAttach,new String[]{"id"},new String[]{"state","room","customer","productTypeProperty","sellType","sellStage","creator","createTime","auditor","auditTime"});
+				tabBizInfo.add(tblAttach,"正常交易附件清单");
+				for(int i=0;i<tblAttach.getColumnCount();i++){
+		    		KDTableHelper.autoFitColumnWidth(tblAttach, i);
+		    	}
+			}
+		}
+		SorterItemCollection sort=new SorterItemCollection();
+		sort.add(new SorterItemInfo("number"));
+		sort.add(new SorterItemInfo("sellStage"));
+		sort.add(new SorterItemInfo("entry.seq"));
+		SelectorItemCollection sic=new SelectorItemCollection();
+		sic.add("*");
+		sic.add("room.name");
+		sic.add("entry.*");
+		sic.add("creator.name");
+		sic.add("auditor.name");
+		view=new EntityViewInfo();
+		filter = new FilterInfo();
+		filter.getFilterItems().add(new FilterItemInfo("room.id", roomId));
+		if(tranId!=null){
+			filter.getFilterItems().add(new FilterItemInfo("number", tranId,CompareType.NOTEQUALS));
+		}
+		view.setFilter(filter);
+		view.setSelector(sic);
+		view.setSorter(sort);
+		SHEAttachBillCollection col=SHEAttachBillFactory.getRemoteInstance().getSHEAttachBillCollection(view);
+		if(col.size()>0){
+			Map number=new HashMap();
+			List tableList=new ArrayList();
+			for(int i=0;i<col.size();i++){
+				for(int j=0;j<col.get(i).getEntry().size();j++){
+					String tId=col.get(i).getNumber();
+					KDTable table=null;
+					if(number.containsKey(tId)){
+						table=(KDTable) number.get(tId);
+					}else{
+						table=new KDTable();
+						table.checkParsed();
+						table.getSelectManager().setSelectMode(KDTSelectManager.ROW_SELECT);
+						table.getStyleAttributes().setLocked(true);
+						table.addKDTMouseListener(new com.kingdee.bos.ctrl.kdf.table.event.KDTMouseListener() {
+					            public void tableClicked(com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent e) {
+					                try {
+					                	table_tableClicked(e);
+					                } catch (Exception exc) {
+					                    handUIException(exc);
+					                } finally {
+					                }
+					            }
+					        });
+						IRow headRow=table.addHeadRow();
+						for(int k=0;k<this.tblAttach.getColumnCount();k++){
+							IColumn colomn=table.addColumn();
+							colomn.setKey(this.tblAttach.getColumnKey(k));
+							colomn.setWidth(this.tblAttach.getColumn(k).getWidth());
+							headRow.getCell(this.tblAttach.getColumnKey(k)).setValue(this.tblAttach.getHeadRow(0).getCell(this.tblAttach.getColumnKey(k)).getValue());
+							if(this.tblAttach.getColumnKey(k).equals("id")){
+								colomn.getStyleAttributes().setHided(true);
+							}
+							if(this.tblAttach.getColumnKey(k).equals("attach")){
+								colomn.getStyleAttributes().setFontColor(Color.BLUE);
+							}
+						}
+						addCommonMenusToTable(table);
+						 
+						CRMClientHelper.fmtDate(table, new String[]{"createTime","auditTime"});
+						tabBizInfo.add(table,"历史交易附件清单");
+						
+						number.put(tId, table);
+						tableList.add(table);
+					}
+					SHEAttachBillEntryInfo entry=col.get(i).getEntry().get(j);
+					IRow addrow=table.addRow();
+					addrow.setUserObject(entry);
+					addrow.getCell("room").setValue(col.get(i).getRoom().getName());
+					addrow.getCell("customer").setValue(col.get(i).getCustomer());
+					addrow.getCell("productTypeProperty").setValue(col.get(i).getProductTypeProperty().getAlias());
+					addrow.getCell("sellType").setValue(col.get(i).getSellType().getAlias());
+					addrow.getCell("sellStage").setValue(col.get(i).getSellStage().getAlias());
+					addrow.getCell("property").setValue(entry.getProperty().getAlias());
+					addrow.getCell("context").setValue(entry.getContext());
+					addrow.getCell("attach").setValue(loadAttachment(entry.getId().toString()));
+					addrow.getCell("id").setValue(col.get(i).getId().toString());
+					addrow.getCell("state").setValue(col.get(i).getState().getAlias());
+					addrow.getCell("creator").setValue(col.get(i).getCreator().getName());
+					if(col.get(i).getAuditor()!=null)
+						addrow.getCell("auditor").setValue(col.get(i).getAuditor().getName());
+					addrow.getCell("createTime").setValue(col.get(i).getCreateTime());
+					addrow.getCell("auditTime").setValue(col.get(i).getAuditTime());
+				}
+			}
+			for(int i=0;i<tableList.size();i++){
+				mergerTable((KDTable) tableList.get(i),new String[]{"id"},new String[]{"state","room","customer","productTypeProperty","sellType","sellStage","creator","createTime","auditor","auditTime"});
+				for(int j=0;j<((KDTable) tableList.get(i)).getColumnCount();j++){
+		    		KDTableHelper.autoFitColumnWidth((KDTable) tableList.get(i), j);
+		    	}
+			}
+		}
+	}
+	protected String loadAttachment(String id) throws BOSException{
+		EntityViewInfo view = new EntityViewInfo();
+		FilterInfo filter = new FilterInfo();
+		filter.getFilterItems().add(new FilterItemInfo("boID", id));
+		view.setFilter(filter);
+		SelectorItemCollection sels = new SelectorItemCollection();
+		sels.add("attachment.name");
+		sels.add("attachment.size");
+		view.setSelector(sels);
+		BoAttchAssoCollection col = BoAttchAssoFactory.getRemoteInstance().getBoAttchAssoCollection(view);
+		String name="";
+		for(int i=0;i<col.size();i++){
+			name=name+col.get(i).getAttachment().getName()+"("+col.get(i).getAttachment().getSize()+");";
+		}
+		return name;
+	}
+	private void mergerTable(KDTable table,String coloum[],String mergeColoum[]){
+		int merger=0;
+		for(int i=0;i<table.getRowCount();i++){
+			if(i>0){
+				boolean isMerge=true;
+				for(int j=0;j<coloum.length;j++){
+					Object curRow=table.getRow(i).getCell(coloum[j]).getValue();
+					Object lastRow=table.getRow(i-1).getCell(coloum[j]).getValue();
+					if(!getString(curRow).equals(getString(lastRow))){
+						isMerge=false;
+						merger=i;
+					}
+				}
+				if(isMerge){
+					for(int j=0;j<mergeColoum.length;j++){
+						table.getMergeManager().mergeBlock(merger, table.getColumnIndex(mergeColoum[j]), i, table.getColumnIndex(mergeColoum[j]));
+					}
+				}
+			}
+		}
+	}
+	private String getString(Object value){
+		if(value==null) return "";
+		if(value!=null&&value.toString().trim().equals("")){
+			return "";
+		}else{
+			return value.toString();
+		}
+	}
+	protected void tblAttach_tableClicked(KDTMouseEvent e) throws Exception {
+		tableClicked(e,this.tblAttach);
+	}
+	protected void table_tableClicked(KDTMouseEvent e) throws Exception {
+		tableClicked(e,(KDTable) e.getSource());
+	}
+	protected void tableClicked(KDTMouseEvent e,KDTable table) throws BOSException{
+		if (e.getType() == KDTStyleConstants.BODY_ROW && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2){
+			if(table.getColumnKey(e.getColIndex()).equals("attach")) {
+				String id=((SHEAttachBillEntryInfo)table.getRow(e.getRowIndex()).getUserObject()).getId().toString();
+				AttachmentClientManager acm = AttachmentManagerFactory.getClientManager();
+		        boolean isEdit = false;
+		        AttachmentUIContextInfo info = new AttachmentUIContextInfo();
+		        info.setBoID(id);
+		        info.setEdit(isEdit);
+		        String multi = (String)getUIContext().get("MultiapproveAttachment");
+		        if(multi != null && multi.equals("true")){
+		        	acm.showAttachmentListUIByBoIDNoAlready(this, info);
+		        }else{
+		        	acm.showAttachmentListUIByBoID(this, info);
+		        }
+			}else{
+				String id=((SHEAttachBillEntryInfo)table.getRow(e.getRowIndex()).getUserObject()).getHead().getId().toString();
+				UIContext uiContext = new UIContext(this);
+				uiContext.put(UIContext.OWNER, this);
+				uiContext.put("ID", id);
+				uiContext.put("VR", Boolean.TRUE);
+				IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.MODEL).create(SHEAttachBillEditUI.class.getName(), uiContext, null, OprtState.VIEW);
+				uiWindow.show();
+			}
+		}
 	}
 	protected void labelCustomer1_mouseClicked(MouseEvent e) throws Exception {
 		if(e.getClickCount()==2){

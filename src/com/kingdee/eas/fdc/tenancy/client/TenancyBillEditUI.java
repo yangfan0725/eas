@@ -4036,6 +4036,14 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 				IRow row = this.tblPayList.addRow();
 				row.getStyleAttributes().setBackground(
 						new java.awt.Color(246, 246, 191));
+				
+				if(tPay instanceof TenancyRoomPayListEntryInfo&&((TenancyRoomPayListEntryInfo)tPay).isIsUnPay()){
+					for(int i=0;i<this.tblPayList.getColumnCount();i++){
+						if(!this.tblPayList.getColumnKey(i).equals(C_PAYS_LEASE_SEQ)){
+							row.getCell(i).getStyleAttributes().setBackground(Color.CYAN);
+						}
+					}
+				}
 				row.setTreeLevel(0);
 				row.setUserObject(tPay);
 
@@ -4063,6 +4071,13 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 					ITenancyPayListInfo tPay = (ITenancyPayListInfo) pays
 							.get(i);
 					IRow entryRow = this.tblPayList.addRow();
+					if(tPay instanceof TenancyRoomPayListEntryInfo&&((TenancyRoomPayListEntryInfo)tPay).isIsUnPay()){
+						for(int j=0;j<this.tblPayList.getColumnCount();j++){
+							if(!this.tblPayList.getColumnKey(j).equals(C_PAYS_LEASE_SEQ)){
+								entryRow.getCell(j).getStyleAttributes().setBackground(Color.CYAN);
+							}
+						}
+					}
 					entryRow.setTreeLevel(1);
 					entryRow.setUserObject(tPay);
 
@@ -8553,6 +8568,13 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 		row.getCell("actRevDate").setValue(tenOtherInfo.getActRevDate());
 		row.getCell("description").setValue(tenOtherInfo.getDescription());
 
+		if(tenOtherInfo.isIsUnPay()){
+			for(int i=0;i<this.tblOtherPayList.getColumnCount();i++){
+				if(!this.tblOtherPayList.getColumnKey(i).equals("leaseSeq")){
+					row.getCell(i).getStyleAttributes().setBackground(Color.CYAN);
+				}
+			}
+		}
 		// if (tenOtherInfo.getActRevAmount() != null &&
 		// tenOtherInfo.getActRevAmount().compareTo(FDCHelper.ZERO) > 0) {
 		// row.getStyleAttributes().setLocked(true);

@@ -158,9 +158,11 @@ public class DepositDealBillControllerBean extends AbstractDepositDealBillContro
 		if(acCol.size()>0){
 			revInfo.setRevAccount(acCol.get(0));
 		}
-		FDCReceivingBillFactory.getLocalInstance(ctx).submitRev(revInfo, "com.kingdee.eas.fdc.tenancy.app.TenRevHandle");
-		FDCReceivingBillFactory.getLocalInstance(ctx).submit(revInfo);
-		FDCReceivingBillFactory.getLocalInstance(ctx).audit(revInfo.getId());
+		if(revInfo.getEntries().size()>0){
+			FDCReceivingBillFactory.getLocalInstance(ctx).submitRev(revInfo, "com.kingdee.eas.fdc.tenancy.app.TenRevHandle");
+			FDCReceivingBillFactory.getLocalInstance(ctx).submit(revInfo);
+			FDCReceivingBillFactory.getLocalInstance(ctx).audit(revInfo.getId());
+		}
 	}
 
 	public void unAudit(Context ctx, BOSUuid billId) throws BOSException,

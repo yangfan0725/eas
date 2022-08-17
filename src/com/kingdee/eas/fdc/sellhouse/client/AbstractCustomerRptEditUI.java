@@ -46,6 +46,7 @@ import com.kingdee.bos.appframework.uip.UINavigator;
 public abstract class AbstractCustomerRptEditUI extends com.kingdee.eas.framework.client.EditUI
 {
     private static final Logger logger = CoreUIObject.getLogger(AbstractCustomerRptEditUI.class);
+    protected com.kingdee.bos.ctrl.swing.KDScrollPane kDScrollPane2;
     protected com.kingdee.bos.ctrl.swing.KDTabbedPane tblNew;
     protected com.kingdee.bos.ctrl.swing.KDPanel panelBaseInfo;
     protected com.kingdee.bos.ctrl.swing.KDPanel panelExtend;
@@ -253,6 +254,7 @@ public abstract class AbstractCustomerRptEditUI extends com.kingdee.eas.framewor
         this.actionCheckAll = new ActionCheckAll(this);
         getActionManager().registerAction("actionCheckAll", actionCheckAll);
          this.actionCheckAll.addService(new com.kingdee.eas.framework.client.service.PermissionService());
+        this.kDScrollPane2 = new com.kingdee.bos.ctrl.swing.KDScrollPane();
         this.tblNew = new com.kingdee.bos.ctrl.swing.KDTabbedPane();
         this.panelBaseInfo = new com.kingdee.bos.ctrl.swing.KDPanel();
         this.panelExtend = new com.kingdee.bos.ctrl.swing.KDPanel();
@@ -425,6 +427,7 @@ public abstract class AbstractCustomerRptEditUI extends com.kingdee.eas.framewor
         this.prmtProject = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.kdtCustomerChangeDetial = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.btnQuestion = new com.kingdee.bos.ctrl.swing.KDWorkButton();
+        this.kDScrollPane2.setName("kDScrollPane2");
         this.tblNew.setName("tblNew");
         this.panelBaseInfo.setName("panelBaseInfo");
         this.panelExtend.setName("panelExtend");
@@ -609,7 +612,9 @@ public abstract class AbstractCustomerRptEditUI extends com.kingdee.eas.framewor
         this.menuItemCopy.setVisible(false);		
         this.menuSubmitOption.setVisible(false);		
         this.menuBiz.setVisible(false);
-        // tblNew
+        // kDScrollPane2
+        // tblNew		
+        this.tblNew.setPreferredSize(new Dimension(1013,800));
         this.tblNew.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent e) {
                 try {
@@ -1377,11 +1382,11 @@ public abstract class AbstractCustomerRptEditUI extends com.kingdee.eas.framewor
      */
     public void initUIContentLayout()
     {
-        this.setBounds(new Rectangle(10, 10, 1023, 695));
-        this.setLayout(new KDLayout());
-        this.putClientProperty("OriginalBounds", new Rectangle(10, 10, 1023, 695));
-        tblNew.setBounds(new Rectangle(4, 4, 1017, 688));
-        this.add(tblNew, new KDLayout.Constraints(4, 4, 1017, 688, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_BOTTOM | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
+        this.setBounds(new Rectangle(10, 10, 1013, 800));
+this.setLayout(new BorderLayout(0, 0));
+        this.add(kDScrollPane2, BorderLayout.CENTER);
+        //kDScrollPane2
+        kDScrollPane2.getViewport().add(tblNew, null);
         //tblNew
         tblNew.add(panelBaseInfo, resHelper.getString("panelBaseInfo.constraints"));
         tblNew.add(panelExtend, resHelper.getString("panelExtend.constraints"));
@@ -1390,8 +1395,8 @@ public abstract class AbstractCustomerRptEditUI extends com.kingdee.eas.framewor
         tblNew.add(kdpCustomerDetial, resHelper.getString("kdpCustomerDetial.constraints"));
         //panelBaseInfo
         panelBaseInfo.setLayout(new KDLayout());
-        panelBaseInfo.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1016, 655));        tblEntry.setBounds(new Rectangle(2, 477, 1007, 176));
-        panelBaseInfo.add(tblEntry, new KDLayout.Constraints(2, 477, 1007, 176, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_BOTTOM_SCALE | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        panelBaseInfo.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1012, 767));        tblEntry.setBounds(new Rectangle(2, 477, 1007, 286));
+        panelBaseInfo.add(tblEntry, new KDLayout.Constraints(2, 477, 1007, 286, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_BOTTOM_SCALE | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contNumber.setBounds(new Rectangle(10, 8, 270, 19));
         panelBaseInfo.add(contNumber, new KDLayout.Constraints(10, 8, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contName.setBounds(new Rectangle(730, 8, 270, 19));
@@ -1422,7 +1427,7 @@ public abstract class AbstractCustomerRptEditUI extends com.kingdee.eas.framewor
         tblEntry.add(tblTrack, resHelper.getString("tblTrack.constraints"));
         //containLinkman
         containLinkman.getContentPane().setLayout(new KDLayout());
-        containLinkman.getContentPane().putClientProperty("OriginalBounds", new Rectangle(0, 0, 1006, 143));        checkAll.setBounds(new Rectangle(3, 2, 88, 19));
+        containLinkman.getContentPane().putClientProperty("OriginalBounds", new Rectangle(0, 0, 1006, 253));        checkAll.setBounds(new Rectangle(3, 2, 88, 19));
         containLinkman.getContentPane().add(checkAll, new KDLayout.Constraints(3, 2, 88, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         btnRemoveLinkman.setBounds(new Rectangle(906, 2, 94, 19));
         containLinkman.getContentPane().add(btnRemoveLinkman, new KDLayout.Constraints(906, 2, 94, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
@@ -1618,7 +1623,7 @@ public abstract class AbstractCustomerRptEditUI extends com.kingdee.eas.framewor
         kDScrollPane1.getViewport().add(txtDescription, null);
         //panelExtend
         panelExtend.setLayout(new KDLayout());
-        panelExtend.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1016, 655));        personContainer.setBounds(new Rectangle(10, 10, 1000, 130));
+        panelExtend.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1012, 767));        personContainer.setBounds(new Rectangle(10, 10, 1000, 130));
         panelExtend.add(personContainer, new KDLayout.Constraints(10, 10, 1000, 130, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         enterpriceContainer.setBounds(new Rectangle(10, 145, 999, 130));
         panelExtend.add(enterpriceContainer, new KDLayout.Constraints(10, 145, 999, 130, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
@@ -1692,11 +1697,11 @@ public abstract class AbstractCustomerRptEditUI extends com.kingdee.eas.framewor
         contTaxRegistrationNoD.setBoundEditor(txtTaxRegistrationNoD);
         //panelPropertyConsultant
         panelPropertyConsultant.setLayout(new KDLayout());
-        panelPropertyConsultant.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1016, 655));        tblPropertyConsultant.setBounds(new Rectangle(10, 10, 996, 639));
+        panelPropertyConsultant.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1012, 767));        tblPropertyConsultant.setBounds(new Rectangle(10, 10, 996, 639));
         panelPropertyConsultant.add(tblPropertyConsultant, new KDLayout.Constraints(10, 10, 996, 639, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_BOTTOM | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
         //panelChangeRecord
         panelChangeRecord.setLayout(new KDLayout());
-        panelChangeRecord.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1016, 655));        tblCustomerChange.setBounds(new Rectangle(2, 3, 1007, 564));
+        panelChangeRecord.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1012, 767));        tblCustomerChange.setBounds(new Rectangle(2, 3, 1007, 564));
         panelChangeRecord.add(tblCustomerChange, new KDLayout.Constraints(2, 3, 1007, 564, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_BOTTOM | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contCreateUnit.setBounds(new Rectangle(14, 575, 270, 19));
         panelChangeRecord.add(contCreateUnit, new KDLayout.Constraints(14, 575, 270, 19, KDLayout.Constraints.ANCHOR_BOTTOM | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
@@ -1732,7 +1737,7 @@ public abstract class AbstractCustomerRptEditUI extends com.kingdee.eas.framewor
         contProject.setBoundEditor(prmtProject);
         //kdpCustomerDetial
         kdpCustomerDetial.setLayout(new KDLayout());
-        kdpCustomerDetial.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1016, 655));        kdtCustomerChangeDetial.setBounds(new Rectangle(4, 3, 1004, 647));
+        kdpCustomerDetial.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1012, 767));        kdtCustomerChangeDetial.setBounds(new Rectangle(4, 3, 1004, 647));
         kdpCustomerDetial.add(kdtCustomerChangeDetial, new KDLayout.Constraints(4, 3, 1004, 647, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_BOTTOM | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
 
     }

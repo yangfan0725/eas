@@ -4,6 +4,7 @@
 package com.kingdee.eas.fdc.tenancy.client;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
 import java.math.BigDecimal;
@@ -217,7 +218,7 @@ public class OtherBillEditUI extends AbstractOtherBillEditUI implements TenancyB
 				returnAmt = otherEntry.getHasRefundmentAmount();
 				entry.setActRevAmount(otherEntry.getActRevAmount().subtract(returnAmt));
 				entry.setActRevDate(otherEntry.getActRevDate());
-				
+				entry.setIsUnPay(otherEntry.isIsUnPay());
 				roomEntry.getRoomPayList().add(entry);
 			}
 		}
@@ -968,6 +969,14 @@ public class OtherBillEditUI extends AbstractOtherBillEditUI implements TenancyB
 				ITenancyPayListInfo tPay = (ITenancyPayListInfo) pays.get(0);
 				IRow row = this.tblPayList.addRow();
 				row.getStyleAttributes().setBackground(new java.awt.Color(246, 246, 191));
+				
+				if(tPay instanceof TenancyRoomPayListEntryInfo&&((TenancyRoomPayListEntryInfo)tPay).isIsUnPay()){
+					for(int i=0;i<this.tblPayList.getColumnCount();i++){
+						if(!this.tblPayList.getColumnKey(i).equals(C_PAYS_LEASE_SEQ)){
+							row.getCell(i).getStyleAttributes().setBackground(Color.CYAN);
+						}
+					}
+				}
 				row.setTreeLevel(0);
 				row.setUserObject(tPay);
 
@@ -985,6 +994,13 @@ public class OtherBillEditUI extends AbstractOtherBillEditUI implements TenancyB
 				for(int i=0; i<pays.size(); i++){
 					ITenancyPayListInfo tPay = (ITenancyPayListInfo) pays.get(i);
 					IRow entryRow = this.tblPayList.addRow();
+					if(tPay instanceof TenancyRoomPayListEntryInfo&&((TenancyRoomPayListEntryInfo)tPay).isIsUnPay()){
+						for(int j=0;j<this.tblPayList.getColumnCount();j++){
+							if(!this.tblPayList.getColumnKey(i).equals(C_PAYS_LEASE_SEQ)){
+								entryRow.getCell(j).getStyleAttributes().setBackground(Color.CYAN);
+							}
+						}
+					}
 					entryRow.setTreeLevel(1);
 					entryRow.setUserObject(tPay);
 

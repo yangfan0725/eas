@@ -87,10 +87,13 @@ public class F7SelectRentMoneyDefineListUI extends AbstractF7SelectRentMoneyDefi
 		super.actionUnselect_actionPerformed(e);
 		TenancyRoomPayListEntryCollection payCol = new TenancyRoomPayListEntryCollection();
 		TenancyRoomEntryCollection roomCol = new TenancyRoomEntryCollection();
+		TenBillOtherPayCollection otherCol = new TenBillOtherPayCollection();
 		payCol.clear();
 		roomCol.clear();
+		otherCol.clear();
 		this.getUIContext().put("payCol", payCol);
 		this.getUIContext().put("roomCol", roomCol);
+		this.getUIContext().put("otherCol", otherCol);
 		this.destroyWindow();
 	}
 
@@ -175,7 +178,7 @@ public class F7SelectRentMoneyDefineListUI extends AbstractF7SelectRentMoneyDefi
 				row.getCell("strartDate").setValue(payInfo.getStartDate());
 				row.getCell("endDate").setValue(payInfo.getEndDate());
 				row.getCell("appAmount").setValue(payInfo.getAppAmount());
-				row.getCell("paidAmount").setValue(payInfo.getActAmount());
+				row.getCell("paidAmount").setValue(payInfo.getAllRemainAmount());
 				row.getCell("strartDate").setUserObject(payInfo);
 				row.getCell("endDate").setUserObject(roomEntryInfo);
 				setLockActRevAmount(payInfo,row);
@@ -215,7 +218,7 @@ public class F7SelectRentMoneyDefineListUI extends AbstractF7SelectRentMoneyDefi
 			row.getCell("strartDate").setValue(payInfo.getStartDate());
 			row.getCell("endDate").setValue(payInfo.getEndDate());
 			row.getCell("appAmount").setValue(payInfo.getAppAmount());
-			row.getCell("paidAmount").setValue(payInfo.getActRevAmount());
+			row.getCell("paidAmount").setValue(payInfo.getAllRemainAmount());
 			row.getCell("strartDate").setUserObject(payInfo);
 			row.getCell("endDate").setUserObject(payInfo);
 			setLockActRevAmount(payInfo,row);
@@ -234,20 +237,32 @@ public class F7SelectRentMoneyDefineListUI extends AbstractF7SelectRentMoneyDefi
 			BigDecimal remainAppAmount = CRMHelper.getBigDecimal(revListInfo.getFinalAppAmount());
 			BigDecimal allRemainAMount = CRMHelper.getBigDecimal(revListInfo.getAllRemainAmount());
 			if(allRemainAMount.compareTo(remainAppAmount) >= 0)	{
-				row.getStyleAttributes().setBackground(KEY_LOCKED_ROW);
+				for(int i=0;i<tblMain.getColumnCount();i++){
+					if(!tblMain.getColumnKey(i).equals("leaseSeq")&&!tblMain.getColumnKey(i).equals("room")){
+						row.getCell(i).getStyleAttributes().setBackground(KEY_LOCKED_ROW);
+					}
+				}
 //				row.getStyleAttributes().setLocked(true);
 				row.getCell("isSelected").getStyleAttributes().setLocked(true);
 			}
 		}
 		if(revListInfo instanceof TenBillOtherPayInfo){
 			if(((TenBillOtherPayInfo)revListInfo).isIsUnPay()){
-				row.getStyleAttributes().setBackground(KEY_LOCKED_ROW);
+				for(int i=0;i<tblMain.getColumnCount();i++){
+					if(!tblMain.getColumnKey(i).equals("leaseSeq")&&!tblMain.getColumnKey(i).equals("room")){
+						row.getCell(i).getStyleAttributes().setBackground(Color.CYAN);
+					}
+				}
 //				row.getStyleAttributes().setLocked(true);
 				row.getCell("isSelected").getStyleAttributes().setLocked(true);
 			}
 		}else if(revListInfo instanceof TenancyRoomPayListEntryInfo){
 			if(((TenancyRoomPayListEntryInfo)revListInfo).isIsUnPay()){
-				row.getStyleAttributes().setBackground(KEY_LOCKED_ROW);
+				for(int i=0;i<tblMain.getColumnCount();i++){
+					if(!tblMain.getColumnKey(i).equals("leaseSeq")&&!tblMain.getColumnKey(i).equals("room")){
+						row.getCell(i).getStyleAttributes().setBackground(Color.CYAN);
+					}
+				}
 //				row.getStyleAttributes().setLocked(true);
 				row.getCell("isSelected").getStyleAttributes().setLocked(true);
 			}

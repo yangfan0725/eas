@@ -2633,11 +2633,12 @@ public abstract class BaseTransactionEditUI extends AbstractBaseTransactionEditU
 		info.setIsEarnestInHouseAmount(true);
 //		RoomDisplaySetting set = new RoomDisplaySetting(null,SHEParamConstant.PROJECT_SET_MAP);
 		Map detailSet = RoomDisplaySetting.getNewProjectSet(null,info.getSellProject().getId().toString());
-		boolean isBasePriceSell=false;
-		if(detailSet!=null){
-			isBasePriceSell = ((Boolean)detailSet.get(SHEParamConstant.T2_IS_FORCE_LIMIT_PRICE)).booleanValue();
-		}
-		info.setIsBasePriceSell(isBasePriceSell);
+//		boolean isBasePriceSell=false;
+//		if(detailSet!=null){
+//			isBasePriceSell = ((Boolean)detailSet.get(SHEParamConstant.T2_IS_FORCE_LIMIT_PRICE)).booleanValue();
+//		}
+//		info.setIsBasePriceSell(isBasePriceSell);
+		info.setIsBasePriceSell(true);
 		
 		HashMap value = SHEManageHelper.getCRMConstants(SysContext.getSysContext().getCurrentOrgUnit().getId());
 		

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataTable xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+    <name>T_SHE_SHEAttachListEntry</name>
+    <alias>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].alias</alias>
+    <description>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].description</description>
+    <userDefined>true</userDefined>
+    <bizUnitPK />
+    <columns>
+        <column>
+            <name>FHeadId</name>
+            <alias>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FHeadId].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FHeadId].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>VARCHAR</sqlType>
+            <length>44</length>
+            <scale>0</scale>
+            <precision>0</precision>
+        </column>
+        <column>
+            <name>FProperty</name>
+            <alias>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FProperty].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FProperty].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>VARCHAR</sqlType>
+            <length>100</length>
+            <scale>0</scale>
+            <precision>100</precision>
+        </column>
+        <column>
+            <name>FContext</name>
+            <alias>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FContext].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FContext].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>VARCHAR</sqlType>
+            <length>500</length>
+            <scale>0</scale>
+            <precision>500</precision>
+        </column>
+        <column>
+            <name>FSeq</name>
+            <alias>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FSeq].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FSeq].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>true</isNullable>
+            <defaultValue />
+            <sqlType>INT</sqlType>
+            <length>4</length>
+            <scale>0</scale>
+            <precision>4</precision>
+        </column>
+        <column>
+            <name>FID</name>
+            <alias>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FID].alias</alias>
+            <description>dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FID].description</description>
+            <userDefined>true</userDefined>
+            <isMultilingual>false</isMultilingual>
+            <isEncoded>false</isEncoded>
+            <isNullable>false</isNullable>
+            <defaultValue />
+            <sqlType>VARCHAR</sqlType>
+            <length>44</length>
+            <scale>0</scale>
+            <precision>44</precision>
+        </column>
+    </columns>
+    <primaryKey>
+        <name>PK_SHEAttachListEn</name>
+        <userDefined>true</userDefined>
+        <primaryKeyColumns>
+            <primaryKeyColumn>
+                <indexID>0</indexID>
+                <sortType>ASC</sortType>
+                <column>
+                    <key name="name" value="FID" />
+                </column>
+            </primaryKeyColumn>
+        </primaryKeyColumns>
+    </primaryKey>
+    <foreignKeys>
+        <foreignKey>
+            <name>CFK_SHE_SHEALEEad</name>
+            <userDefined>true</userDefined>
+            <refTable>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="T_SHE_SHEAttachList" />
+            </refTable>
+            <fkColumnPairs>
+                <fkColumnPair>
+                    <sequence>0</sequence>
+                    <refColumn>
+                        <key name="name" value="FID" />
+                    </refColumn>
+                    <fkColumn>
+                        <key name="name" value="FHeadId" />
+                    </fkColumn>
+                </fkColumnPair>
+            </fkColumnPairs>
+        </foreignKey>
+    </foreignKeys>
+    <resource>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="附件清单分录" />
+            <lang locale="zh_HK" value="附件清單分錄" />
+            <lang locale="zh_TW" value="附件清單分錄" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FContext].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="内容" />
+            <lang locale="zh_HK" value="內容" />
+            <lang locale="zh_TW" value="內容" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FContext].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="内容" />
+            <lang locale="zh_HK" value="內容" />
+            <lang locale="zh_TW" value="內容" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FHeadId].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FHeadId].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="头" />
+            <lang locale="zh_HK" value="頭" />
+            <lang locale="zh_TW" value="頭" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FID].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FID].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FProperty].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="性质" />
+            <lang locale="zh_HK" value="性質" />
+            <lang locale="zh_TW" value="性質" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FProperty].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="性质" />
+            <lang locale="zh_HK" value="性質" />
+            <lang locale="zh_TW" value="性質" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FSeq].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据分录序列号" />
+            <lang locale="zh_HK" value="單據分錄序列號" />
+            <lang locale="zh_TW" value="單據分錄序列號" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].columns.column[FSeq].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据分录序列号（定义为序列属性即使用{seq}）" />
+            <lang locale="zh_HK" value="單據分錄序列號（定義為序列屬性即使用{seq}）" />
+            <lang locale="zh_TW" value="單據分錄序列號（定義為序列屬性即使用{seq}）" />
+        </rs>
+        <rs key="dataTable[com.kingdee.eas.fdc.sellhouse.app.T_SHE_SHEAttachListEntry].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="附件清单分录" />
+            <lang locale="zh_HK" value="附件清單分錄" />
+            <lang locale="zh_TW" value="附件清單分錄" />
+        </rs>
+    </resource>
+</dataTable>
+

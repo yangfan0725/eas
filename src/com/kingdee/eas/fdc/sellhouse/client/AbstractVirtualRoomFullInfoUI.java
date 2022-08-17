@@ -91,6 +91,7 @@ public abstract class AbstractVirtualRoomFullInfoUI extends com.kingdee.eas.fram
     protected com.kingdee.bos.ctrl.swing.KDPanel sincerityPurchase;
     protected com.kingdee.bos.ctrl.swing.KDPanel keepDown;
     protected com.kingdee.bos.ctrl.swing.KDPanel roomLoanPanel;
+    protected com.kingdee.bos.ctrl.kdf.table.KDTable tblAttach;
     protected com.kingdee.bos.ctrl.kdf.table.KDTable totalFlowTable;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer kDLabelContainer3;
     protected com.kingdee.bos.ctrl.swing.KDLabel labelCustomer1;
@@ -183,6 +184,7 @@ public abstract class AbstractVirtualRoomFullInfoUI extends com.kingdee.eas.fram
         this.sincerityPurchase = new com.kingdee.bos.ctrl.swing.KDPanel();
         this.keepDown = new com.kingdee.bos.ctrl.swing.KDPanel();
         this.roomLoanPanel = new com.kingdee.bos.ctrl.swing.KDPanel();
+        this.tblAttach = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.totalFlowTable = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.kDLabelContainer3 = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.labelCustomer1 = new com.kingdee.bos.ctrl.swing.KDLabel();
@@ -252,6 +254,7 @@ public abstract class AbstractVirtualRoomFullInfoUI extends com.kingdee.eas.fram
         this.sincerityPurchase.setName("sincerityPurchase");
         this.keepDown.setName("keepDown");
         this.roomLoanPanel.setName("roomLoanPanel");
+        this.tblAttach.setName("tblAttach");
         this.totalFlowTable.setName("totalFlowTable");
         this.kDLabelContainer3.setName("kDLabelContainer3");
         this.labelCustomer1.setName("labelCustomer1");
@@ -408,6 +411,23 @@ public abstract class AbstractVirtualRoomFullInfoUI extends com.kingdee.eas.fram
         // sincerityPurchase
         // keepDown
         // roomLoanPanel
+        // tblAttach
+		String tblAttachStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol13\"><c:Protection hidden=\"true\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"state\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"0\" /><t:Column t:key=\"room\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"1\" /><t:Column t:key=\"customer\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"2\" /><t:Column t:key=\"productTypeProperty\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"3\" /><t:Column t:key=\"sellType\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"4\" /><t:Column t:key=\"sellStage\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"5\" /><t:Column t:key=\"property\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"6\" /><t:Column t:key=\"context\" t:width=\"300\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"7\" /><t:Column t:key=\"attach\" t:width=\"300\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"8\" /><t:Column t:key=\"creator\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"9\" /><t:Column t:key=\"createTime\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"10\" /><t:Column t:key=\"auditor\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"11\" /><t:Column t:key=\"auditTime\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"12\" /><t:Column t:key=\"id\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"13\" t:styleID=\"sCol13\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{state}</t:Cell><t:Cell>$Resource{room}</t:Cell><t:Cell>$Resource{customer}</t:Cell><t:Cell>$Resource{productTypeProperty}</t:Cell><t:Cell>$Resource{sellType}</t:Cell><t:Cell>$Resource{sellStage}</t:Cell><t:Cell>$Resource{property}</t:Cell><t:Cell>$Resource{context}</t:Cell><t:Cell>$Resource{attach}</t:Cell><t:Cell>$Resource{creator}</t:Cell><t:Cell>$Resource{createTime}</t:Cell><t:Cell>$Resource{auditor}</t:Cell><t:Cell>$Resource{auditTime}</t:Cell><t:Cell>$Resource{id}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
+		
+        this.tblAttach.setFormatXml(resHelper.translateString("tblAttach",tblAttachStrXML));
+        this.tblAttach.addKDTMouseListener(new com.kingdee.bos.ctrl.kdf.table.event.KDTMouseListener() {
+            public void tableClicked(com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent e) {
+                try {
+                    tblAttach_tableClicked(e);
+                } catch (Exception exc) {
+                    handUIException(exc);
+                } finally {
+                }
+            }
+        });
+
+        
+
         // totalFlowTable
 		String totalFlowTableStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol0\"><c:Protection hidden=\"true\" /></c:Style><c:Style id=\"sCol2\"><c:NumberFormat>yyyy-MM-dd</c:NumberFormat></c:Style><c:Style id=\"sCol4\"><c:NumberFormat>yyyy-MM-dd</c:NumberFormat></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"id\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"0\" t:styleID=\"sCol0\" /><t:Column t:key=\"biz\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"1\" /><t:Column t:key=\"apDate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"3\" t:styleID=\"sCol2\" /><t:Column t:key=\"value\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"4\" /><t:Column t:key=\"actDate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"5\" t:styleID=\"sCol4\" /><t:Column t:key=\"description\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"6\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{id}</t:Cell><t:Cell>$Resource{biz}</t:Cell><t:Cell>$Resource{apDate}</t:Cell><t:Cell>$Resource{value}</t:Cell><t:Cell>$Resource{actDate}</t:Cell><t:Cell>$Resource{description}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
 		
@@ -726,6 +746,7 @@ public abstract class AbstractVirtualRoomFullInfoUI extends com.kingdee.eas.fram
         tabBizInfo.add(sincerityPurchase, resHelper.getString("sincerityPurchase.constraints"));
         tabBizInfo.add(keepDown, resHelper.getString("keepDown.constraints"));
         tabBizInfo.add(roomLoanPanel, resHelper.getString("roomLoanPanel.constraints"));
+        tabBizInfo.add(tblAttach, resHelper.getString("tblAttach.constraints"));
         //bizTotalFlow
         bizTotalFlow.setLayout(new KDLayout());
         bizTotalFlow.putClientProperty("OriginalBounds", new Rectangle(0, 0, 491, 540));        totalFlowTable.setBounds(new Rectangle(6, 37, 474, 500));
@@ -991,6 +1012,13 @@ public abstract class AbstractVirtualRoomFullInfoUI extends com.kingdee.eas.fram
         } else if (STATUS_EDIT.equals(this.oprtState)) {
         } else if (STATUS_VIEW.equals(this.oprtState)) {
         }
+    }
+
+    /**
+     * output tblAttach_tableClicked method
+     */
+    protected void tblAttach_tableClicked(com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent e) throws Exception
+    {
     }
 
     /**

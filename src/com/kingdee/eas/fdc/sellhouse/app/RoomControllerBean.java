@@ -1255,9 +1255,9 @@ public class RoomControllerBean extends AbstractRoomControllerBean {
 										JSONObject ybcjson=new JSONObject();
 											ybcjson.put("cstguid", quc.getId().toString());							
 											ybcjson.put("cstname",quc.getName().replaceAll("\\s", ""));	
-											if(srcInfo.getSignCustomerEntry().get(i1).getCustomer().getFirstDate()==null&&srcInfo.getSignCustomerEntry().get(i1).getCustomer().getReportDate()==null){
-												throw new EASBizException(new NumericExceptionSubItem("100","客户报备日期和首访日期都为空！"));
-											}
+//											if(srcInfo.getSignCustomerEntry().get(i1).getCustomer().getFirstDate()==null&&srcInfo.getSignCustomerEntry().get(i1).getCustomer().getReportDate()==null){
+//												throw new EASBizException(new NumericExceptionSubItem("100","客户报备日期和首访日期都为空！"));
+//											}
 											if(quc.getSex()!=null&&!"".equals(String.valueOf(quc.getSex()))){
 												ybcjson.put("Gender",quc.getSex().getAlias().replaceAll("\\s", ""));
 											}
@@ -1476,6 +1476,36 @@ public class RoomControllerBean extends AbstractRoomControllerBean {
 			EASBizException {
 		if(roomIdList!=null && roomIdList.size()>0){
 			try {
+				 String param="false";
+					try {
+						param = ParamControlFactory.getLocalInstance(ctx).getParamValue(new ObjectUuidPK(ContextUtil.getCurrentOrgUnit(ctx).getId()), "YF_AT");
+					} catch (EASBizException e1) {
+						e1.printStackTrace();
+					} catch (BOSException e1) {
+						e1.printStackTrace();
+					}
+					if("true".equals(param)){
+						FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
+					    for (int i = 0; i < roomIdList.size(); i++) {
+							RoomInfo  room=  (RoomInfo)roomIdList.get(i);
+							 StringBuffer sqlbuffer = new StringBuffer();
+							    sqlbuffer.append("\n   /*dialect*/ select r.fname_l2 roomName from t_she_room r left join T_SHE_Transaction tran on tran.froomid=r.fid      ");
+							    sqlbuffer.append("\n   left join t_she_sheattachBill att on att.fnumber = tran.fid and r.fid=att.froomId    ");
+							    sqlbuffer.append("\n   where (att.fid is null or (att.FSellStage='5WQ' and att.fstate!='4AUDITTED')) and tran.FIsValid=0 and r.fid='"+room.getId().toString()+"'");
+							
+							builder.appendSql(sqlbuffer.toString());
+							IRowSet rs  = builder.executeQuery();
+						    try {
+								while(rs.next()){
+									throw new EASBizException(new NumericExceptionSubItem("100","房间："+rs.getString("roomName")+" 缺少网签阶段规范性附件或附件未审批，不能进行实测复核操作！！"));
+							   }}catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					    
+					}
+			     
 				String sql = "update t_she_room set FIsActualAreaAudited=?,FIsActAudited=?,FActChangeState=?,FIsChangeSellArea=?,FsellAreaType=? where fid=?";
 				FDCSQLBuilder sqlBuilder = new FDCSQLBuilder(ctx);
 				sqlBuilder.setPrepareStatementSql(sql);
@@ -1726,9 +1756,9 @@ public class RoomControllerBean extends AbstractRoomControllerBean {
 											String cstId= quc.getId().toString();
 											ybcjson.put("cstname",quc.getName().replaceAll("\\s", ""));	
 											String cstName=quc.getName().replaceAll("\\s", "");
-											if(srcInfo.getSignCustomerEntry().get(i1).getCustomer().getFirstDate()==null&&srcInfo.getSignCustomerEntry().get(i1).getCustomer().getReportDate()==null){
-												throw new EASBizException(new NumericExceptionSubItem("100","客户报备日期和首访日期都为空！"));
-											}
+//											if(srcInfo.getSignCustomerEntry().get(i1).getCustomer().getFirstDate()==null&&srcInfo.getSignCustomerEntry().get(i1).getCustomer().getReportDate()==null){
+//												throw new EASBizException(new NumericExceptionSubItem("100","客户报备日期和首访日期都为空！"));
+//											}
 											if(quc.getSex()!=null&&!"".equals(String.valueOf(quc.getSex()))){
 												ybcjson.put("Gender",quc.getSex().getAlias().replaceAll("\\s", ""));
 											}

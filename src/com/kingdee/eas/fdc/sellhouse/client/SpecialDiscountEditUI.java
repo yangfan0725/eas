@@ -103,9 +103,12 @@ import com.kingdee.bos.ctrl.extendcontrols.IDataFormat;
 import com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox;
 import com.kingdee.bos.ctrl.extendcontrols.KDCommonPromptDialog;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
+import com.kingdee.bos.ctrl.kdf.table.KDTAction;
 import com.kingdee.bos.ctrl.kdf.table.KDTDefaultCellEditor;
+import com.kingdee.bos.ctrl.kdf.table.KDTEditHelper;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectBlock;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectManager;
+import com.kingdee.bos.ctrl.kdf.table.KDTTransferAction;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTEditEvent;
 import com.kingdee.bos.ctrl.kdf.util.render.ObjectValueRender;
@@ -135,7 +138,8 @@ public class SpecialDiscountEditUI extends AbstractSpecialDiscountEditUI
     }
     protected void initTable(){
     	this.kdtEntry.checkParsed();
-    	
+    	((KDTTransferAction) kdtEntry.getActionMap().get(KDTAction.PASTE)).setEnabled(false);
+		
     	KDFormattedTextField amount = new KDFormattedTextField();
 		amount.setDataType(KDFormattedTextField.BIGDECIMAL_TYPE);
 		amount.setDataVerifierType(KDFormattedTextField.NO_VERIFIER);
@@ -828,27 +832,27 @@ public class SpecialDiscountEditUI extends AbstractSpecialDiscountEditUI
 //				this.kdtEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtEntry.getColumnIndex("discountPercent"));
 //				SysUtil.abort();
 //			}
-			Map detailSet = RoomDisplaySetting.getNewProjectSet(null,this.editData.getSellProject().getId().toString());
-			boolean isBasePriceSell=false;
-			if(detailSet!=null){
-				isBasePriceSell = ((Boolean)detailSet.get(SHEParamConstant.T2_IS_FORCE_LIMIT_PRICE)).booleanValue();
-			}
+//			Map detailSet = RoomDisplaySetting.getNewProjectSet(null,this.editData.getSellProject().getId().toString());
+//			boolean isBasePriceSell=false;
+//			if(detailSet!=null){
+//				isBasePriceSell = ((Boolean)detailSet.get(SHEParamConstant.T2_IS_FORCE_LIMIT_PRICE)).booleanValue();
+//			}
 //			SignManageCollection signCol=SignManageFactory.getRemoteInstance().getSignManageCollection("select digit,toIntegerType,isBasePriceSell,DealTotalAmount from where room.id='"+room.getId().toString()+"' and (bizState='SignApple' or bizState='SignAudit')");
 //			if(signCol.size()>0){
-				if(isBasePriceSell){
-					if(room.getBaseStandardPrice()==null){
+//				if(isBasePriceSell){
+					if(row.getCell("baseStandardPrice").getValue()==null){
 						FDCMsgBox.showWarning(this,room.getName()+"集团底价不能为空！");
 						SysUtil.abort();
 					}
-//					if(room.getProjectStandardPrice()==null){
-//						FDCMsgBox.showWarning(this,room.getName()+"项目底价不能为空！");
-//						SysUtil.abort();
-//					}
+					if(row.getCell("projectStandardPrice").getValue()==null){
+						FDCMsgBox.showWarning(this,room.getName()+"项目底价不能为空！");
+						SysUtil.abort();
+					}
 //					if(FDCHelper.subtract(row.getCell("discountAfAmount").getValue(),room.getBaseStandardPrice()).compareTo(FDCHelper.ZERO)<0){
 //						FDCMsgBox.showWarning(this,room.getName()+"破底价，不能进行特殊优惠折扣申请！");
 //						SysUtil.abort();
 //					}
-				}
+//				}
 //			}
 		}
 	}

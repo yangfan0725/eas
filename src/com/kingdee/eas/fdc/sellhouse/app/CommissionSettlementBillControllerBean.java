@@ -16,6 +16,7 @@ import com.kingdee.bos.BOSException;
 import com.kingdee.bos.Context;
 import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
 import com.kingdee.bos.util.BOSUuid;
+import com.kingdee.eas.base.param.ParamControlFactory;
 import com.kingdee.eas.base.permission.UserFactory;
 import com.kingdee.eas.base.permission.UserInfo;
 import com.kingdee.eas.basedata.org.OrgUnitInfo;
@@ -29,7 +30,12 @@ import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
 import com.kingdee.eas.fdc.sellhouse.ChangeBizTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.CommissionSettlementBillFactory;
 import com.kingdee.eas.fdc.sellhouse.CommissionSettlementBillInfo;
+import com.kingdee.eas.fdc.sellhouse.PurchaseManageInfo;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillCollection;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillFactory;
+import com.kingdee.eas.fdc.sellhouse.SellStageEnum;
 import com.kingdee.eas.fdc.sellhouse.TransactionStateEnum;
+import com.kingdee.eas.util.app.ContextUtil;
 import com.kingdee.eas.util.app.DbUtil;
 import com.kingdee.jdbc.rowset.IRowSet;
 import com.kingdee.util.NumericExceptionSubItem;
@@ -52,9 +58,90 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
 	    Date startDate = FDCDateHelper.getFirstDayOfMonth(t);
    	Date endDate =  FDCDateHelper.getLastDayOfMonth(t);
        
-       
        FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
        StringBuffer sql = new StringBuffer();
+       
+       String param="false";
+		try {
+			param = ParamControlFactory.getLocalInstance(ctx).getParamValue(new ObjectUuidPK(ContextUtil.getCurrentOrgUnit(ctx).getId()), "YF_AT");
+		} catch (EASBizException e1) {
+			e1.printStackTrace();
+		} catch (BOSException e1) {
+			e1.printStackTrace();
+		}
+		if("true".equals(param)){
+			 sql.append("\n  /*dialect*/ select  roomName  ");
+		       sql.append("\n   from ( select                                                                                                            ");
+		       sql.append("\n         r.fname_l2 roomName                                                                                              ");
+		       sql.append("\n    from t_she_signManage sign                                                                                        ");
+		       sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
+		       sql.append("\n       left outer join t_she_sheattachBill att  on att.fnumber = sign.ftransactionId and r.fid=att.froomId                                                          ");
+		       sql.append("\n   where (att.fid is null or (att.FSellStage='3QY' and att.fstate!='4AUDITTED')) and sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
+		       sql.append("\n     and NOT EXISTS                                                                                                   ");
+		       sql.append("\n   (select tt.fnewId                                                                                                  ");
+		       sql.append("\n            from t_she_changeManage tt                                                                                ");
+		       sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                                          ");
+		       sql.append("\n             and sign.fid = tt.fnewId)                                                                                ");
+		       sql.append("         and  sign.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+		       sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+		       sql.append("\n     and sign.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
+		       
+		       sql.append("\n   union select                                                                                                            ");
+		       sql.append("\n         r.fname_l2 roomName                                                                                             ");
+		       sql.append("\n    from t_she_signManage sign                                                                                        ");
+		       sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
+		       sql.append("\n       left outer join t_she_sheattachBill att  on att.fnumber = sign.ftransactionId and r.fid=att.froomId                                                          ");
+		       sql.append("\n   where (att.fid is null or (att.FSellStage='3QY' and att.fstate!='4AUDITTED')) and sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
+		       sql.append("\n     and NOT EXISTS                                                                                                   ");
+		       sql.append("\n   (select tt.fnewId                                                                                                  ");
+		       sql.append("\n            from t_she_changeManage tt                                                                                ");
+		       sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                                                              ");
+		       sql.append("\n             and sign.fid = tt.fnewId)                                                                                ");
+		       sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+		       sql.append("\n     and sign.fsellprojectid  ='"+sellProjectId+"'                                                                        "); 
+		       sql.append(" \n and EXISTS(select                                                                         "); 
+			   	sql.append(" \n        revBill.frelateTransId                                                            ");    
+			   	sql.append(" \n   from T_BDC_SHERevBill revBill                                                     ");
+			   	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
+			   	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
+			   	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
+			   	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
+				sql.append(" \n       and md.fname_l2 !='面积补差款' ");
+			   	sql.append(" \n       and revBill.fsellprojectid  ='"+sellProjectId+"'" );
+			   	sql.append(" \n       and revBill.fbizDate <to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+			   	sql.append(" \n       and EXISTS (select t.ftransactionid from t_she_signManage t where t.ftransactionid=revBill.frelateTransId and t.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit')) ");
+			   	sql.append(" \n       and  entry.fisCS is null and revBill.frelateTransId=sign.ftransactionId)");
+		       
+		       sql.append(" union select  r.fname_l2 roomName  from t_she_purchaseManage pur     ");
+		    	sql.append(" \n       left outer join t_she_room r  on r.fid = pur.froomid                               ");
+		    	sql.append("\n       left join T_SHE_Transaction tran  on tran.fid = pur.fTransactionid                                                         ");
+		    	sql.append("\n       left outer join t_she_sheattachBill att  on att.fnumber = pur.ftransactionId and r.fid=att.froomId                                                          ");
+		    	sql.append("\n   where (att.fid is null or (att.FSellStage='3QY' and att.fstate!='4AUDITTED')) and pur.fbizState in ('ToSign') and tran.FIsValid=0 ");
+		        sql.append("\n     and NOT EXISTS                                                                                                   ");
+		        sql.append("\n   (select tt.fnewId                                                                                                  ");
+		        sql.append("\n            from t_she_changeManage tt                                                                                ");
+		        sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                                          ");
+		        sql.append("\n             and pur.fid = tt.fnewId)                                                                                ");
+		    	sql.append(" \n       and pur.fsellprojectid  ='"+sellProjectId+"'" );
+		    	sql.append("         and  pur.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+		       sql.append("        and  pur.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+		    	
+		    	sql.append("\n      )                               ");
+		       
+		       builder.appendSql(sql.toString());
+		       IRowSet rs  = builder.executeQuery();
+		       try {
+				while(rs.next()){
+					throw new EASBizException(new NumericExceptionSubItem("100","房间："+rs.getString("roomName")+" 缺少签约阶段规范性附件或附件未审批，不能进行佣金提取操作！！"));
+			   }}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		
+	   builder = new FDCSQLBuilder(ctx);
+	   sql = new StringBuffer();
+	       
        //获取签约金额
        sql.append("\n  /*dialect*/ select  productTypeId,  productTypeName, sum(amount) over (partition by orgId ) contractAmt, amount calcContractAmt  ");
        sql.append("\n   from ( select                                                                                                            ");
@@ -64,8 +151,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
        sql.append("\n             pt.fname_l2 productTypeName                                                                              ");
        sql.append("\n    from t_she_signManage sign                                                                                        ");
        sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-       sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-       sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+       sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
        sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
        sql.append("\n     and NOT EXISTS                                                                                                   ");
        sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -100,8 +186,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
        sql.append("\n             pt.fname_l2 productTypeName                                                                              ");
        sql.append("\n    from t_she_signManage sign                                                                                        ");
        sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-       sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-       sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+       sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
        sql.append("\n   where sign.fbizState in ('QRNullify','ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
        sql.append("\n     and NOT EXISTS                                                                                                   ");
        sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -120,7 +205,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
 		sql.append(" \n       and md.fname_l2 !='面积补差款' ");
 	   	sql.append(" \n       and revBill.fsellprojectid  ='"+sellProjectId+"'" );
 	   	sql.append(" \n       and revBill.fbizDate <to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-	   	sql.append(" \n       and EXISTS (select t.ftransactionid from t_she_signManage t where t.ftransactionid=revBill.frelateTransId and t.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit')) ");
+	   	sql.append(" \n       and EXISTS (select t.ftransactionid from t_she_signManage t where t.ftransactionid=revBill.frelateTransId and t.fbizState in ('QRNullify','ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit')) ");
 	   	sql.append(" \n       and  entry.fisCS is null and revBill.frelateTransId=sign.ftransactionId)");
        
        sql.append("\n   group by sign.fsellProjectid,pt.fid,pt.fname_l2                                             ");
@@ -128,12 +213,8 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
        
        sql.append(" union select pur.fsellProjectid orgId,0 amount,pt.fid productTypeId,pt.fname_l2 productTypeName from t_she_purchaseManage pur     ");
        sql.append("\n       left join T_SHE_Transaction tran  on tran.fid = pur.fTransactionid                                                         ");
-       sql.append("\n       left join T_SHE_PurSaleManEntry pe  on pe.fheadid = pur.fid                                                         ");
-       sql.append("\n       left join T_PM_User u  on u.fid = pe.fuserid                                                         ");
-       sql.append("\n       left join t_bd_person p  on p.fid = u.FpersonID                                           ");
     	sql.append(" \n       left outer join t_she_room r  on r.fid = pur.froomid                               ");
-    	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-    	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+    	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
     	sql.append("\n   where pur.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing','PurAudit','ToSign') and tran.FIsValid=0 ");
         sql.append("\n     and NOT EXISTS                                                                                                   ");
         sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -177,8 +258,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
     	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
     	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
     	sql.append(" \n       left outer join t_she_room r  on r.fid = revBill.froomid                               ");
-    	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-    	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+    	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
     	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
     	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
     	sql.append(" \n       and md.fname_l2 !='面积补差款' ");
@@ -216,8 +296,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
  	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
  	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
  	sql.append(" \n       left outer join t_she_room r  on r.fid = revBill.froomid                               ");
-	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
- 	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+ 	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
  	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
  	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
  	sql.append(" \n       and md.fname_l2 !='面积补差款' ");
@@ -252,8 +331,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
     sql.append("\n         sum(pur.fcontractTotalAmount) pur,pur.fsellProjectid spid from t_she_purchaseManage pur     ");
     sql.append("\n       left join T_SHE_Transaction tran  on tran.fid = pur.fTransactionid                                                         ");
  	sql.append(" \n       left outer join t_she_room r  on r.fid = pur.froomid                               ");
- 	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
- 	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+ 	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
  	sql.append("\n   where pur.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing','PurAudit','ToSign') and tran.fisvalid=0");
  	 sql.append("\n     and NOT EXISTS                                                                                                   ");
      sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -292,8 +370,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
     sql.append("\n         sum(sign.fdealTotalAmount) contract                                                            ");
     sql.append("\n    from t_she_signManage sign                                                                                        ");
     sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-    sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-    sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+    sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
     sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
     sql.append("\n     and NOT EXISTS                                                                                                   ");
     sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -374,8 +451,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
         sql.append("\n       left outer join T_PM_User u  on u.fid = sign.FSalesmanID                                                         ");
         sql.append("\n       left outer join t_bd_person p  on p.fid = u.FpersonID                                                         ");
         sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-        sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
         sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
         sql.append("\n     and NOT EXISTS                                                                                                   ");
         sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -414,8 +490,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
         sql.append("\n       left outer join T_PM_User u  on u.fid = sign.FSalesmanID                                                         ");
         sql.append("\n       left outer join t_bd_person p  on p.fid = u.FpersonID                                                         ");
         sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-        sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
         sql.append("\n   where sign.fbizState in ('QRNullify','ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
         sql.append("\n     and NOT EXISTS                                                                                                   ");
         sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -445,8 +520,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
         sql.append("\n       left join T_PM_User u  on u.fid = pe.fuserid                                                         ");
         sql.append("\n       left join t_bd_person p  on p.fid = u.FpersonID                                           ");
      	sql.append(" \n       left outer join t_she_room r  on r.fid = pur.froomid                               ");
-     	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-     	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+     	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
      	sql.append("\n   where p.fid is not null and pur.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing','PurAudit','ToSign') and tran.FIsValid=0 ");
         sql.append("\n     and NOT EXISTS                                                                                                   ");
         sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -493,8 +567,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
      	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
      	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
      	sql.append(" \n       left outer join t_she_room r  on r.fid = revBill.froomid                               ");
-     	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-     	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+     	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
      	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
      	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
      	sql.append(" \n       and md.fname_l2 !='面积补差款' ");
@@ -535,8 +608,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
    	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
   	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
   	sql.append(" \n       left outer join t_she_room r  on r.fid = revBill.froomid                               ");
- 	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
   	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
   	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
   	sql.append(" \n       and md.fname_l2 !='面积补差款' ");
@@ -574,8 +646,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
      sql.append("\n       left join T_PM_User u  on u.fid = pe.fuserid                                                         ");
      sql.append("\n       left join t_bd_person p  on p.fid = u.FpersonID                                           ");
   	sql.append(" \n       left outer join t_she_room r  on r.fid = pur.froomid                               ");
-  	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
   	sql.append("\n   where pur.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing','PurAudit','ToSign') and tran.fisvalid=0");
   	 sql.append("\n     and NOT EXISTS                                                                                                   ");
      sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -616,8 +687,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
  	sql.append("\n       left join T_PM_User u  on u.fid = sign.FSalesmanID                                                         ");
     sql.append("\n       left join t_bd_person p  on p.fid = u.FpersonID                                                      ");
      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-     sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-     sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+     sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
      sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
      sql.append("         and  sign.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
      sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
@@ -697,8 +767,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
         sql.append("\n             pt.fname_l2 productTypeName,sign.fqdPerson pid                                                                              ");
         sql.append("\n    from t_she_signManage sign                                                                                        ");
         sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-        sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
         sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
         sql.append("\n     and NOT EXISTS                                                                                                   ");
         sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -733,8 +802,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
         sql.append("\n             pt.fname_l2 productTypeName,sign.fqdPerson pid                                                                              ");
         sql.append("\n    from t_she_signManage sign                                                                                        ");
         sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-        sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
         sql.append("\n   where sign.fbizState in ('QRNullify','ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
         sql.append("\n     and NOT EXISTS                                                                                                   ");
         sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -761,8 +829,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
  	  sql.append("\n       left join T_SHE_Transaction tran  on tran.fid = pur.fTransactionid                                                         ");
  	   sql.append("\n       left join T_SHE_PurSaleManEntry pe  on pe.fheadid = pur.fid                                                         ");
  	  	sql.append(" \n       left outer join t_she_room r  on r.fid = pur.froomid                               ");
- 	  	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
- 	  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+ 	  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
  	  	sql.append("\n   where pur.fqdPerson is not null and pur.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing','PurAudit','ToSign') and tran.fisvalid=0");
  	   sql.append("\n     and NOT EXISTS                                                                                                   ");
        sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -808,8 +875,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
      	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
      	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
      	sql.append(" \n       left outer join t_she_room r  on r.fid = revBill.froomid                               ");
-     	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-     	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+     	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
      	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
      	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
      	sql.append(" \n       and md.fname_l2 !='面积补差款' ");
@@ -849,8 +915,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
    	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
   	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
   	sql.append(" \n       left outer join t_she_room r  on r.fid = revBill.froomid                               ");
- 	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
   	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
   	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
   	sql.append(" \n       and md.fname_l2 !='面积补差款' ");
@@ -886,8 +951,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
      sql.append("\n       left join T_SHE_Transaction tran  on tran.fid = pur.fTransactionid                                                         ");
      sql.append("\n       left join T_SHE_PurSaleManEntry pe  on pe.fheadid = pur.fid                                                         ");
   	sql.append(" \n       left outer join t_she_room r  on r.fid = pur.froomid                               ");
-  	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
   	sql.append("\n   where pur.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing','PurAudit','ToSign') and tran.fisvalid=0");
   	 sql.append("\n     and NOT EXISTS                                                                                                   ");
      sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -926,8 +990,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
      sql.append("\n         sum(sign.fdealTotalAmount) contract                                                            ");
      sql.append("\n    from t_she_signManage sign                                                                                        ");
      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-     sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-     sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+     sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
      sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
      sql.append("         and  sign.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
      sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
@@ -1005,8 +1068,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
         sql.append("\n             pt.fname_l2 productTypeName,sign.CFRecommended pid                                                                              ");
         sql.append("\n    from t_she_signManage sign                                                                                        ");
         sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-        sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
         sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
         sql.append("\n     and NOT EXISTS                                                                                                   ");
         sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -1041,8 +1103,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
         sql.append("\n             pt.fname_l2 productTypeName,sign.CFRecommended pid                                                                              ");
         sql.append("\n    from t_she_signManage sign                                                                                        ");
         sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-        sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+        sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
         sql.append("\n   where sign.fbizState in ('QRNullify','ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
         sql.append("\n     and NOT EXISTS                                                                                                   ");
         sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -1070,8 +1131,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
         sql.append("\n       left join T_SHE_Transaction tran  on tran.fid = pur.fTransactionid                                                         ");
         sql.append("\n       left join T_SHE_PurSaleManEntry pe  on pe.fheadid = pur.fid                                                         ");
      	sql.append(" \n       left outer join t_she_room r  on r.fid = pur.froomid                               ");
-     	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-     	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+     	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
      	sql.append("\n   where pur.CFRecommended is not null and pur.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing','PurAudit','ToSign') and tran.fisvalid=0");
      	 sql.append("\n     and NOT EXISTS                                                                                                   ");
          sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -1117,8 +1177,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
      	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
      	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
      	sql.append(" \n       left outer join t_she_room r  on r.fid = revBill.froomid                               ");
-     	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-     	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+     	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
      	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
      	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
      	sql.append(" \n       and md.fname_l2 !='面积补差款' ");
@@ -1158,8 +1217,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
    	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
   	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
   	sql.append(" \n       left outer join t_she_room r  on r.fid = revBill.froomid                               ");
- 	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
   	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
   	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
   	sql.append(" \n       and md.fname_l2 !='面积补差款' ");
@@ -1195,8 +1253,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
      sql.append("\n       left join T_SHE_Transaction tran  on tran.fid = pur.fTransactionid                                                         ");
      sql.append("\n       left join T_SHE_PurSaleManEntry pe  on pe.fheadid = pur.fid                                                         ");
   	sql.append(" \n       left outer join t_she_room r  on r.fid = pur.froomid                               ");
-  	sql.append(" \n       left outer join t_she_building b  on b.fid = r.fbuildingid                          ");
-  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                  ");
+  	sql.append(" \n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                  ");
   	sql.append("\n   where pur.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing','PurAudit','ToSign') and tran.fisvalid=0");
   	 sql.append("\n     and NOT EXISTS                                                                                                   ");
      sql.append("\n   (select tt.fnewId                                                                                                  ");
@@ -1235,8 +1292,7 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
      sql.append("\n         sum(sign.fdealTotalAmount) contract                                                            ");
      sql.append("\n    from t_she_signManage sign                                                                                        ");
      sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-     sql.append("\n       left outer join t_she_building b  on b.fid = r.fbuildingid                                                     ");
-     sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = b.fproducttypeid                                             ");
+     sql.append("\n       left outer join T_FDC_ProductType pt  on pt.fid = r.fproducttypeid                                             ");
      sql.append("\n   where sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
      sql.append("         and  sign.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
      sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );

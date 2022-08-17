@@ -39,6 +39,19 @@ public class AbstractProductTypeInfo extends com.kingdee.eas.fdc.basedata.FDCDat
     {
         put("bgItem", item);
     }
+    /**
+     * Object:产品类型's 属性property 
+     */
+    public com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum getProperty()
+    {
+        return com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum.getEnum(getString("property"));
+    }
+    public void setProperty(com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum item)
+    {
+		if (item != null) {
+        setString("property", item.getValue());
+		}
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("E1203E97");

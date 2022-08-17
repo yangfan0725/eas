@@ -563,6 +563,42 @@ public class ContractFacadeControllerBean extends AbstractContractFacadeControll
         		builder.addBatch(sql.toString());
         		
         		sql = new StringBuffer();
+        		sql.append("update t_con_contractbill a set FCURPROJECTID =(select top 1 fid from T_FDC_CurProject b where b.FPARENTID =a.fcurprojectid) where a.FCURPROJECTID in(select fid from T_FDC_CurProject where FISLEAF =0)");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
+        		sql.append("update t_con_contractwithouttext a set FCURPROJECTID =(select top 1 fid from T_FDC_CurProject b where b.FPARENTID =a.fcurprojectid) where a.FCURPROJECTID in(select fid from T_FDC_CurProject where FISLEAF =0)");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
+        		sql.append("update t_con_changeauditbill a set FCURPROJECTID =(select top 1 fid from T_FDC_CurProject b where b.FPARENTID =a.fcurprojectid) where a.FCURPROJECTID in(select fid from T_FDC_CurProject where FISLEAF =0)");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
+        		sql.append("update t_con_contractchangebill a set FCURPROJECTID =(select top 1 fid from T_FDC_CurProject b where b.FPARENTID =a.fcurprojectid) where a.FCURPROJECTID in(select fid from T_FDC_CurProject where FISLEAF =0)");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
+        		sql.append("update t_con_contractchangesettlebill a set FCURPROJECTID =(select top 1 fid from T_FDC_CurProject b where b.FPARENTID =a.fcurprojectid) where a.FCURPROJECTID in(select fid from T_FDC_CurProject where FISLEAF =0)");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
+        		sql.append("update T_fnc_deductbill a set FCURPROJECTID =(select top 1 fid from T_FDC_CurProject b where b.FPARENTID =a.fcurprojectid) where a.FCURPROJECTID in(select fid from T_FDC_CurProject where FISLEAF =0)");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
+        		sql.append("update t_con_payrequestbill a set FCURPROJECTID =(select top 1 fid from T_FDC_CurProject b where b.FPARENTID =a.fcurprojectid) where a.FCURPROJECTID in(select fid from T_FDC_CurProject where FISLEAF =0)");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
+        		sql.append("update t_cas_paymentbill a set FCURPROJECTID =(select top 1 fid from T_FDC_CurProject b where b.FPARENTID =a.fcurprojectid) where a.FCURPROJECTID in(select fid from T_FDC_CurProject where FISLEAF =0)");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
+        		sql.append("update t_con_contractsettlementbill a set FCURPROJECTID =(select top 1 fid from T_FDC_CurProject b where b.FPARENTID =a.fcurprojectid) where a.FCURPROJECTID in(select fid from T_FDC_CurProject where FISLEAF =0)");
+        		builder.addBatch(sql.toString());
+        		
+        		sql = new StringBuffer();
         		sql.append("update T_SHE_CommerceChanceTrack a set FSALEMANID=(select FSALEMANID from T_SHE_CommerceChance t where t.fid=a.FCOMMERCECHANCEID )where FSALEMANID is null");
         		builder.addBatch(sql.toString());
         				

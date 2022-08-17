@@ -380,7 +380,7 @@ public class DepositDealBillEditUI extends AbstractDepositDealBillEditUI
 		if(getNumberCtrl().isEnabled()) {
 			FDCClientVerifyHelper.verifyEmpty(this, getNumberCtrl());
 		}
-		FDCClientVerifyHelper.verifyEmpty(this, this.txtName);
+//		FDCClientVerifyHelper.verifyEmpty(this, this.txtName);
 		FDCClientVerifyHelper.verifyEmpty(this, this.cbType);
 		if(this.kdtEntry.getRowCount()==0){
 			FDCMsgBox.showWarning(this,"保证金信息不能为空！");

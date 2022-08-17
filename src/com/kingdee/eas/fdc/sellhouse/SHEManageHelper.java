@@ -1079,6 +1079,7 @@ public class SHEManageHelper {
 			info.setMarketUnit(srcInfo.getMarketUnit());
 			info.setCustomerNames(srcInfo.getCustomerNames());
 			info.setCustomerPhone(srcInfo.getCustomerPhone());
+			info.setCustomerCertificateNumber(srcInfo.getCustomerCertificateNumber());
 		}else{
 			info.setBizDate(srcInfo.getBizDate());
 		}
@@ -2967,7 +2968,7 @@ public class SHEManageHelper {
 			value = ParamControlFactory.getRemoteInstance().getParamHashMap(param);
 			
 			String totalIntegerType=SHEManageHelper.ROUND_HALF_UP;
-			String totalDigit=SHEManageHelper.FEN;
+			String totalDigit=SHEManageHelper.YUAN;
 			String priceIntegerType=SHEManageHelper.ROUND_HALF_UP;
 			String priceDigit=SHEManageHelper.FEN;
 			
@@ -3928,7 +3929,7 @@ public class SHEManageHelper {
 							amount = entry.getValue();
 						} else if(entry.getProportion()!=null){
 							BigDecimal proportion = entry.getProportion();
-							amount = totalAmount.multiply(proportion).divide(new BigDecimal("100"), 2, BigDecimal.ROUND_HALF_UP);
+							amount = SHEManageHelper.setScale(digit, toIntegerType,totalAmount.multiply(proportion).divide(new BigDecimal("100"), 2, BigDecimal.ROUND_HALF_UP));
 						}
 					}
 					if(moneyDefineType.equals(MoneyTypeEnum.LoanAmount)||moneyDefineType.equals(MoneyTypeEnum.AccFundAmount)){

@@ -106,12 +106,15 @@ import com.kingdee.eas.fdc.sellhouse.PurchaseManageInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomAttachmentEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.RoomFactory;
 import com.kingdee.eas.fdc.sellhouse.RoomInfo;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillCollection;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillFactory;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerInfo;
 import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
 import com.kingdee.eas.fdc.sellhouse.SHEPayTypeBizTimeEnum;
 import com.kingdee.eas.fdc.sellhouse.SHEPayTypeFactory;
 import com.kingdee.eas.fdc.sellhouse.SHEPayTypeInfo;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
+import com.kingdee.eas.fdc.sellhouse.SellStageEnum;
 import com.kingdee.eas.fdc.sellhouse.SellTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.SignAgioEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.SignAgioEntryInfo;
@@ -1110,7 +1113,7 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 		this.txtDesc.setMaxLength(255);
 		this.tabInformation.remove(this.panelAfterService);
 		
-		if(editData.getSrcId()==null){
+		if(editData.getSrcId()==null||OprtState.VIEW.equals(this.oprtState)){
 			this.btnSetEntry.setEnabled(false);
 		}else{
 			ObjectUuidPK srcpk=new ObjectUuidPK(editData.getSrcId());
@@ -1262,7 +1265,7 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 					SysUtil.abort();
 				}
 				if(this.txtDealTotalAmount.getBigDecimalValue().setScale(digit, toIntegerType).compareTo(room.getProjectStandardPrice().setScale(digit, toIntegerType))<0){
-					FDCMsgBox.showWarning(this,"成交总价不能低于房间项目底价！("+this.txtDealTotalAmount.getBigDecimalValue().setScale(digit, toIntegerType)+"<"+room.getBaseStandardPrice().setScale(digit, toIntegerType)+")");
+					FDCMsgBox.showWarning(this,"成交总价不能低于房间项目底价！("+this.txtDealTotalAmount.getBigDecimalValue().setScale(digit, toIntegerType)+"<"+room.getProjectStandardPrice().setScale(digit, toIntegerType)+")");
 					SysUtil.abort();
 				}
 			}
@@ -1321,9 +1324,24 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 				setInfoFromSrcInfo(objectValue,editData);
 				this.loadFields();
 			}
-			this.btnSetEntry.setEnabled(true);
-		}else{
-			this.btnSetEntry.setEnabled(false);
+		}
+		String param="false";
+		try {
+			param = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_AT");
+		} catch (EASBizException e1) {
+			e1.printStackTrace();
+		} catch (BOSException e1) {
+			e1.printStackTrace();
+		}
+		if("true".equals(param)){
+			if(objectValue!=null&&(objectValue instanceof PurchaseManageInfo)){
+				SHEAttachBillCollection attCol=SHEAttachBillFactory.getRemoteInstance().getSHEAttachBillCollection("select state from where number='"+((BaseTransactionInfo)objectValue).getTransactionID()+"' and room.id='"+room.getId()+"' and sellStage='"+SellStageEnum.RG_VALUE+"'");
+				if(attCol.size()==0){
+					setRoomNull("缺少认购阶段规范性附件，不能进行转签约操作！");
+				}else if(attCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
+					setRoomNull("认购阶段规范性附件未审批，不能进行转签约操作！");
+				}
+			}
 		}
 //		if(srcInfo!=null&&srcInfo instanceof PurchaseManageInfo){
 //			this.f7PayType.setEnabled(false);
@@ -1790,6 +1808,9 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 				e1.printStackTrace();
 			}
 		}
+		this.actionAddLine.setEnabled(false);
+		this.actionInsertLine.setEnabled(false);
+		this.actionRemoveLine.setEnabled(false);
 	}
 	protected void updatePayListByPayType() {
 		try {
@@ -2193,4 +2214,28 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 			}
 		}
     }
+	 public void setOprtState(String oprtType) {
+		 super.setOprtState(oprtType);
+		 if (!OprtState.VIEW.equals(this.oprtState)) {
+			 if(editData!=null){
+				 if(editData.getSrcId()==null){
+						this.btnSetEntry.setEnabled(false);
+					}else{
+						ObjectUuidPK srcpk=new ObjectUuidPK(editData.getSrcId());
+						try {
+							IObjectValue objectValue=DynamicObjectFactory.getRemoteInstance().getValue(srcpk.getObjectType(),srcpk);
+							if((objectValue instanceof PrePurchaseManageInfo)||(objectValue instanceof PurchaseManageInfo)){
+								this.btnSetEntry.setEnabled(true);
+							}else{
+								this.btnSetEntry.setEnabled(false);
+							}
+						} catch (BOSException e) {
+							e.printStackTrace();
+						}
+					}
+			 }
+			}else{
+				this.btnSetEntry.setEnabled(false);
+			}
+	 }
 }

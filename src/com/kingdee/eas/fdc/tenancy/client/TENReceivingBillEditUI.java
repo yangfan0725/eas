@@ -438,7 +438,6 @@ public class TENReceivingBillEditUI extends AbstractTENReceivingBillEditUI {
 					.getRoomPayList();
 			for (int j = 0; j < tenRoomPays.size(); j++) {
 				TenancyRoomPayListEntryInfo tenRoomPay = tenRoomPays.get(j);
-				if(tenRoomPay.isIsUnPay())continue;
 				tenRoomPay.setTenRoom(tenRoom);
 				// by tim_gao 加入合同
 				tenRoomPay.setTenBill(tenancy);
@@ -452,7 +451,6 @@ public class TENReceivingBillEditUI extends AbstractTENReceivingBillEditUI {
 		CRMHelper.sortCollection(tenOtherColl, "leaseSeq", true);
 		for (int i = 0; i < tenOtherColl.size(); i++) {
 			TenBillOtherPayInfo tenOtherInfo = tenOtherColl.get(i);
-			if(tenOtherInfo.isIsUnPay())continue;
 			// by tim_gao 加入合同
 			tenOtherInfo.setHead(tenancy);
 			otherPayList.add(tenOtherInfo);
