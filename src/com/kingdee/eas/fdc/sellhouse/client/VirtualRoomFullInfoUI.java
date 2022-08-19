@@ -56,6 +56,7 @@ import com.kingdee.eas.base.uiframe.client.UIFactoryHelper;
 import com.kingdee.eas.basedata.master.cssp.CustomerCompanyInfoFactory;
 import com.kingdee.eas.basedata.master.cssp.CustomerFactory;
 import com.kingdee.eas.basedata.master.cssp.CustomerInfo;
+import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.common.client.OprtState;
 import com.kingdee.eas.common.client.SysContext;
 import com.kingdee.eas.common.client.UIContext;

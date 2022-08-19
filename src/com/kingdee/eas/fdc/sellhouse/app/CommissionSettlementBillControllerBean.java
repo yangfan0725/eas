@@ -61,83 +61,83 @@ public class CommissionSettlementBillControllerBean extends AbstractCommissionSe
        FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
        StringBuffer sql = new StringBuffer();
        
-       String param="false";
-		try {
-			param = ParamControlFactory.getLocalInstance(ctx).getParamValue(new ObjectUuidPK(ContextUtil.getCurrentOrgUnit(ctx).getId()), "YF_AT");
-		} catch (EASBizException e1) {
-			e1.printStackTrace();
-		} catch (BOSException e1) {
-			e1.printStackTrace();
-		}
-		if("true".equals(param)){
-			 sql.append("\n  /*dialect*/ select  roomName  ");
-		       sql.append("\n   from ( select                                                                                                            ");
-		       sql.append("\n         r.fname_l2 roomName                                                                                              ");
-		       sql.append("\n    from t_she_signManage sign                                                                                        ");
-		       sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-		       sql.append("\n       left outer join t_she_sheattachBill att  on att.fnumber = sign.ftransactionId and r.fid=att.froomId                                                          ");
-		       sql.append("\n   where (att.fid is null or (att.FSellStage='3QY' and att.fstate!='4AUDITTED')) and sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
-		       sql.append("\n     and NOT EXISTS                                                                                                   ");
-		       sql.append("\n   (select tt.fnewId                                                                                                  ");
-		       sql.append("\n            from t_she_changeManage tt                                                                                ");
-		       sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                                          ");
-		       sql.append("\n             and sign.fid = tt.fnewId)                                                                                ");
-		       sql.append("         and  sign.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-		       sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-		       sql.append("\n     and sign.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
-		       
-		       sql.append("\n   union select                                                                                                            ");
-		       sql.append("\n         r.fname_l2 roomName                                                                                             ");
-		       sql.append("\n    from t_she_signManage sign                                                                                        ");
-		       sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
-		       sql.append("\n       left outer join t_she_sheattachBill att  on att.fnumber = sign.ftransactionId and r.fid=att.froomId                                                          ");
-		       sql.append("\n   where (att.fid is null or (att.FSellStage='3QY' and att.fstate!='4AUDITTED')) and sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
-		       sql.append("\n     and NOT EXISTS                                                                                                   ");
-		       sql.append("\n   (select tt.fnewId                                                                                                  ");
-		       sql.append("\n            from t_she_changeManage tt                                                                                ");
-		       sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                                                              ");
-		       sql.append("\n             and sign.fid = tt.fnewId)                                                                                ");
-		       sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-		       sql.append("\n     and sign.fsellprojectid  ='"+sellProjectId+"'                                                                        "); 
-		       sql.append(" \n and EXISTS(select                                                                         "); 
-			   	sql.append(" \n        revBill.frelateTransId                                                            ");    
-			   	sql.append(" \n   from T_BDC_SHERevBill revBill                                                     ");
-			   	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
-			   	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
-			   	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
-			   	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
-				sql.append(" \n       and md.fname_l2 !='面积补差款' ");
-			   	sql.append(" \n       and revBill.fsellprojectid  ='"+sellProjectId+"'" );
-			   	sql.append(" \n       and revBill.fbizDate <to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-			   	sql.append(" \n       and EXISTS (select t.ftransactionid from t_she_signManage t where t.ftransactionid=revBill.frelateTransId and t.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit')) ");
-			   	sql.append(" \n       and  entry.fisCS is null and revBill.frelateTransId=sign.ftransactionId)");
-		       
-		       sql.append(" union select  r.fname_l2 roomName  from t_she_purchaseManage pur     ");
-		    	sql.append(" \n       left outer join t_she_room r  on r.fid = pur.froomid                               ");
-		    	sql.append("\n       left join T_SHE_Transaction tran  on tran.fid = pur.fTransactionid                                                         ");
-		    	sql.append("\n       left outer join t_she_sheattachBill att  on att.fnumber = pur.ftransactionId and r.fid=att.froomId                                                          ");
-		    	sql.append("\n   where (att.fid is null or (att.FSellStage='3QY' and att.fstate!='4AUDITTED')) and pur.fbizState in ('ToSign') and tran.FIsValid=0 ");
-		        sql.append("\n     and NOT EXISTS                                                                                                   ");
-		        sql.append("\n   (select tt.fnewId                                                                                                  ");
-		        sql.append("\n            from t_she_changeManage tt                                                                                ");
-		        sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                                          ");
-		        sql.append("\n             and pur.fid = tt.fnewId)                                                                                ");
-		    	sql.append(" \n       and pur.fsellprojectid  ='"+sellProjectId+"'" );
-		    	sql.append("         and  pur.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-		       sql.append("        and  pur.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
-		    	
-		    	sql.append("\n      )                               ");
-		       
-		       builder.appendSql(sql.toString());
-		       IRowSet rs  = builder.executeQuery();
-		       try {
-				while(rs.next()){
-					throw new EASBizException(new NumericExceptionSubItem("100","房间："+rs.getString("roomName")+" 缺少签约阶段规范性附件或附件未审批，不能进行佣金提取操作！！"));
-			   }}catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		}
+//       String param="false";
+//		try {
+//			param = ParamControlFactory.getLocalInstance(ctx).getParamValue(new ObjectUuidPK(ContextUtil.getCurrentOrgUnit(ctx).getId()), "YF_AT");
+//		} catch (EASBizException e1) {
+//			e1.printStackTrace();
+//		} catch (BOSException e1) {
+//			e1.printStackTrace();
+//		}
+//		if("true".equals(param)){
+//			 sql.append("\n  /*dialect*/ select  roomName  ");
+//		       sql.append("\n   from ( select                                                                                                            ");
+//		       sql.append("\n         r.fname_l2 roomName                                                                                              ");
+//		       sql.append("\n    from t_she_signManage sign                                                                                        ");
+//		       sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
+//		       sql.append("\n       left outer join t_she_sheattachBill att  on att.fnumber = sign.ftransactionId and r.fid=att.froomId                                                          ");
+//		       sql.append("\n   where (att.fid is null or (att.FSellStage='3QY' and att.fstate!='4AUDITTED')) and sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
+//		       sql.append("\n     and NOT EXISTS                                                                                                   ");
+//		       sql.append("\n   (select tt.fnewId                                                                                                  ");
+//		       sql.append("\n            from t_she_changeManage tt                                                                                ");
+//		       sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                                          ");
+//		       sql.append("\n             and sign.fid = tt.fnewId)                                                                                ");
+//		       sql.append("         and  sign.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//		       sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//		       sql.append("\n     and sign.fsellprojectid  ='"+sellProjectId+"'                                                                       ");
+//		       
+//		       sql.append("\n   union select                                                                                                            ");
+//		       sql.append("\n         r.fname_l2 roomName                                                                                             ");
+//		       sql.append("\n    from t_she_signManage sign                                                                                        ");
+//		       sql.append("\n       left outer join t_she_room r  on r.fid = sign.froomid                                                          ");
+//		       sql.append("\n       left outer join t_she_sheattachBill att  on att.fnumber = sign.ftransactionId and r.fid=att.froomId                                                          ");
+//		       sql.append("\n   where (att.fid is null or (att.FSellStage='3QY' and att.fstate!='4AUDITTED')) and sign.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit') ");
+//		       sql.append("\n     and NOT EXISTS                                                                                                   ");
+//		       sql.append("\n   (select tt.fnewId                                                                                                  ");
+//		       sql.append("\n            from t_she_changeManage tt                                                                                ");
+//		       sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                                                              ");
+//		       sql.append("\n             and sign.fid = tt.fnewId)                                                                                ");
+//		       sql.append("        and  sign.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//		       sql.append("\n     and sign.fsellprojectid  ='"+sellProjectId+"'                                                                        "); 
+//		       sql.append(" \n and EXISTS(select                                                                         "); 
+//			   	sql.append(" \n        revBill.frelateTransId                                                            ");    
+//			   	sql.append(" \n   from T_BDC_SHERevBill revBill                                                     ");
+//			   	sql.append(" \n       left join T_BDC_SHERevBillEntry entry  on revBill.fid = entry.fparentid     ");
+//			   	sql.append(" \n       left join t_she_moneyDefine md  on md.fid = entry.fmoneyDefineId                    ");
+//			   	sql.append(" \n       where revBill.fstate in ('4AUDITTED')                 ");
+//			   	sql.append(" \n       and md.fmoneyType in ('FisrtAmount', 'HouseAmount', 'LoanAmount', 'AccFundAmount') ");
+//				sql.append(" \n       and md.fname_l2 !='面积补差款' ");
+//			   	sql.append(" \n       and revBill.fsellprojectid  ='"+sellProjectId+"'" );
+//			   	sql.append(" \n       and revBill.fbizDate <to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//			   	sql.append(" \n       and EXISTS (select t.ftransactionid from t_she_signManage t where t.ftransactionid=revBill.frelateTransId and t.fbizState in ('ChangeNameAuditing', 'QuitRoomAuditing', 'ChangeRoomAuditing', 'SignAudit')) ");
+//			   	sql.append(" \n       and  entry.fisCS is null and revBill.frelateTransId=sign.ftransactionId)");
+//		       
+//		       sql.append(" union select  r.fname_l2 roomName  from t_she_purchaseManage pur     ");
+//		    	sql.append(" \n       left outer join t_she_room r  on r.fid = pur.froomid                               ");
+//		    	sql.append("\n       left join T_SHE_Transaction tran  on tran.fid = pur.fTransactionid                                                         ");
+//		    	sql.append("\n       left outer join t_she_sheattachBill att  on att.fnumber = pur.ftransactionId and r.fid=att.froomId                                                          ");
+//		    	sql.append("\n   where (att.fid is null or (att.FSellStage='3QY' and att.fstate!='4AUDITTED')) and pur.fbizState in ('ToSign') and tran.FIsValid=0 ");
+//		        sql.append("\n     and NOT EXISTS                                                                                                   ");
+//		        sql.append("\n   (select tt.fnewId                                                                                                  ");
+//		        sql.append("\n            from t_she_changeManage tt                                                                                ");
+//		        sql.append("\n           where tt.fstate in ('2SUBMITTED', '3AUDITTING')                                                          ");
+//		        sql.append("\n             and pur.fid = tt.fnewId)                                                                                ");
+//		    	sql.append(" \n       and pur.fsellprojectid  ='"+sellProjectId+"'" );
+//		    	sql.append("         and  pur.fbusAdscriptionDate>=to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//		       sql.append("        and  pur.fbusAdscriptionDate<to_date('"+FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+"','yyyy-mm-dd hh24:mi:ss')" );
+//		    	
+//		    	sql.append("\n      )                               ");
+//		       
+//		       builder.appendSql(sql.toString());
+//		       IRowSet rs  = builder.executeQuery();
+//		       try {
+//				while(rs.next()){
+//					throw new EASBizException(new NumericExceptionSubItem("100","房间："+rs.getString("roomName")+" 缺少签约阶段规范性附件或附件未审批，不能进行佣金提取操作！！"));
+//			   }}catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//		}
 		
 	   builder = new FDCSQLBuilder(ctx);
 	   sql = new StringBuffer();

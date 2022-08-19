@@ -71,7 +71,10 @@ import com.kingdee.eas.fdc.sellhouse.RoomInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomSellStateEnum;
 import com.kingdee.eas.fdc.sellhouse.RoomSignContractInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomTransferFactory;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillCollection;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillFactory;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerInfo;
+import com.kingdee.eas.fdc.sellhouse.SellStageEnum;
 import com.kingdee.eas.fdc.sellhouse.SignChangeStateEnum;
 import com.kingdee.eas.fdc.sellhouse.SignManageFactory;
 import com.kingdee.eas.fdc.sellhouse.SignManageInfo;
@@ -194,6 +197,16 @@ public class SignManageControllerBean extends AbstractSignManageControllerBean
 		DelayPayBillCollection col = DelayPayBillFactory.getLocalInstance(ctx).getDelayPayBillCollection("select newEntry.*,newEntry.moneyDefine.*,* from where state!='4AUDITTED' and room.id='"+info.getRoom().getId().toString()+"' and sourceFunction not like '%QUIT%'");
 		if(col.size()>0){
 			throw new EASBizException(new NumericExceptionSubItem("100","延期申请还未审批结束！"));
+		}
+		String param="false";
+		param = ParamControlFactory.getLocalInstance(ctx).getParamValue(new ObjectUuidPK(ContextUtil.getCurrentOrgUnit(ctx).getId()), "YF_AT");
+		if("true".equals(param)){
+			SHEAttachBillCollection attCol=SHEAttachBillFactory.getLocalInstance(ctx).getSHEAttachBillCollection("select state from where number='"+info.getTransactionID()+"' and room.id='"+info.getRoom().getId()+"' and sellStage='"+SellStageEnum.QY_VALUE+"'");
+			if(attCol.size()==0){
+				throw new EASBizException(new NumericExceptionSubItem("100","缺少签约阶段规范性附件，不能进行签约审批操作！"));
+			}else if(attCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
+				throw new EASBizException(new NumericExceptionSubItem("100","签约阶段规范性附件未审批，不能进行签约审批操作！"));
+			}
 		}
 		
 		SelectorItemCollection selector = new SelectorItemCollection();

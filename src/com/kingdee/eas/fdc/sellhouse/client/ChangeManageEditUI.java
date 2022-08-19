@@ -3691,7 +3691,7 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 	        sic.add("building.number");
 	        sic.add("building.name");
 	        RoomInfo roomInfo=RoomFactory.getRemoteInstance().getRoomInfo(new ObjectUuidPK(((RoomInfo) this.f7Room.getValue()).getId()),sic);
-	        String context=this.kdtAttachEntry.getRow(e.getRowIndex()).getCell("context").getValue().toString();
+	        String context="（"+this.kdtAttachEntry.getRow(e.getRowIndex()).getCell("context").getValue().toString()+"）";
 	        info.setBeizhu(roomInfo.getBuilding().getSellProject().getOrgUnit().getName()+"/"+roomInfo.getBuilding().getSellProject().getName()+"/"+roomInfo.getBuilding().getNumber()+"-"+roomInfo.getBuilding().getName()+"/"+roomInfo.getName()+"/"+context);
 	        String multi = (String)getUIContext().get("MultiapproveAttachment");
 	        if(multi != null && multi.equals("true")){
@@ -3705,7 +3705,8 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 	
 	protected void verifyInput(ActionEvent e) throws Exception {
 		super.verifyInput(e);
-		if("true".equals(param)){
+		Object isFromWorkflow = getUIContext().get("isFromWorkflow");
+		if("true".equals(param)&&isFromWorkflow != null&&isFromWorkflow.toString().equals("true")){
 			if(this.kdtAttachEntry.getRowCount()==0){
 				FDCMsgBox.showWarning(this,"附件清单不能为空！");
 				SysUtil.abort();

@@ -347,7 +347,45 @@ public class SellControlUI extends AbstractSellControlUI {
 		if(node!=null && !(node.getUserObject() instanceof PlanisphereInfo)) SetSelectRoomColor(e.getPrevSelectBlock());
 		RoomInfo room = this.getSelectRoom();
 		if(room == null){
-			return ;
+			sclPanel.setVisible(false);
+			Map actionMap= (Map)getUIContext().get("actionMap"); 
+			
+			ActionBuyingRoomPlan actionBuyingRoomPlan = (ActionBuyingRoomPlan)actionMap.get("actionBuyingRoomPlan");
+			ActionKeepDown actionKeepDown = (ActionKeepDown)actionMap.get("actionKeepDown"); 
+			ActionControl actionControl = (ActionControl)actionMap.get("actionControl"); 
+			ActionCancelKeepDown actionCancelKeepDown = (ActionCancelKeepDown)actionMap.get("actionCancelKeepDown");
+			ActionSinPurchase actionSinPurchase = (ActionSinPurchase)actionMap.get("actionSinPurchase");
+			ActionPrePurchase actionPrePurchase = (ActionPrePurchase)actionMap.get("actionPrePurchase");
+			ActionPurchase actionPurchase = (ActionPurchase)actionMap.get("actionPurchase");
+			AcionSignContract acionSignContract = (AcionSignContract)actionMap.get("acionSignContract");
+			ActionReceiveBill actionReceiveBill = (ActionReceiveBill)actionMap.get("actionReceiveBill");
+			ActionCustomer actionCustomer = (ActionCustomer)actionMap.get("actionCustomer");
+			ActionCustomerChangeName actionCustomerChangeName = (ActionCustomerChangeName)actionMap.get("actionCustomerChangeName");
+			ActionChangeRoom actionChangeRoom = (ActionChangeRoom)actionMap.get("actionChangeRoom");
+			ActionQuitRoom actionQuitRoom = (ActionQuitRoom)actionMap.get("actionQuitRoom");
+			ActionPriceChange actionPriceChange = (ActionPriceChange)actionMap.get("actionPriceChange");
+			KDWorkButton btnSpecialBiz =(KDWorkButton)actionMap.get("btnSpecialBiz");
+			KDMenu menuSpecialBiz =(KDMenu)actionMap.get("menuSpecialBiz");
+			
+			actionBuyingRoomPlan.setEnabled(false);
+			actionKeepDown.setEnabled(false);
+			actionControl.setEnabled(false);
+			actionCancelKeepDown.setEnabled(false);
+			actionSinPurchase.setEnabled(false);
+			actionPrePurchase.setEnabled(false);
+			actionPurchase.setEnabled(false);
+			acionSignContract.setEnabled(false);
+			actionReceiveBill.setEnabled(false);
+			actionCustomer.setEnabled(false);
+			actionCustomerChangeName.setEnabled(false);
+			actionChangeRoom.setEnabled(false);
+			actionQuitRoom.setEnabled(false);
+			actionPriceChange.setEnabled(false);
+			btnSpecialBiz.setEnabled(false);
+			menuSpecialBiz.setEnabled(false);
+			return;
+		}else{
+			sclPanel.setVisible(true);
 		}
 		changeButtonState();
 		RoomSellStateEnum state = room.getSellState();
@@ -382,7 +420,7 @@ public class SellControlUI extends AbstractSellControlUI {
 			this.getUIContext().put("sincerityPurchaseTable",detailUI.getUIContext().get("sincerityPurchaseTable"));
 			// detailUI.setDataObject(detailUI.onLoad());
 			// detailUI.loadFields();
-		}		
+		}
 		
 		//Ä£ÄâÐü¸¡
 		KDTView view = (KDTView)this.tblMain.getViewManager().getView(5);

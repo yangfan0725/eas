@@ -40,6 +40,7 @@ import com.kingdee.bos.ctrl.kdf.table.KDTGroupManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectBlock;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTStyleConstants;
+import com.kingdee.bos.ctrl.kdf.table.event.KDTDataRequestEvent;
 import com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment;
 import com.kingdee.bos.ctrl.swing.KDMenuItem;
 import com.kingdee.bos.ctrl.swing.KDTree;
@@ -340,7 +341,6 @@ public class IntentListUI extends AbstractIntentListUI
     	actionMap.put("actionPriceChange",actionPriceChange);
     	actionMap.put("btnSpecialBiz",btnSpecialBiz);
     	actionMap.put("menuSpecialBiz",menuSpecialBiz);
-    	
     }
 	private void initRoomQuery() throws Exception{
 		if (detailUI == null) {
@@ -1451,5 +1451,4 @@ public class IntentListUI extends AbstractIntentListUI
 		IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.MODEL).create(SpecialDiscountEditUI.class.getName(), uiContext, null, OprtState.ADDNEW);
 		uiWindow.show();
 	}
-
 }

@@ -148,9 +148,6 @@ public class SHEAttachBillEditUI extends AbstractSHEAttachBillEditUI
 		
 		this.contEntry.setTitle("¸½¼þÇåµ¥");
 		
-		this.cbSellStage.removeItem(SellStageEnum.RGBG);
-		this.cbSellStage.removeItem(SellStageEnum.QYBG);
-		
 		if(this.getUIContext().get("VR")!=null){
 			this.actionSave.setVisible(false);
 			this.actionSubmit.setVisible(false);
@@ -293,6 +290,8 @@ public class SHEAttachBillEditUI extends AbstractSHEAttachBillEditUI
 					}
 				}
 	    	}
+	    	this.cbSellStage.removeItem(SellStageEnum.RGBG);
+			this.cbSellStage.removeItem(SellStageEnum.QYBG);
     	} catch (EASBizException e) {
 			e.printStackTrace();
 		} catch (BOSException e) {

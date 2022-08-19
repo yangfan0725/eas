@@ -217,6 +217,7 @@ import com.kingdee.eas.fdc.basedata.client.FDCContractParamUI;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.basedata.client.FDCUIWeightWorker;
 import com.kingdee.eas.fdc.basedata.client.IFDCWork;
+import com.kingdee.eas.fdc.contract.BankNumFactory;
 import com.kingdee.eas.fdc.contract.BankNumInfo;
 import com.kingdee.eas.fdc.contract.ConNoCostSplitCollection;
 import com.kingdee.eas.fdc.contract.ConNoCostSplitFactory;
@@ -512,9 +513,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		if (editData.getState() == FDCBillStateEnum.SUBMITTED) {
 			actionSave.setEnabled(false);
 		}
-		if(!FDCBillStateEnum.SAVED.equals(editData.getState())){
-			this.prmtpartB.setEnabled(false);
-		}
+//		if(!FDCBillStateEnum.SAVED.equals(editData.getState())){
+//			this.prmtpartB.setEnabled(false);
+//		}
 		//±Ò±ðÑ¡Ôñ
 		GlUtils.setSelectedItem(comboCurrency, editData.getCurrency());
 
@@ -633,73 +634,85 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		} catch (BOSException e) {
 			e.printStackTrace();
 		}
-		if(this.editData.getContractType()!=null){
-			if(this.editData.getContractType().isIsTA()){
-				this.prmtTAEntry.setEnabled(true);
-				this.prmtTAEntry.setRequired(true);
-				this.prmtpartB.setEnabled(false);
-				if(ContractPropertyEnum.SUPPLY.equals(this.editData.getContractPropert())){
-					this.prmtTAEntry.setEnabled(false);
-					this.prmtTAEntry.setRequired(false);
-					this.prmtpartB.setEnabled(false);
-				}else{
+		fillDetailByPropert(this.editData.getContractPropert(),this.editData.getContractType());
+//		if(this.editData.getContractType()!=null){
+//			if(this.editData.getContractType().isIsTA()){
+//				this.prmtTAEntry.setEnabled(true);
+//				this.prmtTAEntry.setRequired(true);
+//				this.prmtpartB.setEnabled(false);
+//				if(ContractPropertyEnum.SUPPLY.equals(this.editData.getContractPropert())){
+//					this.prmtTAEntry.setEnabled(false);
+//					this.prmtTAEntry.setRequired(false);
+//					this.prmtpartB.setEnabled(false);
+//				}else{
+////					this.prmtpartB.setEnabled(true);
+//				}
+//			}else{
+//				this.prmtTAEntry.setEnabled(false);
+//				this.prmtTAEntry.setRequired(false);
+//				this.prmtTAEntry.setValue(null);
+//				if(ContractPropertyEnum.SUPPLY.equals(this.editData.getContractPropert())){
+//					this.prmtpartB.setEnabled(false);
+//				}else{
+//					if(FDCBillStateEnum.SAVED.equals(editData.getState())){
+//						this.prmtpartB.setEnabled(true);
+//					}else{
+//						this.prmtpartB.setEnabled(false);
+//					}
+//				}
+//			}
+//			String paramValue="true";
+//			try {
+//				paramValue = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_MARKETPROJECTCONTRACT");
+//			} catch (EASBizException e) {
+//				e.printStackTrace();
+//			} catch (BOSException e) {
+//				e.printStackTrace();
+//			}
+//			
+//			if(this.editData.getContractType().isIsMarket()&&"true".equals(paramValue)){
+//				this.prmtMarketProject.setEnabled(true);
+//				this.prmtMarketProject.setRequired(true);
+//				this.prmtMpCostAccount.setEnabled(true);
+//				this.prmtMpCostAccount.setRequired(true);
+//				this.cbJzType.setRequired(true);
+//				this.pkJzStartDate.setRequired(true);
+//				this.pkJzEndDate.setRequired(true);
+//				this.actionMALine.setEnabled(true);
+//				this.actionMRLine.setEnabled(true);
+//			}else{
+//				this.prmtMarketProject.setEnabled(false);
+//				this.prmtMarketProject.setRequired(false);
+//				this.prmtMpCostAccount.setEnabled(false);
+//				this.prmtMpCostAccount.setRequired(false);
+//				this.cbJzType.setRequired(false);
+//				this.pkJzStartDate.setRequired(false);
+//				this.pkJzEndDate.setRequired(false);
+//				this.actionMALine.setEnabled(false);
+//				this.actionMRLine.setEnabled(false);
+//			}
+//		}else{
+//			this.prmtTAEntry.setEnabled(false);
+//			this.prmtTAEntry.setRequired(false);
+//			this.prmtTAEntry.setValue(null);
+//			if(ContractPropertyEnum.SUPPLY.equals(this.editData.getContractPropert())){
+//				this.prmtTAEntry.setEnabled(false);
+//				this.prmtTAEntry.setRequired(false);
+//				this.prmtpartB.setEnabled(false);
+//			}else{
+//				if(FDCBillStateEnum.SAVED.equals(editData.getState())){
 //					this.prmtpartB.setEnabled(true);
-				}
-			}else{
-				this.prmtTAEntry.setEnabled(false);
-				this.prmtTAEntry.setRequired(false);
-				this.prmtTAEntry.setValue(null);
-			}
-			String paramValue="true";
-			try {
-				paramValue = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_MARKETPROJECTCONTRACT");
-			} catch (EASBizException e) {
-				e.printStackTrace();
-			} catch (BOSException e) {
-				e.printStackTrace();
-			}
-			
-			if(this.editData.getContractType().isIsMarket()&&"true".equals(paramValue)){
-				this.prmtMarketProject.setEnabled(true);
-				this.prmtMarketProject.setRequired(true);
-				this.prmtMpCostAccount.setEnabled(true);
-				this.prmtMpCostAccount.setRequired(true);
-				this.cbJzType.setRequired(true);
-				this.pkJzStartDate.setRequired(true);
-				this.pkJzEndDate.setRequired(true);
-				this.actionMALine.setEnabled(true);
-				this.actionMRLine.setEnabled(true);
-			}else{
-				this.prmtMarketProject.setEnabled(false);
-				this.prmtMarketProject.setRequired(false);
-				this.prmtMpCostAccount.setEnabled(false);
-				this.prmtMpCostAccount.setRequired(false);
-				this.cbJzType.setRequired(false);
-				this.pkJzStartDate.setRequired(false);
-				this.pkJzEndDate.setRequired(false);
-				this.actionMALine.setEnabled(false);
-				this.actionMRLine.setEnabled(false);
-			}
-		}else{
-			this.prmtTAEntry.setEnabled(false);
-			this.prmtTAEntry.setRequired(false);
-			this.prmtTAEntry.setValue(null);
-			if(ContractPropertyEnum.SUPPLY.equals(this.editData.getContractPropert())){
-				this.prmtTAEntry.setEnabled(false);
-				this.prmtTAEntry.setRequired(false);
-				this.prmtpartB.setEnabled(false);
-			}else{
-				if(FDCBillStateEnum.SAVED.equals(editData.getState())){
-					this.prmtpartB.setEnabled(true);
-				}
-			}
-			this.prmtMarketProject.setEnabled(false);
-			this.prmtMarketProject.setRequired(false);
-			this.prmtMpCostAccount.setEnabled(false);
-			this.prmtMpCostAccount.setEnabled(false);
-			this.actionMALine.setEnabled(false);
-			this.actionMRLine.setEnabled(false);
-		}
+//				}else{
+//					this.prmtpartB.setEnabled(false);
+//				}
+//			}
+//			this.prmtMarketProject.setEnabled(false);
+//			this.prmtMarketProject.setRequired(false);
+//			this.prmtMpCostAccount.setEnabled(false);
+//			this.prmtMpCostAccount.setEnabled(false);
+//			this.actionMALine.setEnabled(false);
+//			this.actionMRLine.setEnabled(false);
+//		}
 		if(this.editData.getTaEntry()!=null){
 			try {
 				String	name = TenderAccepterResultFactory.getRemoteInstance().getTenderAccepterResultInfo(new ObjectUuidPK(this.editData.getTaEntry().getParent().getId().toString())).getName();
@@ -1380,6 +1393,10 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 //							
 //						}
 					}
+				}else{
+					prmtFwContractTemp.setValue(null);
+					textFwContract.setText(null);
+					editData.setProgrammingContract(null);
 				}
 			} else {
 				name = null;
@@ -1497,6 +1514,11 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtTAEntry.setEnabled(false);
 				this.prmtTAEntry.setRequired(false);
 				this.prmtTAEntry.setValue(null);
+				if(ContractPropertyEnum.SUPPLY.equals(contractProp)){
+					this.prmtpartB.setEnabled(false);
+				}else{
+					this.prmtpartB.setEnabled(true);
+				}
 			}
 			String paramValue="true";
 			try {
@@ -1539,9 +1561,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtTAEntry.setRequired(false);
 				this.prmtpartB.setEnabled(false);
 			}else{
-				if(FDCBillStateEnum.SAVED.equals(editData.getState())){
-					this.prmtpartB.setEnabled(true);
-				}
+				this.prmtpartB.setEnabled(true);
 			}
 			this.prmtMarketProject.setEnabled(false);
 			this.prmtMarketProject.setRequired(false);
@@ -1556,6 +1576,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		if(contractProp == ContractPropertyEnum.SUPPLY){
 			this.prmtlandDeveloper.setEnabled(false);
 			
+			this.prmtLxNum.setEnabled(false);
 			this.txtBank.setEnabled(false);
 			this.txtBankAccount.setEnabled(false);
 			this.cbTaxerQua.setEnabled(false);
@@ -1563,6 +1584,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		}else{
 			this.prmtlandDeveloper.setEnabled(true);
 			
+			this.prmtLxNum.setEnabled(true);
 			this.txtBank.setEnabled(true);
 			this.txtBankAccount.setEnabled(true);
 			this.cbTaxerQua.setEnabled(true);
@@ -2856,6 +2878,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		
 		this.actionMALine.setVisible(false);
 		this.actionMRLine.setVisible(false);
+		
+		this.actionAddNew.setVisible(false);
+		this.actionCopy.setVisible(false);
 	}
 	protected void prmtTAEntry_dataChanged(DataChangeEvent e) throws Exception {
 		this.tblInvite.removeRows();
@@ -3207,6 +3232,11 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtTAEntry.setEnabled(false);
 				this.prmtTAEntry.setRequired(false);
 				this.prmtTAEntry.setValue(null);
+				if(ContractPropertyEnum.SUPPLY.equals(this.contractPropert.getSelectedItem())){
+					this.prmtpartB.setEnabled(false);
+				}else{
+					this.prmtpartB.setEnabled(true);
+				}
 			}
 			String paramValue="true";
 			try {
@@ -3258,9 +3288,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtTAEntry.setRequired(false);
 				this.prmtpartB.setEnabled(false);
 			}else{
-				if(FDCBillStateEnum.SAVED.equals(editData.getState())){
-					this.prmtpartB.setEnabled(true);
-				}
+				this.prmtpartB.setEnabled(true);
 			}
 			
 			this.prmtMarketProject.setEnabled(false);
@@ -4297,7 +4325,8 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		}else if (this.contractPropert.getSelectedItem() == ContractPropertyEnum.STRATEGY) {
 			this.txtamount.setEnabled(false);
 		}
-		
+		fillDetailByPropert((ContractPropertyEnum) this.contractPropert.getSelectedItem(),(ContractTypeInfo) this.prmtcontractType.getValue());
+		this.txtNumber.setEnabled(false);
 		if(this.editData.getOaState()!=null&&this.editData.getOaState().equals("1")){
 			this.prmtcontractType.setEnabled(false);
 			this.txtcontractName.setEnabled(false);
@@ -4984,6 +5013,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				this.prmtlandDeveloper.setValue(null);
 				this.prmtpartB.setValue(null);
 				
+				this.prmtLxNum.setValue(null);
 				this.txtBank.setText(null);
 				this.txtBankAccount.setText(null);
 				this.cbTaxerQua.setSelectedItem(null);
@@ -4998,6 +5028,12 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 					this.prmtpartB.setValue(SupplierFactory.getRemoteInstance().getSupplierInfo(new ObjectUuidPK(contractBillInfo.getPartB().getId())));
 				}
 				contractBillInfo =ContractBillFactory.getRemoteInstance().getContractBillInfo(new ObjectUuidPK(contractBillInfo.getId()));
+				if(contractBillInfo.getLxNum()!=null){
+					this.prmtLxNum.setValue(BankNumFactory.getRemoteInstance().getBankNumInfo(new ObjectUuidPK(contractBillInfo.getLxNum().getId())));
+				}else{
+					this.prmtLxNum.setValue(null);
+					this.prmtLxNum.setEnabled(true);
+				}
 				this.txtBank.setText(contractBillInfo.getBank());
 				this.txtBankAccount.setText(contractBillInfo.getBankAccount());
 				this.cbTaxerQua.setSelectedItem(contractBillInfo.getTaxerQua());
