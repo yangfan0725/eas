@@ -680,16 +680,7 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 			txtRoomArea.setValue(FDCHelper.ZERO);
 		}
 	}
-	private String param="false";
 	public void onLoad() throws Exception {
-		
-		try {
-			param = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_AT");
-		} catch (EASBizException e1) {
-			e1.printStackTrace();
-		} catch (BOSException e1) {
-			e1.printStackTrace();
-		}
 		initTblAttachProperty();
 		initTblPayList(this.tblPayList);
 		initTblPayList(this.tblQRPayList);
@@ -728,9 +719,7 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 //		this.kdtEntry.getColumn("context").setRequired(true);
 		this.kdtAttachEntry.getColumn("attach").getStyleAttributes().setFontColor(Color.BLUE);
 		
-		if("true".equals(param)){
-			this.actionAttachment.setVisible(false);
-		}
+		this.actionAttachment.setVisible(false);
 	}
 	private void initCustomer() {
 		this.labCustomer1.setForeground(Color.BLUE);
@@ -2139,9 +2128,7 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 			panelPriceChange.setName(PRICECHANGE);
 			tabInformation.add(panelPriceChange);
 		}
-		if("true".equals(param)){
-			tabInformation.add(this.kdtAttachEntry,"附件清单");
-		}
+		tabInformation.add(this.kdtAttachEntry,"附件清单");
 		panelSourceBill.setName(SOURCEBILL);
 		tabInformation.add(panelSourceBill);
 	}
@@ -3706,7 +3693,7 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 	protected void verifyInput(ActionEvent e) throws Exception {
 		super.verifyInput(e);
 		Object isFromWorkflow = getUIContext().get("isFromWorkflow");
-		if("true".equals(param)&&isFromWorkflow != null&&isFromWorkflow.toString().equals("true")){
+		if(isFromWorkflow != null&&isFromWorkflow.toString().equals("true")){
 			if(this.kdtAttachEntry.getRowCount()==0){
 				FDCMsgBox.showWarning(this,"附件清单不能为空！");
 				SysUtil.abort();
