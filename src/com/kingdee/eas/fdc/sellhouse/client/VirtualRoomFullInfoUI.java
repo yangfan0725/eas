@@ -1884,6 +1884,7 @@ public class VirtualRoomFullInfoUI extends AbstractVirtualRoomFullInfoUI
 				tabBizInfo.add(tblAttach,"正常交易附件清单");
 				for(int i=0;i<tblAttach.getColumnCount();i++){
 		    		KDTableHelper.autoFitColumnWidth(tblAttach, i);
+		    		tblAttach.getColumn(i).setWidth(tblAttach.getColumn(i).getWidth()+20);
 		    	}
 			}
 		}
@@ -1976,6 +1977,7 @@ public class VirtualRoomFullInfoUI extends AbstractVirtualRoomFullInfoUI
 				mergerTable((KDTable) tableList.get(i),new String[]{"id"},new String[]{"state","room","customer","productTypeProperty","sellType","sellStage","creator","createTime","auditor","auditTime"});
 				for(int j=0;j<((KDTable) tableList.get(i)).getColumnCount();j++){
 		    		KDTableHelper.autoFitColumnWidth((KDTable) tableList.get(i), j);
+		    		((KDTable) tableList.get(i)).getColumn(j).setWidth(((KDTable) tableList.get(i)).getColumn(j).getWidth()+20);
 		    	}
 			}
 		}

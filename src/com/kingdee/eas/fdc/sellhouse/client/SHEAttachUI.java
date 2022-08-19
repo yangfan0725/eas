@@ -247,6 +247,7 @@ public class SHEAttachUI extends AbstractSHEAttachUI
 				CRMClientHelper.getFootRow(tblMain, new String[]{"projectStandardPrice","backAmount","quitBackAmount","buildingArea","roomArea","ibasement","ibaInnside","standardTotalAmount","dealTotalAmount","actualBuildingArea","actualRoomArea","sellAmount","baseStandardPrice"});
 				for(int i=0;i<tblMain.getColumnCount();i++){
 		    		KDTableHelper.autoFitColumnWidth(tblMain, i);
+		    		tblMain.getColumn(i).setWidth(tblMain.getColumn(i).getWidth()+20);
 		    	}
             }
         } );
@@ -523,6 +524,7 @@ public class SHEAttachUI extends AbstractSHEAttachUI
 				kDTabbedPane1.add(tblAttach,"正常交易附件清单");
 				for(int i=0;i<tblAttach.getColumnCount();i++){
 		    		KDTableHelper.autoFitColumnWidth(tblAttach, i);
+		    		tblAttach.getColumn(i).setWidth(tblAttach.getColumn(i).getWidth()+20);
 		    	}
 			}
 		}
@@ -615,6 +617,7 @@ public class SHEAttachUI extends AbstractSHEAttachUI
 				mergerTable((KDTable) tableList.get(i),new String[]{"id"},new String[]{"state","room","customer","productTypeProperty","sellType","sellStage","creator","createTime","auditor","auditTime"});
 				for(int j=0;j<((KDTable) tableList.get(i)).getColumnCount();j++){
 		    		KDTableHelper.autoFitColumnWidth((KDTable) tableList.get(i), j);
+		    		((KDTable) tableList.get(i)).getColumn(j).setWidth(((KDTable) tableList.get(i)).getColumn(j).getWidth()+20);
 		    	}
 			}
 		}
