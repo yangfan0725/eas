@@ -206,6 +206,10 @@ public class FPClearUI extends AbstractFPClearUI
     		FDCMsgBox.showWarning(this,"发票导出日期不能超过一个月！");
     		return;
     	}
+    	if(offset-1<0){
+    		FDCMsgBox.showWarning(this,"无发票数据！");
+    		return;
+    	}
     	Map map = ContractWithoutTextFactory.getRemoteInstance().getMKFP((Date)this.pkStartDate.getValue(), (Date)this.pkEndDate.getValue(),offset-1);
 		Iterator<Entry<String, JSONObject>> entries = map.entrySet().iterator();
 		if(map.entrySet().size()>0){

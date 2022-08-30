@@ -40,6 +40,7 @@ import com.kingdee.eas.fdc.basecrm.RevBillStatusEnum;
 import com.kingdee.eas.fdc.basecrm.RevBizTypeEnum;
 import com.kingdee.eas.fdc.basecrm.RevListInfo;
 import com.kingdee.eas.fdc.basecrm.TransferSourceEntryInfo;
+import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
 import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
 import com.kingdee.eas.fdc.sellhouse.BaseTransactionInfo;
 import com.kingdee.eas.fdc.sellhouse.BillAdjustCollection;
@@ -95,9 +96,12 @@ import com.kingdee.eas.fdc.sellhouse.RoomPropertyBookFactory;
 import com.kingdee.eas.fdc.sellhouse.RoomSellStateEnum;
 import com.kingdee.eas.fdc.sellhouse.RoomSignContractCollection;
 import com.kingdee.eas.fdc.sellhouse.RoomSignContractFactory;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillCollection;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillFactory;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerInfo;
 import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
 import com.kingdee.eas.fdc.sellhouse.SellAreaTypeEnum;
+import com.kingdee.eas.fdc.sellhouse.SellStageEnum;
 import com.kingdee.eas.fdc.sellhouse.SignManageFactory;
 import com.kingdee.eas.fdc.sellhouse.SignManageInfo;
 import com.kingdee.eas.fdc.sellhouse.SignPayListEntryCollection;
@@ -106,6 +110,8 @@ import com.kingdee.eas.fdc.sellhouse.SincerityPurchaseCollection;
 import com.kingdee.eas.fdc.sellhouse.SincerityPurchaseFactory;
 import com.kingdee.eas.fdc.sellhouse.TrackRecordFactory;
 import com.kingdee.eas.fdc.sellhouse.TranLinkEnum;
+import com.kingdee.eas.fdc.sellhouse.TransactionCollection;
+import com.kingdee.eas.fdc.sellhouse.TransactionFactory;
 import com.kingdee.eas.fm.common.FMHelper;
 import com.kingdee.eas.framework.Result;
 import com.kingdee.eas.util.app.ContextUtil;
@@ -1485,27 +1491,26 @@ public class RoomControllerBean extends AbstractRoomControllerBean {
 						e1.printStackTrace();
 					}
 					if("true".equals(param)){
-						FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
 					    for (int i = 0; i < roomIdList.size(); i++) {
 							RoomInfo  room=  (RoomInfo)roomIdList.get(i);
-							 StringBuffer sqlbuffer = new StringBuffer();
-							    sqlbuffer.append("\n   /*dialect*/ select r.fname_l2 roomName from t_she_room r left join T_SHE_Transaction tran on tran.froomid=r.fid      ");
-							    sqlbuffer.append("\n   left join t_she_sheattachBill att on att.fnumber = tran.fid and r.fid=att.froomId    ");
-							    sqlbuffer.append("\n   where (att.fid is null or (att.FSellStage='5WQ' and att.fstate!='4AUDITTED')) and tran.FIsValid=0 and r.fid='"+room.getId().toString()+"'");
+							EntityViewInfo view=new EntityViewInfo();
+							FilterInfo filter = new FilterInfo();
+							filter.getFilterItems().add(new FilterItemInfo("room.id", room.getId().toString()));
+							filter.getFilterItems().add(new FilterItemInfo("isValid", new Boolean(false)));
+							view.setFilter(filter);
 							
-							builder.appendSql(sqlbuffer.toString());
-							IRowSet rs  = builder.executeQuery();
-						    try {
-								while(rs.next()){
-									throw new EASBizException(new NumericExceptionSubItem("100","房间："+rs.getString("roomName")+" 缺少网签阶段规范性附件或附件未审批，不能进行实测复核操作！！"));
-							   }}catch (SQLException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
+							TransactionCollection col=TransactionFactory.getLocalInstance(ctx).getTransactionCollection(view);
+							if(col.size()==0){
+								throw new EASBizException(new NumericExceptionSubItem("100","房间："+room.getName()+" 当前无有效交易，不能进行实测复核操作！"));
+							}
+							SHEAttachBillCollection attCol=SHEAttachBillFactory.getLocalInstance(ctx).getSHEAttachBillCollection("select state from where number='"+col.get(0).getId()+"' and room.id='"+room.getId().toString()+"' and sellStage='"+SellStageEnum.WQ_VALUE+"'");
+							if(attCol.size()==0){
+								throw new EASBizException(new NumericExceptionSubItem("100","房间："+room.getName()+" 缺少网签阶段规范性附件，不能进行实测复核操作！"));
+							}else if(!attCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
+								throw new EASBizException(new NumericExceptionSubItem("100","房间："+room.getName()+" 网签阶段规范性附件未审批，不能进行实测复核操作！"));
+							}
 						}
-					    
 					}
-			     
 				String sql = "update t_she_room set FIsActualAreaAudited=?,FIsActAudited=?,FActChangeState=?,FIsChangeSellArea=?,FsellAreaType=? where fid=?";
 				FDCSQLBuilder sqlBuilder = new FDCSQLBuilder(ctx);
 				sqlBuilder.setPrepareStatementSql(sql);

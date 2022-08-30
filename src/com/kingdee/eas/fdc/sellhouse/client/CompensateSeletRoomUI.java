@@ -186,7 +186,9 @@ public class CompensateSeletRoomUI extends AbstractCompensateSeletRoomUI {
 		filter.getFilterItems().add(new FilterItemInfo("isActualAreaAudited", Boolean.TRUE));
 //		filter.getFilterItems().add(new FilterItemInfo("roomArea.compensateState", null,CompareType.EQUALS));
 		
-		filter.getFilterItems().add(new FilterItemInfo("signManage.id", signId,CompareType.NOTINCLUDE));
+		if(signId.size()>0){
+			filter.getFilterItems().add(new FilterItemInfo("signManage.id", signId,CompareType.NOTINCLUDE));
+		}
 	
 		// 合并查询条件
 		viewInfo = (EntityViewInfo) mainQuery.clone();

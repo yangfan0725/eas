@@ -121,6 +121,13 @@ public class RoomSourceReportFacadeControllerBean extends AbstractRoomSourceRepo
 				
 				mapList.put("projectStandardPrice", rowSet.getBigDecimal("projectStandardPrice"));
 				mapList.put("projectBuildPrice", rowSet.getBigDecimal("projectBuildPrice"));
+				
+				mapList.put("rgAttId", rowSet.getString("rgAttId"));
+				mapList.put("qyAttId", rowSet.getString("qyAttId"));
+				mapList.put("wqAttId", rowSet.getString("wqAttId"));
+				mapList.put("jfAttId", rowSet.getString("jfAttId"));
+				
+				mapList.put("property", rowSet.getString("property"));
 				list.add(mapList);
 			}
 		} catch (SQLException e) {
@@ -138,7 +145,7 @@ public class RoomSourceReportFacadeControllerBean extends AbstractRoomSourceRepo
     	RptParams para = (RptParams)params.get("param");
     	StringBuilder sql = new StringBuilder();
     	//小订、大订、签约、待售
-    	sql.append(" select * from (select distinct b.fnumber bnumber,r.funit,r.ffloor,r.fnumber rnumber,b.fname_l2 build,rmt.fname_l2 roomModelType,r.FID id,pt.FName_l2 productType,case when keep.fid is null then r.FSellState else '销控' end FSellState,t.FBusAdscriptionDate,r.FName_l2 name,rm.Fname_l2 roomModel,r.FBuildingArea,r.FRoomArea, " +
+    	sql.append(" select * from (select distinct pt.fproperty property,rgAtt.fid rgAttId,qyAtt.fid qyAttId,wqAtt.fid wqAttId,jfAtt.fid jfAttId,b.fnumber bnumber,r.funit,r.ffloor,r.fnumber rnumber,b.fname_l2 build,rmt.fname_l2 roomModelType,r.FID id,pt.FName_l2 productType,case when keep.fid is null then r.FSellState else '销控' end FSellState,t.FBusAdscriptionDate,r.FName_l2 name,rm.Fname_l2 roomModel,r.FBuildingArea,r.FRoomArea, " +
     			" r.FIbaseMent,r.FIBaInnside,r.FBuildPrice,r.FRoomPrice,r.FStandardTotalAmount,r.FActualBuildingArea,r.FActualRoomArea, " +
     			" r.fbaseStandardPrice baseStandardPrice,r.fprojectStandardPrice projectStandardPrice,r.fprojectBuildingPrice projectBuildPrice,r.fbaseRoomPrice baseRoomPrice,r.fbaseBuildingPrice baseBuildPrice,t.FDealBuildPrice,t.FDealRoomPrice,t.FDealTotalAmount,t.FSellAmount,r.fdescription_l2 description,tt.backAmount,quittt.backAmount quitBackAmount,t.fcustomernames customer,rj.FActualFinishDate joinDate,rj.fjoinState joinState from t_she_Room r " +
     			" left join T_SHE_RoomModel rm on rm.FID = r.FRoomModelID " +
@@ -159,6 +166,10 @@ public class RoomSourceReportFacadeControllerBean extends AbstractRoomSourceRepo
     	" where trans.FIsValid=0 and revBill.fstate in('2SUBMITTED','4AUDITTED') and md.fmoneyType in('FisrtAmount','HouseAmount','LoanAmount','AccFundAmount') group by revBill.froomId) tt on tt.froomId=r.fid "+
     	
     	" left join T_SHE_RoomJoin rj on rj.froomid=r.fid "+
+    	" left join (select att.froomId,att.fid from T_SHE_SHEAttachBill att left join T_SHE_Transaction trans on trans.fid=att.fnumber where trans.FIsValid=0 and att.fstate='4AUDITTED' and att.FSellStage='1RG' ) rgAtt on rgAtt.froomid=r.fid "+
+    	" left join (select att.froomId,att.fid from T_SHE_SHEAttachBill att left join T_SHE_Transaction trans on trans.fid=att.fnumber where trans.FIsValid=0 and att.fstate='4AUDITTED' and att.FSellStage='3QY' ) qyAtt on qyAtt.froomid=r.fid "+
+    	" left join (select att.froomId,att.fid from T_SHE_SHEAttachBill att left join T_SHE_Transaction trans on trans.fid=att.fnumber where trans.FIsValid=0 and att.fstate='4AUDITTED' and att.FSellStage='5WQ' ) wqAtt on wqAtt.froomid=r.fid "+
+    	" left join (select att.froomId,att.fid from T_SHE_SHEAttachBill att left join T_SHE_Transaction trans on trans.fid=att.fnumber where trans.FIsValid=0 and att.fstate='4AUDITTED' and att.FSellStage='6JF' ) jfAtt on jfAtt.froomid=r.fid "+
     	" where 1=1 ");
 		if(para.getObject("buildUnit")!=null){
 			BuildingUnitInfo buildUnit = (BuildingUnitInfo)para.getObject("buildUnit");

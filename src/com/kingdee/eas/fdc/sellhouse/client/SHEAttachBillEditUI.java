@@ -246,7 +246,7 @@ public class SHEAttachBillEditUI extends AbstractSHEAttachBillEditUI
 	        sic.add("building.name");
 	        RoomInfo roomInfo=RoomFactory.getRemoteInstance().getRoomInfo(new ObjectUuidPK(((RoomInfo) this.prmtRoom.getValue()).getId()),sic);
 	        String context="（"+this.kdtEntry.getRow(e.getRowIndex()).getCell("context").getValue().toString()+"）";
-	        info.setBeizhu(roomInfo.getBuilding().getSellProject().getOrgUnit().getName()+"/"+roomInfo.getBuilding().getSellProject().getName()+"/"+roomInfo.getBuilding().getNumber()+"-"+roomInfo.getBuilding().getName()+"/"+roomInfo.getName()+"/"+context);
+	        info.setBeizhu("SHEATTACH/"+roomInfo.getBuilding().getSellProject().getOrgUnit().getName()+"/"+roomInfo.getBuilding().getSellProject().getName()+"/"+roomInfo.getBuilding().getNumber()+"-"+roomInfo.getBuilding().getName()+"/"+roomInfo.getName()+"/"+context);
 	        String multi = (String)getUIContext().get("MultiapproveAttachment");
 	        if(multi != null && multi.equals("true")){
 	        	acm.showAttachmentListUIByBoIDNoAlready(this, info);
@@ -537,7 +537,8 @@ public class SHEAttachBillEditUI extends AbstractSHEAttachBillEditUI
 		handleOldData();
 		setAuditButtonStatus(STATUS_VIEW);
 	}
-	protected void verifyInput(ActionEvent e) throws Exception {
+	protected void verifyInputForSubmint() throws Exception {
+		super.verifyInputForSubmint();
 		FDCClientVerifyHelper.verifyEmpty(this, this.txtCustomer);
 		FDCClientVerifyHelper.verifyEmpty(this, this.cbProductTypeProperty);
 		FDCClientVerifyHelper.verifyEmpty(this, this.cbSellStage);
@@ -569,6 +570,32 @@ public class SHEAttachBillEditUI extends AbstractSHEAttachBillEditUI
 					SysUtil.abort();
 				}
 			}
+		}
+		if(!((SellStageEnum)this.cbSellStage.getSelectedItem()).equals(SellStageEnum.RGBG)&&
+				!((SellStageEnum)this.cbSellStage.getSelectedItem()).equals(SellStageEnum.QYBG)){
+			FilterInfo filter = new FilterInfo();
+			filter.getFilterItems().add(new FilterItemInfo("number", this.editData.getNumber()));
+			filter.getFilterItems().add(new FilterItemInfo("productTypeProperty", ((ProductTypePropertyEnum)this.cbProductTypeProperty.getSelectedItem()).getValue()));
+			filter.getFilterItems().add(new FilterItemInfo("sellStage", ((SellStageEnum)this.cbSellStage.getSelectedItem()).getValue()));
+			filter.getFilterItems().add(new FilterItemInfo("sellType", ((SellTypeEnum)this.cbSellType.getSelectedItem()).getValue()));
+			filter.getFilterItems().add(new FilterItemInfo("room.id", ((RoomInfo)this.prmtRoom.getValue()).getId().toString()));
+			if (this.editData.getId() != null) {
+				filter.getFilterItems().add(new FilterItemInfo(IFWEntityStruct.coreBase_ID, this.editData.getId(), CompareType.NOTEQUALS));
+			}
+			if(SHEAttachBillFactory.getRemoteInstance().exists(filter)){
+				FDCMsgBox.showWarning(this,"该附件清单类型已存在！");
+				SysUtil.abort();
+			}
+		}
+	}
+	protected void verifyInputForSave()throws Exception{
+		FDCClientVerifyHelper.verifyEmpty(this, this.txtCustomer);
+		FDCClientVerifyHelper.verifyEmpty(this, this.cbProductTypeProperty);
+		FDCClientVerifyHelper.verifyEmpty(this, this.cbSellStage);
+		FDCClientVerifyHelper.verifyEmpty(this, this.cbSellType);
+		if(this.kdtEntry.getRowCount()==0){
+			FDCMsgBox.showWarning(this,"附件清单不能为空！");
+			SysUtil.abort();
 		}
 		if(!((SellStageEnum)this.cbSellStage.getSelectedItem()).equals(SellStageEnum.RGBG)&&
 				!((SellStageEnum)this.cbSellStage.getSelectedItem()).equals(SellStageEnum.QYBG)){

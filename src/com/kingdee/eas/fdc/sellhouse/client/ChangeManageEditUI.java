@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -73,6 +74,7 @@ import com.kingdee.bos.ui.UIFocusTraversalPolicy;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.ui.face.UIException;
 import com.kingdee.bos.util.BOSUuid;
+import com.kingdee.bos.workflow.AssignmentInfo;
 import com.kingdee.eas.base.attachment.AttachmentFactory;
 import com.kingdee.eas.base.attachment.BizobjectFacadeFactory;
 import com.kingdee.eas.base.attachment.BoAttchAssoCollection;
@@ -718,8 +720,6 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 //		this.kdtEntry.getColumn("property").setRequired(true);
 //		this.kdtEntry.getColumn("context").setRequired(true);
 		this.kdtAttachEntry.getColumn("attach").getStyleAttributes().setFontColor(Color.BLUE);
-		
-		this.actionAttachment.setVisible(false);
 	}
 	private void initCustomer() {
 		this.labCustomer1.setForeground(Color.BLUE);
@@ -3679,7 +3679,7 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 	        sic.add("building.name");
 	        RoomInfo roomInfo=RoomFactory.getRemoteInstance().getRoomInfo(new ObjectUuidPK(((RoomInfo) this.f7Room.getValue()).getId()),sic);
 	        String context="（"+this.kdtAttachEntry.getRow(e.getRowIndex()).getCell("context").getValue().toString()+"）";
-	        info.setBeizhu(roomInfo.getBuilding().getSellProject().getOrgUnit().getName()+"/"+roomInfo.getBuilding().getSellProject().getName()+"/"+roomInfo.getBuilding().getNumber()+"-"+roomInfo.getBuilding().getName()+"/"+roomInfo.getName()+"/"+context);
+	        info.setBeizhu("SHEATTACH/"+roomInfo.getBuilding().getSellProject().getOrgUnit().getName()+"/"+roomInfo.getBuilding().getSellProject().getName()+"/"+roomInfo.getBuilding().getNumber()+"-"+roomInfo.getBuilding().getName()+"/"+roomInfo.getName()+"/"+context);
 	        String multi = (String)getUIContext().get("MultiapproveAttachment");
 	        if(multi != null && multi.equals("true")){
 	        	acm.showAttachmentListUIByBoIDNoAlready(this, info);
@@ -3694,6 +3694,10 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 		super.verifyInput(e);
 		Object isFromWorkflow = getUIContext().get("isFromWorkflow");
 		if(isFromWorkflow != null&&isFromWorkflow.toString().equals("true")){
+			AssignmentInfo as=(AssignmentInfo)getUIContext().get("WfAssignmentInfo");
+			if(as!=null&&as.getActDefName(Locale.CHINA).indexOf("修改")>=0){
+				return;
+			}
 			if(this.kdtAttachEntry.getRowCount()==0){
 				FDCMsgBox.showWarning(this,"附件清单不能为空！");
 				SysUtil.abort();

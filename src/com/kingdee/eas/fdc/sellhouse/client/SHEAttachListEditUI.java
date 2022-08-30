@@ -104,6 +104,11 @@ public class SHEAttachListEditUI extends AbstractSHEAttachListEditUI
 				this.kdtEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtEntry.getColumnIndex("context"));
 				SysUtil.abort();
 			}
+			if(context.indexOf("/")>=0){
+				FDCMsgBox.showWarning(this,"内容不能包含字符'/'！");
+				this.kdtEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtEntry.getColumnIndex("context"));
+				SysUtil.abort();
+			}
 		}
 		FilterInfo filter = new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("productTypeProperty", ((ProductTypePropertyEnum)this.cbProductTypeProperty.getSelectedItem()).getValue()));

@@ -1113,6 +1113,8 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 		this.txtDesc.setMaxLength(255);
 		this.tabInformation.remove(this.panelAfterService);
 		
+		this.comboSellType.setEnabled(false);
+		
 		if(editData.getSrcId()==null||OprtState.VIEW.equals(this.oprtState)){
 			this.btnSetEntry.setEnabled(false);
 		}else{
@@ -1338,7 +1340,7 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 				SHEAttachBillCollection attCol=SHEAttachBillFactory.getRemoteInstance().getSHEAttachBillCollection("select state from where number='"+((BaseTransactionInfo)objectValue).getTransactionID()+"' and room.id='"+room.getId()+"' and sellStage='"+SellStageEnum.RG_VALUE+"'");
 				if(attCol.size()==0){
 					setRoomNull("缺少认购阶段规范性附件，不能进行转签约操作！");
-				}else if(attCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
+				}else if(!attCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
 					setRoomNull("认购阶段规范性附件未审批，不能进行转签约操作！");
 				}
 			}

@@ -985,6 +985,9 @@ public class RoomAreaInputNewUI extends AbstractRoomAreaInputNewUI {
 						.read(row.getCell("id").getValue().toString()));
 
 			}
+			if (row.getCell("name").getValue() != null) {
+				room.setName(row.getCell("name").getValue().toString());
+			}
 			if (row.getCell("isPlanAudited").getValue() != null) {
 				room.setIsPlanAudited(((Boolean) row.getCell("isPlanAudited")
 						.getValue()).booleanValue());

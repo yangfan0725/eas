@@ -25,6 +25,8 @@ import org.apache.log4j.Logger;
 
 import com.kingdee.bos.BOSException;
 import com.kingdee.bos.ui.face.CoreUIObject;
+import com.kingdee.bos.ui.face.IUIWindow;
+import com.kingdee.bos.ui.face.UIFactory;
 import com.kingdee.bos.ctrl.kdf.table.IColumn;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTDataRequestManager;
@@ -34,21 +36,32 @@ import com.kingdee.bos.ctrl.kdf.table.KDTStyleConstants;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.kdf.table.KDTableHelper;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTDataRequestEvent;
+import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent;
+import com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment;
 import com.kingdee.bos.ctrl.swing.tree.DefaultKingdeeTreeNode;
 import com.kingdee.bos.dao.IObjectValue;
+import com.kingdee.eas.base.attachment.client.AttachmentUIContextInfo;
+import com.kingdee.eas.base.attachment.common.AttachmentClientManager;
+import com.kingdee.eas.base.attachment.common.AttachmentManagerFactory;
 import com.kingdee.eas.base.permission.client.longtime.ILongTimeTask;
 import com.kingdee.eas.basedata.org.OrgStructureInfo;
+import com.kingdee.eas.common.client.OprtState;
+import com.kingdee.eas.common.client.UIContext;
+import com.kingdee.eas.common.client.UIFactoryName;
 import com.kingdee.eas.fdc.basecrm.client.CRMClientHelper;
 import com.kingdee.eas.fdc.basecrm.client.CRMTreeHelper;
 import com.kingdee.eas.fdc.basecrm.client.FDCSysContext;
 import com.kingdee.eas.fdc.basedata.FDCHelper;
 import com.kingdee.eas.fdc.basedata.ProductTypeInfo;
+import com.kingdee.eas.fdc.basedata.ProductTypePropertyEnum;
 import com.kingdee.eas.fdc.sellhouse.BuildingInfo;
 import com.kingdee.eas.fdc.sellhouse.BuildingUnitInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomSellStateEnum;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
 import com.kingdee.eas.fdc.sellhouse.client.FDCTreeHelper;
+import com.kingdee.eas.fdc.sellhouse.client.SHEAttachBillEditUI;
 import com.kingdee.eas.framework.*;
 import com.kingdee.eas.framework.report.ICommRptBase;
 import com.kingdee.eas.framework.report.client.CommRptBaseConditionUI;
@@ -164,6 +177,32 @@ public class RoomSourceReportUI extends AbstractRoomSourceReportUI
 					row.getCell("projectStandardPrice").setValue(detialMap.get("projectStandardPrice"));
 					row.getCell("projectBuildPrice").setValue(detialMap.get("projectBuildPrice"));
 					
+					row.getCell("rgAtt").setUserObject(detialMap.get("rgAttId"));
+					row.getCell("qyAtt").setUserObject(detialMap.get("qyAttId"));
+					row.getCell("wqAtt").setUserObject(detialMap.get("wqAttId"));
+					row.getCell("jfAtt").setUserObject(detialMap.get("jfAttId"));
+					
+					if(detialMap.get("rgAttId")!=null){
+						row.getCell("rgAtt").setValue(Boolean.TRUE);
+					}else{
+						row.getCell("rgAtt").setValue(Boolean.FALSE);
+					}
+					if(detialMap.get("qyAttId")!=null){
+						row.getCell("qyAtt").setValue(Boolean.TRUE);
+					}else{
+						row.getCell("qyAtt").setValue(Boolean.FALSE);
+					}
+					if(detialMap.get("wqAttId")!=null){
+						row.getCell("wqAtt").setValue(Boolean.TRUE);
+					}else{
+						row.getCell("wqAtt").setValue(Boolean.FALSE);
+					}
+					if(detialMap.get("jfAttId")!=null){
+						row.getCell("jfAtt").setValue(Boolean.TRUE);
+					}else{
+						row.getCell("jfAtt").setValue(Boolean.FALSE);
+					}
+					
 					BigDecimal sellAmount=FDCHelper.toBigDecimal(detialMap.get("sellAmount"));
 					BigDecimal backAmount=FDCHelper.toBigDecimal(detialMap.get("backAmount"));
 					boolean isColor=false;
@@ -173,6 +212,11 @@ public class RoomSourceReportUI extends AbstractRoomSourceReportUI
 					}
 					if(isColor&&sellAmount.compareTo(backAmount)==0){
 						row.getStyleAttributes().setBackground(new Color(128,255,128));
+					}
+					
+					if(detialMap.get("property")!=null&&ProductTypePropertyEnum.getEnum(detialMap.get("property").toString()).equals(ProductTypePropertyEnum.CW)){
+						row.getCell("wqAtt").setValue("X");
+						row.getCell("jfAtt").setValue("X");
 					}
 				}
 				tblMain.setRowCount(list.size());
@@ -212,6 +256,9 @@ public class RoomSourceReportUI extends AbstractRoomSourceReportUI
 		tblMain.getColumn("baseRoomPrice").getStyleAttributes().setHided(true);
 		tblMain.getColumn("dealRoomPrice").getStyleAttributes().setHided(true);
 		tblMain.getColumn("standardRoomPrice").getStyleAttributes().setHided(true);
+		
+		tblMain.getColumn("wqAtt").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.CENTER);
+		tblMain.getColumn("jfAtt").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.CENTER);
 	}
 	
 	protected void initTable(){
@@ -312,4 +359,22 @@ public class RoomSourceReportUI extends AbstractRoomSourceReportUI
 			query();
 		}
 	}
+
+	@Override
+	protected void tblMain_tableClicked(KDTMouseEvent e) throws Exception {
+		if (e.getType() == KDTStyleConstants.BODY_ROW && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2){
+			if(tblMain.getColumnKey(e.getColIndex()).equals("rgAtt")||tblMain.getColumnKey(e.getColIndex()).equals("qyAtt")
+					||tblMain.getColumnKey(e.getColIndex()).equals("wqAtt")||tblMain.getColumnKey(e.getColIndex()).equals("jfAtt")) {
+				if(tblMain.getRow(e.getRowIndex()).getCell(e.getColIndex()).getUserObject()==null) return;
+				String id=tblMain.getRow(e.getRowIndex()).getCell(e.getColIndex()).getUserObject().toString();
+				UIContext uiContext = new UIContext(this);
+				uiContext.put(UIContext.OWNER, this);
+				uiContext.put("ID", id);
+				uiContext.put("VR", Boolean.TRUE);
+				IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.MODEL).create(SHEAttachBillEditUI.class.getName(), uiContext, null, OprtState.VIEW);
+				uiWindow.show();
+			}
+		}
+	}
+	
 }

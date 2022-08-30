@@ -22,17 +22,10 @@ public class AttachmentFtpHandleFacadeControllerBean extends AbstractAttachmentF
             protected boolean _upload(Context ctx, String attachmentId, String fileId)
                 throws BOSException, EASBizException
             {
-/*  34*/        FtpConfigInfo ftpConfigInfo = null;
+/*  34*/        FtpConfigInfo ftpConfigInfo = FtpConfigHelper.getFtpConfig(ctx);
 /*  35*/        AttachmentInfo attachmentInfo = AttachmentHelper.getAttachmentInfo(ctx, attachmentId);
 /*  36*/        String remotePath = null;
 				if(attachmentInfo.getBoAttchAsso().get(0).getAssoBusObjType().equals("08C8DF31")||attachmentInfo.getBoAttchAsso().get(0).getAssoBusObjType().equals("1A4B8B7D")){
-					String oql = "select id,host,port,userName,password,rootPath where name ='SHEATTACH'";
-					FtpConfigCollection coll = FtpConfigFactory.getLocalInstance(ctx).getFtpConfigCollection(oql);
-					if(coll == null || coll.size() == 0){
-						throw new FtpException(FtpException.FTPNOTFOUND);
-					}else{
-						ftpConfigInfo=coll.get(0);
-					}
 					remotePath=attachmentInfo.getBeizhu()+attachmentInfo.getName()+"."+attachmentInfo.getSimpleName();
 					FilterInfo filter=new FilterInfo();
 					filter.getFilterItems().add(new FilterItemInfo("remotePath",remotePath));
@@ -40,7 +33,6 @@ public class AttachmentFtpHandleFacadeControllerBean extends AbstractAttachmentF
 						throw new EASBizException(new NumericExceptionSubItem("100","附件名重复！"));
 					}
 				}else{
-					ftpConfigInfo = FtpConfigHelper.getFtpConfig(ctx);
 					remotePath = FtpConfigHelper.getRemotePath(ctx, ftpConfigInfo.getRootPath(), attachmentInfo);
 				}
 /*  37*/        FtpHandleFacadeFactory.getLocalInstance(ctx).upload(ftpConfigInfo, fileId, remotePath);
@@ -50,17 +42,10 @@ public class AttachmentFtpHandleFacadeControllerBean extends AbstractAttachmentF
             protected boolean _upload(Context ctx, IObjectValue attachmentInfo)
                 throws BOSException, EASBizException
             {
-/*  47*/        FtpConfigInfo ftpConfigInfo = null;
+/*  47*/        FtpConfigInfo ftpConfigInfo = FtpConfigHelper.getFtpConfig(ctx);
 /*  48*/        AttachmentInfo attachmentInfo2 = (AttachmentInfo)attachmentInfo;
 				String remotePath=null;
 				if(attachmentInfo2.getBoAttchAsso().get(0).getAssoBusObjType().equals("08C8DF31")||attachmentInfo2.getBoAttchAsso().get(0).getAssoBusObjType().equals("1A4B8B7D")){
-					String oql = "select id,host,port,userName,password,rootPath where name ='SHEATTACH'";
-					FtpConfigCollection coll = FtpConfigFactory.getLocalInstance(ctx).getFtpConfigCollection(oql);
-					if(coll == null || coll.size() == 0){
-						 throw new FtpException(FtpException.FTPNOTFOUND);
-					}else{
-						ftpConfigInfo=coll.get(0);
-					}
 					remotePath=attachmentInfo2.getBeizhu()+attachmentInfo2.getName()+"."+attachmentInfo2.getSimpleName();
 					FilterInfo filter=new FilterInfo();
 					filter.getFilterItems().add(new FilterItemInfo("remotePath",remotePath));
@@ -68,7 +53,6 @@ public class AttachmentFtpHandleFacadeControllerBean extends AbstractAttachmentF
 						throw new EASBizException(new NumericExceptionSubItem("100","附件名重复！"));
 					}
 				}else{
-					ftpConfigInfo = FtpConfigHelper.getFtpConfig(ctx);
 					remotePath = FtpConfigHelper.getRemotePath(ctx, ftpConfigInfo.getRootPath(), attachmentInfo2);
 				}
 				FtpHandleFacadeFactory.getLocalInstance(ctx).upload(ftpConfigInfo, attachmentInfo2.getFile(), remotePath);

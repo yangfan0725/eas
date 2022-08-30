@@ -204,7 +204,7 @@ public class SignManageControllerBean extends AbstractSignManageControllerBean
 			SHEAttachBillCollection attCol=SHEAttachBillFactory.getLocalInstance(ctx).getSHEAttachBillCollection("select state from where number='"+info.getTransactionID()+"' and room.id='"+info.getRoom().getId()+"' and sellStage='"+SellStageEnum.QY_VALUE+"'");
 			if(attCol.size()==0){
 				throw new EASBizException(new NumericExceptionSubItem("100","缺少签约阶段规范性附件，不能进行签约审批操作！"));
-			}else if(attCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
+			}else if(!attCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
 				throw new EASBizException(new NumericExceptionSubItem("100","签约阶段规范性附件未审批，不能进行签约审批操作！"));
 			}
 		}
