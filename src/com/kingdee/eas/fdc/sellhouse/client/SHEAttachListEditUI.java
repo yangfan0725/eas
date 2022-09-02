@@ -141,10 +141,13 @@ public class SHEAttachListEditUI extends AbstractSHEAttachListEditUI
 	}
 	public void onLoad() throws Exception {
 		super.onLoad();
+		
+		this.actionCopy.setVisible(true);
 		this.txtDescription.setMaxLength(255);
 		this.txtNumber.setRequired(true);
 		this.txtName.setRequired(true);
 		this.cbProductTypeProperty.setRequired(true);
+		this.cbProductTypeProperty.setEnabled(true);
 		
 		KDWorkButton btnAddRowinfo = new KDWorkButton();
     	KDWorkButton btnInsertRowinfo = new KDWorkButton();

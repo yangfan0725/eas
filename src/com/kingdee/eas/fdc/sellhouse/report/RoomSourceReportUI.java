@@ -214,7 +214,7 @@ public class RoomSourceReportUI extends AbstractRoomSourceReportUI
 						row.getStyleAttributes().setBackground(new Color(128,255,128));
 					}
 					
-					if(detialMap.get("property")!=null&&ProductTypePropertyEnum.getEnum(detialMap.get("property").toString()).equals(ProductTypePropertyEnum.CW)){
+					if(detialMap.get("property")!=null&&(ProductTypePropertyEnum.getEnum(detialMap.get("property").toString()).equals(ProductTypePropertyEnum.CW)||ProductTypePropertyEnum.getEnum(detialMap.get("property").toString()).equals(ProductTypePropertyEnum.QT))){
 						row.getCell("wqAtt").setValue("X");
 						row.getCell("jfAtt").setValue("X");
 					}
