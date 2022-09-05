@@ -1037,6 +1037,7 @@ public class SHESellProjectEditUI extends AbstractSHESellProjectEditUI {
 		checkDumpName();
 		checkCompanyOrgUnit();
 		checkProject();
+		FDCClientVerifyHelper.verifyEmpty(this, this.cbDoProperty);
 //		if(editData.getParent()==null){
 //			FDCClientVerifyHelper.verifyEmpty(this, this.prmtProjectBase);
 //			FilterInfo filter = new FilterInfo();

@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -1006,8 +1007,8 @@ public class PurchaseManageEditUI extends AbstractPurchaseManageEditUI
 	}
 
 	protected IObjectValue createNewData() {
-		
 		PurchaseManageInfo info=new PurchaseManageInfo();
+		info.setId(BOSUuid.create(info.getBOSType()));
 		info.setOrgUnit(SysContext.getSysContext().getCurrentOrgUnit().castToFullOrgUnitInfo());
 		info.setCU(SysContext.getSysContext().getCurrentCtrlUnit());
 		info.setValuationType(CalcTypeEnum.PriceByTotalAmount);
@@ -1315,6 +1316,28 @@ public class PurchaseManageEditUI extends AbstractPurchaseManageEditUI
 			RoomSellStateEnum sellState=RoomFactory.getRemoteInstance().getRoomInfo(new ObjectUuidPK(room.getId()),sic).getSellState();
 			if(!RoomSellStateEnum.OnShow.equals(sellState)&&!RoomSellStateEnum.Purchase.equals(sellState)&&!RoomSellStateEnum.SincerPurchase.equals(sellState)){
 				setRoomNull("房间已经存在其他业务单据！");
+			}
+		}
+		boolean isSet=false;
+		if(editData!=null){
+			PurchaseManageCollection purCol=PurchaseManageFactory.getRemoteInstance().getPurchaseManageCollection("select room.id from where id='"+editData.getId()+"'");
+			if(purCol.size()>0&&purCol.get(0).getRoom()!=null&&!purCol.get(0).getRoom().getId().toString().equals(room.getId().toString())){
+				isSet=true;
+			}
+		}
+		if(STATUS_ADDNEW.equals(this.getOprtState())||isSet){
+			if(room.getPriceDate()==null){
+				setRoomNull("房间定价期限为空，请检查！");
+			}
+			Date busDate=FDCCommonServerHelper.getServerTimeStamp();
+			Calendar cal = new GregorianCalendar();
+			cal.setTime(room.getPriceDate());
+			cal.set(11, 0);
+			cal.set(12, 0);
+			cal.set(13, 0);
+			cal.set(14, 0);
+			if(FDCDateHelper.getDiffDays(cal.getTime(), busDate)>1){
+				setRoomNull("本次认购超出定价期限，请进行房间调价再认购！");
 			}
 		}
 	}

@@ -9,7 +9,9 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -102,6 +104,8 @@ import com.kingdee.eas.fdc.sellhouse.PurPayListEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.PurRoomAttachmentEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.PurSaleManEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.PurSaleManEntryInfo;
+import com.kingdee.eas.fdc.sellhouse.PurchaseManageCollection;
+import com.kingdee.eas.fdc.sellhouse.PurchaseManageFactory;
 import com.kingdee.eas.fdc.sellhouse.PurchaseManageInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomAttachmentEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.RoomFactory;
@@ -119,6 +123,7 @@ import com.kingdee.eas.fdc.sellhouse.SellTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.SignAgioEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.SignAgioEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.SignCustomerEntryInfo;
+import com.kingdee.eas.fdc.sellhouse.SignManageCollection;
 import com.kingdee.eas.fdc.sellhouse.SignManageFactory;
 import com.kingdee.eas.fdc.sellhouse.SignManageInfo;
 import com.kingdee.eas.fdc.sellhouse.SignPayListEntryCollection;
@@ -869,6 +874,7 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 	}
 	protected IObjectValue createNewData() {
 		SignManageInfo info=new SignManageInfo();
+		info.setId(BOSUuid.create(info.getBOSType()));
 		//是放这个组织么
 		info.setOrgUnit(SysContext.getSysContext().getCurrentOrgUnit().castToFullOrgUnitInfo());
 		info.setCU(SysContext.getSysContext().getCurrentCtrlUnit());
@@ -1315,11 +1321,15 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 		}
 		IObjectValue objectValue=SHEManageHelper.getCurTransactionBill(room.getId());
 		if(objectValue!=null&&((objectValue instanceof PrePurchaseManageInfo)||(objectValue instanceof PurchaseManageInfo))){
+			if(editData!=null&&editData.getSrcId()!=null&&editData.getSrcId().getType().equals(new SincerityPurchaseInfo().getBOSType())){
+				setRoomNull("该房间已存在认购单,不能进行转签约操作！");
+			}
 			TransactionStateEnum curState=((BaseTransactionInfo)objectValue).getBizState();
 			if(!TransactionStateEnum.PREAUDIT.equals(curState)&&!TransactionStateEnum.PURAUDIT.equals(curState)){
 				setRoomNull("该房间对应业务单据不是审批状态，不能进行转签约操作！");
 			}
 			if(editData!=null&&editData.getSrcId()==null){
+				this.btnSetEntry.setEnabled(true);
 				srcInfo=(BaseTransactionInfo)objectValue;
 				editData.setSrcId(((BaseTransactionInfo)objectValue).getId());
 				editData.setRoom(room);
@@ -1348,6 +1358,30 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 //		if(srcInfo!=null&&srcInfo instanceof PurchaseManageInfo){
 //			this.f7PayType.setEnabled(false);
 //		}
+		boolean isSet=false;
+		if(editData!=null){
+			SignManageCollection signCol=SignManageFactory.getRemoteInstance().getSignManageCollection("select room.id from where id='"+editData.getId()+"'");
+			if(signCol.size()>0&&signCol.get(0).getRoom()!=null&&!signCol.get(0).getRoom().getId().toString().equals(room.getId().toString())){
+				isSet=true;
+			}
+		}
+		if(STATUS_ADDNEW.equals(this.getOprtState())||isSet){
+			if(room.getPriceDate()==null){
+				setRoomNull("房间定价期限为空，请检查！");
+			}
+			if(editData!=null&&(editData.getSrcId()==null||(editData.getSrcId()!=null&&!editData.getSrcId().getType().equals(new PurchaseManageInfo().getBOSType())))){
+				Date busDate=FDCCommonServerHelper.getServerTimeStamp();
+				Calendar cal = new GregorianCalendar();
+				cal.setTime(room.getPriceDate());
+				cal.set(11, 0);
+				cal.set(12, 0);
+				cal.set(13, 0);
+				cal.set(14, 0);
+				if(FDCDateHelper.getDiffDays(cal.getTime(), busDate)>1){
+					setRoomNull("本次签约超出定价期限，请进行房间调价再签约！");
+				}
+			}
+		}
 	}
 	protected void updateAmount(){
 		isEditDealAmount=false;

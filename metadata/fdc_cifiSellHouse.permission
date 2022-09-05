@@ -24885,6 +24885,316 @@
                 </bizRef>
             </bizRefs>
         </permissionItem>
+        <permissionItem>
+            <innerID>7a155f21-b108-4ab4-a45c-5be595126669PERMITEM</innerID>
+            <name>fdcshe_noTradingSell_view</name>
+            <alias>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_view].alias</alias>
+            <description>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_view].description</description>
+            <type>READ</type>
+            <groupName>EAS系统.199营销服务管理.20售楼管理.60交易管理.260非操盘项目销售回款确认单</groupName>
+            <group>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_view].group</group>
+            <userDefined>true</userDefined>
+            <entityObjectRef>
+                <entityType>AE89813E</entityType>
+                <userDefined>true</userDefined>
+                <metadataRef>
+                    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+                    <name>NoTradingSellBill</name>
+                    <bosType>enty</bosType>
+                </metadataRef>
+            </entityObjectRef>
+            <bizRefs>
+                <bizRef>
+                    <id>7479619c-8adf-439f-aaf1-ce30319a498e</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillEditUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionOnLoad</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+                <bizRef>
+                    <id>0ff6a3c9-1fd6-4c3d-bc40-d82ca34db0d1</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillListUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionOnLoad</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                        <bizProperty>
+                            <property>ActionView</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+            </bizRefs>
+        </permissionItem>
+        <permissionItem>
+            <innerID>b726aed1-94da-4e26-b578-c1ed891f062fPERMITEM</innerID>
+            <name>fdcshe_noTradingSell_addnew</name>
+            <alias>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_addnew].alias</alias>
+            <description>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_addnew].description</description>
+            <type>ADDNEW</type>
+            <groupName>EAS系统.199营销服务管理.20售楼管理.60交易管理.260非操盘项目销售回款确认单</groupName>
+            <group>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_addnew].group</group>
+            <userDefined>true</userDefined>
+            <entityObjectRef>
+                <entityType>AE89813E</entityType>
+                <userDefined>true</userDefined>
+                <metadataRef>
+                    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+                    <name>NoTradingSellBill</name>
+                    <bosType>enty</bosType>
+                </metadataRef>
+            </entityObjectRef>
+            <bizRefs>
+                <bizRef>
+                    <id>bf04e2eb-8872-4c8f-9d44-a8fb582587bf</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillEditUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionAddNew</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+                <bizRef>
+                    <id>181e94a8-bd27-45b1-96c7-cf3bd7eab2ce</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillListUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionAddNew</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+            </bizRefs>
+        </permissionItem>
+        <permissionItem>
+            <innerID>43a9736d-eaad-4620-9258-a219171972abPERMITEM</innerID>
+            <name>fdcshe_noTradingSell_edit</name>
+            <alias>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_edit].alias</alias>
+            <description>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_edit].description</description>
+            <type>UPDATE</type>
+            <groupName>EAS系统.199营销服务管理.20售楼管理.60交易管理.260非操盘项目销售回款确认单</groupName>
+            <group>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_edit].group</group>
+            <userDefined>true</userDefined>
+            <entityObjectRef>
+                <entityType>AE89813E</entityType>
+                <userDefined>true</userDefined>
+                <metadataRef>
+                    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+                    <name>NoTradingSellBill</name>
+                    <bosType>enty</bosType>
+                </metadataRef>
+            </entityObjectRef>
+            <bizRefs>
+                <bizRef>
+                    <id>3c845ca2-765d-4658-85ce-669be1cdbe92</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillEditUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionEdit</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+                <bizRef>
+                    <id>e37ea97f-6078-431d-87ec-9ea432d0102d</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillListUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionEdit</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+            </bizRefs>
+        </permissionItem>
+        <permissionItem>
+            <innerID>cdbbf1d7-5a3e-4afd-ba7f-d4af8e1ae490PERMITEM</innerID>
+            <name>fdcshe_noTradingSell_remove</name>
+            <alias>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_remove].alias</alias>
+            <description>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_remove].description</description>
+            <type>DELETE</type>
+            <groupName>EAS系统.199营销服务管理.20售楼管理.60交易管理.260非操盘项目销售回款确认单</groupName>
+            <group>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_remove].group</group>
+            <userDefined>true</userDefined>
+            <entityObjectRef>
+                <entityType>AE89813E</entityType>
+                <userDefined>true</userDefined>
+                <metadataRef>
+                    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+                    <name>NoTradingSellBill</name>
+                    <bosType>enty</bosType>
+                </metadataRef>
+            </entityObjectRef>
+            <bizRefs>
+                <bizRef>
+                    <id>759b54e5-6ca7-4f26-8cd2-f23c12c1fcbf</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillEditUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionRemove</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+                <bizRef>
+                    <id>9ef38803-971d-462f-aafd-f372c97f11ac</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillListUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionRemove</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+            </bizRefs>
+        </permissionItem>
+        <permissionItem>
+            <innerID>43829d5f-a7d6-4df2-9faa-fd23e614a05aPERMITEM</innerID>
+            <name>fdcshe_noTradingSell_audit</name>
+            <alias>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_audit].alias</alias>
+            <description>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_audit].description</description>
+            <type>OTHER</type>
+            <groupName>EAS系统.199营销服务管理.20售楼管理.60交易管理.260非操盘项目销售回款确认单</groupName>
+            <group>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_audit].group</group>
+            <userDefined>true</userDefined>
+            <entityObjectRef>
+                <entityType>AE89813E</entityType>
+                <userDefined>true</userDefined>
+                <metadataRef>
+                    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+                    <name>NoTradingSellBill</name>
+                    <bosType>enty</bosType>
+                </metadataRef>
+            </entityObjectRef>
+            <bizRefs>
+                <bizRef>
+                    <id>d2e7e534-4cbe-49d5-8b35-e37649e1a20c</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillEditUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionAudit</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+                <bizRef>
+                    <id>a5dabf46-6c7c-48b9-bcef-9e5ffa2f06b7</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillListUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionAudit</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+            </bizRefs>
+        </permissionItem>
+        <permissionItem>
+            <innerID>c7fc0111-ae37-426b-9fd1-97bad1b1fe70PERMITEM</innerID>
+            <name>fdcshe_noTradingSell_unaudit</name>
+            <alias>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_unaudit].alias</alias>
+            <description>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_unaudit].description</description>
+            <type>OTHER</type>
+            <groupName>EAS系统.199营销服务管理.20售楼管理.60交易管理.260非操盘项目销售回款确认单</groupName>
+            <group>permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_unaudit].group</group>
+            <userDefined>true</userDefined>
+            <entityObjectRef>
+                <entityType>AE89813E</entityType>
+                <userDefined>true</userDefined>
+                <metadataRef>
+                    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+                    <name>NoTradingSellBill</name>
+                    <bosType>enty</bosType>
+                </metadataRef>
+            </entityObjectRef>
+            <bizRefs>
+                <bizRef>
+                    <id>ca259f60-2ef6-43fc-9543-e5606a0b4ff1</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillEditUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionUnAudit</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+                <bizRef>
+                    <id>5d5d8f0f-efa0-4bd6-8f1b-c7ff4f567c26</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>NoTradingSellBillListUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionUnAudit</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+            </bizRefs>
+        </permissionItem>
     </permissionItems>
     <dependences>
         <dependence>
@@ -28281,6 +28591,42 @@
             <id>4e443772-7bd7-4870-925b-03e0adf01249PERMITEM</id>
             <referedItem>
                 <key name="innerID" value="4e443772-7bd7-4870-925b-03e0adf01249PERMITEM" />
+            </referedItem>
+        </dependence>
+        <dependence>
+            <id>7a155f21-b108-4ab4-a45c-5be595126669PERMITEM</id>
+            <referedItem>
+                <key name="innerID" value="7a155f21-b108-4ab4-a45c-5be595126669PERMITEM" />
+            </referedItem>
+        </dependence>
+        <dependence>
+            <id>b726aed1-94da-4e26-b578-c1ed891f062fPERMITEM</id>
+            <referedItem>
+                <key name="innerID" value="b726aed1-94da-4e26-b578-c1ed891f062fPERMITEM" />
+            </referedItem>
+        </dependence>
+        <dependence>
+            <id>43a9736d-eaad-4620-9258-a219171972abPERMITEM</id>
+            <referedItem>
+                <key name="innerID" value="43a9736d-eaad-4620-9258-a219171972abPERMITEM" />
+            </referedItem>
+        </dependence>
+        <dependence>
+            <id>cdbbf1d7-5a3e-4afd-ba7f-d4af8e1ae490PERMITEM</id>
+            <referedItem>
+                <key name="innerID" value="cdbbf1d7-5a3e-4afd-ba7f-d4af8e1ae490PERMITEM" />
+            </referedItem>
+        </dependence>
+        <dependence>
+            <id>43829d5f-a7d6-4df2-9faa-fd23e614a05aPERMITEM</id>
+            <referedItem>
+                <key name="innerID" value="43829d5f-a7d6-4df2-9faa-fd23e614a05aPERMITEM" />
+            </referedItem>
+        </dependence>
+        <dependence>
+            <id>c7fc0111-ae37-426b-9fd1-97bad1b1fe70PERMITEM</id>
+            <referedItem>
+                <key name="innerID" value="c7fc0111-ae37-426b-9fd1-97bad1b1fe70PERMITEM" />
             </referedItem>
         </dependence>
     </dependences>
@@ -36436,6 +36782,114 @@
             <lang locale="zh_CN" value="EAS系统.营销服务管理.售楼管理.交易管理.抵押控制" />
             <lang locale="zh_HK" value="EAS系統.營銷服務管理.售樓管理.交易管理.抵押控制" />
             <lang locale="zh_TW" value="EAS系統.營銷服務管理.售樓管理.交易管理.抵押控制" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_addnew].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单新增" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單新增" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單新增" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_addnew].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单新增" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單新增" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單新增" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_addnew].group">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.售楼管理.交易管理.非操盘项目销售回款确认单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_audit].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单审批" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單審批" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單審批" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_audit].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单审批" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單審批" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單審批" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_audit].group">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.售楼管理.交易管理.非操盘项目销售回款确认单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_edit].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单修改" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單修改" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單修改" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_edit].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单修改" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單修改" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單修改" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_edit].group">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.售楼管理.交易管理.非操盘项目销售回款确认单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_remove].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单删除" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單刪除" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單刪除" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_remove].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单删除" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單刪除" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單刪除" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_remove].group">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.售楼管理.交易管理.非操盘项目销售回款确认单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_unaudit].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单反审批" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單反審批" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單反審批" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_unaudit].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单反审批" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單反審批" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單反審批" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_unaudit].group">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.售楼管理.交易管理.非操盘项目销售回款确认单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_view].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单查看" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單查看" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單查看" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_view].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="非操盘项目销售回款确认单查看" />
+            <lang locale="zh_HK" value="非操盤項目銷售回款確認單查看" />
+            <lang locale="zh_TW" value="非操盤項目銷售回款確認單查看" />
+        </rs>
+        <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_noTradingSell_view].group">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.售楼管理.交易管理.非操盘项目销售回款确认单" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.售樓管理.交易管理.非操盤項目銷售回款確認單" />
         </rs>
         <rs key="permission[.fdc_cifiSellHouse].permissionItems.permissionItem[fdcshe_orgStructure_edit].alias">
             <lang locale="en_US" value="null" />

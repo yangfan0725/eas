@@ -341,6 +341,9 @@ public class RoomPriceAdjustEditUI extends AbstractRoomPriceAdjustEditUI {
 		
 		btnBatchAdjust.setVisible(false);
 		btnPriceScheme.setVisible(false);
+		
+		kDTabbedPane2.remove(contEntry);
+		kDTabbedPane2.remove(contDiffEntry);
 	}
 	
 	public void onShow() throws Exception {

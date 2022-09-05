@@ -1019,7 +1019,9 @@ public class SHERevBillControllerBean extends AbstractSHERevBillControllerBean
 //					}
 //				}
 //			}
-			addSysCustomer(ctx,revBillInfo);
+			if(revBillInfo.getSourceBillId()==null){
+				addSysCustomer(ctx,revBillInfo);
+			}
 			boolean isAddRoom=false;
 			HashMap hmParamIn = new HashMap();
 			hmParamIn.put("CIFI_ROOMTRANSFER", revBillInfo.getSaleOrgUnit().getId().toString());
@@ -1105,8 +1107,9 @@ public class SHERevBillControllerBean extends AbstractSHERevBillControllerBean
 					this.createRevMapRelation(ctx, revBillInfo.getRelateTransId(),null, revBillInfo.getRelateBizType(), thisEntryInfo);	
 				}
 			}
-			addSysCustomer(ctx,revBillInfo);
-			
+			if(revBillInfo.getSourceBillId()==null){
+				addSysCustomer(ctx,revBillInfo);
+			}
 		}else if(RevBillTypeEnum.transfer.equals(revBillInfo.getRevBillType())){ //转款情况
 			
 		}

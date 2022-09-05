@@ -74,6 +74,7 @@ public abstract class AbstractRoomPriceAdjustEditUI extends com.kingdee.eas.fdc.
     protected com.kingdee.bos.ctrl.swing.KDPanel kDPanel1;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contOpenBatch;
     protected com.kingdee.bos.ctrl.swing.KDTabbedPane kDTabbedPane2;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contPriceDate;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtNumber;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtName;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtSellProject;
@@ -106,6 +107,7 @@ public abstract class AbstractRoomPriceAdjustEditUI extends com.kingdee.eas.fdc.
     protected com.kingdee.bos.ctrl.kdf.table.KDTable kdtPriceAdjustEntry;
     protected com.kingdee.bos.ctrl.kdf.table.KDTable kdtEntry;
     protected com.kingdee.bos.ctrl.kdf.table.KDTable kdtDiffEntry;
+    protected com.kingdee.bos.ctrl.swing.KDDatePicker pkPriceDate;
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnExecute;
     protected com.kingdee.eas.fdc.sellhouse.RoomPriceManageInfo editData = null;
     protected ActionExecute actionExecute = null;
@@ -178,6 +180,7 @@ public abstract class AbstractRoomPriceAdjustEditUI extends com.kingdee.eas.fdc.
         this.kDPanel1 = new com.kingdee.bos.ctrl.swing.KDPanel();
         this.contOpenBatch = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.kDTabbedPane2 = new com.kingdee.bos.ctrl.swing.KDTabbedPane();
+        this.contPriceDate = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.txtNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtName = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.prmtSellProject = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
@@ -210,6 +213,7 @@ public abstract class AbstractRoomPriceAdjustEditUI extends com.kingdee.eas.fdc.
         this.kdtPriceAdjustEntry = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.kdtEntry = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.kdtDiffEntry = new com.kingdee.bos.ctrl.kdf.table.KDTable();
+        this.pkPriceDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.btnExecute = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.contNumber.setName("contNumber");
         this.contName.setName("contName");
@@ -239,6 +243,7 @@ public abstract class AbstractRoomPriceAdjustEditUI extends com.kingdee.eas.fdc.
         this.kDPanel1.setName("kDPanel1");
         this.contOpenBatch.setName("contOpenBatch");
         this.kDTabbedPane2.setName("kDTabbedPane2");
+        this.contPriceDate.setName("contPriceDate");
         this.txtNumber.setName("txtNumber");
         this.txtName.setName("txtName");
         this.prmtSellProject.setName("prmtSellProject");
@@ -271,6 +276,7 @@ public abstract class AbstractRoomPriceAdjustEditUI extends com.kingdee.eas.fdc.
         this.kdtPriceAdjustEntry.setName("kdtPriceAdjustEntry");
         this.kdtEntry.setName("kdtEntry");
         this.kdtDiffEntry.setName("kdtDiffEntry");
+        this.pkPriceDate.setName("pkPriceDate");
         this.btnExecute.setName("btnExecute");
         // CoreUI		
         this.setBorder(null);		
@@ -446,12 +452,17 @@ public abstract class AbstractRoomPriceAdjustEditUI extends com.kingdee.eas.fdc.
         
 
         // kDPanel1		
-        this.kDPanel1.setBorder(BorderFactory.createEtchedBorder());
+        this.kDPanel1.setBorder(BorderFactory.createEtchedBorder());		
+        this.kDPanel1.setVisible(false);
         // contOpenBatch		
         this.contOpenBatch.setBoundLabelText(resHelper.getString("contOpenBatch.boundLabelText"));		
         this.contOpenBatch.setBoundLabelLength(100);		
         this.contOpenBatch.setBoundLabelUnderline(true);
         // kDTabbedPane2
+        // contPriceDate		
+        this.contPriceDate.setBoundLabelText(resHelper.getString("contPriceDate.boundLabelText"));		
+        this.contPriceDate.setBoundLabelLength(100);		
+        this.contPriceDate.setBoundLabelUnderline(true);
         // txtNumber		
         this.txtNumber.setRequired(true);
         // txtName		
@@ -610,8 +621,10 @@ public abstract class AbstractRoomPriceAdjustEditUI extends com.kingdee.eas.fdc.
         this.cbOpenBatch.setRequired(true);		
         this.cbOpenBatch.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.sellhouse.OpenBatchEnum").toArray());
         // kDTabbedPanel
-        // contEntry
-        // contDiffEntry
+        // contEntry		
+        this.contEntry.setVisible(false);
+        // contDiffEntry		
+        this.contDiffEntry.setVisible(false);
         // overViewTab
         // kdtPriceAdjustEntry
 		String kdtPriceAdjustEntryStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol0\"><c:Protection hidden=\"true\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"roomId\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"0\" t:styleID=\"sCol0\" /><t:Column t:key=\"building\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"5\" /><t:Column t:key=\"buildUnit\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"6\" /><t:Column t:key=\"roomNo\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"7\" /><t:Column t:key=\"Salesareatype\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"8\" /><t:Column t:key=\"priceType\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"9\" /><t:Column t:key=\"oldSumAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"10\" /><t:Column t:key=\"newSumAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"11\" /><t:Column t:key=\"oldProjectStandardPrice\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"8\" /><t:Column t:key=\"newProjectStandardPrice\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"9\" /><t:Column t:key=\"oldBaseStandardPrice\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"10\" /><t:Column t:key=\"newBaseStandardPrice\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"11\" /><t:Column t:key=\"oldBuildingPrice\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"12\" /><t:Column t:key=\"newBuildingPrice\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"13\" /><t:Column t:key=\"oldRoomPrice\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"14\" /><t:Column t:key=\"newRoomPrice\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"15\" /><t:Column t:key=\"buildingArea\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"16\" /><t:Column t:key=\"roomArea\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"17\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{roomId}</t:Cell><t:Cell>$Resource{building}</t:Cell><t:Cell>$Resource{buildUnit}</t:Cell><t:Cell>$Resource{roomNo}</t:Cell><t:Cell>$Resource{Salesareatype}</t:Cell><t:Cell>$Resource{priceType}</t:Cell><t:Cell>$Resource{oldSumAmount}</t:Cell><t:Cell>$Resource{newSumAmount}</t:Cell><t:Cell>$Resource{oldProjectStandardPrice}</t:Cell><t:Cell>$Resource{newProjectStandardPrice}</t:Cell><t:Cell>$Resource{oldBaseStandardPrice}</t:Cell><t:Cell>$Resource{newBaseStandardPrice}</t:Cell><t:Cell>$Resource{oldBuildingPrice}</t:Cell><t:Cell>$Resource{newBuildingPrice}</t:Cell><t:Cell>$Resource{oldRoomPrice}</t:Cell><t:Cell>$Resource{newRoomPrice}</t:Cell><t:Cell>$Resource{buildingArea}</t:Cell><t:Cell>$Resource{roomArea}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
@@ -664,6 +677,8 @@ public abstract class AbstractRoomPriceAdjustEditUI extends com.kingdee.eas.fdc.
 
         
 
+        // pkPriceDate		
+        this.pkPriceDate.setRequired(true);
         // btnExecute
         this.btnExecute.setAction((IItemAction)ActionProxyFactory.getProxy(actionExecute, new Class[] { IItemAction.class }, getServiceContext()));		
         this.btnExecute.setText(resHelper.getString("btnExecute.text"));
@@ -740,16 +755,18 @@ public abstract class AbstractRoomPriceAdjustEditUI extends com.kingdee.eas.fdc.
         this.add(contprice, new KDLayout.Constraints(737, 633, 270, 19, 0));
         contRoomSelect.setBounds(new Rectangle(664, 631, 270, 19));
         this.add(contRoomSelect, new KDLayout.Constraints(664, 631, 270, 19, 0));
-        btnAttach.setBounds(new Rectangle(371, 54, 139, 21));
-        this.add(btnAttach, new KDLayout.Constraints(371, 54, 139, 21, 0));
-        tblAttach.setBounds(new Rectangle(371, 77, 631, 100));
-        this.add(tblAttach, new KDLayout.Constraints(371, 77, 631, 100, 0));
-        kDPanel1.setBounds(new Rectangle(5, 77, 281, 100));
-        this.add(kDPanel1, new KDLayout.Constraints(5, 77, 281, 100, 0));
+        btnAttach.setBounds(new Rectangle(10, 81, 139, 21));
+        this.add(btnAttach, new KDLayout.Constraints(10, 81, 139, 21, 0));
+        tblAttach.setBounds(new Rectangle(11, 107, 631, 100));
+        this.add(tblAttach, new KDLayout.Constraints(11, 107, 631, 100, 0));
+        kDPanel1.setBounds(new Rectangle(424, 174, 281, 100));
+        this.add(kDPanel1, new KDLayout.Constraints(424, 174, 281, 100, 0));
         contOpenBatch.setBounds(new Rectangle(733, 54, 270, 19));
         this.add(contOpenBatch, new KDLayout.Constraints(733, 54, 270, 19, 0));
         kDTabbedPane2.setBounds(new Rectangle(5, 229, 999, 294));
         this.add(kDTabbedPane2, new KDLayout.Constraints(5, 229, 999, 294, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_BOTTOM_SCALE | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
+        contPriceDate.setBounds(new Rectangle(371, 54, 270, 19));
+        this.add(contPriceDate, new KDLayout.Constraints(371, 54, 270, 19, 0));
         //contNumber
         contNumber.setBoundEditor(txtNumber);
         //contName
@@ -813,6 +830,8 @@ overViewTab.setLayout(new BorderLayout(0, 0));        overViewTab.add(kdtPriceAd
 contEntry.getContentPane().setLayout(new BorderLayout(0, 0));        contEntry.getContentPane().add(kdtEntry, BorderLayout.CENTER);
         //contDiffEntry
 contDiffEntry.getContentPane().setLayout(new BorderLayout(0, 0));        contDiffEntry.getContentPane().add(kdtDiffEntry, BorderLayout.CENTER);
+        //contPriceDate
+        contPriceDate.setBoundEditor(pkPriceDate);
 
     }
 
@@ -1040,7 +1059,8 @@ contDiffEntry.getContentPane().setLayout(new BorderLayout(0, 0));        contDif
 		dataBinder.registerBinding("valueEntry.price", java.math.BigDecimal.class, this.kdtEntry, "price.text");
 		dataBinder.registerBinding("valueEntry.calculateType", com.kingdee.eas.fdc.basedata.CalculateTypeEnum.class, this.kdtEntry, "calculateType.text");
 		dataBinder.registerBinding("valueEntry.amount", java.math.BigDecimal.class, this.kdtEntry, "amount.text");
-		dataBinder.registerBinding("valueEntry.remark", String.class, this.kdtEntry, "remark.text");		
+		dataBinder.registerBinding("valueEntry.remark", String.class, this.kdtEntry, "remark.text");
+		dataBinder.registerBinding("priceDate", java.util.Date.class, this.pkPriceDate, "value");		
 	}
 	//Regiester UI State
 	private void registerUIState(){		
@@ -1149,7 +1169,8 @@ contDiffEntry.getContentPane().setLayout(new BorderLayout(0, 0));        contDif
 		getValidateHelper().registerBindProperty("valueEntry.price", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("valueEntry.calculateType", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("valueEntry.amount", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("valueEntry.remark", ValidateHelper.ON_SAVE);    		
+		getValidateHelper().registerBindProperty("valueEntry.remark", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("priceDate", ValidateHelper.ON_SAVE);    		
 	}
 
 
@@ -1367,6 +1388,7 @@ contDiffEntry.getContentPane().setLayout(new BorderLayout(0, 0));        contDif
     	sic.add(new SelectorItemInfo("valueEntry.calculateType"));
     	sic.add(new SelectorItemInfo("valueEntry.amount"));
     	sic.add(new SelectorItemInfo("valueEntry.remark"));
+        sic.add(new SelectorItemInfo("priceDate"));
         return sic;
     }        
     	

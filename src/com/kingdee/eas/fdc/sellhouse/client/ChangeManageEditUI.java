@@ -3614,11 +3614,11 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 					}
 				} else if (result == KDOptionPane.NO_OPTION) {
 					if(editData!=null){
-						for(int i=0;i<this.editData.getAttachEntry().size();i++){
-							if(this.editData.getAttachEntry().get(i).getId()==null) continue;
+						for(int i=0;i<this.kdtAttachEntry.getRowCount();i++){
+							if(((ChangeManageAttachEntryInfo)this.kdtAttachEntry.getRow(i).getUserObject()).getId()==null) continue;
 							try {
-								if(!ChangeManageAttachEntryFactory.getRemoteInstance().exists(new ObjectUuidPK(this.editData.getAttachEntry().get(i).getId().toString()))){
-									this.deleteAttachment(this.editData.getAttachEntry().get(i).getId().toString());
+								if(!ChangeManageAttachEntryFactory.getRemoteInstance().exists(new ObjectUuidPK(((ChangeManageAttachEntryInfo)this.kdtAttachEntry.getRow(i).getUserObject()).getId()))){
+									this.deleteAttachment(((ChangeManageAttachEntryInfo)this.kdtAttachEntry.getRow(i).getUserObject()).getId().toString());
 								}
 							} catch (EASBizException e) {
 								e.printStackTrace();

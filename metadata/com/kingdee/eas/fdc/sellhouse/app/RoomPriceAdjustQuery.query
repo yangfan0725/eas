@@ -449,6 +449,37 @@
             </query>
         </queryField>
         <queryField>
+            <name>priceDate</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[priceDate].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>Date</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>af73aa87-1b92-4ca9-902e-cd216491d22a</key>
+                    <parentUnit>
+                        <key name="name" value="priceDate" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="RoomPriceManage" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="priceDate" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="RoomPriceAdjustQuery" />
+            </query>
+        </queryField>
+        <queryField>
             <name>state</name>
             <userDefined>false</userDefined>
             <formulaString />
@@ -1078,344 +1109,360 @@
     </joins>
     <resource>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].alias">
-            <lang locale="zh_CN" value="房间价目查询" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间价目查询" />
             <lang locale="zh_HK" value="房間價目查詢" />
             <lang locale="zh_TW" value="房間價目查詢" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].description">
-            <lang locale="zh_CN" value="房间价目查询" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="房间价目查询" />
             <lang locale="zh_HK" value="房間價目查詢" />
             <lang locale="zh_TW" value="房間價目查詢" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].subObjects.subEntity[RoomPriceManage].alias">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].subObjects.subEntity[auditor].alias">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].subObjects.subEntity[creator].alias">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].subObjects.subEntity[orgUnit].alias">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].subObjects.subEntity[sellProject].alias">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.propertyUnit[022d2215-4d2b-4154-9bfb-dce626753e6a].displayName">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.propertyUnit[193f8a64-e2ce-45b4-8552-148b19e6d8e5].displayName">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.propertyUnit[1c6a0aa8-8814-4876-8fb3-a11b6588e0f5].displayName">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.propertyUnit[42cd3ed5-d7c8-42fc-87b7-f349c1b2e256].displayName">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.propertyUnit[4bd9711f-97b9-4c16-9b24-b03522efa6cd].displayName">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.propertyUnit[64266a0a-354f-46fc-8538-e18f935bc179].displayName">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.propertyUnit[66477e8a-a40f-4d66-b258-c07fade3f379].displayName">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.propertyUnit[f4ac0b34-502a-47f8-a23f-cefaf8f06c70].displayName">
-            <lang locale="zh_CN" value="null" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[Salesareatype].displayName">
-            <lang locale="zh_CN" value="销售面积类型" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="销售面积类型" />
             <lang locale="zh_HK" value="銷售面積類型" />
             <lang locale="zh_TW" value="銷售面積類型" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[Salesareatype].extendedProperty.defaultF7Query">
+            <lang locale="en_US" value="" />
             <lang locale="zh_CN" value="" />
             <lang locale="zh_TW" value="" />
-            <lang locale="en_US" value="" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[Salesareatype].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[Salesareatype].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[aftAdjValue].displayName">
-            <lang locale="zh_CN" value="aftAdjValue" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="aftAdjValue" />
             <lang locale="zh_HK" value="aftAdjValue" />
             <lang locale="zh_TW" value="aftAdjValue" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[auditDate].displayName">
-            <lang locale="zh_CN" value="审批时间" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="审批时间" />
             <lang locale="zh_HK" value="審批時間" />
             <lang locale="zh_TW" value="審批時間" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[auditDate].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[auditDate].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[auditor.name].displayName">
-            <lang locale="zh_CN" value="审批人" />
             <lang locale="en_US" value="用户别名" />
+            <lang locale="zh_CN" value="审批人" />
             <lang locale="zh_HK" value="審批人" />
             <lang locale="zh_TW" value="審批人" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[auditor.name].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[auditor.name].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[createTime].displayName">
-            <lang locale="zh_CN" value="制单时间" />
             <lang locale="en_US" value="createTime" />
+            <lang locale="zh_CN" value="制单时间" />
             <lang locale="zh_HK" value="制單時間" />
             <lang locale="zh_TW" value="制單時間" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[createTime].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[createTime].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[creator.name].displayName">
-            <lang locale="zh_CN" value="制单人" />
             <lang locale="en_US" value="用户别名" />
+            <lang locale="zh_CN" value="制单人" />
             <lang locale="zh_HK" value="制單人" />
             <lang locale="zh_TW" value="制單人" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[creator.name].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[creator.name].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[description].displayName">
-            <lang locale="zh_CN" value="参考信息" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="参考信息" />
             <lang locale="zh_HK" value="參考信息" />
             <lang locale="zh_TW" value="參考信息" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[description].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[description].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[id].displayName">
-            <lang locale="zh_CN" value="ID" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
             <lang locale="zh_HK" value="ID" />
             <lang locale="zh_TW" value="ID" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[id].extendedProperty.isVisibleForKDTable">
+            <lang locale="en_US" value="false" />
             <lang locale="zh_CN" value="false" />
             <lang locale="zh_TW" value="false" />
-            <lang locale="en_US" value="false" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[isExecuted].displayName">
-            <lang locale="zh_CN" value="是否执行" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="是否执行" />
             <lang locale="zh_HK" value="是否執行" />
             <lang locale="zh_TW" value="是否執行" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[isExecuted].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[isExecuted].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[managerAigo].displayName">
-            <lang locale="zh_CN" value="managerAigo" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="managerAigo" />
             <lang locale="zh_HK" value="managerAigo" />
             <lang locale="zh_TW" value="managerAigo" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[name].displayName">
-            <lang locale="zh_CN" value="名称" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="名称" />
             <lang locale="zh_HK" value="名稱" />
             <lang locale="zh_TW" value="名稱" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[name].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[name].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[number].displayName">
-            <lang locale="zh_CN" value="单据编号" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="单据编号" />
             <lang locale="zh_HK" value="單據編號" />
             <lang locale="zh_TW" value="單據編號" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[number].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[number].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[orgUnit.name].displayName">
-            <lang locale="zh_CN" value="组织名称" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="组织名称" />
             <lang locale="zh_HK" value="組織名稱" />
             <lang locale="zh_TW" value="組織名稱" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[preAdjValue].displayName">
-            <lang locale="zh_CN" value="preAdjValue" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="preAdjValue" />
             <lang locale="zh_HK" value="preAdjValue" />
             <lang locale="zh_TW" value="preAdjValue" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[priceBillMode].displayName">
-            <lang locale="zh_CN" value="定/调价方式" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="定/调价方式" />
             <lang locale="zh_HK" value="定/調價方式" />
             <lang locale="zh_TW" value="定/調價方式" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[priceBillMode].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[priceBillMode].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[priceBillType].displayName">
-            <lang locale="zh_CN" value="定/调价类型" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="定/调价类型" />
             <lang locale="zh_HK" value="定/調價類型" />
             <lang locale="zh_TW" value="定/調價類型" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[priceBillType].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[priceBillType].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[priceDate].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="定价期限" />
+            <lang locale="zh_HK" value="定價期限" />
+            <lang locale="zh_TW" value="定價期限" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[priceDate].extendedProperty.isCommonQueryFilter">
             <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[priceDate].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[salesDirectorAgio].displayName">
-            <lang locale="zh_CN" value="salesDirectorAgio" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="salesDirectorAgio" />
             <lang locale="zh_HK" value="salesDirectorAgio" />
             <lang locale="zh_TW" value="salesDirectorAgio" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[sceneManagerAgio].displayName">
-            <lang locale="zh_CN" value="sceneManagerAgio" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="sceneManagerAgio" />
             <lang locale="zh_HK" value="sceneManagerAgio" />
             <lang locale="zh_TW" value="sceneManagerAgio" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[sellProject.id].displayName">
-            <lang locale="zh_CN" value="ID" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
             <lang locale="zh_HK" value="ID" />
             <lang locale="zh_TW" value="ID" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[state].displayName">
-            <lang locale="zh_CN" value="状态" />
             <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="状态" />
             <lang locale="zh_HK" value="狀態" />
             <lang locale="zh_TW" value="狀態" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[state].extendedProperty.isCommonQueryFilter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
         <rs key="joinQuery[com.kingdee.eas.fdc.sellhouse.app.RoomPriceAdjustQuery].units.queryField[state].extendedProperty.isCommonQuerySorter">
+            <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_TW" value="true" />
-            <lang locale="en_US" value="true" />
         </rs>
     </resource>
 </joinQuery>

@@ -444,6 +444,19 @@ public class AbstractSellProjectInfo extends com.kingdee.eas.framework.TreeBaseI
     {
         setDate("endDate", item);
     }
+    /**
+     * Object:项目资料's 操盘属性property 
+     */
+    public com.kingdee.eas.fdc.sellhouse.DoPropertyEnum getDoProperty()
+    {
+        return com.kingdee.eas.fdc.sellhouse.DoPropertyEnum.getEnum(getString("doProperty"));
+    }
+    public void setDoProperty(com.kingdee.eas.fdc.sellhouse.DoPropertyEnum item)
+    {
+		if (item != null) {
+        setString("doProperty", item.getValue());
+		}
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("2FFBE5AC");

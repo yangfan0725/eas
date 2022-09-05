@@ -1924,7 +1924,7 @@ public abstract class BaseTransactionEditUI extends AbstractBaseTransactionEditU
 		}
     	if(isIsBasePriceSell){	
     		if(room.getBaseStandardPrice()==null) {
-    			setRoomNull("已启用强制底价控制参数，该房间总价底价不存在，请检查！");
+    			setRoomNull("已启用强制底价控制参数，该房间总价底价为空，请检查！");
     		}
     	}
 		FilterInfo filter = new FilterInfo();

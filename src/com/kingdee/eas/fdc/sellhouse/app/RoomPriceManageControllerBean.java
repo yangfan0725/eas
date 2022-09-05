@@ -235,6 +235,7 @@ public class RoomPriceManageControllerBean extends
 			room.setPreChangeState(RoomPreChangeStateEnum.NOCHANGE);
 			room.setActChangeState(RoomActChangeStateEnum.NOCHANGE);
 			
+			room.setPriceDate(bill.getPriceDate());
 //			if(bill.getManagerAigo() != null){
 //				room.setManagerAgio(bill.getManagerAigo());
 //			}
@@ -274,7 +275,7 @@ public class RoomPriceManageControllerBean extends
 			sels.add("projectStandardPrice");
 			sels.add("projectRoomPrice");
 			sels.add("projectBuildingPrice");
-			
+			sels.add("priceDate");
 			
 			RoomFactory.getLocalInstance(ctx).updatePartial(room, sels);
 

@@ -360,11 +360,11 @@ public class SHEAttachBillEditUI extends AbstractSHEAttachBillEditUI
 					}
 				} else if (result == KDOptionPane.NO_OPTION) {
 					if(editData!=null){
-						for(int i=0;i<this.editData.getEntry().size();i++){
-							if(this.editData.getEntry().get(i).getId()==null) continue;
+						for(int i=0;i<this.kdtEntry.getRowCount();i++){
+							if(((SHEAttachBillEntryInfo)this.kdtEntry.getRow(i).getUserObject()).getId()==null) continue;
 							try {
-								if(!SHEAttachBillEntryFactory.getRemoteInstance().exists(new ObjectUuidPK(this.editData.getEntry().get(i).getId().toString()))){
-									this.deleteAttachment(this.editData.getEntry().get(i).getId().toString());
+								if(!SHEAttachBillEntryFactory.getRemoteInstance().exists(new ObjectUuidPK(((SHEAttachBillEntryInfo)this.kdtEntry.getRow(i).getUserObject()).getId()))){
+									this.deleteAttachment(((SHEAttachBillEntryInfo)this.kdtEntry.getRow(i).getUserObject()).getId().toString());
 								}
 							} catch (EASBizException e) {
 								e.printStackTrace();
@@ -427,6 +427,11 @@ public class SHEAttachBillEditUI extends AbstractSHEAttachBillEditUI
 	protected IObjectValue createNewData() {
 		SHEAttachBillInfo info=new SHEAttachBillInfo();
 		try {
+			if(this.getUIContext().get("roomId")==null){
+				this.setOprtState(OprtState.VIEW);
+				this.destroyWindow();
+				SysUtil.abort();
+			}
 			SelectorItemCollection sic=new SelectorItemCollection();
 			sic.add("*");
 			sic.add("productType.property");
@@ -621,6 +626,10 @@ public class SHEAttachBillEditUI extends AbstractSHEAttachBillEditUI
 		} else {
 			this.unLockUI();
 		}
+	}
+	public void actionEdit_actionPerformed(ActionEvent e) throws Exception {
+		super.actionEdit_actionPerformed(e);
+		this.actionAttachment.setVisible(false);
 	}
 
 }

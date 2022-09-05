@@ -1513,6 +1513,17 @@ public class AbstractRoomInfo extends com.kingdee.eas.fdc.basedata.FDCDataBaseIn
     {
         setBigDecimal("projectRoomPrice", item);
     }
+    /**
+     * Object:房间's 定价期限property 
+     */
+    public java.util.Date getPriceDate()
+    {
+        return getDate("priceDate");
+    }
+    public void setPriceDate(java.util.Date item)
+    {
+        setDate("priceDate", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("903E0236");

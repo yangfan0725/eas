@@ -178,10 +178,10 @@ public abstract class AbstractRoomPriceAdjustListUI extends com.kingdee.eas.fdc.
         this.btnExecute.setName("btnExecute");
         // CoreUI		
         this.btnPageSetup.setEnabled(false);
-		String tblMainStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol0\"><c:Protection hidden=\"true\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"id\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"11\" t:styleID=\"sCol0\" /><t:Column t:key=\"orgName\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"billNo\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"billName\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"priceMode\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"14\" /><t:Column t:key=\"priceType\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"15\" /><t:Column t:key=\"state\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"isExecute\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"description\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"creator\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"createTime\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"auditor\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"auditTime\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{id}</t:Cell><t:Cell>$Resource{orgName}</t:Cell><t:Cell>$Resource{billNo}</t:Cell><t:Cell>$Resource{billName}</t:Cell><t:Cell>$Resource{priceMode}</t:Cell><t:Cell>$Resource{priceType}</t:Cell><t:Cell>$Resource{state}</t:Cell><t:Cell>$Resource{isExecute}</t:Cell><t:Cell>$Resource{description}</t:Cell><t:Cell>$Resource{creator}</t:Cell><t:Cell>$Resource{createTime}</t:Cell><t:Cell>$Resource{auditor}</t:Cell><t:Cell>$Resource{auditTime}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
+		String tblMainStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol0\"><c:Protection hidden=\"true\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"id\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"11\" t:styleID=\"sCol0\" /><t:Column t:key=\"orgName\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"billNo\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"billName\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"-1\" /><t:Column t:key=\"priceMode\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"14\" /><t:Column t:key=\"priceType\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"15\" /><t:Column t:key=\"priceDate\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"6\" /><t:Column t:key=\"state\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"7\" /><t:Column t:key=\"isExecute\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"8\" /><t:Column t:key=\"description\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"9\" /><t:Column t:key=\"creator\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"10\" /><t:Column t:key=\"createTime\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"11\" /><t:Column t:key=\"auditor\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"12\" /><t:Column t:key=\"auditTime\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"13\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{id}</t:Cell><t:Cell>$Resource{orgName}</t:Cell><t:Cell>$Resource{billNo}</t:Cell><t:Cell>$Resource{billName}</t:Cell><t:Cell>$Resource{priceMode}</t:Cell><t:Cell>$Resource{priceType}</t:Cell><t:Cell>$Resource{priceDate}</t:Cell><t:Cell>$Resource{state}</t:Cell><t:Cell>$Resource{isExecute}</t:Cell><t:Cell>$Resource{description}</t:Cell><t:Cell>$Resource{creator}</t:Cell><t:Cell>$Resource{createTime}</t:Cell><t:Cell>$Resource{auditor}</t:Cell><t:Cell>$Resource{auditTime}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
 		
         this.tblMain.setFormatXml(resHelper.translateString("tblMain",tblMainStrXML));
-                this.tblMain.putBindContents("mainQuery",new String[] {"id","orgUnit.name","number","name","priceBillMode","priceBillType","state","isExecuted","description","creator.name","createTime","auditor.name","auditDate"});
+                this.tblMain.putBindContents("mainQuery",new String[] {"id","orgUnit.name","number","name","priceBillMode","priceBillType","priceDate","state","isExecuted","description","creator.name","createTime","auditor.name","auditDate"});
 
 		
         this.btnLocate.setEnabled(false);		
@@ -192,10 +192,6 @@ public abstract class AbstractRoomPriceAdjustListUI extends com.kingdee.eas.fdc.
         this.btnCancelCancel.setEnabled(false);		
         this.btnQueryScheme.setEnabled(false);		
         this.btnQueryScheme.setVisible(false);		
-        this.btnVoucher.setEnabled(false);		
-        this.btnVoucher.setVisible(false);		
-        this.btnDelVoucher.setEnabled(false);		
-        this.btnDelVoucher.setVisible(false);		
         this.btnCreateTo.setEnabled(false);		
         this.btnCreateTo.setVisible(false);		
         this.btnCopyTo.setEnabled(false);		
@@ -203,16 +199,20 @@ public abstract class AbstractRoomPriceAdjustListUI extends com.kingdee.eas.fdc.
         this.btnTraceUp.setVisible(false);		
         this.btnTraceDown.setEnabled(false);		
         this.btnTraceDown.setVisible(false);		
+        this.btnWorkFlowG.setEnabled(false);		
+        this.btnWorkFlowG.setVisible(false);		
+        this.btnVoucher.setEnabled(false);		
+        this.btnVoucher.setVisible(false);		
+        this.btnDelVoucher.setEnabled(false);		
+        this.btnDelVoucher.setVisible(false);		
+        this.btnMultiapprove.setEnabled(false);		
+        this.btnNextPerson.setEnabled(false);		
         this.btnAuditResult.setEnabled(false);		
         this.btnAuditResult.setVisible(false);		
         this.menuItemCreateTo.setEnabled(false);		
         this.menuItemCreateTo.setVisible(false);		
         this.menuItemCopyTo.setEnabled(false);		
-        this.menuItemCopyTo.setVisible(false);		
-        this.btnMultiapprove.setEnabled(false);		
-        this.btnNextPerson.setEnabled(false);		
-        this.btnWorkFlowG.setEnabled(false);		
-        this.btnWorkFlowG.setVisible(false);
+        this.menuItemCopyTo.setVisible(false);
         // kDTabbedPane1
         this.kDTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent e) {
@@ -460,10 +460,14 @@ public abstract class AbstractRoomPriceAdjustListUI extends com.kingdee.eas.fdc.
         //menuFile
         menuFile.add(menuItemAddNew);
         menuFile.add(menuItemImportData);
+        menuFile.add(menuItemCloudFeed);
         menuFile.add(menuItemExportData);
+        menuFile.add(menuItemCloudScreen);
         menuFile.add(separatorFile1);
+        menuFile.add(menuItemCloudShare);
         menuFile.add(MenuItemAttachment);
         menuFile.add(kDSeparator1);
+        menuFile.add(kdSeparatorFWFile1);
         menuFile.add(menuItemPageSetup);
         menuFile.add(menuItemPrint);
         menuFile.add(menuItemPrintPreview);
@@ -490,8 +494,8 @@ public abstract class AbstractRoomPriceAdjustListUI extends com.kingdee.eas.fdc.
         menuView.add(menuItemSwitchView);
         menuView.add(separatorView1);
         menuView.add(menuItemTraceUp);
-        menuView.add(menuItemQueryScheme);
         menuView.add(menuItemTraceDown);
+        menuView.add(menuItemQueryScheme);
         menuView.add(kDSeparator6);
         //menuBiz
         menuBiz.add(menuItemCancelCancel);
@@ -501,6 +505,7 @@ public abstract class AbstractRoomPriceAdjustListUI extends com.kingdee.eas.fdc.
         //menuTool
         menuTool.add(menuItemSendMessage);
         menuTool.add(menuItemCalculator);
+        menuTool.add(menuItemToolBarCustom);
         //menuWorkFlow
         menuWorkFlow.add(menuItemViewDoProccess);
         menuWorkFlow.add(menuItemMultiapprove);
@@ -537,8 +542,11 @@ public abstract class AbstractRoomPriceAdjustListUI extends com.kingdee.eas.fdc.
     public void initUIToolBarLayout()
     {
         this.toolBar.add(btnAddNew);
+        this.toolBar.add(btnCloud);
         this.toolBar.add(btnView);
+        this.toolBar.add(btnXunTong);
         this.toolBar.add(btnEdit);
+        this.toolBar.add(kDSeparatorCloud);
         this.toolBar.add(btnRemove);
         this.toolBar.add(btnRefresh);
         this.toolBar.add(btnQuery);
@@ -560,6 +568,7 @@ public abstract class AbstractRoomPriceAdjustListUI extends com.kingdee.eas.fdc.
         this.toolBar.add(btnWorkFlowList);
         this.toolBar.add(btnSignature);
         this.toolBar.add(btnViewSignature);
+        this.toolBar.add(btnNumberSign);
         this.toolBar.add(separatorFW4);
         this.toolBar.add(btnVoucher);
         this.toolBar.add(btnDelVoucher);
@@ -682,6 +691,10 @@ public abstract class AbstractRoomPriceAdjustListUI extends com.kingdee.eas.fdc.
     public SelectorItemCollection getSelectors()
     {
         SelectorItemCollection sic = new SelectorItemCollection();
+		String selectorAll = System.getProperty("selector.all");
+		if(StringUtils.isEmpty(selectorAll)){
+			selectorAll = "true";
+		}
         sic.add(new SelectorItemInfo("orgUnit.name"));
         sic.add(new SelectorItemInfo("creator.name"));
         sic.add(new SelectorItemInfo("auditor.name"));
@@ -695,6 +708,7 @@ public abstract class AbstractRoomPriceAdjustListUI extends com.kingdee.eas.fdc.
         sic.add(new SelectorItemInfo("description"));
         sic.add(new SelectorItemInfo("createTime"));
         sic.add(new SelectorItemInfo("auditDate"));
+        sic.add(new SelectorItemInfo("priceDate"));
         return sic;
     }        
     	

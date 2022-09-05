@@ -1048,7 +1048,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDButton</classType>
             <isContainer>false</isContainer>
-            <constraints>371,54,139,21,0</constraints>
+            <constraints>10,81,139,21,0</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -1083,7 +1083,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.kdf.table.KDTable</classType>
             <isContainer>false</isContainer>
-            <constraints>371,77,631,100,0</constraints>
+            <constraints>11,107,631,100,0</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -1125,7 +1125,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDPanel</classType>
             <isContainer>true</isContainer>
-            <constraints>5,77,281,100,0</constraints>
+            <constraints>424,174,281,100,0</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -1141,6 +1141,13 @@
                     <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[kDPanel1].properties.property[border].value</value>
                     <isMultiLan>true</isMultiLan>
                     <userDefined>false</userDefined>
+                </property>
+                <property>
+                    <name>visible</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[kDPanel1].properties.property[visible].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
                 </property>
             </properties>
             <parent>
@@ -1204,6 +1211,48 @@
                 <type>TabbedPaneLayout</type>
                 <value />
             </layoutInfo>
+            <parent>
+                <key name="name" value="CoreUI" />
+            </parent>
+        </component>
+        <component>
+            <name>contPriceDate</name>
+            <alias>uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contPriceDate].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>371,54,270,19,0</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contPriceDate].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contPriceDate].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contPriceDate].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
             <parent>
                 <key name="name" value="CoreUI" />
             </parent>
@@ -2416,6 +2465,15 @@
                 <type>BorderLayout</type>
                 <value>0,0</value>
             </layoutInfo>
+            <properties>
+                <property>
+                    <name>visible</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contEntry].properties.property[visible].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
             <parent>
                 <key name="name" value="kDTabbedPane2" />
             </parent>
@@ -2435,6 +2493,15 @@
                 <type>BorderLayout</type>
                 <value>0,0</value>
             </layoutInfo>
+            <properties>
+                <property>
+                    <name>visible</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contDiffEntry].properties.property[visible].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
             <parent>
                 <key name="name" value="kDTabbedPane2" />
             </parent>
@@ -2948,6 +3015,47 @@
             <parent>
                 <key name="name" value="contDiffEntry" />
             </parent>
+        </component>
+        <component>
+            <name>pkPriceDate</name>
+            <alias>uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[pkPriceDate].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDDatePicker</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>required</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[pkPriceDate].properties.property[required].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="contPriceDate" />
+            </parent>
+            <propertyBindings>
+                <propertyBinding>
+                    <propertyName>value</propertyName>
+                    <propertyType>java.lang.Object</propertyType>
+                    <bindingObject>editData</bindingObject>
+                    <bindingField>priceDate</bindingField>
+                    <fieldType>java.util.Date</fieldType>
+                    <accessType />
+                    <autoMode>false</autoMode>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </propertyBinding>
+            </propertyBindings>
         </component>
         <component>
             <name>btnAddNew</name>
@@ -4291,11 +4399,23 @@
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contDiffEntry].properties.property[visible].value">
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_HK" value="false" />
+            <lang locale="zh_TW" value="false" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contEntry].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contEntry].properties.property[visible].value">
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_HK" value="false" />
+            <lang locale="zh_TW" value="false" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contMaxRoomPrice].alias">
             <lang locale="en_US" value="null" />
@@ -4513,6 +4633,30 @@
             <lang locale="zh_HK" value="true" />
             <lang locale="zh_TW" value="true" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contPriceDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contPriceDate].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contPriceDate].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="定价期限" />
+            <lang locale="zh_HK" value="定價期限" />
+            <lang locale="zh_TW" value="定價期限" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contPriceDate].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[contRoomSelect].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -4669,6 +4813,12 @@
             <lang locale="zh_HK" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;Border&gt;&lt;Type&gt;2&lt;/Type&gt;&lt;Name&gt;Etched&lt;/Name&gt;&lt;/Border&gt; " />
             <lang locale="zh_TW" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;Border&gt;&lt;Type&gt;2&lt;/Type&gt;&lt;Name&gt;Etched&lt;/Name&gt;&lt;/Border&gt; " />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[kDPanel1].properties.property[visible].value">
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_HK" value="false" />
+            <lang locale="zh_TW" value="false" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[kDTabbedPane2].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -4734,6 +4884,18 @@
             <lang locale="zh_CN" value="false" />
             <lang locale="zh_HK" value="false" />
             <lang locale="zh_TW" value="false" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[pkPriceDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[pkPriceDate].properties.property[required].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.RoomPriceAdjustEditUI].components.component[preAdjValue].alias">
             <lang locale="en_US" value="null" />

@@ -10,7 +10,12 @@ import com.kingdee.bos.metadata.entity.SelectorItemInfo;
 import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.eas.base.attachment.*;
 import com.kingdee.eas.base.attachment.common.AttachmentHelper;
+import com.kingdee.eas.base.form.web.attachment.BosAttachmentAdapter;
 import com.kingdee.eas.common.EASBizException;
+import com.kingdee.eas.fdc.sellhouse.ChangeManageAttachEntryFactory;
+import com.kingdee.eas.fdc.sellhouse.ChangeManageAttachEntryInfo;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillEntryFactory;
+import com.kingdee.eas.fdc.sellhouse.SHEAttachBillEntryInfo;
 import com.kingdee.util.NumericExceptionSubItem;
 
 import org.apache.log4j.Logger;
@@ -26,7 +31,44 @@ public class AttachmentFtpHandleFacadeControllerBean extends AbstractAttachmentF
 /*  35*/        AttachmentInfo attachmentInfo = AttachmentHelper.getAttachmentInfo(ctx, attachmentId);
 /*  36*/        String remotePath = null;
 				if(attachmentInfo.getBoAttchAsso().get(0).getAssoBusObjType().equals("08C8DF31")||attachmentInfo.getBoAttchAsso().get(0).getAssoBusObjType().equals("1A4B8B7D")){
+					if(attachmentInfo.getName()==null){
+						SelectorItemCollection sic = new SelectorItemCollection();
+						sic.add(new SelectorItemInfo("id"));
+						sic.add(new SelectorItemInfo("boAttchAsso.assoBusObjType"));
+						sic.add(new SelectorItemInfo("attachID"));
+						sic.add(new SelectorItemInfo("simpleName"));
+						sic.add(new SelectorItemInfo("remotePath"));
+						sic.add(new SelectorItemInfo("ftp"));
+						sic.add(new SelectorItemInfo("name"));
+						sic.add(new SelectorItemInfo("beizhu"));
+						attachmentInfo=AttachmentFactory.getLocalInstance(ctx).getAttachmentInfo(new ObjectUuidPK(attachmentId),sic);
+					}
 					remotePath=attachmentInfo.getBeizhu()+attachmentInfo.getName()+"."+attachmentInfo.getSimpleName();
+					AttachmentCollection attCol=AttachmentFactory.getLocalInstance(ctx).getAttachmentCollection("select id from where remotePath='"+remotePath+"'");
+					for(int i=0;i<attCol.size();i++){
+						BoAttchAssoCollection boAttCol=BoAttchAssoFactory.getLocalInstance(ctx).getBoAttchAssoCollection("select boId from where attachment.id='"+attCol.get(i).getId()+"'");
+						boolean isDel=true;
+						for(int j=0;j<boAttCol.size();j++){
+							String boId=boAttCol.get(j).getBoID();
+							if(BOSUuid.read(boId).getType().equals(new SHEAttachBillEntryInfo().getBOSType())){
+								if(!SHEAttachBillEntryFactory.getLocalInstance(ctx).exists(new ObjectUuidPK(boId))){
+									BoAttchAssoFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(boAttCol.get(j).getId()));
+								}else{
+									isDel=false;
+								}
+							}else if(BOSUuid.read(boId).getType().equals(new ChangeManageAttachEntryInfo().getBOSType())){
+								if(!ChangeManageAttachEntryFactory.getLocalInstance(ctx).exists(new ObjectUuidPK(boId))){
+									BoAttchAssoFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(boAttCol.get(j).getId()));
+								}else{
+									isDel=false;
+								}
+							}
+							
+						}
+						if(isDel){
+							AttachmentFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(attCol.get(i).getId().toString()));
+						}
+					}
 					FilterInfo filter=new FilterInfo();
 					filter.getFilterItems().add(new FilterItemInfo("remotePath",remotePath));
 					if(AttachmentFactory.getLocalInstance(ctx).exists(filter)){
@@ -47,6 +89,31 @@ public class AttachmentFtpHandleFacadeControllerBean extends AbstractAttachmentF
 				String remotePath=null;
 				if(attachmentInfo2.getBoAttchAsso().get(0).getAssoBusObjType().equals("08C8DF31")||attachmentInfo2.getBoAttchAsso().get(0).getAssoBusObjType().equals("1A4B8B7D")){
 					remotePath=attachmentInfo2.getBeizhu()+attachmentInfo2.getName()+"."+attachmentInfo2.getSimpleName();
+					AttachmentCollection attCol=AttachmentFactory.getLocalInstance(ctx).getAttachmentCollection("select id from where remotePath='"+remotePath+"'");
+					for(int i=0;i<attCol.size();i++){
+						BoAttchAssoCollection boAttCol=BoAttchAssoFactory.getLocalInstance(ctx).getBoAttchAssoCollection("select boId from where attachment.id='"+attCol.get(i).getId()+"'");
+						boolean isDel=true;
+						for(int j=0;j<boAttCol.size();j++){
+							String boId=boAttCol.get(j).getBoID();
+							if(BOSUuid.read(boId).getType().equals(new SHEAttachBillEntryInfo().getBOSType())){
+								if(!SHEAttachBillEntryFactory.getLocalInstance(ctx).exists(new ObjectUuidPK(boId))){
+									BoAttchAssoFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(boAttCol.get(j).getId()));
+								}else{
+									isDel=false;
+								}
+							}else if(BOSUuid.read(boId).getType().equals(new ChangeManageAttachEntryInfo().getBOSType())){
+								if(!ChangeManageAttachEntryFactory.getLocalInstance(ctx).exists(new ObjectUuidPK(boId))){
+									BoAttchAssoFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(boAttCol.get(j).getId()));
+								}else{
+									isDel=false;
+								}
+							}
+							
+						}
+						if(isDel){
+							AttachmentFactory.getLocalInstance(ctx).delete(new ObjectUuidPK(attCol.get(i).getId().toString()));
+						}
+					}
 					FilterInfo filter=new FilterInfo();
 					filter.getFilterItems().add(new FilterItemInfo("remotePath",remotePath));
 					if(AttachmentFactory.getLocalInstance(ctx).exists(filter)){

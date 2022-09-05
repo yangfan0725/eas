@@ -675,6 +675,48 @@
             </propertyBindings>
         </component>
         <component>
+            <name>contDoProperty</name>
+            <alias>uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[contDoProperty].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>367,81,270,19,0</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[contDoProperty].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[contDoProperty].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[contDoProperty].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="kdpBase" />
+            </parent>
+        </component>
+        <component>
             <name>txtNumber</name>
             <alias>uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[txtNumber].alias</alias>
             <userDefined>false</userDefined>
@@ -1123,6 +1165,54 @@
                     <autoMode>false</autoMode>
                     <herited>false</herited>
                     <userDefined>false</userDefined>
+                </propertyBinding>
+            </propertyBindings>
+        </component>
+        <component>
+            <name>cbDoProperty</name>
+            <alias>uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[cbDoProperty].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDComboBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>items</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[cbDoProperty].properties.property[items].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>required</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[cbDoProperty].properties.property[required].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="contDoProperty" />
+            </parent>
+            <propertyBindings>
+                <propertyBinding>
+                    <propertyName>selectedItem</propertyName>
+                    <propertyType>java.lang.Object</propertyType>
+                    <bindingObject>editData</bindingObject>
+                    <bindingField>doProperty</bindingField>
+                    <fieldType>com.kingdee.eas.fdc.sellhouse.DoPropertyEnum</fieldType>
+                    <accessType />
+                    <autoMode>false</autoMode>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
                 </propertyBinding>
             </propertyBindings>
         </component>
@@ -1649,6 +1739,24 @@
             <lang locale="zh_HK" value="取消組織" />
             <lang locale="zh_TW" value="取消組織" />
         </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[cbDoProperty].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[cbDoProperty].properties.property[items].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="[Enum]com.kingdee.eas.fdc.sellhouse.DoPropertyEnum" />
+            <lang locale="zh_HK" value="[Enum]com.kingdee.eas.fdc.sellhouse.DoPropertyEnum" />
+            <lang locale="zh_TW" value="[Enum]com.kingdee.eas.fdc.sellhouse.DoPropertyEnum" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[cbDoProperty].properties.property[required].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[chkIsForPPM].alias">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="null" />
@@ -1728,6 +1836,30 @@
             <lang locale="zh_TW" value="項目描述" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[contDescription].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[contDoProperty].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[contDoProperty].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[contDoProperty].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="操盘属性" />
+            <lang locale="zh_HK" value="操盤屬性" />
+            <lang locale="zh_TW" value="操盤屬性" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.sellhouse.client.SHESellProjectEditUI].components.component[contDoProperty].properties.property[boundLabelUnderline].value">
             <lang locale="en_US" value="true" />
             <lang locale="zh_CN" value="true" />
             <lang locale="zh_HK" value="true" />
