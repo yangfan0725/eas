@@ -43,6 +43,9 @@ public class AttachmentFtpHandleFacadeControllerBean extends AbstractAttachmentF
 						sic.add(new SelectorItemInfo("beizhu"));
 						attachmentInfo=AttachmentFactory.getLocalInstance(ctx).getAttachmentInfo(new ObjectUuidPK(attachmentId),sic);
 					}
+					if(attachmentInfo.getName().length()>45){
+						throw new EASBizException(new NumericExceptionSubItem("100","附件名太长！"));
+					}
 					remotePath=attachmentInfo.getBeizhu()+attachmentInfo.getName()+"."+attachmentInfo.getSimpleName();
 					AttachmentCollection attCol=AttachmentFactory.getLocalInstance(ctx).getAttachmentCollection("select id from where remotePath='"+remotePath+"'");
 					for(int i=0;i<attCol.size();i++){
@@ -88,6 +91,9 @@ public class AttachmentFtpHandleFacadeControllerBean extends AbstractAttachmentF
 /*  48*/        AttachmentInfo attachmentInfo2 = (AttachmentInfo)attachmentInfo;
 				String remotePath=null;
 				if(attachmentInfo2.getBoAttchAsso().get(0).getAssoBusObjType().equals("08C8DF31")||attachmentInfo2.getBoAttchAsso().get(0).getAssoBusObjType().equals("1A4B8B7D")){
+					if(attachmentInfo2.getName().length()>45){
+						throw new EASBizException(new NumericExceptionSubItem("100","附件名太长！"));
+					}
 					remotePath=attachmentInfo2.getBeizhu()+attachmentInfo2.getName()+"."+attachmentInfo2.getSimpleName();
 					AttachmentCollection attCol=AttachmentFactory.getLocalInstance(ctx).getAttachmentCollection("select id from where remotePath='"+remotePath+"'");
 					for(int i=0;i<attCol.size();i++){
