@@ -79,6 +79,7 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contBanBasedataEntry;
     protected com.kingdee.bos.ctrl.kdf.table.KDTable kdtEntry;
     protected com.kingdee.bos.ctrl.swing.KDCheckBox kdChIsReturn;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contDoProperty;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtProjectNumber;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtNumber;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtProjectName;
@@ -104,6 +105,7 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkSellCertifiDate;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker pkStructureDate;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtBanBasedataEntry;
+    protected com.kingdee.bos.ctrl.swing.KDComboBox cbDoProperty;
     protected com.kingdee.eas.framework.CoreBaseInfo editData = null;
     /**
      * output class constructor
@@ -157,6 +159,7 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
         this.contBanBasedataEntry = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.kdtEntry = new com.kingdee.bos.ctrl.kdf.table.KDTable();
         this.kdChIsReturn = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.contDoProperty = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.txtProjectNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtProjectName = new com.kingdee.bos.ctrl.swing.KDTextField();
@@ -182,6 +185,7 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
         this.pkSellCertifiDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.pkStructureDate = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.prmtBanBasedataEntry = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
+        this.cbDoProperty = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.tabPanel.setName("tabPanel");
         this.tabBuildingInfo.setName("tabBuildingInfo");
         this.contProjectNumber.setName("contProjectNumber");
@@ -215,6 +219,7 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
         this.contBanBasedataEntry.setName("contBanBasedataEntry");
         this.kdtEntry.setName("kdtEntry");
         this.kdChIsReturn.setName("kdChIsReturn");
+        this.contDoProperty.setName("contDoProperty");
         this.txtProjectNumber.setName("txtProjectNumber");
         this.txtNumber.setName("txtNumber");
         this.txtProjectName.setName("txtProjectName");
@@ -240,6 +245,7 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
         this.pkSellCertifiDate.setName("pkSellCertifiDate");
         this.pkStructureDate.setName("pkStructureDate");
         this.prmtBanBasedataEntry.setName("prmtBanBasedataEntry");
+        this.cbDoProperty.setName("cbDoProperty");
         // CoreUI		
         this.setPreferredSize(new Dimension(650,500));		
         this.btnCopy.setEnabled(false);		
@@ -390,6 +396,10 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
 
         // kdChIsReturn		
         this.kdChIsReturn.setText(resHelper.getString("kdChIsReturn.text"));
+        // contDoProperty		
+        this.contDoProperty.setBoundLabelText(resHelper.getString("contDoProperty.boundLabelText"));		
+        this.contDoProperty.setBoundLabelLength(100);		
+        this.contDoProperty.setBoundLabelUnderline(true);
         // txtProjectNumber
         // txtNumber
         // txtProjectName
@@ -510,6 +520,9 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
         this.prmtBanBasedataEntry.setCommitFormat("$BanNumber$");		
         this.prmtBanBasedataEntry.setDisplayFormat("$BanNumber$");		
         this.prmtBanBasedataEntry.setEditFormat("$BanNumber$");
+        // cbDoProperty		
+        this.cbDoProperty.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.sellhouse.DoPropertyEnum").toArray());		
+        this.cbDoProperty.setRequired(true);
 		//Register control's property binding
 		registerBindings();
 		registerUIState();
@@ -572,7 +585,7 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
         tabBuildingInfo.add(contAdministrativeNumber, null);
         contBuildingProperty.setBounds(new Rectangle(341, 76, 270, 19));
         tabBuildingInfo.add(contBuildingProperty, null);
-        kDLabelContainer2.setBounds(new Rectangle(341, 186, 270, 19));
+        kDLabelContainer2.setBounds(new Rectangle(532, 223, 270, 19));
         tabBuildingInfo.add(kDLabelContainer2, null);
         kDLabelContainer1.setBounds(new Rectangle(577, 369, 270, 19));
         tabBuildingInfo.add(kDLabelContainer1, null);
@@ -584,7 +597,7 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
         tabBuildingInfo.add(contFloorHeight, null);
         contUseRate.setBounds(new Rectangle(341, 142, 230, 19));
         tabBuildingInfo.add(contUseRate, null);
-        isGetCertificated.setBounds(new Rectangle(7, 217, 169, 19));
+        isGetCertificated.setBounds(new Rectangle(259, 240, 169, 19));
         tabBuildingInfo.add(isGetCertificated, null);
         contSellCertifiNum.setBounds(new Rectangle(7, 240, 270, 19));
         tabBuildingInfo.add(contSellCertifiNum, null);
@@ -602,8 +615,10 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
         tabBuildingInfo.add(contBanBasedataEntry, null);
         kdtEntry.setBounds(new Rectangle(6, 265, 605, 186));
         tabBuildingInfo.add(kdtEntry, null);
-        kdChIsReturn.setBounds(new Rectangle(341, 217, 140, 19));
+        kdChIsReturn.setBounds(new Rectangle(341, 186, 140, 19));
         tabBuildingInfo.add(kdChIsReturn, null);
+        contDoProperty.setBounds(new Rectangle(7, 208, 270, 19));
+        tabBuildingInfo.add(contDoProperty, null);
         //contProjectNumber
         contProjectNumber.setBoundEditor(txtProjectNumber);
         //contNumber
@@ -654,6 +669,8 @@ public abstract class AbstractBuildingNewEditUI extends com.kingdee.eas.framewor
         contStructureDate.setBoundEditor(pkStructureDate);
         //contBanBasedataEntry
         contBanBasedataEntry.setBoundEditor(prmtBanBasedataEntry);
+        //contDoProperty
+        contDoProperty.setBoundEditor(cbDoProperty);
 
     }
 

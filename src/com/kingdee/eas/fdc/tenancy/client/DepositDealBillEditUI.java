@@ -568,5 +568,9 @@ public class DepositDealBillEditUI extends AbstractDepositDealBillEditUI
 		super.kdtEntry_editStopped(e);
 		CRMClientHelper.getFootRow(this.kdtEntry, new String[]{"amount"});
 	}
-	
+	public void actionEdit_actionPerformed(ActionEvent e) throws Exception {
+		// TODO Auto-generated method stub
+		super.actionEdit_actionPerformed(e);
+		this.txtName.setEnabled(false);
+	}
 }

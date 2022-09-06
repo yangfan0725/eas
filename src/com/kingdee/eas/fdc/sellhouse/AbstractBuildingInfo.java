@@ -500,6 +500,19 @@ public class AbstractBuildingInfo extends com.kingdee.eas.fdc.basedata.FDCDataBa
     {
         setBoolean("isReturn", item);
     }
+    /**
+     * Object:¬•∂∞'s ≤Ÿ≈Ã Ù–‘property 
+     */
+    public com.kingdee.eas.fdc.sellhouse.DoPropertyEnum getDoProperty()
+    {
+        return com.kingdee.eas.fdc.sellhouse.DoPropertyEnum.getEnum(getString("doProperty"));
+    }
+    public void setDoProperty(com.kingdee.eas.fdc.sellhouse.DoPropertyEnum item)
+    {
+		if (item != null) {
+        setString("doProperty", item.getValue());
+		}
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("159C6E8F");

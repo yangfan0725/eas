@@ -261,12 +261,12 @@ public abstract class AbstractNoTradingSellBillEditUI extends com.kingdee.eas.fd
         this.contName.setEnabled(false);
         // contBizDate		
         this.contBizDate.setBoundLabelText(resHelper.getString("contBizDate.boundLabelText"));		
-        this.contBizDate.setBoundLabelLength(100);		
+        this.contBizDate.setBoundLabelLength(120);		
         this.contBizDate.setBoundLabelUnderline(true);
         // kDScrollPane1
         // txtDescription
         // kdtEntry
-		String kdtEntryStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol3\"><c:NumberFormat>###.00</c:NumberFormat><c:Alignment horizontal=\"right\" /></c:Style><c:Style id=\"sCol4\"><c:NumberFormat>###.00</c:NumberFormat><c:Alignment horizontal=\"right\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"sellProject\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"customer\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"1\" /><t:Column t:key=\"room\" t:width=\"250\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"2\" /><t:Column t:key=\"sellAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"3\" t:styleID=\"sCol3\" /><t:Column t:key=\"backAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"4\" t:styleID=\"sCol4\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{sellProject}</t:Cell><t:Cell>$Resource{customer}</t:Cell><t:Cell>$Resource{room}</t:Cell><t:Cell>$Resource{sellAmount}</t:Cell><t:Cell>$Resource{backAmount}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
+		String kdtEntryStrXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><DocRoot xmlns:c=\"http://www.kingdee.com/Common\" xmlns:f=\"http://www.kingdee.com/Form\" xmlns:t=\"http://www.kingdee.com/Table\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.kingdee.com/KDF KDFSchema.xsd\" version=\"0.0\"><Styles><c:Style id=\"sCol1\"><c:Protection locked=\"true\" /></c:Style><c:Style id=\"sCol4\"><c:NumberFormat>###.00</c:NumberFormat><c:Alignment horizontal=\"right\" /></c:Style><c:Style id=\"sCol5\"><c:NumberFormat>###.00</c:NumberFormat><c:Alignment horizontal=\"right\" /></c:Style></Styles><Table id=\"KDTable\"><t:Sheet name=\"sheet1\"><t:Table t:selectMode=\"15\" t:mergeMode=\"0\" t:dataRequestMode=\"0\" t:pageRowCount=\"100\"><t:ColumnGroup><t:Column t:key=\"sellProject\" t:width=\"250\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"-1\" /><t:Column t:key=\"org\" t:width=\"200\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"false\" t:index=\"1\" t:styleID=\"sCol1\" /><t:Column t:key=\"customer\" t:width=\"200\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"2\" /><t:Column t:key=\"room\" t:width=\"250\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"3\" /><t:Column t:key=\"sellAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"4\" t:styleID=\"sCol4\" /><t:Column t:key=\"backAmount\" t:width=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\" t:moveable=\"true\" t:group=\"false\" t:required=\"true\" t:index=\"5\" t:styleID=\"sCol5\" /></t:ColumnGroup><t:Head><t:Row t:name=\"header1\" t:height=\"-1\" t:mergeable=\"true\" t:resizeable=\"true\"><t:Cell>$Resource{sellProject}</t:Cell><t:Cell>$Resource{org}</t:Cell><t:Cell>$Resource{customer}</t:Cell><t:Cell>$Resource{room}</t:Cell><t:Cell>$Resource{sellAmount}</t:Cell><t:Cell>$Resource{backAmount}</t:Cell></t:Row></t:Head></t:Table><t:SheetOptions><t:MergeBlocks><t:Head /></t:MergeBlocks></t:SheetOptions></t:Sheet></Table></DocRoot>";
 		
         this.kdtEntry.setFormatXml(resHelper.translateString("kdtEntry",kdtEntryStrXML));
         this.kdtEntry.addKDTMouseListener(new com.kingdee.bos.ctrl.kdf.table.event.KDTMouseListener() {
@@ -289,7 +289,7 @@ public abstract class AbstractNoTradingSellBillEditUI extends com.kingdee.eas.fd
             }
         });
 
-                this.kdtEntry.putBindContents("editData",new String[] {"sellProject","customer","room","sellAmount","backAmount"});
+                this.kdtEntry.putBindContents("editData",new String[] {"sellProject","sellProject.orgUnit.name","customer","room","sellAmount","backAmount"});
 
 
         // prmtCreator		
@@ -555,6 +555,7 @@ contEntry.getContentPane().setLayout(new BorderLayout(0, 0));        contEntry.g
 		dataBinder.registerBinding("entry.room", com.kingdee.eas.fdc.sellhouse.RoomInfo.class, this.kdtEntry, "room.text");
 		dataBinder.registerBinding("entry.sellAmount", java.math.BigDecimal.class, this.kdtEntry, "sellAmount.text");
 		dataBinder.registerBinding("entry.backAmount", java.math.BigDecimal.class, this.kdtEntry, "backAmount.text");
+		dataBinder.registerBinding("entry.sellProject.orgUnit.name", String.class, this.kdtEntry, "org.text");
 		dataBinder.registerBinding("creator", com.kingdee.eas.base.permission.UserInfo.class, this.prmtCreator, "data");
 		dataBinder.registerBinding("createTime", java.sql.Timestamp.class, this.kdpCreateTime, "value");
 		dataBinder.registerBinding("auditor", com.kingdee.eas.base.permission.UserInfo.class, this.prmtAuditor, "data");
@@ -628,6 +629,7 @@ contEntry.getContentPane().setLayout(new BorderLayout(0, 0));        contEntry.g
 		getValidateHelper().registerBindProperty("entry.room", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("entry.sellAmount", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("entry.backAmount", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("entry.sellProject.orgUnit.name", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("creator", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("createTime", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("auditor", ValidateHelper.ON_SAVE);    
@@ -712,6 +714,7 @@ contEntry.getContentPane().setLayout(new BorderLayout(0, 0));        contEntry.g
 		}
     	sic.add(new SelectorItemInfo("entry.sellAmount"));
     	sic.add(new SelectorItemInfo("entry.backAmount"));
+    	sic.add(new SelectorItemInfo("entry.sellProject.orgUnit.name"));
 		if(selectorAll.equalsIgnoreCase("true"))
 		{
 			sic.add(new SelectorItemInfo("creator.*"));

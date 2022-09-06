@@ -65,6 +65,7 @@ import com.kingdee.eas.fdc.basedata.SchedulePlanEntryCollection;
 import com.kingdee.eas.fdc.basedata.SchedulePlanEntryFactory;
 import com.kingdee.eas.fdc.basedata.SchedulePlanEntryInfo;
 import com.kingdee.eas.fdc.basedata.client.FDCClientHelper;
+import com.kingdee.eas.fdc.basedata.client.FDCClientVerifyHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.sellhouse.BanBasedataEntryListInfo;
 import com.kingdee.eas.fdc.sellhouse.BuildingAreaEntryInfo;
@@ -79,6 +80,7 @@ import com.kingdee.eas.fdc.sellhouse.BuildingUnitCollection;
 import com.kingdee.eas.fdc.sellhouse.BuildingUnitInfo;
 import com.kingdee.eas.fdc.sellhouse.CodingTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.ConditionTypeEnum;
+import com.kingdee.eas.fdc.sellhouse.DoPropertyEnum;
 import com.kingdee.eas.fdc.sellhouse.IBuilding;
 import com.kingdee.eas.fdc.sellhouse.NetWorkTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.RoomDesFactory;
@@ -533,6 +535,8 @@ public class BuildingNewEditUI extends AbstractBuildingNewEditUI {
 			row.getCell("floor").setValue(i+1);
 		}
 		CRMClientHelper.getFootRow(this.kdtEntry, new String[]{"area","buildArea"});
+		
+		this.cbDoProperty.setSelectedItem(buildingInfo.getDoProperty());
 	}
 	
 	private BuildingFloorEntryCollection getBuildingFloorEntryColl(BuildingInfo building)
@@ -679,6 +683,8 @@ public class BuildingNewEditUI extends AbstractBuildingNewEditUI {
 			areaEntry.setBuildArea((BigDecimal) row.getCell("buildArea").getValue());
 			buildingInfo.getAreaEntry().add(areaEntry);
 		}
+		
+		buildingInfo.setDoProperty((DoPropertyEnum) this.cbDoProperty.getSelectedItem());
 	}
 
 	protected IObjectValue createNewData() {
@@ -889,6 +895,8 @@ public class BuildingNewEditUI extends AbstractBuildingNewEditUI {
 		}
 		Map numberMap = new HashMap();
 		Map nameMap = new HashMap();
+		
+		FDCClientVerifyHelper.verifyEmpty(this, this.cbDoProperty);
 		
 	}
 	

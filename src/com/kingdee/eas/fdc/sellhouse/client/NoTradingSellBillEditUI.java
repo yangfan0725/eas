@@ -6,17 +6,22 @@ package com.kingdee.eas.fdc.sellhouse.client;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 
 import com.kingdee.bos.BOSException;
+import com.kingdee.bos.metadata.data.SortType;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemCollection;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
+import com.kingdee.bos.metadata.entity.SorterItemCollection;
+import com.kingdee.bos.metadata.entity.SorterItemInfo;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox;
@@ -25,29 +30,42 @@ import com.kingdee.bos.ctrl.kdf.table.KDTDefaultCellEditor;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectBlock;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTEditEvent;
+import com.kingdee.bos.ctrl.kdf.util.render.ObjectValueRender;
 import com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment;
 import com.kingdee.bos.ctrl.swing.KDComboBox;
 import com.kingdee.bos.ctrl.swing.KDFormattedTextField;
 import com.kingdee.bos.ctrl.swing.KDTextField;
 import com.kingdee.bos.ctrl.swing.KDWorkButton;
 import com.kingdee.bos.dao.IObjectValue;
+import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
+import com.kingdee.eas.basedata.org.CtrlUnitFactory;
+import com.kingdee.eas.basedata.org.FullOrgUnitFactory;
+import com.kingdee.eas.basedata.org.OrgUnitFactory;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.common.client.OprtState;
+import com.kingdee.eas.fdc.basedata.CostAccountInfo;
 import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
+import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
 import com.kingdee.eas.fdc.basedata.client.FDCClientUtils;
 import com.kingdee.eas.fdc.basedata.client.FDCClientVerifyHelper;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
+import com.kingdee.eas.fdc.sellhouse.BuildingCollection;
+import com.kingdee.eas.fdc.sellhouse.BuildingFactory;
+import com.kingdee.eas.fdc.sellhouse.BuildingInfo;
 import com.kingdee.eas.fdc.sellhouse.DoPropertyEnum;
 import com.kingdee.eas.fdc.sellhouse.NoTradingSellBillEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.NoTradingSellBillEntryFactory;
 import com.kingdee.eas.fdc.sellhouse.NoTradingSellBillFactory;
 import com.kingdee.eas.fdc.sellhouse.NoTradingSellBillInfo;
 import com.kingdee.eas.fdc.sellhouse.PropertyEnum;
+import com.kingdee.eas.fdc.sellhouse.RoomCollection;
+import com.kingdee.eas.fdc.sellhouse.RoomFactory;
 import com.kingdee.eas.fdc.sellhouse.RoomInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomSellStateEnum;
 import com.kingdee.eas.fdc.sellhouse.NoTradingSellBillEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
+import com.kingdee.eas.fdc.tenancy.DepositDealTypeEnum;
 import com.kingdee.eas.framework.*;
 import com.kingdee.eas.util.SysUtil;
 import com.kingdee.eas.util.client.EASResource;
@@ -125,7 +143,7 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 		
 		KDBizPromptBox f7Box = new KDBizPromptBox(); 
 		KDTDefaultCellEditor f7Editor = new KDTDefaultCellEditor(f7Box);
-		f7Box.setDisplayFormat("$name$");
+		f7Box.setDisplayFormat("$number$;$name$");
 		f7Box.setEditFormat("$number$");
 		f7Box.setCommitFormat("$number$");
 		f7Box.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.F7SellProjectQuery");
@@ -138,11 +156,24 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 		
 		EntityViewInfo view=new EntityViewInfo();
 		view.setFilter(filter);
+		SorterItemCollection sort=new SorterItemCollection();
+		SorterItemInfo ss=new SorterItemInfo("number");
+		sort.add(ss);
+		view.setSorter(sort);
 		f7Box.setEntityViewInfo(view);
 		
 		this.kdtEntry.getColumn("sellProject").setEditor(f7Editor);
+		this.kdtEntry.getColumn("sellProject").setRenderer(new ObjectValueRender(){
+			public String getText(Object obj) {
+				if(obj instanceof SellProjectInfo){
+					SellProjectInfo info = (SellProjectInfo)obj;
+					return info.getNumber()+";"+info.getName();
+				}
+				return super.getText(obj);
+			}
+		});
 		
-		
+		this.txtName.setEnabled(false);
     }
     public SelectorItemCollection getSelectors() {
     	SelectorItemCollection sic = super.getSelectors();
@@ -152,6 +183,12 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
     public void storeFields()
     {
         super.storeFields();
+        
+        Date now=new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:sss");
+
+        editData.setName(sdf.format(now)+"-非操盘项目销售回款确认单");
+  		this.txtName.setName(editData.getName());
     }
     protected void attachListeners() {
 	}
@@ -169,6 +206,14 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 	protected IObjectValue createNewData() {
 		NoTradingSellBillInfo info=new NoTradingSellBillInfo();
 		info.setId(BOSUuid.create(info.getBOSType()));
+		try {
+			info.setCU(CtrlUnitFactory.getRemoteInstance().getCtrlUnitInfo(new ObjectUuidPK("00000000-0000-0000-0000-000000000000CCE7AED4")));
+			info.setOrgUnit(FullOrgUnitFactory.getRemoteInstance().getFullOrgUnitInfo(new ObjectUuidPK("00000000-0000-0000-0000-000000000000CCE7AED4")));
+		} catch (EASBizException e) {
+			e.printStackTrace();
+		} catch (BOSException e) {
+			e.printStackTrace();
+		}
 		return info;
 	}
 	public void actionSave_actionPerformed(ActionEvent e) throws Exception {
@@ -249,13 +294,13 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 	protected void verifyInputForSubmint() throws Exception {
 		super.verifyInputForSubmint();
 		FDCClientVerifyHelper.verifyEmpty(this, this.txtNumber);
-		FDCClientVerifyHelper.verifyEmpty(this, this.txtName);
 		FDCClientVerifyHelper.verifyEmpty(this, this.pkBizDate);
 		if(this.kdtEntry.getRowCount()==0){
 			FDCMsgBox.showWarning(this,"项目明细不能为空！");
 			SysUtil.abort();
 		}
 		Set roomSet=new HashSet();
+		Set spSet=new HashSet();
 		for (int i = 0; i < this.kdtEntry.getRowCount(); i++) {
 			IRow row = this.kdtEntry.getRow(i);
 			if (row.getCell("sellProject").getValue() == null) {
@@ -263,6 +308,14 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 				this.kdtEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtEntry.getColumnIndex("sellProject"));
 				SysUtil.abort();
 			} 
+			SellProjectInfo sp=(SellProjectInfo) row.getCell("sellProject").getValue();
+			if(spSet.contains(sp.getId())){
+				FDCMsgBox.showWarning(this,"项目重复！");
+				this.kdtEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtEntry.getColumnIndex("sellProject"));
+				SysUtil.abort();
+			}else{
+				spSet.add(sp.getId());
+			}
 			if (row.getCell("customer").getValue() == null) {
 				FDCMsgBox.showWarning(this,"客户不能为空！");
 				this.kdtEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtEntry.getColumnIndex("customer"));
@@ -301,7 +354,6 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 	}
 	protected void verifyInputForSave()throws Exception{
 		FDCClientVerifyHelper.verifyEmpty(this, this.txtNumber);
-		FDCClientVerifyHelper.verifyEmpty(this, this.txtName);
 		FDCClientVerifyHelper.verifyEmpty(this, this.pkBizDate);
 	}
 	public void setOprtState(String oprtType) {
@@ -389,20 +441,17 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 				f7Box.setDisplayFormat("$name$");
 				f7Box.setEditFormat("$number$");
 				f7Box.setCommitFormat("$number$");
-				f7Box.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.RoomQuery");
 				f7Editor = new KDTDefaultCellEditor(f7Box);
 				
-				filter = new FilterInfo();
-				filterItems = filter.getFilterItems();
-				filterItems.add(new FilterItemInfo("sellProject.id", sp.getId()));
-				filterItems.add(new FilterItemInfo("sellState", RoomSellStateEnum.INIT_VALUE));
-				filterItems.add(new FilterItemInfo("sellState", RoomSellStateEnum.ONSHOW_VALUE));
-				filter.setMaskString("#0 and (#1 or #2)");
-				
-				view=new EntityViewInfo();
-				view.setFilter(filter);
-				f7Box.setEntityViewInfo(view);
-				
+				RoomCollection roomCol=RoomFactory.getRemoteInstance().getRoomCollection("select * from where building.doProperty='"+DoPropertyEnum.FCP_VALUE+"' and building.sellProject.id='"+sp.getId()+"'");
+				if(roomCol.size()==0){
+					RoomInfo xx=new RoomInfo();
+					xx.setId(BOSUuid.create(xx.getBOSType()));
+					roomCol.add(xx);
+				}
+				NewFDCRoomPromptDialog dialog=new NewFDCRoomPromptDialog(Boolean.FALSE, null, null,
+						MoneySysTypeEnum.SalehouseSys, roomCol,sp);
+				f7Box.setSelector(dialog);
 				this.kdtEntry.getRow(rowIndex).getCell("room").setEditor(f7Editor);
 				
 				this.kdtEntry.getRow(rowIndex).getCell("customer").getStyleAttributes().setLocked(false);
@@ -411,11 +460,21 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 					this.kdtEntry.getRow(rowIndex).getCell("customer").setValue(null);
 					this.kdtEntry.getRow(rowIndex).getCell("room").setValue(null);
 				}
+				this.kdtEntry.getRow(rowIndex).getCell("org").setValue(FullOrgUnitFactory.getRemoteInstance().getFullOrgUnitInfo(new ObjectUuidPK(sp.getOrgUnit().getId())).getName());
 			}else{
 				this.kdtEntry.getRow(rowIndex).getCell("customer").setValue(null);
 				this.kdtEntry.getRow(rowIndex).getCell("room").setValue(null);
 				this.kdtEntry.getRow(rowIndex).getCell("customer").getStyleAttributes().setLocked(true);
 				this.kdtEntry.getRow(rowIndex).getCell("room").getStyleAttributes().setLocked(true);
+				
+				this.kdtEntry.getRow(rowIndex).getCell("org").setValue(null);
+			}
+		}else if("room".equals(this.kdtEntry.getColumnKey(colIndex))){
+			RoomInfo room=(RoomInfo) this.kdtEntry.getRow(rowIndex).getCell("room").getValue();
+			if(room!=null&&!room.getSellState().equals(RoomSellStateEnum.Init)&&!room.getSellState().equals(RoomSellStateEnum.OnShow)){
+				FDCMsgBox.showWarning(this,"房间状态只能为未推盘或者待售！");
+				this.kdtEntry.getRow(rowIndex).getCell("room").setValue(null);
+				SysUtil.abort();
 			}
 		}
 	}
@@ -453,19 +512,22 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 				f7Box.setDisplayFormat("$name$");
 				f7Box.setEditFormat("$number$");
 				f7Box.setCommitFormat("$number$");
-				f7Box.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.RoomQuery");
 				f7Editor = new KDTDefaultCellEditor(f7Box);
 				
-				filter = new FilterInfo();
-				filterItems = filter.getFilterItems();
-				filterItems.add(new FilterItemInfo("sellProject.id", sp.getId()));
-				filterItems.add(new FilterItemInfo("sellState", RoomSellStateEnum.INIT_VALUE));
-				filterItems.add(new FilterItemInfo("sellState", RoomSellStateEnum.ONSHOW_VALUE));
-				filter.setMaskString("#0 and (#1 or #2)");
-				view=new EntityViewInfo();
-				view.setFilter(filter);
-				f7Box.setEntityViewInfo(view);
-				
+				RoomCollection roomCol=null;
+				try {
+					roomCol = RoomFactory.getRemoteInstance().getRoomCollection("select * from where building.doProperty='"+DoPropertyEnum.FCP_VALUE+"' and building.sellProject.id='"+sp.getId()+"'");
+					if(roomCol.size()==0){
+						RoomInfo xx=new RoomInfo();
+						xx.setId(BOSUuid.create(xx.getBOSType()));
+						roomCol.add(xx);
+					}
+				} catch (BOSException e) {
+					e.printStackTrace();
+				}
+				NewFDCRoomPromptDialog dialog=new NewFDCRoomPromptDialog(Boolean.FALSE, null, null,
+						MoneySysTypeEnum.SalehouseSys, roomCol,sp);
+				f7Box.setSelector(dialog);
 				this.kdtEntry.getRow(i).getCell("room").setEditor(f7Editor);
 				
 				this.kdtEntry.getRow(i).getCell("customer").getStyleAttributes().setLocked(false);
@@ -475,5 +537,10 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 				this.kdtEntry.getRow(i).getCell("room").getStyleAttributes().setLocked(true);
 			}
 		}
+	}
+	public void actionEdit_actionPerformed(ActionEvent e) throws Exception {
+		// TODO Auto-generated method stub
+		super.actionEdit_actionPerformed(e);
+		this.txtName.setEnabled(false);
 	}
 }
