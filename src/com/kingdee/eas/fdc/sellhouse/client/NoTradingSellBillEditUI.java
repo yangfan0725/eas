@@ -174,6 +174,8 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 		});
 		
 		this.txtName.setEnabled(false);
+		
+		this.kdtEntry.getColumn("customer").getStyleAttributes().setHided(true);
     }
     public SelectorItemCollection getSelectors() {
     	SelectorItemCollection sic = super.getSelectors();
@@ -316,11 +318,11 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 			}else{
 				spSet.add(sp.getId());
 			}
-			if (row.getCell("customer").getValue() == null) {
-				FDCMsgBox.showWarning(this,"客户不能为空！");
-				this.kdtEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtEntry.getColumnIndex("customer"));
-				SysUtil.abort();
-			} 
+//			if (row.getCell("customer").getValue() == null) {
+//				FDCMsgBox.showWarning(this,"客户不能为空！");
+//				this.kdtEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtEntry.getColumnIndex("customer"));
+//				SysUtil.abort();
+//			} 
 			if (row.getCell("room").getValue() == null) {
 				FDCMsgBox.showWarning(this,"房间不能为空！");
 				this.kdtEntry.getEditManager().editCellAt(row.getRowIndex(), this.kdtEntry.getColumnIndex("room"));
@@ -420,21 +422,21 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 			if(sp!=null){
 				KDBizPromptBox f7Box = new KDBizPromptBox(); 
 				KDTDefaultCellEditor f7Editor = new KDTDefaultCellEditor(f7Box);
-				f7Box.setDisplayFormat("$name$");
-				f7Box.setEditFormat("$number$");
-				f7Box.setCommitFormat("$number$");
-				f7Box.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.F7SHECustomerQuery");
-				f7Editor = new KDTDefaultCellEditor(f7Box);
-				
-				FilterInfo	filter = new FilterInfo();
-				FilterItemCollection filterItems = filter.getFilterItems();
-				filterItems.add(new FilterItemInfo("sellProject.id", SHEManageHelper.getParentSellProject(null, sp).getId()));
-				
-				EntityViewInfo view=new EntityViewInfo();
-				view.setFilter(filter);
-				f7Box.setEntityViewInfo(view);
-				
-				this.kdtEntry.getRow(rowIndex).getCell("customer").setEditor(f7Editor);
+//				f7Box.setDisplayFormat("$name$");
+//				f7Box.setEditFormat("$number$");
+//				f7Box.setCommitFormat("$number$");
+//				f7Box.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.F7SHECustomerQuery");
+//				f7Editor = new KDTDefaultCellEditor(f7Box);
+//				
+//				FilterInfo	filter = new FilterInfo();
+//				FilterItemCollection filterItems = filter.getFilterItems();
+//				filterItems.add(new FilterItemInfo("sellProject.id", SHEManageHelper.getParentSellProject(null, sp).getId()));
+//				
+//				EntityViewInfo view=new EntityViewInfo();
+//				view.setFilter(filter);
+//				f7Box.setEntityViewInfo(view);
+//				
+//				this.kdtEntry.getRow(rowIndex).getCell("customer").setEditor(f7Editor);
 				
 				f7Box = new KDBizPromptBox(); 
 				f7Editor = new KDTDefaultCellEditor(f7Box);
@@ -449,22 +451,27 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 					xx.setId(BOSUuid.create(xx.getBOSType()));
 					roomCol.add(xx);
 				}
-				NewFDCRoomPromptDialog dialog=new NewFDCRoomPromptDialog(Boolean.FALSE, null, null,
+				BuildingInfo bu=null;
+				BuildingCollection buCol=BuildingFactory.getRemoteInstance().getBuildingCollection("select * from where doProperty='"+DoPropertyEnum.FCP_VALUE+"' and sellProject.id='"+sp.getId()+"'");
+				if(buCol.size()>0){
+					bu=buCol.get(0);
+				}
+				NewFDCRoomPromptDialog dialog=new NewFDCRoomPromptDialog(Boolean.FALSE, bu, null,
 						MoneySysTypeEnum.SalehouseSys, roomCol,sp);
 				f7Box.setSelector(dialog);
 				this.kdtEntry.getRow(rowIndex).getCell("room").setEditor(f7Editor);
 				
-				this.kdtEntry.getRow(rowIndex).getCell("customer").getStyleAttributes().setLocked(false);
+//				this.kdtEntry.getRow(rowIndex).getCell("customer").getStyleAttributes().setLocked(false);
 				this.kdtEntry.getRow(rowIndex).getCell("room").getStyleAttributes().setLocked(false);
 				if(e.getOldValue()!=null&&!((SellProjectInfo)e.getOldValue()).getId().equals(sp.getId())){
-					this.kdtEntry.getRow(rowIndex).getCell("customer").setValue(null);
+//					this.kdtEntry.getRow(rowIndex).getCell("customer").setValue(null);
 					this.kdtEntry.getRow(rowIndex).getCell("room").setValue(null);
 				}
 				this.kdtEntry.getRow(rowIndex).getCell("org").setValue(FullOrgUnitFactory.getRemoteInstance().getFullOrgUnitInfo(new ObjectUuidPK(sp.getOrgUnit().getId())).getName());
 			}else{
-				this.kdtEntry.getRow(rowIndex).getCell("customer").setValue(null);
+//				this.kdtEntry.getRow(rowIndex).getCell("customer").setValue(null);
 				this.kdtEntry.getRow(rowIndex).getCell("room").setValue(null);
-				this.kdtEntry.getRow(rowIndex).getCell("customer").getStyleAttributes().setLocked(true);
+//				this.kdtEntry.getRow(rowIndex).getCell("customer").getStyleAttributes().setLocked(true);
 				this.kdtEntry.getRow(rowIndex).getCell("room").getStyleAttributes().setLocked(true);
 				
 				this.kdtEntry.getRow(rowIndex).getCell("org").setValue(null);
@@ -485,27 +492,27 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 			if(sp!=null){
 				KDBizPromptBox f7Box = new KDBizPromptBox(); 
 				KDTDefaultCellEditor f7Editor = new KDTDefaultCellEditor(f7Box);
-				f7Box.setDisplayFormat("$name$");
-				f7Box.setEditFormat("$number$");
-				f7Box.setCommitFormat("$number$");
-				f7Box.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.F7SHECustomerQuery");
-				f7Editor = new KDTDefaultCellEditor(f7Box);
-				
-				FilterInfo	filter = new FilterInfo();
-				FilterItemCollection filterItems = filter.getFilterItems();
-				try {
-					filterItems.add(new FilterItemInfo("sellProject.id", SHEManageHelper.getParentSellProject(null, sp).getId()));
-				} catch (EASBizException e) {
-					e.printStackTrace();
-				} catch (BOSException e) {
-					e.printStackTrace();
-				}
-				
-				EntityViewInfo view=new EntityViewInfo();
-				view.setFilter(filter);
-				f7Box.setEntityViewInfo(view);
-				
-				this.kdtEntry.getRow(i).getCell("customer").setEditor(f7Editor);
+//				f7Box.setDisplayFormat("$name$");
+//				f7Box.setEditFormat("$number$");
+//				f7Box.setCommitFormat("$number$");
+//				f7Box.setQueryInfo("com.kingdee.eas.fdc.sellhouse.app.F7SHECustomerQuery");
+//				f7Editor = new KDTDefaultCellEditor(f7Box);
+//				
+//				FilterInfo	filter = new FilterInfo();
+//				FilterItemCollection filterItems = filter.getFilterItems();
+//				try {
+//					filterItems.add(new FilterItemInfo("sellProject.id", SHEManageHelper.getParentSellProject(null, sp).getId()));
+//				} catch (EASBizException e) {
+//					e.printStackTrace();
+//				} catch (BOSException e) {
+//					e.printStackTrace();
+//				}
+//				
+//				EntityViewInfo view=new EntityViewInfo();
+//				view.setFilter(filter);
+//				f7Box.setEntityViewInfo(view);
+//				
+//				this.kdtEntry.getRow(i).getCell("customer").setEditor(f7Editor);
 				
 				f7Box = new KDBizPromptBox(); 
 				f7Editor = new KDTDefaultCellEditor(f7Box);
@@ -515,6 +522,7 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 				f7Editor = new KDTDefaultCellEditor(f7Box);
 				
 				RoomCollection roomCol=null;
+				BuildingInfo bu=null;
 				try {
 					roomCol = RoomFactory.getRemoteInstance().getRoomCollection("select * from where building.doProperty='"+DoPropertyEnum.FCP_VALUE+"' and building.sellProject.id='"+sp.getId()+"'");
 					if(roomCol.size()==0){
@@ -522,18 +530,22 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 						xx.setId(BOSUuid.create(xx.getBOSType()));
 						roomCol.add(xx);
 					}
+					BuildingCollection buCol=BuildingFactory.getRemoteInstance().getBuildingCollection("select * from where doProperty='"+DoPropertyEnum.FCP_VALUE+"' and sellProject.id='"+sp.getId()+"'");
+					if(buCol.size()>0){
+						bu=buCol.get(0);
+					}
 				} catch (BOSException e) {
 					e.printStackTrace();
 				}
-				NewFDCRoomPromptDialog dialog=new NewFDCRoomPromptDialog(Boolean.FALSE, null, null,
+				NewFDCRoomPromptDialog dialog=new NewFDCRoomPromptDialog(Boolean.FALSE, bu, null,
 						MoneySysTypeEnum.SalehouseSys, roomCol,sp);
 				f7Box.setSelector(dialog);
 				this.kdtEntry.getRow(i).getCell("room").setEditor(f7Editor);
 				
-				this.kdtEntry.getRow(i).getCell("customer").getStyleAttributes().setLocked(false);
+//				this.kdtEntry.getRow(i).getCell("customer").getStyleAttributes().setLocked(false);
 				this.kdtEntry.getRow(i).getCell("room").getStyleAttributes().setLocked(false);
 			}else{
-				this.kdtEntry.getRow(i).getCell("customer").getStyleAttributes().setLocked(true);
+//				this.kdtEntry.getRow(i).getCell("customer").getStyleAttributes().setLocked(true);
 				this.kdtEntry.getRow(i).getCell("room").getStyleAttributes().setLocked(true);
 			}
 		}

@@ -25,11 +25,14 @@ import java.lang.String;
 
 import com.kingdee.eas.base.codingrule.CodingRuleManagerFactory;
 import com.kingdee.eas.base.codingrule.ICodingRuleManager;
+import com.kingdee.eas.base.permission.UserFactory;
 import com.kingdee.eas.basedata.org.SaleOrgUnitFactory;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.dao.IObjectPK;
 import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
+import com.kingdee.eas.fdc.basecrm.CreateWayEnum;
+import com.kingdee.eas.fdc.basecrm.CustomerTypeEnum;
 import com.kingdee.eas.fdc.basecrm.RelatBizType;
 import com.kingdee.eas.fdc.basecrm.RevBillTypeEnum;
 import com.kingdee.eas.fdc.basecrm.SHERevBillCollection;
@@ -45,6 +48,10 @@ import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.eas.fdc.sellhouse.MoneyDefineFactory;
 import com.kingdee.eas.fdc.sellhouse.NoTradingSellBillCollection;
 import com.kingdee.eas.fdc.sellhouse.RoomInfo;
+import com.kingdee.eas.fdc.sellhouse.SHECustomerCollection;
+import com.kingdee.eas.fdc.sellhouse.SHECustomerFactory;
+import com.kingdee.eas.fdc.sellhouse.SHECustomerInfo;
+import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
 import com.kingdee.eas.fdc.sellhouse.SellProjectFactory;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
 import com.kingdee.eas.fdc.sellhouse.SignCustomerEntryInfo;
@@ -73,8 +80,8 @@ public class NoTradingSellBillControllerBean extends AbstractNoTradingSellBillCo
 		sic.add("entry.sellProject.orgUnit.*");
 		sic.add("entry.sellProject.CU.*");
 		sic.add("entry.room.*");
-		sic.add("entry.customer.*");
-		sic.add("entry.customer.propertyConsultant.*");
+//		sic.add("entry.customer.*");
+//		sic.add("entry.customer.propertyConsultant.*");
 		NoTradingSellBillInfo info=this.getNoTradingSellBillInfo(ctx, new ObjectUuidPK(billId),sic);
 		for(int i=0;i<info.getEntry().size();i++){
 			SellProjectInfo sp=info.getEntry().get(i).getSellProject();
@@ -89,25 +96,48 @@ public class NoTradingSellBillControllerBean extends AbstractNoTradingSellBillCo
 			sign.setCU(sp.getCU());
 			
 			ICodingRuleManager iCodingRuleManager = CodingRuleManagerFactory.getLocalInstance(ctx);
-			sign.setNumber(iCodingRuleManager.getNumber(sign, sign.getOrgUnit().getId().toString()));
+			sign.setNumber(iCodingRuleManager.getNumber(sign, sp.getOrgUnit().getId().toString()));
 			
 			sign.setDealTotalAmount(info.getEntry().get(i).getSellAmount());
 			sign.setSellAmount(info.getEntry().get(i).getSellAmount());
 			
 			SignCustomerEntryInfo customEntry=new SignCustomerEntryInfo();
 			customEntry.setIsMain(true);
-			customEntry.setCustomer(info.getEntry().get(i).getCustomer());
+			
+			SellProjectInfo psp=SHEManageHelper.getParentSellProject(ctx, sp);
+			SHECustomerInfo sheCustomer=null;
+			SHECustomerCollection sheCustomerCol=SHECustomerFactory.getLocalInstance(ctx).getSHECustomerCollection("select *,propertyConsultant.* from where name='非操盘项目客户' and sellProject.id='"+psp.getId()+"'");
+			if(sheCustomerCol.size()>0){
+				sheCustomer=sheCustomerCol.get(0);
+			}else{
+				sheCustomer=new SHECustomerInfo();
+				sheCustomer.setCustomerType(CustomerTypeEnum.PERSONALCUSTOMER);
+				sheCustomer.setName("非操盘项目客户");
+				sheCustomer.setPhone("12345678");
+				sheCustomer.setPropertyConsultant(UserFactory.getLocalInstance(ctx).getUserInfo("select * from where number='00561'"));
+				sheCustomer.setFirstConsultant(sheCustomer.getPropertyConsultant());
+				sheCustomer.setIsEnabled(true);
+				sheCustomer.setCreateUnit(sp.getOrgUnit());
+				sheCustomer.setLastUpdateUnit(sp.getOrgUnit());
+				sheCustomer.setCreateWay(CreateWayEnum.HAND);
+				sheCustomer.setIsPublic(false);
+				sheCustomer.setCU(sp.getCU());
+				sheCustomer.setSellProject(psp);
+				sheCustomer.setNumber(iCodingRuleManager.getNumber(sheCustomer, sp.getOrgUnit().getId().toString()));
+				SHECustomerFactory.getLocalInstance(ctx).submit(sheCustomer);
+			}
+			customEntry.setCustomer(sheCustomer);
 			
 			sign.getSignCustomerEntry().add(customEntry);
 			
 			SignSaleManEntryInfo saleManEntry=new SignSaleManEntryInfo();
-			saleManEntry.setUser(info.getEntry().get(i).getCustomer().getPropertyConsultant());
+			saleManEntry.setUser(sheCustomer.getPropertyConsultant());
 			
 			sign.getSignSaleManEntry().add(saleManEntry);
-			sign.setSalesman(info.getEntry().get(i).getCustomer().getPropertyConsultant());
-			sign.setSaleManNames(info.getEntry().get(i).getCustomer().getPropertyConsultant().getName());
+			sign.setSalesman(sheCustomer.getPropertyConsultant());
+			sign.setSaleManNames(sheCustomer.getPropertyConsultant().getName());
 			
-			sign.setCustomerNames(info.getEntry().get(i).getCustomer().getName());
+			sign.setCustomerNames(sheCustomer.getName());
 
 			SignPayListEntryInfo payListEntry=new SignPayListEntryInfo();
 			payListEntry.setAppDate(info.getBizDate());
@@ -130,8 +160,8 @@ public class NoTradingSellBillControllerBean extends AbstractNoTradingSellBillCo
 			rev.setRelateBizType(RelatBizType.Sign);
 			rev.setRelateBizBillId(sign.getId().toString());
 			rev.setRelateBizBillNumber(sign.getNumber());
-			rev.setCustomerIds(info.getEntry().get(i).getCustomer().getId().toString());
-			rev.setCustomerNames(info.getEntry().get(i).getCustomer().getName());
+			rev.setCustomerIds(sheCustomer.getId().toString());
+			rev.setCustomerNames(sheCustomer.getName());
 			rev.setRelateTransId(sign.getTransactionID().toString());
 			
 			rev.setNumber(iCodingRuleManager.getNumber(rev, sp.getOrgUnit().getId().toString()));
