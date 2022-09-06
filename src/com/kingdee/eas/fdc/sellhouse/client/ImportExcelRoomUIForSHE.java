@@ -2187,7 +2187,10 @@ public class ImportExcelRoomUIForSHE extends AbstractImportExcelRoomUIForSHE {
 				SysUtil.abort();
 			}
 		}
-
+		if(e_maxRow>1001){
+			MsgBox.showError("最多一次性导入1000条记录，请拆分进行导入!");
+			SysUtil.abort();
+		}
 		int successCount = 0;
 		for (int rowIndex = 1; rowIndex <= e_maxRow; rowIndex++) {
 			IRow row = table.addRow();
