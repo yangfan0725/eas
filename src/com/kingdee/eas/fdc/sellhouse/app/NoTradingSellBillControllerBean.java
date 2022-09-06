@@ -40,6 +40,7 @@ import com.kingdee.eas.fdc.basecrm.SHERevBillEntry;
 import com.kingdee.eas.fdc.basecrm.SHERevBillEntryInfo;
 import com.kingdee.eas.fdc.basecrm.SHERevBillFactory;
 import com.kingdee.eas.fdc.basecrm.SHERevBillInfo;
+import com.kingdee.eas.fdc.basecrm.SHERevCustEntryInfo;
 import com.kingdee.eas.fdc.basedata.app.FDCBillControllerBean;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.bos.metadata.entity.SorterItemCollection;
@@ -170,6 +171,10 @@ public class NoTradingSellBillControllerBean extends AbstractNoTradingSellBillCo
 			revEntry.setMoneyDefine(payListEntry.getMoneyDefine());
 			revEntry.setRevAmount(info.getEntry().get(i).getBackAmount());
 			rev.getEntrys().add(revEntry);
+			
+			SHERevCustEntryInfo revCustomerEntry=new SHERevCustEntryInfo();
+			revCustomerEntry.setSheCustomer(sheCustomer);
+			rev.getCustomerEntry().add(revCustomerEntry);
 			
 			SHERevBillFactory.getLocalInstance(ctx).submit(rev);
 		}
