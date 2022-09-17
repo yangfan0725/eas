@@ -6,9 +6,13 @@ package com.kingdee.eas.fdc.sellhouse.client;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
+import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -45,6 +49,8 @@ import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.common.client.OprtState;
 import com.kingdee.eas.fdc.basedata.CostAccountInfo;
 import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
+import com.kingdee.eas.fdc.basedata.FDCHelper;
+import com.kingdee.eas.fdc.basedata.FDCSQLBuilder;
 import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
 import com.kingdee.eas.fdc.basedata.client.FDCClientUtils;
 import com.kingdee.eas.fdc.basedata.client.FDCClientVerifyHelper;
@@ -64,11 +70,14 @@ import com.kingdee.eas.fdc.sellhouse.RoomInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomSellStateEnum;
 import com.kingdee.eas.fdc.sellhouse.NoTradingSellBillEntryInfo;
 import com.kingdee.eas.fdc.sellhouse.SHEManageHelper;
+import com.kingdee.eas.fdc.sellhouse.SellProjectCollection;
+import com.kingdee.eas.fdc.sellhouse.SellProjectFactory;
 import com.kingdee.eas.fdc.sellhouse.SellProjectInfo;
 import com.kingdee.eas.fdc.tenancy.DepositDealTypeEnum;
 import com.kingdee.eas.framework.*;
 import com.kingdee.eas.util.SysUtil;
 import com.kingdee.eas.util.client.EASResource;
+import com.kingdee.jdbc.rowset.IRowSet;
 
 /**
  * output class name
@@ -211,6 +220,30 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 		try {
 			info.setCU(CtrlUnitFactory.getRemoteInstance().getCtrlUnitInfo(new ObjectUuidPK("00000000-0000-0000-0000-000000000000CCE7AED4")));
 			info.setOrgUnit(FullOrgUnitFactory.getRemoteInstance().getFullOrgUnitInfo(new ObjectUuidPK("00000000-0000-0000-0000-000000000000CCE7AED4")));
+		
+			FilterInfo	filter = new FilterInfo();
+			FilterItemCollection filterItems = filter.getFilterItems();
+			filterItems.add(new FilterItemInfo("isLeaf", Boolean.TRUE));
+			filterItems.add(new FilterItemInfo("doProperty", DoPropertyEnum.FCP_VALUE));
+			
+			EntityViewInfo view=new EntityViewInfo();
+			view.setFilter(filter);
+			SorterItemCollection sort=new SorterItemCollection();
+			SorterItemInfo ss=new SorterItemInfo("number");
+			sort.add(ss);
+			view.setSorter(sort);
+			
+			SelectorItemCollection sic=new SelectorItemCollection();
+			sic.add("*");
+			sic.add("orgUnit.name");
+			view.setSelector(sic);
+			SellProjectCollection spCol=SellProjectFactory.getRemoteInstance().getSellProjectCollection(view);
+			for(int i=0;i<spCol.size();i++){
+				NoTradingSellBillEntryInfo entry=new NoTradingSellBillEntryInfo();
+				entry.setSellProject(spCol.get(i));
+				
+				info.getEntry().add(entry);
+			}
 		} catch (EASBizException e) {
 			e.printStackTrace();
 		} catch (BOSException e) {
@@ -468,6 +501,11 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 					this.kdtEntry.getRow(rowIndex).getCell("room").setValue(null);
 				}
 				this.kdtEntry.getRow(rowIndex).getCell("org").setValue(FullOrgUnitFactory.getRemoteInstance().getFullOrgUnitInfo(new ObjectUuidPK(sp.getOrgUnit().getId())).getName());
+			
+				Map map=this.getTotalAmount(sp);
+				
+				this.kdtEntry.getRow(rowIndex).getCell("totalSellAmount").setValue(map.get("sellAmount"));
+				this.kdtEntry.getRow(rowIndex).getCell("totalBackAmount").setValue(map.get("backAmount"));
 			}else{
 //				this.kdtEntry.getRow(rowIndex).getCell("customer").setValue(null);
 				this.kdtEntry.getRow(rowIndex).getCell("room").setValue(null);
@@ -475,6 +513,9 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 				this.kdtEntry.getRow(rowIndex).getCell("room").getStyleAttributes().setLocked(true);
 				
 				this.kdtEntry.getRow(rowIndex).getCell("org").setValue(null);
+			
+				this.kdtEntry.getRow(rowIndex).getCell("totalSellAmount").setValue(null);
+				this.kdtEntry.getRow(rowIndex).getCell("totalBackAmount").setValue(null);
 			}
 		}else if("room".equals(this.kdtEntry.getColumnKey(colIndex))){
 			RoomInfo room=(RoomInfo) this.kdtEntry.getRow(rowIndex).getCell("room").getValue();
@@ -484,6 +525,20 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 				SysUtil.abort();
 			}
 		}
+	}
+	public Map getTotalAmount(SellProjectInfo sp) throws BOSException, SQLException{
+		Map map=new HashMap();
+		StringBuilder sql = new StringBuilder();
+		sql.append("  select sum(entry.fsellamount) sellAmount,sum(entry.fbackAmount) backAmount from T_SHE_NoTradingSellBillEntry entry left join T_SHE_NoTradingSellBill head on head.fid=entry.fheadid");
+		sql.append(" where head.fstate='4AUDITTED' and entry.fsellProjectid='"+sp.getId()+"' and head.fid!='"+this.editData.getId()+"'");
+		FDCSQLBuilder _builder = new FDCSQLBuilder();
+		_builder.appendSql(sql.toString());
+		IRowSet rowSet = _builder.executeQuery();
+		while(rowSet.next()){
+			map.put("sellAmount", rowSet.getBigDecimal("sellAmount"));
+			map.put("backAmount", rowSet.getBigDecimal("backAmount"));
+		}
+		return map;
 	}
 	public void loadFields() {
 		super.loadFields();
@@ -544,6 +599,20 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 				
 //				this.kdtEntry.getRow(i).getCell("customer").getStyleAttributes().setLocked(false);
 				this.kdtEntry.getRow(i).getCell("room").getStyleAttributes().setLocked(false);
+				
+				try {
+					Map map=this.getTotalAmount(sp);
+					
+					this.kdtEntry.getRow(i).getCell("totalSellAmount").setValue(map.get("sellAmount"));
+					this.kdtEntry.getRow(i).getCell("totalBackAmount").setValue(map.get("backAmount"));
+				} catch (BOSException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}else{
 //				this.kdtEntry.getRow(i).getCell("customer").getStyleAttributes().setLocked(true);
 				this.kdtEntry.getRow(i).getCell("room").getStyleAttributes().setLocked(true);

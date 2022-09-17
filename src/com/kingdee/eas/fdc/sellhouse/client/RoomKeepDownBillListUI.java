@@ -144,6 +144,8 @@ public class RoomKeepDownBillListUI extends AbstractRoomKeepDownBillListUI
 		this.btnTransSign.setIcon(EASResource.getIcon("imgTbtn_initialize"));
 		this.btnAudit.setText("…Û≈˙");
 		this.tblMain.getSelectManager().setSelectMode(KDTSelectManager.ROW_SELECT);
+		
+		this.actionPrePurchase.setVisible(false);
     }
     public void refresh (ActionEvent e)throws Exception {
     	this.tblMain.removeRows();

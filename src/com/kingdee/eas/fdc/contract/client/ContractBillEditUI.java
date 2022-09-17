@@ -5030,14 +5030,33 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				contractBillInfo =ContractBillFactory.getRemoteInstance().getContractBillInfo(new ObjectUuidPK(contractBillInfo.getId()));
 				if(contractBillInfo.getLxNum()!=null){
 					this.prmtLxNum.setValue(BankNumFactory.getRemoteInstance().getBankNumInfo(new ObjectUuidPK(contractBillInfo.getLxNum().getId())));
+					this.prmtLxNum.setEnabled(false);
 				}else{
 					this.prmtLxNum.setValue(null);
 					this.prmtLxNum.setEnabled(true);
 				}
 				this.txtBank.setText(contractBillInfo.getBank());
-				this.txtBankAccount.setText(contractBillInfo.getBankAccount());
-				this.cbTaxerQua.setSelectedItem(contractBillInfo.getTaxerQua());
-				this.txtTaxerNum.setText(contractBillInfo.getTaxerNum());
+				if(contractBillInfo.getBankAccount()!=null){
+					this.txtBankAccount.setText(contractBillInfo.getBankAccount());
+					this.txtBankAccount.setEnabled(false);
+				}else{
+					this.txtBankAccount.setText(null);
+					this.txtBankAccount.setEnabled(true);
+				}
+				if(contractBillInfo.getTaxerQua()!=null){
+					this.cbTaxerQua.setSelectedItem(contractBillInfo.getTaxerQua());
+					this.cbTaxerQua.setEnabled(false);
+				}else{
+					this.cbTaxerQua.setSelectedItem(null);
+					this.cbTaxerQua.setEnabled(true);
+				}
+				if(contractBillInfo.getTaxerNum()!=null){
+					this.txtTaxerNum.setText(contractBillInfo.getTaxerNum());
+					this.txtTaxerNum.setEnabled(false);
+				}else{
+					this.txtTaxerNum.setText(null);
+					this.txtTaxerNum.setEnabled(true);
+				}
 				if(contractBillInfo.getTaEntry()!=null){
 					this.prmtTAEntry.setValue(TenderAccepterResultEntryFactory.getRemoteInstance().getTenderAccepterResultEntryInfo(new ObjectUuidPK(contractBillInfo.getTaEntry().getId())));
 				}

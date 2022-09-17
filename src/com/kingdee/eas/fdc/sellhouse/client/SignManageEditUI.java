@@ -110,6 +110,7 @@ import com.kingdee.eas.fdc.sellhouse.PurchaseManageInfo;
 import com.kingdee.eas.fdc.sellhouse.RoomAttachmentEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.RoomFactory;
 import com.kingdee.eas.fdc.sellhouse.RoomInfo;
+import com.kingdee.eas.fdc.sellhouse.RoomPriceAdjustEntryFactory;
 import com.kingdee.eas.fdc.sellhouse.SHEAttachBillCollection;
 import com.kingdee.eas.fdc.sellhouse.SHEAttachBillFactory;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerInfo;
@@ -1381,6 +1382,9 @@ public class SignManageEditUI extends AbstractSignManageEditUI
 					setRoomNull("本次签约超出定价期限，请进行房间调价再签约！");
 				}
 			}
+		}
+		if(RoomPriceAdjustEntryFactory.getRemoteInstance().exists("select * from where head.isExecuted=0 and room.id='"+room.getId()+"'")){
+			setRoomNull("房间存在未执行定价单！");
 		}
 	}
 	protected void updateAmount(){

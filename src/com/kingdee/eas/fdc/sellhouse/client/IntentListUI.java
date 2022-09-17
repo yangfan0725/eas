@@ -322,6 +322,8 @@ public class IntentListUI extends AbstractIntentListUI
 		this.actionSpecialAgio.setVisible(false);
 		
 		this.actionBuyingRoomPlan.setVisible(false);
+		
+		this.actionPrePurchase.setVisible(false);
 	}
 
     private void initAction(){

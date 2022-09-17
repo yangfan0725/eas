@@ -3679,7 +3679,7 @@ public class ChangeManageEditUI extends AbstractChangeManageEditUI
 	        sic.add("building.name");
 	        RoomInfo roomInfo=RoomFactory.getRemoteInstance().getRoomInfo(new ObjectUuidPK(((RoomInfo) this.f7Room.getValue()).getId()),sic);
 	        String context="£¨"+this.kdtAttachEntry.getRow(e.getRowIndex()).getCell("context").getValue().toString()+"£©";
-	        info.setBeizhu("SHEATTACH/"+roomInfo.getBuilding().getSellProject().getOrgUnit().getName()+"/"+roomInfo.getBuilding().getSellProject().getName()+"/"+roomInfo.getBuilding().getNumber()+"-"+roomInfo.getBuilding().getName()+"/"+roomInfo.getName()+"/"+context);
+	        info.setBeizhu("SHEATTACH/"+roomInfo.getBuilding().getSellProject().getOrgUnit().getName().trim()+"/"+roomInfo.getBuilding().getSellProject().getName().trim()+"/"+roomInfo.getBuilding().getNumber().trim()+"-"+roomInfo.getBuilding().getName().trim()+"/"+roomInfo.getName().trim()+"/"+context.trim());
 	        String multi = (String)getUIContext().get("MultiapproveAttachment");
 	        if(multi != null && multi.equals("true")){
 	        	acm.showAttachmentListUIByBoIDNoAlready(this, info);

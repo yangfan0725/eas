@@ -46,7 +46,7 @@ public class AttachmentFtpHandleFacadeControllerBean extends AbstractAttachmentF
 					if((attachmentInfo.getBeizhu().split("/")[attachmentInfo.getBeizhu().split("/").length-1]+attachmentInfo.getName()).length()>85){
 						throw new EASBizException(new NumericExceptionSubItem("100","附件名太长！"));
 					}
-					remotePath=attachmentInfo.getBeizhu()+attachmentInfo.getName()+"."+attachmentInfo.getSimpleName();
+					remotePath=attachmentInfo.getBeizhu()+attachmentInfo.getName().trim()+"."+attachmentInfo.getSimpleName();
 					AttachmentCollection attCol=AttachmentFactory.getLocalInstance(ctx).getAttachmentCollection("select id from where remotePath='"+remotePath+"'");
 					for(int i=0;i<attCol.size();i++){
 						BoAttchAssoCollection boAttCol=BoAttchAssoFactory.getLocalInstance(ctx).getBoAttchAssoCollection("select boId from where attachment.id='"+attCol.get(i).getId()+"'");
@@ -94,7 +94,7 @@ public class AttachmentFtpHandleFacadeControllerBean extends AbstractAttachmentF
 					if((attachmentInfo2.getBeizhu().split("/")[attachmentInfo2.getBeizhu().split("/").length-1]+attachmentInfo2.getName()).length()>85){
 						throw new EASBizException(new NumericExceptionSubItem("100","附件名太长！"));
 					}
-					remotePath=attachmentInfo2.getBeizhu()+attachmentInfo2.getName()+"."+attachmentInfo2.getSimpleName();
+					remotePath=attachmentInfo2.getBeizhu()+attachmentInfo2.getName().trim()+"."+attachmentInfo2.getSimpleName();
 					AttachmentCollection attCol=AttachmentFactory.getLocalInstance(ctx).getAttachmentCollection("select id from where remotePath='"+remotePath+"'");
 					for(int i=0;i<attCol.size();i++){
 						BoAttchAssoCollection boAttCol=BoAttchAssoFactory.getLocalInstance(ctx).getBoAttchAssoCollection("select boId from where attachment.id='"+attCol.get(i).getId()+"'");

@@ -138,6 +138,8 @@ public class SincerityPurchaseListUI extends AbstractSincerityPurchaseListUI {
 		this.actionRevAmount.setVisible(false);
 		this.btnToMT.setText("Õ¨≤Ω√ÀÕÿ");
 		this.btnToMT.setIcon(EASResource.getIcon("imgTbtn_input"));
+		
+		this.actionPrePur.setVisible(false);
 	}
 	protected void initControl(){
     	this.tblMain.getSelectManager().setSelectMode(KDTSelectManager.MULTIPLE_ROW_SELECT);

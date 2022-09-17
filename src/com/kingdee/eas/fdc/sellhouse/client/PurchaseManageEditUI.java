@@ -128,6 +128,7 @@ import com.kingdee.eas.fdc.sellhouse.RoomAttachmentEntryCollection;
 import com.kingdee.eas.fdc.sellhouse.RoomDisplaySetting;
 import com.kingdee.eas.fdc.sellhouse.RoomFactory;
 import com.kingdee.eas.fdc.sellhouse.RoomInfo;
+import com.kingdee.eas.fdc.sellhouse.RoomPriceAdjustEntryFactory;
 import com.kingdee.eas.fdc.sellhouse.RoomSellStateEnum;
 import com.kingdee.eas.fdc.sellhouse.SHECustomerInfo;
 import com.kingdee.eas.fdc.sellhouse.SHEParamConstant;
@@ -1339,6 +1340,9 @@ public class PurchaseManageEditUI extends AbstractPurchaseManageEditUI
 			if(FDCDateHelper.getDiffDays(cal.getTime(), busDate)>1){
 				setRoomNull("本次认购超出定价期限，请进行房间调价再认购！");
 			}
+		}
+		if(RoomPriceAdjustEntryFactory.getRemoteInstance().exists("select * from where head.isExecuted=0 and room.id='"+room.getId()+"'")){
+			setRoomNull("房间存在未执行定价单！");
 		}
 	}
 	

@@ -240,6 +240,7 @@ import com.kingdee.eas.fdc.tenancy.TenancyRoomEntryCollection;
 import com.kingdee.eas.fdc.tenancy.TenancyRoomEntryFactory;
 import com.kingdee.eas.fdc.tenancy.TenancyRoomEntryInfo;
 import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryCollection;
+import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryFactory;
 import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryInfo;
 import com.kingdee.eas.fdc.tenancy.TenancyStateEnum;
 import com.kingdee.eas.framework.CoreBaseCollection;
@@ -570,6 +571,11 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 				entry.setMoneyDefine(tenOtherInfo.getMoneyDefine());
 				entry.setAppAmount(tenOtherInfo.getAppAmount());
 				entry.setActRevAmount(tenOtherInfo.getActRevAmount());
+				entry.setHasRefundmentAmount(tenOtherInfo.getHasRefundmentAmount());
+				entry.setHasToFeeAmount(tenOtherInfo.getHasToFeeAmount());
+				entry.setHasTransferredAmount(tenOtherInfo.getHasTransferredAmount());
+				entry.setHasAdjustedAmount(tenOtherInfo.getHasAdjustedAmount());
+				
 				otherPayList.add(entry);
 			}
 		}
@@ -616,7 +622,7 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 									entry.getAppAmount()));
 					row.getCell("actRevAmount").setValue(
 							FDCHelper.add(row.getCell("actRevAmount")
-									.getValue(), entry.getActRevAmount()));
+									.getValue(), entry.getAllRemainAmount()));
 
 					BigDecimal div = FDCHelper.add(new BigDecimal(1), FDCHelper
 							.divide(rate, new BigDecimal(100), 4,
@@ -636,7 +642,7 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 					row.getCell("rate").setValue(rate);
 					row.getCell("appAmount").setValue(entry.getAppAmount());
 					row.getCell("actRevAmount").setValue(
-							entry.getActRevAmount());
+							entry.getAllRemainAmount());
 
 					BigDecimal div = FDCHelper.add(new BigDecimal(1), FDCHelper
 							.divide(rate, new BigDecimal(100), 4,
@@ -645,7 +651,7 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 							FDCHelper.divide(entry.getAppAmount(), div, 2,
 									BigDecimal.ROUND_HALF_UP));
 					row.getCell("actRevAmountNoTax").setValue(
-							FDCHelper.divide(entry.getActRevAmount(), div, 2,
+							FDCHelper.divide(entry.getAllRemainAmount(), div, 2,
 									BigDecimal.ROUND_HALF_UP));
 					addRow.put(entry.getMoneyDefine().getNumber(), row);
 				}
@@ -1191,8 +1197,8 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 			public void stateChanged(ChangeEvent e) {
 				if (tabbedPaneContract.getSelectedIndex() == 0) {
 					// storePayList();
-					storeOtherPayList();
-					loadTotalPayList();
+//					storeOtherPayList();
+//					loadTotalPayList();
 				}
 			}
 		});

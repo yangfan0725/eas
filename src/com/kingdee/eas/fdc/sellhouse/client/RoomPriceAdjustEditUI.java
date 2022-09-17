@@ -2011,12 +2011,16 @@ public class RoomPriceAdjustEditUI extends AbstractRoomPriceAdjustEditUI {
 	private void initPrmtRoomSelect() {
 		EntityViewInfo view = new EntityViewInfo();
 
+		Set noSellState=new HashSet();
+		noSellState.add(RoomSellStateEnum.PURCHASE_VALUE);
+		noSellState.add(RoomSellStateEnum.SIGN_VALUE);
 		// 过滤条件
 		FilterInfo filter = new FilterInfo();
 		FilterItemCollection filterItems = filter.getFilterItems();
 		filterItems.add(new FilterItemInfo("isForSHE", Boolean.TRUE)); // 房间的售楼属性
 		filterItems.add(new FilterItemInfo("sellProject.isForSHE", Boolean.TRUE)); // 项目的售楼属性
 		filterItems.add(new FilterItemInfo("sellProject.id", editData.getSellProject().getId()));
+		filterItems.add(new FilterItemInfo("sellState", noSellState,CompareType.NOTINCLUDE));
 		view.getSorter().add(new SorterItemInfo("sellProject.name"));
 		view.getSorter().add(new SorterItemInfo("building.name"));
 		view.getSorter().add(new SorterItemInfo("unit"));
@@ -2697,7 +2701,9 @@ public class RoomPriceAdjustEditUI extends AbstractRoomPriceAdjustEditUI {
 			filter.getFilterItems().add(
 					new FilterItemInfo("id", roomIdSet, CompareType.INCLUDE));
 		}
-
+		// 过滤条件
+		filter.getFilterItems().add(new FilterItemInfo("sellState", RoomSellStateEnum.PURCHASE_VALUE,CompareType.NOTEQUALS));
+		filter.getFilterItems().add(new FilterItemInfo("sellState", RoomSellStateEnum.SIGN_VALUE,CompareType.NOTEQUALS));
 		view.setFilter(filter);
 
 		RoomCollection rooms = RoomFactory.getRemoteInstance()
@@ -3654,6 +3660,10 @@ public class RoomPriceAdjustEditUI extends AbstractRoomPriceAdjustEditUI {
 			RoomPriceAdjustEntryInfo entry=(RoomPriceAdjustEntryInfo)row.getUserObject();
 			RoomInfo room = entry.getRoom();
 			if(room != null){
+				if(room.getSellState().equals(RoomSellStateEnum.Purchase)||room.getSellState().equals(RoomSellStateEnum.Sign)){
+					FDCMsgBox.showInfo("第" + (i + 1) + "行,销售状态不能为认购或者签约!");
+					SysUtil.abort();
+				}
 				if(row.getCell("newSumAmount").getValue() == null){
 					FDCMsgBox.showInfo("第" + (i + 1) + "行,定价单现表总价不能为空!");
 					SysUtil.abort();
