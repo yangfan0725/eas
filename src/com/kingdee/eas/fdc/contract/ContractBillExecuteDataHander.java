@@ -151,7 +151,7 @@ public class ContractBillExecuteDataHander {
 		evi = new EntityViewInfo();
 		filter = new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("contractId", idSet, CompareType.INCLUDE));
-//		filter.getFilterItems().add(new FilterItemInfo("state", FDCBillStateEnum.SAVED_VALUE,CompareType.NOTEQUALS));
+		filter.getFilterItems().add(new FilterItemInfo("state", FDCBillStateEnum.AUDITTED_VALUE));
 		
 		evi.setFilter(filter);
 		evi.getSelector().add(new SelectorItemInfo("id"));
@@ -495,6 +495,9 @@ public class ContractBillExecuteDataHander {
 		if(contractType!=null){
 			filter.getFilterItems().add(new FilterItemInfo("contractType.id", contractType,CompareType.INNER));
 		}
+		
+		filter.getFilterItems().add(new FilterItemInfo("state", FDCBillStateEnum.AUDITTED_VALUE));
+		
 		SorterItemInfo sorter = new SorterItemInfo("number");
 		sorter.setSortType(SortType.DESCEND);
 		EntityViewInfo view = (EntityViewInfo) oldView.clone();
@@ -674,6 +677,7 @@ public class ContractBillExecuteDataHander {
 		if(contractType!=null){
 			filterInfo.getFilterItems().add(new FilterItemInfo("contractType.id", contractType,CompareType.INNER));
 		}
+		filterInfo.getFilterItems().add(new FilterItemInfo("state", FDCBillStateEnum.AUDITTED_VALUE));
 		if (oldFilter != null) {
 			FilterInfo oldFilter2 = (FilterInfo) oldFilter.clone();
 			// É¾³ýµôsignDate

@@ -725,21 +725,25 @@ public class ZHMarketProjectEditUI extends AbstractZHMarketProjectEditUI
 		
 		if(!this.cbIsSub.isSelected()){
 			for(int i=0;i<this.kdtEntry.getRowCount();i++){
-				 Date bizDate=(Date) this.kdtEntry.getRow(i).getCell("bizDate").getValue();
-				 Calendar cal = Calendar.getInstance();
-				 cal.setTime(bizDate);
-				 int year=cal.get(Calendar.YEAR);
+				Date bizDate=(Date) this.kdtEntry.getRow(i).getCell("bizDate").getValue();
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(bizDate);
+				int year=cal.get(Calendar.YEAR);
+				
+				Calendar nowCal=Calendar.getInstance();
+				nowCal.setTime(new Date());
+				int nowYear=nowCal.get(Calendar.YEAR);
 				 
-				 MarketYearProjectCollection yearCol=MarketYearProjectFactory.getRemoteInstance().getMarketYearProjectCollection("select state,name from where year="+year+" and orgUnit.id='"+this.editData.getOrgUnit().getId()+"' order by version desc");
-				if(!isJz&&(yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED))){
-					FDCMsgBox.showWarning(this,"营销年度预算未审批通过！");
-					SysUtil.abort();
-				}
-				boolean isV=true;
-				if((yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED))&&isJz){
-					isV=false;
-				}
-				if(isV){
+				if(!isJz||(isJz&&year<=nowYear)){
+					MarketYearProjectCollection yearCol=MarketYearProjectFactory.getRemoteInstance().getMarketYearProjectCollection("select state,name from where year="+year+" and orgUnit.id='"+this.editData.getOrgUnit().getId()+"' order by version desc");
+					if(yearCol.size()==0){
+						FDCMsgBox.showWarning(this,"营销年度预算不存在！");
+						SysUtil.abort();
+					}
+					if(!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
+						FDCMsgBox.showWarning(this,"营销年度预算未审批通过！");
+						SysUtil.abort();
+					}
 					CostAccountInfo caInfo=(CostAccountInfo) this.kdtEntry.getRow(i).getCell("costAccount").getValue();
 					BigDecimal total=getCostAccountAmount(caInfo.getId().toString(),String.valueOf(year));
 					BigDecimal yearAmount=getYearAmount(caInfo.getId().toString(),String.valueOf(year));

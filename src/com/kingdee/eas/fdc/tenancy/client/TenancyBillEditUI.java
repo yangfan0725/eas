@@ -1198,7 +1198,8 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 				if (tabbedPaneContract.getSelectedIndex() == 0) {
 					// storePayList();
 //					storeOtherPayList();
-//					loadTotalPayList();
+					storeFields();
+					loadTotalPayList();
 				}
 			}
 		});
@@ -3886,6 +3887,12 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 								tay.setSeq(seq);
 								tay.setMoneyDefine(money);
 								tay.setLeaseSeq(leaseSeq);
+								tay.setActRevAmount(tenPayInfo.getActRevAmount());
+								tay.setHasAdjustedAmount(tenPayInfo.getHasAdjustedAmount());
+								tay.setHasRefundmentAmount(tenPayInfo.getHasRefundmentAmount());
+								tay.setHasToFeeAmount(tenPayInfo.getHasToFeeAmount());
+								tay.setHasTransferredAmount(tenPayInfo.getHasTransferredAmount());
+								
 								newPayList.add(tay);
 							}
 						}

@@ -1010,15 +1010,19 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 		
 		if(!this.cbIsSub.isSelected()){
 			MarketYearProjectCollection yearCol=MarketYearProjectFactory.getRemoteInstance().getMarketYearProjectCollection("select state,name from where year="+year+" and orgUnit.id='"+this.editData.getOrgUnit().getId()+"' order by version desc");
-			if(!isJz&&(yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED))){
+			if(yearCol.size()==0){
+				FDCMsgBox.showWarning(this,"营销年度预算不存在！");
+				SysUtil.abort();
+			}
+			if(!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED)){
 				FDCMsgBox.showWarning(this,"营销年度预算未审批通过！");
 				SysUtil.abort();
 			}
-			boolean isV=true;
-			if((yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED))&&isJz){
-				isV=false;
-			}
-			if(isV){
+//			boolean isV=true;
+//			if((yearCol.size()==0||!yearCol.get(0).getState().equals(FDCBillStateEnum.AUDITTED))&&isJz){
+//				isV=false;
+//			}
+//			if(isV){
 				for(int i=0;i<this.kdtCostEntry.getRowCount();i++){
 					CostAccountInfo caInfo=(CostAccountInfo) this.kdtCostEntry.getRow(i).getCell("costAccount").getValue();
 					BigDecimal total=getCostAccountAmount(caInfo.getId().toString(),String.valueOf(year));
@@ -1031,7 +1035,7 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 						 SysUtil.abort();
 					}
 				}
-			}
+//			}
 		}
 		if(this.cbIsSub.isSelected()){
 			for(int i=0;i<this.kdtCostEntry.getRowCount();i++){

@@ -139,7 +139,7 @@ public class NoTradingSellBillEditUI extends AbstractNoTradingSellBillEditUI
 		KDFormattedTextField amount = new KDFormattedTextField();
 		amount.setDataType(KDFormattedTextField.BIGDECIMAL_TYPE);
 		amount.setDataVerifierType(KDFormattedTextField.NO_VERIFIER);
-		amount.setNegatived(false);
+		amount.setNegatived(true);
 		amount.setPrecision(2);
 		KDTDefaultCellEditor amountEditor = new KDTDefaultCellEditor(amount);
 		this.kdtEntry.getColumn("sellAmount").setEditor(amountEditor);
