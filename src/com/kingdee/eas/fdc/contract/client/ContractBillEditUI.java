@@ -5818,6 +5818,11 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				FDCMsgBox.showWarning(this,"费用归属在立项中不存在！");
 				SysUtil.abort();
 			}
+			ContractBillCollection con=ContractBillFactory.getRemoteInstance().getContractBillCollection("select * from where marketProject.id='"+info.getId()+"' and mpCostAccount.id='"+cinfo.getId()+"' and id!='"+this.editData.getId()+"'");
+			if(con.size()>0){
+				FDCMsgBox.showWarning(this,"费用归属已被合同："+con.get(0).getNumber()+" 选择！");
+				SysUtil.abort();
+			}
 //			BigDecimal comAmount=FDCHelper.ZERO;
 //			ContractBillCollection col=null;
 //			if(editData.getId()!=null){
