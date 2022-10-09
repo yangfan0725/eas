@@ -108,6 +108,8 @@ public class MarketYearProjectEditUI extends AbstractMarketYearProjectEditUI
 		
 		this.kdtEntry.addKDTMouseListener(new KDTSortManager(kdtEntry));
 		kdtEntry.getSortMange().setSortAuto(false);
+		
+		this.actionAddNew.setVisible(false);
     }
 	protected void attachListeners() {
 	}

@@ -65,6 +65,7 @@ import com.kingdee.eas.fdc.tenancy.TenAttachResourceEntryInfo;
 import com.kingdee.eas.fdc.tenancy.TenAttachResourcePayListEntryCollection;
 import com.kingdee.eas.fdc.tenancy.TenAttachResourcePayListEntryInfo;
 import com.kingdee.eas.fdc.tenancy.TenBillBaseInfo;
+import com.kingdee.eas.fdc.tenancy.TenBillOtherPayInfo;
 import com.kingdee.eas.fdc.tenancy.TenPriceBaseLineFactory;
 import com.kingdee.eas.fdc.tenancy.TenancyBillCollection;
 import com.kingdee.eas.fdc.tenancy.TenancyBillFactory;
@@ -400,25 +401,24 @@ public class TenancyBillControllerBean extends AbstractTenancyBillControllerBean
     	TenAttachResourceEntryCollection oldTenAttachs = oldTenBill.getTenAttachResourceList();
     	BigDecimal oldTenRemainDepositAmount = oldTenBill.getRemainDepositAmount()==null ? FDCHelper.ZERO : oldTenBill.getRemainDepositAmount();
     	
-    	boolean isCheck=true;
-    	for(int i=0; i<oldTenRooms.size(); i++){
-    		ITenancyEntryInfo tenObj = (ITenancyEntryInfo) oldTenRooms.getObject(i);
-    		
-    		IObjectCollection payList = tenObj.getPayList();
-    		
-    		for(int j=0; j<payList.size(); j++){
-    			TenancyRoomPayListEntryInfo pay = (TenancyRoomPayListEntryInfo) payList.getObject(j);
-    			MoneyDefineInfo moneyName = pay.getMoneyDefine();
-    			//押金不用计算应付
-    			if(MoneyTypeEnum.DepositAmount.equals(moneyName.getMoneyType())&&pay.isIsUnPay()){
-    				isCheck=false;
-    			}    			
-    		}
-    	}
+//    	boolean isCheck=true;
+//    	for(int i=0; i<oldTenRooms.size(); i++){
+//    		ITenancyEntryInfo tenObj = (ITenancyEntryInfo) oldTenRooms.getObject(i);
+//    		
+//    		IObjectCollection payList = tenObj.getPayList();
+//    		
+//    		for(int j=0; j<payList.size(); j++){
+//    			TenancyRoomPayListEntryInfo pay = (TenancyRoomPayListEntryInfo) payList.getObject(j);
+//    			//押金不用计算应付
+//    			if(pay.isIsUnPay()){
+//    				isCheck=false;
+//    			}    			
+//    		}
+//    	}
     	oldTenToPayAmount = addToPayAmount(oldTenRooms, oldTenToPayAmount);
     	oldTenToPayAmount = addToPayAmount(oldTenAttachs, oldTenToPayAmount);
     	
-    	if(isCheck&&oldTenRemainDepositAmount.compareTo(oldTenToPayAmount) < 0){//原合同押金不够结算未交租金和扣款,则不允许审批/提交
+    	if(oldTenRemainDepositAmount.compareTo(oldTenToPayAmount) < 0){//原合同押金不够结算未交租金和扣款,则不允许审批/提交
     		throw new TenancyException(TenancyException.DEPOSIT_NOT_ENOUGH);
     	}
 	}
@@ -436,7 +436,13 @@ public class TenancyBillControllerBean extends AbstractTenancyBillControllerBean
     			ITenancyPayListInfo pay = (ITenancyPayListInfo) payList.getObject(j);
     			MoneyDefineInfo moneyName = pay.getMoneyDefine();
     			//押金不用计算应付
-    			if(moneyName == null  ||  MoneyTypeEnum.DepositAmount.equals(moneyName.getMoneyType())){
+    			boolean isUnPay=true;
+    			if(pay instanceof TenancyRoomPayListEntryInfo){
+    				isUnPay=((TenancyRoomPayListEntryInfo)pay).isIsUnPay();
+    			}else if(pay instanceof TenBillOtherPayInfo){
+    				isUnPay=((TenBillOtherPayInfo)pay).isIsUnPay();
+    			}
+    			if(moneyName == null  ||  MoneyTypeEnum.DepositAmount.equals(moneyName.getMoneyType())||isUnPay){
     				continue;
     			}    			
     			
