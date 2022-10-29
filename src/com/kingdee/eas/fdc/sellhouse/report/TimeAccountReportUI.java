@@ -469,11 +469,7 @@ public class TimeAccountReportUI extends AbstractTimeAccountReportUI
 	protected void tblMain_tableClicked(KDTMouseEvent e) throws Exception {
 		if (e.getType() == KDTStyleConstants.BODY_ROW && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2) {
 			Object value=this.tblMain.getRow(e.getRowIndex()).getCell(e.getColIndex()).getValue();
-			if(value==null
-					||(value!=null&&value instanceof BigDecimal
-							&&((BigDecimal)value).compareTo(FDCHelper.ZERO)<=0)){
-				return;
-			}
+			if(value==null)return;
 			Date fromDate = (Date)params.getObject("fromDate");
 	    	Date toDate =   (Date)params.getObject("toDate");
 			String unSignPurDate="";

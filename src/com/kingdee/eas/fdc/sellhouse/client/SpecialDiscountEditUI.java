@@ -1024,7 +1024,12 @@ public class SpecialDiscountEditUI extends AbstractSpecialDiscountEditUI
 		SellProjectInfo sellproject=(SellProjectInfo) this.getUIContext().get("sellProject");
 		info.setSellProject(sellproject);
 		info.setCU(SysContext.getSysContext().getCurrentCtrlUnit());
-		info.setCaseInfo("客户于XX年XX月XX日支付定金XX元，付款方式为XXX，根据项目“XX方案”可享受XX优惠折扣，优惠后总价XXX。现申请额外享受XX优惠折扣，最终成交总价XXX。客户承诺于XX年XX月XX日支付XX%首付并办理按揭，预计全款到账时间为XX年XX月XX日。");
+		info.setCaseInfo("①主业态：房号+已审批的优惠政策名称和内容+本次额外申请的优惠幅度+最终申请签约总价及附加赠送情况（包含赠送的车位券、物业费、团购费、家电大礼包等）\n"+
+"客户姓名+来访途径+意向金/定金缴纳金额及时间+签约时间+付款节奏（包含首付、按揭、分期的付款时间和比例）\n"+
+"②附属业态：客户姓名+已购主业态的房号+已购主业态享受的优惠幅度+已购主业态的认购和签约时间\n"+
+"附属业态的房号+已审批的优惠政策名称和内容+本次额外申请的优惠幅度+最终申请签约总价\n"+
+"客户意向金/定金缴纳金额及时间+签约时间+付款节奏（包含首付、尾款的付款时间和比例）\n"+
+"③涉及客户换房：原房源优惠情况及依据+新房源成交情况（参考①或②）");
 		String roomId=(String)this.getUIContext().get("roomId");
 		if(roomId!=null){
 			RoomInfo room=null;
