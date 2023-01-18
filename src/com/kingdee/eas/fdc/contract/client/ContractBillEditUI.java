@@ -8215,11 +8215,12 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 //				this.txtBank.setText(col.get(0).getSupplierBank().get(0).getBank());
 ////				this.txtBankAccount.setText(col.get(0).getSupplierBank().get(0).getBankAccount());
 //			}
-			this.txtTaxerNum.setText(supplier.getTaxRegisterNo());
+			if(supplier.getTaxRegisterNo()!=null)
+				this.txtTaxerNum.setText(supplier.getTaxRegisterNo());
 		}else{
 //			this.txtBank.setText(null);
 //			this.txtBankAccount.setText(null);
-			this.txtTaxerNum.setText(null);
+//			this.txtTaxerNum.setText(null);
 		}
 	}
 	protected void prmtLxNum_dataChanged(DataChangeEvent e) throws Exception {

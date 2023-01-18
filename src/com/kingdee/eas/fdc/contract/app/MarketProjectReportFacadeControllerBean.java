@@ -53,6 +53,7 @@ public class MarketProjectReportFacadeControllerBean extends AbstractMarketProje
 	    initColoum(header,col,"entryId",100,true);
 	    initColoum(header,col,"isSelect",50,false);
 	    initColoum(header,col,"source",100,true);
+	    initColoum(header,col,"state",100,true);
 	    initColoum(header,col,"number",100,false);
 	    initColoum(header,col,"bizDate",100,false);
 	    initColoum(header,col,"auditTime",100,false);
@@ -80,13 +81,13 @@ public class MarketProjectReportFacadeControllerBean extends AbstractMarketProje
 	    header.setLabels(new Object[][]{ 
 	    		{
 //	    			"id","营销立项单据编号","立项审批通过时间","立项事项","费用归口口径","立项金额","签约单位/个人","单据类型","conId","合同审批通过时间","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属月份","营销费用发生额（含分摊）"
-	    			"id","entryId","选择","立项来源","营销立项单据编号","事项预估发生日期","立项审批通过日期","立项事项","费用归口口径","立项金额","立项可用余额","签约单位/个人","单据类型","conId","合同审批通过时间","是否超时","已结算","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属日期","营销费用发生额（含分摊）","是否存在负立项","关联状态"
+	    			"id","entryId","选择","立项来源","状态","营销立项单据编号","事项预估发生日期","立项审批通过日期","立项事项","费用归口口径","立项金额","立项可用余额","签约单位/个人","单据类型","conId","合同审批通过时间","是否超时","已结算","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属日期","营销费用发生额（含分摊）","是否存在负立项","关联状态"
 
 	    		}
 	    		,
 	    		{
 //	    			"id","营销立项单据编号","立项审批通过时间","立项事项","费用归口口径","立项金额","签约单位/个人","单据类型","conId","合同审批通过时间","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属月份","营销费用发生额（含分摊）"
-	    			"id","entryId","选择","立项来源","营销立项单据编号","事项预估发生日期","立项审批通过日期","立项事项","费用归口口径","立项金额","立项可用余额","签约单位/个人","单据类型","conId","合同审批通过时间","是否超时","已结算","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属日期","营销费用发生额（含分摊）","是否存在负立项","关联状态"
+	    			"id","entryId","选择","立项来源","状态","营销立项单据编号","事项预估发生日期","立项审批通过日期","立项事项","费用归口口径","立项金额","立项可用余额","签约单位/个人","单据类型","conId","合同审批通过时间","是否超时","已结算","合同编号","合同名称","签约单位/个人","合同总金额","累计付款金额","剩余未付款金额","营销费用归属日期","营销费用发生额（含分摊）","是否存在负立项","关联状态"
 
 	    		}
 	    },true);
@@ -130,7 +131,7 @@ public class MarketProjectReportFacadeControllerBean extends AbstractMarketProje
     	String org=params.getString("org");
     	StringBuffer sb = new StringBuffer();
     	
-    	sb.append(" select m.fid id,cost.fid entryId,0 isSelect,m.fsource source,m.fnumber number,m.fbizDate bizDate,case when m.fstate='4AUDITTED' then m.fauditTime else null end auditTime,m.fname name,c.fname_l2 costAccount,cost.famount amount,cost.famount-isnull(tt.amount,0)+isnull(fcost.famount,0) subAmount,'' partB,case when cost.ftype='JZ' then '记账单' when cost.ftype='CONTRACT' then '合同' when cost.ftype='NOTEXTCONTRACT' then '无文本' else '' end,t.conId,t.conAuditTime,t.isTimeOut,t.conHasSettled,t.conNumber,");
+    	sb.append(" select m.fid id,cost.fid entryId,0 isSelect,m.fsource source,m.fstate state,m.fnumber number,m.fbizDate bizDate,case when m.fstate='4AUDITTED' then m.fauditTime else null end auditTime,m.fname name,c.fname_l2 costAccount,cost.famount amount,cost.famount-isnull(tt.amount,0)+isnull(fcost.famount,0) subAmount,'' partB,case when cost.ftype='JZ' then '记账单' when cost.ftype='CONTRACT' then '合同' when cost.ftype='NOTEXTCONTRACT' then '无文本' else '' end,t.conId,t.conAuditTime,t.isTimeOut,t.conHasSettled,t.conNumber,");
     	sb.append(" t.conName,t.conPartB,t.conAmount,t.payAmount,(t.conAmount-isnull(t.payAmount,0)) unPayAmount,case when cost.ftype='JZ' then m.fbizDate else t.conBizdate end conBizDate,case when cost.ftype='JZ' then cost.famount else t.conMarketAmount end conMarketAmount,case when fcost.fid is not null then 1 else 0 end isSub,t.fstate state");
     	sb.append(" from T_CON_MarketProject m left join T_CON_MarketProjectCostEntry cost on cost.fheadid=m.fid ");
     	sb.append(" left join T_CON_MarketProject fm on fm.FMpId=m.fid");

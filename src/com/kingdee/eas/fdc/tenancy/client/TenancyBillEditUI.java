@@ -1987,7 +1987,7 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 			this.btnSelectTenPrice.setVisible(true);
 			this.txtNotic.setText("合同签订规范要求：\n" 
 					+ "  1、合同面积需要等于基准租金审批单的面积汇总；\n"
-					+ "  2、合同日单价需要大于或者等于基准租金审批单的日单价（日单价=总租金/总面积）；\n"
+					+ "  2、合同日单价需要大于或者等于基准租金审批单的日单价（日单价=总租金/（总租期-免租期）/总面积）；\n"
 					+ "  3、合同时间需要小于等于基准租金审批单的合同最长租期；\n"
 					+ "  4、合同免租期需要小于或者等于基准租金审批单的合同最长免租期；\n"
 					+ "  5、合同保证金需要大于或者等于基准租金审批单的保证金的要求。\n");
@@ -5617,15 +5617,17 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 			}
 			
 			
-			BigDecimal lease = FDCHelper.toBigDecimal(txtMaxLease.getText());
+			BigDecimal lease = FDCHelper.subtract(FDCHelper.toBigDecimal(txtMaxLease.getText()), FDCHelper.toBigDecimal(txtMaxFreeDay.getText()));
 			BigDecimal area = FDCHelper.toBigDecimal(txtRoomArea.getText());
 			avgDayPrice =FDCHelper.divide(totalRent, lease);
 			avgDayPrice = FDCHelper.divide(avgDayPrice,area);
+			if(avgDayPrice==null) avgDayPrice=FDCHelper.ZERO;
 			this.txtDayPrice.setText(avgDayPrice.toString());
 			this.txtDayPrice.setHorizontalAlignment(11);
 			
 			BigDecimal tDayPrice = FDCHelper.divide(totalRentBaseLine.multiply(lease),lease);
 			tDayPrice=FDCHelper.divide(tDayPrice,area);
+			if(tDayPrice==null) tDayPrice=FDCHelper.ZERO;
 			
 			BigDecimal tMaxFreeDay = FDCHelper.ZERO;
 			if(!StringUtils.isEmpty(txtMaxFreeDay.getText())){

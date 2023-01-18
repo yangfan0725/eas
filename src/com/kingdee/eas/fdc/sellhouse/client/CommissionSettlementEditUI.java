@@ -29,8 +29,10 @@ import org.apache.log4j.Logger;
 import com.kingdee.bos.BOSException;
 import com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
+import com.kingdee.bos.ctrl.kdf.table.KDTAction;
 import com.kingdee.bos.ctrl.kdf.table.KDTDefaultCellEditor;
 import com.kingdee.bos.ctrl.kdf.table.KDTMergeManager;
+import com.kingdee.bos.ctrl.kdf.table.KDTTransferAction;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTEditEvent;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent;
@@ -217,6 +219,13 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         this.prmtSellProject.setEnabled(false);
         
         isLoad=false;
+        
+        ((KDTTransferAction) tblMgrBonus.getActionMap().get(KDTAction.PASTE)).setEnabled(false);
+        ((KDTTransferAction) tblSalesmanBonus.getActionMap().get(KDTAction.PASTE)).setEnabled(false);
+        ((KDTTransferAction) tblQdM.getActionMap().get(KDTAction.PASTE)).setEnabled(false);
+        ((KDTTransferAction) tblQd.getActionMap().get(KDTAction.PASTE)).setEnabled(false);
+        ((KDTTransferAction) tblRec.getActionMap().get(KDTAction.PASTE)).setEnabled(false);
+        ((KDTTransferAction) tblBounsTotal.getActionMap().get(KDTAction.PASTE)).setEnabled(false);
     }
     public void initTable(KDTable table){
     	table.checkParsed();
@@ -578,10 +587,14 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 	}
 	protected void verifyInputForSubmint() throws Exception {
 		super.verifyInputForSubmint();
+		if(tblMgrBonus.getRowCount()==0){
+			FDCMsgBox.showWarning("案场管理佣金计算数据不能为空！");
+    		abort();
+		}
 		for(int i=0;i<tblMgrBonus.getRowCount();i++){
 			for(int j=0;j<tblMgrBonus.getColumnCount();j++){
 				if(tblMgrBonus.getColumn(j).isRequired()){
-					if(tblMgrBonus.getRow(i).getCell(j).getValue()==null){
+					if(tblMgrBonus.getRow(i).getCell(j).getValue()==null||tblMgrBonus.getRow(i).getCell(j).getValue().toString().trim().equals("")){
 						FDCMsgBox.showWarning("案场管理佣金计算数据不能为空！");
 						tblMgrBonus.getEditManager().editCellAt(i, j);
 			    		abort();
@@ -592,7 +605,7 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 		for(int i=0;i<this.tblSalesmanBonus.getRowCount();i++){
 			for(int j=0;j<tblSalesmanBonus.getColumnCount();j++){
 				if(tblSalesmanBonus.getColumn(j).isRequired()){
-					if(tblSalesmanBonus.getRow(i).getCell(j).getValue()==null){
+					if(tblSalesmanBonus.getRow(i).getCell(j).getValue()==null||tblSalesmanBonus.getRow(i).getCell(j).getValue().toString().trim().equals("")){
 						FDCMsgBox.showWarning("置业顾问佣金计算数据不能为空！");
 						tblSalesmanBonus.getEditManager().editCellAt(i, j);
 			    		abort();
@@ -603,7 +616,7 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 		for(int i=0;i<this.tblQdM.getRowCount();i++){
 			for(int j=0;j<tblQdM.getColumnCount();j++){
 				if(tblQdM.getColumn(j).isRequired()){
-					if(tblQdM.getRow(i).getCell(j).getValue()==null){
+					if(tblQdM.getRow(i).getCell(j).getValue()==null||tblQdM.getRow(i).getCell(j).getValue().toString().trim().equals("")){
 						FDCMsgBox.showWarning("渠道管理佣金计算数据不能为空！");
 						tblQdM.getEditManager().editCellAt(i, j);
 			    		abort();
@@ -614,7 +627,7 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 		for(int i=0;i<this.tblQd.getRowCount();i++){
 			for(int j=0;j<tblQd.getColumnCount();j++){
 				if(tblQd.getColumn(j).isRequired()){
-					if(tblQd.getRow(i).getCell(j).getValue()==null){
+					if(tblQd.getRow(i).getCell(j).getValue()==null||tblQd.getRow(i).getCell(j).getValue().toString().trim().equals("")){
 						FDCMsgBox.showWarning("渠道人员佣金计算数据不能为空！");
 						tblQd.getEditManager().editCellAt(i, j);
 			    		abort();
@@ -625,7 +638,7 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 		for(int i=0;i<this.tblRec.getRowCount();i++){
 			for(int j=0;j<tblRec.getColumnCount();j++){
 				if(tblRec.getColumn(j).isRequired()){
-					if(tblRec.getRow(i).getCell(j).getValue()==null){
+					if(tblRec.getRow(i).getCell(j).getValue()==null||tblRec.getRow(i).getCell(j).getValue().toString().trim().equals("")){
 						FDCMsgBox.showWarning("推荐人佣金计算数据不能为空！");
 						tblRec.getEditManager().editCellAt(i, j);
 			    		abort();
@@ -1215,10 +1228,10 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
     }
     public static BigDecimal divide(Object dec1, Object dec2, int scale, int roundingMode)
     {/*  67*/        if(dec1 == null && dec2 == null)
-/*  68*/            return null;
+/*  68*/            return FDCHelper.ZERO;
 
 /*  70*/        if(toBigDecimal(dec2).signum() == 0)
-/*  71*/            return null;
+/*  71*/            return FDCHelper.ZERO;
 
 /*  73*/        else/*  73*/            return toBigDecimal(dec1).divide(toBigDecimal(dec2), scale, roundingMode);
     }
@@ -1515,9 +1528,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 		if(colIndex == this.tblSalesmanBonus.getColumnIndex("purTarget")){
         	BigDecimal purTarget = r.getCell("purTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purTarget").getValue());
         	BigDecimal purAmt = r.getCell("purAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purAmt").getValue());
-        	if(purTarget==null||purTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(purTarget==null||purTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("purComplateRate").setValue(divide(purAmt,purTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblSalesmanBonus.getRowCount();i++){
         		PersonInfo p=(PersonInfo) tblSalesmanBonus.getRow(i).getCell("person").getValue();
@@ -1532,9 +1545,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if(colIndex == this.tblSalesmanBonus.getColumnIndex("contractAmtTarget")){
         	BigDecimal contractAmtTarget = r.getCell("contractAmtTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmtTarget").getValue());
         	BigDecimal contractAmt = r.getCell("contractAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmt").getValue());
-        	if(contractAmtTarget==null||contractAmtTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(contractAmtTarget==null||contractAmtTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("contractCompleteRate").setValue(divide(contractAmt,contractAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblSalesmanBonus.getRowCount();i++){
         		PersonInfo p=(PersonInfo) tblSalesmanBonus.getRow(i).getCell("person").getValue();
@@ -1549,9 +1562,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if( colIndex == this.tblSalesmanBonus.getColumnIndex("backAmtTarget")){
         	BigDecimal backAmtTarget = r.getCell("backAmtTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmtTarget").getValue());
         	BigDecimal backAmt = r.getCell("backAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmt").getValue());
-        	if(backAmtTarget==null||backAmtTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(backAmtTarget==null||backAmtTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("backCompleteRate").setValue(divide(backAmt,backAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblSalesmanBonus.getRowCount();i++){
         		PersonInfo p=(PersonInfo) tblSalesmanBonus.getRow(i).getCell("person").getValue();
@@ -1609,17 +1622,17 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if( colIndex == this.tblSalesmanBonus.getColumnIndex("mpur")){
         	BigDecimal mpur = r.getCell("mpur").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("mpur").getValue());
         	BigDecimal pur = r.getCell("pur").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("pur").getValue());
-        	if(mpur==null||mpur.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(mpur==null||mpur.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("purRate").setValue(divide(pur,mpur).multiply(FDCHelper.ONE_HUNDRED));
         }
         if( colIndex == this.tblSalesmanBonus.getColumnIndex("mcontract")){
         	BigDecimal mcontract =r.getCell("mcontract").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("mcontract").getValue());
         	BigDecimal contract = r.getCell("contract").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contract").getValue());
-        	if(mcontract==null||mcontract.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(mcontract==null||mcontract.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("contractRate").setValue(divide(contract,mcontract).multiply(FDCHelper.ONE_HUNDRED));
         }
 	}
@@ -1630,9 +1643,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 		if(colIndex == this.tblQd.getColumnIndex("purTarget")){
         	BigDecimal purTarget = r.getCell("purTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purTarget").getValue());
         	BigDecimal purAmt = r.getCell("purAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purAmt").getValue());
-        	if(purTarget==null||purTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(purTarget==null||purTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("purComplateRate").setValue(divide(purAmt,purTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblQd.getRowCount();i++){
         		String p=(String) tblQd.getRow(i).getCell("person").getValue();
@@ -1647,9 +1660,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if(colIndex == this.tblQd.getColumnIndex("contractAmtTarget")){
         	BigDecimal contractAmtTarget = r.getCell("contractAmtTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmtTarget").getValue());
         	BigDecimal contractAmt = r.getCell("contractAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmt").getValue());
-        	if(contractAmtTarget==null||contractAmtTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(contractAmtTarget==null||contractAmtTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("contractCompleteRate").setValue(divide(contractAmt,contractAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblQd.getRowCount();i++){
         		String p=(String) tblQd.getRow(i).getCell("person").getValue();
@@ -1664,9 +1677,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if( colIndex == this.tblQd.getColumnIndex("backAmtTarget")){
         	BigDecimal backAmtTarget = r.getCell("backAmtTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmtTarget").getValue());
         	BigDecimal backAmt = r.getCell("backAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmt").getValue());
-        	if(backAmtTarget==null||backAmtTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(backAmtTarget==null||backAmtTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("backCompleteRate").setValue(divide(backAmt,backAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblQd.getRowCount();i++){
         		String p=(String) tblQd.getRow(i).getCell("person").getValue();
@@ -1724,17 +1737,17 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if( colIndex == this.tblQd.getColumnIndex("mpur")){
         	BigDecimal mpur = r.getCell("mpur").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("mpur").getValue());
         	BigDecimal pur = r.getCell("pur").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("pur").getValue());
-        	if(mpur==null||mpur.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(mpur==null||mpur.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("purRate").setValue(divide(pur,mpur).multiply(FDCHelper.ONE_HUNDRED));
         }
         if( colIndex == this.tblQd.getColumnIndex("mcontract")){
         	BigDecimal mcontract =r.getCell("mcontract").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("mcontract").getValue());
         	BigDecimal contract = r.getCell("contract").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contract").getValue());
-        	if(mcontract==null||mcontract.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(mcontract==null||mcontract.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("contractRate").setValue(divide(contract,mcontract).multiply(FDCHelper.ONE_HUNDRED));
         }
 	}
@@ -1745,9 +1758,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 		if(colIndex == this.tblRec.getColumnIndex("purTarget")){
         	BigDecimal purTarget = r.getCell("purTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purTarget").getValue());
         	BigDecimal purAmt = r.getCell("purAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purAmt").getValue());
-        	if(purTarget==null||purTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(purTarget==null||purTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("purComplateRate").setValue(divide(purAmt,purTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblRec.getRowCount();i++){
         		String p=(String) tblQd.getRow(i).getCell("person").getValue();
@@ -1762,9 +1775,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if(colIndex == this.tblRec.getColumnIndex("contractAmtTarget")){
         	BigDecimal contractAmtTarget = r.getCell("contractAmtTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmtTarget").getValue());
         	BigDecimal contractAmt = r.getCell("contractAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmt").getValue());
-        	if(contractAmtTarget==null||contractAmtTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(contractAmtTarget==null||contractAmtTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("contractCompleteRate").setValue(divide(contractAmt,contractAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblRec.getRowCount();i++){
         		String p=(String) tblRec.getRow(i).getCell("person").getValue();
@@ -1779,9 +1792,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if( colIndex == this.tblRec.getColumnIndex("backAmtTarget")){
         	BigDecimal backAmtTarget = r.getCell("backAmtTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmtTarget").getValue());
         	BigDecimal backAmt = r.getCell("backAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmt").getValue());
-        	if(backAmtTarget==null||backAmtTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(backAmtTarget==null||backAmtTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("backCompleteRate").setValue(divide(backAmt,backAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblRec.getRowCount();i++){
         		String p=(String) tblRec.getRow(i).getCell("person").getValue();
@@ -1839,17 +1852,17 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if( colIndex == this.tblRec.getColumnIndex("mpur")){
         	BigDecimal mpur = r.getCell("mpur").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("mpur").getValue());
         	BigDecimal pur = r.getCell("pur").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("pur").getValue());
-        	if(mpur==null||mpur.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(mpur==null||mpur.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("purRate").setValue(divide(pur,mpur).multiply(FDCHelper.ONE_HUNDRED));
         }
         if( colIndex == this.tblRec.getColumnIndex("mcontract")){
         	BigDecimal mcontract =r.getCell("mcontract").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("mcontract").getValue());
         	BigDecimal contract = r.getCell("contract").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contract").getValue());
-        	if(mcontract==null||mcontract.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(mcontract==null||mcontract.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("contractRate").setValue(divide(contract,mcontract).multiply(FDCHelper.ONE_HUNDRED));
         }
 	}
@@ -1994,9 +2007,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 		if(colIndex == this.tblQdM.getColumnIndex("purTarget")||colIndex == this.tblQdM.getColumnIndex("purAmt")){
         	BigDecimal purTarget = r.getCell("purTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purTarget").getValue());
         	BigDecimal purAmt = r.getCell("purAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purAmt").getValue());
-        	if(purTarget==null||purTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(purTarget==null||purTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("purComplateRate").setValue(divide(purAmt,purTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblQdM.getRowCount();i++){
         		PersonInfo p=(PersonInfo) tblQdM.getRow(i).getCell("person").getValue();
@@ -2012,9 +2025,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if(colIndex == this.tblQdM.getColumnIndex("contractAmtTarget")||colIndex == this.tblQdM.getColumnIndex("contractAmt")){
         	BigDecimal contractAmtTarget = r.getCell("contractAmtTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmtTarget").getValue());
         	BigDecimal contractAmt = r.getCell("contractAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmt").getValue());
-        	if(contractAmtTarget==null||contractAmtTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(contractAmtTarget==null||contractAmtTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("contractCompleteRate").setValue(divide(contractAmt,contractAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblQdM.getRowCount();i++){
         		PersonInfo p=(PersonInfo) tblQdM.getRow(i).getCell("person").getValue();
@@ -2030,9 +2043,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if(colIndex == this.tblQdM.getColumnIndex("backAmtTarget")||colIndex == this.tblQdM.getColumnIndex("backAmt")){
         	BigDecimal backAmtTarget = r.getCell("backAmtTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmtTarget").getValue());
         	BigDecimal backAmt = r.getCell("backAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmt").getValue());
-        	if(backAmtTarget==null||backAmtTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(backAmtTarget==null||backAmtTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("backCompleteRate").setValue(divide(backAmt,backAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblQdM.getRowCount();i++){
         		PersonInfo p=(PersonInfo) tblQdM.getRow(i).getCell("person").getValue();
@@ -2092,17 +2105,17 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if( colIndex == this.tblQdM.getColumnIndex("mpur")||colIndex == this.tblQdM.getColumnIndex("pur")){
         	BigDecimal mpur = r.getCell("mpur").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("mpur").getValue());
         	BigDecimal pur = r.getCell("pur").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("pur").getValue());
-        	if(mpur==null||mpur.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(mpur==null||mpur.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("purRate").setValue(divide(pur,mpur).multiply(FDCHelper.ONE_HUNDRED));
         }
         if( colIndex == this.tblQdM.getColumnIndex("mcontract")||colIndex == this.tblQdM.getColumnIndex("contract")){
         	BigDecimal mcontract =r.getCell("mcontract").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("mcontract").getValue());
         	BigDecimal contract = r.getCell("contract").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contract").getValue());
-        	if(mcontract==null||mcontract.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(mcontract==null||mcontract.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("contractRate").setValue(divide(contract,mcontract).multiply(FDCHelper.ONE_HUNDRED));
         }
 	}
@@ -2497,9 +2510,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
 		if(colIndex == this.tblMgrBonus.getColumnIndex("purTarget")){
         	BigDecimal purTarget = r.getCell("purTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purTarget").getValue());
         	BigDecimal purAmt = r.getCell("purAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("purAmt").getValue());
-        	if(purTarget==null||purTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(purTarget==null||purTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("purComplateRate").setValue(divide(purAmt,purTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblMgrBonus.getRowCount();i++){
         		PersonInfo p=(PersonInfo) tblMgrBonus.getRow(i).getCell("person").getValue();
@@ -2514,9 +2527,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if(colIndex == this.tblMgrBonus.getColumnIndex("contractAmtTarget")){
         	BigDecimal contractAmtTarget = r.getCell("contractAmtTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmtTarget").getValue());
         	BigDecimal contractAmt = r.getCell("contractAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contractAmt").getValue());
-        	if(contractAmtTarget==null||contractAmtTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(contractAmtTarget==null||contractAmtTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("contractCompleteRate").setValue(divide(contractAmt,contractAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblMgrBonus.getRowCount();i++){
         		PersonInfo p=(PersonInfo) tblMgrBonus.getRow(i).getCell("person").getValue();
@@ -2531,9 +2544,9 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if( colIndex == this.tblMgrBonus.getColumnIndex("backAmtTarget")){
         	BigDecimal backAmtTarget = r.getCell("backAmtTarget").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmtTarget").getValue());
         	BigDecimal backAmt = r.getCell("backAmt").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("backAmt").getValue());
-        	if(backAmtTarget==null||backAmtTarget.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(backAmtTarget==null||backAmtTarget.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("backCompleteRate").setValue(divide(backAmt,backAmtTarget).multiply(FDCHelper.ONE_HUNDRED));
         	for(int i=e.getRowIndex()+1;i<tblMgrBonus.getRowCount();i++){
         		PersonInfo p=(PersonInfo) tblMgrBonus.getRow(i).getCell("person").getValue();
@@ -2591,17 +2604,17 @@ public class CommissionSettlementEditUI extends AbstractCommissionSettlementEdit
         if( colIndex == this.tblMgrBonus.getColumnIndex("mpur")){
         	BigDecimal mpur = r.getCell("mpur").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("mpur").getValue());
         	BigDecimal pur = r.getCell("pur").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("pur").getValue());
-        	if(mpur==null||mpur.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(mpur==null||mpur.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("purRate").setValue(divide(pur,mpur).multiply(FDCHelper.ONE_HUNDRED));
         }
         if( colIndex == this.tblMgrBonus.getColumnIndex("mcontract")){
         	BigDecimal mcontract =r.getCell("mcontract").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("mcontract").getValue());
         	BigDecimal contract = r.getCell("contract").getValue() == null?FDCHelper.ZERO:FDCHelper.toBigDecimal(r.getCell("contract").getValue());
-        	if(mcontract==null||mcontract.compareTo(FDCHelper.ZERO)==0){
-        		return;
-        	}
+//        	if(mcontract==null||mcontract.compareTo(FDCHelper.ZERO)==0){
+//        		return;
+//        	}
         	r.getCell("contractRate").setValue(divide(contract,mcontract).multiply(FDCHelper.ONE_HUNDRED));
         }
         refreshTotalData();

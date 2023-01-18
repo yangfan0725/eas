@@ -542,7 +542,13 @@ public class SpecialDiscountEditUI extends AbstractSpecialDiscountEditUI
 		if(this.kdtEntry.getColumnKey(e.getColIndex()).equals("room")){
 			RoomInfo room = (RoomInfo)row.getCell("room").getValue();
 			if(room!=null){
-				row.getCell("buildingArea").setValue(room.getActualBuildingArea()==null?room.getBuildingArea():room.getActualBuildingArea());
+				BigDecimal buildingArea=FDCHelper.ZERO;
+				if(room.isIsActualAreaAudited()){
+					buildingArea=room.getActualBuildingArea();
+				}else{
+					buildingArea=room.getBuildingArea();
+				}
+				row.getCell("buildingArea").setValue(buildingArea);
 				
 				row.getCell("buildingPrice").setValue(FDCHelper.divide(room.getStandardTotalAmount(), row.getCell("buildingArea").getValue(), 2, BigDecimal.ROUND_HALF_UP));
 				row.getCell("standardTotalAmount").setValue(room.getStandardTotalAmount());

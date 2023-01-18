@@ -226,6 +226,10 @@ public class MarketProjectReport1UI extends AbstractMarketProjectReport1UI
     					tblMain.getRow(i).getCell("isSelect").getStyleAttributes().setLocked(true);
     					tblMain.getRow(i).getStyleAttributes().setBackground(new Color(192,192,192));
     				}
+    				if(tblMain.getRow(i).getCell("state").getValue()!=null&&!tblMain.getRow(i).getCell("state").getValue().equals("4AUDITTED")){
+    					tblMain.getRow(i).getCell("isSelect").getStyleAttributes().setLocked(true);
+    					tblMain.getRow(i).getStyleAttributes().setBackground(new Color(192,192,192));
+    				}
     			}
     			
     			tblMain.getColumn("conNumber").getStyleAttributes().setFontColor(Color.BLUE);
