@@ -249,10 +249,10 @@ public class SpecialDiscountEditUI extends AbstractSpecialDiscountEditUI
 		}
 	}
 	public void actionRoomSelect_actionPerformed(ActionEvent e)throws Exception {
-		if(this.kdtEntry.getRowCount()>0){
-			FDCMsgBox.showWarning(this,"只能选择一套房间！");
-			return;
-		}
+//		if(this.kdtEntry.getRowCount()>0){
+//			FDCMsgBox.showWarning(this,"只能选择一套房间！");
+//			return;
+//		}
 		if(dlg==null){
 			dlg = new KDCommonPromptDialog();
 			IMetaDataLoader loader = MetaDataLoaderFactory.getRemoteMetaDataLoader();
@@ -306,10 +306,10 @@ public class SpecialDiscountEditUI extends AbstractSpecialDiscountEditUI
 			}
 		}
 		if (object != null) {
-			if(object.length>1){
-				FDCMsgBox.showWarning(this,"只能选择一套房间！");
-				return;
-			}
+//			if(object.length>1){
+//				FDCMsgBox.showWarning(this,"只能选择一套房间！");
+//				return;
+//			}
 			for (int i = 0; i < object.length; i++) {
 				RoomInfo room = (RoomInfo) object[i];
 				if(roomId.contains(room.getId().toString())){
@@ -732,6 +732,7 @@ public class SpecialDiscountEditUI extends AbstractSpecialDiscountEditUI
         	state.add(TransactionStateEnum.QUITROOMAUDITING_VALUE);
         	filter.getFilterItems().add(new FilterItemInfo("head.bizState",state,CompareType.INCLUDE));
         	filter.getFilterItems().add(new FilterItemInfo("customer.id",info.getId().toString()));
+        	filter.getFilterItems().add(new FilterItemInfo("isMain",Boolean.TRUE));
         	filter.getFilterItems().add(new FilterItemInfo("head.sellProject.id",this.editData.getSellProject().getId().toString()));
         	
         	view.setFilter(filter);
