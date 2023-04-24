@@ -1017,7 +1017,7 @@ public class PurchaseManageEditUI extends AbstractPurchaseManageEditUI
 		try {
 			info.setBizDate(FDCCommonServerHelper.getServerTimeStamp());
 			info.setBusAdscriptionDate(FDCCommonServerHelper.getServerTimeStamp());
-			info.setPlanSignDate(FDCDateHelper.addDays(info.getBusAdscriptionDate(), 3));
+			info.setPlanSignDate(FDCDateHelper.addDays(info.getBusAdscriptionDate(), 7));
 		} catch (BOSException e) {
 			logger.error(e.getMessage());
 		}
@@ -1216,7 +1216,7 @@ public class PurchaseManageEditUI extends AbstractPurchaseManageEditUI
 			this.txtPurAmount.setValue(projectProductTypeSet.get(SHEParamConstant.T1_PRE_STANDARD));
 			//取售楼设置里的认购单默认签约时限设置约定签约日期
 			int day =  ((Integer)projectProductTypeSet.get(SHEParamConstant.T1_TO_SIGN_LIMIT_TIME)).intValue();
-			this.pkPlanSignDate.setValue(FDCDateHelper.addDays(new Date(),day));
+//			this.pkPlanSignDate.setValue(FDCDateHelper.addDays(new Date(),day));
 			//在没有付款方案的时候，则在付款明细增加一条款项名称为定金的记录
 			if(this.f7PayType.getValue()==null){
 				PurPayListEntryInfo purPayListEntry = new PurPayListEntryInfo();

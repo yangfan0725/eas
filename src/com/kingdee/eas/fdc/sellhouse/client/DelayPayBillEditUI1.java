@@ -506,7 +506,7 @@ public class DelayPayBillEditUI1 extends AbstractDelayPayBillEditUI1
 					this.pkPurDate.setValue(purCol.get(0).getBusAdscriptionDate());
 					this.pkSignDate.setValue(null);
 					if(isUpdateDate){
-						this.pkPlanSignDate.setValue(FDCDateHelper.addDays(purCol.get(0).getBusAdscriptionDate(), 3));
+						this.pkPlanSignDate.setValue(FDCDateHelper.addDays(purCol.get(0).getBusAdscriptionDate(), 7));
 					}
 					this.kdtNewEntry.removeRows();
 					if(isUpdateDate){
