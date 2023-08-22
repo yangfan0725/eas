@@ -22,7 +22,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDPanel</classType>
             <isContainer>true</isContainer>
-            <constraints>10,10,290,420</constraints>
+            <constraints>10,10,290,470</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -187,7 +187,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDLabel</classType>
             <isContainer>false</isContainer>
-            <constraints>10,326,100,19</constraints>
+            <constraints>12,370,100,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -215,7 +215,7 @@
             <userDefined>false</userDefined>
             <classType>com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangArea</classType>
             <isContainer>false</isContainer>
-            <constraints>10,347,270,67</constraints>
+            <constraints>10,394,270,67</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -646,7 +646,7 @@
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
             <isContainer>false</isContainer>
-            <constraints>10,229,140,19</constraints>
+            <constraints>10,230,140,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -687,7 +687,7 @@
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
             <isContainer>false</isContainer>
-            <constraints>10,252,246,19</constraints>
+            <constraints>10,253,246,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -728,7 +728,7 @@
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
             <isContainer>false</isContainer>
-            <constraints>11,277,254,19</constraints>
+            <constraints>11,276,254,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -769,7 +769,7 @@
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
             <isContainer>false</isContainer>
-            <constraints>11,303,274,19</constraints>
+            <constraints>11,299,274,19</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -796,6 +796,88 @@
                     <propertyType>boolean</propertyType>
                     <bindingObject>editData</bindingObject>
                     <bindingField>isWebPC</bindingField>
+                    <fieldType>boolean</fieldType>
+                    <accessType />
+                    <autoMode>false</autoMode>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </propertyBinding>
+            </propertyBindings>
+        </component>
+        <component>
+            <name>cbIsReceive</name>
+            <alias>uiObject[com.kingdee.eas.fdc.basedata.client.ContractTypeEditUI].components.component[cbIsReceive].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>11,322,140,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.basedata.client.ContractTypeEditUI].components.component[cbIsReceive].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CoreUI" />
+            </parent>
+            <propertyBindings>
+                <propertyBinding>
+                    <propertyName>selected</propertyName>
+                    <propertyType>boolean</propertyType>
+                    <bindingObject>editData</bindingObject>
+                    <bindingField>isReceive</bindingField>
+                    <fieldType>boolean</fieldType>
+                    <accessType />
+                    <autoMode>false</autoMode>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </propertyBinding>
+            </propertyBindings>
+        </component>
+        <component>
+            <name>cbIsRelateReceive</name>
+            <alias>uiObject[com.kingdee.eas.fdc.basedata.client.ContractTypeEditUI].components.component[cbIsRelateReceive].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDCheckBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>11,347,198,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>text</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.basedata.client.ContractTypeEditUI].components.component[cbIsRelateReceive].properties.property[text].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CoreUI" />
+            </parent>
+            <propertyBindings>
+                <propertyBinding>
+                    <propertyName>selected</propertyName>
+                    <propertyType>boolean</propertyType>
+                    <bindingObject>editData</bindingObject>
+                    <bindingField>isRelateReceive</bindingField>
                     <fieldType>boolean</fieldType>
                     <accessType />
                     <autoMode>false</autoMode>
@@ -1938,6 +2020,30 @@
             <lang locale="zh_CN" value="是否必须录入合同事项发生明细" />
             <lang locale="zh_HK" value="是否必須錄入合同事項發生明細" />
             <lang locale="zh_TW" value="是否必須錄入合同事項發生明細" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ContractTypeEditUI].components.component[cbIsReceive].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ContractTypeEditUI].components.component[cbIsReceive].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="是否收入类合同" />
+            <lang locale="zh_HK" value="是否收入類合同" />
+            <lang locale="zh_TW" value="是否收入類合同" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ContractTypeEditUI].components.component[cbIsRelateReceive].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ContractTypeEditUI].components.component[cbIsRelateReceive].properties.property[text].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="付款合同是否关联收入类合同" />
+            <lang locale="zh_HK" value="付款合同是否關聯收入類合同" />
+            <lang locale="zh_TW" value="付款合同是否關聯收入類合同" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.basedata.client.ContractTypeEditUI].components.component[cbIsTA].alias">
             <lang locale="en_US" value="null" />

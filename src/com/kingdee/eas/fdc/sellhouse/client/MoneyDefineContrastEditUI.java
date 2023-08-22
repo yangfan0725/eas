@@ -23,9 +23,11 @@ import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.ui.face.ItemAction;
 import com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox;
 import com.kingdee.bos.ctrl.kdf.table.ICell;
+import com.kingdee.bos.ctrl.kdf.table.IColumn;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTDefaultCellEditor;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectManager;
+import com.kingdee.bos.ctrl.kdf.table.KDTSortManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent;
 import com.kingdee.bos.ctrl.kdf.util.editor.ICellEditor;
@@ -245,6 +247,18 @@ public class MoneyDefineContrastEditUI extends AbstractMoneyDefineContrastEditUI
 		this.tblMain.getColumn("isChanged").getStyleAttributes().setLocked(true);
 		this.tblMain.getColumn("contrastSite").setEditor(createComboCellEditor(MoneyAccountContrastEnum.getEnumList()));
 
+		String[] fields=new String[tblMain.getColumnCount()];
+		for(int i=0;i<tblMain.getColumnCount();i++){
+			fields[i]=tblMain.getColumnKey(i);
+		}
+		 KDTSortManager sortManager = new KDTSortManager(tblMain);
+		 sortManager.setSortAuto(true);
+		 sortManager.setClickCount(1);
+		 for(int i = 0; i < fields.length; i++){
+			 IColumn column = tblMain.getColumn(fields[i]);
+			 if(column != null)
+				 column.setSortable(true);
+         }
 	}
 
 	public static KDTDefaultCellEditor createComboCellEditor(List enumList) {

@@ -13,9 +13,9 @@ import com.kingdee.util.enums.StringEnum;
  */
 public class CostPropertyEnum extends StringEnum
 {
-    public static final String COMP_COMFIRM_VALUE = "COMP_COMFIRM";//alias=固定总价
-    public static final String TEMP_EVAL_VALUE = "TEMP_EVAL";//alias=暂定总价
-    public static final String BASE_CONFIRM_VALUE = "BASE_CONFIRM";//alias=暂定总价转固定总价
+    public static final String COMP_COMFIRM_VALUE = "COMP_COMFIRM";//alias=固定合同总价
+    public static final String TEMP_EVAL_VALUE = "TEMP_EVAL";//alias=浮动合同总价
+    public static final String BASE_CONFIRM_VALUE = "BASE_CONFIRM";//alias=浮动合同总价转固定合同总价
 
     public static final CostPropertyEnum COMP_COMFIRM = new CostPropertyEnum("COMP_COMFIRM", COMP_COMFIRM_VALUE);
     public static final CostPropertyEnum TEMP_EVAL = new CostPropertyEnum("TEMP_EVAL", TEMP_EVAL_VALUE);

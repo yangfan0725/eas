@@ -186,6 +186,28 @@ public class AbstractContractTypeInfo extends com.kingdee.eas.framework.TreeBase
     {
         setBoolean("isWebPC", item);
     }
+    /**
+     * Object:合同类型's 是否收款类property 
+     */
+    public boolean isIsReceive()
+    {
+        return getBoolean("isReceive");
+    }
+    public void setIsReceive(boolean item)
+    {
+        setBoolean("isReceive", item);
+    }
+    /**
+     * Object:合同类型's 是否关联收入类合同property 
+     */
+    public boolean isIsRelateReceive()
+    {
+        return getBoolean("isRelateReceive");
+    }
+    public void setIsRelateReceive(boolean item)
+    {
+        setBoolean("isRelateReceive", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("B371775E");

@@ -443,6 +443,8 @@ public abstract class ContractListBaseUI extends AbstractContractListBaseUI {
 		FilterInfo filter = new FilterInfo();
 		filter.getFilterItems().add(
 				new FilterItemInfo("isEnabled", Boolean.TRUE));
+		filter.getFilterItems().add(
+				new FilterItemInfo("isReceive", Boolean.FALSE));
 		return filter;
 	}
 
@@ -802,7 +804,7 @@ public abstract class ContractListBaseUI extends AbstractContractListBaseUI {
 		{
 			viewInfo.setFilter(filter);
 		}
-		return super.getQueryExecutor(arg0, viewInfo);
+		return super.getQueryExecutor(arg0, arg1);
 	}
 
 

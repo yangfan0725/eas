@@ -204,33 +204,8 @@ public class SupplierStockControllerBean extends AbstractSupplierStockController
             	SupplierQualifyEntryFactory.getLocalInstance(ctx).updatePartial(col.get(k), sel);
             }
             this._addToSysSupplier(ctx, supplierStockInfo);
-        }
-        if(sqlParams.size() != 0){
-        	con = null;
-        	sql = "update T_FDC_SupplierStock set FState = 3 , fauditorid='"+ContextUtil.getCurrentUserInfo(ctx).getId()+"' , fauditDate= getDate() where FID in (" + paramsNum.toString() + ")";
-//        	sql1= "update T_SPL_FDCSupplierServiceType set fstate = 'ºË×¼' where fsupplierid in (" + paramsNum.toString() + ")";
-        	try
-        	{
-        		con = getConnection(ctx);
-        		DBUtil.executeUpdate(sql, sqlParams, con);
-//        		DBUtil.executeUpdate(sql1, sqlParams, con);
-        		
-        		
-        	}
-        	catch(SQLException e)
-        	{
-        		e.setNextException(new SQLException("SQL: " + sql));
-        		throw new SQLDataException(e);
-        	}
-        	SQLUtils.cleanup(con);
-        }
-        	if(log.getFailRecordCount() != 0)
-        		map.put("status", Boolean.valueOf(true));
-        	else
-        		map.put("status", Boolean.valueOf(false));
-        	map.put("info", log);
-        	
-        	Timestamp ts = new Timestamp(System.currentTimeMillis());
+            
+            Timestamp ts = new Timestamp(System.currentTimeMillis());
     		long lt = ts.getTime();
     		
     		JSONObject login=new JSONObject();
@@ -473,6 +448,33 @@ public class SupplierStockControllerBean extends AbstractSupplierStockController
     			e1.printStackTrace();
     		}
 	}
+        }
+        if(sqlParams.size() != 0){
+        	con = null;
+        	sql = "update T_FDC_SupplierStock set FState = 3 , fauditorid='"+ContextUtil.getCurrentUserInfo(ctx).getId()+"' , fauditDate= getDate() where FID in (" + paramsNum.toString() + ")";
+//        	sql1= "update T_SPL_FDCSupplierServiceType set fstate = 'ºË×¼' where fsupplierid in (" + paramsNum.toString() + ")";
+        	try
+        	{
+        		con = getConnection(ctx);
+        		DBUtil.executeUpdate(sql, sqlParams, con);
+//        		DBUtil.executeUpdate(sql1, sqlParams, con);
+        		
+        		
+        	}
+        	catch(SQLException e)
+        	{
+        		e.setNextException(new SQLException("SQL: " + sql));
+        		throw new SQLDataException(e);
+        	}
+        	SQLUtils.cleanup(con);
+        }
+        	if(log.getFailRecordCount() != 0)
+        		map.put("status", Boolean.valueOf(true));
+        	else
+        		map.put("status", Boolean.valueOf(false));
+        	map.put("info", log);
+        	
+        	
         return map;
 	}
 	public static String SHA(final String strText) {

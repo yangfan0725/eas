@@ -64,6 +64,8 @@ public abstract class AbstractContractTypeEditUI extends com.kingdee.eas.framewo
     protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsTA;
     protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsMarket;
     protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsWebPC;
+    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsReceive;
+    protected com.kingdee.bos.ctrl.swing.KDCheckBox cbIsRelateReceive;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangBox bizName;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtLongNumber;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox bizDutyOrgUnit;
@@ -126,6 +128,8 @@ public abstract class AbstractContractTypeEditUI extends com.kingdee.eas.framewo
         this.cbIsTA = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.cbIsMarket = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.cbIsWebPC = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.cbIsReceive = new com.kingdee.bos.ctrl.swing.KDCheckBox();
+        this.cbIsRelateReceive = new com.kingdee.bos.ctrl.swing.KDCheckBox();
         this.bizName = new com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangBox();
         this.txtLongNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.bizDutyOrgUnit = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
@@ -153,6 +157,8 @@ public abstract class AbstractContractTypeEditUI extends com.kingdee.eas.framewo
         this.cbIsTA.setName("cbIsTA");
         this.cbIsMarket.setName("cbIsMarket");
         this.cbIsWebPC.setName("cbIsWebPC");
+        this.cbIsReceive.setName("cbIsReceive");
+        this.cbIsRelateReceive.setName("cbIsRelateReceive");
         this.bizName.setName("bizName");
         this.txtLongNumber.setName("txtLongNumber");
         this.bizDutyOrgUnit.setName("bizDutyOrgUnit");
@@ -236,6 +242,10 @@ public abstract class AbstractContractTypeEditUI extends com.kingdee.eas.framewo
         this.cbIsMarket.setText(resHelper.getString("cbIsMarket.text"));
         // cbIsWebPC		
         this.cbIsWebPC.setText(resHelper.getString("cbIsWebPC.text"));
+        // cbIsReceive		
+        this.cbIsReceive.setText(resHelper.getString("cbIsReceive.text"));
+        // cbIsRelateReceive		
+        this.cbIsRelateReceive.setText(resHelper.getString("cbIsRelateReceive.text"));
         // bizName		
         this.bizName.setRequired(true);		
         this.bizName.setMaxLength(80);
@@ -338,7 +348,7 @@ public abstract class AbstractContractTypeEditUI extends com.kingdee.eas.framewo
      */
     public void initUIContentLayout()
     {
-        this.setBounds(new Rectangle(10, 10, 290, 420));
+        this.setBounds(new Rectangle(10, 10, 290, 470));
         this.setLayout(null);
         contName.setBounds(new Rectangle(10, 30, 270, 19));
         this.add(contName, null);
@@ -346,9 +356,9 @@ public abstract class AbstractContractTypeEditUI extends com.kingdee.eas.framewo
         this.add(contLongNumber, null);
         chkIsEnabled.setBounds(new Rectangle(282, 278, 140, 19));
         this.add(chkIsEnabled, null);
-        kDLabel1.setBounds(new Rectangle(10, 326, 100, 19));
+        kDLabel1.setBounds(new Rectangle(12, 370, 100, 19));
         this.add(kDLabel1, null);
-        bizDescription.setBounds(new Rectangle(10, 347, 270, 67));
+        bizDescription.setBounds(new Rectangle(10, 394, 270, 67));
         this.add(bizDescription, null);
         chkIsCost.setBounds(new Rectangle(185, 207, 102, 19));
         this.add(chkIsCost, null);
@@ -368,14 +378,18 @@ public abstract class AbstractContractTypeEditUI extends com.kingdee.eas.framewo
         this.add(contInviteType, null);
         cbIsAccountView.setBounds(new Rectangle(10, 207, 172, 19));
         this.add(cbIsAccountView, null);
-        cbSinglePayment.setBounds(new Rectangle(10, 229, 140, 19));
+        cbSinglePayment.setBounds(new Rectangle(10, 230, 140, 19));
         this.add(cbSinglePayment, null);
-        cbIsTA.setBounds(new Rectangle(10, 252, 246, 19));
+        cbIsTA.setBounds(new Rectangle(10, 253, 246, 19));
         this.add(cbIsTA, null);
-        cbIsMarket.setBounds(new Rectangle(11, 277, 254, 19));
+        cbIsMarket.setBounds(new Rectangle(11, 276, 254, 19));
         this.add(cbIsMarket, null);
-        cbIsWebPC.setBounds(new Rectangle(11, 303, 274, 19));
+        cbIsWebPC.setBounds(new Rectangle(11, 299, 274, 19));
         this.add(cbIsWebPC, null);
+        cbIsReceive.setBounds(new Rectangle(11, 322, 140, 19));
+        this.add(cbIsReceive, null);
+        cbIsRelateReceive.setBounds(new Rectangle(11, 347, 198, 19));
+        this.add(cbIsRelateReceive, null);
         //contName
         contName.setBoundEditor(bizName);
         //contLongNumber
@@ -512,6 +526,8 @@ public abstract class AbstractContractTypeEditUI extends com.kingdee.eas.framewo
 		dataBinder.registerBinding("isTA", boolean.class, this.cbIsTA, "selected");
 		dataBinder.registerBinding("isMarket", boolean.class, this.cbIsMarket, "selected");
 		dataBinder.registerBinding("isWebPC", boolean.class, this.cbIsWebPC, "selected");
+		dataBinder.registerBinding("isReceive", boolean.class, this.cbIsReceive, "selected");
+		dataBinder.registerBinding("isRelateReceive", boolean.class, this.cbIsRelateReceive, "selected");
 		dataBinder.registerBinding("name", String.class, this.bizName, "_multiLangItem");
 		dataBinder.registerBinding("longNumber", String.class, this.txtLongNumber, "text");
 		dataBinder.registerBinding("dutyOrgUnit", com.kingdee.eas.basedata.org.AdminOrgUnitInfo.class, this.bizDutyOrgUnit, "data");
@@ -585,6 +601,8 @@ public abstract class AbstractContractTypeEditUI extends com.kingdee.eas.framewo
 		getValidateHelper().registerBindProperty("isTA", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("isMarket", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("isWebPC", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("isReceive", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("isRelateReceive", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("name", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("longNumber", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("dutyOrgUnit", ValidateHelper.ON_SAVE);    
@@ -653,6 +671,8 @@ public abstract class AbstractContractTypeEditUI extends com.kingdee.eas.framewo
         sic.add(new SelectorItemInfo("isTA"));
         sic.add(new SelectorItemInfo("isMarket"));
         sic.add(new SelectorItemInfo("isWebPC"));
+        sic.add(new SelectorItemInfo("isReceive"));
+        sic.add(new SelectorItemInfo("isRelateReceive"));
         sic.add(new SelectorItemInfo("name"));
         sic.add(new SelectorItemInfo("longNumber"));
 		if(selectorAll.equalsIgnoreCase("true"))

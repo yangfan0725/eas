@@ -767,6 +767,7 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 				this.actionInvoiceALine.setEnabled(false);
 				this.actionInvoiceILine.setEnabled(false);
 				this.actionInvoiceRLine.setEnabled(false);
+				this.actionMKFP.setEnabled(false);
 			}
 		}
 		
@@ -1630,7 +1631,7 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 		
 		txtrecBank.setEnabled(false);
 		
-		txtrecAccount.setRequired(true);
+		
 		
 		this.actionViewPayDetail.setVisible(false);
 		this.actionCopy.setVisible(false);
@@ -1645,6 +1646,16 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 		this.btnSetTotal.setVisible(false);
 		this.actionTraceUp.setVisible(false);
 		this.actionContractExecInfo.setVisible(false);
+		
+		String param="false";
+		param = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_BANKNUM");
+		if("true".equals(param)){
+			prmtLxNum.setRequired(true);
+			txtrecAccount.setRequired(true);
+		}else{
+			prmtLxNum.setRequired(false);
+			txtrecAccount.setRequired(false);
+		}
 	}
 	boolean isOtherCostedDept=true;
 	protected Set getCostedDeptIdSet(CompanyOrgUnitInfo com) throws EASBizException, BOSException {
@@ -2771,9 +2782,10 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 			this.actionMKFP.setEnabled(true);
 		}
 		if(this.curProject!=null&&TaxInfoEnum.SIMPLE.equals(this.curProject.getTaxInfo())){
-//			this.actionInvoiceALine.setEnabled(false);
-//			this.actionInvoiceILine.setEnabled(false);
-//			this.actionInvoiceRLine.setEnabled(false);
+			this.actionInvoiceALine.setEnabled(false);
+			this.actionInvoiceILine.setEnabled(false);
+			this.actionInvoiceRLine.setEnabled(false);
+			this.actionMKFP.setEnabled(false);
 		}
 	}
 
@@ -4800,8 +4812,13 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 		FDCClientVerifyHelper.verifyEmpty(this, this.txtcompletePrjAmt);
 		FDCClientVerifyHelper.verifyEmpty(this, this.prmtPayContentType);
 		FDCClientVerifyHelper.verifyEmpty(this, this.prmtuseDepartment);
-		FDCClientVerifyHelper.verifyEmpty(this, this.prmtLxNum);
-		FDCClientVerifyHelper.verifyEmpty(this, this.txtrecAccount);
+		
+		String paramStr="false";
+		paramStr = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_BANKNUM");
+		if("true".equals(paramStr)){
+			FDCClientVerifyHelper.verifyEmpty(this, this.prmtLxNum);
+			FDCClientVerifyHelper.verifyEmpty(this, this.txtrecAccount);
+		}
 		
 		if (this.cbIsBgControl.isSelected()) {
 			FDCClientVerifyHelper.verifyEmpty(this, this.prmtApplier);
@@ -8592,8 +8609,8 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 	}
 	public void actionWorkFlowG_actionPerformed(ActionEvent e) throws Exception {
     	String id = this.editData.getId().toString();
-    	PayRequestBillInfo info=PayRequestBillFactory.getRemoteInstance().getPayRequestBillInfo(new ObjectUuidPK(id));
-    	if(info.getSourceFunction()!=null){
+    	PayRequestBillCollection col=PayRequestBillFactory.getRemoteInstance().getPayRequestBillCollection("select * from where id='"+id+"'");
+    	if(col.size()>0&&col.get(0).getSourceFunction()!=null){
     		FDCSQLBuilder builder=new FDCSQLBuilder();
 			builder.appendSql("select fviewurl from t_oa");
 			IRowSet rs=builder.executeQuery();
@@ -8605,7 +8622,7 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 				String mtLoginNum = OaUtil.encrypt(SysContext.getSysContext().getCurrentUserInfo().getNumber());
 				String s2 = "&MtFdLoinName=";
 				StringBuffer stringBuffer = new StringBuffer();
-	            String oaid = URLEncoder.encode(info.getSourceFunction());
+	            String oaid = URLEncoder.encode(col.get(0).getSourceFunction());
 	            String link = String.valueOf(stringBuffer.append(url).append(oaid).append(s2).append(mtLoginNum));
 				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+link);  
 			}
@@ -8616,8 +8633,8 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 	public void actionAuditResult_actionPerformed(ActionEvent e)
 	throws Exception {
 		String id = this.editData.getId().toString();
-    	PayRequestBillInfo info=PayRequestBillFactory.getRemoteInstance().getPayRequestBillInfo(new ObjectUuidPK(id));
-    	if(info.getSourceFunction()!=null){
+		PayRequestBillCollection col=PayRequestBillFactory.getRemoteInstance().getPayRequestBillCollection("select * from where id='"+id+"'");
+    	if(col.size()>0&&col.get(0).getSourceFunction()!=null){
     		FDCSQLBuilder builder=new FDCSQLBuilder();
 			builder.appendSql("select fviewurl from t_oa");
 			IRowSet rs=builder.executeQuery();
@@ -8629,7 +8646,7 @@ public class PayRequestBillEditUI extends AbstractPayRequestBillEditUI implement
 				String mtLoginNum = OaUtil.encrypt(SysContext.getSysContext().getCurrentUserInfo().getNumber());
 				String s2 = "&MtFdLoinName=";
 				StringBuffer stringBuffer = new StringBuffer();
-	            String oaid = URLEncoder.encode(info.getSourceFunction());
+	            String oaid = URLEncoder.encode(col.get(0).getSourceFunction());
 	            String link = String.valueOf(stringBuffer.append(url).append(oaid).append(s2).append(mtLoginNum));
 				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+link);  
 			}

@@ -317,6 +317,7 @@ import com.kingdee.eas.ma.budget.BgCtrlResultInfo;
 import com.kingdee.eas.ma.budget.BgHelper;
 import com.kingdee.eas.ma.budget.IBgControlFacade;
 import com.kingdee.eas.util.SysUtil;
+import com.kingdee.eas.util.app.ContextUtil;
 import com.kingdee.eas.util.app.DbUtil;
 import com.kingdee.eas.util.client.EASResource;
 import com.kingdee.eas.util.client.MsgBox;
@@ -753,6 +754,13 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			e.printStackTrace();
 		} catch (BOSException e) {
 			e.printStackTrace();
+		}
+		if(this.editData.getContractType()!=null&&this.editData.getContractType().isIsRelateReceive()){
+			this.prmtContractBillReceive.setRequired(true);
+			this.prmtContractBillReceive.setEnabled(true);
+		}else{
+			this.prmtContractBillReceive.setRequired(false);
+			this.prmtContractBillReceive.setEnabled(false);
 		}
 		attachListeners();
 	}
@@ -2825,10 +2833,6 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		prmtInviteType.setRequired(false);
 		prmtInviteType.setEnabled(false);
 		
-		this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.ALLRANGE);
-		this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.BIGRANGE);
-		this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.SMALLRANGE);
-		
 		if(this.editData.getOaState()!=null&&this.editData.getOaState().equals("1")){
 			this.prmtcontractType.setEnabled(false);
 			this.txtcontractName.setEnabled(false);
@@ -2881,6 +2885,45 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		
 		this.actionAddNew.setVisible(false);
 		this.actionCopy.setVisible(false);
+		
+		view=new EntityViewInfo();
+		filter=new FilterInfo();
+		filter.getFilterItems().add(new FilterItemInfo("state",FDCBillStateEnum.AUDITTED_VALUE));
+		filter.getFilterItems().add(new FilterItemInfo("curProject.id",this.editData.getCurProject().getId()));
+		view.setFilter(filter);
+		this.prmtContractBillReceive.setEntityViewInfo(view);
+		
+		String param="false";
+		param = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_BANKNUM");
+		if("true".equals(param)){
+			prmtLxNum.setRequired(true);
+			txtBank.setRequired(true);
+			txtBankAccount.setRequired(true);
+			cbTaxerQua.setRequired(true);
+			txtTaxerNum.setRequired(true);
+			
+			this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.ALLRANGE);
+			this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.BIGRANGE);
+			this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.SMALLRANGE);
+			
+			txtchgPercForWarn.setRequired(true);
+			pkStartDate.setRequired(true);
+			pkEndDate.setRequired(true);
+		}else{
+			prmtLxNum.setRequired(false);
+			txtBank.setRequired(false);
+			txtBankAccount.setRequired(false);
+			cbTaxerQua.setRequired(false);
+			txtTaxerNum.setRequired(false);
+			
+			this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.NEIBU);
+			this.cbOrgType.removeItem(ContractTypeOrgTypeEnum.WAIBU);
+			
+			txtchgPercForWarn.setRequired(false);
+			pkStartDate.setRequired(false);
+			pkEndDate.setRequired(false);
+		}
+		contContractBillReceive.setVisible(false);
 	}
 	protected void prmtTAEntry_dataChanged(DataChangeEvent e) throws Exception {
 		this.tblInvite.removeRows();
@@ -3157,6 +3200,13 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 					this.editData.setProgrammingContract(null);
 					this.textFwContract.setText(null);
 				}
+			}
+			if(info.isIsRelateReceive()){
+				this.prmtContractBillReceive.setRequired(true);
+				this.prmtContractBillReceive.setEnabled(true);
+			}else{
+				this.prmtContractBillReceive.setRequired(false);
+				this.prmtContractBillReceive.setEnabled(false);
 			}
 //			if(ContractTypeOrgTypeEnum.BIGRANGE.equals(info.getOrgType())||ContractTypeOrgTypeEnum.SMALLRANGE.equals(info.getOrgType())){
 //				this.cbOrgType.setSelectedItem(info.getOrgType());
@@ -5742,7 +5792,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		checkAmout();
 		//预算控制
 		checkMbgCtrlBalance();
-		
+		if(this.prmtContractBillReceive.isRequired()){
+			FDCClientVerifyHelper.verifyEmpty(this, prmtContractBillReceive);
+		}
 		FDCClientVerifyHelper.verifyEmpty(this, prmtcontractType);
 		//增加校验
 		FDCClientVerifyHelper.verifyEmpty(this, prmtpartB);
@@ -5758,7 +5810,6 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		if(this.prmtInviteType.isEnabled()){
 			FDCClientVerifyHelper.verifyEmpty(this, prmtInviteType);
 		}
-		FDCClientVerifyHelper.verifyEmpty(this, this.prmtLxNum);
 		super.verifyInputForSubmint();
 		if(tblBail.getRowCount()>0){
 			FDCClientVerifyHelper.verifyEmpty(this, txtBailOriAmount);
@@ -5905,16 +5956,21 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 //			this.btnAType.requestFocus(true);
 //			SysUtil.abort();
 //		}
-		
-		if (!this.editData.getContractPropert().equals(ContractPropertyEnum.DIRECT) && !this.editData.getContractPropert().equals(ContractPropertyEnum.SUPPLY_VALUE))
-	    {
-	      FDCClientVerifyHelper.verifyEmpty(this, this.txtBank);
-	      FDCClientVerifyHelper.verifyEmpty(this, this.txtBankAccount);
-	      FDCClientVerifyHelper.verifyEmpty(this, this.cbTaxerQua);
-	      FDCClientVerifyHelper.verifyEmpty(this, this.txtTaxerNum);
-	    }
-		
-		
+			String param="false";
+			param = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_BANKNUM");
+			if("true".equals(param)){
+				FDCClientVerifyHelper.verifyEmpty(this, this.prmtLxNum);
+				if (!this.editData.getContractPropert().equals(ContractPropertyEnum.DIRECT) && !this.editData.getContractPropert().equals(ContractPropertyEnum.SUPPLY_VALUE))
+			    {
+			      FDCClientVerifyHelper.verifyEmpty(this, this.txtBank);
+			      FDCClientVerifyHelper.verifyEmpty(this, this.txtBankAccount);
+			      FDCClientVerifyHelper.verifyEmpty(this, this.cbTaxerQua);
+			      FDCClientVerifyHelper.verifyEmpty(this, this.txtTaxerNum);
+			    }
+				
+				FDCClientVerifyHelper.verifyEmpty(this, pkStartDate);
+				FDCClientVerifyHelper.verifyEmpty(this, pkEndDate);
+			}
 		
 		if((!this.editData.getContractPropert().equals(ContractPropertyEnum.DIRECT)) 
 				&& (!TaxInfoEnum.SIMPLE.equals(this.curProject.getTaxInfo()))
@@ -5942,8 +5998,6 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				}
 			}
 		}
-		FDCClientVerifyHelper.verifyEmpty(this, pkStartDate);
-		FDCClientVerifyHelper.verifyEmpty(this, pkEndDate);
 		
 		boolean isUseYz=false;
 		CurProjectInfo project=CurProjectFactory.getRemoteInstance().getCurProjectInfo(new ObjectUuidPK(this.editData.getCurProject().getId()));
@@ -8203,18 +8257,18 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 	protected void prmtpartB_dataChanged(DataChangeEvent e) throws Exception {
 		SupplierInfo supplier=(SupplierInfo) this.prmtpartB.getValue();
 		if(supplier!=null){
-//			EntityViewInfo view=new EntityViewInfo();
-//			FilterInfo filter=new FilterInfo();
-//			filter.getFilterItems().add(new FilterItemInfo("supplier.id",supplier.getId().toString()));
-//			view.setFilter(filter);
-//			SelectorItemCollection sic = super.getSelectors();
-//			sic.add(new SelectorItemInfo("supplierBank.*"));
-//			view.setSelector(sic);
-//			SupplierCompanyInfoCollection col=SupplierCompanyInfoFactory.getRemoteInstance().getSupplierCompanyInfoCollection(view);
-//			if(col.size()>0&&col.get(0).getSupplierBank().size()>0){
+			EntityViewInfo view=new EntityViewInfo();
+			FilterInfo filter=new FilterInfo();
+			filter.getFilterItems().add(new FilterItemInfo("supplier.id",supplier.getId().toString()));
+			view.setFilter(filter);
+			SelectorItemCollection sic = super.getSelectors();
+			sic.add(new SelectorItemInfo("supplierBank.*"));
+			view.setSelector(sic);
+			SupplierCompanyInfoCollection col=SupplierCompanyInfoFactory.getRemoteInstance().getSupplierCompanyInfoCollection(view);
+			if(col.size()>0&&col.get(0).getSupplierBank().size()>0){
 //				this.txtBank.setText(col.get(0).getSupplierBank().get(0).getBank());
-////				this.txtBankAccount.setText(col.get(0).getSupplierBank().get(0).getBankAccount());
-//			}
+				this.txtBankAccount.setText(col.get(0).getSupplierBank().get(0).getBankAccount());
+			}
 			if(supplier.getTaxRegisterNo()!=null)
 				this.txtTaxerNum.setText(supplier.getTaxRegisterNo());
 		}else{
@@ -8233,8 +8287,8 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 	}
 	public void actionWorkFlowG_actionPerformed(ActionEvent e) throws Exception {
     	String id = this.editData.getId().toString();
-    	ContractBillInfo info=ContractBillFactory.getRemoteInstance().getContractBillInfo(new ObjectUuidPK(id));
-    	if(info.getSourceFunction()!=null){
+    	ContractBillCollection col=ContractBillFactory.getRemoteInstance().getContractBillCollection("select * from where id='"+id+"'");
+    	if(col.size()>0&&col.get(0).getSourceFunction()!=null){
     		FDCSQLBuilder builder=new FDCSQLBuilder();
 			builder.appendSql("select fviewurl from t_oa");
 			IRowSet rs=builder.executeQuery();
@@ -8246,7 +8300,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				String mtLoginNum = OaUtil.encrypt(SysContext.getSysContext().getCurrentUserInfo().getNumber());
 				String s2 = "&MtFdLoinName=";
 				StringBuffer stringBuffer = new StringBuffer();
-	            String oaid = URLEncoder.encode(info.getSourceFunction());
+	            String oaid = URLEncoder.encode(col.get(0).getSourceFunction());
 	            String link = String.valueOf(stringBuffer.append(url).append(oaid).append(s2).append(mtLoginNum));
 				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+link);  
 			}
@@ -8259,8 +8313,8 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 	public void actionAuditResult_actionPerformed(ActionEvent e)
 			throws Exception {
 		String id = this.editData.getId().toString();
-    	ContractBillInfo info=ContractBillFactory.getRemoteInstance().getContractBillInfo(new ObjectUuidPK(id));
-    	if(info.getSourceFunction()!=null){
+		ContractBillCollection col=ContractBillFactory.getRemoteInstance().getContractBillCollection("select * from where id='"+id+"'");
+    	if(col.size()>0&&col.get(0).getSourceFunction()!=null){
     		FDCSQLBuilder builder=new FDCSQLBuilder();
 			builder.appendSql("select fviewurl from t_oa");
 			IRowSet rs=builder.executeQuery();
@@ -8272,7 +8326,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 				String mtLoginNum = OaUtil.encrypt(SysContext.getSysContext().getCurrentUserInfo().getNumber());
 				String s2 = "&MtFdLoinName=";
 				StringBuffer stringBuffer = new StringBuffer();
-	            String oaid = URLEncoder.encode(info.getSourceFunction());
+	            String oaid = URLEncoder.encode(col.get(0).getSourceFunction());
 	            String link = String.valueOf(stringBuffer.append(url).append(oaid).append(s2).append(mtLoginNum));
 				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+link);  
 			}

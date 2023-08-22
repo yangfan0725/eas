@@ -199,7 +199,7 @@ public class TenancyBillListUI extends AbstractTenancyBillListUI
 		
 		setColumnNumberFormat("depositAmount");
 		setColumnNumberFormat("firstPayRent");
-		
+		setColumnNumberFormat("buildingArea");
 //		this.tblMain.getColumn("tenancyRoomList.dayPrice").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.RIGHT);
 //		this.tblMain.getColumn("tenancyRoomList.dayPrice").getStyleAttributes().setNumberFormat(FDCHelper.getNumberFtm(2));
 //		this.tblMain.getColumn("tenancyRoomList.actDayprice").getStyleAttributes().setHorizontalAlign(HorizontalAlignment.RIGHT);

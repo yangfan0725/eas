@@ -74,6 +74,7 @@ import com.kingdee.eas.fdc.contract.ContractBillInfo;
 import com.kingdee.eas.fdc.contract.ContractChangeBillFactory;
 import com.kingdee.eas.fdc.contract.ContractChangeBillInfo;
 import com.kingdee.eas.fdc.contract.ContractChangeEntryCollection;
+import com.kingdee.eas.fdc.contract.ContractChangeSettleBillCollection;
 import com.kingdee.eas.fdc.contract.ContractChangeSettleBillFactory;
 import com.kingdee.eas.fdc.contract.ContractChangeSettleBillInfo;
 import com.kingdee.eas.fdc.contract.ContractEstimateChangeBillFactory;
@@ -814,8 +815,8 @@ public class ContractChangeSettleBillEditUI extends AbstractContractChangeSettle
 	}
 	public void actionWorkFlowG_actionPerformed(ActionEvent e) throws Exception {
     	String id = this.editData.getId().toString();
-    	ContractChangeSettleBillInfo info=ContractChangeSettleBillFactory.getRemoteInstance().getContractChangeSettleBillInfo(new ObjectUuidPK(id));
-    	if(info.getSourceFunction()!=null){
+    	ContractChangeSettleBillCollection col=ContractChangeSettleBillFactory.getRemoteInstance().getContractChangeSettleBillCollection("select * from where id='"+id+"'");
+    	if(col.size()>0&&col.get(0).getSourceFunction()!=null){
     		FDCSQLBuilder builder=new FDCSQLBuilder();
 			builder.appendSql("select fviewurl from t_oa");
 			IRowSet rs=builder.executeQuery();
@@ -827,7 +828,7 @@ public class ContractChangeSettleBillEditUI extends AbstractContractChangeSettle
 				String mtLoginNum = OaUtil.encrypt(SysContext.getSysContext().getCurrentUserInfo().getNumber());
 				String s2 = "&MtFdLoinName=";
 				StringBuffer stringBuffer = new StringBuffer();
-	            String oaid = URLEncoder.encode(info.getSourceFunction());
+	            String oaid = URLEncoder.encode(col.get(0).getSourceFunction());
 	            String link = String.valueOf(stringBuffer.append(url).append(oaid).append(s2).append(mtLoginNum));
 				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+link);  
 			}
@@ -838,8 +839,8 @@ public class ContractChangeSettleBillEditUI extends AbstractContractChangeSettle
 	 public void actionAuditResult_actionPerformed(ActionEvent e)
 		throws Exception {
 		 String id = this.editData.getId().toString();
-	    	ContractChangeSettleBillInfo info=ContractChangeSettleBillFactory.getRemoteInstance().getContractChangeSettleBillInfo(new ObjectUuidPK(id));
-	    	if(info.getSourceFunction()!=null){
+		 ContractChangeSettleBillCollection col=ContractChangeSettleBillFactory.getRemoteInstance().getContractChangeSettleBillCollection("select * from where id='"+id+"'");
+	    	if(col.size()>0&&col.get(0).getSourceFunction()!=null){
 	    		FDCSQLBuilder builder=new FDCSQLBuilder();
 				builder.appendSql("select fviewurl from t_oa");
 				IRowSet rs=builder.executeQuery();
@@ -851,7 +852,7 @@ public class ContractChangeSettleBillEditUI extends AbstractContractChangeSettle
 					String mtLoginNum = OaUtil.encrypt(SysContext.getSysContext().getCurrentUserInfo().getNumber());
 					String s2 = "&MtFdLoinName=";
 					StringBuffer stringBuffer = new StringBuffer();
-		            String oaid = URLEncoder.encode(info.getSourceFunction());
+		            String oaid = URLEncoder.encode(col.get(0).getSourceFunction());
 		            String link = String.valueOf(stringBuffer.append(url).append(oaid).append(s2).append(mtLoginNum));
 					Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+link);  
 				}

@@ -13,7 +13,9 @@ import com.kingdee.bos.ctrl.kdf.table.util.KDTableUtil;
 import com.kingdee.bos.ctrl.kdf.util.style.StyleAttributes;
 import com.kingdee.bos.ctrl.swing.KDCheckBoxMenuItem;
 import com.kingdee.bos.ctrl.swing.KDWorkButton;
+import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
 import com.kingdee.bos.dao.query.IQueryExecutor;
+import com.kingdee.bos.dao.query.QueryExecutorFactory;
 import com.kingdee.bos.framework.cache.ActionCache;
 import com.kingdee.bos.metadata.IMetaDataPK;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
@@ -34,6 +36,7 @@ import com.kingdee.bos.workflow.service.ormrpc.EnactmentServiceFactory;
 import com.kingdee.bos.workflow.service.ormrpc.IEnactmentService;
 import com.kingdee.eas.base.attachment.common.AttachmentClientManager;
 import com.kingdee.eas.base.attachment.common.AttachmentManagerFactory;
+import com.kingdee.eas.base.param.ParamControlFactory;
 import com.kingdee.eas.basedata.org.CompanyOrgUnitInfo;
 import com.kingdee.eas.basedata.org.FullOrgUnitInfo;
 import com.kingdee.eas.basedata.org.OrgUnitInfo;
@@ -759,9 +762,13 @@ public abstract class FDCBillListUI extends AbstractFDCBillListUI
 
 /* 760*/        FDCClientHelper.addSqlMenu(this, menuEdit);
 
-				this.btnAttachment.setVisible(false);
-				this.actionAttachment.setVisible(false);
-				this.MenuItemAttachment.setVisible(false);
+				String param="false";
+				param = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_BANKNUM");
+				if("true".equals(param)){
+					this.btnAttachment.setVisible(false);
+					this.actionAttachment.setVisible(false);
+					this.MenuItemAttachment.setVisible(false);
+				}
             }
             protected void initTable()
             {
@@ -905,7 +912,6 @@ public abstract class FDCBillListUI extends AbstractFDCBillListUI
             }
             protected IQueryExecutor getQueryExecutor(IMetaDataPK queryPK, EntityViewInfo viewInfo)
             {
-
 /* 911*/        IQueryExecutor queryExecutor = super.getQueryExecutor(queryPK, viewInfo);
 
 /* 913*/        String sql = null;

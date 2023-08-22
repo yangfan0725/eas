@@ -61,12 +61,14 @@ import com.kingdee.bos.ui.face.UIFactory;
 import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.eas.base.attachment.BoAttchAssoCollection;
 import com.kingdee.eas.base.attachment.BoAttchAssoFactory;
+import com.kingdee.eas.base.attachment.client.AttachmentUIContextInfo;
 import com.kingdee.eas.base.attachment.common.AttachmentClientManager;
 import com.kingdee.eas.base.attachment.common.AttachmentManagerFactory;
 import com.kingdee.eas.base.attachment.util.FileGetter;
 import com.kingdee.eas.base.attachment.util.Resrcs;
 import com.kingdee.eas.base.attachment.util.StringUtil4File;
 import com.kingdee.eas.base.multiapprove.MultiApproveInfo;
+import com.kingdee.eas.base.multiapprove.client.MultiApproveUtil;
 import com.kingdee.eas.base.param.ParamControlFactory;
 import com.kingdee.eas.base.permission.PermissionFactory;
 import com.kingdee.eas.common.EASBizException;
@@ -103,7 +105,9 @@ import com.kingdee.eas.fdc.contract.programming.ProgrammingContractInfo;
 import com.kingdee.eas.fdc.contract.programming.client.ContractBillLinkProgContEditUI;
 import com.kingdee.eas.fdc.sellhouse.client.PaymentManageRelateBillUI;
 import com.kingdee.eas.fm.common.ContextHelperFactory;
+import com.kingdee.eas.framework.CoreBaseInfo;
 import com.kingdee.eas.framework.FrameWorkException;
+import com.kingdee.eas.framework.ICoreBase;
 import com.kingdee.eas.framework.ICoreBillBase;
 import com.kingdee.eas.framework.IFWEntityStruct;
 import com.kingdee.eas.framework.batchHandler.RequestContext;
@@ -849,6 +853,21 @@ protected void tblMain_tableSelectChanged(
     	{
     		return;
     	}
+    	/* 896*/        boolean flag = FDCClientUtils.isBillInWorkflow(boID);
+    	/* 897*/        if(flag)
+    	                {/* 898*/            ICoreBase coreBase = getBizInterface();
+    	/* 899*/            if(null == coreBase)
+    	                    {/* 900*/                return;
+    	                    } else
+    	                    {
+    	/* 903*/                CoreBaseInfo editData = coreBase.getValue(new ObjectUuidPK(boID));
+    	/* 904*/                AttachmentUIContextInfo info = new AttachmentUIContextInfo();
+    	/* 905*/                info.setBoID(boID);
+    	/* 906*/                MultiApproveUtil.showAttachmentManager(info, this, editData, String.valueOf("1"), false);
+
+    	/* 908*/                return;
+    	                    }
+    	                }
     	if(getBillStatePropertyName()!=null){
     		int rowIdx=tblMain.getSelectManager().getActiveRowIndex();
     		ICell cell =tblMain.getCell(rowIdx, getBillStatePropertyName());

@@ -1276,6 +1276,17 @@ public class AbstractContractBillInfo extends com.kingdee.eas.fdc.basedata.FDCBi
     {
         setString("isTimeOut", item);
     }
+    /**
+     * Object: 合同单据 's 收入合同 property 
+     */
+    public com.kingdee.eas.fdc.contract.ContractBillReceiveInfo getContractBillReceive()
+    {
+        return (com.kingdee.eas.fdc.contract.ContractBillReceiveInfo)get("contractBillReceive");
+    }
+    public void setContractBillReceive(com.kingdee.eas.fdc.contract.ContractBillReceiveInfo item)
+    {
+        put("contractBillReceive", item);
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("0D6DD1F4");

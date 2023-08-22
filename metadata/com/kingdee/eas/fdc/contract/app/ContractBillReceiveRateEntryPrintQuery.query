@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joinQuery xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.contract.app</package>
+    <name>ContractBillReceiveRateEntryPrintQuery</name>
+    <alias>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].alias</alias>
+    <description>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].description</description>
+    <userDefined>true</userDefined>
+    <reportDataSource />
+    <bizUnitPK />
+    <connectionProvider />
+    <subObjects>
+        <subEntity>
+            <name>ContractBillReceiveRateEntry</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].subObjects.subEntity[ContractBillReceiveRateEntry].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntry" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>moneyDefine</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].subObjects.subEntity[moneyDefine].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.sellhouse.app" />
+                <key name="name" value="MoneyDefine" />
+            </entityRef>
+        </subEntity>
+        <subEntity>
+            <name>parent</name>
+            <alias>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].subObjects.subEntity[parent].alias</alias>
+            <userDefined>true</userDefined>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+            <entityRef>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceive" />
+            </entityRef>
+        </subEntity>
+    </subObjects>
+    <units>
+        <propertyUnit>
+            <name>a8b4e6eb-6e0a-4eb4-946c-82e233e10b2f</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.propertyUnit[a8b4e6eb-6e0a-4eb4-946c-82e233e10b2f].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>d0771c80-2ad3-432b-9fef-d7ceebe4e510</key>
+                    <parentUnit>
+                        <key name="name" value="a8b4e6eb-6e0a-4eb4-946c-82e233e10b2f" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractBillReceiveRateEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="moneyDefine" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>0bccd99e-ddd6-4a4c-b3ee-90f9cd2abd56</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.propertyUnit[0bccd99e-ddd6-4a4c-b3ee-90f9cd2abd56].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>7c906fdb-75c6-47c0-ae2d-10c1c662d2ef</key>
+                    <parentUnit>
+                        <key name="name" value="0bccd99e-ddd6-4a4c-b3ee-90f9cd2abd56" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>68aa1de5-7db9-4d23-872a-79744f934567</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.propertyUnit[68aa1de5-7db9-4d23-872a-79744f934567].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>2ee42b7b-5633-4ec4-8167-71daf960307d</key>
+                    <parentUnit>
+                        <key name="name" value="68aa1de5-7db9-4d23-872a-79744f934567" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractBillReceiveRateEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="parent" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <propertyUnit>
+            <name>5008f3e7-35a0-4559-8844-0993d7331cff</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.propertyUnit[5008f3e7-35a0-4559-8844-0993d7331cff].displayName</displayName>
+            <groupType />
+            <isSelector>false</isSelector>
+            <isFilter>false</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>781135de-2523-449c-960e-700925888a43</key>
+                    <parentUnit>
+                        <key name="name" value="5008f3e7-35a0-4559-8844-0993d7331cff" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="parent" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+        </propertyUnit>
+        <queryField>
+            <name>id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.queryField[id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>d4602012-4995-4d95-b86b-cc415a154d12</key>
+                    <parentUnit>
+                        <key name="name" value="id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractBillReceiveRateEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>moneyDefine.name</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.queryField[moneyDefine.name].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>0f466189-0925-461e-9ac7-8a8272aff945</key>
+                    <parentUnit>
+                        <key name="name" value="moneyDefine.name" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="moneyDefine" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="name" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>remark</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.queryField[remark].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>c907ff77-a490-4afb-a825-d2fc977bc6c4</key>
+                    <parentUnit>
+                        <key name="name" value="remark" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="ContractBillReceiveRateEntry" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="remark" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+        </queryField>
+        <queryField>
+            <name>parent.id</name>
+            <userDefined>true</userDefined>
+            <formulaString />
+            <constString />
+            <displayName>joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.queryField[parent.id].displayName</displayName>
+            <groupType />
+            <isSelector>true</isSelector>
+            <isFilter>true</isFilter>
+            <isSorter>false</isSorter>
+            <isParameter>false</isParameter>
+            <returnType>String</returnType>
+            <propertyRefs>
+                <propertyRef>
+                    <key>bba54c5a-a405-43e8-a5ed-54ced3b9fad2</key>
+                    <parentUnit>
+                        <key name="name" value="parent.id" />
+                    </parentUnit>
+                    <subEntity>
+                        <key name="name" value="parent" />
+                    </subEntity>
+                    <refProperty>
+                        <key name="name" value="id" />
+                    </refProperty>
+                </propertyRef>
+            </propertyRefs>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+        </queryField>
+    </units>
+    <defaultFilter>
+        <name>defaultFilter</name>
+        <formulaString />
+        <query>
+            <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+            <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+        </query>
+    </defaultFilter>
+    <isDistinct>false</isDistinct>
+    <joins>
+        <join>
+            <name>7a00297f-16e6-402a-9602-e5aeadd20adb</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="ContractBillReceiveRateEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="moneyDefine" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>7a945bb8-10df-4f4a-be67-b7726b110a29</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="a8b4e6eb-6e0a-4eb4-946c-82e233e10b2f" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="0bccd99e-ddd6-4a4c-b3ee-90f9cd2abd56" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="7a00297f-16e6-402a-9602-e5aeadd20adb" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+        </join>
+        <join>
+            <name>f264bc6a-e735-46ed-94b3-f909afc2465b</name>
+            <formulaString>#0</formulaString>
+            <type>LEFT OUTER JOIN</type>
+            <leftObject>
+                <key name="name" value="ContractBillReceiveRateEntry" />
+            </leftObject>
+            <rightObject>
+                <key name="name" value="parent" />
+            </rightObject>
+            <joinItems>
+                <joinItem>
+                    <name>3b4ffea8-0619-4b37-ad43-b3a7d70b152b</name>
+                    <compareType>=</compareType>
+                    <leftField>
+                        <key name="name" value="68aa1de5-7db9-4d23-872a-79744f934567" />
+                    </leftField>
+                    <rightField>
+                        <key name="name" value="5008f3e7-35a0-4559-8844-0993d7331cff" />
+                    </rightField>
+                    <join>
+                        <key name="name" value="f264bc6a-e735-46ed-94b3-f909afc2465b" />
+                    </join>
+                </joinItem>
+            </joinItems>
+            <query>
+                <key name="package" value="com.kingdee.eas.fdc.contract.app" />
+                <key name="name" value="ContractBillReceiveRateEntryPrintQuery" />
+            </query>
+        </join>
+    </joins>
+    <resource>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同签订明细打印" />
+            <lang locale="zh_HK" value="合同簽訂明細列印" />
+            <lang locale="zh_TW" value="合同簽訂明細列印" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="合同签订明细打印" />
+            <lang locale="zh_HK" value="合同簽訂明細列印" />
+            <lang locale="zh_TW" value="合同簽訂明細列印" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].subObjects.subEntity[ContractBillReceiveRateEntry].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].subObjects.subEntity[moneyDefine].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].subObjects.subEntity[parent].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.propertyUnit[0bccd99e-ddd6-4a4c-b3ee-90f9cd2abd56].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.propertyUnit[5008f3e7-35a0-4559-8844-0993d7331cff].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.propertyUnit[68aa1de5-7db9-4d23-872a-79744f934567].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.propertyUnit[a8b4e6eb-6e0a-4eb4-946c-82e233e10b2f].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.queryField[id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.queryField[moneyDefine.name].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="费用类型" />
+            <lang locale="zh_HK" value="費用類型" />
+            <lang locale="zh_TW" value="費用類型" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.queryField[parent.id].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="ID" />
+            <lang locale="zh_HK" value="ID" />
+            <lang locale="zh_TW" value="ID" />
+        </rs>
+        <rs key="joinQuery[com.kingdee.eas.fdc.contract.app.ContractBillReceiveRateEntryPrintQuery].units.queryField[remark].displayName">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="备注" />
+            <lang locale="zh_HK" value="備註" />
+            <lang locale="zh_TW" value="備註" />
+        </rs>
+    </resource>
+</joinQuery>
+

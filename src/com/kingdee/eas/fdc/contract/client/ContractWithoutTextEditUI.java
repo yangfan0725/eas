@@ -2228,9 +2228,10 @@ public class ContractWithoutTextEditUI extends
 				this.cbTaxerQua.setEnabled(false);
 				this.txtTaxerNum.setEnabled(false);
 				
-//				this.actionInvoiceALine.setEnabled(false);
-//				this.actionInvoiceILine.setEnabled(false);
-//				this.actionInvoiceRLine.setEnabled(false);
+				this.actionInvoiceALine.setEnabled(false);
+				this.actionInvoiceILine.setEnabled(false);
+				this.actionInvoiceRLine.setEnabled(false);
+				this.actionMKFP.setEnabled(false);
 			}
 		}
 	}
@@ -2594,9 +2595,10 @@ public class ContractWithoutTextEditUI extends
 				this.cbTaxerQua.setEnabled(false);
 				this.txtTaxerNum.setEnabled(false);
 				
-//				this.actionInvoiceALine.setEnabled(false);
-//				this.actionInvoiceILine.setEnabled(false);
-//				this.actionInvoiceRLine.setEnabled(false);
+				this.actionInvoiceALine.setEnabled(false);
+				this.actionInvoiceILine.setEnabled(false);
+				this.actionInvoiceRLine.setEnabled(false);
+				this.actionMKFP.setEnabled(false);
 			}
 		}
 		String paramValue="true";
@@ -5010,8 +5012,8 @@ public class ContractWithoutTextEditUI extends
 	}
 	public void actionWorkFlowG_actionPerformed(ActionEvent e) throws Exception {
     	String id = this.editData.getId().toString();
-    	ContractWithoutTextInfo info=ContractWithoutTextFactory.getRemoteInstance().getContractWithoutTextInfo(new ObjectUuidPK(id));
-    	if(info.getSourceFunction()!=null){
+    	ContractWithoutTextCollection col=ContractWithoutTextFactory.getRemoteInstance().getContractWithoutTextCollection("select * from where id='"+id+"'");
+    	if(col.size()>0&&col.get(0).getSourceFunction()!=null){
     		FDCSQLBuilder builder=new FDCSQLBuilder();
 			builder.appendSql("select fviewurl from t_oa");
 			IRowSet rs=builder.executeQuery();
@@ -5023,7 +5025,7 @@ public class ContractWithoutTextEditUI extends
 				String mtLoginNum = OaUtil.encrypt(SysContext.getSysContext().getCurrentUserInfo().getNumber());
 				String s2 = "&MtFdLoinName=";
 				StringBuffer stringBuffer = new StringBuffer();
-	            String oaid = URLEncoder.encode(info.getSourceFunction());
+	            String oaid = URLEncoder.encode(col.get(0).getSourceFunction());
 	            String link = String.valueOf(stringBuffer.append(url).append(oaid).append(s2).append(mtLoginNum));
 				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+link);  
 			}
@@ -5034,8 +5036,8 @@ public class ContractWithoutTextEditUI extends
 	public void actionAuditResult_actionPerformed(ActionEvent e)
 	throws Exception {
 		String id = this.editData.getId().toString();
-    	ContractWithoutTextInfo info=ContractWithoutTextFactory.getRemoteInstance().getContractWithoutTextInfo(new ObjectUuidPK(id));
-    	if(info.getSourceFunction()!=null){
+		ContractWithoutTextCollection col=ContractWithoutTextFactory.getRemoteInstance().getContractWithoutTextCollection("select * from where id='"+id+"'");
+    	if(col.size()>0&&col.get(0).getSourceFunction()!=null){
     		FDCSQLBuilder builder=new FDCSQLBuilder();
 			builder.appendSql("select fviewurl from t_oa");
 			IRowSet rs=builder.executeQuery();
@@ -5047,7 +5049,7 @@ public class ContractWithoutTextEditUI extends
 				String mtLoginNum = OaUtil.encrypt(SysContext.getSysContext().getCurrentUserInfo().getNumber());
 				String s2 = "&MtFdLoinName=";
 				StringBuffer stringBuffer = new StringBuffer();
-	            String oaid = URLEncoder.encode(info.getSourceFunction());
+	            String oaid = URLEncoder.encode(col.get(0).getSourceFunction());
 	            String link = String.valueOf(stringBuffer.append(url).append(oaid).append(s2).append(mtLoginNum));
 				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+link);  
 			}

@@ -1206,6 +1206,7 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 
 		if ((TenancyBillStateEnum.Audited.equals(this.editData
 				.getTenancyState()) || TenancyBillStateEnum.Executing
+				.equals(this.editData.getTenancyState())|| TenancyBillStateEnum.Expiration
 				.equals(this.editData.getTenancyState()))
 				&& this.oprtState.equals(OprtState.VIEW)) {
 			this.actionAdjust.setEnabled(true);
@@ -9489,7 +9490,7 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 		if (MsgBox.showConfirm2("是否确定修改？") == MsgBox.CANCEL) {
 			return;
 		}
-		verifyInput(null);
+//		verifyInput(null);
 		chkIsFreeContract.setSelected(true);
 		this.storeFields();
 		TenancyBillFactory.getRemoteInstance().updatePartial(editData,
