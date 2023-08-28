@@ -106,6 +106,7 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
     protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer8;
     protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer11;
     protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer12;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contRemark;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker kDDateCreateTime;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtNumber;
     protected com.kingdee.bos.ctrl.swing.KDFormattedTextField txtamount;
@@ -123,7 +124,6 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
     protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer3;
     protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer4;
     protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer5;
-    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contRemark;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contCoopLevel;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contPriceType;
     protected com.kingdee.bos.ctrl.swing.KDCheckBox chkIsSubMainContract;
@@ -160,7 +160,6 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contAttachmentNameList;
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnViewAttachment;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer conChargeType;
-    protected com.kingdee.bos.ctrl.swing.KDTextField txtRemark;
     protected com.kingdee.bos.ctrl.swing.KDComboBox comboCoopLevel;
     protected com.kingdee.bos.ctrl.swing.KDComboBox comboPriceType;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtMainContract;
@@ -309,6 +308,7 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
     protected com.kingdee.bos.ctrl.swing.KDTextField txtTelC;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtKpBankC;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtKpAccountC;
+    protected com.kingdee.bos.ctrl.swing.KDTextField txtRemark;
     protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer1;
     protected com.kingdee.bos.ctrl.swing.KDSplitPane kDSplitPane1;
     protected com.kingdee.bos.ctrl.swing.KDContainer contPayItem;
@@ -591,6 +591,7 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         this.kDContainer8 = new com.kingdee.bos.ctrl.swing.KDContainer();
         this.kDContainer11 = new com.kingdee.bos.ctrl.swing.KDContainer();
         this.kDContainer12 = new com.kingdee.bos.ctrl.swing.KDContainer();
+        this.contRemark = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.kDDateCreateTime = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.txtNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtamount = new com.kingdee.bos.ctrl.swing.KDFormattedTextField();
@@ -608,7 +609,6 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         this.kDContainer3 = new com.kingdee.bos.ctrl.swing.KDContainer();
         this.kDContainer4 = new com.kingdee.bos.ctrl.swing.KDContainer();
         this.kDContainer5 = new com.kingdee.bos.ctrl.swing.KDContainer();
-        this.contRemark = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contCoopLevel = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contPriceType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.chkIsSubMainContract = new com.kingdee.bos.ctrl.swing.KDCheckBox();
@@ -645,7 +645,6 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         this.contAttachmentNameList = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.btnViewAttachment = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.conChargeType = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
-        this.txtRemark = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.comboCoopLevel = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.comboPriceType = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.prmtMainContract = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
@@ -794,6 +793,7 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         this.txtTelC = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtKpBankC = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtKpAccountC = new com.kingdee.bos.ctrl.swing.KDTextField();
+        this.txtRemark = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.kDContainer1 = new com.kingdee.bos.ctrl.swing.KDContainer();
         this.kDSplitPane1 = new com.kingdee.bos.ctrl.swing.KDSplitPane();
         this.contPayItem = new com.kingdee.bos.ctrl.swing.KDContainer();
@@ -881,6 +881,7 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         this.kDContainer8.setName("kDContainer8");
         this.kDContainer11.setName("kDContainer11");
         this.kDContainer12.setName("kDContainer12");
+        this.contRemark.setName("contRemark");
         this.kDDateCreateTime.setName("kDDateCreateTime");
         this.txtNumber.setName("txtNumber");
         this.txtamount.setName("txtamount");
@@ -898,7 +899,6 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         this.kDContainer3.setName("kDContainer3");
         this.kDContainer4.setName("kDContainer4");
         this.kDContainer5.setName("kDContainer5");
-        this.contRemark.setName("contRemark");
         this.contCoopLevel.setName("contCoopLevel");
         this.contPriceType.setName("contPriceType");
         this.chkIsSubMainContract.setName("chkIsSubMainContract");
@@ -935,7 +935,6 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         this.contAttachmentNameList.setName("contAttachmentNameList");
         this.btnViewAttachment.setName("btnViewAttachment");
         this.conChargeType.setName("conChargeType");
-        this.txtRemark.setName("txtRemark");
         this.comboCoopLevel.setName("comboCoopLevel");
         this.comboPriceType.setName("comboPriceType");
         this.prmtMainContract.setName("prmtMainContract");
@@ -1084,6 +1083,7 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         this.txtTelC.setName("txtTelC");
         this.txtKpBankC.setName("txtKpBankC");
         this.txtKpAccountC.setName("txtKpAccountC");
+        this.txtRemark.setName("txtRemark");
         this.kDContainer1.setName("kDContainer1");
         this.kDSplitPane1.setName("kDSplitPane1");
         this.contPayItem.setName("contPayItem");
@@ -1390,6 +1390,11 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         this.kDContainer11.setTitle(resHelper.getString("kDContainer11.title"));
         // kDContainer12		
         this.kDContainer12.setTitle(resHelper.getString("kDContainer12.title"));
+        // contRemark		
+        this.contRemark.setBoundLabelText(resHelper.getString("contRemark.boundLabelText"));		
+        this.contRemark.setBoundLabelLength(100);		
+        this.contRemark.setBoundLabelUnderline(true);		
+        this.contRemark.setForeground(new java.awt.Color(255,0,0));
         // kDDateCreateTime		
         this.kDDateCreateTime.setTimeEnabled(true);		
         this.kDDateCreateTime.setVisible(true);
@@ -1537,11 +1542,6 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         this.kDContainer4.setVisible(false);
         // kDContainer5		
         this.kDContainer5.setVisible(false);
-        // contRemark		
-        this.contRemark.setBoundLabelText(resHelper.getString("contRemark.boundLabelText"));		
-        this.contRemark.setBoundLabelLength(100);		
-        this.contRemark.setBoundLabelUnderline(true);		
-        this.contRemark.setVisible(false);
         // contCoopLevel		
         this.contCoopLevel.setBoundLabelText(resHelper.getString("contCoopLevel.boundLabelText"));		
         this.contCoopLevel.setBoundLabelLength(100);		
@@ -1733,7 +1733,6 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         this.conChargeType.setBoundLabelText(resHelper.getString("conChargeType.boundLabelText"));		
         this.conChargeType.setBoundLabelLength(100);		
         this.conChargeType.setBoundLabelUnderline(true);
-        // txtRemark
         // comboCoopLevel		
         this.comboCoopLevel.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.contract.CoopLevelEnum").toArray());
         // comboPriceType		
@@ -2602,6 +2601,9 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         // txtTelC
         // txtKpBankC
         // txtKpAccountC
+        // txtRemark		
+        this.txtRemark.setEnabled(false);		
+        this.txtRemark.setForeground(new java.awt.Color(255,0,0));
         // kDContainer1		
         this.kDContainer1.setEnableActive(false);
         // kDSplitPane1		
@@ -2810,8 +2812,8 @@ this.setLayout(new BorderLayout(0, 0));
         mainPanel.setLayout(new KDLayout());
         mainPanel.putClientProperty("OriginalBounds", new Rectangle(0, 0, 1012, 967));        contCreateTime.setBounds(new Rectangle(725, 311, 276, 19));
         mainPanel.add(contCreateTime, new KDLayout.Constraints(725, 311, 276, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
-        contNumber.setBounds(new Rectangle(528, 9, 470, 19));
-        mainPanel.add(contNumber, new KDLayout.Constraints(528, 9, 470, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contNumber.setBounds(new Rectangle(528, 9, 227, 19));
+        mainPanel.add(contNumber, new KDLayout.Constraints(528, 9, 227, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contamount.setBounds(new Rectangle(366, 150, 276, 19));
         mainPanel.add(contamount, new KDLayout.Constraints(366, 150, 276, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contlandDeveloper.setBounds(new Rectangle(528, 75, 470, 19));
@@ -2918,6 +2920,8 @@ this.setLayout(new BorderLayout(0, 0));
         mainPanel.add(kDContainer11, new KDLayout.Constraints(679, 524, 320, 106, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         kDContainer12.setBounds(new Rectangle(679, 632, 320, 168));
         mainPanel.add(kDContainer12, new KDLayout.Constraints(679, 632, 320, 168, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contRemark.setBounds(new Rectangle(771, 9, 227, 19));
+        mainPanel.add(contRemark, new KDLayout.Constraints(771, 9, 227, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         //contCreateTime
         contCreateTime.setBoundEditor(kDDateCreateTime);
         //contNumber
@@ -2946,9 +2950,7 @@ this.setLayout(new BorderLayout(0, 0));
         kDTabbedPane1.add(kDContainer4, resHelper.getString("kDContainer4.constraints"));
         kDTabbedPane1.add(kDContainer5, resHelper.getString("kDContainer5.constraints"));
         //pnlInviteInfo
-        pnlInviteInfo.setLayout(null);        contRemark.setBounds(new Rectangle(8, 88, 270, 19));
-        pnlInviteInfo.add(contRemark, null);
-        contCoopLevel.setBounds(new Rectangle(31, 80, 270, 19));
+        pnlInviteInfo.setLayout(null);        contCoopLevel.setBounds(new Rectangle(31, 80, 270, 19));
         pnlInviteInfo.add(contCoopLevel, null);
         contPriceType.setBounds(new Rectangle(26, 162, 270, 19));
         pnlInviteInfo.add(contPriceType, null);
@@ -3020,8 +3022,6 @@ this.setLayout(new BorderLayout(0, 0));
         pnlInviteInfo.add(btnViewAttachment, null);
         conChargeType.setBounds(new Rectangle(539, 3, 270, 19));
         pnlInviteInfo.add(conChargeType, null);
-        //contRemark
-        contRemark.setBoundEditor(txtRemark);
         //contCoopLevel
         contCoopLevel.setBoundEditor(comboCoopLevel);
         //contPriceType
@@ -3336,6 +3336,8 @@ contMode.getContentPane().setLayout(new BorderLayout(0, 0));        contMode.get
         contKpBankC.setBoundEditor(txtKpBankC);
         //contKpAccountC
         contKpAccountC.setBoundEditor(txtKpAccountC);
+        //contRemark
+        contRemark.setBoundEditor(txtRemark);
         //ecoItemPanel
 ecoItemPanel.setLayout(new BorderLayout(0, 0));        ecoItemPanel.add(kDContainer1, BorderLayout.CENTER);
         //kDContainer1
@@ -3562,7 +3564,6 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		dataBinder.registerBinding("partC", com.kingdee.eas.basedata.master.cssp.SupplierInfo.class, this.prmtpartC, "data");
 		dataBinder.registerBinding("name", String.class, this.txtcontractName, "text");
 		dataBinder.registerBinding("isSubContract", boolean.class, this.chkIsSubMainContract, "selected");
-		dataBinder.registerBinding("remark", String.class, this.txtRemark, "text");
 		dataBinder.registerBinding("coopLevel", com.kingdee.eas.fdc.contract.CoopLevelEnum.class, this.comboCoopLevel, "selectedItem");
 		dataBinder.registerBinding("priceType", com.kingdee.eas.fdc.contract.PriceTypeEnum.class, this.comboPriceType, "selectedItem");
 		dataBinder.registerBinding("mainContract", com.kingdee.eas.fdc.contract.ContractBillCollection.class, this.prmtMainContract, "data");
@@ -3650,7 +3651,8 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		dataBinder.registerBinding("addressC", String.class, this.txtAddressC, "text");
 		dataBinder.registerBinding("telC", String.class, this.txtTelC, "text");
 		dataBinder.registerBinding("kpBankC", String.class, this.txtKpBankC, "text");
-		dataBinder.registerBinding("kpAccountC", String.class, this.txtKpAccountC, "text");		
+		dataBinder.registerBinding("kpAccountC", String.class, this.txtKpAccountC, "text");
+		dataBinder.registerBinding("remark", String.class, this.txtRemark, "text");		
 	}
 	//Regiester UI State
 	private void registerUIState(){					 	        		
@@ -3739,7 +3741,6 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		getValidateHelper().registerBindProperty("partC", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("name", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("isSubContract", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("remark", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("coopLevel", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("priceType", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("mainContract", ValidateHelper.ON_SAVE);    
@@ -3827,7 +3828,8 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		getValidateHelper().registerBindProperty("addressC", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("telC", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("kpBankC", ValidateHelper.ON_SAVE);    
-		getValidateHelper().registerBindProperty("kpAccountC", ValidateHelper.ON_SAVE);    		
+		getValidateHelper().registerBindProperty("kpAccountC", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("remark", ValidateHelper.ON_SAVE);    		
 	}
 
 
@@ -4227,7 +4229,6 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		}
         sic.add(new SelectorItemInfo("name"));
         sic.add(new SelectorItemInfo("isSubContract"));
-        sic.add(new SelectorItemInfo("remark"));
         sic.add(new SelectorItemInfo("coopLevel"));
         sic.add(new SelectorItemInfo("priceType"));
 		if(selectorAll.equalsIgnoreCase("true"))
@@ -4409,6 +4410,7 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
         sic.add(new SelectorItemInfo("telC"));
         sic.add(new SelectorItemInfo("kpBankC"));
         sic.add(new SelectorItemInfo("kpAccountC"));
+        sic.add(new SelectorItemInfo("remark"));
         return sic;
     }        
     	

@@ -988,6 +988,7 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 	 */
 	protected com.kingdee.bos.dao.IObjectValue createNewData() {
 		ContractBillReceiveInfo objectValue = new com.kingdee.eas.fdc.contract.ContractBillReceiveInfo();
+		objectValue.setRemark("增值服务类收款合同");
 		objectValue.getRateEntry().add(new ContractBillReceiveRateEntryInfo());
 		objectValue.setId(BOSUuid.create(objectValue.getBOSType()));
 		objectValue.setCreator(SysContext.getSysContext().getCurrentUserInfo());
@@ -3001,6 +3002,8 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 		prmtContractBill.setEnabled(false);
 		
 		this.costProperty.removeItem(CostPropertyEnum.BASE_CONFIRM);
+		
+		this.contRemark.getBoundLabel().setForeground(Color.RED);
 	}
 	
 	@Override

@@ -75,7 +75,7 @@ public class ContractBillReceiveReportFacadeControllerBean extends AbstractContr
 	    
 	    initColoum(header,col,"id",100,true);
 	    initColoum(header,col,"curProject",100,false);
-	    initColoum(header,col,"contractType",100,false);
+	    initColoum(header,col,"contractType",180,false);
 	    initColoum(header,col,"number",200,false);
 	    initColoum(header,col,"name",200,false);
 	    initColoum(header,col,"bizDate",100,false);

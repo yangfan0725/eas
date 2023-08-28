@@ -217,7 +217,7 @@
             <userDefined>true</userDefined>
             <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
             <isContainer>true</isContainer>
-            <constraints>528,9,470,19,137</constraints>
+            <constraints>528,9,227,19,385</constraints>
             <tabIndex>0</tabIndex>
             <herited>false</herited>
             <bimUIObjectPK />
@@ -2549,6 +2549,55 @@
             </parent>
         </component>
         <component>
+            <name>contRemark</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>771,9,227,19,137</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>false</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>false</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>false</userDefined>
+                </property>
+                <property>
+                    <name>foreground</name>
+                    <type>java.awt.Color</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[foreground].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="mainPanel" />
+            </parent>
+        </component>
+        <component>
             <name>kDDateCreateTime</name>
             <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[kDDateCreateTime].alias</alias>
             <userDefined>true</userDefined>
@@ -3502,55 +3551,6 @@
             </properties>
             <parent>
                 <key name="name" value="kDTabbedPane1" />
-            </parent>
-        </component>
-        <component>
-            <name>contRemark</name>
-            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].alias</alias>
-            <userDefined>true</userDefined>
-            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
-            <isContainer>true</isContainer>
-            <constraints>8,88,270,19</constraints>
-            <tabIndex>0</tabIndex>
-            <herited>false</herited>
-            <bimUIObjectPK />
-            <layoutInfo>
-                <name />
-                <type>LabelContainerLayout</type>
-                <value />
-            </layoutInfo>
-            <properties>
-                <property>
-                    <name>boundLabelText</name>
-                    <type>java.lang.String</type>
-                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[boundLabelText].value</value>
-                    <isMultiLan>true</isMultiLan>
-                    <userDefined>false</userDefined>
-                </property>
-                <property>
-                    <name>boundLabelLength</name>
-                    <type>int</type>
-                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[boundLabelLength].value</value>
-                    <isMultiLan>false</isMultiLan>
-                    <userDefined>false</userDefined>
-                </property>
-                <property>
-                    <name>boundLabelUnderline</name>
-                    <type>boolean</type>
-                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[boundLabelUnderline].value</value>
-                    <isMultiLan>false</isMultiLan>
-                    <userDefined>false</userDefined>
-                </property>
-                <property>
-                    <name>visible</name>
-                    <type>boolean</type>
-                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[visible].value</value>
-                    <isMultiLan>false</isMultiLan>
-                    <userDefined>false</userDefined>
-                </property>
-            </properties>
-            <parent>
-                <key name="name" value="pnlInviteInfo" />
             </parent>
         </component>
         <component>
@@ -5334,38 +5334,6 @@
             <parent>
                 <key name="name" value="pnlInviteInfo" />
             </parent>
-        </component>
-        <component>
-            <name>txtRemark</name>
-            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[txtRemark].alias</alias>
-            <userDefined>true</userDefined>
-            <classType>com.kingdee.bos.ctrl.swing.KDTextField</classType>
-            <isContainer>false</isContainer>
-            <constraints>7</constraints>
-            <tabIndex>54</tabIndex>
-            <herited>false</herited>
-            <bimUIObjectPK />
-            <layoutInfo>
-                <name />
-                <type>XYLayout</type>
-                <value />
-            </layoutInfo>
-            <parent>
-                <key name="name" value="contRemark" />
-            </parent>
-            <propertyBindings>
-                <propertyBinding>
-                    <propertyName>text</propertyName>
-                    <propertyType>java.lang.String</propertyType>
-                    <bindingObject>editData</bindingObject>
-                    <bindingField>remark</bindingField>
-                    <fieldType>String</fieldType>
-                    <accessType>2</accessType>
-                    <autoMode>false</autoMode>
-                    <herited>false</herited>
-                    <userDefined>true</userDefined>
-                </propertyBinding>
-            </propertyBindings>
         </component>
         <component>
             <name>comboCoopLevel</name>
@@ -12575,6 +12543,54 @@
             </propertyBindings>
         </component>
         <component>
+            <name>txtRemark</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[txtRemark].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDTextField</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>54</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>enabled</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[txtRemark].properties.property[enabled].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>foreground</name>
+                    <type>java.awt.Color</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[txtRemark].properties.property[foreground].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="contRemark" />
+            </parent>
+            <propertyBindings>
+                <propertyBinding>
+                    <propertyName>text</propertyName>
+                    <propertyType>java.lang.String</propertyType>
+                    <bindingObject>editData</bindingObject>
+                    <bindingField>remark</bindingField>
+                    <fieldType>String</fieldType>
+                    <accessType>2</accessType>
+                    <autoMode>false</autoMode>
+                    <herited>false</herited>
+                    <userDefined>true</userDefined>
+                </propertyBinding>
+            </propertyBindings>
+        </component>
+        <component>
             <name>kDContainer1</name>
             <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[kDContainer1].alias</alias>
             <userDefined>true</userDefined>
@@ -19016,9 +19032,9 @@
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[boundLabelText].value">
             <lang locale="en_US" value="null" />
-            <lang locale="zh_CN" value="备注" />
-            <lang locale="zh_HK" value="備註" />
-            <lang locale="zh_TW" value="備註" />
+            <lang locale="zh_CN" value="合同类别" />
+            <lang locale="zh_HK" value="合同類別" />
+            <lang locale="zh_TW" value="合同類別" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[boundLabelUnderline].value">
             <lang locale="en_US" value="true" />
@@ -19026,11 +19042,11 @@
             <lang locale="zh_HK" value="true" />
             <lang locale="zh_TW" value="true" />
         </rs>
-        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[visible].value">
-            <lang locale="en_US" value="false" />
-            <lang locale="zh_CN" value="false" />
-            <lang locale="zh_HK" value="false" />
-            <lang locale="zh_TW" value="false" />
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRemark].properties.property[foreground].value">
+            <lang locale="en_US" value="r=255,g=0,b=0" />
+            <lang locale="zh_CN" value="r=255,g=0,b=0" />
+            <lang locale="zh_HK" value="r=255,g=0,b=0" />
+            <lang locale="zh_TW" value="r=255,g=0,b=0" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[contRespDept].alias">
             <lang locale="en_US" value="null" />
@@ -23049,6 +23065,18 @@
             <lang locale="zh_CN" value="null" />
             <lang locale="zh_HK" value="null" />
             <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[txtRemark].properties.property[enabled].value">
+            <lang locale="en_US" value="false" />
+            <lang locale="zh_CN" value="false" />
+            <lang locale="zh_HK" value="false" />
+            <lang locale="zh_TW" value="false" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[txtRemark].properties.property[foreground].value">
+            <lang locale="en_US" value="r=255,g=0,b=0" />
+            <lang locale="zh_CN" value="r=255,g=0,b=0" />
+            <lang locale="zh_HK" value="r=255,g=0,b=0" />
+            <lang locale="zh_TW" value="r=255,g=0,b=0" />
         </rs>
         <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveEditUI].components.component[txtSrcAmount].alias">
             <lang locale="en_US" value="null" />
