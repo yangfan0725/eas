@@ -146,23 +146,26 @@ public class ContractBillReceiveReportUI extends AbstractContractBillReceiveRepo
 		this.btnToZHMP.setVisible(false);
 		this.actionQuery.setVisible(false);
 		
-		this.buildContractTypeTree();
-		this.buildProjectTree();
-		
-		KDTreeView treeView=new KDTreeView();
-		treeView.setTree(treeProject);
-		treeView.setShowButton(false);
-		treeView.setTitle("工程项目");
-        kDSplitPane2.add(treeView, "left");
-		treeView.setShowControlPanel(true);
-		
-		treeProject.setShowsRootHandles(true);
-		
-		treeProject.setSelectionRow(0);
-		treeProject.expandRow(0);
-		treeContractType.setSelectionRow(0);
-		treeContractType.expandRow(1);
-		
+		if(params.getString("companyId")==null){
+			this.buildContractTypeTree();
+			this.buildProjectTree();
+			
+			KDTreeView treeView=new KDTreeView();
+			treeView.setTree(treeProject);
+			treeView.setShowButton(false);
+			treeView.setTitle("工程项目");
+	        kDSplitPane2.add(treeView, "left");
+			treeView.setShowControlPanel(true);
+			
+			treeProject.setShowsRootHandles(true);
+			
+			treeProject.setSelectionRow(0);
+			treeProject.expandRow(0);
+			treeContractType.setSelectionRow(0);
+			treeContractType.expandRow(1);
+		}else{
+			pnlLeftTree.setVisible(false);
+		}
 		isOnLoad=false;
     }
 	protected Set authorizedOrgs = null;
@@ -376,6 +379,9 @@ public class ContractBillReceiveReportUI extends AbstractContractBillReceiveRepo
     			Set curProject=(Set) params.getObject("curProject.id");
     			Set contractType=(Set) params.getObject("contractType.id");
     			
+    			String companyId=(String) params.getString("companyId");
+    			String moneyDefineId=(String) params.getString("moneyDefineId");
+    			
     			StringBuffer sb = new StringBuffer();
     			sb.append("select contractType.name,curProject.name,partB.name,landDeveloper.name,*,currency.name from where state='4AUDITTED' and contractBill.id is null ");
     	        if(orgUnitLongNumber!=null){
@@ -389,6 +395,12 @@ public class ContractBillReceiveReportUI extends AbstractContractBillReceiveRepo
     			} 
     			if(contractType!=null){
     				sb.append(" and contract.id in"+SetToIn(contractType));
+    			} 
+    			if(companyId!=null){
+    				sb.append(" and CU.id='"+companyId+"'");
+    			} 
+    			if(moneyDefineId!=null){
+    				sb.append(" and id in (select FParentID from T_CON_ContractBillRRateEntry where fmoneyDefineId='"+moneyDefineId+"')");
     			} 
     			sb.append(" order by number");
 				ContractBillReceiveCollection conCol=ContractBillReceiveFactory.getRemoteInstance().getContractBillReceiveCollection(sb.toString());

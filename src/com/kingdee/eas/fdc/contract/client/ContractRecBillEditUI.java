@@ -381,6 +381,7 @@ public class ContractRecBillEditUI extends AbstractContractRecBillEditUI
 			f7Box.setEntityViewInfo(view);
 			KDTDefaultCellEditor moneyDefineEditor=new KDTDefaultCellEditor(f7Box);
 			this.kdtEntry.getColumn("moneyDefine").setEditor(moneyDefineEditor);
+			this.kdtEntry.getColumn("moneyDefine").getStyleAttributes().setLocked(true);
 			
 			KDFormattedTextField amount = new KDFormattedTextField();
 			amount.setDataType(KDFormattedTextField.BIGDECIMAL_TYPE);
@@ -410,6 +411,10 @@ public class ContractRecBillEditUI extends AbstractContractRecBillEditUI
 			btnDeleteRowinfo = (KDWorkButton) contEntry.add(this.actionRLine);
 			btnDeleteRowinfo.setText("É¾³ýÐÐ");
 			btnDeleteRowinfo.setSize(new Dimension(140, 19));
+			
+			this.actionALine.setVisible(false);
+			this.actionILine.setVisible(false);
+			this.actionRLine.setVisible(false);
 	}
 	
 	public void loadFields() {

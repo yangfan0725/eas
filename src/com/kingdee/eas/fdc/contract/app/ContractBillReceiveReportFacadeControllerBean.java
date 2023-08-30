@@ -133,6 +133,9 @@ public class ContractBillReceiveReportFacadeControllerBean extends AbstractContr
 		Set curProject=(Set) params.getObject("curProject.id");
 		Set contractType=(Set) params.getObject("contractType.id");
 		
+		String companyId=(String) params.getString("companyId");
+		String moneyDefineId=(String) params.getString("moneyDefineId");
+		
     	StringBuffer sb = new StringBuffer();
     	
     	sb.append(" select distinct t.fid payId,d.fname_l2 payCurProject,e.fname_l2 payContractType,t.fnumber payNumber,t.fname payName,t.fbookedDate payBizDate,t.fauditTime payAuditTime, ");
@@ -143,7 +146,8 @@ public class ContractBillReceiveReportFacadeControllerBean extends AbstractContr
     	sb.append(" left join T_FDC_ContractType e on t.fcontracttypeid=e.fid ");
     	sb.append(" left join t_bd_currency f on t.fcurrencyid=f.fid ");
     	sb.append(" left join T_ORG_BaseUnit g on t.forgUnitid=g.fid ");
-    	sb.append(" where t.fid is not null ");
+    	sb.append(" left join T_CON_ContractBillRRateEntry h on h.FParentID=a.fid");
+    	sb.append(" where a.fstate='4AUDITTED' and t.fid is not null ");
     	if(orgUnitLongNumber!=null){
 			sb.append(" and g.flongnumber like '"+orgUnitLongNumber+"%'");
 		}
@@ -155,6 +159,12 @@ public class ContractBillReceiveReportFacadeControllerBean extends AbstractContr
 		} 
 		if(contractType!=null){
 			sb.append(" and e.fid in"+SetToIn(contractType));
+		} 
+		if(companyId!=null){
+			sb.append(" and a.fcontrolunitid='"+companyId+"'");
+		} 
+		if(moneyDefineId!=null){
+			sb.append(" and h.fmoneyDefineId='"+moneyDefineId+"'");
 		} 
     	sb.append(" order by t.fnumber");
     	return sb.toString();

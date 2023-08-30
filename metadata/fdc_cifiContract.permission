@@ -3066,15 +3066,6 @@
             <groupName>EAS系统.199项目运营管理.07合同管理.84收入合同执行情况表</groupName>
             <group>permission[.fdc_cifiContract].permissionItems.permissionItem[contractBillReceiveReport_view].group</group>
             <userDefined>true</userDefined>
-            <entityObjectRef>
-                <entityType>05E377AA</entityType>
-                <userDefined>true</userDefined>
-                <metadataRef>
-                    <package>com.kingdee.eas.fdc.contract.app</package>
-                    <name>ContractRecBill</name>
-                    <bosType>enty</bosType>
-                </metadataRef>
-            </entityObjectRef>
             <bizRefs>
                 <bizRef>
                     <id>4279d59a-1969-4f2c-8d64-aaf3562e9483</id>
@@ -3082,6 +3073,33 @@
                     <metadataRef>
                         <package>com.kingdee.eas.fdc.contract.client</package>
                         <name>ContractBillReceiveReportUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionOnLoad</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+            </bizRefs>
+        </permissionItem>
+        <permissionItem>
+            <innerID>1c9987bb-7529-4a66-8112-87da40a6259aPERMITEM</innerID>
+            <name>contractBillReceiveTotalReport_view</name>
+            <alias>permission[.fdc_cifiContract].permissionItems.permissionItem[contractBillReceiveTotalReport_view].alias</alias>
+            <description>permission[.fdc_cifiContract].permissionItems.permissionItem[contractBillReceiveTotalReport_view].description</description>
+            <type>READ</type>
+            <groupName>EAS系统.199项目运营管理.07合同管理.85增值服务信息汇总表</groupName>
+            <group>permission[.fdc_cifiContract].permissionItems.permissionItem[contractBillReceiveTotalReport_view].group</group>
+            <userDefined>true</userDefined>
+            <bizRefs>
+                <bizRef>
+                    <id>12633d2f-d668-4a3a-8d0a-2d360abdcda6</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.contract.client</package>
+                        <name>ContractBillReceiveTotalReportUI</name>
                         <bosType>uioj</bosType>
                     </metadataRef>
                     <bizPropertys>
@@ -3473,6 +3491,12 @@
                 <key name="innerID" value="d05a29b1-9bc2-4248-b21a-74fd00a642c9PERMITEM" />
             </referedItem>
         </dependence>
+        <dependence>
+            <id>1c9987bb-7529-4a66-8112-87da40a6259aPERMITEM</id>
+            <referedItem>
+                <key name="innerID" value="1c9987bb-7529-4a66-8112-87da40a6259aPERMITEM" />
+            </referedItem>
+        </dependence>
     </dependences>
     <resource>
         <rs key="permission[.fdc_cifiContract].alias">
@@ -3822,6 +3846,34 @@
             <lang locale="zh_CN" value="EAS系统.项目运营管理.合同管理.收入合同执行情况表" />
             <lang locale="zh_HK" value="EAS系統.項目運營管理.合同管理.收入合同執行情況表" />
             <lang locale="zh_TW" value="EAS系統.項目運營管理.合同管理.收入合同執行情況表" />
+        </rs>
+        <rs key="permission[.fdc_cifiContract].permissionItems.permissionItem[contractBillReceiveTotalReport_view].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="增值服务信息汇总表查看" />
+            <lang locale="zh_HK" value="增值服務信息匯總表查看" />
+            <lang locale="zh_TW" value="增值服務信息匯總表查看" />
+        </rs>
+        <rs key="permission[.fdc_cifiContract].permissionItems.permissionItem[contractBillReceiveTotalReport_view].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="增值服务信息汇总表查看" />
+            <lang locale="zh_HK" value="增值服務信息匯總表查看" />
+            <lang locale="zh_TW" value="增值服務信息匯總表查看" />
+        </rs>
+        <rs key="permission[.fdc_cifiContract].permissionItems.permissionItem[contractBillReceiveTotalReport_view].extendedProperty.orgRelation">
+            <lang locale="en_US" value="CostCenter" />
+            <lang locale="zh_CN" value="CostCenter" />
+            <lang locale="zh_TW" value="CostCenter" />
+        </rs>
+        <rs key="permission[.fdc_cifiContract].permissionItems.permissionItem[contractBillReceiveTotalReport_view].extendedProperty.permItemType">
+            <lang locale="en_US" value="20" />
+            <lang locale="zh_CN" value="20" />
+            <lang locale="zh_TW" value="20" />
+        </rs>
+        <rs key="permission[.fdc_cifiContract].permissionItems.permissionItem[contractBillReceiveTotalReport_view].group">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="EAS系统.项目运营管理.合同管理.增值服务信息汇总表" />
+            <lang locale="zh_HK" value="EAS系統.項目運營管理.合同管理.增值服務信息匯總表" />
+            <lang locale="zh_TW" value="EAS系統.項目運營管理.合同管理.增值服務信息匯總表" />
         </rs>
         <rs key="permission[.fdc_cifiContract].permissionItems.permissionItem[contractBillReceive_addnew].alias">
             <lang locale="en_US" value="null" />

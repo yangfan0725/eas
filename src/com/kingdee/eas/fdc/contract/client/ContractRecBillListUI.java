@@ -4,6 +4,8 @@
 package com.kingdee.eas.fdc.contract.client;
 
 import java.awt.event.*;
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
 import com.kingdee.bos.metadata.entity.SelectorItemCollection;
 import com.kingdee.bos.metadata.entity.SelectorItemInfo;
+import com.kingdee.bos.metadata.entity.SorterItemCollection;
 import com.kingdee.bos.metadata.entity.SorterItemInfo;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.ui.face.IUIFactory;
@@ -23,9 +26,12 @@ import com.kingdee.bos.ui.face.UIFactory;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTSelectBlock;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
+import com.kingdee.bos.ctrl.kdf.table.event.KDTDataFillListener;
+import com.kingdee.bos.ctrl.kdf.table.event.KDTDataRequestEvent;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTSelectEvent;
 import com.kingdee.bos.dao.IObjectValue;
 import com.kingdee.eas.base.commonquery.BooleanEnum;
+import com.kingdee.eas.base.multiapprove.MultiApproveInfo;
 import com.kingdee.eas.common.client.OprtState;
 import com.kingdee.eas.common.client.UIContext;
 import com.kingdee.eas.common.client.UIFactoryName;
@@ -75,6 +81,18 @@ public class ContractRecBillListUI extends AbstractContractRecBillListUI
 	@Override
 	public void onLoad() throws Exception {
 		// TODO Auto-generated method stub
+		this.tblMain.getDataRequestManager().addDataFillListener(new KDTDataFillListener(){
+
+			public void afterDataFill(KDTDataRequestEvent e) {
+				for (int i = e.getFirstRow(); i <= e.getLastRow(); i++) {
+					IRow row = tblMain.getRow(i);
+					BigDecimal amount = (BigDecimal) row.getCell("amount").getValue();
+					if(amount==null){
+						row.getCell("amount").setValue(FDCHelper.ZERO);
+					}
+				}
+			}
+		});
 		super.onLoad();
 		this.actionTraceDown.setVisible(true);
 		this.actionTraceDown.setEnabled(true);

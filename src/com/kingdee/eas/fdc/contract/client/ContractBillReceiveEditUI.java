@@ -6167,6 +6167,12 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 				SysUtil.abort();
 			}
 		}
+		if(CostPropertyEnum.COMP_COMFIRM.equals(costProperty.getSelectedItem())){
+			if(txtamount.getBigDecimalValue()==null||txtamount.getBigDecimalValue().compareTo(FDCHelper.ZERO)<=0){
+				FDCMsgBox.showWarning(this,"金额必须大于0！");
+				SysUtil.abort();
+			}
+		}
 	}
 	private void verifyContractProgrammingPara() throws BOSException, SQLException, EASBizException {
 //		ProgrammingContractInfo pc = (ProgrammingContractInfo) this.editData.getProgrammingContract();
@@ -8056,6 +8062,9 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 		btnDeleteRowinfo.setText("删除行");
 		btnDeleteRowinfo.setSize(new Dimension(140, 19));
 		
+		this.actionDetailALine.setVisible(false);
+		this.actionDetailILine.setVisible(false);
+		this.actionDetailRLine.setVisible(false);
 		
 		this.kdtDetailEntry.getColumn("detail").setRequired(true);
 		this.kdtDetailEntry.getColumn("totalAmount").setRequired(true);

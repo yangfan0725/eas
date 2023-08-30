@@ -177,6 +177,8 @@ public class ContractRecBillControllerBean extends AbstractContractRecBillContro
 		coll.add(new SelectorItemInfo("entry.*"));
 		coll.add(new SelectorItemInfo("entry.oppAccount.*"));
 		coll.add(new SelectorItemInfo("entry.moneyDefine.*"));
+		coll.add(new SelectorItemInfo("contractBillReceive.*"));
+		coll.add(new SelectorItemInfo("contractBillReceive.curProject.*"));
 		evi.setSelector(coll);
 
 		
@@ -362,13 +364,19 @@ public class ContractRecBillControllerBean extends AbstractContractRecBillContro
 											ass.setFromNumber(custInfo.getNumber());
 											ass.setIsSelected(true);
 										}
+									}else if(asstActType.getRealtionDataObject().equals("T_FDC_CurProject")){
+										if(fdcReceivingBillInfo.getContractBillReceive().getCurProject()!=null){
+											ass.setFromID(fdcReceivingBillInfo.getContractBillReceive().getCurProject().getId().toString());
+											ass.setFromNumber(fdcReceivingBillInfo.getContractBillReceive().getCurProject().getNumber());
+											ass.setIsSelected(true);
+										}
 									}
 									receBillEntryInfo.getAssItemsEntries().add(ass);
 								}
 							}
 						}
 //						Map date=getDate(billEntry.get(k).getRevListId(),ctx);
-						
+						receivingBillInfo.setDescription(" 收"+fdcReceivingBillInfo.getCustomer().getName()+"增值服务合同"+fdcReceivingBillInfo.getContractBillReceive().getName()+fdcReceivingBillInfo.getEntry().get(0).getMoneyDefine().getName());
 						receBillEntry.add(receBillEntryInfo);
 //						if(fdcReceivingBillInfo.getEntry().get(i).getMoneyDefine()!=null)
 //							mdName.add(billEntry.get(k).getMoneyDefine().getName()+date.get("startDate")+date.get("endDate"));

@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import com.kingdee.bos.metadata.entity.EntityViewInfo;
 import com.kingdee.bos.metadata.entity.FilterInfo;
 import com.kingdee.bos.metadata.entity.FilterItemInfo;
+import com.kingdee.bos.metadata.query.util.CompareType;
 import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.dao.IObjectValue;
 import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
@@ -62,6 +63,7 @@ public class ContractBillReceiveLinkContractBillEditUI extends AbstractContractB
 		FilterInfo filter=new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("state",FDCBillStateEnum.AUDITTED_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("curProject.id",contractBillReceiveInfo.getCurProject().getId()));
+		filter.getFilterItems().add(new FilterItemInfo("id","select fContractBillid from T_CON_ContractBillReceive where fContractBillid is not null and fid!='"+contractBillReceiveInfo.getId()+"'",CompareType.NOTINNER));
 		view.setFilter(filter);
 		this.prmtContract.setEntityViewInfo(view);
 		
