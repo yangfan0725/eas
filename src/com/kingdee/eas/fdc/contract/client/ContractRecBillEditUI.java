@@ -382,6 +382,7 @@ public class ContractRecBillEditUI extends AbstractContractRecBillEditUI
 			KDTDefaultCellEditor moneyDefineEditor=new KDTDefaultCellEditor(f7Box);
 			this.kdtEntry.getColumn("moneyDefine").setEditor(moneyDefineEditor);
 			this.kdtEntry.getColumn("moneyDefine").getStyleAttributes().setLocked(true);
+			this.kdtEntry.getColumn("moneyDefine").setWidth(200);
 			
 			KDFormattedTextField amount = new KDFormattedTextField();
 			amount.setDataType(KDFormattedTextField.BIGDECIMAL_TYPE);

@@ -10,6 +10,7 @@ import java.awt.Window;
 import java.awt.event.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -30,6 +31,7 @@ import com.kingdee.bos.ui.face.IUIWindow;
 import com.kingdee.bos.ui.face.UIFactory;
 import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangArea;
+import com.kingdee.bos.ctrl.kdf.table.ICell;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTDataRequestManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTDefaultCellEditor;
@@ -39,6 +41,7 @@ import com.kingdee.bos.ctrl.kdf.table.KDTStyleConstants;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTDataRequestEvent;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent;
+import com.kingdee.bos.ctrl.kdf.table.foot.KDTFootManager;
 import com.kingdee.bos.ctrl.kdf.util.style.Styles.VerticalAlignment;
 import com.kingdee.bos.ctrl.swing.KDTreeView;
 import com.kingdee.bos.ctrl.swing.tree.DefaultKingdeeTreeNode;
@@ -88,6 +91,7 @@ import com.kingdee.eas.framework.report.util.RptParams;
 import com.kingdee.eas.framework.report.util.RptRowSet;
 import com.kingdee.eas.framework.report.util.RptTableHeader;
 import com.kingdee.eas.ma.budget.client.LongTimeDialog;
+import com.kingdee.eas.util.client.EASResource;
 
 /**
  * output class name
@@ -165,11 +169,77 @@ public class ContractBillReceiveTotalReportUI extends AbstractContractBillReceiv
                 
     	        RptRowSet rs = (RptRowSet)((RptParams)result).getObject("rowset");
     	        tblMain.setRowCount(rs.getRowCount());
+    	        String companyId=null;
+    	        Map comMap=new HashMap();
     	        while(rs.next()){
     	        	IRow row=tblMain.addRow();
     	        	((KDTableInsertHandler)(new DefaultKDTableInsertHandler(rs))).setTableRowData(row, rs.toRowArray());
+    	        	
+    	        	String comCompanyId=row.getCell("companyId").getValue().toString();
+    	        	
+    	        	BigDecimal contractAmount=(BigDecimal) row.getCell("contractAmount").getValue();
+    	        	BigDecimal recAmount=(BigDecimal) row.getCell("recAmount").getValue();
+    	        	BigDecimal payContractAmount=(BigDecimal) row.getCell("payContractAmount").getValue();
+    	        	BigDecimal payReqAmountAuditting=(BigDecimal) row.getCell("payReqAmountAuditting").getValue();
+    	        	BigDecimal payReqAmountAuditted=(BigDecimal) row.getCell("payReqAmountAuditted").getValue();
+    	        	BigDecimal payAmount=(BigDecimal) row.getCell("payAmount").getValue();
+    	        	BigDecimal sub1=(BigDecimal) row.getCell("sub1").getValue();
+    	        	BigDecimal sub2=(BigDecimal) row.getCell("sub2").getValue();
+    	        	
+    	        	Map map=null;
+    	        	if(comMap.containsKey(comCompanyId)){
+    	        		map=(Map) comMap.get(comCompanyId);
+    	        	}else{
+    	        		map=new HashMap();
+    	        		comMap.put(comCompanyId, map);
+    	        	}
+    	        	map.put("company", row.getCell("company").getValue());
+    	        	map.put("contractAmount", FDCHelper.add(map.get("contractAmount"), contractAmount));
+	        		map.put("recAmount", FDCHelper.add(map.get("recAmount"), recAmount));
+	        		map.put("payContractAmount", FDCHelper.add(map.get("payContractAmount"), payContractAmount));
+	        		map.put("payReqAmountAuditting", FDCHelper.add(map.get("payReqAmountAuditting"), payReqAmountAuditting));
+	        		map.put("payReqAmountAuditted", FDCHelper.add(map.get("payReqAmountAuditted"), payReqAmountAuditted));
+	        		map.put("payAmount", FDCHelper.add(map.get("payAmount"), payAmount));
+	        		map.put("sub1", FDCHelper.add(map.get("sub1"), sub1));
+	        		map.put("sub2", FDCHelper.add(map.get("sub2"), sub2));
+    	        	
+    	        	if(companyId!=null&&!companyId.equals(comCompanyId)){
+    	        		IRow totalRow=tblMain.addRow(row.getRowIndex());
+    	        		Map preMap=(Map) comMap.get(companyId);
+    	        		totalRow.getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
+    	        		totalRow.getCell("companyId").setValue(companyId);
+    	        		if(preMap!=null){
+    	        			totalRow.getCell("company").setValue(preMap.get("company"));
+        	        		totalRow.getCell("moneyDefine").setValue("小计");
+        	        		totalRow.getCell("contractAmount").setValue(preMap.get("contractAmount"));
+        	        		totalRow.getCell("recAmount").setValue(preMap.get("recAmount"));
+        	        		totalRow.getCell("payContractAmount").setValue(preMap.get("payContractAmount"));
+        	        		totalRow.getCell("payReqAmountAuditting").setValue(preMap.get("payReqAmountAuditting"));
+        	        		totalRow.getCell("payReqAmountAuditted").setValue(preMap.get("payReqAmountAuditted"));
+        	        		totalRow.getCell("payAmount").setValue(preMap.get("payAmount"));
+        	        		totalRow.getCell("sub1").setValue(preMap.get("sub1"));
+        	        		totalRow.getCell("sub2").setValue(preMap.get("sub2"));
+    	        		}
+    	        	}
+    	        	companyId=comCompanyId;
     	        }
-				
+    	       
+    	        Map preMap=(Map) comMap.get(companyId);
+    	    	if(preMap!=null){
+    	    		 IRow totalRow=tblMain.addRow();
+    	    		 totalRow.getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
+    	        	 totalRow.getCell("companyId").setValue(companyId);
+    	        	 totalRow.getCell("company").setValue(preMap.get("company"));
+    	        	 totalRow.getCell("moneyDefine").setValue("小计");
+    	        	 totalRow.getCell("contractAmount").setValue(preMap.get("contractAmount"));
+    	        	 totalRow.getCell("recAmount").setValue(preMap.get("recAmount"));
+    	        	 totalRow.getCell("payContractAmount").setValue(preMap.get("payContractAmount"));
+    	        	 totalRow.getCell("payReqAmountAuditting").setValue(preMap.get("payReqAmountAuditting"));
+    	        	 totalRow.getCell("payReqAmountAuditted").setValue(preMap.get("payReqAmountAuditted"));
+    	        	 totalRow.getCell("payAmount").setValue(preMap.get("payAmount"));
+    	        	 totalRow.getCell("sub1").setValue(preMap.get("sub1"));
+    	        	 totalRow.getCell("sub2").setValue(preMap.get("sub2"));
+    	    	}
     	        if(rs.getRowCount() > 0){
     	        	tblMain.reLayoutAndPaint();
     	        }else{
@@ -177,9 +247,9 @@ public class ContractBillReceiveTotalReportUI extends AbstractContractBillReceiv
     	        }
     	        tblMain.setRefresh(true);
     	        
-    	        CRMClientHelper.changeTableNumberFormat(tblMain, new String[]{"contractAmount","recAmount","payContractAmount","payReqAmountAuditting","payReqAmountAuditted","payAmount"});
-    	        String[] sum=new String[]{"contractAmount","recAmount","payContractAmount","payReqAmountAuditting","payReqAmountAuditted","payAmount"};
-    	        CRMClientHelper.getFootRow(tblMain, sum);
+    	        String[] sum=new String[]{"contractAmount","recAmount","payContractAmount","payReqAmountAuditting","payReqAmountAuditted","payAmount","sub1","sub2"};
+    	        CRMClientHelper.changeTableNumberFormat(tblMain,sum);
+    	        getFootRow(tblMain, sum);
     	        
     	        tblMain.getMergeManager().setMergeMode(KDTMergeManager.GROUP_MERGE);
     	    	tblMain.getGroupManager().setGroup(true);
@@ -192,7 +262,65 @@ public class ContractBillReceiveTotalReportUI extends AbstractContractBillReceiv
         dialog.show();
         isQuery=false;
 	}
-	
+	public  void getFootRow(KDTable tblMain,String[] columnName){
+		IRow footRow = null;
+        KDTFootManager footRowManager = tblMain.getFootManager();
+        if(footRowManager == null)
+        {
+            String total = EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_Total");
+            footRowManager = new KDTFootManager(tblMain);
+            footRowManager.addFootView();
+            tblMain.setFootManager(footRowManager);
+            footRow = footRowManager.addFootRow(0);
+            footRow.getStyleAttributes().setHorizontalAlign(com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment.getAlignment("right"));
+            tblMain.getIndexColumn().setWidthAdjustMode((short)1);
+            tblMain.getIndexColumn().setWidth(30);
+            footRowManager.addIndexText(0, total);
+        } else
+        {
+            footRow = footRowManager.getFootRow(0);
+        }
+        int columnCount = tblMain.getColumnCount();
+        for(int c = 0; c < columnCount; c++)
+        {
+            String fieldName = tblMain.getColumn(c).getKey();
+            for(int i = 0; i < columnName.length; i++)
+            {
+                String colName = (String)columnName[i];
+                if(colName.equalsIgnoreCase(fieldName))
+                {
+                    ICell cell = footRow.getCell(c);
+                    cell.getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
+                    cell.getStyleAttributes().setHorizontalAlign(com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment.getAlignment("right"));
+                    cell.getStyleAttributes().setFontColor(java.awt.Color.BLACK);
+                    cell.setValue(getColumnValueSum(tblMain,colName));
+                }
+            }
+
+        }
+        footRow.getStyleAttributes().setBackground(new java.awt.Color(246, 246, 191));
+	}
+	 public  BigDecimal getColumnValueSum(KDTable table,String columnName) {
+	    	BigDecimal sum = new BigDecimal(0);
+	        for(int i=0;i<table.getRowCount();i++){
+	        	if(table.getRow(i).getCell(columnName).getValue()!=null &&table.getRow(i).getStyleAttributes().getBackground().equals(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR)){
+	        		if( table.getRow(i).getCell(columnName).getValue() instanceof BigDecimal)
+	            		sum = sum.add((BigDecimal)table.getRow(i).getCell(columnName).getValue());
+	            	else if(table.getRow(i).getCell(columnName).getValue() instanceof String){
+	            		String value = (String)table.getRow(i).getCell(columnName).getValue();
+	            		if(value.indexOf("零")==-1 && value.indexOf("[]")==-1){
+	            			value = value.replaceAll(",", "");
+	                		sum = sum.add(new BigDecimal(value));
+	            		}
+	            	}
+	            	else if(table.getRow(i).getCell(columnName).getValue() instanceof Integer){
+	            		String value = table.getRow(i).getCell(columnName).getValue().toString();
+	            		sum = sum.add(new BigDecimal(value));
+	            	}
+	        	}
+	        }
+	        return sum;
+	    }
 	protected void tblMain_tableClicked(KDTMouseEvent e) throws Exception {
 		if (e.getType() == KDTStyleConstants.BODY_ROW && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2) {
 			if(this.tblMain.getColumn(e.getColIndex()).getKey().equals("moneyDefine")){

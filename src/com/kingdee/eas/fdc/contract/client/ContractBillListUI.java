@@ -90,6 +90,8 @@ import com.kingdee.eas.fdc.basedata.client.FDCClientUtils;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
 import com.kingdee.eas.fdc.contract.ContractBillFactory;
 import com.kingdee.eas.fdc.contract.ContractBillInfo;
+import com.kingdee.eas.fdc.contract.ContractBillReceiveFactory;
+import com.kingdee.eas.fdc.contract.ContractBillReceiveInfo;
 import com.kingdee.eas.fdc.contract.ContractContentCollection;
 import com.kingdee.eas.fdc.contract.ContractContentFactory;
 import com.kingdee.eas.fdc.contract.ContractContentInfo;
@@ -1636,4 +1638,39 @@ protected void tblMain_tableSelectChanged(
     		super.actionAuditResult_actionPerformed(e);
     	}
 	}
+
+	@Override
+	public void actionContractBillReceive_actionPerformed(ActionEvent e)
+			throws Exception {
+		checkSelected();
+		List idList =ContractClientUtils.getSelectedIdValues(getBillListTable(), getKeyFieldName());
+		if(idList.size()>1){
+			FDCMsgBox.showWarning("请选择一条记录进行操作！");
+			SysUtil.abort();
+		}
+		String selectedKeyValue = getSelectedKeyValue();
+//		if (FDCUtils.isRunningWorkflow(selectedKeyValue)) {
+//			FDCMsgBox.showWarning("已在工作流处理中，请稍后再试！");
+//			SysUtil.abort();
+//		}
+		SelectorItemCollection sic = new SelectorItemCollection();
+		sic.add("*");
+		sic.add("curProject.*");
+		sic.add("contractBillReceive.*");
+		ContractBillInfo contractBillInfo = ContractBillFactory.getRemoteInstance().getContractBillInfo(new ObjectUuidPK(selectedKeyValue), sic);
+		
+		IUIWindow uiWindow = null;
+		UIContext uiContext = new UIContext(this);
+		uiContext.put("contractBillInfo", contractBillInfo);
+		uiWindow = UIFactory.createUIFactory(UIFactoryName.MODEL).create(ContractBillReceiveLinkContractBillEditUI.class.getName(), uiContext, null,OprtState.EDIT);
+		uiWindow.show();
+		Object object = uiWindow.getUIObject().getUIContext().get("ok");
+		if(object!=null){
+			SelectorItemCollection sicz = new SelectorItemCollection();
+			sicz.add("contractBillReceive");
+			ContractBillFactory.getRemoteInstance().updatePartial(contractBillInfo, sicz);
+			FDCMsgBox.showInfo("关联合同成功！");
+		}
+	}
+	
 }

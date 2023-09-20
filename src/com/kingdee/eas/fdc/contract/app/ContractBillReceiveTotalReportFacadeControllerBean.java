@@ -56,14 +56,15 @@ public class ContractBillReceiveTotalReportFacadeControllerBean extends Abstract
 	    initColoum(header,col,"payReqAmountAuditting",150,false);
 	    initColoum(header,col,"payReqAmountAuditted",150,false);
 	    initColoum(header,col,"payAmount",100,false);
-	    
+	    initColoum(header,col,"sub1",120,false);
+	    initColoum(header,col,"sub2",120,false);
 	    header.setLabels(new Object[][]{ 
 	    		{
-	    			"companyId","公司","moneyDefineId","款项类型","增值服务","增值服务","对应支付","对应支付","对应支付","对应支付"
+	    			"companyId","公司","moneyDefineId","款项类型","增值服务","增值服务","对应支付","对应支付","对应支付","对应支付","收付款合同差异","实际收付款差异"
 	    		}
 	    		,
 	    		{
-	    			"companyId","公司","moneyDefineId","款项类型","合同金额","收款金额","合同金额","付款申请金额（审批中）","付款申请金额（已审批）","实付金额"
+	    			"companyId","公司","moneyDefineId","款项类型","合同金额","收款金额","合同金额","付款申请金额（审批中）","付款申请金额（已审批）","实付金额","收付款合同差异","实际收付款差异"
 	    		}
 	    },true);
 	    params.setObject("header", header);
@@ -80,15 +81,16 @@ public class ContractBillReceiveTotalReportFacadeControllerBean extends Abstract
 		
     	StringBuffer sb = new StringBuffer();
     	
-    	sb.append(" select e.fid companyId,e.fname_l2 company,d.fid moneyDefineId,d.fname_l2 moneyDefine, isnull(sum(a.famount),0) contractAmount,isnull(sum(t.recAmount),0) recAmount,isnull(sum(b.famount),0) payContractAmount,");
-    	sb.append(" isnull(sum(t1.payReqAmount),0) payReqAmountAuditting,isnull(sum(t2.payReqAmount),0) payReqAmountAuditted,isnull(sum(t3.payAmount),0) payAmount ");
-    	sb.append(" from T_CON_ContractBillReceive a left join t_con_contractBill b on a.fcontractbillid=b.fid ");
+    	sb.append(" select e.fid companyId,e.fname_l2 company,d.fid moneyDefineId,d.fname_l2 moneyDefine, isnull(sum(a.famount),0) contractAmount,isnull(sum(t.recAmount),0) recAmount,isnull(sum(t4.payContractAmount),0) payContractAmount,");
+    	sb.append(" isnull(sum(t1.payReqAmount),0) payReqAmountAuditting,isnull(sum(t2.payReqAmount),0) payReqAmountAuditted,isnull(sum(t3.payAmount),0) payAmount,isnull(sum(a.famount),0)-isnull(sum(t4.payContractAmount),0) sub1,isnull(sum(t.recAmount),0)-isnull(sum(t3.payAmount),0) sub2 ");
+    	sb.append(" from T_CON_ContractBillReceive a ");
     	sb.append(" left join T_CON_ContractBillRRateEntry c on c.FParentID=a.fid left join T_SHE_MoneyDefine d on d.fid=c.fmoneyDefineId");
     	sb.append(" left join T_ORG_BaseUnit e on a.fcontrolunitid=e.fid ");
-    	sb.append(" left join (select sum(b.FAmount) recAmount,FContractBillReceiveId from T_CON_ContractRecBill a left join T_CON_ContractRecBillEntry b on a.fid=b.FHeadId where a.fstate='4AUDITTED' group by FContractBillReceiveId )t on t.FContractBillReceiveId=a.fid");
-    	sb.append(" left join (select sum(FAmount) payReqAmount,fcontractId from T_CON_PayRequestBill a where a.fstate='3AUDITTING' group by fcontractId )t1 on t1.fcontractId=b.fid");
-    	sb.append(" left join (select sum(FAmount) payReqAmount,fcontractId from T_CON_PayRequestBill a where a.fstate='4AUDITTED' group by fcontractId )t2 on t2.fcontractId=b.fid");
-    	sb.append(" left join (select sum(factualPayAmount) payAmount,fcontractBillId from T_cas_PaymentBill a where a.fbillStatus=15 group by fcontractBillId )t3 on t3.fcontractBillId=b.fid");
+    	sb.append(" left join (select sum(b.FAmount) recAmount,a.FContractBillReceiveId from T_CON_ContractRecBill a left join T_CON_ContractRecBillEntry b on a.fid=b.FHeadId where a.fstate='4AUDITTED' group by FContractBillReceiveId )t on t.FContractBillReceiveId=a.fid");
+    	sb.append(" left join (select sum(a.FAmount) payReqAmount,b.fcontractbillreceiveid from T_CON_PayRequestBill a left join t_con_contractbill b on a.fcontractId=b.fid where a.fstate='3AUDITTING' group by b.fcontractbillreceiveid )t1 on t1.fcontractbillreceiveid=a.fid");
+    	sb.append(" left join (select sum(a.FAmount) payReqAmount,b.fcontractbillreceiveid from T_CON_PayRequestBill a left join t_con_contractbill b on a.fcontractId=b.fid where a.fstate='4AUDITTED' group by b.fcontractbillreceiveid  )t2 on t2.fcontractbillreceiveid=a.fid");
+    	sb.append(" left join (select sum(a.factualPayAmount) payAmount,b.fcontractbillreceiveid from T_cas_PaymentBill a left join t_con_contractbill b on a.fcontractBillId=b.fid where a.fbillStatus=15 group by b.fcontractbillreceiveid )t3 on t3.fcontractbillreceiveid=a.fid");
+    	sb.append(" left join (select sum(famount) payContractAmount,fcontractbillreceiveid from t_con_contractBill a where a.fstate='4AUDITTED' group by fcontractbillreceiveid )t4 on t4.fcontractbillreceiveid=a.fid");
     	
     	sb.append(" where a.fstate='4AUDITTED' ");
     	if(orgUnitLongNumber!=null){

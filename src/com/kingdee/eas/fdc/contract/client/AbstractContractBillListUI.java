@@ -46,6 +46,7 @@ import com.kingdee.bos.appframework.uip.UINavigator;
 public abstract class AbstractContractBillListUI extends com.kingdee.eas.fdc.contract.client.ContractListBaseUI
 {
     private static final Logger logger = CoreUIObject.getLogger(AbstractContractBillListUI.class);
+    protected com.kingdee.bos.ctrl.swing.KDWorkButton btnContractBillReceive;
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnProgram;
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnUnProgram;
     protected com.kingdee.bos.ctrl.swing.KDWorkButton btnEditContractType;
@@ -82,6 +83,7 @@ public abstract class AbstractContractBillListUI extends com.kingdee.eas.fdc.con
     protected ActionUnProgram actionUnProgram = null;
     protected ActionEditAuditDate actionEditAuditDate = null;
     protected ActionEditContractType actionEditContractType = null;
+    protected ActionContractBillReceive actionContractBillReceive = null;
     /**
      * output class constructor
      */
@@ -218,6 +220,11 @@ public abstract class AbstractContractBillListUI extends com.kingdee.eas.fdc.con
         this.actionEditContractType = new ActionEditContractType(this);
         getActionManager().registerAction("actionEditContractType", actionEditContractType);
          this.actionEditContractType.addService(new com.kingdee.eas.framework.client.service.PermissionService());
+        //actionContractBillReceive
+        this.actionContractBillReceive = new ActionContractBillReceive(this);
+        getActionManager().registerAction("actionContractBillReceive", actionContractBillReceive);
+         this.actionContractBillReceive.addService(new com.kingdee.eas.framework.client.service.PermissionService());
+        this.btnContractBillReceive = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.btnProgram = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.btnUnProgram = new com.kingdee.bos.ctrl.swing.KDWorkButton();
         this.btnEditContractType = new com.kingdee.bos.ctrl.swing.KDWorkButton();
@@ -241,6 +248,7 @@ public abstract class AbstractContractBillListUI extends com.kingdee.eas.fdc.con
         this.menuItemAntiStore = new com.kingdee.bos.ctrl.swing.KDMenuItem();
         this.menuItemProgram = new com.kingdee.bos.ctrl.swing.KDMenuItem();
         this.separator1 = new javax.swing.JPopupMenu.Separator();
+        this.btnContractBillReceive.setName("btnContractBillReceive");
         this.btnProgram.setName("btnProgram");
         this.btnUnProgram.setName("btnUnProgram");
         this.btnEditContractType.setName("btnEditContractType");
@@ -284,6 +292,10 @@ public abstract class AbstractContractBillListUI extends com.kingdee.eas.fdc.con
         this.kDSplitPane2.setDividerLocation(600);		
         this.kDSplitPane2.setOneTouchExpandable(false);		
         this.kDSplitPane2.setDividerSize(0);
+        // btnContractBillReceive
+        this.btnContractBillReceive.setAction((IItemAction)ActionProxyFactory.getProxy(actionContractBillReceive, new Class[] { IItemAction.class }, getServiceContext()));		
+        this.btnContractBillReceive.setText(resHelper.getString("btnContractBillReceive.text"));		
+        this.btnContractBillReceive.setIcon(com.kingdee.eas.util.client.EASResource.getIcon("imgTbtn_associatecreate"));
         // btnProgram
         this.btnProgram.setAction((IItemAction)ActionProxyFactory.getProxy(actionProgram, new Class[] { IItemAction.class }, getServiceContext()));		
         this.btnProgram.setText(resHelper.getString("btnProgram.text"));		
@@ -566,6 +578,7 @@ contContrList.getContentPane().setLayout(new BorderLayout(0, 0));        contCon
         this.toolBar.add(btnAudit);
         this.toolBar.add(btnSignature);
         this.toolBar.add(btnUnAudit);
+        this.toolBar.add(btnContractBillReceive);
         this.toolBar.add(btnProgram);
         this.toolBar.add(btnUnProgram);
         this.toolBar.add(btnEditContractType);
@@ -857,6 +870,14 @@ contContrList.getContentPane().setLayout(new BorderLayout(0, 0));        contCon
     public void actionEditContractType_actionPerformed(ActionEvent e) throws Exception
     {
     }
+    	
+
+    /**
+     * output actionContractBillReceive_actionPerformed method
+     */
+    public void actionContractBillReceive_actionPerformed(ActionEvent e) throws Exception
+    {
+    }
 	public RequestContext prepareActionRemove(IItemAction itemAction) throws Exception {
 			RequestContext request = super.prepareActionRemove(itemAction);		
 		if (request != null) {
@@ -1053,6 +1074,17 @@ contContrList.getContentPane().setLayout(new BorderLayout(0, 0));        contCon
     }
 	
 	public boolean isPrepareActionEditContractType() {
+    	return false;
+    }
+	public RequestContext prepareActionContractBillReceive(IItemAction itemAction) throws Exception {
+			RequestContext request = new RequestContext();		
+		if (request != null) {
+    		request.setClassName(getUIHandlerClassName());
+		}
+		return request;
+    }
+	
+	public boolean isPrepareActionContractBillReceive() {
     	return false;
     }
 
@@ -1450,6 +1482,36 @@ contContrList.getContentPane().setLayout(new BorderLayout(0, 0));        contCon
         {
         	getUIContext().put("ORG.PK", getOrgPK(this));
             innerActionPerformed("eas", AbstractContractBillListUI.this, "ActionEditContractType", "actionEditContractType_actionPerformed", e);
+        }
+    }
+
+    /**
+     * output ActionContractBillReceive class
+     */     
+    protected class ActionContractBillReceive extends ItemAction {     
+    
+        public ActionContractBillReceive()
+        {
+            this(null);
+        }
+
+        public ActionContractBillReceive(IUIObject uiObject)
+        {     
+		super(uiObject);     
+        
+            String _tempStr = null;
+            _tempStr = resHelper.getString("ActionContractBillReceive.SHORT_DESCRIPTION");
+            this.putValue(ItemAction.SHORT_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionContractBillReceive.LONG_DESCRIPTION");
+            this.putValue(ItemAction.LONG_DESCRIPTION, _tempStr);
+            _tempStr = resHelper.getString("ActionContractBillReceive.NAME");
+            this.putValue(ItemAction.NAME, _tempStr);
+        }
+
+        public void actionPerformed(ActionEvent e)
+        {
+        	getUIContext().put("ORG.PK", getOrgPK(this));
+            innerActionPerformed("eas", AbstractContractBillListUI.this, "ActionContractBillReceive", "actionContractBillReceive_actionPerformed", e);
         }
     }
 

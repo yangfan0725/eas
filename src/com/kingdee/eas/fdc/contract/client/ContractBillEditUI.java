@@ -2923,7 +2923,6 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			pkStartDate.setRequired(false);
 			pkEndDate.setRequired(false);
 		}
-		contContractBillReceive.setVisible(false);
 	}
 	protected void prmtTAEntry_dataChanged(DataChangeEvent e) throws Exception {
 		this.tblInvite.removeRows();

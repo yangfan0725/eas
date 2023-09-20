@@ -10,6 +10,7 @@ import java.awt.Window;
 import java.awt.event.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -29,6 +30,7 @@ import com.kingdee.bos.ui.face.IUIWindow;
 import com.kingdee.bos.ui.face.UIFactory;
 import com.kingdee.bos.util.BOSUuid;
 import com.kingdee.bos.ctrl.extendcontrols.KDBizMultiLangArea;
+import com.kingdee.bos.ctrl.kdf.table.ICell;
 import com.kingdee.bos.ctrl.kdf.table.IRow;
 import com.kingdee.bos.ctrl.kdf.table.KDTDataRequestManager;
 import com.kingdee.bos.ctrl.kdf.table.KDTDefaultCellEditor;
@@ -38,6 +40,7 @@ import com.kingdee.bos.ctrl.kdf.table.KDTStyleConstants;
 import com.kingdee.bos.ctrl.kdf.table.KDTable;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTDataRequestEvent;
 import com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent;
+import com.kingdee.bos.ctrl.kdf.table.foot.KDTFootManager;
 import com.kingdee.bos.ctrl.kdf.util.render.ObjectValueRender;
 import com.kingdee.bos.ctrl.kdf.util.style.Styles.VerticalAlignment;
 import com.kingdee.bos.ctrl.swing.KDCheckBox;
@@ -80,6 +83,7 @@ import com.kingdee.eas.fdc.contract.ContractBillReceiveReportFacadeFactory;
 import com.kingdee.eas.fdc.contract.ContractRecBillCollection;
 import com.kingdee.eas.fdc.contract.ContractRecBillEntryCollection;
 import com.kingdee.eas.fdc.contract.ContractRecBillEntryFactory;
+import com.kingdee.eas.fdc.contract.ContractRecBillFactory;
 import com.kingdee.eas.fdc.contract.MarketProjectReportFacadeFactory;
 import com.kingdee.eas.fdc.contract.MarketProjectSourceEnum;
 import com.kingdee.eas.fdc.contract.PayRequestBillCollection;
@@ -102,6 +106,7 @@ import com.kingdee.eas.framework.report.util.RptParams;
 import com.kingdee.eas.framework.report.util.RptRowSet;
 import com.kingdee.eas.framework.report.util.RptTableHeader;
 import com.kingdee.eas.ma.budget.client.LongTimeDialog;
+import com.kingdee.eas.util.client.EASResource;
 
 /**
  * output class name
@@ -217,7 +222,7 @@ public class ContractBillReceiveReportUI extends AbstractContractBillReceiveRepo
 		filter.getFilterItems().add(
 				new FilterItemInfo("isEnabled", Boolean.TRUE));
 		filter.getFilterItems().add(
-				new FilterItemInfo("isReceive", Boolean.FALSE));
+				new FilterItemInfo("isReceive", Boolean.TRUE));
 		return filter;
 	}
 	protected void buildContractTypeTree() throws Exception {
@@ -270,209 +275,152 @@ public class ContractBillReceiveReportUI extends AbstractContractBillReceiveRepo
     	        RptRowSet rs = (RptRowSet)((RptParams)result).getObject("rowset");
     	        tblMain.setRowCount(rs.getRowCount());
     	        tblMain.getTreeColumn().setDepth(2);
+    	        String curProjectId=null;
+    	        Map comMap=new HashMap();
     	        while(rs.next()){
     	        	IRow row=tblMain.addRow();
     	        	((KDTableInsertHandler)(new DefaultKDTableInsertHandler(rs))).setTableRowData(row, rs.toRowArray());
     	        	
+    	        	String comCurProjectId=row.getCell("curProjectId").getValue().toString();
+    	        	
     	        	row.getStyleAttributes().setBackground(FDCTableHelper.cantEditColor);
 					row.setTreeLevel(0);
 					
-					String payId=row.getCell("payId").getValue().toString();
+					String id=row.getCell("id").getValue().toString();
 					
 					BigDecimal recAmount=FDCHelper.ZERO;
-					BigDecimal payReqAmount=FDCHelper.ZERO;
-					BigDecimal payTotalAmount=FDCHelper.ZERO;
-					
-					PayRequestBillCollection payCol=PayRequestBillFactory.getRemoteInstance().getPayRequestBillCollection("select * from where contractId='"+payId+"' and state='4AUDITTED' order by number");
-					for(int j=0;j<payCol.size();j++){
-						IRow payRow=tblMain.addRow();
-						payRow.setTreeLevel(0);
-						payRow.getCell("payReqNumber").setValue(payCol.get(j).getNumber());
-						payRow.getCell("payReqBizDate").setValue(payCol.get(j).getBookedDate());
-						payRow.getCell("payReqAmount").setValue(payCol.get(j).getAmount());
-						payRow.getCell("payReqId").setValue(payCol.get(j).getId().toString());
-						
-						payRow.getCell("payReqNumber").getStyleAttributes().setBackground(Color.yellow);
-						payRow.getCell("payReqBizDate").getStyleAttributes().setBackground(Color.yellow);
-						payRow.getCell("payReqAmount").getStyleAttributes().setBackground(Color.yellow);
-						payRow.getCell("payReqId").getStyleAttributes().setBackground(Color.yellow);
-						payRow.getCell("payReqActAmount").getStyleAttributes().setBackground(Color.yellow);
-						payRow.getCell("payReqActDate").getStyleAttributes().setBackground(Color.yellow);
-						
-						payReqAmount=FDCHelper.add(payReqAmount,payCol.get(j).getAmount());
-						BigDecimal actAmount=FDCHelper.ZERO;
-						Date payReqActDate=null;
-						PaymentBillCollection payActCol=PaymentBillFactory.getRemoteInstance().getPaymentBillCollection("select * from where fdcPayReqId='"+payCol.get(j).getId()+"' and billStatus=15");
-						for(int k=0;k<payActCol.size();k++){
-							actAmount=actAmount.add(payActCol.get(k).getActPayAmt());
-							payReqActDate=payActCol.get(k).getPayDate();
-							
-							payTotalAmount=payTotalAmount.add(payActCol.get(k).getActPayAmt());
-						}
-						payRow.getCell("payReqActAmount").setValue(actAmount);
-						payRow.getCell("payReqActDate").setValue(payReqActDate);
+					ContractRecBillCollection col=ContractRecBillFactory.getRemoteInstance().getContractRecBillCollection("select * from where state='4AUDITTED' and contractBillReceive.id='"+id+"' order by number");
+					for(int j=0;j<col.size();j++){
+						recAmount=recAmount.add(col.get(j).getAmount());
 					}
+					row.getCell("recCount").setValue(col.size());
+					row.getCell("recAmount").setValue(recAmount);
 					
-					BigDecimal recTotalAmount=FDCHelper.ZERO;
-					ContractBillReceiveCollection conCol=ContractBillReceiveFactory.getRemoteInstance().getContractBillReceiveCollection("select contractType.name,curProject.name,partB.name,landDeveloper.name,*,currency.name from where state='4AUDITTED' and contractBill.id='"+payId+"' order by number");
+					BigDecimal payAmount=FDCHelper.ZERO;
+					BigDecimal payReqAmountT=FDCHelper.ZERO;
+					BigDecimal payReqActAmountT=FDCHelper.ZERO;
+					
+					ContractBillCollection conCol=ContractBillFactory.getRemoteInstance().getContractBillCollection("select contractType.name,curProject.name,partB.name,landDeveloper.name,*,currency.name from where state='4AUDITTED' and contractBillReceive.id='"+id+"' order by number");
 					for(int i=0;i<conCol.size();i++){
 						IRow recRow=tblMain.addRow();
 						recRow.setTreeLevel(1);
-						recRow.getCell("id").setValue(conCol.get(i).getId().toString());
-						recRow.getCell("curProject").setValue(conCol.get(i).getCurProject().getName());
-						recRow.getCell("contractType").setValue(conCol.get(i).getContractType().getName());
-						recRow.getCell("number").setValue(conCol.get(i).getNumber());
-						recRow.getCell("name").setValue(conCol.get(i).getName());
-						recRow.getCell("bizDate").setValue(conCol.get(i).getBookedDate());
-						recRow.getCell("auditTime").setValue(conCol.get(i).getAuditTime());
-						recRow.getCell("landDeveloper").setValue(conCol.get(i).getLandDeveloper().getName());
-						recRow.getCell("partB").setValue(conCol.get(i).getPartB().getName());
-						recRow.getCell("currency").setValue(conCol.get(i).getCurrency().getName());
-						recRow.getCell("amount").setValue(conCol.get(i).getAmount());
-						recRow.getCell("httk").setValue(conCol.get(i).getHttk());
+						recRow.getCell("payId").setValue(conCol.get(i).getId().toString());
+						recRow.getCell("payCurProject").setValue(conCol.get(i).getCurProject().getName());
+						recRow.getCell("payContractType").setValue(conCol.get(i).getContractType().getName());
+						recRow.getCell("payNumber").setValue(conCol.get(i).getNumber());
+						recRow.getCell("payName").setValue(conCol.get(i).getName());
+						recRow.getCell("payBizDate").setValue(conCol.get(i).getBookedDate());
+						recRow.getCell("payAuditTime").setValue(conCol.get(i).getAuditTime());
+						recRow.getCell("payLandDeveloper").setValue(conCol.get(i).getLandDeveloper().getName());
+						recRow.getCell("payPartB").setValue(conCol.get(i).getPartB().getName());
+						recRow.getCell("payCurrency").setValue(conCol.get(i).getCurrency().getName());
+						recRow.getCell("payAmount").setValue(conCol.get(i).getAmount());
 						
-						recRow.getCell("id").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-						recRow.getCell("curProject").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-						recRow.getCell("contractType").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-						recRow.getCell("number").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-						recRow.getCell("name").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-						recRow.getCell("bizDate").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-						recRow.getCell("auditTime").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-						recRow.getCell("landDeveloper").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-						recRow.getCell("partB").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-						recRow.getCell("currency").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-						recRow.getCell("amount").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-						recRow.getCell("httk").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
+						payAmount=FDCHelper.add(payAmount,conCol.get(i).getAmount());
 						
-						recAmount=FDCHelper.add(recAmount, conCol.get(i).getAmount());
-						
-						ContractRecBillEntryCollection col=ContractRecBillEntryFactory.getRemoteInstance().getContractRecBillEntryCollection("select moneyDefine.name,*,head.* from where head.state='4AUDITTED' and head.contractBillReceive.id='"+conCol.get(i).getId().toString()+"' order by head.number");
-						for(int j=0;j<col.size();j++){
-							IRow recBillRow=tblMain.addRow();
-							recBillRow.setTreeLevel(1);
-							recBillRow.getCell("recNumber").setValue(col.get(j).getHead().getNumber());
-							recBillRow.getCell("recBizDate").setValue(col.get(j).getHead().getBizDate());
-							recBillRow.getCell("recMoneyDefine").setValue(col.get(j).getMoneyDefine().getName());
-							recBillRow.getCell("recAmount").setValue(col.get(j).getAmount());
-							recBillRow.getCell("recId").setValue(col.get(j).getHead().getId().toString());
+						int payReqActCount=0;
+						BigDecimal payReqAmount=FDCHelper.ZERO;
+						BigDecimal payReqActAmount=FDCHelper.ZERO;
+						PayRequestBillCollection payCol=PayRequestBillFactory.getRemoteInstance().getPayRequestBillCollection("select * from where contractId='"+conCol.get(i).getId().toString()+"' and state='4AUDITTED' order by number");
+						for(int j=0;j<payCol.size();j++){
+							payReqAmount=FDCHelper.add(payReqAmount,payCol.get(j).getAmount());
+							payReqAmountT=FDCHelper.add(payReqAmountT,payCol.get(j).getAmount());
 							
-							recBillRow.getCell("recNumber").getStyleAttributes().setBackground(FDCTableHelper.dayTotalColor);
-							recBillRow.getCell("recBizDate").getStyleAttributes().setBackground(FDCTableHelper.dayTotalColor);
-							recBillRow.getCell("recMoneyDefine").getStyleAttributes().setBackground(FDCTableHelper.dayTotalColor);
-							recBillRow.getCell("recAmount").getStyleAttributes().setBackground(FDCTableHelper.dayTotalColor);
-							recBillRow.getCell("recId").getStyleAttributes().setBackground(FDCTableHelper.dayTotalColor);
-							recTotalAmount=recTotalAmount.add(col.get(j).getAmount());
+							PaymentBillCollection payActCol=PaymentBillFactory.getRemoteInstance().getPaymentBillCollection("select * from where fdcPayReqId='"+payCol.get(j).getId()+"' and billStatus=15");
+							
+							payReqActCount=payReqActCount+payActCol.size();
+							for(int k=0;k<payActCol.size();k++){
+								payReqActAmount=payReqActAmount.add(payActCol.get(k).getActPayAmt());
+								payReqActAmountT=payReqActAmountT.add(payActCol.get(k).getActPayAmt());
+							}
 						}
+						recRow.getCell("payReqCount").setValue(payCol.size());
+						recRow.getCell("payReqAmount").setValue(payReqAmount);
+						recRow.getCell("payReqActCount").setValue(payReqActCount);
+						recRow.getCell("payReqActAmount").setValue(payReqActAmount);
 					}
-					row.getCell("recTotalAmount").setValue(recTotalAmount);
-					row.getCell("recAmount").setValue(recTotalAmount);
-					
-					row.getCell("amount").setValue(recAmount);
-					row.getCell("payTotalAmount").setValue(payTotalAmount);
-					row.getCell("sub").setValue(FDCHelper.subtract(payTotalAmount, recTotalAmount));
-					row.getCell("payReqAmount").setValue(payReqAmount);
-					row.getCell("payReqActAmount").setValue(payTotalAmount);
-    	        }
-    	        String orgUnitLongNumber=params.getString("orgUnit.longNumber");
-    			Set authorizedOrgs=(Set) params.getObject("orgUnit.id");
-    			
-    			Set curProject=(Set) params.getObject("curProject.id");
-    			Set contractType=(Set) params.getObject("contractType.id");
-    			
-    			String companyId=(String) params.getString("companyId");
-    			String moneyDefineId=(String) params.getString("moneyDefineId");
-    			
-    			StringBuffer sb = new StringBuffer();
-    			sb.append("select contractType.name,curProject.name,partB.name,landDeveloper.name,*,currency.name from where state='4AUDITTED' and contractBill.id is null ");
-    	        if(orgUnitLongNumber!=null){
-    				sb.append(" and orgUnit.longnumber like '"+orgUnitLongNumber+"%'");
-    			}
-    			if(authorizedOrgs!=null){
-    				sb.append(" and orgUnit.id in"+SetToIn(authorizedOrgs));
-    			} 
-    			if(curProject!=null){
-    				sb.append(" and curProject.id in"+SetToIn(curProject));
-    			} 
-    			if(contractType!=null){
-    				sb.append(" and contract.id in"+SetToIn(contractType));
-    			} 
-    			if(companyId!=null){
-    				sb.append(" and CU.id='"+companyId+"'");
-    			} 
-    			if(moneyDefineId!=null){
-    				sb.append(" and id in (select FParentID from T_CON_ContractBillRRateEntry where fmoneyDefineId='"+moneyDefineId+"')");
-    			} 
-    			sb.append(" order by number");
-				ContractBillReceiveCollection conCol=ContractBillReceiveFactory.getRemoteInstance().getContractBillReceiveCollection(sb.toString());
-				for(int i=0;i<conCol.size();i++){
-					IRow row=tblMain.addRow();
-					row.setTreeLevel(0);
-					row.getStyleAttributes().setBackground(FDCTableHelper.cantEditColor);
-					
-					BigDecimal recAmount=FDCHelper.ZERO;
-					BigDecimal payReqAmount=FDCHelper.ZERO;
-					BigDecimal payTotalAmount=FDCHelper.ZERO;
-					
-					BigDecimal recTotalAmount=FDCHelper.ZERO;
-					
-					IRow recRow=tblMain.addRow();
-					recRow.setTreeLevel(1);
-					recRow.getCell("id").setValue(conCol.get(i).getId().toString());
-					recRow.getCell("curProject").setValue(conCol.get(i).getCurProject().getName());
-					recRow.getCell("contractType").setValue(conCol.get(i).getContractType().getName());
-					recRow.getCell("number").setValue(conCol.get(i).getNumber());
-					recRow.getCell("name").setValue(conCol.get(i).getName());
-					recRow.getCell("bizDate").setValue(conCol.get(i).getBookedDate());
-					recRow.getCell("auditTime").setValue(conCol.get(i).getAuditTime());
-					recRow.getCell("landDeveloper").setValue(conCol.get(i).getLandDeveloper().getName());
-					recRow.getCell("partB").setValue(conCol.get(i).getPartB().getName());
-					recRow.getCell("currency").setValue(conCol.get(i).getCurrency().getName());
-					recRow.getCell("amount").setValue(conCol.get(i).getAmount());
-					recRow.getCell("httk").setValue(conCol.get(i).getHttk());
-					
-					recRow.getCell("id").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					recRow.getCell("curProject").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					recRow.getCell("contractType").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					recRow.getCell("number").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					recRow.getCell("name").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					recRow.getCell("bizDate").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					recRow.getCell("auditTime").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					recRow.getCell("landDeveloper").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					recRow.getCell("partB").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					recRow.getCell("currency").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					recRow.getCell("amount").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					recRow.getCell("httk").getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
-					
-					recAmount=FDCHelper.add(recAmount, conCol.get(i).getAmount());
-					
-					ContractRecBillEntryCollection col=ContractRecBillEntryFactory.getRemoteInstance().getContractRecBillEntryCollection("select moneyDefine.name,*,head.* from where head.state='4AUDITTED' and head.contractBillReceive.id='"+conCol.get(i).getId().toString()+"' order by head.number");
-					for(int j=0;j<col.size();j++){
-						IRow recBillRow=tblMain.addRow();
-						recBillRow.setTreeLevel(1);
-						recBillRow.getCell("recNumber").setValue(col.get(j).getHead().getNumber());
-						recBillRow.getCell("recBizDate").setValue(col.get(j).getHead().getBizDate());
-						recBillRow.getCell("recMoneyDefine").setValue(col.get(j).getMoneyDefine().getName());
-						recBillRow.getCell("recAmount").setValue(col.get(j).getAmount());
-						recBillRow.getCell("recId").setValue(col.get(j).getHead().getId().toString());
-						
-						recBillRow.getCell("recNumber").getStyleAttributes().setBackground(FDCTableHelper.dayTotalColor);
-						recBillRow.getCell("recBizDate").getStyleAttributes().setBackground(FDCTableHelper.dayTotalColor);
-						recBillRow.getCell("recMoneyDefine").getStyleAttributes().setBackground(FDCTableHelper.dayTotalColor);
-						recBillRow.getCell("recAmount").getStyleAttributes().setBackground(FDCTableHelper.dayTotalColor);
-						recBillRow.getCell("recId").getStyleAttributes().setBackground(FDCTableHelper.dayTotalColor);
-						recTotalAmount=recTotalAmount.add(col.get(j).getAmount());
-					}
-					
-					row.getCell("recTotalAmount").setValue(recTotalAmount);
-					row.getCell("recAmount").setValue(recTotalAmount);
-					
-					row.getCell("amount").setValue(recAmount);
-					row.getCell("payTotalAmount").setValue(payTotalAmount);
-					row.getCell("sub").setValue(FDCHelper.subtract(payTotalAmount, recTotalAmount));
-					row.getCell("payReqAmount").setValue(payReqAmount);
-					row.getCell("payReqActAmount").setValue(payTotalAmount);
-				}
 				
+					row.getCell("payAmount").setValue(payAmount);
+					row.getCell("payReqAmount").setValue(payReqAmountT);
+					row.getCell("payReqActAmount").setValue(payReqActAmountT);
+					
+					
+					BigDecimal recContractAmount=(BigDecimal) row.getCell("recContractAmount").getValue();
+    	        	BigDecimal recTotalAmount=(BigDecimal) row.getCell("recTotalAmount").getValue();
+    	        	BigDecimal payContractAmount=(BigDecimal) row.getCell("payContractAmount").getValue();
+    	        	BigDecimal payReqAmountAuditting=(BigDecimal) row.getCell("payReqAmountAuditting").getValue();
+    	        	BigDecimal payReqAmountAuditted=(BigDecimal) row.getCell("payReqAmountAuditted").getValue();
+    	        	BigDecimal payTotalAmount=(BigDecimal) row.getCell("payTotalAmount").getValue();
+    	        	BigDecimal sub1=(BigDecimal) row.getCell("sub1").getValue();
+    	        	BigDecimal sub2=(BigDecimal) row.getCell("sub2").getValue();
+    	        	BigDecimal recAmount1=(BigDecimal) row.getCell("recAmount").getValue();
+    	        	BigDecimal payAmount1=(BigDecimal) row.getCell("payAmount").getValue();
+    	        	BigDecimal payReqAmount=(BigDecimal) row.getCell("payReqAmount").getValue();
+    	        	BigDecimal payReqActAmount=(BigDecimal) row.getCell("payReqActAmount").getValue();
+    	        	
+    	        	Map map=null;
+    	        	if(comMap.containsKey(comCurProjectId)){
+    	        		map=(Map) comMap.get(comCurProjectId);
+    	        	}else{
+    	        		map=new HashMap();
+    	        		comMap.put(comCurProjectId, map);
+    	        	}
+    	        	map.put("curProject", row.getCell("curProject").getValue());
+    	        	map.put("recContractAmount", FDCHelper.add(map.get("recContractAmount"), recContractAmount));
+	        		map.put("recTotalAmount", FDCHelper.add(map.get("recTotalAmount"), recTotalAmount));
+	        		map.put("payContractAmount", FDCHelper.add(map.get("payContractAmount"), payContractAmount));
+	        		map.put("payReqAmountAuditting", FDCHelper.add(map.get("payReqAmountAuditting"), payReqAmountAuditting));
+	        		map.put("payReqAmountAuditted", FDCHelper.add(map.get("payReqAmountAuditted"), payReqAmountAuditted));
+	        		map.put("payTotalAmount", FDCHelper.add(map.get("payTotalAmount"), payTotalAmount));
+	        		map.put("sub1", FDCHelper.add(map.get("sub1"), sub1));
+	        		map.put("sub2", FDCHelper.add(map.get("sub2"), sub2));
+	        		map.put("recAmount", FDCHelper.add(map.get("recAmount"), recAmount1));
+	        		map.put("payAmount", FDCHelper.add(map.get("payAmount"), payAmount1));
+	        		map.put("payReqAmount", FDCHelper.add(map.get("payReqAmount"), payReqAmount));
+	        		map.put("payReqActAmount", FDCHelper.add(map.get("payReqActAmount"), payReqActAmount));
+    	        	if(curProjectId!=null&&!curProjectId.equals(comCurProjectId)){
+    	        		IRow totalRow=tblMain.addRow(row.getRowIndex());
+    	        		Map preMap=(Map) comMap.get(curProjectId);
+    	        		totalRow.getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
+    	        		totalRow.getCell("curProjectId").setValue(curProjectId);
+    	        		if(preMap!=null){
+    	        			totalRow.getCell("curProject").setValue(preMap.get("curProject")+"-小计");
+        	        		totalRow.getCell("recContractAmount").setValue(preMap.get("recContractAmount"));
+        	        		totalRow.getCell("recTotalAmount").setValue(preMap.get("recTotalAmount"));
+        	        		totalRow.getCell("payContractAmount").setValue(preMap.get("payContractAmount"));
+        	        		totalRow.getCell("payReqAmountAuditting").setValue(preMap.get("payReqAmountAuditting"));
+        	        		totalRow.getCell("payReqAmountAuditted").setValue(preMap.get("payReqAmountAuditted"));
+        	        		totalRow.getCell("payTotalAmount").setValue(preMap.get("payTotalAmount"));
+        	        		totalRow.getCell("sub1").setValue(preMap.get("sub1"));
+        	        		totalRow.getCell("sub2").setValue(preMap.get("sub2"));
+        	        		totalRow.getCell("recAmount").setValue(preMap.get("recAmount"));
+        	        		totalRow.getCell("payAmount").setValue(preMap.get("payAmount"));
+        	        		totalRow.getCell("payReqAmount").setValue(preMap.get("payReqAmount"));
+        	        		totalRow.getCell("payReqActAmount").setValue(preMap.get("payReqActAmount"));
+    	        		}
+    	        	}
+    	        	curProjectId=comCurProjectId;
+    	        }
+    	        
+    	        Map preMap=(Map) comMap.get(curProjectId);
+    	    	if(preMap!=null){
+    	    		 IRow totalRow=tblMain.addRow();
+    	    		 totalRow.getStyleAttributes().setBackground(FDCTableHelper.KDTABLE_TOTAL_BG_COLOR);
+    	        	 totalRow.getCell("curProjectId").setValue(curProjectId);
+    	        	 totalRow.getCell("curProject").setValue(preMap.get("curProject")+"-小计");
+ 	        		totalRow.getCell("recContractAmount").setValue(preMap.get("recContractAmount"));
+ 	        		totalRow.getCell("recTotalAmount").setValue(preMap.get("recTotalAmount"));
+ 	        		totalRow.getCell("payContractAmount").setValue(preMap.get("payContractAmount"));
+ 	        		totalRow.getCell("payReqAmountAuditting").setValue(preMap.get("payReqAmountAuditting"));
+ 	        		totalRow.getCell("payReqAmountAuditted").setValue(preMap.get("payReqAmountAuditted"));
+ 	        		totalRow.getCell("payTotalAmount").setValue(preMap.get("payTotalAmount"));
+ 	        		totalRow.getCell("sub1").setValue(preMap.get("sub1"));
+ 	        		totalRow.getCell("sub2").setValue(preMap.get("sub2"));
+ 	        		totalRow.getCell("recAmount").setValue(preMap.get("recAmount"));
+ 	        		totalRow.getCell("payAmount").setValue(preMap.get("payAmount"));
+ 	        		totalRow.getCell("payReqAmount").setValue(preMap.get("payReqAmount"));
+ 	        		totalRow.getCell("payReqActAmount").setValue(preMap.get("payReqActAmount"));
+    	    	}
     	        if(rs.getRowCount() > 0){
     	        	tblMain.reLayoutAndPaint();
     	        }else{
@@ -480,16 +428,20 @@ public class ContractBillReceiveReportUI extends AbstractContractBillReceiveRepo
     	        }
     	        tblMain.setRefresh(true);
     	        
-    	        CRMClientHelper.changeTableNumberFormat(tblMain, new String[]{"amount","recTotalAmount","payTotalAmount","sub","payAmount","recAmount","payReqAmount","payReqActAmount"});
+    	        String []sum=new String[]{"recContractAmount","recTotalAmount","payContractAmount","payReqAmountAuditting","payReqAmountAuditted","payTotalAmount","sub1","sub2","recAmount","payAmount","payReqAmount","payReqActAmount"};
+    	        CRMClientHelper.changeTableNumberFormat(tblMain, sum);
     	        CRMClientHelper.fmtDate(tblMain, "bizDate");
     	        CRMClientHelper.fmtDate(tblMain, "auditTime");
     			CRMClientHelper.fmtDate(tblMain, "payBizDate");
     			CRMClientHelper.fmtDate(tblMain, "payAuditTime");
     			tblMain.getColumn("number").getStyleAttributes().setFontColor(Color.BLUE);
-    			tblMain.getColumn("recNumber").getStyleAttributes().setFontColor(Color.BLUE);
     			tblMain.getColumn("payNumber").getStyleAttributes().setFontColor(Color.BLUE);
-    			tblMain.getColumn("payReqNumber").getStyleAttributes().setFontColor(Color.BLUE);
+    			tblMain.getColumn("recCount").getStyleAttributes().setFontColor(Color.BLUE);
+    			tblMain.getColumn("payReqCount").getStyleAttributes().setFontColor(Color.BLUE);
+    			tblMain.getColumn("payReqActCount").getStyleAttributes().setFontColor(Color.BLUE);
     			tblMain.getColumn("httk").getStyleAttributes().setFontColor(Color.BLUE);
+    			
+     	        getFootRow(tblMain, sum);
     			
     			final KDBizMultiLangArea textField = new KDBizMultiLangArea();
     			//更改变更内容控件--以适应换行内容
@@ -507,6 +459,65 @@ public class ContractBillReceiveReportUI extends AbstractContractBillReceiveRepo
         dialog.show();
         isQuery=false;
 	}
+	public  void getFootRow(KDTable tblMain,String[] columnName){
+		IRow footRow = null;
+        KDTFootManager footRowManager = tblMain.getFootManager();
+        if(footRowManager == null)
+        {
+            String total = EASResource.getString("com.kingdee.eas.framework.FrameWorkResource.Msg_Total");
+            footRowManager = new KDTFootManager(tblMain);
+            footRowManager.addFootView();
+            tblMain.setFootManager(footRowManager);
+            footRow = footRowManager.addFootRow(0);
+            footRow.getStyleAttributes().setHorizontalAlign(com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment.getAlignment("right"));
+            tblMain.getIndexColumn().setWidthAdjustMode((short)1);
+            tblMain.getIndexColumn().setWidth(30);
+            footRowManager.addIndexText(0, total);
+        } else
+        {
+            footRow = footRowManager.getFootRow(0);
+        }
+        int columnCount = tblMain.getColumnCount();
+        for(int c = 0; c < columnCount; c++)
+        {
+            String fieldName = tblMain.getColumn(c).getKey();
+            for(int i = 0; i < columnName.length; i++)
+            {
+                String colName = (String)columnName[i];
+                if(colName.equalsIgnoreCase(fieldName))
+                {
+                    ICell cell = footRow.getCell(c);
+                    cell.getStyleAttributes().setNumberFormat("#,##0.00;-#,##0.00");
+                    cell.getStyleAttributes().setHorizontalAlign(com.kingdee.bos.ctrl.kdf.util.style.Styles.HorizontalAlignment.getAlignment("right"));
+                    cell.getStyleAttributes().setFontColor(java.awt.Color.BLACK);
+                    cell.setValue(getColumnValueSum(tblMain,colName));
+                }
+            }
+
+        }
+        footRow.getStyleAttributes().setBackground(new java.awt.Color(246, 246, 191));
+	}
+	 public  BigDecimal getColumnValueSum(KDTable table,String columnName) {
+	    	BigDecimal sum = new BigDecimal(0);
+	        for(int i=0;i<table.getRowCount();i++){
+	        	if(table.getRow(i).getCell(columnName).getValue()!=null &&table.getRow(i).getStyleAttributes().getBackground().equals(FDCTableHelper.cantEditColor)){
+	        		if( table.getRow(i).getCell(columnName).getValue() instanceof BigDecimal)
+	            		sum = sum.add((BigDecimal)table.getRow(i).getCell(columnName).getValue());
+	            	else if(table.getRow(i).getCell(columnName).getValue() instanceof String){
+	            		String value = (String)table.getRow(i).getCell(columnName).getValue();
+	            		if(value.indexOf("零")==-1 && value.indexOf("[]")==-1){
+	            			value = value.replaceAll(",", "");
+	                		sum = sum.add(new BigDecimal(value));
+	            		}
+	            	}
+	            	else if(table.getRow(i).getCell(columnName).getValue() instanceof Integer){
+	            		String value = table.getRow(i).getCell(columnName).getValue().toString();
+	            		sum = sum.add(new BigDecimal(value));
+	            	}
+	        	}
+	        }
+	        return sum;
+	    }
 	  private String SetToIn(Set set){
 	    	Iterator it=set.iterator();
 	    	String in="(";
@@ -593,14 +604,6 @@ public class ContractBillReceiveReportUI extends AbstractContractBillReceiveRepo
 				uiContext.put("ID", id);
 				IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ContractBillReceiveEditUI.class.getName(), uiContext, null, OprtState.VIEW);
 				uiWindow.show();
-			}else if(this.tblMain.getColumn(e.getColIndex()).getKey().equals("recNumber")){
-				String id=(String) this.tblMain.getRow(e.getRowIndex()).getCell("recId").getValue();
-				if(id==null)return;
-				UIContext uiContext = new UIContext(this);
-				uiContext.put(UIContext.OWNER, this);
-				uiContext.put("ID", id);
-				IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ContractRecBillEditUI.class.getName(), uiContext, null, OprtState.VIEW);
-				uiWindow.show();
 			}else if(this.tblMain.getColumn(e.getColIndex()).getKey().equals("payNumber")){
 				String id=(String) this.tblMain.getRow(e.getRowIndex()).getCell("payId").getValue();
 				if(id==null)return;
@@ -609,13 +612,38 @@ public class ContractBillReceiveReportUI extends AbstractContractBillReceiveRepo
 				uiContext.put("ID", id);
 				IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ContractBillEditUI.class.getName(), uiContext, null, OprtState.VIEW);
 				uiWindow.show();
-			}else if(this.tblMain.getColumn(e.getColIndex()).getKey().equals("payReqNumber")){
-				String id=(String) this.tblMain.getRow(e.getRowIndex()).getCell("payReqId").getValue();
+			}else if(this.tblMain.getColumn(e.getColIndex()).getKey().equals("recCount")){
+				String id=(String) this.tblMain.getRow(e.getRowIndex()).getCell("id").getValue();
 				if(id==null)return;
 				UIContext uiContext = new UIContext(this);
+				RptParams param=new RptParams();
+				param.setObject("id", id);
+				param.setObject("type", "recCount");
 				uiContext.put(UIContext.OWNER, this);
-				uiContext.put("ID", id);
-				IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(PayRequestBillEditUI.class.getName(), uiContext, null, OprtState.VIEW);
+				uiContext.put("RPTFilter", param);
+				IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ContractBillReceiveDetailReportUI.class.getName(), uiContext, null, OprtState.VIEW);
+				uiWindow.show();
+			}else if(this.tblMain.getColumn(e.getColIndex()).getKey().equals("payReqCount")){
+				String id=(String) this.tblMain.getRow(e.getRowIndex()).getCell("payId").getValue();
+				if(id==null)return;
+				UIContext uiContext = new UIContext(this);
+				RptParams param=new RptParams();
+				param.setObject("id", id);
+				param.setObject("type", "payReqCount");
+				uiContext.put(UIContext.OWNER, this);
+				uiContext.put("RPTFilter", param);
+				IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ContractBillReceiveDetailReportUI.class.getName(), uiContext, null, OprtState.VIEW);
+				uiWindow.show();
+			}else if(this.tblMain.getColumn(e.getColIndex()).getKey().equals("payReqActCount")){
+				String id=(String) this.tblMain.getRow(e.getRowIndex()).getCell("payId").getValue();
+				if(id==null)return;
+				UIContext uiContext = new UIContext(this);
+				RptParams param=new RptParams();
+				param.setObject("id", id);
+				param.setObject("type", "payReqActCount");
+				uiContext.put(UIContext.OWNER, this);
+				uiContext.put("RPTFilter", param);
+				IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ContractBillReceiveDetailReportUI.class.getName(), uiContext, null, OprtState.VIEW);
 				uiWindow.show();
 			}
 		}

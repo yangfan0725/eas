@@ -5,6 +5,7 @@ package com.kingdee.eas.fdc.tenancy.client;
 
 import java.awt.event.ActionEvent;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
@@ -42,6 +43,7 @@ import com.kingdee.eas.fdc.tenancy.QuitTenancyInfo;
 import com.kingdee.eas.fdc.tenancy.TenancyBillInfo;
 import com.kingdee.eas.fdc.tenancy.TenancyBillStateEnum;
 import com.kingdee.eas.fdc.tenancy.TenancyDisPlaySetting;
+import com.kingdee.eas.util.client.EASResource;
 import com.kingdee.eas.util.client.MsgBox;
 
 /**
@@ -406,5 +408,43 @@ public class QuitTenancyEditUI extends AbstractQuitTenancyEditUI
 		// TODO Auto-generated method stub
 		return new MetaDataPK("com.kingdee.eas.fdc.tenancy.app.QuitTenancyPrintQuery");
 	}
+    public void actionPrint_actionPerformed(ActionEvent e) throws Exception {
+		ArrayList idList = new ArrayList();
+		if (editData != null && !StringUtils.isEmpty(editData.getString("id"))) {
+			idList.add(editData.getString("id"));
+		}
+		if (idList == null || idList.size() == 0 || getTDQueryPK() == null
+				|| getTDFileName() == null) {
+			MsgBox.showWarning(this, EASResource.getString(
+					"com.kingdee.eas.fdc.basedata.client.FdcResource",
+					"cantPrint"));
+			return;
+		}
+		QuitTenancyDataProvider data = new QuitTenancyDataProvider(editData
+				.getString("id"), getTDQueryPK());
+		com.kingdee.bos.ctrl.report.forapp.kdnote.client.KDNoteHelper appHlp = new com.kingdee.bos.ctrl.report.forapp.kdnote.client.KDNoteHelper();
+		appHlp.print(getTDFileName(), data, javax.swing.SwingUtilities
+				.getWindowAncestor(this));
+	}
 
+	public void actionPrintPreview_actionPerformed(ActionEvent e)
+			throws Exception {
+		ArrayList idList = new ArrayList();
+		if (editData != null && !StringUtils.isEmpty(editData.getString("id"))) {
+			idList.add(editData.getString("id"));
+		}
+		if (idList == null || idList.size() == 0 || getTDQueryPK() == null
+				|| getTDFileName() == null) {
+			MsgBox.showWarning(this, EASResource.getString(
+					"com.kingdee.eas.fdc.basedata.client.FdcResource",
+					"cantPrint"));
+			return;
+
+		}
+		QuitTenancyDataProvider data = new QuitTenancyDataProvider(editData
+				.getString("id"), getTDQueryPK());
+		com.kingdee.bos.ctrl.report.forapp.kdnote.client.KDNoteHelper appHlp = new com.kingdee.bos.ctrl.report.forapp.kdnote.client.KDNoteHelper();
+		appHlp.printPreview(getTDFileName(), data, javax.swing.SwingUtilities
+				.getWindowAncestor(this));
+	}
 }

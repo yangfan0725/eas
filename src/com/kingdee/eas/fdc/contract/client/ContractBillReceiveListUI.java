@@ -275,6 +275,8 @@ public class ContractBillReceiveListUI extends AbstractContractBillReceiveListUI
 		FDCHelper.formatTableNumber(this.tblContractBill, "amount");
 		
 		tHelper=null;
+		
+		this.actionContract.setVisible(false);
 	}
 	
 	protected void updateButtonStatus() {
@@ -362,24 +364,21 @@ protected void tblMain_tableSelectChanged(
 			if(row.getCell("id").getValue()!=null){
 				this.tblContractBill.removeRows();
 				String id=row.getCell("id").getValue().toString();
-				ContractBillReceiveInfo info=ContractBillReceiveFactory.getRemoteInstance().getContractBillReceiveInfo(new ObjectUuidPK(id));
-				if(info.getContractBill()!=null){
-					ContractBillCollection col=ContractBillFactory.getRemoteInstance().getContractBillCollection("select *,contractType.*,partB.*,partC.*,respPerson.*,respDept.*,landDeveloper.* from where id='"+info.getContractBill().getId()+"'");
-					for(int i=0;i<col.size();i++){
-						IRow cbRow=this.tblContractBill.addRow();
-						cbRow.getCell("id").setValue(col.get(i).getId().toString());
-						cbRow.getCell("contractType").setValue(col.get(i).getContractType().getName());
-						cbRow.getCell("number").setValue(col.get(i).getNumber());
-						cbRow.getCell("contractName").setValue(col.get(i).getName());
-						cbRow.getCell("amount").setValue(col.get(i).getAmount());
-						cbRow.getCell("partB").setValue(col.get(i).getPartB().getName());
-						cbRow.getCell("signDate").setValue(col.get(i).getSignDate());
-						cbRow.getCell("landDeveloper").setValue(col.get(i).getLandDeveloper().getName());
-						if(col.get(i).getPartC()!=null)cbRow.getCell("partC").setValue(col.get(i).getPartC().getName());
-						cbRow.getCell("contractPropert").setValue(col.get(i).getContractPropert().getAlias());
-						cbRow.getCell("respPerson").setValue(col.get(i).getRespPerson().getName());
-						cbRow.getCell("respDept").setValue(col.get(i).getRespDept().getName());
-					}
+				ContractBillCollection col=ContractBillFactory.getRemoteInstance().getContractBillCollection("select *,contractType.*,partB.*,partC.*,respPerson.*,respDept.*,landDeveloper.* from where contractBillReceive.id='"+id+"'");
+				for(int i=0;i<col.size();i++){
+					IRow cbRow=this.tblContractBill.addRow();
+					cbRow.getCell("id").setValue(col.get(i).getId().toString());
+					cbRow.getCell("contractType").setValue(col.get(i).getContractType().getName());
+					cbRow.getCell("number").setValue(col.get(i).getNumber());
+					cbRow.getCell("contractName").setValue(col.get(i).getName());
+					cbRow.getCell("amount").setValue(col.get(i).getAmount());
+					cbRow.getCell("partB").setValue(col.get(i).getPartB().getName());
+					cbRow.getCell("signDate").setValue(col.get(i).getBookedDate());
+					cbRow.getCell("landDeveloper").setValue(col.get(i).getLandDeveloper().getName());
+					if(col.get(i).getPartC()!=null)cbRow.getCell("partC").setValue(col.get(i).getPartC().getName());
+					cbRow.getCell("contractPropert").setValue(col.get(i).getContractPropert().getAlias());
+					cbRow.getCell("respPerson").setValue(col.get(i).getRespPerson().getName());
+					cbRow.getCell("respDept").setValue(col.get(i).getRespDept().getName());
 				}
 			}
 		}

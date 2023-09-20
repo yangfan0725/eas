@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uiObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.contract.client</package>
+    <name>ContractBillReceiveDetailReportUI</name>
+    <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveDetailReportUI].alias</alias>
+    <description>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveDetailReportUI].description</description>
+    <userDefined>true</userDefined>
+    <releasePackage>com.kingdee.eas.fdc.contract.client</releasePackage>
+    <releaseClass>ContractBillReceiveDetailReportUI</releaseClass>
+    <title>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveDetailReportUI].title</title>
+    <uitype />
+    <defaultbutton />
+    <bizUnitPK />
+    <parent>
+        <key name="package" value="com.kingdee.eas.framework.report.client" />
+        <key name="name" value="CommRptBaseUI" />
+    </parent>
+    <components>
+        <component>
+            <name>tblMain</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveDetailReportUI].components.component[tblMain].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.kdf.table.KDTable</classType>
+            <isContainer>false</isContainer>
+            <constraints>4,3,1009,594,15</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <parent>
+                <key name="name" value="CoreUI" />
+            </parent>
+            <eventBindings>
+                <eventBinding>
+                    <name>tableClicked</name>
+                    <eventType>com.kingdee.bos.ctrl.kdf.table.event.KDTMouseEvent</eventType>
+                    <scene />
+                    <listenerType>com.kingdee.bos.ctrl.kdf.table.event.KDTMouseListener</listenerType>
+                    <listenerAdapter>com.kingdee.bos.ctrl.kdf.table.event.KDTMouseListener</listenerAdapter>
+                    <methodName>tblMain_tableClicked</methodName>
+                    <code />
+                    <isBindWorkFlow>false</isBindWorkFlow>
+                    <herited>false</herited>
+                    <userDefined>false</userDefined>
+                </eventBinding>
+            </eventBindings>
+        </component>
+    </components>
+    <resource>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveDetailReportUI].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="收入合同执行情况表-穿透" />
+            <lang locale="zh_HK" value="收入合同執行情況表-穿透" />
+            <lang locale="zh_TW" value="收入合同執行情況表-穿透" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveDetailReportUI].components.component[tblMain].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveDetailReportUI].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="日报周报月报年报" />
+            <lang locale="zh_HK" value="日報週報月報年報" />
+            <lang locale="zh_TW" value="日報週報月報年報" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveDetailReportUI].title">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="收入合同执行情况表-穿透" />
+            <lang locale="zh_HK" value="收入合同執行情況表-穿透" />
+            <lang locale="zh_TW" value="收入合同執行情況表-穿透" />
+        </rs>
+    </resource>
+</uiObject>
+

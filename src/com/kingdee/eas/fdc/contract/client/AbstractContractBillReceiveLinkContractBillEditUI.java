@@ -133,7 +133,7 @@ public abstract class AbstractContractBillReceiveLinkContractBillEditUI extends 
         this.txtControlBalance.setPrecision(2);		
         this.txtControlBalance.setDataType(1);
         // prmtContract		
-        this.prmtContract.setQueryInfo("com.kingdee.eas.fdc.contract.app.ContractBillF7Query");		
+        this.prmtContract.setQueryInfo("com.kingdee.eas.fdc.contract.app.ContractBillReceiveQuery");		
         this.prmtContract.setCommitFormat("$name$");		
         this.prmtContract.setEditFormat("$name$");		
         this.prmtContract.setDisplayFormat("$name$");

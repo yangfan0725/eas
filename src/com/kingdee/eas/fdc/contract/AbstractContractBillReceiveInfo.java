@@ -170,7 +170,7 @@ public class AbstractContractBillReceiveInfo extends com.kingdee.eas.fdc.basedat
         setBigDecimal("secondPrice", item);
     }
     /**
-     * Object: 合同单据（收入类） 's 甲方 property 
+     * Object: 合同单据（收入类） 's 本方单位 property 
      */
     public com.kingdee.eas.fdc.basedata.LandDeveloperInfo getLandDeveloper()
     {
@@ -231,7 +231,7 @@ public class AbstractContractBillReceiveInfo extends com.kingdee.eas.fdc.basedat
 		}
     }
     /**
-     * Object: 合同单据（收入类） 's 乙方 property 
+     * Object: 合同单据（收入类） 's 服务单位 property 
      */
     public com.kingdee.eas.basedata.master.cssp.CustomerInfo getPartB()
     {
@@ -385,7 +385,7 @@ public class AbstractContractBillReceiveInfo extends com.kingdee.eas.fdc.basedat
         setBigDecimal("grtRate", item);
     }
     /**
-     * Object:合同单据（收入类）'s 备注property 
+     * Object:合同单据（收入类）'s 合同类别property 
      */
     public String getRemark()
     {
