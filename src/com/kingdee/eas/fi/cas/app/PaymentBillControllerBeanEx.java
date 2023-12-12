@@ -126,6 +126,14 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
 		for(int size = coll.size(); i < size; i++){
             info = coll.get(i);
             if(info.getSourceType().equals(SourceTypeEnum.FDC)||(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType()))){
+            	if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
+                	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
+                    builder.appendSql("update T_CAS_PaymentBill set fbillstatus=?,fbizDate=? where fid=? ");
+                    builder.addParam(15);
+                    builder.addParam(now);
+                    builder.addParam(info.getSourceBillId());
+                    builder.executeUpdate();
+                }
             	String payRequestBillId=null;
             	if(info.getSourceBillId()!=null){
             		PaymentBillInfo payInfo=PaymentBillFactory.getLocalInstance(ctx).getPaymentBillInfo(new ObjectUuidPK(info.getSourceBillId()));
@@ -135,14 +143,6 @@ public class PaymentBillControllerBeanEx extends PaymentBillControllerBean {
             	}
             	if(payRequestBillId != null){
             		PayRequestBillInfo payRequest=PayRequestBillFactory.getLocalInstance(ctx).getPayRequestBillInfo(new ObjectUuidPK(payRequestBillId),getSelectors());
-            		if(info.getSourceBillId()!=null&&BOSUuid.read(info.getSourceBillId()).getType().equals(info.getBOSType())){
-                    	FDCSQLBuilder builder = new FDCSQLBuilder(ctx);
-                        builder.appendSql("update T_CAS_PaymentBill set fbillstatus=?,fbizDate=? where fid=? ");
-                        builder.addParam(15);
-                        builder.addParam(now);
-                        builder.addParam(info.getSourceBillId());
-                        builder.executeUpdate();
-                    }
 //                    BgControlFacadeFactory.getLocalInstance(ctx).bgAudit(info.getId().toString(), "com.kingdee.eas.fi.cas.app.PaymentBill", null);
                     for(int k=0;k<info.getEntries().size();k++){
                     	if(info.getEntries().get(k).getSourceBillEntryId()!=null){

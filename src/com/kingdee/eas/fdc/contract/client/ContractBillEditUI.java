@@ -4977,7 +4977,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 //			}
 			
 			BigDecimal subAmount=FDCHelper.ZERO;
-			MarketProjectCollection mpcol=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select amount,costEntry.*,costEntry.costAccount.* from where isSub=1 and mp.id='"+info.getId()+"'");
+			MarketProjectCollection mpcol=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select amount,costEntry.*,costEntry.costAccount.* from where state!='1SAVED' and isSub=1 and mp.id='"+info.getId()+"'");
 			for(int i=0;i<mpcol.size();i++){
 				for(int j=0;j<mpcol.get(i).getCostEntry().size();j++){
 					if(mpcol.get(i).getCostEntry().get(j).getCostAccount().getId().equals(cinfo.getId())){
@@ -5890,7 +5890,7 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 //			}
 			
 			BigDecimal subAmount=FDCHelper.ZERO;
-			MarketProjectCollection mpcol=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select amount,costEntry.*,costEntry.costAccount.* from where isSub=1 and mp.id='"+info.getId()+"'");
+			MarketProjectCollection mpcol=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select amount,costEntry.*,costEntry.costAccount.* from where state!='1SAVED' and isSub=1 and mp.id='"+info.getId()+"'");
 			for(int i=0;i<mpcol.size();i++){
 				for(int j=0;j<mpcol.get(i).getCostEntry().size();j++){
 					if(mpcol.get(i).getCostEntry().get(j).getCostAccount().getId().equals(cinfo.getId())){

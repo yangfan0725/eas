@@ -245,6 +245,7 @@ import com.kingdee.eas.fdc.tenancy.TenancyRoomPayListEntryInfo;
 import com.kingdee.eas.fdc.tenancy.TenancyStateEnum;
 import com.kingdee.eas.framework.CoreBaseCollection;
 import com.kingdee.eas.util.SysUtil;
+import com.kingdee.eas.util.app.ContextUtil;
 import com.kingdee.eas.util.client.EASResource;
 import com.kingdee.eas.util.client.MsgBox;
 import com.kingdee.jdbc.rowset.IRowSet;
@@ -430,7 +431,29 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 		} catch (BOSException e) {
 			this.handleException(e);
 		}
-
+		String param="false";
+		try {
+			param = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_TENCT");
+		} catch (EASBizException e) {
+			e.printStackTrace();
+		} catch (BOSException e) {
+			e.printStackTrace();
+		}
+		if("true".equals(param)){
+			if (TenancyContractTypeEnum.ContinueTenancy
+					.equals(this.comboTenancyType.getSelectedItem())){
+				for(int i=0;i<this.tblPayList.getRowCount();i++){
+					IRow row=this.tblPayList.getRow(i);
+					for (int j = 0; j < monDefineColl.size(); j++) {
+						MoneyDefineInfo moneyInfo = monDefineColl.get(j);
+						String m=row.getCell(C_PAYS_MONEY_DEFINE).getValue().toString();
+						if (m!=null&&m.equals(("  "+moneyInfo.getName()))) {
+							row.getCell(PREFIX_C_PAYS_ROOM + 0 + POSTFIX_C_PAYS_APP_AMOUNT).getStyleAttributes().setLocked(true);
+						}
+					}
+				}
+			}
+		}
 		if (this.tblRoom.getRowCount() > 0) {
 			this.prmtRentFreeBill.setEnabled(true);
 			TenancyRoomEntryInfo entry = (TenancyRoomEntryInfo) this.tblRoom
@@ -4502,6 +4525,27 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 		} else {
 			loadTblRentSet(tenRooms, tenAttaches);
 		}
+		String param="false";
+		try {
+			param = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_TENCT");
+		} catch (EASBizException e) {
+			e.printStackTrace();
+		}
+		if("true".equals(param)){
+			if (TenancyContractTypeEnum.ContinueTenancy
+					.equals(this.comboTenancyType.getSelectedItem())){
+				for(int i=0;i<this.tblRentSet.getColumnCount();i++){
+					IColumn column = this.tblRentSet.getColumn(i);
+					String colKey = column.getKey();
+					for (int j = 0; j < monDefineColl.size(); j++) {
+						MoneyDefineInfo moneyInfo = monDefineColl.get(j);
+						if (colKey.equals(moneyInfo.getNumber())) {
+							column.getStyleAttributes().setLocked(true);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -8504,6 +8548,28 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 		}
 		setIsbtnPayList(isFreeContract);
 		setOtherFreeContract(!this.chkIsFreeContract.isSelected());
+		
+		String param="false";
+		try {
+			param = ParamControlFactory.getRemoteInstance().getParamValue(new ObjectUuidPK(SysContext.getSysContext().getCurrentOrgUnit().getId()), "YF_TENCT");
+		} catch (EASBizException e) {
+			e.printStackTrace();
+		}
+		if("true".equals(param)){
+			if (TenancyContractTypeEnum.ContinueTenancy
+					.equals(this.comboTenancyType.getSelectedItem())){
+				for(int i=0;i<this.tblPayList.getRowCount();i++){
+					IRow row=this.tblPayList.getRow(i);
+					for (int j = 0; j < monDefineColl.size(); j++) {
+						MoneyDefineInfo moneyInfo = monDefineColl.get(j);
+						String m=row.getCell(C_PAYS_MONEY_DEFINE).getValue().toString();
+						if (m!=null&&m.equals(("  "+moneyInfo.getName()))) {
+							row.getCell(PREFIX_C_PAYS_ROOM + 0 + POSTFIX_C_PAYS_APP_AMOUNT).getStyleAttributes().setLocked(true);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	private void rentSetStyle() {

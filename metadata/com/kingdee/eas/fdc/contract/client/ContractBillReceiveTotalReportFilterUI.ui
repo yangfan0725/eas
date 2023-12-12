@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uiObject xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.contract.client</package>
+    <name>ContractBillReceiveTotalReportFilterUI</name>
+    <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].alias</alias>
+    <description>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].description</description>
+    <userDefined>true</userDefined>
+    <releasePackage>com.kingdee.eas.fdc.contract.client</releasePackage>
+    <releaseClass>ContractBillReceiveTotalReportFilterUI</releaseClass>
+    <title>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].title</title>
+    <uitype />
+    <defaultbutton />
+    <bizUnitPK />
+    <parent>
+        <key name="package" value="com.kingdee.eas.framework.report.client" />
+        <key name="name" value="CommRptBaseConditionUI" />
+    </parent>
+    <components>
+        <component>
+            <name>CustomerQueryPanel</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[CustomerQueryPanel].alias</alias>
+            <userDefined>false</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDPanel</classType>
+            <isContainer>true</isContainer>
+            <constraints>10,10,600,150</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+        </component>
+        <component>
+            <name>kDLabelContainer1</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[kDLabelContainer1].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>14,40,270,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>false</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>false</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>false</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>contStartDate</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contStartDate].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>14,70,270,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contStartDate].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contStartDate].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contStartDate].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>contEndDate</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contEndDate].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDLabelContainer</classType>
+            <isContainer>true</isContainer>
+            <constraints>311,70,270,19</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>LabelContainerLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>boundLabelText</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contEndDate].properties.property[boundLabelText].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelLength</name>
+                    <type>int</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contEndDate].properties.property[boundLabelLength].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+                <property>
+                    <name>boundLabelUnderline</name>
+                    <type>boolean</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contEndDate].properties.property[boundLabelUnderline].value</value>
+                    <isMultiLan>false</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="CustomerQueryPanel" />
+            </parent>
+        </component>
+        <component>
+            <name>cbType</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[cbType].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDComboBox</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <properties>
+                <property>
+                    <name>items</name>
+                    <type>java.lang.String</type>
+                    <value>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[cbType].properties.property[items].value</value>
+                    <isMultiLan>true</isMultiLan>
+                    <userDefined>true</userDefined>
+                </property>
+            </properties>
+            <parent>
+                <key name="name" value="kDLabelContainer1" />
+            </parent>
+            <eventBindings>
+                <eventBinding>
+                    <name>itemStateChanged</name>
+                    <eventType>java.awt.event.ItemEvent</eventType>
+                    <scene />
+                    <listenerType>java.awt.event.ItemListener</listenerType>
+                    <listenerAdapter>java.awt.event.ItemListener</listenerAdapter>
+                    <methodName>comboTPFilter_itemStateChanged</methodName>
+                    <code />
+                    <isBindWorkFlow>false</isBindWorkFlow>
+                    <herited>false</herited>
+                    <userDefined>false</userDefined>
+                </eventBinding>
+            </eventBindings>
+        </component>
+        <component>
+            <name>pkStartDate</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[pkStartDate].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDDatePicker</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <parent>
+                <key name="name" value="contStartDate" />
+            </parent>
+        </component>
+        <component>
+            <name>pkEndDate</name>
+            <alias>uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[pkEndDate].alias</alias>
+            <userDefined>true</userDefined>
+            <classType>com.kingdee.bos.ctrl.swing.KDDatePicker</classType>
+            <isContainer>false</isContainer>
+            <constraints>7</constraints>
+            <tabIndex>0</tabIndex>
+            <herited>false</herited>
+            <bimUIObjectPK />
+            <layoutInfo>
+                <name />
+                <type>XYLayout</type>
+                <value />
+            </layoutInfo>
+            <parent>
+                <key name="name" value="contEndDate" />
+            </parent>
+        </component>
+    </components>
+    <resource>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="增值服务信息汇总表过滤" />
+            <lang locale="zh_HK" value="增值服務信息匯總表過濾" />
+            <lang locale="zh_TW" value="增值服務信息匯總表過濾" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[CustomerQueryPanel].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[cbType].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[cbType].properties.property[items].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="[Enum]com.kingdee.eas.fdc.contract.ContractBillReceiveTotalReportFilterEnum" />
+            <lang locale="zh_HK" value="[Enum]com.kingdee.eas.fdc.contract.ContractBillReceiveTotalReportFilterEnum" />
+            <lang locale="zh_TW" value="[Enum]com.kingdee.eas.fdc.contract.ContractBillReceiveTotalReportFilterEnum" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contEndDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contEndDate].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contEndDate].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="结束日期" />
+            <lang locale="zh_HK" value="結束日期" />
+            <lang locale="zh_TW" value="結束日期" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contEndDate].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contStartDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contStartDate].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contStartDate].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="开始日期" />
+            <lang locale="zh_HK" value="開始日期" />
+            <lang locale="zh_TW" value="開始日期" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[contStartDate].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[kDLabelContainer1].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelLength].value">
+            <lang locale="en_US" value="100" />
+            <lang locale="zh_CN" value="100" />
+            <lang locale="zh_HK" value="100" />
+            <lang locale="zh_TW" value="100" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelText].value">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="按" />
+            <lang locale="zh_HK" value="按" />
+            <lang locale="zh_TW" value="按" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[kDLabelContainer1].properties.property[boundLabelUnderline].value">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_HK" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[pkEndDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].components.component[pkStartDate].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="日报周报月报年报过滤" />
+            <lang locale="zh_HK" value="日報週報月報年報過濾" />
+            <lang locale="zh_TW" value="日報週報月報年報過濾" />
+        </rs>
+        <rs key="uiObject[com.kingdee.eas.fdc.contract.client.ContractBillReceiveTotalReportFilterUI].title">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="增值服务信息汇总表过滤" />
+            <lang locale="zh_HK" value="增值服務信息匯總表過濾" />
+            <lang locale="zh_TW" value="增值服務信息匯總表過濾" />
+        </rs>
+    </resource>
+</uiObject>
+

@@ -170,7 +170,7 @@ public class RevDetailFinReportFacadeControllerBean extends AbstractRevDetailFin
     	sb.append(" left join t_she_room room on room.fid=roomEntry.froomId left join t_she_building build on build.fid=room.fbuildingId left join t_she_sellProject sp on sp.fid=con.fsellProjectid");
     	sb.append(" left join T_TEN_TenancyRoomPayListEntry pay on pay.ftenRoomId=roomEntry.fid left join t_she_moneyDefine md on md.fid=pay.fmoneyDefineId left join T_TEN_RentFreeEntry rent on rent.ftenancyId=con.fid");
     	sb.append(" left join (select sum(fappAmount) amount,bill.FTenancyBillId conId from T_TEN_OtherBill bill left join  T_TEN_TenBillOtherPay entry on bill.fid=entry.FOtherBillId group by bill.FTenancyBillId) other on other.conId=con.fid");
-    	sb.append(" where md.fid is not null");
+    	sb.append(" where md.fid is not null and md.FMoneyType!='DepositAmount'");
     	if(isAll){
     		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying','Expiration')");
     	}else{
@@ -211,7 +211,7 @@ public class RevDetailFinReportFacadeControllerBean extends AbstractRevDetailFin
     	sb.append(" left join t_she_room room on room.fid=roomEntry.froomId left join t_she_building build on build.fid=room.fbuildingId left join t_she_sellProject sp on sp.fid=con.fsellProjectid");
     	sb.append(" left join T_TEN_TenBillOtherPay pay on pay.fheadId=con.fid left join t_she_moneyDefine md on md.fid=pay.fmoneyDefineId left join T_TEN_RentFreeEntry rent on rent.ftenancyId=con.fid");
     	sb.append(" left join (select sum(fappAmount) amount,bill.FTenancyBillId conId from T_TEN_OtherBill bill left join  T_TEN_TenBillOtherPay entry on bill.fid=entry.FOtherBillId group by bill.FTenancyBillId) other on other.conId=con.fid");
-    	sb.append(" where md.fid is not null");
+    	sb.append(" where md.fid is not null and md.FMoneyType!='DepositAmount'");
     	if(isAll){
     		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying','Expiration')");
     	}else{
@@ -255,7 +255,7 @@ public class RevDetailFinReportFacadeControllerBean extends AbstractRevDetailFin
     	sb.append(" select revBill.revDate,pay.fIsUnPay isUnPay,md.fid mdId,con.fid conId,pay.fappDate appDate,year(pay.fappDate) appYear,month(pay.fappDate) appMonth,isnull(pay.fappAmount,0) appAmount,isnull(pay.finvoiceAmount,0) invoiceAmount,isnull(pay.factRevAmount,0)-isnull(pay.fhasrefundmentamount,0) actRevAmount,");
     	sb.append(" (case when pay.fappAmount=isnull(pay.factRevAmount,0)-isnull(pay.fhasrefundmentamount,0) or datediff(day,pay.fappDate,convert(DATETIME,'"+toODDateStr+"'))<0 then 0 else datediff(day,pay.fappDate,convert(DATETIME,'"+toODDateStr+"')) end) overdueDays from T_TEN_TenancyRoomPayListEntry pay left join T_TEN_TenancyRoomEntry roomEntry on pay.ftenRoomId=roomEntry.fid left join T_TEN_TenancyBill con on con.fid=roomEntry.ftenancyId left join t_she_moneyDefine md on md.fid=pay.fmoneyDefineId");
     	sb.append(" left join T_TEN_TenancyRoomEntry roomEntry1 on con.fid=roomEntry1.ftenancyId left join t_she_room room on room.fid=roomEntry.froomId left join t_she_sellProject sp on sp.fid=con.fsellProjectid");
-    	sb.append(" left join (select max(rev.fcreatetime) revDate,entry.FREVLISTID from T_BDC_FDCReceivingBill rev left join T_BDC_FDCReceivingBillentry entry on entry.FHEADID =rev.fid where rev.FREVBILLTYPE ='gathering' group by entry.FREVLISTID)revBill on revBill.FREVLISTID=pay.fid where 1=1");
+    	sb.append(" left join (select max(rev.fcreatetime) revDate,entry.FREVLISTID from T_BDC_FDCReceivingBill rev left join T_BDC_FDCReceivingBillentry entry on entry.FHEADID =rev.fid where rev.FREVBILLTYPE ='gathering' group by entry.FREVLISTID)revBill on revBill.FREVLISTID=pay.fid where 1=1 and md.FMoneyType!='DepositAmount'");
     	if(isAll){
     		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying','Expiration')");
     	}else{
@@ -290,7 +290,7 @@ public class RevDetailFinReportFacadeControllerBean extends AbstractRevDetailFin
     	sb.append(" union all select revBill.revDate,pay.fIsUnPay isUnPay,md.fid mdId,con.fid conId,pay.fappDate appDate,year(pay.fappDate) appYear,month(pay.fappDate) appMonth,isnull(pay.fappAmount,0) appAmount,isnull(pay.finvoiceAmount,0) invoiceAmount,isnull(pay.factRevAmount,0)-isnull(pay.fhasrefundmentamount,0) actRevAmount,");
     	sb.append(" (case when pay.fappAmount=isnull(pay.factRevAmount,0)-isnull(pay.fhasrefundmentamount,0) or datediff(day,pay.fappDate,convert(DATETIME,'"+toODDateStr+"'))<0 then 0 else datediff(day,pay.fappDate,convert(DATETIME,'"+toODDateStr+"')) end) overdueDays from T_TEN_TenBillOtherPay pay left join T_TEN_TenancyBill con on con.fid=pay.fheadId left join t_she_moneyDefine md on md.fid=pay.fmoneyDefineId");
     	sb.append(" left join T_TEN_TenancyRoomEntry roomEntry on con.fid=roomEntry.ftenancyId left join t_she_room room on room.fid=roomEntry.froomId left join t_she_sellProject sp on sp.fid=con.fsellProjectid");
-    	sb.append(" left join (select max(rev.fcreatetime) revDate,entry.FREVLISTID from T_BDC_FDCReceivingBill rev left join T_BDC_FDCReceivingBillentry entry on entry.FHEADID =rev.fid where rev.FREVBILLTYPE ='gathering' group by entry.FREVLISTID)revBill on revBill.FREVLISTID=pay.fid where 1=1");
+    	sb.append(" left join (select max(rev.fcreatetime) revDate,entry.FREVLISTID from T_BDC_FDCReceivingBill rev left join T_BDC_FDCReceivingBillentry entry on entry.FHEADID =rev.fid where rev.FREVBILLTYPE ='gathering' group by entry.FREVLISTID)revBill on revBill.FREVLISTID=pay.fid where 1=1 and md.FMoneyType!='DepositAmount'");
     	if(isAll){
     		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying','Expiration')");
     	}else{
@@ -329,7 +329,7 @@ public class RevDetailFinReportFacadeControllerBean extends AbstractRevDetailFin
 		sb=new StringBuffer();
     	sb.append(" select max(fappDate) maxAppDate,min(fappDate) minAppDate from(select pay.fappDate");
     	sb.append(" from T_TEN_TenancyRoomPayListEntry pay left join T_TEN_TenancyRoomEntry roomEntry on pay.ftenRoomId=roomEntry.fid left join T_TEN_TenancyBill con on con.fid=roomEntry.ftenancyId left join t_she_moneyDefine md on md.fid=pay.fmoneyDefineId");
-    	sb.append(" left join T_TEN_TenancyRoomEntry roomEntry1 on con.fid=roomEntry1.ftenancyId left join t_she_room room on room.fid=roomEntry.froomId left join t_she_sellProject sp on sp.fid=con.fsellProjectid where 1=1");
+    	sb.append(" left join T_TEN_TenancyRoomEntry roomEntry1 on con.fid=roomEntry1.ftenancyId left join t_she_room room on room.fid=roomEntry.froomId left join t_she_sellProject sp on sp.fid=con.fsellProjectid where 1=1 and md.FMoneyType!='DepositAmount'");
     	if(isAll){
     		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying','Expiration')");
     	}else{
@@ -363,7 +363,7 @@ public class RevDetailFinReportFacadeControllerBean extends AbstractRevDetailFin
 		}
     	sb.append(" union all select pay.fappDate");
     	sb.append(" from T_TEN_TenBillOtherPay pay left join T_TEN_TenancyBill con on con.fid=pay.fheadId left join t_she_moneyDefine md on md.fid=pay.fmoneyDefineId");
-    	sb.append(" left join T_TEN_TenancyRoomEntry roomEntry on con.fid=roomEntry.ftenancyId left join t_she_room room on room.fid=roomEntry.froomId left join t_she_sellProject sp on sp.fid=con.fsellProjectid where 1=1");
+    	sb.append(" left join T_TEN_TenancyRoomEntry roomEntry on con.fid=roomEntry.ftenancyId left join t_she_room room on room.fid=roomEntry.froomId left join t_she_sellProject sp on sp.fid=con.fsellProjectid where 1=1 and md.FMoneyType!='DepositAmount'");
     	if(isAll){
     		sb.append(" and con.ftenancyState in('Audited','Executing','ContinueTenancying','Expiration')");
     	}else{

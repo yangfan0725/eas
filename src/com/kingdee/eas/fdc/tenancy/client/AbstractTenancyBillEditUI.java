@@ -3138,8 +3138,8 @@ contAttachment.getContentPane().setLayout(new BorderLayout(0, 0));        contAt
         panelRentSet.add(contToIntegerType2, new KDLayout.Constraints(318, 68, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contDigit2.setBounds(new Rectangle(626, 65, 270, 19));
         panelRentSet.add(contDigit2, new KDLayout.Constraints(626, 65, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
-        containerRentSet.setBounds(new Rectangle(10, 273, 934, 296));
-        panelRentSet.add(containerRentSet, new KDLayout.Constraints(10, 273, 934, 296, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
+        containerRentSet.setBounds(new Rectangle(10, 281, 934, 274));
+        panelRentSet.add(containerRentSet, new KDLayout.Constraints(10, 281, 934, 274, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
         contRentFreeBill.setBounds(new Rectangle(633, 92, 270, 19));
         panelRentSet.add(contRentFreeBill, new KDLayout.Constraints(633, 92, 270, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         containerFree.setBounds(new Rectangle(491, 129, 450, 128));

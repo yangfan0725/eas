@@ -15561,6 +15561,78 @@
                 </bizRef>
             </bizRefs>
         </permissionItem>
+        <permissionItem>
+            <innerID>81b3a62f-c7e7-42a1-b311-b53a0dd989b2PERMITEM</innerID>
+            <name>ten_customer_modifyCustomer</name>
+            <alias>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyCustomer].alias</alias>
+            <description>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyCustomer].description</description>
+            <type>OTHER</type>
+            <groupName>EAS系统.199营销服务管理.61租赁管理.60客户管理.03客户管理</groupName>
+            <group>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyCustomer].group</group>
+            <userDefined>true</userDefined>
+            <entityObjectRef>
+                <entityType>682588A8</entityType>
+                <userDefined>true</userDefined>
+                <metadataRef>
+                    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+                    <name>FDCCustomer</name>
+                    <bosType>enty</bosType>
+                </metadataRef>
+            </entityObjectRef>
+            <bizRefs>
+                <bizRef>
+                    <id>f46a7675-46f2-461c-8d55-7067245871c4</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>CustomerListUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionModifyCustomer</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+            </bizRefs>
+        </permissionItem>
+        <permissionItem>
+            <innerID>3f481119-a4c0-4cb0-ba9d-2af8971cc554PERMITEM</innerID>
+            <name>ten_customer_modifyPhone</name>
+            <alias>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyPhone].alias</alias>
+            <description>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyPhone].description</description>
+            <type>OTHER</type>
+            <groupName>EAS系统.199营销服务管理.61租赁管理.60客户管理.03客户管理</groupName>
+            <group>permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyPhone].group</group>
+            <userDefined>true</userDefined>
+            <entityObjectRef>
+                <entityType>682588A8</entityType>
+                <userDefined>true</userDefined>
+                <metadataRef>
+                    <package>com.kingdee.eas.fdc.sellhouse.app</package>
+                    <name>FDCCustomer</name>
+                    <bosType>enty</bosType>
+                </metadataRef>
+            </entityObjectRef>
+            <bizRefs>
+                <bizRef>
+                    <id>f46a7675-46f2-461c-8d55-7067245871c4</id>
+                    <userDefined>true</userDefined>
+                    <metadataRef>
+                        <package>com.kingdee.eas.fdc.sellhouse.client</package>
+                        <name>CustomerListUI</name>
+                        <bosType>uioj</bosType>
+                    </metadataRef>
+                    <bizPropertys>
+                        <bizProperty>
+                            <property>ActionModifyPhone</property>
+                            <userDefined>true</userDefined>
+                        </bizProperty>
+                    </bizPropertys>
+                </bizRef>
+            </bizRefs>
+        </permissionItem>
     </permissionItems>
     <dependences>
         <dependence>
@@ -18422,6 +18494,18 @@
             <id>1d5376ba-57bb-47fd-9908-e95a6ece1f33PERMITEM</id>
             <referedItem>
                 <key name="innerID" value="1d5376ba-57bb-47fd-9908-e95a6ece1f33PERMITEM" />
+            </referedItem>
+        </dependence>
+        <dependence>
+            <id>81b3a62f-c7e7-42a1-b311-b53a0dd989b2PERMITEM</id>
+            <referedItem>
+                <key name="innerID" value="81b3a62f-c7e7-42a1-b311-b53a0dd989b2PERMITEM" />
+            </referedItem>
+        </dependence>
+        <dependence>
+            <id>3f481119-a4c0-4cb0-ba9d-2af8971cc554PERMITEM</id>
+            <referedItem>
+                <key name="innerID" value="3f481119-a4c0-4cb0-ba9d-2af8971cc554PERMITEM" />
             </referedItem>
         </dependence>
     </dependences>
@@ -21974,6 +22058,62 @@
             <lang locale="zh_TW" value="20" />
         </rs>
         <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_edit].group">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.客户管理.客户管理" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.客戶管理.客戶管理" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.客戶管理.客戶管理" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyCustomer].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户管理修改客户名" />
+            <lang locale="zh_HK" value="客戶管理修改客戶名" />
+            <lang locale="zh_TW" value="客戶管理修改客戶名" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyCustomer].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户管理修改客户名" />
+            <lang locale="zh_HK" value="客戶管理修改客戶名" />
+            <lang locale="zh_TW" value="客戶管理修改客戶名" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyCustomer].extendedProperty.orgRelation">
+            <lang locale="en_US" value="Sale" />
+            <lang locale="zh_CN" value="Sale" />
+            <lang locale="zh_TW" value="Sale" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyCustomer].extendedProperty.permItemType">
+            <lang locale="en_US" value="20" />
+            <lang locale="zh_CN" value="20" />
+            <lang locale="zh_TW" value="20" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyCustomer].group">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.客户管理.客户管理" />
+            <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.客戶管理.客戶管理" />
+            <lang locale="zh_TW" value="EAS系統.營銷服務管理.租賃管理.客戶管理.客戶管理" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyPhone].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户管理修改移动电话" />
+            <lang locale="zh_HK" value="客戶管理修改移動電話" />
+            <lang locale="zh_TW" value="客戶管理修改移動電話" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyPhone].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户管理修改移动电话" />
+            <lang locale="zh_HK" value="客戶管理修改移動電話" />
+            <lang locale="zh_TW" value="客戶管理修改移動電話" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyPhone].extendedProperty.orgRelation">
+            <lang locale="en_US" value="Sale" />
+            <lang locale="zh_CN" value="Sale" />
+            <lang locale="zh_TW" value="Sale" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyPhone].extendedProperty.permItemType">
+            <lang locale="en_US" value="20" />
+            <lang locale="zh_CN" value="20" />
+            <lang locale="zh_TW" value="20" />
+        </rs>
+        <rs key="permission[.fdc_cifiTenancy].permissionItems.permissionItem[ten_customer_modifyPhone].group">
             <lang locale="en_US" value="null" />
             <lang locale="zh_CN" value="EAS系统.营销服务管理.租赁管理.客户管理.客户管理" />
             <lang locale="zh_HK" value="EAS系統.營銷服務管理.租賃管理.客戶管理.客戶管理" />

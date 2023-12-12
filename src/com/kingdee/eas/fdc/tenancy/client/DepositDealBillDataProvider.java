@@ -42,6 +42,8 @@ public class DepositDealBillDataProvider extends FDCBillDataProvider{
 			return iRowSet;
 		}else if (ds.getID().equalsIgnoreCase("TenancyBillTotalPrintQuery")) {
 			return getTotalEntryRowSet();
+		}else if (ds.getID().equalsIgnoreCase("DepositDealBillEntryPrintQuery")) {
+			return getEntryRowSet();
 		}
 		return getMainBillRowSet(ds);
 	}
@@ -53,6 +55,23 @@ public class DepositDealBillDataProvider extends FDCBillDataProvider{
 		_builder.appendSql(" union all select md.fnumber mdNumber,md.fname_l2 moneyDefine,entry.fappAmount appAmount,isnull(entry.factRevAmount,0) actRevAmount from T_TEN_TenancyRoomPayListEntry entry left join T_SHE_MoneyDefine md on md.fid=entry.fmoneyDefineId");
 		_builder.appendSql(" where entry.ftenBillId='"+tenId+"'");
 		_builder.appendSql(" )t group by t.moneyDefine");
+		IRowSet rowSet=null;
+		try {
+			rowSet = _builder.executeQuery();
+			rowSet.beforeFirst();
+		} catch (BOSException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rowSet;
+	}
+	private IRowSet getEntryRowSet() {
+		FDCSQLBuilder _builder = new FDCSQLBuilder();
+		_builder.appendSql(" select t.moneyDefine,t.appAmount,t.actRevAmount,a.famount amount from T_TEN_DepositDealBillEntry a left join(");
+		_builder.appendSql(" select entry.fid srcId,md.fnumber mdNumber,md.fname_l2 moneyDefine,entry.fappAmount appAmount,isnull(entry.factRevAmount,0) actRevAmount from T_TEN_TenBillOtherPay entry left join T_SHE_MoneyDefine md on md.fid=entry.fmoneyDefineId");
+		_builder.appendSql(" union all select entry.fid srcId,md.fnumber mdNumber,md.fname_l2 moneyDefine,entry.fappAmount appAmount,isnull(entry.factRevAmount,0) actRevAmount from T_TEN_TenancyRoomPayListEntry entry left join T_SHE_MoneyDefine md on md.fid=entry.fmoneyDefineId");
+		_builder.appendSql(" )t on t.srcId=a.fsrcId where a.FHeadId='"+billId+"' order by a.fseq");
 		IRowSet rowSet=null;
 		try {
 			rowSet = _builder.executeQuery();

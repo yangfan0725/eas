@@ -24,6 +24,7 @@ import com.kingdee.bos.service.IServiceContext;
 import com.kingdee.eas.common.EASBizException;
 import com.kingdee.eas.fdc.basedata.FDCConstants;
 import com.kingdee.eas.fdc.basedata.FDCDateHelper;
+import com.kingdee.eas.fdc.contract.ContractBillReceiveTotalReportFilterEnum;
 import com.kingdee.eas.framework.report.app.CommRptBaseControllerBean;
 import com.kingdee.eas.framework.report.util.RptParams;
 import com.kingdee.eas.framework.report.util.RptRowSet;
@@ -146,6 +147,10 @@ public class ContractBillReceiveReportFacadeControllerBean extends AbstractContr
 		String companyId=(String) params.getString("companyId");
 		String moneyDefineId=(String) params.getString("moneyDefineId");
 		
+		ContractBillReceiveTotalReportFilterEnum type=(ContractBillReceiveTotalReportFilterEnum) params.getObject("type");
+		Date startDate=(Date) params.getObject("startDate");
+		Date endDate=(Date) params.getObject("endDate");
+		
     	StringBuffer sb = new StringBuffer();
     	
     	sb.append(" select distinct a.fid id,d.fid curProjectId,d.fname_l2 curProject,e.fname_l2 contractType,a.fnumber number,a.fname name,a.fbookedDate bizDate,a.fauditTime auditTime,");
@@ -182,6 +187,14 @@ public class ContractBillReceiveReportFacadeControllerBean extends AbstractContr
 		if(moneyDefineId!=null){
 			sb.append(" and h.fmoneyDefineId='"+moneyDefineId+"'");
 		}
+		if(type!=null&&type.equals(ContractBillReceiveTotalReportFilterEnum.CONTRACT)){
+    		if(startDate!=null){
+    			sb.append(" and a.fbookedDate>{ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+ "'}");
+    		}
+    		if(endDate!=null){
+    			sb.append(" and a.fbookedDate<={ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+ "'}");
+        	}
+    	}
     	sb.append(" order by a.fnumber");
     	return sb.toString();
     }

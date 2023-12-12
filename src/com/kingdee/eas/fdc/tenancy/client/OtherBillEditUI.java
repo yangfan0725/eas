@@ -161,7 +161,7 @@ public class OtherBillEditUI extends AbstractOtherBillEditUI implements TenancyB
 		sels.add("tenancyRoomList.room.floor");
 		sels.add("tenancyRoomList.room.isForPPM");
 		sels.add("tenancyRoomList.room.number");
-
+		sels.add("tenancyRoomList.room.name");
 		sels.add("tenancyRoomList.room.building.name");
 		sels.add("tenancyRoomList.room.building.number");
 		sels.add("tenancyRoomList.room.roomModel.name");
@@ -205,10 +205,11 @@ public class OtherBillEditUI extends AbstractOtherBillEditUI implements TenancyB
 			TenBillOtherPayCollection col=this.editData.getPayEntry();
 			CRMHelper.sortCollection(col, "seq", true);
 			BigDecimal returnAmt = FDCHelper.ZERO;
+			int seq=0;
 			for(int i=0;i<col.size();i++){
 				TenancyRoomPayListEntryInfo entry=new TenancyRoomPayListEntryInfo();
 				TenBillOtherPayInfo otherEntry=col.get(i);
-				entry.setSeq(otherEntry.getSeq());
+				entry.setSeq(seq);
 				entry.setAppDate(otherEntry.getAppDate());
 				entry.setStartDate(otherEntry.getStartDate());
 				entry.setEndDate(otherEntry.getEndDate());
@@ -220,6 +221,8 @@ public class OtherBillEditUI extends AbstractOtherBillEditUI implements TenancyB
 				entry.setActRevDate(otherEntry.getActRevDate());
 				entry.setIsUnPay(otherEntry.isIsUnPay());
 				roomEntry.getRoomPayList().add(entry);
+				
+				seq++;
 			}
 		}
 			

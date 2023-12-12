@@ -114,7 +114,7 @@ public class ContractBillReceiveTotalReportUI extends AbstractContractBillReceiv
 	}
 
 	protected CommRptBaseConditionUI getQueryDialogUserPanel() throws Exception {
-		return null;
+		return new ContractBillReceiveTotalReportFilterUI();
 	}
 
 	protected ICommRptBase getRemoteInstance() throws BOSException {
@@ -126,13 +126,13 @@ public class ContractBillReceiveTotalReportUI extends AbstractContractBillReceiv
 	}
 	public void onLoad() throws Exception {
 		isOnLoad=true;
-    	setShowDialogOnLoad(false);
+    	setShowDialogOnLoad(true);
     	tblMain.getStyleAttributes().setLocked(true);
 		super.onLoad();
 		tblMain.getSelectManager().setSelectMode(KDTSelectManager.MULTIPLE_CELL_SELECT);
 		this.actionPrint.setVisible(false);
 		this.actionPrintPreview.setVisible(false);
-		this.actionQuery.setVisible(false);
+		this.actionQuery.setVisible(true);
 		
 		isOnLoad=false;
     }
@@ -330,6 +330,9 @@ public class ContractBillReceiveTotalReportUI extends AbstractContractBillReceiv
 				RptParams param=new RptParams();
 				param.setObject("companyId", companyId);
 				param.setObject("moneyDefineId", moneyDefineId);
+				param.setObject("type", params.getObject("type"));
+				param.setObject("startDate", params.getObject("startDate"));
+				param.setObject("endDate", params.getObject("endDate"));
 				uiContext.put(UIContext.OWNER, this);
 				uiContext.put("RPTFilter", param);
 				IUIWindow uiWindow = UIFactory.createUIFactory(UIFactoryName.NEWTAB).create(ContractBillReceiveReportUI.class.getName(), uiContext, null, OprtState.VIEW);

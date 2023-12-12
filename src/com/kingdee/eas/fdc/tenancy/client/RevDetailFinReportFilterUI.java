@@ -27,6 +27,7 @@ import com.kingdee.eas.fdc.basedata.FDCCommonServerHelper;
 import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.MoneySysTypeEnum;
 import com.kingdee.eas.fdc.basedata.client.FDCMsgBox;
+import com.kingdee.eas.fdc.sellhouse.MoneyTypeEnum;
 import com.kingdee.eas.fdc.sellhouse.SellProjectCollection;
 import com.kingdee.eas.fdc.sellhouse.SellProjectFactory;
 import com.kingdee.eas.fdc.sellhouse.client.CommerceHelper;
@@ -114,6 +115,7 @@ public class RevDetailFinReportFilterUI extends AbstractRevDetailFinReportFilter
 		filter = new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("sysType", MoneySysTypeEnum.TENANCYSYS_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("name", "%×÷·Ï%",CompareType.NOTLIKE));
+		filter.getFilterItems().add(new FilterItemInfo("moneyType", MoneyTypeEnum.DEPOSITAMOUNT_VALUE,CompareType.NOTEQUALS));
 		view.setFilter(filter);
 		SorterItemCollection sort=new SorterItemCollection();
 		sort.add(new SorterItemInfo("number"));

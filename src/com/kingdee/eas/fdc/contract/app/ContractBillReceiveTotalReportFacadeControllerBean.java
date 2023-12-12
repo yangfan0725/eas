@@ -3,6 +3,7 @@ package com.kingdee.eas.fdc.contract.app;
 import org.apache.log4j.Logger;
 import javax.ejb.*;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -21,6 +22,9 @@ import com.kingdee.bos.service.ServiceContext;
 import com.kingdee.bos.service.IServiceContext;
 
 import com.kingdee.eas.common.EASBizException;
+import com.kingdee.eas.fdc.basedata.FDCConstants;
+import com.kingdee.eas.fdc.basedata.FDCDateHelper;
+import com.kingdee.eas.fdc.contract.ContractBillReceiveTotalReportFilterEnum;
 import com.kingdee.eas.framework.report.app.CommRptBaseControllerBean;
 import com.kingdee.eas.framework.report.util.RptParams;
 import com.kingdee.eas.framework.report.util.RptRowSet;
@@ -78,7 +82,9 @@ public class ContractBillReceiveTotalReportFacadeControllerBean extends Abstract
     }
     protected String getSql(Context ctx,RptParams params){
 		String orgUnitLongNumber=params.getString("orgUnit.longNumber");
-		
+		ContractBillReceiveTotalReportFilterEnum type=(ContractBillReceiveTotalReportFilterEnum) params.getObject("type");
+		Date startDate=(Date) params.getObject("startDate");
+		Date endDate=(Date) params.getObject("endDate");
     	StringBuffer sb = new StringBuffer();
     	
     	sb.append(" select e.fid companyId,e.fname_l2 company,d.fid moneyDefineId,d.fname_l2 moneyDefine, isnull(sum(a.famount),0) contractAmount,isnull(sum(t.recAmount),0) recAmount,isnull(sum(t4.payContractAmount),0) payContractAmount,");
@@ -86,16 +92,34 @@ public class ContractBillReceiveTotalReportFacadeControllerBean extends Abstract
     	sb.append(" from T_CON_ContractBillReceive a ");
     	sb.append(" left join T_CON_ContractBillRRateEntry c on c.FParentID=a.fid left join T_SHE_MoneyDefine d on d.fid=c.fmoneyDefineId");
     	sb.append(" left join T_ORG_BaseUnit e on a.fcontrolunitid=e.fid ");
-    	sb.append(" left join (select sum(b.FAmount) recAmount,a.FContractBillReceiveId from T_CON_ContractRecBill a left join T_CON_ContractRecBillEntry b on a.fid=b.FHeadId where a.fstate='4AUDITTED' group by FContractBillReceiveId )t on t.FContractBillReceiveId=a.fid");
+    	sb.append(" left join (select sum(b.FAmount) recAmount,a.FContractBillReceiveId from T_CON_ContractRecBill a left join T_CON_ContractRecBillEntry b on a.fid=b.FHeadId where a.fstate='4AUDITTED'");
+    	if(type!=null&&type.equals(ContractBillReceiveTotalReportFilterEnum.RECEIVE)){
+    		if(startDate!=null){
+    			sb.append(" and a.fbizDate>{ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+ "'}");
+    		}
+    		if(endDate!=null){
+    			sb.append(" and a.fbizDate<={ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+ "'}");
+        	}
+    	}
+    	sb.append(" group by FContractBillReceiveId )t on t.FContractBillReceiveId=a.fid");
     	sb.append(" left join (select sum(a.FAmount) payReqAmount,b.fcontractbillreceiveid from T_CON_PayRequestBill a left join t_con_contractbill b on a.fcontractId=b.fid where a.fstate='3AUDITTING' group by b.fcontractbillreceiveid )t1 on t1.fcontractbillreceiveid=a.fid");
     	sb.append(" left join (select sum(a.FAmount) payReqAmount,b.fcontractbillreceiveid from T_CON_PayRequestBill a left join t_con_contractbill b on a.fcontractId=b.fid where a.fstate='4AUDITTED' group by b.fcontractbillreceiveid  )t2 on t2.fcontractbillreceiveid=a.fid");
     	sb.append(" left join (select sum(a.factualPayAmount) payAmount,b.fcontractbillreceiveid from T_cas_PaymentBill a left join t_con_contractbill b on a.fcontractBillId=b.fid where a.fbillStatus=15 group by b.fcontractbillreceiveid )t3 on t3.fcontractbillreceiveid=a.fid");
     	sb.append(" left join (select sum(famount) payContractAmount,fcontractbillreceiveid from t_con_contractBill a where a.fstate='4AUDITTED' group by fcontractbillreceiveid )t4 on t4.fcontractbillreceiveid=a.fid");
     	
     	sb.append(" where a.fstate='4AUDITTED' ");
+    	if(type!=null&&type.equals(ContractBillReceiveTotalReportFilterEnum.CONTRACT)){
+    		if(startDate!=null){
+    			sb.append(" and a.fbookedDate>{ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+ "'}");
+    		}
+    		if(endDate!=null){
+    			sb.append(" and a.fbookedDate<={ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLEnd(endDate))+ "'}");
+        	}
+    	}
     	if(orgUnitLongNumber!=null){
 			sb.append(" and e.flongnumber like '"+orgUnitLongNumber+"%'");
 		}
+    	
     	sb.append(" group by e.fid,e.fname_l2,d.fid,d.fname_l2,e.flongNumber,d.fnumber order by e.flongNumber,d.fnumber");
     	return sb.toString();
     }

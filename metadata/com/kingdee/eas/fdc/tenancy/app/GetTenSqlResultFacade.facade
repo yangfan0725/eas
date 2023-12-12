@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facade xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.fdc.tenancy.app</package>
+    <name>GetTenSqlResultFacade</name>
+    <alias>facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].alias</alias>
+    <description>facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].description</description>
+    <userDefined>true</userDefined>
+    <bosType>AC0B8615</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.fdc.tenancy.GetTenSqlResultFacade</businessImplName>
+    <businessControllerName>com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacadeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>getSqlResult</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].methods.method[getSqlResult].alias</alias>
+            <description>facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].methods.method[getSqlResult].description</description>
+            <innerID>c02f3d42-81c5-4786-a240-85b87569cf5c</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>name</name>
+                    <alias>facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].methods.method[getSqlResult].parameters.parameter[name].alias</alias>
+                    <description>facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].methods.method[getSqlResult].parameters.parameter[name].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <resource>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取sql视图结果" />
+            <lang locale="zh_HK" value="獲取sql視圖結果" />
+            <lang locale="zh_TW" value="獲取sql視圖結果" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取sql视图结果" />
+            <lang locale="zh_HK" value="獲取sql視圖結果" />
+            <lang locale="zh_TW" value="獲取sql視圖結果" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].methods.method[getSqlResult].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取sql结果" />
+            <lang locale="zh_HK" value="獲取sql結果" />
+            <lang locale="zh_TW" value="獲取sql結果" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].methods.method[getSqlResult].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="获取sql结果" />
+            <lang locale="zh_HK" value="獲取sql結果" />
+            <lang locale="zh_TW" value="獲取sql結果" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].methods.method[getSqlResult].parameters.parameter[name].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="name" />
+            <lang locale="zh_HK" value="name" />
+            <lang locale="zh_TW" value="name" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.fdc.tenancy.app.GetTenSqlResultFacade].methods.method[getSqlResult].parameters.parameter[name].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+    </resource>
+</facade>
+

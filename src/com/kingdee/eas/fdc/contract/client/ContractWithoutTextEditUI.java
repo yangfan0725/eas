@@ -2744,18 +2744,30 @@ public class ContractWithoutTextEditUI extends
 //			for(int i=0;i<col.size();i++){
 //				comAmount=FDCHelper.add(comAmount,col.get(i).getAmount());
 //			}
-			ContractWithoutTextCollection wtCol=null;
-			if(editData.getId()!=null){
-				wtCol=ContractWithoutTextFactory.getRemoteInstance().getContractWithoutTextCollection("select amount from where mpCostAccount.id='"+cinfo.getId()+"' and marketProject.id='"+info.getId()+"' and id!='"+this.editData.getId()+"'");
-			}else{
-				wtCol=ContractWithoutTextFactory.getRemoteInstance().getContractWithoutTextCollection("select amount from where mpCostAccount.id='"+cinfo.getId()+"' and marketProject.id='"+info.getId()+"'");
-			}
-			for(int i=0;i<wtCol.size();i++){
-				comAmount=FDCHelper.add(comAmount,wtCol.get(i).getAmount());
+//			ContractWithoutTextCollection wtCol=null;
+//			if(editData.getId()!=null){
+//				wtCol=ContractWithoutTextFactory.getRemoteInstance().getContractWithoutTextCollection("select amount from where mpCostAccount.id='"+cinfo.getId()+"' and marketProject.id='"+info.getId()+"' and id!='"+this.editData.getId()+"'");
+//			}else{
+//				wtCol=ContractWithoutTextFactory.getRemoteInstance().getContractWithoutTextCollection("select amount from where mpCostAccount.id='"+cinfo.getId()+"' and marketProject.id='"+info.getId()+"'");
+//			}
+//			for(int i=0;i<wtCol.size();i++){
+//				comAmount=FDCHelper.add(comAmount,wtCol.get(i).getAmount());
+//			}
+			StringBuilder sql = new StringBuilder();
+			sql.append(" select sum(famount) amount from t_con_contractwithouttext ");
+			sql.append(" where fmpCostAccountid='"+cinfo.getId()+"' and fmarketProjectid='"+info.getId()+"'");
+	    	if(editData.getId()!=null){
+	    		sql.append(" and fid!='"+this.editData.getId()+"'");
+	    	}
+			FDCSQLBuilder _builder = new FDCSQLBuilder();
+			_builder.appendSql(sql.toString());
+			IRowSet rowSet = _builder.executeQuery();
+			while(rowSet.next()){
+				comAmount=rowSet.getBigDecimal("amount");
 			}
 			
 			BigDecimal subAmount=FDCHelper.ZERO;
-			MarketProjectCollection mpcol=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select amount,costEntry.*,costEntry.costAccount.* from where isSub=1 and mp.id='"+info.getId()+"'");
+			MarketProjectCollection mpcol=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select amount,costEntry.*,costEntry.costAccount.* from where state!='1SAVED' and isSub=1 and mp.id='"+info.getId()+"'");
 			for(int i=0;i<mpcol.size();i++){
 				for(int j=0;j<mpcol.get(i).getCostEntry().size();j++){
 					if(mpcol.get(i).getCostEntry().get(j).getCostAccount().getId().equals(cinfo.getId())){
@@ -3212,7 +3224,7 @@ public class ContractWithoutTextEditUI extends
 //			}
 			
 			BigDecimal subAmount=FDCHelper.ZERO;
-			MarketProjectCollection mpcol=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select amount,costEntry.*,costEntry.costAccount.* from where isSub=1 and mp.id='"+info.getId()+"'");
+			MarketProjectCollection mpcol=MarketProjectFactory.getRemoteInstance().getMarketProjectCollection("select amount,costEntry.*,costEntry.costAccount.* from where state!='1SAVED' and isSub=1 and mp.id='"+info.getId()+"'");
 			for(int i=0;i<mpcol.size();i++){
 				for(int j=0;j<mpcol.get(i).getCostEntry().size();j++){
 					if(mpcol.get(i).getCostEntry().get(j).getCostAccount().getId().equals(cinfo.getId())){

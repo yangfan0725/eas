@@ -26,6 +26,8 @@ import com.kingdee.eas.fdc.contract.MarketProjectInfo;
 import com.kingdee.eas.fdc.contract.OAContractFacadeFactory;
 import com.kingdee.eas.fdc.contract.WSPaymentBillFacadeFactory;
 import com.kingdee.eas.fdc.sellhouse.WSSellHouseFacadeFactory;
+import com.kingdee.eas.fdc.tenancy.GetTenSqlResultFacade;
+import com.kingdee.eas.fdc.tenancy.GetTenSqlResultFacadeFactory;
 import com.kingdee.eas.framework.*;
 import javax.xml.namespace.QName;
 import javax.xml.rpc.ParameterMode;
