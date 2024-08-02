@@ -384,6 +384,9 @@ public class ContractBillControllerBean extends
 				}
 				
 				JSONObject obj = new JSONObject();
+				if(info.getConnectedTransaction()!=null){
+					obj.put("fd_connectedTransaction", info.getConnectedTransaction().getAlias());
+				}
 				if(info.getMpCostAccount()!=null&&info.getMarketProject()!=null){
 					obj.put("fd_timeout", info.getIsTimeOut());
 					obj.put("fd_expensetype", CostAccountFactory.getLocalInstance(ctx).getCostAccountInfo(new ObjectUuidPK(info.getMpCostAccount().getId())).getName());

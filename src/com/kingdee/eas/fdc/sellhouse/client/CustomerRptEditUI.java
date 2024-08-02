@@ -1644,6 +1644,9 @@ public class CustomerRptEditUI extends AbstractCustomerRptEditUI {
 			FilterInfo filter_certificateNumber = new FilterInfo();
 			FilterInfo filter_Phone = new FilterInfo();
 			if (certificateNumber != null && !certificateNumber.equals("")) {
+				comboCertificateType.setRequired(true);
+				FDCClientVerifyHelper.verifyEmpty(this, this.comboCertificateType);
+				
 				filter_certificateNumber.getFilterItems().add(new FilterItemInfo("certificateNumber", certificateNumber, CompareType.EQUALS));
 				filter_certificateNumber.getFilterItems().add(new FilterItemInfo("certificatetype.id", certificateType, CompareType.EQUALS));
 				filter_certificateNumber.mergeFilter(filter, "AND");

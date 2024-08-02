@@ -168,7 +168,7 @@ public class ContractBillReceiveReportFacadeControllerBean extends AbstractContr
     	sb.append(" left join (select sum(a.factualPayAmount) payTotalAmount,b.fcontractbillreceiveid from T_cas_PaymentBill a left join t_con_contractbill b on a.fcontractBillId=b.fid where a.fbillStatus=15 group by b.fcontractbillreceiveid )t3 on t3.fcontractbillreceiveid=a.fid");
     	sb.append(" left join (select sum(famount) payContractAmount,fcontractbillreceiveid from t_con_contractBill a where a.fstate='4AUDITTED' group by fcontractbillreceiveid )t4 on t4.fcontractbillreceiveid=a.fid");
     	
-    	sb.append(" where a.fstate='4AUDITTED'");
+    	sb.append(" where a.fstate='4AUDITTED' and a.FContractPropert='DIRECT'");
     	if(orgUnitLongNumber!=null){
 			sb.append(" and g.flongnumber like '"+orgUnitLongNumber+"%'");
 		}

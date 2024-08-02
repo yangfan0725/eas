@@ -100,6 +100,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contMpCostAccount;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contchgPercForWarn;
     protected com.kingdee.bos.ctrl.swing.KDLabelContainer contContractBillReceive;
+    protected com.kingdee.bos.ctrl.swing.KDLabelContainer contConnectedTransaction;
     protected com.kingdee.bos.ctrl.swing.KDDatePicker kDDateCreateTime;
     protected com.kingdee.bos.ctrl.swing.KDTextField txtNumber;
     protected com.kingdee.bos.ctrl.swing.KDFormattedTextField txtamount;
@@ -247,6 +248,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtMpCostAccount;
     protected com.kingdee.bos.ctrl.swing.KDFormattedTextField txtchgPercForWarn;
     protected com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox prmtContractBillReceive;
+    protected com.kingdee.bos.ctrl.swing.KDComboBox cbConnectedTransaction;
     protected com.kingdee.bos.ctrl.swing.KDContainer kDContainer1;
     protected com.kingdee.bos.ctrl.swing.KDSplitPane kDSplitPane1;
     protected com.kingdee.bos.ctrl.swing.KDContainer contPayItem;
@@ -523,6 +525,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.contMpCostAccount = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contchgPercForWarn = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.contContractBillReceive = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
+        this.contConnectedTransaction = new com.kingdee.bos.ctrl.swing.KDLabelContainer();
         this.kDDateCreateTime = new com.kingdee.bos.ctrl.swing.KDDatePicker();
         this.txtNumber = new com.kingdee.bos.ctrl.swing.KDTextField();
         this.txtamount = new com.kingdee.bos.ctrl.swing.KDFormattedTextField();
@@ -670,6 +673,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.prmtMpCostAccount = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
         this.txtchgPercForWarn = new com.kingdee.bos.ctrl.swing.KDFormattedTextField();
         this.prmtContractBillReceive = new com.kingdee.bos.ctrl.extendcontrols.KDBizPromptBox();
+        this.cbConnectedTransaction = new com.kingdee.bos.ctrl.swing.KDComboBox();
         this.kDContainer1 = new com.kingdee.bos.ctrl.swing.KDContainer();
         this.kDSplitPane1 = new com.kingdee.bos.ctrl.swing.KDSplitPane();
         this.contPayItem = new com.kingdee.bos.ctrl.swing.KDContainer();
@@ -751,6 +755,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.contMpCostAccount.setName("contMpCostAccount");
         this.contchgPercForWarn.setName("contchgPercForWarn");
         this.contContractBillReceive.setName("contContractBillReceive");
+        this.contConnectedTransaction.setName("contConnectedTransaction");
         this.kDDateCreateTime.setName("kDDateCreateTime");
         this.txtNumber.setName("txtNumber");
         this.txtamount.setName("txtamount");
@@ -898,6 +903,7 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.prmtMpCostAccount.setName("prmtMpCostAccount");
         this.txtchgPercForWarn.setName("txtchgPercForWarn");
         this.prmtContractBillReceive.setName("prmtContractBillReceive");
+        this.cbConnectedTransaction.setName("cbConnectedTransaction");
         this.kDContainer1.setName("kDContainer1");
         this.kDSplitPane1.setName("kDSplitPane1");
         this.contPayItem.setName("contPayItem");
@@ -1180,6 +1186,10 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.contContractBillReceive.setBoundLabelText(resHelper.getString("contContractBillReceive.boundLabelText"));		
         this.contContractBillReceive.setBoundLabelLength(100);		
         this.contContractBillReceive.setBoundLabelUnderline(true);
+        // contConnectedTransaction		
+        this.contConnectedTransaction.setBoundLabelText(resHelper.getString("contConnectedTransaction.boundLabelText"));		
+        this.contConnectedTransaction.setBoundLabelLength(100);		
+        this.contConnectedTransaction.setBoundLabelUnderline(true);
         // kDDateCreateTime		
         this.kDDateCreateTime.setTimeEnabled(true);		
         this.kDDateCreateTime.setVisible(true);
@@ -2317,6 +2327,9 @@ public abstract class AbstractContractBillEditUI extends com.kingdee.eas.fdc.bas
         this.prmtContractBillReceive.setCommitFormat("$name$");		
         this.prmtContractBillReceive.setDisplayFormat("$name$");		
         this.prmtContractBillReceive.setEditFormat("$name$");
+        // cbConnectedTransaction		
+        this.cbConnectedTransaction.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.contract.app.YesOrNoEnum").toArray());		
+        this.cbConnectedTransaction.setRequired(true);
         // kDContainer1		
         this.kDContainer1.setEnableActive(false);
         // kDSplitPane1		
@@ -2656,10 +2669,10 @@ this.setLayout(new BorderLayout(0, 0));
         mainPanel.add(kDLabelContainer1, new KDLayout.Constraints(7, 207, 276, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contCreateOrg.setBounds(new Rectangle(366, 311, 276, 19));
         mainPanel.add(contCreateOrg, new KDLayout.Constraints(366, 311, 276, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
-        contDes.setBounds(new Rectangle(7, 334, 993, 49));
-        mainPanel.add(contDes, new KDLayout.Constraints(7, 334, 993, 49, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
-        kDPanel1.setBounds(new Rectangle(870, 445, 130, 122));
-        mainPanel.add(kDPanel1, new KDLayout.Constraints(870, 445, 130, 122, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contDes.setBounds(new Rectangle(7, 355, 993, 48));
+        mainPanel.add(contDes, new KDLayout.Constraints(7, 355, 993, 48, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
+        kDPanel1.setBounds(new Rectangle(870, 460, 130, 111));
+        mainPanel.add(kDPanel1, new KDLayout.Constraints(870, 460, 130, 111, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         contRespDept.setBounds(new Rectangle(7, 289, 276, 19));
         mainPanel.add(contRespDept, new KDLayout.Constraints(7, 289, 276, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contsignDate.setBounds(new Rectangle(940, 391, 223, 19));
@@ -2670,10 +2683,10 @@ this.setLayout(new BorderLayout(0, 0));
         mainPanel.add(contcontractSource, new KDLayout.Constraints(7, 245, 276, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         contContractWFType.setBounds(new Rectangle(366, 267, 276, 19));
         mainPanel.add(contContractWFType, new KDLayout.Constraints(366, 267, 276, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
-        contAttachment.setBounds(new Rectangle(6, 445, 854, 122));
-        mainPanel.add(contAttachment, new KDLayout.Constraints(6, 445, 854, 122, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
-        contMode.setBounds(new Rectangle(7, 390, 993, 50));
-        mainPanel.add(contMode, new KDLayout.Constraints(7, 390, 993, 50, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
+        contAttachment.setBounds(new Rectangle(6, 458, 854, 114));
+        mainPanel.add(contAttachment, new KDLayout.Constraints(6, 458, 854, 114, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
+        contMode.setBounds(new Rectangle(7, 406, 993, 51));
+        mainPanel.add(contMode, new KDLayout.Constraints(7, 406, 993, 51, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT));
         contSrcAmount.setBounds(new Rectangle(725, 185, 276, 19));
         mainPanel.add(contSrcAmount, new KDLayout.Constraints(725, 185, 276, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         contInviteType.setBounds(new Rectangle(366, 245, 276, 19));
@@ -2704,6 +2717,8 @@ this.setLayout(new BorderLayout(0, 0));
         mainPanel.add(contchgPercForWarn, new KDLayout.Constraints(725, 207, 276, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         contContractBillReceive.setBounds(new Rectangle(773, 31, 230, 19));
         mainPanel.add(contContractBillReceive, new KDLayout.Constraints(773, 31, 230, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
+        contConnectedTransaction.setBounds(new Rectangle(7, 333, 276, 19));
+        mainPanel.add(contConnectedTransaction, new KDLayout.Constraints(7, 333, 276, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT | KDLayout.Constraints.ANCHOR_RIGHT_SCALE));
         //contCreateTime
         contCreateTime.setBoundEditor(kDDateCreateTime);
         //contNumber
@@ -2924,7 +2939,7 @@ kDContainer5.getContentPane().setLayout(new BorderLayout(0, 0));        kDContai
         kDScrollPane2.getViewport().add(txtDes, null);
         //kDPanel1
         kDPanel1.setLayout(new KDLayout());
-        kDPanel1.putClientProperty("OriginalBounds", new Rectangle(870, 445, 130, 122));        chkIsOpen.setBounds(new Rectangle(134, 12, 129, 19));
+        kDPanel1.putClientProperty("OriginalBounds", new Rectangle(870, 460, 130, 111));        chkIsOpen.setBounds(new Rectangle(134, 12, 129, 19));
         kDPanel1.add(chkIsOpen, new KDLayout.Constraints(134, 12, 129, 19, KDLayout.Constraints.ANCHOR_TOP | KDLayout.Constraints.ANCHOR_LEFT_SCALE | KDLayout.Constraints.ANCHOR_RIGHT));
         chkIsStandardContract.setBounds(new Rectangle(12, 13, 101, 19));
         kDPanel1.add(chkIsStandardContract, new KDLayout.Constraints(12, 13, 101, 19, 0));
@@ -3000,6 +3015,8 @@ contMode.getContentPane().setLayout(new BorderLayout(0, 0));        contMode.get
         contchgPercForWarn.setBoundEditor(txtchgPercForWarn);
         //contContractBillReceive
         contContractBillReceive.setBoundEditor(prmtContractBillReceive);
+        //contConnectedTransaction
+        contConnectedTransaction.setBoundEditor(cbConnectedTransaction);
         //ecoItemPanel
 ecoItemPanel.setLayout(new BorderLayout(0, 0));        ecoItemPanel.add(kDContainer1, BorderLayout.CENTER);
         //kDContainer1
@@ -3312,6 +3329,7 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		dataBinder.registerBinding("mpCostAccount", com.kingdee.eas.fdc.basedata.CostAccountInfo.class, this.prmtMpCostAccount, "data");
 		dataBinder.registerBinding("chgPercForWarn", java.math.BigDecimal.class, this.txtchgPercForWarn, "value");
 		dataBinder.registerBinding("contractBillReceive", com.kingdee.eas.fdc.contract.ContractBillReceiveInfo.class, this.prmtContractBillReceive, "data");
+		dataBinder.registerBinding("connectedTransaction", com.kingdee.eas.fdc.contract.app.YesOrNoEnum.class, this.cbConnectedTransaction, "selectedItem");
 		dataBinder.registerBinding("payItems", com.kingdee.eas.fdc.contract.ContractPayItemInfo.class, this.tblEconItem, "userObject");
 		dataBinder.registerBinding("payItems.payItemDate", java.util.Date.class, this.tblEconItem, "date.text");
 		dataBinder.registerBinding("payItems.payCondition", String.class, this.tblEconItem, "payCondition.text");
@@ -3568,6 +3586,7 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
 		getValidateHelper().registerBindProperty("mpCostAccount", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("chgPercForWarn", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("contractBillReceive", ValidateHelper.ON_SAVE);    
+		getValidateHelper().registerBindProperty("connectedTransaction", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("payItems", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("payItems.payItemDate", ValidateHelper.ON_SAVE);    
 		getValidateHelper().registerBindProperty("payItems.payCondition", ValidateHelper.ON_SAVE);    
@@ -4258,6 +4277,7 @@ contPayItem.getContentPane().setLayout(new BorderLayout(0, 0));        contPayIt
         	sic.add(new SelectorItemInfo("contractBillReceive.number"));
         	sic.add(new SelectorItemInfo("contractBillReceive.name"));
 		}
+        sic.add(new SelectorItemInfo("connectedTransaction"));
 		if(selectorAll.equalsIgnoreCase("true"))
 		{
 			sic.add(new SelectorItemInfo("payItems.*"));

@@ -152,7 +152,9 @@ public class QuitTenancyControllerBean extends AbstractQuitTenancyControllerBean
     	//如果原合同的所有房间均未交房，则直接终止原合同
     	if(allNotDelieve){
     		ten.setTenancyState(TenancyBillStateEnum.Expiration);
+    		ten.setQuitRoomDate(quitTen.getQuitDate());
     		sels.add("tenancyState");
+    		sels.add("quitRoomDate");
     	}
     	TenancyBillFactory.getLocalInstance(ctx).updatePartial(ten, sels);
     	

@@ -1916,21 +1916,21 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 			calStampTaxAmt();
 			// 带入主合同框架合约
 			if (mainContractId != null && getDetailInfoTable().getCell(getRowIndexByRowKey(NA_ROW), CONTENT_COL).getValue() != null) {
-				ContractBillInfo info = null;
+				ContractBillReceiveInfo info = null;
 				try {
 					SelectorItemCollection sic = new SelectorItemCollection();
 					sic.add("*");
 					sic.add("programmingContract.*");
-					info = ContractBillFactory.getRemoteInstance().getContractBillInfo(new ObjectUuidPK(mainContractId.toString()), sic);
+					info = ContractBillReceiveFactory.getRemoteInstance().getContractBillReceiveInfo(new ObjectUuidPK(mainContractId.toString()), sic);
 				} catch (Exception e) {
 					logger.error(e);
 				}
 				// 如果非单独计算补充合同
-				if (info.getProgrammingContract() != null) {
-					prmtFwContractTemp.setValue(info.getProgrammingContract());
-					textFwContract.setText(info.getProgrammingContract().getName());
-//					editData.setProgrammingContract(info.getProgrammingContract());
-				}
+//				if (info.getProgrammingContract() != null) {
+//					prmtFwContractTemp.setValue(info.getProgrammingContract());
+//					textFwContract.setText(info.getProgrammingContract().getName());
+////					editData.setProgrammingContract(info.getProgrammingContract());
+//				}
 			}
 		}
 	}
@@ -3004,6 +3004,9 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 		this.costProperty.removeItem(CostPropertyEnum.BASE_CONFIRM);
 		
 		this.contRemark.getBoundLabel().setForeground(Color.RED);
+		
+		contractPropert.removeItem(ContractPropertyEnum.THREE_PARTY);
+		contractPropert.removeItem(ContractPropertyEnum.STRATEGY);
 	}
 	
 	@Override
@@ -3121,7 +3124,7 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 
 		kDTabbedPane1.removeAll();
 		kDTabbedPane1.add(this.kDContainer3,resHelper.getString("kDContainer3.constraints"));
-//		kDTabbedPane1.add(pnlDetail, resHelper.getString("pnlDetail.constraints"));
+		kDTabbedPane1.add(pnlDetail, resHelper.getString("pnlDetail.constraints"));
 //		if(ContractPropertyEnum.SUPPLY.equals(contractPropert.getSelectedItem())){
 //			kDTabbedPane1.add(this.kdtSupplyEntry, "主合同信息");
 //		}else{
@@ -4142,8 +4145,8 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 					&& entryInfo.getContent().trim().length() > 0) {
 				String id = entryInfo.getContent();
 				try {
-					ContractBillInfo contractBillInfo = ContractBillFactory
-							.getRemoteInstance().getContractBillInfo(
+					ContractBillReceiveInfo contractBillInfo = ContractBillReceiveFactory
+							.getRemoteInstance().getContractBillReceiveInfo(
 									new ObjectUuidPK(id));
 					row.getCell(CONTENT_COL).setValue(contractBillInfo);
 					mainContractId = id;
@@ -4547,7 +4550,7 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 		if (getSelectBOID() == null)
 			return;
 
-		ContractBillInfo costBillInfo = null;
+		ContractBillReceiveInfo costBillInfo = null;
 		//合同拆分		jelon 12/30/2006
 		String contrBillID = getSelectBOID();
 
@@ -4556,8 +4559,8 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 		selectors.add("id");
 		selectors.add("splitState");
 
-		costBillInfo = ContractBillFactory.getRemoteInstance()
-				.getContractBillInfo(
+		costBillInfo = ContractBillReceiveFactory.getRemoteInstance()
+				.getContractBillReceiveInfo(
 						new ObjectUuidPK(BOSUuid.read(contrBillID)), selectors);
 
 		//该合同已经进行了拆分，不能进行修改
@@ -5785,7 +5788,7 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 			ContractBillReceiveEntryCollection entrys = editData.getEntrys();
 			boolean hasMainContNum = false;
 			for (Iterator iter = entrys.iterator(); iter.hasNext();) {
-				ContractBillEntryInfo element = (ContractBillEntryInfo) iter
+				ContractBillReceiveEntryInfo element = (ContractBillReceiveEntryInfo) iter
 						.next();
 				String rowKey = element.getRowKey();
 				if (rowKey != null && rowKey.equals(NU_ROW)
@@ -6167,10 +6170,12 @@ public class ContractBillReceiveEditUI extends AbstractContractBillReceiveEditUI
 				SysUtil.abort();
 			}
 		}
-		if(CostPropertyEnum.COMP_COMFIRM.equals(costProperty.getSelectedItem())){
-			if(txtamount.getBigDecimalValue()==null||txtamount.getBigDecimalValue().compareTo(FDCHelper.ZERO)<=0){
-				FDCMsgBox.showWarning(this,"金额必须大于0！");
-				SysUtil.abort();
+		if(!ContractPropertyEnum.SUPPLY.equals(contractPropert.getSelectedItem())){
+			if(CostPropertyEnum.COMP_COMFIRM.equals(costProperty.getSelectedItem())){
+				if(txtamount.getBigDecimalValue()==null||txtamount.getBigDecimalValue().compareTo(FDCHelper.ZERO)<=0){
+					FDCMsgBox.showWarning(this,"金额必须大于0！");
+					SysUtil.abort();
+				}
 			}
 		}
 	}

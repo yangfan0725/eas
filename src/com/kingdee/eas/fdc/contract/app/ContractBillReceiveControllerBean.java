@@ -959,9 +959,9 @@ public class ContractBillReceiveControllerBean extends AbstractContractBillRecei
 			//如果是非独立结算的补充合同,金额累加到
 			String sql1 = " select entry.fcontent as amount,parent.fsplitState splitState,parent.fid mainId,parent.FAmount mainAmount,parent.ForiginalAmount oriAmount 			\r\n" +
 					",parent.FexRate mainRate,parent.FgrtRate grtRate,parent.FGrtAmount grtAmount,parent.FStampTaxRate stampRate,parent.FStampTaxAmt stampAmt                             \r\n"+
-					"from T_CON_ContractbillEntry entry 																							\r\n" +
-					"inner join T_CON_Contractbill con on con.fid=entry.fparentid  and con.fisAmtWithoutCost=1 and con.fcontractPropert='SUPPLY' 	\r\n" +
-					"inner join T_Con_contractBill parent on parent.fnumber = con.fmainContractNumber  and parent.fcurprojectid=con.fcurprojectid												\r\n" +
+					"from T_CON_ContractbillReceiveEntry entry 																							\r\n" +
+					"inner join T_CON_ContractbillReceive con on con.fid=entry.fparentid  and con.fisAmtWithoutCost=1 and con.fcontractPropert='SUPPLY' 	\r\n" +
+					"inner join T_Con_contractBillReceive parent on parent.fnumber = con.fmainContractNumber  and parent.fcurprojectid=con.fcurprojectid												\r\n" +
 					"where con.fid=? and entry.FRowkey='am' 																				\r\n";
 			IRowSet rs1 = DbUtil.executeQuery(ctx,sql1,new Object[]{billId.toString()});
 			try {
@@ -987,7 +987,7 @@ public class ContractBillReceiveControllerBean extends AbstractContractBillRecei
 					//主合同印花税金额
 					BigDecimal stampAmt = rs1.getBigDecimal("stampAmt");
 					//更新主合同原币和本位币金额
-					String updateSql = "update T_CON_Contractbill set ForiginalAmount=?, FAmount=?,FGrtAmount=?,FStampTaxAmt=? where Fid=?";
+					String updateSql = "update T_CON_ContractbillReceive set ForiginalAmount=?, FAmount=?,FGrtAmount=?,FStampTaxAmt=? where Fid=?";
 					
 			    	//原币金额
 			    	if(supAmount==null){
@@ -1147,9 +1147,9 @@ public class ContractBillReceiveControllerBean extends AbstractContractBillRecei
 			//如果是非独立结算的补充合同,金额累加到
 			String sql = " select entry.fcontent as amount,parent.fsplitState splitState,parent.fid mainId,parent.FAmount mainAmount,parent.ForiginalAmount oriAmount 			\r\n" +
 					",parent.FexRate mainRate,parent.FgrtRate grtRate,parent.FGrtAmount grtAmount,parent.FStampTaxRate stampRate,parent.FStampTaxAmt stampAmt    \r\n"+
-					" ,parent.FHasSettled    from T_CON_ContractbillEntry entry 																	\r\n" +
-					"inner join T_CON_Contractbill con on con.fid=entry.fparentid  and con.fisAmtWithoutCost=1 and con.fcontractPropert='SUPPLY' 	\r\n" +
-					"inner join T_Con_contractBill parent on parent.fnumber = con.fmainContractNumber 	and parent.fcurprojectid=con.fcurprojectid					\r\n" +
+					" ,parent.FHasSettled    from T_CON_ContractbillReceiveEntry entry 																	\r\n" +
+					"inner join T_CON_ContractbillReceive con on con.fid=entry.fparentid  and con.fisAmtWithoutCost=1 and con.fcontractPropert='SUPPLY' 	\r\n" +
+					"inner join T_Con_contractBillReceive parent on parent.fnumber = con.fmainContractNumber 	and parent.fcurprojectid=con.fcurprojectid					\r\n" +
 					"where   con.fid=? 	and  entry.FRowkey='am' 	 																							\r\n";
 			IRowSet rs = DbUtil.executeQuery(ctx,sql,new Object[]{billId.toString()});
 			try {
@@ -1183,7 +1183,7 @@ public class ContractBillReceiveControllerBean extends AbstractContractBillRecei
 					//主合同印花税金额
 					BigDecimal stampAmt = rs.getBigDecimal("stampAmt");
 					
-					String updateSql = "update T_CON_Contractbill set ForiginalAmount=?, FAmount=?,FGrtAmount=?,FStampTaxAmt=? where Fid=?";
+					String updateSql = "update T_CON_ContractbillReceive set ForiginalAmount=?, FAmount=?,FGrtAmount=?,FStampTaxAmt=? where Fid=?";
 //					String updateSql = "update T_CON_Contractbill set FAmount=?,FlocalAmount=? where Fid=?";
 					//DbUtil.execute(ctx,updateSql,new Object[]{mainAmount.subtract(supAmount),localAmount.subtract(supAmount),mainId});
 					

@@ -646,7 +646,7 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 					row.getCell("actRevAmount").setValue(
 							FDCHelper.add(row.getCell("actRevAmount")
 									.getValue(), entry.getAllRemainAmount()));
-
+					
 					BigDecimal div = FDCHelper.add(new BigDecimal(1), FDCHelper
 							.divide(rate, new BigDecimal(100), 4,
 									BigDecimal.ROUND_HALF_UP));
@@ -666,7 +666,7 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 					row.getCell("appAmount").setValue(entry.getAppAmount());
 					row.getCell("actRevAmount").setValue(
 							entry.getAllRemainAmount());
-
+					
 					BigDecimal div = FDCHelper.add(new BigDecimal(1), FDCHelper
 							.divide(rate, new BigDecimal(100), 4,
 									BigDecimal.ROUND_HALF_UP));
@@ -3314,7 +3314,45 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 			 this.txtDepoist.setText(depositAmount+"");
 			 this.txtDepoist.setHorizontalAlignment(11);
 		 }
-		 
+		 BigDecimal totalDepoist = FDCHelper.ZERO;
+			BigDecimal avgDayPrice = FDCHelper.ZERO;
+			BigDecimal totalRent = FDCHelper.ZERO;
+			BigDecimal totalMaxFreeDay = FDCHelper.ZERO;
+			BigDecimal totalMaxLease = FDCHelper.ZERO;
+			BigDecimal totalArea = FDCHelper.ZERO;
+			BigDecimal totalRentBaseLine = FDCHelper.ZERO;
+			
+			for(int i=0;i<tblTenPrice.getRowCount();i++){
+				IRow r = this.tblTenPrice.getRow(i);
+				TenPriceEntryInfo entry = (TenPriceEntryInfo) r.getCell("id").getUserObject();
+				totalDepoist = totalDepoist.add(entry.getDeposit());
+				totalRentBaseLine =totalRentBaseLine.add(entry.getArea().multiply(entry.getDayPrice()));
+			    if(entry.getMaxLease().compareTo(totalMaxLease)>0){
+			    	totalMaxLease = entry.getMaxLease();
+			    }
+			    if(entry.getMaxFreeDay().compareTo(totalMaxFreeDay)>0){
+			    	totalMaxFreeDay = entry.getMaxFreeDay();
+			    }
+				totalArea = totalArea.add(entry.getArea());
+			}
+			//获取租金合计 row.getCell("moneyDefine")
+			int c = this.tblTotal.getRowCount();
+			IRow cr = null;
+			for(int i=0;i<c;i++){
+				cr = this.tblTotal.getRow(i);
+				if("租金".equals(cr.getCell("moneyDefine").getValue().toString())){
+					totalRent = totalRent.add(FDCHelper.toBigDecimal(cr.getCell("appAmount").getValue()+""));
+				}
+			}
+			
+			
+			BigDecimal lease = FDCHelper.subtract(FDCHelper.toBigDecimal(txtMaxLease.getText()), FDCHelper.toBigDecimal(txtMaxFreeDay.getText()));
+			BigDecimal area = FDCHelper.toBigDecimal(txtRoomArea.getText());
+			avgDayPrice =FDCHelper.divide(totalRent, lease);
+			avgDayPrice = FDCHelper.divide(avgDayPrice,area);
+			if(avgDayPrice==null) avgDayPrice=FDCHelper.ZERO;
+			this.txtDayPrice.setText(avgDayPrice.toString());
+			this.txtDayPrice.setHorizontalAlignment(11);
 
 	}
 	
@@ -6849,10 +6887,10 @@ public class TenancyBillEditUI extends AbstractTenancyBillEditUI implements
 					.getValue());
 			tenOtherInfo.setAppAmount((BigDecimal) row.getCell("appAmount")
 					.getValue());
-			tenOtherInfo.setActRevAmount((BigDecimal) row.getCell(
-					"actRevAmount").getValue());
-			tenOtherInfo.setActRevDate((Date) row.getCell("actRevDate")
-					.getValue());
+//			tenOtherInfo.setActRevAmount((BigDecimal) row.getCell(
+//					"actRevAmount").getValue());
+//			tenOtherInfo.setActRevDate((Date) row.getCell("actRevDate")
+//					.getValue());
 			tenOtherInfo.setDescription((String) row.getCell("description")
 					.getValue());
 			ten.getOtherPayList().add(tenOtherInfo);

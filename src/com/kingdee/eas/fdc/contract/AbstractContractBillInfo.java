@@ -1287,6 +1287,19 @@ public class AbstractContractBillInfo extends com.kingdee.eas.fdc.basedata.FDCBi
     {
         put("contractBillReceive", item);
     }
+    /**
+     * Object:合同单据's 关联交易property 
+     */
+    public com.kingdee.eas.fdc.contract.app.YesOrNoEnum getConnectedTransaction()
+    {
+        return com.kingdee.eas.fdc.contract.app.YesOrNoEnum.getEnum(getString("connectedTransaction"));
+    }
+    public void setConnectedTransaction(com.kingdee.eas.fdc.contract.app.YesOrNoEnum item)
+    {
+		if (item != null) {
+        setString("connectedTransaction", item.getValue());
+		}
+    }
     public BOSObjectType getBOSType()
     {
         return new BOSObjectType("0D6DD1F4");

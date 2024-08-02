@@ -2890,6 +2890,12 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		filter=new FilterInfo();
 		filter.getFilterItems().add(new FilterItemInfo("state",FDCBillStateEnum.AUDITTED_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("curProject.id",this.editData.getCurProject().getId()));
+		HashSet set = new HashSet();
+		set.add(ContractPropertyEnum.DIRECT_VALUE);
+		set.add(ContractPropertyEnum.THREE_PARTY_VALUE);
+		set.add(ContractPropertyEnum.STRATEGY_VALUE);
+		filterItems.add(new FilterItemInfo("contractPropert", set,
+				CompareType.INCLUDE));
 		view.setFilter(filter);
 		this.prmtContractBillReceive.setEntityViewInfo(view);
 		
@@ -2909,6 +2915,8 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			txtchgPercForWarn.setRequired(true);
 			pkStartDate.setRequired(true);
 			pkEndDate.setRequired(true);
+			
+			this.cbConnectedTransaction.setRequired(true);
 		}else{
 			prmtLxNum.setRequired(false);
 			txtBank.setRequired(false);
@@ -2922,6 +2930,8 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 			txtchgPercForWarn.setRequired(false);
 			pkStartDate.setRequired(false);
 			pkEndDate.setRequired(false);
+			
+			this.cbConnectedTransaction.setRequired(false);
 		}
 	}
 	protected void prmtTAEntry_dataChanged(DataChangeEvent e) throws Exception {
@@ -5793,6 +5803,9 @@ public class ContractBillEditUI extends AbstractContractBillEditUI implements IW
 		checkMbgCtrlBalance();
 		if(this.prmtContractBillReceive.isRequired()){
 			FDCClientVerifyHelper.verifyEmpty(this, prmtContractBillReceive);
+		}
+		if(this.cbConnectedTransaction.isRequired()){
+			FDCClientVerifyHelper.verifyEmpty(this, cbConnectedTransaction);
 		}
 		FDCClientVerifyHelper.verifyEmpty(this, prmtcontractType);
 		//增加校验

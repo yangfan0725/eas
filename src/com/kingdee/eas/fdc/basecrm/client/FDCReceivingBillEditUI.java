@@ -469,6 +469,15 @@ public class FDCReceivingBillEditUI extends AbstractFDCReceivingBillEditUI
     	
     	row.setUserObject(revEntry);
 
+    	if(revList instanceof ITenancyPayListInfo){
+			setColValue(row, "startDate", ((ITenancyPayListInfo)revList).getStartDate());
+			setColValue(row, "endDate", ((ITenancyPayListInfo)revList).getEndDate());
+		}else if(revList instanceof TenBillOtherPayInfo){
+			setColValue(row, "startDate", ((TenBillOtherPayInfo)revList).getStartDate());
+			setColValue(row, "endDate", ((TenBillOtherPayInfo)revList).getEndDate());
+		}
+		setColValue(row, "appDate", revList.getAppDate());
+		
     	setColValue(row, COL_MONEY_DEFINE, revEntry.getMoneyDefine());
     	setColValue(row, COL_STLE_TYPE, revEntry.getSettlementType());
     	setColValue(row, COL_STLE_NUMBER, revEntry.getSettlementNumber());
@@ -856,6 +865,15 @@ public class FDCReceivingBillEditUI extends AbstractFDCReceivingBillEditUI
 			revEntry.setRevListId(revListInfo.getId() == null ? null : revListInfo.getId().toString());
 			row.setUserObject(revEntry);
 
+			if(revListInfo instanceof ITenancyPayListInfo){
+				setColValue(row, "startDate", ((ITenancyPayListInfo)revListInfo).getStartDate());
+				setColValue(row, "endDate", ((ITenancyPayListInfo)revListInfo).getEndDate());
+			}else if(revListInfo instanceof TenBillOtherPayInfo){
+				setColValue(row, "startDate", ((TenBillOtherPayInfo)revListInfo).getStartDate());
+				setColValue(row, "endDate", ((TenBillOtherPayInfo)revListInfo).getEndDate());
+			}
+			setColValue(row, "appDate", revListInfo.getAppDate());
+			
 			setColValue(row, COL_MONEY_DEFINE, revListInfo.getMoneyDefine());
 			//TODO 不在这里处理 
 			//row.getCell(COL_STLE_COUNT).getStyleAttributes().setHided(false);

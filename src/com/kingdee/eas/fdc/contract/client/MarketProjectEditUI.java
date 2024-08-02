@@ -327,8 +327,9 @@ public class MarketProjectEditUI extends AbstractMarketProjectEditUI
 		btnAttachment.setText("附件管理");
 		btnAttachment.setSize(new Dimension(140, 19));
 		
-		kDTextArea1.setText( "  1、 合同必须于立项审批通过后2天内发起流程；无文本费用报销必须于立项审批通过后次月 15日前发起报销流程；后补立项必须在请示后2天内发起；\n"
-				+ "  2、 超时签订合同或超时无文本费用报销或超时后补立项的，城市/项目营销负责人乐捐100元/笔，流程发起/报销人乐捐300 元/笔；\n");
+		kDTextArea1.setText("  1、 合同类费用需在合同流程审批通过后方可执行，立项审批通过不作为合同可以执行的节点；\n"
+				+"  2、 合同必须于立项审批通过后2天内发起流程；无文本费用报销必须于立项审批通过后次月 15日前发起报销流程；后补立项必须在请示后2天内发起；\n"
+				+ "  3、 超时签订合同或超时无文本费用报销或超时后补立项的，城市/项目营销负责人乐捐100元/笔，流程发起/报销人乐捐300 元/笔；\n");
 		kDTextArea1.setEnabled(false);
 		
 		this.txtDescription.setRequired(true);

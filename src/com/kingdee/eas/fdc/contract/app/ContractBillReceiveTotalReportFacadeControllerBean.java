@@ -107,7 +107,7 @@ public class ContractBillReceiveTotalReportFacadeControllerBean extends Abstract
     	sb.append(" left join (select sum(a.factualPayAmount) payAmount,b.fcontractbillreceiveid from T_cas_PaymentBill a left join t_con_contractbill b on a.fcontractBillId=b.fid where a.fbillStatus=15 group by b.fcontractbillreceiveid )t3 on t3.fcontractbillreceiveid=a.fid");
     	sb.append(" left join (select sum(famount) payContractAmount,fcontractbillreceiveid from t_con_contractBill a where a.fstate='4AUDITTED' group by fcontractbillreceiveid )t4 on t4.fcontractbillreceiveid=a.fid");
     	
-    	sb.append(" where a.fstate='4AUDITTED' ");
+    	sb.append(" where a.fstate='4AUDITTED' and a.FContractPropert='DIRECT'");
     	if(type!=null&&type.equals(ContractBillReceiveTotalReportFilterEnum.CONTRACT)){
     		if(startDate!=null){
     			sb.append(" and a.fbookedDate>{ts '" + FDCConstants.FORMAT_TIME.format(FDCDateHelper.getSQLBegin(startDate))+ "'}");

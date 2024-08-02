@@ -882,7 +882,7 @@ public abstract class ContractListBaseUI extends AbstractContractListBaseUI {
 		
 		//三方合同
 		//R110412-116：合同管理-合同订立-合同修订，修订审批后，被修订的合同在“合同列表”里消失
-		if(!(this instanceof ContractBillListUI) && !(this instanceof ContractBillReviseListUI)){
+		if(!(this instanceof ContractBillListUI) && !(this instanceof ContractBillReviseListUI)&& !(this instanceof ContractBillReceiveListUI)){
 			typefilter.appendFilterItem("isAmtWithoutCost", String.valueOf(0));
 		}
 		

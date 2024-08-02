@@ -2649,6 +2649,26 @@
                 <key name="name" value="R_ContractBill_ContractBillReceive_contractBillReceive" />
             </relationship>
         </linkProperty>
+        <ownProperty>
+            <name>connectedTransaction</name>
+            <alias>entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.ownProperty[connectedTransaction].alias</alias>
+            <description>entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.ownProperty[connectedTransaction].description</description>
+            <userDefined>true</userDefined>
+            <configured>false</configured>
+            <dataType>Enum</dataType>
+            <metadataRef>com.kingdee.eas.fdc.contract.app.YesOrNoEnum</metadataRef>
+            <isMultilingual>false</isMultilingual>
+            <isNullable>false</isNullable>
+            <formula />
+            <length>0</length>
+            <precision>0</precision>
+            <decimalDigits>0</decimalDigits>
+            <defaultValue>entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.ownProperty[connectedTransaction].defaultValue</defaultValue>
+            <displayFormat />
+            <mappingField>
+                <key name="name" value="FConnectedTransaction" />
+            </mappingField>
+        </ownProperty>
     </properties>
     <logicalKey>
         <name>id</name>
@@ -5653,6 +5673,24 @@
             <lang locale="zh_CN" value="待处理状态" />
             <lang locale="zh_HK" value="待處理狀態" />
             <lang locale="zh_TW" value="待處理狀態" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.ownProperty[connectedTransaction].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="关联交易" />
+            <lang locale="zh_HK" value="關聯交易" />
+            <lang locale="zh_TW" value="關聯交易" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.ownProperty[connectedTransaction].defaultValue">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="null" />
+            <lang locale="zh_HK" value="null" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+        <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.ownProperty[connectedTransaction].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="关联交易" />
+            <lang locale="zh_HK" value="關聯交易" />
+            <lang locale="zh_TW" value="關聯交易" />
         </rs>
         <rs key="entityObject[com.kingdee.eas.fdc.contract.app.ContractBill].properties.ownProperty[contractModel].alias">
             <lang locale="en_US" value="null" />

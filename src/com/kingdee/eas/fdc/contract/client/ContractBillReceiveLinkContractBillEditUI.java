@@ -4,6 +4,7 @@
 package com.kingdee.eas.fdc.contract.client;
 
 import java.awt.event.*;
+import java.util.HashSet;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -17,6 +18,7 @@ import com.kingdee.bos.dao.IObjectValue;
 import com.kingdee.eas.fdc.basedata.FDCBillStateEnum;
 import com.kingdee.eas.fdc.contract.ContractBillInfo;
 import com.kingdee.eas.fdc.contract.ContractBillReceiveInfo;
+import com.kingdee.eas.fdc.contract.ContractPropertyEnum;
 import com.kingdee.eas.framework.*;
 
 /**
@@ -64,6 +66,12 @@ public class ContractBillReceiveLinkContractBillEditUI extends AbstractContractB
 		filter.getFilterItems().add(new FilterItemInfo("state",FDCBillStateEnum.AUDITTED_VALUE));
 		filter.getFilterItems().add(new FilterItemInfo("curProject.id",contractBillInfo.getCurProject().getId()));
 //		filter.getFilterItems().add(new FilterItemInfo("id","select fContractBillid from T_CON_ContractBillReceive where fContractBillid is not null and fid!='"+contractBillReceiveInfo.getId()+"'",CompareType.NOTINNER));
+		HashSet set = new HashSet();
+		set.add(ContractPropertyEnum.DIRECT_VALUE);
+		set.add(ContractPropertyEnum.THREE_PARTY_VALUE);
+		set.add(ContractPropertyEnum.STRATEGY_VALUE);
+		filter.getFilterItems().add(new FilterItemInfo("contractPropert", set,
+				CompareType.INCLUDE));
 		view.setFilter(filter);
 		this.prmtContract.setEntityViewInfo(view);
 		

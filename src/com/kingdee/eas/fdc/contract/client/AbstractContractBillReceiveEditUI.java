@@ -1471,8 +1471,7 @@ public abstract class AbstractContractBillReceiveEditUI extends com.kingdee.eas.
         });
         // contractPropert		
         this.contractPropert.setVisible(true);		
-        this.contractPropert.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.contract.ContractPropertyEnum").toArray());		
-        this.contractPropert.setEnabled(false);
+        this.contractPropert.addItems(EnumUtils.getEnumList("com.kingdee.eas.fdc.contract.ContractPropertyEnum").toArray());
         this.contractPropert.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent e) {
                 try {

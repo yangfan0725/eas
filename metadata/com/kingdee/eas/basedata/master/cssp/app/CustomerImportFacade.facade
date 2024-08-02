@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facade xmlns="com.kingdee.bos.metadata">
+    <package>com.kingdee.eas.basedata.master.cssp.app</package>
+    <name>CustomerImportFacade</name>
+    <alias>facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].alias</alias>
+    <description>facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].description</description>
+    <userDefined>true</userDefined>
+    <bosType>1CB7B3CD</bosType>
+    <stereoType>false</stereoType>
+    <businessImplName>com.kingdee.eas.basedata.master.cssp.CustomerImportFacade</businessImplName>
+    <businessControllerName>com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacadeController</businessControllerName>
+    <accessLevel>public</accessLevel>
+    <subClassingMode>normal</subClassingMode>
+    <methods>
+        <method>
+            <name>customerImport</name>
+            <isListenerMethod>false</isListenerMethod>
+            <alias>facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].methods.method[customerImport].alias</alias>
+            <description>facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].methods.method[customerImport].description</description>
+            <innerID>f6dc713d-358a-43c6-b638-e008ad401c70</innerID>
+            <accessLevel>public</accessLevel>
+            <subClassingMode>normal</subClassingMode>
+            <returnValueType>String</returnValueType>
+            <metadataRef />
+            <transactionAttribute>Supports</transactionAttribute>
+            <userDefined>true</userDefined>
+            <userDefinedLogic />
+            <parameters>
+                <parameter>
+                    <name>str</name>
+                    <alias>facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].methods.method[customerImport].parameters.parameter[str].alias</alias>
+                    <description>facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].methods.method[customerImport].parameters.parameter[str].description</description>
+                    <direction>in</direction>
+                    <dataType>String</dataType>
+                    <metadataRef />
+                    <userDefined>true</userDefined>
+                </parameter>
+            </parameters>
+            <exceptions>
+                <bizException>
+                    <key name="package" value="com.kingdee.eas.common" />
+                    <key name="name" value="EASBizException" />
+                </bizException>
+            </exceptions>
+            <configured>false</configured>
+        </method>
+    </methods>
+    <resource>
+        <rs key="facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户导入" />
+            <lang locale="zh_HK" value="客戶導入" />
+            <lang locale="zh_TW" value="客戶導入" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户导入" />
+            <lang locale="zh_HK" value="客戶導入" />
+            <lang locale="zh_TW" value="客戶導入" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].extendedProperty.userDefined">
+            <lang locale="en_US" value="true" />
+            <lang locale="zh_CN" value="true" />
+            <lang locale="zh_TW" value="true" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].methods.method[customerImport].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户导入" />
+            <lang locale="zh_HK" value="客戶導入" />
+            <lang locale="zh_TW" value="客戶導入" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].methods.method[customerImport].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="客户导入" />
+            <lang locale="zh_HK" value="客戶導入" />
+            <lang locale="zh_TW" value="客戶導入" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].methods.method[customerImport].parameters.parameter[str].alias">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="str" />
+            <lang locale="zh_HK" value="str" />
+            <lang locale="zh_TW" value="str" />
+        </rs>
+        <rs key="facade[com.kingdee.eas.basedata.master.cssp.app.CustomerImportFacade].methods.method[customerImport].parameters.parameter[str].description">
+            <lang locale="en_US" value="null" />
+            <lang locale="zh_CN" value="" />
+            <lang locale="zh_TW" value="null" />
+        </rs>
+    </resource>
+</facade>
+

@@ -99,6 +99,7 @@ public class NoTradingSellBillControllerBean extends AbstractNoTradingSellBillCo
 			ICodingRuleManager iCodingRuleManager = CodingRuleManagerFactory.getLocalInstance(ctx);
 			sign.setNumber(iCodingRuleManager.getNumber(sign, sp.getOrgUnit().getId().toString()));
 			
+			sign.setContractTotalAmount(info.getEntry().get(i).getSellAmount());
 			sign.setDealTotalAmount(info.getEntry().get(i).getSellAmount());
 			sign.setSellAmount(info.getEntry().get(i).getSellAmount());
 			

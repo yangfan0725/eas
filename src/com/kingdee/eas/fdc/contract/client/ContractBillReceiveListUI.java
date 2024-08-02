@@ -194,6 +194,12 @@ public class ContractBillReceiveListUI extends AbstractContractBillReceiveListUI
 				String preNumber = null;
 				for (int i = e.getFirstRow(); i <= e.getLastRow(); i++) {
 					IRow row = tblMain.getRow(i);
+					if(row.getCell("amount").getValue()==null){
+						row.getCell("amount").setValue(FDCHelper.ZERO);
+					}
+					if(row.getCell("originalAmount").getValue()==null){
+						row.getCell("originalAmount").setValue(FDCHelper.ZERO);
+					}
 					String idkey = row.getCell("id").getValue().toString();
 					if(contentMap.containsKey(idkey)){
 						row.getCell("content").setValue(Boolean.TRUE);

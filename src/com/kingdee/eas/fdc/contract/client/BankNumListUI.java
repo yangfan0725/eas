@@ -14,6 +14,7 @@ import com.kingdee.bos.ui.face.CoreUIObject;
 import com.kingdee.bos.dao.IObjectValue;
 import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
 import com.kingdee.eas.base.attachment.FtpConfigFactory;
+import com.kingdee.eas.basedata.master.cssp.CustomerImportFacadeFactory;
 import com.kingdee.eas.fdc.basedata.FDCDataBaseInfo;
 import com.kingdee.eas.fdc.basedata.FDCDateHelper;
 import com.kingdee.eas.fdc.basedata.client.ContractTypeEditUI;
@@ -146,6 +147,10 @@ public class BankNumListUI extends AbstractBankNumListUI
 //		} catch (RemoteException e) {
 //			e.printStackTrace();
 //		}//∑¢ÀÕ«Î«Û
+//        JSONObject json = new JSONObject(); 
+//        json.put("number", "test001");
+//        json.put("name", "test001");
+//        CustomerImportFacadeFactory.getRemoteInstance().customerImport(json.toString());
     }
     protected String getEditUIName() {
 		return BankNumEditUI.class.getName();
